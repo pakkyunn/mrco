@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+        replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -45,11 +47,11 @@ class MainActivity : AppCompatActivity() {
         when(name){
             // 코디네이터 소개
             MainFragmentName.COORDINATOR_INFO -> {
-                // newFragment = LoginFragment()
+                newFragment = CoordinatorInfoFragment()
             }
             // 인기 코디네이터
             MainFragmentName.COORDINATOR_RANK -> {
-                // newFragment = JoinFragment()
+                newFragment = CoordinatorRankFragment()
             }
         }
 
