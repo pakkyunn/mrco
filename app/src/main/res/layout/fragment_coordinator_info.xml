@@ -7,12 +7,43 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.CoordinatorInfoFragment" >
+        tools:context=".CoordinatorInfoFragment">
 
-        <TextView
-            android:id="@+id/textView"
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarCoordinatorInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="test" />
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="COORDINATOR"
+                    android:textAlignment="center"
+                    android:textColor="#00364E"
+                    android:textSize="24dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewCoordinatorInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp" />
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </layout>

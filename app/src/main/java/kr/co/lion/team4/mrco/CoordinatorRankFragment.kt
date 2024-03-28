@@ -5,55 +5,80 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CoordinatorRankFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CoordinatorRankFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    lateinit var fragmentCoordinatorRankBinding: FragmentCoordinatorRankBinding
+    lateinit var mainActivity: MainActivity
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+
+        fragmentCoordinatorRankBinding = FragmentCoordinatorRankBinding.inflate(layoutInflater)
+        mainActivity = activity as MainActivity
+
+        settingToolbarCoordinatorRank()
+        settingRecyclerViewCoordinatorInfo()
+
+        return fragmentCoordinatorRankBinding.root
+    }
+
+    // 툴바 설정
+    fun settingToolbarCoordinatorRank(){
+        fragmentCoordinatorRankBinding.apply {
+            toolbarCoordinatorRank.apply {
+                title = "인기 코디네이터"
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coordinator_rank, container, false)
+    // 코디네이터 소개 리사클러뷰 설정
+    fun settingRecyclerViewCoordinatorInfo() {
+        fragmentCoordinatorRankBinding.apply {
+            recyclerViewCoordinatorRank.apply {
+                // 어뎁터 및 레이아웃 매니저 설정
+                adapter = CoordinatorRankRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(mainActivity)
+            }
+        }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CoordinatorRankFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CoordinatorRankFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    // 코디네이터 소개 리사이클러 뷰 어뎁터
+    inner class CoordinatorRankRecyclerViewAdapter: RecyclerView.Adapter<CoordinatorRankRecyclerViewAdapter.CorrdinatorRankViewHolder>(){
+        inner class CorrdinatorRankViewHolder(rowCoordinatorRankBinding: RowCoordinatorRankBinding): RecyclerView.ViewHolder(rowCoordinatorRankBinding.root){
+            val rowCoordinatorRankBinding: RowCoordinatorRankBinding
+
+            init {
+                this.rowCoordinatorRankBinding = rowCoordinatorRankBinding
+
+                this.rowCoordinatorRankBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
             }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CorrdinatorRankViewHolder {
+            val rowCoordinatorRankBinding = RowCoordinatorRankBinding.inflate(layoutInflater)
+            val coordinatorRankViewHolder = CorrdinatorRankViewHolder(rowCoordinatorRankBinding)
+
+            return coordinatorRankViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return 6
+        }
+
+        override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
+            holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankRank.text = "${position + 1}"
+        }
     }
+
+
 }

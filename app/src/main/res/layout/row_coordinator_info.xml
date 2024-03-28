@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imageViewCoordinatorInfo"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/iu_image" />
+
+        <TextView
+            android:id="@+id/coordinatorMbti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ISFP"
+            android:textColor="#EAEAEA"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/coordinatorName"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/coordinatorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이유 >"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/coordinatorFollower"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/coordinatorFollower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="♥ 1,361"
+            android:textColor="#C2C2C2"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintVertical_bias="0.9" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
