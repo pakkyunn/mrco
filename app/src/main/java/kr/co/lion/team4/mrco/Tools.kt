@@ -13,4 +13,5 @@ enum class MainFragmentName(var str: String) {
     COORDINATOR_INFO("Coordinator_Info_Fragment"),
     COORDINATOR_RANK("Coordinator_Rank_Fragment"),
     LIKE_COORDINATOR("Like_Coordinator_Fragment"),
+    WRITE_REVIEW("Write_Review_Fragment")
 }

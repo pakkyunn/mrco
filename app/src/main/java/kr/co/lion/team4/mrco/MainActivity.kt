@@ -24,10 +24,15 @@ class MainActivity : AppCompatActivity() {
 
         // 코디네이터 소개
         // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+
         // 인기 코디네이터
         // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
+
         // 좋아요 화면(코디네이터)
-        replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
+        // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
+
+        // 리뷰 작성 페이지
+        replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -61,6 +66,10 @@ class MainActivity : AppCompatActivity() {
             // 좋아요 화면 (코디네이터)
             MainFragmentName.LIKE_COORDINATOR -> {
                 newFragment = LikeCoordinatorFragment()
+            }
+            // 리뷰 작성 화면
+            MainFragmentName.WRITE_REVIEW -> {
+                newFragment = WriteReviewFragment()
             }
         }
 
