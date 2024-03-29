@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/color/pressed_color.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:color="#BBBBBB" /> <!-- 눌렸을 때의 색상 -->
+    <item android:color="#FFFFFF" /> <!-- 일반적인 색상 -->
+</selector>

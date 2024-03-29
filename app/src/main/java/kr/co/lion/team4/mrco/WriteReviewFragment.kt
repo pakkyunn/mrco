@@ -1,10 +1,12 @@
 package kr.co.lion.team4.mrco
 
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import kr.co.lion.team4.mrco.databinding.FragmentWriteReviewBinding
 
 class WriteReviewFragment : Fragment() {
@@ -40,7 +42,7 @@ class WriteReviewFragment : Fragment() {
                     when (it.itemId) {
                         // 드롭다운 클릭 시
                         R.id.menuItemWriteReviewDropdown -> {
-
+                            showDropdownMenu(toolbarWriteReview.findViewById(R.id.menuItemWriteReviewDropdown)) // 팝업 메뉴 표시
                         }
                     }
                     true
@@ -55,4 +57,38 @@ class WriteReviewFragment : Fragment() {
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.WRITE_REVIEW)
     }
+
+    // 팝업 메뉴 표시 함수
+    private fun showDropdownMenu(anchorView: View) {
+        // 팝업 메뉴에 적용할 Style
+        val contextThemeWrapper = ContextThemeWrapper(requireContext(), R.style.PopupMenuStyle)
+
+        // 팝업 메뉴 생성
+        val popupMenu = PopupMenu(contextThemeWrapper, anchorView)
+
+        popupMenu.inflate(R.menu.popup_menu_write_review) // 팝업 메뉴에 사용할 XML 리소스 파일 지정
+
+        // 팝업 메뉴 아이템 클릭 이벤트 처리
+        popupMenu.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                // 스타일 리뷰 작성 클릭
+                R.id.popup_write_review_Style -> {
+                    fragmentWriteReviewBinding.apply {
+                        toolbarWriteReview.title = "스타일 리뷰 작성"
+                    }
+                }
+                // 일반 리뷰 작성 클릭
+                R.id.popup_write_review_Normal -> {
+                    fragmentWriteReviewBinding.apply {
+                        toolbarWriteReview.title = "일반 리뷰 작성"
+                    }
+                }
+            }
+            true
+        }
+
+        // 팝업 메뉴 표시
+        popupMenu.show()
+    }
+
 }

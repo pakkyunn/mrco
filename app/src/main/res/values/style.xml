@@ -12,4 +12,10 @@
         <item name="cornerSize">50%</item> <!-- 둥글기 정도. 너비/높이의 절반으로 설정하면 원 모양이 됩니다. -->
     </style>
 
+    <style name="PopupMenuStyle">
+        <!-- 팝업 메뉴 배경색 -->
+        <!-- 위치 res/color/popup_pressed_color.xml 에서 수정 가능함 -->
+        <item name="android:itemBackground">@color/popup_pressed_color</item>
+    </style>
+
 </resources>
