@@ -22,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+        // 코디네이터 소개
+        // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+        // 인기 코디네이터
+        replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
