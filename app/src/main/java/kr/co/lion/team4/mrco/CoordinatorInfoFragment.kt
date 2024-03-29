@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
 
@@ -22,20 +23,10 @@ class CoordinatorInfoFragment : Fragment() {
         fragmentCoordinatorInfoBinding = FragmentCoordinatorInfoBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        settingToolbarCoordinatorInfo()
         settingRecyclerViewCoordinatorInfo()
-
+        settingTabs()
 
         return fragmentCoordinatorInfoBinding.root
-    }
-
-    // 툴바 설정
-    fun settingToolbarCoordinatorInfo(){
-        fragmentCoordinatorInfoBinding.apply {
-            toolbarCoordinatorInfo.apply {
-                title = "코디네이터 소개"
-            }
-        }
     }
 
     // 코디네이터 소개 리사클러뷰 설정
@@ -46,6 +37,19 @@ class CoordinatorInfoFragment : Fragment() {
                 adapter = CoordinatorInfoRecyclerViewAdapter()
                 layoutManager = GridLayoutManager(mainActivity, 2)
             }
+        }
+    }
+
+    // 탭바 위치 설정
+    fun settingTabs(){
+        mainActivity.activityMainBinding.apply {
+            val tabLayout = tabsMain
+            tabLayout.getTabAt(2)?.select()
+        }
+
+        fragmentCoordinatorInfoBinding.apply {
+            val tabLayout = tabs
+            tabLayout.getTabAt(1)?.select()
         }
     }
 

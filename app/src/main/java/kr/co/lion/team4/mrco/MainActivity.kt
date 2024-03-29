@@ -30,10 +30,10 @@ class MainActivity : AppCompatActivity() {
         // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
 
         // 좋아요 화면(코디네이터)
-        // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
+        replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
 
         // 리뷰 작성 페이지
-        replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
+        // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -133,7 +133,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // BackStack에서 Fragment를 제거한다.
+
+        // BackStack에서 Fragment를 제거한다.
     fun removeFragment(name: MainFragmentName){
         SystemClock.sleep(200)
 
@@ -142,11 +143,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     
-    // 이 하단 바는 임시적으로 테스트하려고 씀
+    // 이 안보이게는 임시적으로 테스트하려고 씀
     // 하단 바 안보이게 하기
     fun removeBottomSheet(){
         activityMainBinding.apply {
             mainBottomNavi.isVisible = false
+        }
+    }
+
+    // 툴바 안보이게
+    fun removeToolbar(){
+        activityMainBinding.apply {
+            toolbarMain.isVisible = false
+        }
+    }
+
+    // 상단 탭바 안보이게
+    fun removeTabsBar(){
+        activityMainBinding.apply {
+            tabsMain.isVisible = false
         }
     }
 }

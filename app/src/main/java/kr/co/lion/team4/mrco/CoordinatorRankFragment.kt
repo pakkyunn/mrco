@@ -25,20 +25,12 @@ class CoordinatorRankFragment : Fragment() {
         fragmentCoordinatorRankBinding = FragmentCoordinatorRankBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        settingToolbarCoordinatorRank()
         settingRecyclerViewCoordinatorRank()
+        settingTabs()
 
         return fragmentCoordinatorRankBinding.root
     }
 
-    // 툴바 설정
-    fun settingToolbarCoordinatorRank(){
-        fragmentCoordinatorRankBinding.apply {
-            toolbarCoordinatorRank.apply {
-                title = "인기 코디네이터"
-            }
-        }
-    }
 
     // 인기 코디네이터 리사이클러 뷰 설정
     fun settingRecyclerViewCoordinatorRank() {
@@ -48,6 +40,18 @@ class CoordinatorRankFragment : Fragment() {
                 adapter = CoordinatorRankRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
             }
+        }
+    }
+
+    // 탭바 위치 설정
+    fun settingTabs(){
+        mainActivity.activityMainBinding.apply {
+            val tabLayout = tabsMain
+            tabLayout.getTabAt(2)?.select()
+        }
+        fragmentCoordinatorRankBinding.apply {
+            val tabLayout = tabs
+            tabLayout.getTabAt(0)?.select()
         }
     }
 

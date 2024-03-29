@@ -22,19 +22,11 @@ class LikeCoordinatorFragment : Fragment() {
         fragmentLikeCoordinatorBinding = FragmentLikeCoordinatorBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        settingToolbarCoordinatorRank()
         settingRecyclerViewLikeCoordinator()
+        settingTabs()
+        mainActivity.removeTabsBar()
 
         return fragmentLikeCoordinatorBinding.root
-    }
-
-    // 툴바 설정
-    fun settingToolbarCoordinatorRank(){
-        fragmentLikeCoordinatorBinding.apply {
-            toolbarLikeCoordinator.apply {
-                title = "좋아요 페이지(코디네이터)"
-            }
-        }
     }
 
     // 인기 코디네이터 리사이클러 뷰 설정
@@ -45,6 +37,18 @@ class LikeCoordinatorFragment : Fragment() {
                 adapter = LikeCoordinatorRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
             }
+        }
+    }
+
+    // 탭바 및 바텀바 위치 설정
+    fun settingTabs(){
+        fragmentLikeCoordinatorBinding.apply {
+            val tabLayout = tabs
+            tabLayout.getTabAt(1)?.select()
+        }
+        mainActivity.activityMainBinding.apply {
+            val bottomBar = mainBottomNavi
+            bottomBar.selectedItemId = R.id.main_bottom_navi_like
         }
     }
 

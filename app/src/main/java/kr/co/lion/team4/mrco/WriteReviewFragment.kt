@@ -24,6 +24,8 @@ class WriteReviewFragment : Fragment() {
         settingToolbarWriteReview()
         settingButtonEvent()
         mainActivity.removeBottomSheet()
+        mainActivity.removeTabsBar()
+        mainActivity.removeToolbar()
 
 
         return fragmentWriteReviewBinding.root
