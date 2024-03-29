@@ -9,10 +9,10 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageViewCoordinatorInfo"
-            android:layout_width="120dp"
-            android:layout_height="180dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginBottom="25dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -20,8 +20,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/iu_image"
-            app:shapeAppearanceOverlay="@style/roundedImageView">
+            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:srcCompat="@drawable/iu_image3">
 
         </com.google.android.material.imageview.ShapeableImageView>
 
