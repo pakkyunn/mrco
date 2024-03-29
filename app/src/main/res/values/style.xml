@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  ImageView Style  -->
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item> <!-- 모서리 모양 (rounded: 둥근 모서리) -->
+        <item name="cornerSize">20%</item> <!-- 둥글기 정도. 너비/높이의 절반으로 설정하면 원 모양이 됩니다. -->
+    </style>
+
+    <style name="roundedImageView50">
+        <item name="cornerFamily">rounded</item> <!-- 모서리 모양 (rounded: 둥근 모서리) -->
+        <item name="cornerSize">50%</item> <!-- 둥글기 정도. 너비/높이의 절반으로 설정하면 원 모양이 됩니다. -->
+    </style>
+
+</resources>

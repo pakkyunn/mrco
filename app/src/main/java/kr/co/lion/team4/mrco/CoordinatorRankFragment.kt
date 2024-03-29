@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco
 
+import android.graphics.Rect
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,7 +27,6 @@ class CoordinatorRankFragment : Fragment() {
 
         settingToolbarCoordinatorRank()
         settingRecyclerViewCoordinatorRank()
-        // settingRecyclerViewCoordinatorRank2()
 
         return fragmentCoordinatorRankBinding.root
     }
@@ -84,6 +84,8 @@ class CoordinatorRankFragment : Fragment() {
             val innerRecyclerView = holder.rowCoordinatorRankBinding.recyclerViewCoordinatorRank2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
+
+            // ItemDecoration 적용?
         }
     }
 
@@ -97,7 +99,7 @@ class CoordinatorRankFragment : Fragment() {
                 this.rowCoordinatorRank2Binding = rowCoordinatorRank2Binding
 
                 this.rowCoordinatorRank2Binding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -111,7 +113,7 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 10
         }
 
         override fun onBindViewHolder(holder: InnerViewHolder, position: Int) {
