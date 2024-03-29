@@ -12,6 +12,19 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/containerMain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/white"
+            app:itemIconTint="#000000"
+            app:layout_insetEdge="bottom"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_main_bottom_navi" />
+
     </LinearLayout>
 </layout>

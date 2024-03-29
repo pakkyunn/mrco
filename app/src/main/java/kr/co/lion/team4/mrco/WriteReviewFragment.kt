@@ -23,6 +23,8 @@ class WriteReviewFragment : Fragment() {
 
         settingToolbarWriteReview()
         settingButtonEvent()
+        mainActivity.removeBottomSheet()
+
 
         return fragmentWriteReviewBinding.root
     }

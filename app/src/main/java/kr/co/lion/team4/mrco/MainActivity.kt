@@ -3,6 +3,7 @@ package kr.co.lion.team4.mrco
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
@@ -138,5 +139,14 @@ class MainActivity : AppCompatActivity() {
 
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
+
+    
+    // 이 하단 바는 임시적으로 테스트하려고 씀
+    // 하단 바 안보이게 하기
+    fun removeBottomSheet(){
+        activityMainBinding.apply {
+            mainBottomNavi.isVisible = false
+        }
     }
 }

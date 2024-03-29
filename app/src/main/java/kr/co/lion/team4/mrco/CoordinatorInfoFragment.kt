@@ -25,6 +25,7 @@ class CoordinatorInfoFragment : Fragment() {
         settingToolbarCoordinatorInfo()
         settingRecyclerViewCoordinatorInfo()
 
+
         return fragmentCoordinatorInfoBinding.root
     }
 
