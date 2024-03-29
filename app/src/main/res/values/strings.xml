@@ -1,3 +1,35 @@
 <resources>
+
     <string name="app_name">MRCO</string>
+
+    <!-- 시각장애인들을 위한 contentDescription 설명 추가 -->
+    <string name="contentDescription_codiImage">이 사진은 당신이 보고있는 코디상품의 전체적인 이미지입니다.</string>
+
+
+    <!-- 코디상품상세 탭 이름 -->
+    <string name="tab_item_all">전체</string>
+    <string name="tab_item_top">상의</string>
+    <string name="tab_item_bottom">하의</string>
+    <string name="tab_item_shoes">신발</string>
+    <string name="tab_item_accessory">악세서리</string>
+
+    <!-- 코디 상품 이름 -->
+    <string name="codi_product_name">호불호 없는 출근룩 코디 SET</string>
+
+    <!--  코디 상품 상세정보 입력항목  -->
+    <string name="input_product_name">상품명 : </string>
+    <string name="input_size">사이즈</string>
+    <string name="input_color">색상</string>
+    <string name="input_serial_number">상품 S/N</string>
+    <string name="input_price">가격</string>
+
+    <!--  코디 상품 상세 종류 입력  -->
+    <string name="product_tag1">상의1</string>
+    <string name="product_name">스탠다드 셔츠</string>
+    <string name="product_color">WHITE</string>
+    <string name="product_product_serial_numper">esd1234567</string>
+    <string name="product_price">₩ 70,000</string>
+    <string name="product_size">M</string>
+
+
 </resources>
