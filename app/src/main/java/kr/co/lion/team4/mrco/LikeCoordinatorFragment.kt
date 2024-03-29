@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinator2Binding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
 
@@ -79,7 +76,7 @@ class LikeCoordinatorFragment : Fragment() {
 
         override fun onBindViewHolder(holder: LikeCorrdinatorViewHolder, position: Int) {
             // 내부 리사이클러 뷰 설정
-            val innerRecyclerView = holder.rowLikeCoordinatorBinding.recyclerViewCoordinatorRank2
+            val innerRecyclerView = holder.rowLikeCoordinatorBinding.recyclerViewLikeCoordinator2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
         }

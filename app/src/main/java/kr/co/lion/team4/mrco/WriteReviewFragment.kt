@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.view.isVisible
 import kr.co.lion.team4.mrco.databinding.FragmentWriteReviewBinding
 
 class WriteReviewFragment : Fragment() {
@@ -21,6 +22,7 @@ class WriteReviewFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         settingToolbarWriteReview()
+        settingButtonEvent()
 
         return fragmentWriteReviewBinding.root
     }
@@ -53,6 +55,15 @@ class WriteReviewFragment : Fragment() {
         }
     }
 
+    // 버튼 설정
+    fun settingButtonEvent(){
+        fragmentWriteReviewBinding.apply {
+            buttonWriteReviewCancel.setOnClickListener {
+                backProcesss()
+            }
+        }
+    }
+
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.WRITE_REVIEW)
@@ -75,12 +86,16 @@ class WriteReviewFragment : Fragment() {
                 R.id.popup_write_review_Style -> {
                     fragmentWriteReviewBinding.apply {
                         toolbarWriteReview.title = "스타일 리뷰 작성"
+                        textViewWriteReviewPhoto.isVisible = true
+                        linearLayoutWriteReviewPhoto.isVisible = true
                     }
                 }
                 // 일반 리뷰 작성 클릭
                 R.id.popup_write_review_Normal -> {
                     fragmentWriteReviewBinding.apply {
                         toolbarWriteReview.title = "일반 리뷰 작성"
+                        textViewWriteReviewPhoto.isVisible = false
+                        linearLayoutWriteReviewPhoto.isVisible = false
                     }
                 }
             }
