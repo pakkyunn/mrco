@@ -30,7 +30,7 @@
                 <TextView
                     android:id="@+id/textView_cardViewProductInfo_CodiProductName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="7"
                     android:contentDescription="@string/contentDescription_codiImage"
                     android:gravity="center"
@@ -39,8 +39,9 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:contentDescription="@string/contentDescription_codiImage"
                     android:src="@drawable/logo_mrco" />
             </LinearLayout>
 
