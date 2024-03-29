@@ -44,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_background_border_black"
+                android:contentDescription="@string/contentDescription_codiImage"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo_mrco" />
         </LinearLayout>
