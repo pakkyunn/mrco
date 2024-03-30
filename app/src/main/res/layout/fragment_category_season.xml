@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <view
+                    android:id="@+id/view"
+                    class="com.google.android.material.search.SearchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="카테고리 검색" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="168dp">
+
+                    <Button
+                        android:id="@+id/button2"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="MEN"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/button3"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="32dp"
+                        android:text="WOMEN"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider15"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center"
+                        android:text="MBTI"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <View
+                        android:id="@+id/divider19"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center"
+                        android:text="TPO"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <View
+                        android:id="@+id/divider16"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="#E5E9EE"
+                        android:gravity="center"
+                        android:text="SEASON"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <View
+                        android:id="@+id/divider17"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:gravity="center"
+                        android:text="MOOD"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                    <View
+                        android:id="@+id/divider18"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="?android:attr/listDivider" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider20"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="?android:attr/listDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#E4E8ED"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageButton
+                            android:id="@+id/imageButton1003"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="32dp"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton1004"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:id="@+id/textView3003"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginEnd="64dp"
+                            android:gravity="center"
+                            android:text="봄" />
+
+                        <TextView
+                            android:id="@+id/textView3004"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="여름" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageButton
+                            android:id="@+id/imageButton1013"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            android:layout_marginStart="24dp"
+                            android:layout_marginEnd="32dp"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton1014"
+                            android:layout_width="96dp"
+                            android:layout_height="96dp"
+                            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp">
+
+                        <TextView
+                            android:id="@+id/textView3013"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:layout_marginEnd="64dp"
+                            android:gravity="center"
+                            android:text="가을" />
+
+                        <TextView
+                            android:id="@+id/textView3014"
+                            android:layout_width="64dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="겨울" />
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#E3E7EC">
+
+                        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                            android:id="@+id/extended_fab"
+                            android:layout_width="107dp"
+                            android:layout_height="42dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_margin="16dp"
+                            android:text="적용"
+                            app:backgroundTint="#FDF6FE"
+                            app:elevation="6dp"
+                            app:icon="@android:drawable/ic_menu_send"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+</layout>
