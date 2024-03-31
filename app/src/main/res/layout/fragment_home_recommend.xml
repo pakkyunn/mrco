@@ -12,7 +12,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_recommand_banner"
+                android:id="@+id/home_recommend_banner"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:clipChildren="false"
@@ -25,7 +25,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/home_recommand_content1"
+                android:id="@+id/home_recommend_content1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -33,10 +33,10 @@
                 android:text="추천 코디"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_recommand_banner" />
+                app:layout_constraintTop_toBottomOf="@+id/home_recommend_banner" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_recommand_recycler"
+                android:id="@+id/home_recommend_recycler"
                 android:layout_width="0dp"
                 android:layout_height="256dp"
                 android:layout_marginStart="16dp"
@@ -48,10 +48,10 @@
                 android:paddingEnd="64dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_recommand_content1" />
+                app:layout_constraintTop_toBottomOf="@id/home_recommend_content1" />
 
             <Button
-                android:id="@+id/home_recommand_all_button"
+                android:id="@+id/home_recommend_all_button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -60,10 +60,10 @@
                 android:text="추천코디 전체보기"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_recommand_recycler" />
+                app:layout_constraintTop_toBottomOf="@+id/home_recommend_recycler" />
 
             <TextView
-                android:id="@+id/home_recommand_content2"
+                android:id="@+id/home_recommend_content2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -71,10 +71,10 @@
                 android:text="MRCO 신규 코디"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_recommand_all_button" />
+                app:layout_constraintTop_toBottomOf="@+id/home_recommend_all_button" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/home_recommand_new_recycler"
+                android:id="@+id/home_recommend_new_recycler"
                 android:layout_width="0dp"
                 android:layout_height="256dp"
                 android:layout_marginStart="16dp"
@@ -88,7 +88,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/home_recommand_content2" />
+                app:layout_constraintTop_toBottomOf="@+id/home_recommend_content2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
