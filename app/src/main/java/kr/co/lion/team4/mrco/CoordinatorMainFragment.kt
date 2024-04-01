@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainBinding
 
 
 class CoordinatorMainFragment : Fragment() {
@@ -24,6 +28,7 @@ class CoordinatorMainFragment : Fragment() {
 
         toolbarSetting()
         settingTabs()
+        settingRecyclerViewCoordinatorInfo()
 
         return fragmentCoordinatorMainBinding.root
     }
@@ -39,6 +44,48 @@ class CoordinatorMainFragment : Fragment() {
                     backProcesss()
                 }
             }
+        }
+    }
+
+    // 코디네이터 소개 리사클러뷰 설정
+    fun settingRecyclerViewCoordinatorInfo() {
+        fragmentCoordinatorMainBinding.apply {
+            recyclerViewCoordinatorMain.apply {
+                // 어뎁터 및 레이아웃 매니저 설정
+                adapter = CoordinatorMainRecyclerViewAdapter()
+                layoutManager = GridLayoutManager(mainActivity, 2)
+            }
+        }
+    }
+
+    // 코디네이터 소개 리사이클러 뷰 어뎁터
+    inner class CoordinatorMainRecyclerViewAdapter: RecyclerView.Adapter<CoordinatorMainRecyclerViewAdapter.CorrdinatorMainViewHolder>(){
+        inner class CorrdinatorMainViewHolder(rowCoordinatorMainBinding: RowCoordinatorMainBinding): RecyclerView.ViewHolder(rowCoordinatorMainBinding.root){
+            val rowCoordinatorMainBinding: RowCoordinatorMainBinding
+
+            init {
+                this.rowCoordinatorMainBinding = rowCoordinatorMainBinding
+
+                this.rowCoordinatorMainBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CorrdinatorMainViewHolder {
+            val rowCoordinatorMainBinding = RowCoordinatorMainBinding.inflate(layoutInflater)
+            val coordinatorMainViewHolder = CorrdinatorMainViewHolder(rowCoordinatorMainBinding)
+
+            return coordinatorMainViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return 6
+        }
+
+        override fun onBindViewHolder(holder: CorrdinatorMainViewHolder, position: Int) {
+
         }
     }
 
