@@ -43,4 +43,11 @@
     <string name="textView_cardView_productSerialNumber">상품 S/N</string>
     <string name="textView_cardView_productStock"> 재고 : 36개 </string>
 
+    <!-- 개별 상품 상세 -->
+    <string name="textView_individualProductInfo_productName">상품명</string>
+    <string name="textView_individualProductInfo_productSerialNumebr">상품 S/N : esdf1234567</string>
+    <string name="textView_individualProductInfo_productStockNumber">잔여 재고수량 : 350개</string>
+
+    <!-- 버튼 내용 String -->
+    <string name="buttonText_editButton">수정</string>
 </resources>
