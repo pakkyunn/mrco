@@ -18,4 +18,11 @@
         <item name="android:itemBackground">@color/popup_pressed_color</item>
     </style>
 
+    <style name="ChipChoice">
+    <!--        -->
+        <item name="chipBackgroundColor">@color/chip_coordinator_main_background_selector</item>
+        <item name="android:textColor">@color/chip_coordination_main_text_selector</item>
+        <item name="checkedIcon">@drawable/done_24px</item>
+    </style>
+
 </resources>

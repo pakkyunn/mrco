@@ -24,9 +24,18 @@ class LikeCoordinatorFragment : Fragment() {
 
         settingRecyclerViewLikeCoordinator()
         settingTabs()
+        toolbarSetting()
         mainActivity.removeTabsBar()
 
         return fragmentLikeCoordinatorBinding.root
+    }
+
+    fun toolbarSetting(){
+        mainActivity.activityMainBinding.apply {
+            toolbarMain.apply {
+                title = null
+            }
+        }
     }
 
     // 인기 코디네이터 리사이클러 뷰 설정
