@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".OrderHistoryFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinput_order_history_keyword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
+        app:endIconMode="custom"
+        app:hintEnabled="false"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
+        app:boxCornerRadiusTopStart="32dp"
+        app:boxCornerRadiusTopEnd="32dp"
+        app:boxCornerRadiusBottomStart="32dp"
+        app:boxCornerRadiusBottomEnd="32dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edittext_order_history_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="상품명을 입력해주세요" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_order_history_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:tabIndicatorFullWidth="true">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_order_history_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_order_history_ordered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주문접수" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_order_history_in_transit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="배송중" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_order_history_shipped"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="배송완료" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_order_history_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="취소/교환/반품" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_order_history"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+</LinearLayout>
