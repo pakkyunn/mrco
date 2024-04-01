@@ -8,98 +8,107 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:transitionGroup="true">
-
-        <ImageView
-            android:id="@+id/imageViewCoordinatorMainPhoto"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/iu_image" />
-
-        <TextView
-            android:id="@+id/textViewCoordinatorMainIntro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:text="( 스타일리스트 한 줄 소개 )\n안녕하세요!! 저는 @@@ 코디네이터입니다!!" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:scrollbars="none">
-
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:chipSpacingHorizontal="8dp">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMainMale"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="남"
-                    app:chipBackgroundColor="@color/mtrl_chip_background_color" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMainFemale"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="여" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMain1"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="미니멀" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMain2"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="이지캐주얼" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMain3"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="비지니스" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMain4"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="비지니스2" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCoordinatorMain5"
-                    style="@style/Widget.MaterialComponents.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="비지니스3" />
-
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:descendantFocusability="blocksDescendants">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewCoordinatorMain"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
-        </LinearLayout>
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/imageViewCoordinatorMainPhoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/iu_image" />
 
+                <TextView
+                    android:id="@+id/textViewCoordinatorMainIntro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="( 스타일리스트 한 줄 소개 )\n안녕하세요!! 저는 @@@ 코디네이터입니다!!"
+                    android:textColor="#000000"
+                    android:textStyle="bold" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="none">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:chipSpacingHorizontal="8dp">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMainMale"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="남"
+                            app:chipBackgroundColor="@color/mtrl_chip_background_color" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMainFemale"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="여" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMain1"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="미니멀" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMain2"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="이지캐주얼" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMain3"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비지니스" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMain4"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비지니스2" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipCoordinatorMain5"
+                            style="@style/Widget.MaterialComponents.Chip.Filter"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="비지니스3" />
+
+                    </com.google.android.material.chip.ChipGroup>
+                </HorizontalScrollView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:descendantFocusability="blocksDescendants">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewCoordinatorMain"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 
 </layout>
