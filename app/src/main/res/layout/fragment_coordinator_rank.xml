@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:gravity="right"
-                    android:text="스타일리스트 순위"
+                    android:text="코디네이터 순위"
                     android:textColor="#000000"
                     android:textSize="20dp"
                     android:textStyle="normal" />

@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.COORDINATOR_RANK -> {
                 newFragment = CoordinatorRankFragment()
             }
-            // 인기 코디네이터
+            // 메인 코디네이터 상세 페이지
             MainFragmentName.COORDINATOR_MAIN -> {
                 newFragment = CoordinatorMainFragment()
             }

@@ -59,7 +59,7 @@
                                 android:id="@+id/textView6"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="아이유(스타일리스트 이름)"
+                                android:text="아이유(코디네이터 이름)"
                                 android:textColor="#636363"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />

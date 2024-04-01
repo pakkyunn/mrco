@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="( 스타일리스트 한 줄 소개 )\n안녕하세요!! 저는 @@@ 코디네이터입니다!!"
+                    android:text="( 코디네이터 한 줄 소개 )\n안녕하세요!! 저는 @@@ 코디네이터입니다!!"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 
