@@ -76,7 +76,7 @@ class CoordinatorInfoFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 8
         }
 
         override fun onBindViewHolder(holder: CorrdinatorInfoViewHolder, position: Int) {
