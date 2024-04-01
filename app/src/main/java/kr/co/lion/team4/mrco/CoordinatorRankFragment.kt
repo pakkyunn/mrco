@@ -9,6 +9,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
@@ -27,6 +31,7 @@ class CoordinatorRankFragment : Fragment() {
 
         settingRecyclerViewCoordinatorRank()
         settingTabs()
+        settingCoorditab()
 
         return fragmentCoordinatorRankBinding.root
     }
@@ -125,4 +130,34 @@ class CoordinatorRankFragment : Fragment() {
         }
     }
 
+    fun settingCoorditab(){
+        CoroutineScope(Dispatchers.Main).launch {
+            fragmentCoordinatorRankBinding.apply {
+                val tabLayout = tabs
+
+                // 탭 선택 리스너 설정
+                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        // 선택된 탭이 첫 번째 탭인 경우
+                        if (tab?.position == 0) {
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_RANK, false, true, null)
+                            mainActivity.removeFragment(MainFragmentName.COORDINATOR_INFO)
+                        }
+                        else {
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_INFO, false, true, null)
+                            mainActivity.removeFragment(MainFragmentName.COORDINATOR_RANK)
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                        // Not implemented
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                        // Not implemented
+                    }
+                })
+            }
+        }
+    }
 }
