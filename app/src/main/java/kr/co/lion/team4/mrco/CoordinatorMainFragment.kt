@@ -47,7 +47,7 @@ class CoordinatorMainFragment : Fragment() {
         }
     }
 
-    // 코디네이터 소개 리사클러뷰 설정
+    // 코디네이터 메인 리사클러뷰 설정
     fun settingRecyclerViewCoordinatorInfo() {
         fragmentCoordinatorMainBinding.apply {
             recyclerViewCoordinatorMain.apply {
@@ -58,7 +58,7 @@ class CoordinatorMainFragment : Fragment() {
         }
     }
 
-    // 코디네이터 소개 리사이클러 뷰 어뎁터
+    // 코디네이터 메인 리사이클러 뷰 어뎁터
     inner class CoordinatorMainRecyclerViewAdapter: RecyclerView.Adapter<CoordinatorMainRecyclerViewAdapter.CorrdinatorMainViewHolder>(){
         inner class CorrdinatorMainViewHolder(rowCoordinatorMainBinding: RowCoordinatorMainBinding): RecyclerView.ViewHolder(rowCoordinatorMainBinding.root){
             val rowCoordinatorMainBinding: RowCoordinatorMainBinding

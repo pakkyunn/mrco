@@ -24,19 +24,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         // 인기 코디네이터
-        // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
+        replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
 
         // 코디네이터 소개
         // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
 
         // 코디네이터 메인
-        replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
+        // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터)
         // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
 
         // 리뷰 작성 페이지
         // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
+
+        // 주문 상세 정보 페이지
+        // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -78,6 +81,10 @@ class MainActivity : AppCompatActivity() {
             // 리뷰 작성 화면
             MainFragmentName.WRITE_REVIEW -> {
                 newFragment = WriteReviewFragment()
+            }
+            // 주문 상세 정보
+            MainFragmentName.ORDER_DETAIL -> {
+                newFragment = OrderDetailFragment()
             }
         }
 
