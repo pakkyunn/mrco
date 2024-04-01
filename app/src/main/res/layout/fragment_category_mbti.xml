@@ -132,13 +132,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="#E4E8ED"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
 
                     <ImageButton
                         android:id="@+id/imageButton12"
@@ -215,7 +217,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
 
                     <ImageButton
                         android:id="@+id/imageButton102"
@@ -292,7 +295,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
 
                     <ImageButton
                         android:id="@+id/imageButton1200"
@@ -369,7 +373,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="8dp">
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
 
                     <ImageButton
                         android:id="@+id/imageButton120"
