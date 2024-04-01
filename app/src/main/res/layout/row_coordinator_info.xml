@@ -63,14 +63,24 @@
                     app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
+                    android:id="@+id/textViewRowCoordinatorRank2Heart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:drawableStart="@drawable/favorite_resize"
+                    android:drawableTint="#C2C2C2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/coordinatorFollower"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
                     android:id="@+id/coordinatorFollower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/favorite_resize"
-                    android:drawableTint="#c2c2c2"
-                    android:text=" 1,361"
+                    android:text="1,361"
                     android:textColor="#C2C2C2"
-                    android:textSize="14dp"
+                    android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorInfo"

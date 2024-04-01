@@ -44,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="7dp"
-            android:text="♥"
+            android:drawableStart="@drawable/favorite_resize"
+            android:drawableTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"
             app:layout_constraintStart_toStartOf="parent" />
 
