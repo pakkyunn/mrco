@@ -27,7 +27,10 @@ class MainActivity : AppCompatActivity() {
         // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
 
         // 코디네이터 소개
-        replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+        // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+
+        // 코디네이터 메인
+        replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터)
         // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
@@ -63,6 +66,10 @@ class MainActivity : AppCompatActivity() {
             // 인기 코디네이터
             MainFragmentName.COORDINATOR_RANK -> {
                 newFragment = CoordinatorRankFragment()
+            }
+            // 인기 코디네이터
+            MainFragmentName.COORDINATOR_MAIN -> {
+                newFragment = CoordinatorMainFragment()
             }
             // 좋아요 화면 (코디네이터)
             MainFragmentName.LIKE_COORDINATOR -> {
