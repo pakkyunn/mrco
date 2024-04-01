@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".product.detail_Info.ProductInfoFragment">
+    tools:context=".product.codi.CodiProductInfoFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_product_info"
@@ -50,7 +50,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
-        android:id="@+id/fragmeLayout_product_info_tabFragment"
+        android:id="@+id/frameLayout_codi_product_info_tab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"/>

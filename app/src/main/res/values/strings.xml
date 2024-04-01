@@ -31,5 +31,16 @@
     <string name="product_price">₩ 70,000</string>
     <string name="product_size">M</string>
 
+    <!--  상품 관리 Fragment  -->
+    <string name="title_prodcutManagement">등록상품관리</string>
+    <string name="tabItem_codiProductManagement">코디상품관리</string>
+    <string name="tabItem_individualProductManagement">개별상품관리</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--  상품관리 리스트  -->
+    <string name="textView_cardView_productName">상품명</string>
+    <string name="textView_cardView_productSerialNumber">상품 S/N</string>
+    <string name="textView_cardView_productStock"> 재고 : 36개 </string>
 
 </resources>
