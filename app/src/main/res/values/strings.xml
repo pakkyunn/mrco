@@ -6,12 +6,14 @@
     <string name="contentDescription_codiImage">이 사진은 당신이 보고있는 코디상품의 전체적인 이미지입니다.</string>
 
 
-    <!-- 코디상품상세 탭 이름 -->
+    <!--  탭 이름 -->
     <string name="tab_item_all">전체</string>
     <string name="tab_item_top">상의</string>
     <string name="tab_item_bottom">하의</string>
     <string name="tab_item_shoes">신발</string>
     <string name="tab_item_accessory">악세서리</string>
+    <string name="tab_item_reviewCreate">리뷰 작성</string>
+    <string name="tabItem_createdReview">작성한 리뷰</string>
 
     <!-- 코디 상품 이름 -->
     <string name="codi_product_name">호불호 없는 출근룩 코디 SET</string>
@@ -50,4 +52,5 @@
 
     <!-- 버튼 내용 String -->
     <string name="buttonText_editButton">수정</string>
+
 </resources>
