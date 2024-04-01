@@ -24,29 +24,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         // 인기 코디네이터
-        replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
+        // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
 
-        // 코디네이터 소개
+        // 코디네이터 소개 - 완료
         // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
 
-        // 코디네이터 메인
+        // 코디네이터 메인 - 완료
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
-        // 좋아요 화면(코디네이터)
+        // 좋아요 화면(코디네이터) - 완료
         // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
 
-        // 리뷰 작성 페이지
+        // 리뷰 작성 페이지 - 완료
         // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
 
-        // 주문 상세 정보 페이지
+        // 주문 상세 정보 페이지 - 진행중
         // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
-    // name : 프래그먼트 이름
-    // addToBackStack : BackStack에 포함 시킬 것인지
-    // isAnimate : 애니메이션을 보여줄 것인지
-    // data : 새로운 프래그먼트에 전달할 값이 담겨져 있는 Bundle 객체
     fun replaceFragment(name: MainFragmentName, addToBackStack: Boolean, isAnimate: Boolean, data: Bundle?){
 
         SystemClock.sleep(200)
