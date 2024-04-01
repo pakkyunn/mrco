@@ -23,13 +23,10 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // 인기 코디네이터
-        // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
-
-        // 코디네이터 소개 - 완료
+        // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 (완료)
+        // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
+        replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
-
-        // 코디네이터 메인 - 완료
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터) - 완료
@@ -38,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         // 리뷰 작성 페이지 - 완료
         // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
 
-        // 주문 상세 정보 페이지 - 진행중
+        // 주문 상세 정보 페이지 - 완료
         // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
     }
 
