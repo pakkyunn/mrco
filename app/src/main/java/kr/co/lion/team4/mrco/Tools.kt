@@ -17,4 +17,5 @@ enum class MainFragmentName(var str: String) {
     WRITE_REVIEW("Write_Review_Fragment"),
     ORDER_DETAIL("Order_Detail_Fragment"),
     SALES_MANAGEMENT("Sales_Management_Fragment"),
+    SALES_MANAGEMENT_CALENDAR("Sales_Management_Calendar_Fragment"),
 }

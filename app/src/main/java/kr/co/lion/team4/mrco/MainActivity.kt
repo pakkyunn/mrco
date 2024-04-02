@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 (완료)
+        // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 -완료
         // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
         // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
@@ -38,8 +38,10 @@ class MainActivity : AppCompatActivity() {
         // 주문 상세 정보 페이지 - 완료
         // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
 
-        // 매출관리(내역) - 진행중
-        replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
+        // 매출관리(내역), 매출관리(캘린더) - 진행중
+        // 탭으로 화면 이동 가능 / 리포트는 현재 연동 X
+        // replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
+        replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -85,6 +87,10 @@ class MainActivity : AppCompatActivity() {
             // 매출관리(내역)
             MainFragmentName.SALES_MANAGEMENT -> {
                 newFragment = SalesManagementFragment()
+            }
+            // 매출관리(캘린더)
+            MainFragmentName.SALES_MANAGEMENT_CALENDAR -> {
+                newFragment = SalesManagementCalendarFragment()
             }
         }
 

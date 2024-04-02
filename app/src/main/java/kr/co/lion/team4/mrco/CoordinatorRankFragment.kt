@@ -96,7 +96,7 @@ class CoordinatorRankFragment : Fragment() {
             // 내부 리사이클러 뷰 설정
             val innerRecyclerView = holder.rowCoordinatorRankBinding.recyclerViewCoordinatorRank2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-            innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
+            innerRecyclerView.adapter  = InnerRecyclerViewAdapter() //내부 리사이클러 뷰 어댑터 설정
 
             // ItemDecoration 적용?
         }
