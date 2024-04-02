@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview_ordered_item_thumbnail"
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/progressbar_ordered_item_state"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageview_ordered_item_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/textview_ordered_item_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="출고준비중 (주문상태)"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/cardview_ordered_item_thumbnail" />
+
+        <TextView
+            android:id="@+id/textview_ordered_item_coordi_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="(코디 상품명) OOOO 코디 SET"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_state" />
+
+        <TextView
+            android:id="@+id/textview_ordered_item_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="옵션: 상의, 하의 등"
+            android:textColor="@color/material_dynamic_neutral60"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_coordi_name" />
+
+        <TextView
+            android:id="@+id/textview_ordered_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="100,000원"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_option" />
+
+        <!--현재 상태와 일치하는 RadioButton에 android:checked="true"로 설정할 것-->
+        <RadioButton
+            android:id="@+id/radiobutton_ordered_item_state_ready"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_ordered_item_state"
+            android:button="@null"
+            android:checked="true"
+            android:enabled="false"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="발송준비"
+            android:textColor="@color/selector_ordered_item_text_color"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toStartOf="@+id/button_ordered_item_state_shipped"
+            app:layout_constraintStart_toStartOf="@+id/textview_ordered_item_price"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
+
+
+        <RadioButton
+            android:id="@+id/button_ordered_item_state_shipped"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_ordered_item_state"
+            android:button="@null"
+            android:checked="false"
+            android:enabled="false"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="배송시작"
+            android:textColor="@color/selector_ordered_item_text_color"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toStartOf="@+id/button_ordered_item_in_transit"
+            app:layout_constraintStart_toEndOf="@+id/radiobutton_ordered_item_state_ready"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
+
+        <RadioButton
+            android:id="@+id/button_ordered_item_in_transit"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_ordered_item_state"
+            android:button="@null"
+            android:checked="false"
+            android:enabled="false"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="배송중"
+            android:textColor="@color/selector_ordered_item_text_color"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toStartOf="@+id/button_ordered_item_delivered"
+            app:layout_constraintStart_toEndOf="@+id/button_ordered_item_state_shipped"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
+
+        <RadioButton
+            android:id="@+id/button_ordered_item_delivered"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/selector_ordered_item_state"
+            android:button="@null"
+            android:checked="false"
+            android:enabled="false"
+            android:gravity="center"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="배송완료"
+            android:textColor="@color/selector_ordered_item_text_color"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@+id/textview_ordered_item_option"
+            app:layout_constraintStart_toEndOf="@+id/button_ordered_item_in_transit"
+            app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
+
+        <ProgressBar
+            android:id="@+id/progressbar_ordered_item_state"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="24dp"
+            android:maxHeight="0dp"
+            android:minHeight="0dp"
+            android:paddingBottom="10dp"
+            android:progress="1"
+            app:layout_constraintEnd_toEndOf="@+id/button_ordered_item_delivered"
+            app:layout_constraintStart_toStartOf="@+id/radiobutton_ordered_item_state_ready"
+            app:layout_constraintTop_toBottomOf="@+id/radiobutton_ordered_item_state_ready" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
