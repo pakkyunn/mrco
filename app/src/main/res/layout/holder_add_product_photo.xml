@@ -19,7 +19,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageview_add_product_thumbnail"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:adjustViewBounds="true"
@@ -29,6 +29,21 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/textview_add_product_main"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:gravity="center"
+                    android:paddingBottom="2dp"
+                    android:text="대표사진"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
