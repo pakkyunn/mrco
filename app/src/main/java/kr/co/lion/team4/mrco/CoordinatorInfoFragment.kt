@@ -26,6 +26,9 @@ class CoordinatorInfoFragment : Fragment() {
         fragmentCoordinatorInfoBinding = FragmentCoordinatorInfoBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        mainActivity.viewTabsBar()
+        mainActivity.settingToolbarMain()
+
         settingRecyclerViewCoordinatorInfo()
         settingTabs()
         settingCoorditab()

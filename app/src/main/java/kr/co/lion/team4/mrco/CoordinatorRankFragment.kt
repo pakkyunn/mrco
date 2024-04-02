@@ -29,6 +29,9 @@ class CoordinatorRankFragment : Fragment() {
         fragmentCoordinatorRankBinding = FragmentCoordinatorRankBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
+        mainActivity.viewTabsBar()
+        mainActivity.settingToolbarMain()
+
         settingRecyclerViewCoordinatorRank()
         settingTabs()
         settingCoorditab()

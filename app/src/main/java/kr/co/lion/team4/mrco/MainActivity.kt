@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco
 
 import android.os.Bundle
 import android.os.SystemClock
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -154,7 +155,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-        // BackStack에서 Fragment를 제거한다.
+    // BackStack에서 Fragment를 제거한다.
     fun removeFragment(name: MainFragmentName){
         SystemClock.sleep(200)
 
@@ -182,6 +183,23 @@ class MainActivity : AppCompatActivity() {
     fun removeTabsBar(){
         activityMainBinding.apply {
             tabsMain.isVisible = false
+        }
+    }
+
+    // 상단 탭바 보이게
+    fun viewTabsBar(){
+        activityMainBinding.apply {
+            tabsMain.isVisible = true
+        }
+    }
+
+    // 메인 툴바로 세팅
+    fun settingToolbarMain(){
+        activityMainBinding.apply {
+            toolbarMain.apply {
+                title = "MRCO"
+                setNavigationIcon(null)
+            }
         }
     }
 }
