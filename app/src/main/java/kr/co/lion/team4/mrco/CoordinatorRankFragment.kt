@@ -58,6 +58,10 @@ class CoordinatorRankFragment : Fragment() {
             val tabLayout = tabs
             tabLayout.getTabAt(0)?.select()
         }
+        mainActivity.activityMainBinding.apply {
+            val bottomBar = mainBottomNavi
+            bottomBar.selectedItemId = R.id.main_bottom_navi_home
+        }
     }
 
     // 인기 코디네이터 리사이클러 뷰 어뎁터

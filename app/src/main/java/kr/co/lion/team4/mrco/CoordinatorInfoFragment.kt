@@ -54,6 +54,10 @@ class CoordinatorInfoFragment : Fragment() {
             val tabLayout = tabs
             tabLayout.getTabAt(1)?.select()
         }
+        mainActivity.activityMainBinding.apply {
+            val bottomBar = mainBottomNavi
+            bottomBar.selectedItemId = R.id.main_bottom_navi_home
+        }
     }
 
     // 코디네이터 소개 리사이클러 뷰 어뎁터
