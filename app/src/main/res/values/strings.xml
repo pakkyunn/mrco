@@ -2,9 +2,15 @@
 
     <string name="app_name">MRCO</string>
 
+    <string name="LoremIpsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
     <!-- 시각장애인들을 위한 contentDescription 설명 추가 -->
     <string name="contentDescription_codiImage">이 사진은 당신이 보고있는 코디상품의 전체적인 이미지입니다.</string>
+    <string name="contentDescription_menuIcon">이 아이콘은 기간을 설정하는 아이콘입니다.</string>
 
+    <!-- Button text -->
+    <string name="button_review_approve">승인</string>
+    <string name="buttonText_editButton">수정</string>
 
     <!--  탭 이름 -->
     <string name="tab_item_all">전체</string>
@@ -12,8 +18,9 @@
     <string name="tab_item_bottom">하의</string>
     <string name="tab_item_shoes">신발</string>
     <string name="tab_item_accessory">악세서리</string>
-    <string name="tab_item_reviewCreate">리뷰 작성</string>
-    <string name="tabItem_createdReview">작성한 리뷰</string>
+
+    <string name="tabItem_periodAll">전체</string>
+    <string name="tabItem_periodOneYear">최근1년</string>
 
     <!-- 코디 상품 이름 -->
     <string name="codi_product_name">호불호 없는 출근룩 코디 SET</string>
@@ -50,7 +57,14 @@
     <string name="textView_individualProductInfo_productSerialNumebr">상품 S/N : esdf1234567</string>
     <string name="textView_individualProductInfo_productStockNumber">잔여 재고수량 : 350개</string>
 
-    <!-- 버튼 내용 String -->
-    <string name="buttonText_editButton">수정</string>
+    <!-- Review Fragment -->
+    <string name="textView_reviewCreate_reviewInfo">후기작성 안내</string>
+    <string name="textView_createdReview_reviewInfo">후기작성 안내</string>
+    <string name="tabItem_productReview_reviewCreate">리뷰 작성</string>
+    <string name="tabItem_productReview_createdReview">작성한 리뷰</string>
+    <string name="textView_reviewCreate_purchaseDate">구매일자 / 구매확정 여부</string>
+    <string name="textView_reviewCreate_productPrice">₩ 100,000</string>
+    <string name="textView_reviewCreate_productType">스타일링 / MBTI</string>
+    <string name="textView_reviewCreate_productName">코디 이름</string>
 
 </resources>
