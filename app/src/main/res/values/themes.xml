@@ -6,4 +6,11 @@
     </style>
 
     <style name="Theme.MRCO" parent="Base.Theme.MRCO" />
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/RoundCornerModalStyle</item>
+    </style>
+    <style name="RoundCornerModalStyle" parent="Widget.Design.BottomSheet.Modal">
+
+    </style>
 </resources>
