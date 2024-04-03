@@ -35,7 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="64dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                app:tabIndicatorFullWidth="true">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
