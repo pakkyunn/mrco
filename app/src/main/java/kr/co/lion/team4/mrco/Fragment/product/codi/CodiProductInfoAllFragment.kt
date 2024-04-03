@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.product.codi
+package kr.co.lion.team4.mrco.Fragment.product.codi
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

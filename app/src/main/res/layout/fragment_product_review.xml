@@ -1,40 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".review.ProductReviewFragment" >
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_productReview"
+    <data>
+        <variable
+            name="productReviewViewModel"
+            type="kr.co.lion.team4.mrco.ViewModel.ProductReviewViewModel"/>
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem_productReview_reviewCreate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabItem_productReview_reviewCreate" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_productReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme" />
 
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem_productReview_createdReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabItem_productReview_createdReview" />
-    </com.google.android.material.tabs.TabLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorFullWidth="true">
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView_productReview"
-        android:name="kr.co.lion.team4.mrco.review.ReviewCretateFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabItem_productReview_reviewCreate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabItem_productReview_reviewCreate" />
 
-</LinearLayout>
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabItem_productReview_createdReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabItem_productReview_createdReview" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView_productReview"
+                android:name="kr.co.lion.team4.mrco.Fragment.review.ReviewCretateFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </LinearLayout>
+</layout>
