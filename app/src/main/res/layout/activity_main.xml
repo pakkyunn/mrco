@@ -3,20 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarMain"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:menu="@menu/menu_main_home_toolbar"
+            app:subtitleTextColor="#000000"
+            app:title="MRCO" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabSelectedTextColor="#000000"
+            app:tabRippleColor="#CCCCCC"
+            app:tabTextColor="#878787">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/main_home_tab_recommand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추천" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/main_home_tab_mbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MBTI별 코디" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/main_home_tab_stylist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코디네이터" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/containerMain"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#FFFFFF" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemBackground="@color/white"
+            app:itemIconTint="@color/bottom_navigation_selector_color"
+            app:itemTextColor="@color/bottom_navigation_selector_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_insetEdge="bottom"
+            app:itemActiveIndicatorStyle="@null"
+            app:menu="@menu/menu_main_bottom_navi" />
+
+    </LinearLayout>
 </layout>
