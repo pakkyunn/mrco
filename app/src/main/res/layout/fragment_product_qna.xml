@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        <variable
+            name="productQnaViewModel"
+            type="kr.co.lion.team4.mrco.ProductQnaViewModel" />
+    </data>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -53,7 +59,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="스타일리스트명(홍길동)"
+                        android:hint="코디네이터명(홍길동)"
+                        android:text="@{productQnaViewModel.textview_productqna_coordinator}"
                         android:textColor="@color/material_dynamic_neutral70"
                         android:textSize="10sp"
                         app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
@@ -65,7 +72,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="10dp"
-                        android:text="(코디 상품명) OOOO 코디 SET"
+                        android:hint="(코디 상품명) OOOO 코디 SET"
+                        android:text="@{productQnaViewModel.textview_productqna_coordi_name}"
                         app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
                         app:layout_constraintTop_toBottomOf="@+id/textview_productqna_coordinator" />
 
@@ -76,7 +84,8 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="100,000원"
+                        android:hint="100,000원"
+                        android:text="@{productQnaViewModel.textview_productqna_price}"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
@@ -105,6 +114,7 @@
                     android:ems="10"
                     android:gravity="start|top"
                     android:hint="문의 내용을 남겨주세요."
+                    android:text="@={productQnaViewModel.edittext_productqna_content}"
                     android:inputType="textMultiLine"
                     android:padding="16dp" />
 
@@ -113,6 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
+                    android:checked="@={productQnaViewModel.checkbox_productqna_secret}"
                     android:text="비밀글로 문의하기" />
 
                 <TextView
