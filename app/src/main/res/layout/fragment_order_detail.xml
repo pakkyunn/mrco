@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="orderDetailViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.OrderDetailViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,7 +35,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="주문번호:"
@@ -37,11 +42,11 @@
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/textViewOrderDetailOrderNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
-                        android:text="12345678"
+                        android:text="@{orderDetailViewModel.textViewOrderDetailOrderNumber}"
                         android:textColor="#555"
                         android:textSize="16dp" />
                 </LinearLayout>
@@ -56,7 +61,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="주문일자:"
@@ -64,11 +68,11 @@
                         android:textSize="16dp" />
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/textViewOrderDetailOrderDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
-                        android:text="2024.04.01"
+                        android:text="@{orderDetailViewModel.textViewOrderDetailOrderDate}"
                         android:textColor="#555"
                         android:textSize="16dp" />
 
@@ -101,7 +105,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="호불호 없는 출근룩 코디 SET"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailProductName}"
                             android:textColor="#000000"
                             android:textSize="16dp"
                             android:textStyle="bold" />
@@ -268,7 +272,6 @@
                     android:padding="12dp">
 
                     <TextView
-                        android:id="@+id/textView18"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="배송정보"
@@ -285,7 +288,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView28"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
@@ -294,12 +296,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/textView29"
+                            android:id="@+id/textViewOrderDetailUserName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="start|right"
-                            android:text="홍길동"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailUserName}"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -313,7 +315,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView30"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
@@ -322,12 +323,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/textView31"
+                            android:id="@+id/textViewOrderDetailUserPhone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="start|right"
-                            android:text="010-1234-5678"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailUserPhone}"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -341,7 +342,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView32"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
@@ -350,12 +350,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/textView33"
+                            android:id="@+id/textViewOrderDetailUserAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="start"
-                            android:text="OOO도 OO시 OO구 12345678길 123456789"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailUserAddress}"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -369,7 +369,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView34"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="3"
@@ -378,12 +377,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/textView35"
+                            android:id="@+id/textViewOrderDetailOrderMemo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="start"
-                            android:text="빨리 와주세요!"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailOrderMemo}"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -406,7 +405,6 @@
                     android:padding="12dp">
 
                     <TextView
-                        android:id="@+id/textView19"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="결제내역"
@@ -423,7 +421,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView22"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -432,12 +429,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/textView23"
+                            android:id="@+id/textViewOrderDetailOrderPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="70,000원"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailOrderPrice}"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
 
@@ -452,7 +449,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView24"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -461,12 +457,12 @@
                             android:textSize="16dp" />
 
                         <TextView
-                            android:id="@+id/textView25"
+                            android:id="@+id/textViewOrderDetailOrderDiscountPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="7,000원"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailOrderDiscountPrice}"
                             android:textColor="@color/black"
                             android:textSize="16dp" />
                     </LinearLayout>
@@ -484,17 +480,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
-                            android:text="- 신규 가입 쿠폰(10%)"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailOrderCouponName}"
                             android:textColor="#808080"
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/textView27"
+                            android:id="@+id/textViewOrderDetailOrderCouponDiscountPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="7,000원"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailOrderCouponDiscountPrice}"
                             android:textColor="@color/black"
                             android:textSize="12dp" />
                     </LinearLayout>
@@ -509,7 +505,6 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView20"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -524,7 +519,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="right"
-                            android:text="63,000원"
+                            android:text="@{orderDetailViewModel.textViewOrderDetailOrderTotalPrice}"
                             android:textColor="#000000"
                             android:textSize="16dp"
                             android:textStyle="bold" />

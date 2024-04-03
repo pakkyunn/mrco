@@ -3,12 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="rowCoordinatorRank2ViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRank2ViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageViewCoordinatorInfo"
+            android:id="@+id/imageViewRowCoordinatorRank2Photo"
             android:layout_width="100dp"
             android:layout_height="120dp"
             android:layout_marginRight="22dp"
@@ -27,14 +33,14 @@
 
 
         <TextView
-            android:id="@+id/textViewRowCoordinatorRank2Follower"
+            android:id="@+id/textViewRowCoordinatorRank2HeartCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:text="1,324"
+            android:text="@{rowCoordinatorRank2ViewModel.textViewRowCoordinatorRank2HeartCount}"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewRowCoordinatorRank2Photo"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewRowCoordinatorRank2Photo"
             app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toEndOf="@+id/textViewRowCoordinatorRank2Heart" />
 
@@ -46,7 +52,7 @@
             android:layout_marginBottom="7dp"
             android:drawableStart="@drawable/favorite_resize"
             android:drawableTint="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewRowCoordinatorRank2Photo"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

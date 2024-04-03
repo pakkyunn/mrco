@@ -1,35 +1,50 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinator2Binding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
+import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.LikeCoordinatorViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRank2ViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinator2ViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinatorViewModel
 
 class LikeCoordinatorFragment : Fragment() {
 
     lateinit var fragmentLikeCoordinatorBinding: FragmentLikeCoordinatorBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var likeCoordinatorViewModel: LikeCoordinatorViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentLikeCoordinatorBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_like_coordinator, container, false)
+        likeCoordinatorViewModel = LikeCoordinatorViewModel()
+        fragmentLikeCoordinatorBinding.likeCoordinatorViewModel = LikeCoordinatorViewModel()
+        fragmentLikeCoordinatorBinding.lifecycleOwner = this
 
-        fragmentLikeCoordinatorBinding = FragmentLikeCoordinatorBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        settingRecyclerViewLikeCoordinator()
+        // 툴바, 하단바, 탭 관련
         settingTabs()
         toolbarSetting()
         mainActivity.removeTabsBar()
+
+        // 리사이클러 뷰
+        settingRecyclerViewLikeCoordinator()
 
         return fragmentLikeCoordinatorBinding.root
     }
@@ -81,14 +96,20 @@ class LikeCoordinatorFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikeCorrdinatorViewHolder {
-            val rowLikeCoordinatorBinding = RowLikeCoordinatorBinding.inflate(layoutInflater)
+            val rowLikeCoordinatorBinding = DataBindingUtil.inflate<RowLikeCoordinatorBinding>(
+                layoutInflater, R.layout.row_like_coordinator, parent, false
+            )
+            val rowLikeCoordinatorViewModel = RowLikeCoordinatorViewModel()
+            rowLikeCoordinatorBinding.rowLikeCoordinatorViewModel = rowLikeCoordinatorViewModel
+            rowLikeCoordinatorBinding.lifecycleOwner = this@LikeCoordinatorFragment
+
             val likeCorrdinatorViewHolder = LikeCorrdinatorViewHolder(rowLikeCoordinatorBinding)
 
             return likeCorrdinatorViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return 6
         }
 
         override fun onBindViewHolder(holder: LikeCorrdinatorViewHolder, position: Int) {
@@ -116,7 +137,15 @@ class LikeCoordinatorFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerViewHolder {
-            val rowLikeCoordinator2Binding = RowLikeCoordinator2Binding.inflate(layoutInflater)
+            // val rowLikeCoordinator2Binding = RowLikeCoordinator2Binding.inflate(layoutInflater)
+
+            val rowLikeCoordinator2Binding = DataBindingUtil.inflate<RowLikeCoordinator2Binding>(
+                layoutInflater, R.layout.row_like_coordinator2, parent, false
+            )
+            val rowLikeCoordinator2ViewModel = RowLikeCoordinator2ViewModel()
+            rowLikeCoordinator2Binding.rowLikeCoordinator2ViewModel = rowLikeCoordinator2ViewModel
+            rowLikeCoordinator2Binding.lifecycleOwner = this@LikeCoordinatorFragment
+
             val innerViewHolder = InnerViewHolder(rowLikeCoordinator2Binding)
 
             return innerViewHolder

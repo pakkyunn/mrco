@@ -1,19 +1,25 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorInfoViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 
 class CoordinatorInfoFragment : Fragment() {
 
@@ -24,6 +30,7 @@ class CoordinatorInfoFragment : Fragment() {
         // Inflate the layout for this fragment
 
         fragmentCoordinatorInfoBinding = FragmentCoordinatorInfoBinding.inflate(inflater)
+
         mainActivity = activity as MainActivity
 
         mainActivity.viewTabsBar()
@@ -79,7 +86,15 @@ class CoordinatorInfoFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CorrdinatorInfoViewHolder {
-            val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+            // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+
+            val rowCoordinatorInfoBinding = DataBindingUtil.inflate<RowCoordinatorInfoBinding>(
+                layoutInflater, R.layout.row_coordinator_info, parent, false
+            )
+            val rowCoordinatorInfoViewModel = RowCoordinatorInfoViewModel()
+            rowCoordinatorInfoBinding.rowCoordinatorInfoViewModel = rowCoordinatorInfoViewModel
+            rowCoordinatorInfoBinding.lifecycleOwner = this@CoordinatorInfoFragment
+
             val coordinatorInfoViewHolder = CorrdinatorInfoViewHolder(rowCoordinatorInfoBinding)
 
             return coordinatorInfoViewHolder

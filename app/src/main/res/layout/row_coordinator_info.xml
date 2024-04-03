@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="rowCoordinatorInfoViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowCoordinatorInfoViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,26 +42,26 @@
                     app:srcCompat="@drawable/iu_image" />
 
                 <TextView
-                    android:id="@+id/coordinatorMbti"
+                    android:id="@+id/textViewRowInfoMBTI"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ISFP"
+                    android:text="@{rowCoordinatorInfoViewModel.textViewRowInfoMBTI}"
                     android:textColor="#EAEAEA"
                     android:textSize="14dp"
-                    app:layout_constraintBottom_toTopOf="@+id/coordinatorName"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewRowInfoName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo"
                     app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
-                    android:id="@+id/coordinatorName"
+                    android:id="@+id/textViewRowInfoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="아이유 >"
+                    android:text="@{rowCoordinatorInfoViewModel.textViewRowInfoName}"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/coordinatorFollower"
+                    app:layout_constraintBottom_toTopOf="@+id/textViewRowInfoFollower"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.504"
                     app:layout_constraintStart_toStartOf="parent"
@@ -70,15 +76,15 @@
                     android:drawableStart="@drawable/favorite_resize"
                     android:drawableTint="#C2C2C2"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/coordinatorFollower"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewRowInfoFollower"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/coordinatorFollower"
+                    android:id="@+id/textViewRowInfoFollower"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1,361"
+                    android:text="@{rowCoordinatorInfoViewModel.textViewRowInfoFollower}"
                     android:textColor="#C2C2C2"
                     android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"

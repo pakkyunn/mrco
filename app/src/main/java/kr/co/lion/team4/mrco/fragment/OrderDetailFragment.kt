@@ -1,27 +1,35 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toolbar.LayoutParams
-import androidx.core.content.ContextCompat
-import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
+import androidx.databinding.DataBindingUtil
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentOrderDetailBinding
+import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.OrderDetailViewModel
 
 class OrderDetailFragment : Fragment() {
 
     lateinit var fragmentOrderDetailBinding: FragmentOrderDetailBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var orderDetailViewModel: OrderDetailViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentOrderDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_detail, container, false)
+        orderDetailViewModel = OrderDetailViewModel()
+        fragmentOrderDetailBinding.orderDetailViewModel = OrderDetailViewModel()
+        fragmentOrderDetailBinding.lifecycleOwner = this
 
-        fragmentOrderDetailBinding = FragmentOrderDetailBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        // 툴바, 하단바, 탭 관련
         mainActivity.removeTabsBar()
         mainActivity.removeBottomSheet()
 

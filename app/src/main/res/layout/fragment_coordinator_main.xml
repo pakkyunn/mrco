@@ -3,11 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="coordinatorMainViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.CoordinatorMainViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:transitionGroup="true">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -26,7 +33,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="( 코디네이터 한 줄 소개 )\n안녕하세요!! 저는 @@@ 코디네이터입니다!!"
+                    android:text="@{coordinatorMainViewModel.textViewCoordinatorMainIntro}"
                     android:textColor="#000000"
                     android:textStyle="bold" />
 

@@ -1,16 +1,22 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorInfoBinding
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
+import kr.co.lion.team4.mrco.viewmodel.CoordinatorMainViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorMainViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 
 
 class CoordinatorMainFragment : Fragment() {
@@ -18,16 +24,23 @@ class CoordinatorMainFragment : Fragment() {
     lateinit var fragmentCoordinatorMainBinding: FragmentCoordinatorMainBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var coordinatorMainViewModel: CoordinatorMainViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentCoordinatorMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_coordinator_main, container, false)
+        coordinatorMainViewModel = CoordinatorMainViewModel()
+        fragmentCoordinatorMainBinding.coordinatorMainViewModel = CoordinatorMainViewModel()
+        fragmentCoordinatorMainBinding.lifecycleOwner = this
 
-        fragmentCoordinatorMainBinding = FragmentCoordinatorMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        // 툴바, 하단바, 탭 관련
         mainActivity.removeTabsBar()
-
         toolbarSetting()
         settingTabs()
+        
+        // 리사이클러 뷰
         settingRecyclerViewCoordinatorInfo()
 
         return fragmentCoordinatorMainBinding.root
@@ -74,7 +87,13 @@ class CoordinatorMainFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CorrdinatorMainViewHolder {
-            val rowCoordinatorMainBinding = RowCoordinatorMainBinding.inflate(layoutInflater)
+            val rowCoordinatorMainBinding = DataBindingUtil.inflate<RowCoordinatorMainBinding>(
+                layoutInflater, R.layout.row_coordinator_main, parent, false
+            )
+            val rowCoordinatorMainViewModel = RowCoordinatorMainViewModel()
+            rowCoordinatorMainBinding.rowCoordinatorMainViewModel = rowCoordinatorMainViewModel
+            rowCoordinatorMainBinding.lifecycleOwner = this@CoordinatorMainFragment
+
             val coordinatorMainViewHolder = CorrdinatorMainViewHolder(rowCoordinatorMainBinding)
 
             return coordinatorMainViewHolder

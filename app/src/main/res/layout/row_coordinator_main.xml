@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="rowCoordinatorMainViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowCoordinatorMainViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -22,12 +28,12 @@
             app:srcCompat="@drawable/iu_image3" />
 
         <TextView
-            android:id="@+id/item_main_product_mbti"
+            android:id="@+id/textViewRowCoordinatorMainMBTI"
             android:layout_width="64dp"
             android:layout_height="32dp"
             android:background="#BDB14C"
             android:gravity="center"
-            android:text="ISFP"
+            android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainMBTI}"
             android:textColor="#FFFFFF"
             android:textSize="16dp"
             android:textStyle="bold"
@@ -44,7 +50,7 @@
             app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail"
             app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail"
             app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_like"
-            android:text="홍길동 코디이름"
+            android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainProductName}"
             android:textColor="@color/black" />
 
         <TextView
@@ -56,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:text="30%"
+            android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainProductDiscountPercent}"
             android:textColor="#FC5306" />
 
         <TextView
@@ -67,7 +73,7 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintStart_toEndOf="@id/item_main_product_discount_percent"
             app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_discount_percent"
-            android:text="178,000"
+            android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainProductPrice}"
             android:textColor="@color/black" />
 
 

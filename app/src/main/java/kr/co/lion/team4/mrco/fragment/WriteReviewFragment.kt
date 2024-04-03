@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
 import android.view.ContextThemeWrapper
@@ -8,25 +8,36 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentWriteReviewBinding
+import kr.co.lion.team4.mrco.viewmodel.LikeCoordinatorViewModel
+import kr.co.lion.team4.mrco.viewmodel.WriteReviewViewModel
 
 class WriteReviewFragment : Fragment() {
 
     lateinit var fragmentWriteReviewBinding: FragmentWriteReviewBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var writeReviewViewModel: WriteReviewViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentWriteReviewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_review, container, false)
+        writeReviewViewModel = WriteReviewViewModel()
+        fragmentWriteReviewBinding.writeReviewViewModel = WriteReviewViewModel()
+        fragmentWriteReviewBinding.lifecycleOwner = this
 
-        fragmentWriteReviewBinding = FragmentWriteReviewBinding.inflate(layoutInflater)
         mainActivity = activity as MainActivity
 
-        settingToolbarWriteReview()
-        settingButtonEvent()
+        // 툴바, 하단바, 탭 관련
         mainActivity.removeBottomSheet()
         mainActivity.removeTabsBar()
         mainActivity.removeToolbar()
-
+        settingToolbarWriteReview()
+        settingButtonEvent()
 
         return fragmentWriteReviewBinding.root
     }

@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="rowCoordinatorRankViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +22,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textViewRowCoordinatorRankRank"
+                android:id="@+id/textViewRowCoordinatorRankNumber"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:gravity="bottom"
@@ -39,7 +45,7 @@
                     app:cardCornerRadius="100dp">
 
                     <ImageView
-                        android:id="@+id/imageViewRowLikeCoordinatorProfile"
+                        android:id="@+id/imageViewRowCoordinatorRankProfile"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:scaleType="centerCrop"
@@ -54,11 +60,11 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textViewRowLikeCoordinatorName"
+                        android:id="@+id/textViewRowCoordinatorRankName"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:gravity="center|start"
-                        android:text="아이유"
+                        android:text="@{rowCoordinatorRankViewModel.textViewRowCoordinatorRankName}"
                         android:textColor="#000000"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -71,15 +77,15 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="20dp"
-                            android:text="팔로워"
+                            android:text="팔로워 "
                             android:textColor="#8D8D8D"
                             android:textSize="12dp" />
 
                         <TextView
-                            android:id="@+id/textViewRowLikeCoordinatorFollower"
+                            android:id="@+id/textViewRowCoordinatorRankFollower"
                             android:layout_width="match_parent"
                             android:layout_height="20dp"
-                            android:text=" 2,050"
+                            android:text="@{rowCoordinatorRankViewModel.textViewRowCoordinatorRankFollower}"
                             android:textColor="#8D8D8D"
                             android:textSize="12dp" />
                     </LinearLayout>

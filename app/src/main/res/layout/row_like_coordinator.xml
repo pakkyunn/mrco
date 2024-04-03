@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="rowLikeCoordinatorViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinatorViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:gravity="center|start"
-                    android:text="아이유"
+                    android:text="@{rowLikeCoordinatorViewModel.textViewRowLikeCoordinatorName}"
                     android:textSize="16dp" />
 
                 <LinearLayout
@@ -59,7 +65,7 @@
                         android:id="@+id/textViewRowLikeCoordinatorFollower"
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
-                        android:text=" 2,050"
+                        android:text="@{rowLikeCoordinatorViewModel.textViewRowLikeCoordinatorFollower}"
                         android:textColor="#8D8D8D"
                         android:textSize="12dp" />
                 </LinearLayout>

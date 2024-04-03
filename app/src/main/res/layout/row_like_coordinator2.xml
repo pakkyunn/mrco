@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="rowLikeCoordinator2ViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinator2ViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -31,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
-            android:text="1,324"
+            android:text="@{rowLikeCoordinator2ViewModel.textViewRowLikeCoordinator2HeartCount}"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewCoordinatorInfo"
             app:layout_constraintEnd_toEndOf="@+id/imageViewCoordinatorInfo"

@@ -1,40 +1,54 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
-import android.graphics.Rect
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
+import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorInfoViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRank2ViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 
 class CoordinatorRankFragment : Fragment() {
 
     lateinit var fragmentCoordinatorRankBinding: FragmentCoordinatorRankBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var coordinatorRankViewModel: CoordinatorRankViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
-        fragmentCoordinatorRankBinding = FragmentCoordinatorRankBinding.inflate(layoutInflater)
+        //fragmentCoordinatorRankBinding = FragmentCoordinatorRankBinding.inflate(layoutInflater)
+        fragmentCoordinatorRankBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_coordinator_rank, container, false)
+        coordinatorRankViewModel = CoordinatorRankViewModel()
+        fragmentCoordinatorRankBinding.coordinatorRankViewModel = CoordinatorRankViewModel()
+        fragmentCoordinatorRankBinding.lifecycleOwner = this
+
         mainActivity = activity as MainActivity
 
+        // 툴바, 하단바, 탭 관련
         mainActivity.viewTabsBar()
         mainActivity.settingToolbarMain()
-
-        settingRecyclerViewCoordinatorRank()
         settingTabs()
         settingCoorditab()
+
+        // 리사이클러 뷰
+        settingRecyclerViewCoordinatorRank()
 
         return fragmentCoordinatorRankBinding.root
     }
@@ -83,7 +97,13 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CorrdinatorRankViewHolder {
-            val rowCoordinatorRankBinding = RowCoordinatorRankBinding.inflate(layoutInflater)
+            val rowCoordinatorRankBinding = DataBindingUtil.inflate<RowCoordinatorRankBinding>(
+                layoutInflater, R.layout.row_coordinator_rank, parent, false
+            )
+            val rowCoordinatorRankViewModel = RowCoordinatorRankViewModel()
+            rowCoordinatorRankBinding.rowCoordinatorRankViewModel = rowCoordinatorRankViewModel
+            rowCoordinatorRankBinding.lifecycleOwner = this@CoordinatorRankFragment
+
             val coordinatorRankViewHolder = CorrdinatorRankViewHolder(rowCoordinatorRankBinding)
 
             return coordinatorRankViewHolder
@@ -94,7 +114,7 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
-            holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankRank.text = "${position + 1}"
+            holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankNumber.text = "${position + 1}"
 
             // 내부 리사이클러 뷰 설정
             val innerRecyclerView = holder.rowCoordinatorRankBinding.recyclerViewCoordinatorRank2
@@ -122,7 +142,15 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerViewHolder {
-            val rowCoordinatorRank2Binding = RowCoordinatorRank2Binding.inflate(layoutInflater)
+            // val rowCoordinatorRank2Binding = RowCoordinatorRank2Binding.inflate(layoutInflater)
+
+            val rowCoordinatorRank2Binding = DataBindingUtil.inflate<RowCoordinatorRank2Binding>(
+                layoutInflater, R.layout.row_coordinator_rank2, parent, false
+            )
+            val rowCoordinatorRank2ViewModel = RowCoordinatorRank2ViewModel()
+            rowCoordinatorRank2Binding.rowCoordinatorRank2ViewModel = rowCoordinatorRank2ViewModel
+            rowCoordinatorRank2Binding.lifecycleOwner = this@CoordinatorRankFragment
+
             val innerViewHolder = InnerViewHolder(rowCoordinatorRank2Binding)
 
             return innerViewHolder

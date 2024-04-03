@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,9 +11,10 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentSalesManagementBinding
-import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowSalesManagementBinding
 
 class SalesManagementFragment : Fragment() {
