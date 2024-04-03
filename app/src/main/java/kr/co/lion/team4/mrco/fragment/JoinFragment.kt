@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.lion.mrco_01.databinding.FragmentJoinBinding
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.databinding.FragmentJoinBinding
 
 
 class JoinFragment : Fragment() {

@@ -1,13 +1,13 @@
 package kr.co.lion.team4.mrco.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kr.co.lion.mrco_01.MainActivity
-import kr.co.lion.mrco_01.databinding.FragmentMbtiBottomSheetBinding
+import kr.co.lion.team4.mrco.databinding.FragmentMbtiBottomSheetBinding
+import kr.co.lion.team4.mrco.MainActivity
+
 
 
 class MbtiBottomSheetFragment : BottomSheetDialogFragment() {

@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kr.co.lion.mrco_01.MainActivity
-import kr.co.lion.mrco_01.R
-import kr.co.lion.mrco_01.databinding.FragmentModifyUserBinding
+import kr.co.lion.team4.mrco.databinding.FragmentModifyUserBinding
+import kr.co.lion.team4.mrco.MainActivity
 
 
 class ModifyUserFragment : Fragment() {

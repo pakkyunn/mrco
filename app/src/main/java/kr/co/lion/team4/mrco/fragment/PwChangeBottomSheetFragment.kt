@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kr.co.lion.mrco_01.MainActivity
-import kr.co.lion.mrco_01.databinding.FragmentPwChangeBottomSheetBinding
+import kr.co.lion.team4.mrco.databinding.FragmentPwChangeBottomSheetBinding
+import kr.co.lion.team4.mrco.MainActivity
 
 
 class PwChangeBottomSheetFragment : BottomSheetDialogFragment() {

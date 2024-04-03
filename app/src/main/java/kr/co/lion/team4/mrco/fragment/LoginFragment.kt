@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kr.co.lion.mrco_01.databinding.FragmentLoginBinding
+import kr.co.lion.team4.mrco.databinding.FragmentLoginBinding
+import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 
 
