@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="registerQnaAnswerViewModel"
+            type="kr.co.lion.team4.mrco.RegisterQnaAnswerViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -56,7 +62,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="(코디 상품명) OOOO 코디 SET"
+                        android:hint="(코디 상품명) OOOO 코디 SET"
+                        android:text="@{registerQnaAnswerViewModel.textviewRegisterAnswerCoordiName}"
                         app:layout_constraintEnd_toStartOf="@+id/imageview_register_answer_forward"
                         app:layout_constraintStart_toEndOf="@+id/cardview_register_answer_thumbnail"
                         app:layout_constraintTop_toTopOf="@+id/cardview_register_answer_thumbnail" />
@@ -67,7 +74,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="상품코드: 123456789"
+                        android:hint="상품코드: 123456789"
+                        android:text="@{registerQnaAnswerViewModel.textviewRegisterAnswerCoordiIndex}"
                         android:textColor="@color/material_dynamic_neutral70"
                         android:textSize="10sp"
                         app:layout_constraintStart_toEndOf="@+id/cardview_register_answer_thumbnail"
@@ -99,7 +107,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="작성자 | 작성일"
+                        android:hint="작성자 | 작성일"
+                        android:text="@{registerQnaAnswerViewModel.textviewRegisterAnswerWriter}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_register_answer" />
 
@@ -111,7 +120,8 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:layout_marginBottom="16dp"
-                        android:text="문의내용이 표시되는 TextView  lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu"
+                        android:hint="문의내용이 표시되는 TextView  lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu"
+                        android:text="@{registerQnaAnswerViewModel.textvieRegisterAnswerContent}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +149,7 @@
                     android:ems="10"
                     android:gravity="start|top"
                     android:hint="답변 내용을 남겨주세요."
+                    android:text="@={registerQnaAnswerViewModel.edittextRegisterAnswerContent}"
                     android:inputType="textMultiLine"
                     android:padding="16dp" />
 
