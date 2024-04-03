@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.order
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentOrderDetailBinding
-import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.OrderDetailViewModel
 
 class OrderDetailFragment : Fragment() {

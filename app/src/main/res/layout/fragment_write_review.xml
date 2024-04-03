@@ -15,7 +15,7 @@
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.CoordinatorRankFragment">
+        tools:context=".fragment.coordinator.CoordinatorRankFragment">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarWriteReview"

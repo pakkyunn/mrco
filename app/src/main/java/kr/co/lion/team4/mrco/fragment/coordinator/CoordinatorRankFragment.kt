@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.coordinator
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,7 +19,6 @@ import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorInfoViewModel
 import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRank2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 

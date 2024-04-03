@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.coordinator
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,10 +13,8 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.viewmodel.CoordinatorMainViewModel
 import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorMainViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 
 
 class CoordinatorMainFragment : Fragment() {

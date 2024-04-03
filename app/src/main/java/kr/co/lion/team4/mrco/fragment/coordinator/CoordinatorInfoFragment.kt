@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.coordinator
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,9 +17,7 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorInfoViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 
 class CoordinatorInfoFragment : Fragment() {
 
@@ -43,7 +41,7 @@ class CoordinatorInfoFragment : Fragment() {
         return fragmentCoordinatorInfoBinding.root
     }
 
-    // 코디네이터 소개 리사클러뷰 설정
+    // 코디네이터 소개 리사이클러 뷰 설정
     fun settingRecyclerViewCoordinatorInfo() {
         fragmentCoordinatorInfoBinding.apply {
             recyclerViewCoordinatorInfo.apply {

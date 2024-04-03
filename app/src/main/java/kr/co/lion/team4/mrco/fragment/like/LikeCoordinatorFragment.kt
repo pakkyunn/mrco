@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.like
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,14 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinator2Binding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
-import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.LikeCoordinatorViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRank2ViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinator2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinatorViewModel
 

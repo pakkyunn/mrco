@@ -9,7 +9,7 @@
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.CoordinatorInfoFragment">
+        tools:context=".fragment.coordinator.CoordinatorInfoFragment">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"

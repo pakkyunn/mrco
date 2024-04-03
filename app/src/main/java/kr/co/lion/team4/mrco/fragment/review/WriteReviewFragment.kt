@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.review
 
 import android.os.Bundle
 import android.view.ContextThemeWrapper
@@ -13,7 +13,6 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentWriteReviewBinding
-import kr.co.lion.team4.mrco.viewmodel.LikeCoordinatorViewModel
 import kr.co.lion.team4.mrco.viewmodel.WriteReviewViewModel
 
 class WriteReviewFragment : Fragment() {
