@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +43,12 @@ class MainActivity : AppCompatActivity() {
         // 이름으로 분기한다.
         // Fragment의 객체를 생성하여 변수에 담아준다.
         when(name){
+            FragmentName.FRAGMENT_A-> {
+
+            }
+            FragmentName.FRAGMENT_B-> {
+
+            }
 
         }
 
@@ -92,7 +99,7 @@ class MainActivity : AppCompatActivity() {
             // Fragment를 교체한다.(이전 Fragment가 없으면 새롭게 추가하는 역할을 수행한다)
             // 첫 번째 매개 변수 : Fragment를 배치할 FragmentContainerView의 ID
             // 두 번째 매개 변수 : 보여주고하는 Fragment 객체를
-            fragmentTransaction.replace(R.id.mainContainer, newFragment!!)
+            fragmentTransaction.replace(R.id.containerMain, newFragment!!)
 
             // addToBackStack 변수의 값이 true면 새롭게 보여질 Fragment를 BackStack에 포함시켜 준다.
             if(addToBackStack == true){
@@ -111,4 +118,9 @@ class MainActivity : AppCompatActivity() {
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
+}
+
+enum class FragmentName(var str: String){
+    FRAGMENT_A("fragment_a"),
+    FRAGMENT_B("fragment_b")
 }
