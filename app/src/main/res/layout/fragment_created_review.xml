@@ -44,7 +44,7 @@
             android:layout_weight="1" />
 
         <ImageButton
-            android:id="@+id/iconButton"
+            android:id="@+id/iconButton_createdReview_calendarDialog"
             style="?attr/materialIconButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:text="@string/textView_createdReview_reviewInfo" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView_createdReview_reviewInfoContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

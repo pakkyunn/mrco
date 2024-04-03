@@ -17,7 +17,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView_codiProductInfo_all_productName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -41,6 +41,7 @@
             android:padding="1dp">
 
             <ImageView
+                android:id="@+id/imageView_condiProductInfo_all_codiImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/round_background_border_black"

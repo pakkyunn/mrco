@@ -69,12 +69,14 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView_review_codiProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="코디 이름"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <TextView
+                    android:id="@+id/textView_review_mbti"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -88,7 +90,7 @@
         </LinearLayout>
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/ratingBar_review"
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

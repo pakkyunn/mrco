@@ -10,10 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp">
+
         <ImageView
+            android:id="@+id/imageView_individualProductInfo_individualProductImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/logo_mrco"/>
+            android:src="@drawable/logo_mrco" />
     </LinearLayout>
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
@@ -25,12 +27,14 @@
         android:padding="8dp">
 
         <TextView
+            android:id="@+id/textView_individudalProductInfo_productName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:text="@string/textView_individualProductInfo_productName" />
 
         <TextView
+            android:id="@+id/textView_individualProductInfo_serialNumer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="8dp"
@@ -45,6 +49,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView_individualProductInfo_stockNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -82,10 +87,11 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/textView_individualProductInfo_salePrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/textView_individualProductInfo_productStockNumber" />
+                android:text="판매가격" />
             <!-- 공간 띄우기용  -->
             <View
                 android:layout_width="0dp"
@@ -93,7 +99,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button_individualProductInfo_PriceEdit"
+                android:id="@+id/button_individualProductInfo_salePriceEdit"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -110,11 +116,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="horizontal">
+
             <TextView
+                android:id="@+id/textView_individualProductInfo_purchasePrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/textView_individualProductInfo_productStockNumber" />
+                android:text="매입가격" />
 
             <!-- 공간 띄우기용  -->
             <View
@@ -123,7 +131,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button_individualProductInfo_purchaseEdit"
+                android:id="@+id/button_individualProductInfo_purchasePrice"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end"
@@ -136,24 +144,29 @@
             android:layout_marginTop="8dp"/>
 
         <TextView
+            android:id="@+id/textView_individualProductInfo_profit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="판매이익 : ₩ 15,000"/>
+            android:text="판매이익 : ₩ 15,000" />
+
         <TextView
+            android:id="@+id/textView_individualProductInfo_tax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="TAX : ₩ 1,500"/>
+            android:text="TAX : ₩ 1,500" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"/>
+
         <TextView
+            android:id="@+id/textView_individualProductInfo_netProfit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="판매순익 : ₩ 13,500"/>
+            android:text="판매순익 : ₩ 13,500" />
     </LinearLayout>
 </LinearLayout>
