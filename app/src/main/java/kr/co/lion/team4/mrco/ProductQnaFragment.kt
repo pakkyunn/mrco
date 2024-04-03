@@ -27,9 +27,9 @@ class ProductQnaFragment : Fragment() {
         // 문의 내용 등록
         fragmetProductQnaBinding.buttonProductqnaSubmit.setOnClickListener {
             // 비밀글로 문의하는 지 여부
-            val isSecret = productQnaViewModel.checkbox_productqna_secret.value
+            val isSecret = productQnaViewModel.checkboxProductqnaSecret.value
             // 문의 내용
-            val content = productQnaViewModel.edittext_productqna_content.value
+            val content = productQnaViewModel.edittextProductqnaContent.value
         }
     }
 }
