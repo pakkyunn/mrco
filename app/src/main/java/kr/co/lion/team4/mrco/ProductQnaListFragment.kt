@@ -14,9 +14,12 @@ import kr.co.lion.team4.mrco.databinding.ItemQnalistBinding
 /* (판매자) 상품 문의 내역 화면 */
 class ProductQnaListFragment : Fragment() {
     lateinit var fragmentProductQnaListBinding: FragmentProductQnaListBinding
+    lateinit var productQnaListViewModel: ProductQnaListViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentProductQnaListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_qna_list, container, false)
-        // to do - viewModel setting
+        productQnaListViewModel = ProductQnaListViewModel()
+        fragmentProductQnaListBinding.productQnaListViewModel = productQnaListViewModel
         fragmentProductQnaListBinding.lifecycleOwner = this
 
         return fragmentProductQnaListBinding.root
