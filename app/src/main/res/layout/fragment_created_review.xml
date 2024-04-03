@@ -5,36 +5,83 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".register.CreatedReviewFragment" >
+    tools:context=".Fragment.review.CreatedReviewFragment" >
 
-    <View
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:tabGravity="start"
+            app:tabIndicatorColor="#00FFFFFF"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorGravity="stretch"
+            app:tabInlineLabel="false"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
+            app:tabUnboundedRipple="false">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem_createdReview_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabItem_periodAll" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem_createdReview_oneYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabItem_periodOneYear" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:id="@+id/iconButton"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#000000"
+            android:contentDescription="@string/contentDescription_menuIcon"
+            android:src="@drawable/menu_24px" />
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
+        android:layout_height="1dp"/>
 
-    <com.google.android.material.tabs.TabLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="#00FFFFFF"
-        app:tabIndicatorFullWidth="false"
-        app:tabInlineLabel="false"
-        app:tabUnboundedRipple="false">
+        android:orientation="vertical"
+        android:padding="8dp">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView_createdReview_reviewInfo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Monday" />
+            android:text="@string/textView_createdReview_reviewInfo" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tuesday" />
+            android:layout_marginTop="8dp"
+            android:text="@string/LoremIpsum" />
+    </LinearLayout>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Wednesday" />
-    </com.google.android.material.tabs.TabLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView_createdReview_reviewFragment"
+        android:name="kr.co.lion.team4.mrco.Fragment.review.ReviewFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>

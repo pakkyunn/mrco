@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.Activity
 
 import android.os.Bundle
 import android.os.SystemClock

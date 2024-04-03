@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".Activity.MainActivity">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarMain"
@@ -17,7 +17,6 @@
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:menu="@menu/menu_main_home_toolbar"
             app:subtitleTextColor="#000000"
             app:title="MRCO" />
 
@@ -59,18 +58,6 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="#FFFFFF" />
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/main_bottom_navi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemBackground="@color/white"
-            app:itemIconTint="@color/bottom_navigation_selector_color"
-            app:itemTextColor="@color/bottom_navigation_selector_color"
-            app:labelVisibilityMode="labeled"
-            app:layout_insetEdge="bottom"
-            app:itemActiveIndicatorStyle="@null"
-            app:menu="@menu/menu_main_bottom_navi" />
 
     </LinearLayout>
 </layout>
