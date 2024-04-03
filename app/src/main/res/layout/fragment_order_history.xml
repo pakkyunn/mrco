@@ -1,38 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".OrderHistoryFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinput_order_history_keyword"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
-        app:endIconMode="custom"
-        app:hintEnabled="false"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:paddingTop="16dp"
-        app:startIconDrawable="@android:drawable/ic_menu_my_calendar"
-        app:boxCornerRadiusTopStart="32dp"
-        app:boxCornerRadiusTopEnd="32dp"
-        app:boxCornerRadiusBottomStart="32dp"
-        app:boxCornerRadiusBottomEnd="32dp"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".OrderHistoryFragment">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edittext_order_history_keyword"
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/togglebutton_order_history_period"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="상품명을 입력해주세요" />
+            android:layout_margin="16dp"
+            app:checkedButton="@id/button_order_history_one_month"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/button_order_history_one_month"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1개월" />
 
-    <com.google.android.material.tabs.TabLayout
+            <Button
+                android:id="@+id/button_order_history_three_months"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3개월" />
+
+            <Button
+                android:id="@+id/button_order_history_six_months"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="6개월" />
+
+            <Button
+                android:id="@+id/button_order_history_set_period"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="기간 설정" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textinput_order_history_keyword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:boxCornerRadiusBottomEnd="32dp"
+            app:boxCornerRadiusBottomStart="32dp"
+            app:boxCornerRadiusTopEnd="32dp"
+            app:boxCornerRadiusTopStart="32dp"
+            app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
+            app:endIconMode="custom"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_order_history_keyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="상품명을 입력해주세요"
+                android:maxLines="1"
+                android:paddingStart="24dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_order_history_state"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -76,4 +119,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-</LinearLayout>
+    </LinearLayout>
+</layout>
