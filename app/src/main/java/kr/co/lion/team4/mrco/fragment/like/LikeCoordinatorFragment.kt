@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinator2Binding
@@ -37,6 +42,7 @@ class LikeCoordinatorFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         settingTabs()
+        settingLikeTab()
 
         // 리사이클러 뷰
         settingRecyclerViewLikeCoordinator()
@@ -58,7 +64,7 @@ class LikeCoordinatorFragment : Fragment() {
     // 탭바 및 바텀바 위치 설정
     fun settingTabs(){
         fragmentLikeCoordinatorBinding.apply {
-            val tabLayout = tabs
+            val tabLayout = tabsLike
             tabLayout.getTabAt(1)?.select()
         }
         mainActivity.activityMainBinding.apply {
@@ -144,6 +150,38 @@ class LikeCoordinatorFragment : Fragment() {
 
         override fun onBindViewHolder(holder: InnerViewHolder, position: Int) {
 
+        }
+    }
+
+    // Like 상단 탭 설정
+    fun settingLikeTab(){
+        CoroutineScope(Dispatchers.Main).launch {
+            fragmentLikeCoordinatorBinding.apply {
+                val tabLayout = tabsLike
+
+                // 탭 선택 리스너 설정
+                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        // 선택된 탭이 첫 번째 탭인 경우
+                        if (tab?.position == 0) {
+                            mainActivity.removeFragment(MainFragmentName.LIKE_COORDINATOR)
+                            mainActivity.replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
+                        }
+                        else {
+                            mainActivity.removeFragment(MainFragmentName.LIKE_PRODUCT)
+                            mainActivity.replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                        // Not implemented
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                        // Not implemented
+                    }
+                })
+            }
         }
     }
 

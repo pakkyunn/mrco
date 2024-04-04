@@ -11,6 +11,7 @@ import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorInfoFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorMainFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
+import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
@@ -32,12 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 - (원빈)완료
         // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
-        replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
-        // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터) - (원빈)완료
         // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
+        replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
 
         // 리뷰 작성 페이지 - (원빈)완료
         // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
@@ -66,13 +68,16 @@ class MainActivity : AppCompatActivity() {
 
         when(name){
             // 코디네이터 소개
-            MainFragmentName.COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
+            MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
 
             // 인기 코디네이터
-            MainFragmentName.COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
+            MainFragmentName.HOME_COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
 
             // 메인 코디네이터 상세 페이지
             MainFragmentName.COORDINATOR_MAIN -> newFragment = CoordinatorMainFragment()
+
+            // 좋아요 화면 (코디)
+            MainFragmentName.LIKE_PRODUCT -> newFragment = LikeProductFragment()
 
             // 좋아요 화면 (코디네이터)
             MainFragmentName.LIKE_COORDINATOR -> newFragment = LikeCoordinatorFragment()

@@ -121,12 +121,12 @@ class CoordinatorInfoFragment : Fragment() {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         // 선택된 탭이 첫 번째 탭인 경우
                         if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
+                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
                         }
                         else {
-                            mainActivity.removeFragment(MainFragmentName.COORDINATOR_RANK)
-                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
+                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
                         }
                     }
 

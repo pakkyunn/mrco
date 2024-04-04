@@ -13,12 +13,17 @@ class Tools {
 
 // MainActivity에서 보여줄 프레그먼트들의 이름
 enum class MainFragmentName(var str: String) {
-    COORDINATOR_INFO("Coordinator_Info_Fragment"),
-    COORDINATOR_RANK("Coordinator_Rank_Fragment"),
-    COORDINATOR_MAIN("Coordinator_Main_Fragment"),
+    HOME_COORDINATOR_INFO("Home_CoordinatorInfo_Fragment"),
+    HOME_COORDINATOR_RANK("Home_CoordinatorRank_Fragment"),
+    COORDINATOR_MAIN("CoordinatorMain_Fragment"),
+
+    LIKE_PRODUCT("Like_Product_Fragment"),
     LIKE_COORDINATOR("Like_Coordinator_Fragment"),
+
     WRITE_REVIEW("Write_Review_Fragment"),
+
     ORDER_DETAIL("Order_Detail_Fragment"),
+
     SALES_MANAGEMENT("Sales_Management_Fragment"),
     SALES_MANAGEMENT_CALENDAR("Sales_Management_Calendar_Fragment"),
 }
