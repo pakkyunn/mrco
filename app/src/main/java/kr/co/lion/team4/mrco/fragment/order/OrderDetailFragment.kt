@@ -29,7 +29,6 @@ class OrderDetailFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        mainActivity.removeTabsBar()
         mainActivity.removeBottomSheet()
 
         toolbarSetting()
@@ -39,16 +38,12 @@ class OrderDetailFragment : Fragment() {
 
     // 툴바 설정
     fun toolbarSetting(){
-        mainActivity.activityMainBinding.apply {
-            toolbarMain.apply {
-                title = "주문 상세 정보"
-                // 네비게이션
-                setNavigationIcon(R.drawable.arrow_back_24px)
-                setNavigationOnClickListener {
-                    backProcesss()
-                }
-                // 메뉴제거
-                menu.clear()
+        fragmentOrderDetailBinding.toolbarOrderDetail.apply {
+            title = "주문 상세 정보"
+            // 네비게이션
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcesss()
             }
         }
     }

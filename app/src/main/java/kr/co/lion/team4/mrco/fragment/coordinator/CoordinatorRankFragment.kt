@@ -43,8 +43,6 @@ class CoordinatorRankFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        mainActivity.viewTabsBar()
-        mainActivity.settingToolbarMain()
         settingTabs()
         settingCoorditab()
 
@@ -68,7 +66,7 @@ class CoordinatorRankFragment : Fragment() {
 
     // 탭바 위치 설정
     fun settingTabs(){
-        mainActivity.activityMainBinding.apply {
+        fragmentCoordinatorRankBinding.apply {
             val tabLayout = tabsMain
             tabLayout.getTabAt(2)?.select()
         }

@@ -17,6 +17,17 @@
         android:transitionGroup="true"
         tools:context=".fragment.coordinator.CoordinatorRankFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarLikeCoordinator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:menu="@menu/menu_main_home_toolbar"
+            app:subtitleTextColor="#000000" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

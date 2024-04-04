@@ -38,7 +38,6 @@ class SalesManagementFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        mainActivity.removeTabsBar()
         mainActivity.removeBottomSheet()
         toolbarSetting()
         settingTabs()
@@ -52,16 +51,12 @@ class SalesManagementFragment : Fragment() {
 
     // 툴바 설정
     fun toolbarSetting(){
-        mainActivity.activityMainBinding.apply {
-            toolbarMain.apply {
-                title = "매출 관리(정산)"
-                // 네비게이션
-                setNavigationIcon(R.drawable.arrow_back_24px)
-                setNavigationOnClickListener {
-                    backProcesss()
-                }
-                // 메뉴제거
-                menu.clear()
+        fragmentSalesManagementBinding.toolbarSalesManagement.apply {
+            title = "매출 관리(정산)"
+            // 네비게이션
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcesss()
             }
         }
     }

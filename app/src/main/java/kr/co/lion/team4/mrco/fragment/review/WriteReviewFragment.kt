@@ -33,8 +33,6 @@ class WriteReviewFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         mainActivity.removeBottomSheet()
-        mainActivity.removeTabsBar()
-        mainActivity.removeToolbar()
         settingToolbarWriteReview()
         settingButtonEvent()
 

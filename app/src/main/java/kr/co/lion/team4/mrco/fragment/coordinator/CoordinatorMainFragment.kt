@@ -34,7 +34,6 @@ class CoordinatorMainFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        mainActivity.removeTabsBar()
         toolbarSetting()
         settingTabs()
         
@@ -46,14 +45,12 @@ class CoordinatorMainFragment : Fragment() {
 
     // 툴바 설정
     fun toolbarSetting(){
-        mainActivity.activityMainBinding.apply {
-            toolbarMain.apply {
+        fragmentCoordinatorMainBinding.toolbarCoordinatorMain.apply {
                 title = "(스타일리스트 명)"
                 // 네비게이션
                 setNavigationIcon(R.drawable.arrow_back_24px)
                 setNavigationOnClickListener {
                     backProcesss()
-                }
             }
         }
     }
