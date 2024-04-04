@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="coordinatorMyPageViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.CoordinatorMyPageViewModel" />
+    </data>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +22,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewCoordinatorMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -32,67 +38,70 @@
                 app:srcCompat="@android:drawable/gallery_thumb" />
 
             <Button
-                android:id="@+id/iconButton3"
+                android:id="@+id/iconButtonImageCoordinatorMyPage"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="44dp"
                 android:layout_marginTop="44dp"
                 android:background="#ECECEC"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:icon="@android:drawable/ic_menu_add"
                 app:iconTint="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorMyPage"
+                app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorMyPage" />
 
             <TextView
-                android:id="@+id/textView100"
+                android:id="@+id/textViewNameCoordinatorMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="코디네이터이름(실명)"
+                android:text="@{coordinatorMyPageViewModel.textViewNameCoordinatorMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toTopOf="@+id/imageView3" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
+                app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorMyPage"
+                tools:text="코디네이터이름(실명)" />
 
             <TextView
-                android:id="@+id/textView200"
+                android:id="@+id/textViewGenderCoordinatorMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="여성"
+                android:text="@{coordinatorMyPageViewModel.textViewGenderCoordinatorMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView100" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
+                app:layout_constraintTop_toBottomOf="@+id/textViewNameCoordinatorMyPage"
+                tools:text="성별" />
 
             <TextView
-                android:id="@+id/textView300"
+                android:id="@+id/textViewMbtiCoordinatorMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="MBTI"
+                android:text="@{coordinatorMyPageViewModel.textViewMbtiCoordinatorMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView200" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
+                app:layout_constraintTop_toBottomOf="@+id/textViewGenderCoordinatorMyPage"
+                tools:text="MBTI" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/textViewIntroductionCoordinatorMyPage"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="코디네이터 소개글 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam"
+                android:text="@{coordinatorMyPageViewModel.textViewIntroductionCoordinatorMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
-                app:layout_constraintTop_toBottomOf="@+id/textView300" />
+                app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
+                app:layout_constraintTop_toBottomOf="@+id/textViewMbtiCoordinatorMyPage"
+                tools:text="소개글 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 
             <Button
-                android:id="@+id/iconButton4"
+                android:id="@+id/iconButtonEditCoordinatorMyPage"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -118,14 +127,14 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/textViewMenuCoordinatorMyPage1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_weight="0"
                 android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    코디 상품 등록"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
 
             <View
                 android:id="@+id/divider11"
@@ -135,7 +144,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textViewMenuCoordinatorMyPage2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -152,7 +161,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewMenuCoordinatorMyPage3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -169,7 +178,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textViewMenuCoordinatorMyPage4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -186,7 +195,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/textViewMenuCoordinatorMyPage5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -203,7 +212,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/textViewMenuCoordinatorMyPage6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -220,7 +229,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/textViewMenuCoordinatorMyPage7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"

@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="userMyPageViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.UserMyPageViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +38,7 @@
                 app:srcCompat="@android:drawable/gallery_thumb" />
 
             <Button
-                android:id="@+id/iconButton"
+                android:id="@+id/iconButtonImageUserMyPage"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,40 +51,43 @@
                 app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/textViewNicknameUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="닉네임"
+                android:text="@{userMyPageViewModel.textViewNicknameUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintTop_toTopOf="@+id/imageView2"
+                tools:text="닉네임" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textViewGenderUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="여성"
+                android:text="@{userMyPageViewModel.textViewGenderUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage"
+                tools:text="성별" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textViewMbtiUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="MBTI"
+                android:text="@{userMyPageViewModel.textViewMbtiUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage"
+                tools:text="MBTI" />
 
             <Button
-                android:id="@+id/iconButton1"
+                android:id="@+id/iconButtonEditUserMyPage"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +113,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/textViewMenuUserMyPage1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -121,7 +130,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textViewMenuUserMyPage2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -138,7 +147,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/textViewMenuUserMyPage3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -155,7 +164,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textViewMenuUserMyPage4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -172,7 +181,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/textViewMenuUserMyPage5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
