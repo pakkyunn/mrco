@@ -17,13 +17,15 @@
         android:transitionGroup="true"
         tools:context=".fragment.coordinator.CoordinatorRankFragment">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarWriteReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000" />
 
         <ScrollView
             android:layout_width="match_parent"

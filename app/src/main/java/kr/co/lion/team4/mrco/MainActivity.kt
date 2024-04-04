@@ -143,43 +143,10 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
-    
-    // 이 안보이게는 임시적으로 테스트하려고 씀
     // 하단 바 안보이게 하기
     fun removeBottomSheet(){
         activityMainBinding.apply {
             mainBottomNavi.isVisible = false
-        }
-    }
-
-    // 툴바 안보이게
-    fun removeToolbar(){
-        activityMainBinding.apply {
-            toolbarMain.isVisible = false
-        }
-    }
-
-    // 상단 탭바 안보이게
-    fun removeTabsBar(){
-        activityMainBinding.apply {
-            tabsMain.isVisible = false
-        }
-    }
-
-    // 상단 탭바 보이게
-    fun viewTabsBar(){
-        activityMainBinding.apply {
-            tabsMain.isVisible = true
-        }
-    }
-
-    // 메인 툴바로 세팅
-    fun settingToolbarMain(){
-        activityMainBinding.apply {
-            toolbarMain.apply {
-                title = "MRCO"
-                setNavigationIcon(null)
-            }
         }
     }
 }

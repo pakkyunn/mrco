@@ -32,8 +32,6 @@ class CoordinatorInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
         
         // 툴바, 하단바, 탭 관련
-        mainActivity.viewTabsBar()
-        mainActivity.settingToolbarMain()
         settingTabs()
         settingCoorditab()
 
@@ -56,7 +54,7 @@ class CoordinatorInfoFragment : Fragment() {
 
     // 탭바 위치 설정
     fun settingTabs(){
-        mainActivity.activityMainBinding.apply {
+        fragmentCoordinatorInfoBinding.apply {
             val tabLayout = tabsMain
             tabLayout.getTabAt(2)?.select()
         }
@@ -121,12 +119,12 @@ class CoordinatorInfoFragment : Fragment() {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         // 선택된 탭이 첫 번째 탭인 경우
                         if (tab?.position == 0) {
-                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_RANK, false, true, null)
                             mainActivity.removeFragment(MainFragmentName.COORDINATOR_INFO)
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
                         }
                         else {
-                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_INFO, false, true, null)
                             mainActivity.removeFragment(MainFragmentName.COORDINATOR_RANK)
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
                         }
                     }
 

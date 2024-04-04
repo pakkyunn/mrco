@@ -15,6 +15,15 @@
         android:orientation="vertical"
         android:transitionGroup="true">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarOrderDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000" />
 
         <ScrollView
             android:layout_width="match_parent"
