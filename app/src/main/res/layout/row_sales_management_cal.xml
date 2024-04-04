@@ -13,7 +13,7 @@
             android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="3월 20일"
+            android:text="4월 10일"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:textStyle="bold"

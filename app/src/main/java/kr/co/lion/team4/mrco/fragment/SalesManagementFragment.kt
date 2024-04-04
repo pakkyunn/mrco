@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
@@ -15,17 +16,28 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentSalesManagementBinding
+import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowSalesManagementBinding
+import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinatorViewModel
+import kr.co.lion.team4.mrco.viewmodel.RowSalesManagementViewModel
+import kr.co.lion.team4.mrco.viewmodel.SalesManagementViewModel
+import kr.co.lion.team4.mrco.viewmodel.WriteReviewViewModel
 
 class SalesManagementFragment : Fragment() {
 
     lateinit var fragmentSalesManagementBinding: FragmentSalesManagementBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var salesManagementViewModel: SalesManagementViewModel
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentSalesManagementBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sales_management, container, false)
+        salesManagementViewModel = SalesManagementViewModel()
+        fragmentSalesManagementBinding.salesManagementViewModel = SalesManagementViewModel()
+        fragmentSalesManagementBinding.lifecycleOwner = this
 
-        fragmentSalesManagementBinding = FragmentSalesManagementBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
@@ -92,7 +104,13 @@ class SalesManagementFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SalesManagementViewHolder {
-            val rowSalesManagementBinding = RowSalesManagementBinding.inflate(layoutInflater)
+            val rowSalesManagementBinding = DataBindingUtil.inflate<RowSalesManagementBinding>(
+                layoutInflater, R.layout.row_sales_management, parent, false
+            )
+            val rowSalesManagementViewModel = RowSalesManagementViewModel()
+            rowSalesManagementBinding.rowSalesManagementViewModel = rowSalesManagementViewModel
+            rowSalesManagementBinding.lifecycleOwner = this@SalesManagementFragment
+
             val salesManagementViewHolder = SalesManagementViewHolder(rowSalesManagementBinding)
 
             return salesManagementViewHolder

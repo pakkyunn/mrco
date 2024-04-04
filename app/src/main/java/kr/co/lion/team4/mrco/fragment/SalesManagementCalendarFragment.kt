@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
@@ -15,18 +15,27 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.databinding.FragmentSalesManagementCalendarBinding
 import kr.co.lion.team4.mrco.databinding.RowSalesManagementCalBinding
+import kr.co.lion.team4.mrco.viewmodel.SalesManagementCalendarViewModel
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class SalesManagementCalendarFragment : Fragment() {
 
     lateinit var fragmentSalesManagementCalendarBinding: FragmentSalesManagementCalendarBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var salesManagementCalendarViewModel: SalesManagementCalendarViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentSalesManagementCalendarBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sales_management_calendar, container, false)
+        salesManagementCalendarViewModel = SalesManagementCalendarViewModel()
+        fragmentSalesManagementCalendarBinding.salesManagementCalendarViewModel = SalesManagementCalendarViewModel()
+        fragmentSalesManagementCalendarBinding.lifecycleOwner = this
 
-        fragmentSalesManagementCalendarBinding = FragmentSalesManagementCalendarBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
@@ -38,12 +47,6 @@ class SalesManagementCalendarFragment : Fragment() {
 
         // 리사이클러 뷰
         settingRecyclerViewSalesManagement()
-
-        fragmentSalesManagementCalendarBinding.apply {
-            textInputCalendarView.setOnClickListener{
-                layoutCalendarView.isVisible = true
-            }
-        }
 
         return fragmentSalesManagementCalendarBinding.root
     }
@@ -110,7 +113,15 @@ class SalesManagementCalendarFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: SalesManagementCalViewHolder, position: Int) {
-            holder.rowSalesManagementCalBinding.textViewDate.text = "4월 ${position+1}일"
+
+            val simpleDateFormatMonth = SimpleDateFormat("MM")
+            val simpleDateFormatDays = SimpleDateFormat("dd")
+            val month = (simpleDateFormatMonth.format(Date())).toInt() // toInt 하는건 01월 이거를 1월로 바꿈
+            val days = simpleDateFormatDays.format(Date()).toInt() // toInt 하는건 01일 이거를 1일로 바꿈 & 앞뒤 날짜 계산
+            
+            // 달마다 31일 30일 구분 -> % 이용해 구현 해야함 (아직 안함)
+            // -1 붙인 이유 UI에 오늘 날짜가 중앙에 배치 (첫 순서에 어제 날짜가 나오게 끔)
+            holder.rowSalesManagementCalBinding.textViewDate.text = "${month}월 ${days + position - 1}일"
         }
     }
 

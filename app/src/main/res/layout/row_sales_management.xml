@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="rowSalesManagementViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowSalesManagementViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -71,39 +77,39 @@
                         android:paddingLeft="10dp">
 
                         <TextView
-                            android:id="@+id/textView36"
+                            android:id="@+id/textViewRowSalesManagementProductState"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="구매 확정"
+                            android:text="@{rowSalesManagementViewModel.textViewRowSalesManagementProductState}"
                             android:textColor="#000000"
                             android:textSize="16dp"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView41"
+                            android:id="@+id/textViewRowSalesManagementProductName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="호불호 없는 출근룩 코디 SET"
+                            android:text="@{rowSalesManagementViewModel.textViewRowSalesManagementProductName}"
                             android:textColor="@color/black"
                             android:textSize="14dp" />
 
                         <TextView
-                            android:id="@+id/textView42"
+                            android:id="@+id/textViewRowSalesManagementProductsSize"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="상의 · M / 베스트 · M / 바지 · 28 / 가방 · free / 신발 · 230mm"
+                            android:text="@{rowSalesManagementViewModel.textViewRowSalesManagementProductsSize}"
                             android:textColor="#787878"
                             android:textSize="12dp"
                             tools:layout_marginTop="10dp" />
 
                         <TextView
-                            android:id="@+id/textView43"
+                            android:id="@+id/textViewRowSalesManagementProductPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
-                            android:text="100,000원"
+                            android:text="@{rowSalesManagementViewModel.textViewRowSalesManagementProductPrice}"
                             android:textColor="@color/black"
                             android:textSize="16dp"
                             android:textStyle="bold" />
