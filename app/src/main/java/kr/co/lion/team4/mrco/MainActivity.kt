@@ -12,8 +12,8 @@ import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorMainFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
-import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
-import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
+import kr.co.lion.team4.mrco.fragment.salesmanagement.SalesManagementCalendarFragment
+import kr.co.lion.team4.mrco.fragment.salesmanagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 -완료
         // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
-        replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
+        // replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
 
         // 주문 상세 정보 페이지 - 완료
-        // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
+        replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
 
         // 매출관리(내역), 매출관리(캘린더) - 완료
         // 탭으로 화면 이동 가능 / 리포트는 현재 연동 X
