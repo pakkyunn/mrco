@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment.salesmanagement
+package kr.co.lion.team4.mrco.fragment.salesManagement
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
