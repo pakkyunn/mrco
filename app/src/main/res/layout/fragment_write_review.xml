@@ -58,7 +58,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
+                            android:layout_weight="2"
                             android:orientation="vertical">
 
                             <TextView
@@ -76,8 +76,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="20dp"
                                 android:text="@{writeReviewViewModel.textViewWriteReviewProductName}"
-                                android:textSize="16dp"
                                 android:textColor="#000000"
+                                android:textSize="16dp"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -85,43 +85,44 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:orientation="vertical">
 
                             <TextView
                                 android:id="@+id/textView8"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="셔츠 · M" />
+                                android:text="@{writeReviewViewModel.textViewWriteReviewProductItem1}" />
 
                             <TextView
                                 android:id="@+id/textView9"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="베스트 · M" />
+                                android:text="@{writeReviewViewModel.textViewWriteReviewProductItem2}" />
 
                             <TextView
                                 android:id="@+id/textView10"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="바지 · 28" />
+                                android:text="@{writeReviewViewModel.textViewWriteReviewProductItem3}" />
 
                             <TextView
                                 android:id="@+id/textView11"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="가방 · Free" />
+                                android:text="@{writeReviewViewModel.textViewWriteReviewProductItem4}" />
 
                             <TextView
                                 android:id="@+id/textView12"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="신발 · 230mm" />
+                                android:text="@{writeReviewViewModel.textViewWriteReviewProductItem5}" />
 
                             <TextView
                                 android:id="@+id/textView123"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="신발 · 230mm" />
+                                android:text="@{writeReviewViewModel.textViewWriteReviewProductItem6}" />
                         </LinearLayout>
 
                     </LinearLayout>

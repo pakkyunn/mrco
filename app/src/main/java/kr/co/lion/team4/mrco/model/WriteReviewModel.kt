@@ -9,12 +9,12 @@ package kr.co.lion.team4.mrco.model
 */
 
 data class WriteReviewModel (var review_idx: Int, var review_user_idx: Int, var review_product_idx: Int, var review_date: String,
-    var review_rate_stars: Int, var review_rate_1: Int, var review_rate_2: Int, var review_rate_3: Int, var review_gender: Int,
+    var review_rate_stars: Float, var review_rate_1: Int, var review_rate_2: Int, var review_rate_3: Int, var review_gender: Int,
     var review_height: Int, var review_weight: Int, var review_content: String, var review_images: String, var review_type: Int
 )   {
 
     // 매개 변수가 없는 생성자 (FireStore 연동 후 사용)
     constructor(): this(0, 0, 0, "",
-        0, 0, 0, 0, 0,
+        0.0F, 0, 0, 0, 0,
         0, 0, "", "", 0)
 }
