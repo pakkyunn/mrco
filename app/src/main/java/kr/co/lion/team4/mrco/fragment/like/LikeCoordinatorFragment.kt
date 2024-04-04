@@ -19,6 +19,8 @@ import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
 
 class LikeCoordinatorFragment : Fragment() {
 
+    // 원빈 - 좋아요 화면(코디네이터)
+
     lateinit var fragmentLikeCoordinatorBinding: FragmentLikeCoordinatorBinding
     lateinit var mainActivity: MainActivity
 

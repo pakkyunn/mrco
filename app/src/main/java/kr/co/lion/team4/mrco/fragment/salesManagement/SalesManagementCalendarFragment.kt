@@ -23,6 +23,8 @@ import java.util.Date
 
 class SalesManagementCalendarFragment : Fragment() {
 
+    // 원빈 - 매출 관리(정산) - 내역 화면 (태진님 관련)
+
     lateinit var fragmentSalesManagementCalendarBinding: FragmentSalesManagementCalendarBinding
     lateinit var mainActivity: MainActivity
 

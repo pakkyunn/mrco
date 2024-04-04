@@ -20,6 +20,8 @@ import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorInfoViewModel
 
 class CoordinatorInfoFragment : Fragment() {
+    
+    // 원빈 - 코디네이터 정보 화면
 
     lateinit var fragmentCoordinatorInfoBinding: FragmentCoordinatorInfoBinding
     lateinit var mainActivity: MainActivity

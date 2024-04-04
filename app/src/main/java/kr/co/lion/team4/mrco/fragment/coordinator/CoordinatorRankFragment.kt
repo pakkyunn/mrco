@@ -26,6 +26,8 @@ import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
 
 class CoordinatorRankFragment : Fragment() {
 
+    // 원빈 - 인기 코디네이터 화면
+
     lateinit var fragmentCoordinatorRankBinding: FragmentCoordinatorRankBinding
     lateinit var mainActivity: MainActivity
 

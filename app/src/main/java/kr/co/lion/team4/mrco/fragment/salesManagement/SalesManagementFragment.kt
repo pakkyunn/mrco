@@ -22,6 +22,8 @@ import kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesManagementViewModel
 
 class SalesManagementFragment : Fragment() {
 
+    // 원빈 - 매출 관리(정산) - 캘린더 화면 (태진님 관련)
+
     lateinit var fragmentSalesManagementBinding: FragmentSalesManagementBinding
     lateinit var mainActivity: MainActivity
 

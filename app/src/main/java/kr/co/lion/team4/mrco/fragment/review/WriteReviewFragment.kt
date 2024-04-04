@@ -17,6 +17,8 @@ import kr.co.lion.team4.mrco.viewmodel.review.WriteReviewViewModel
 
 class WriteReviewFragment : Fragment() {
 
+    // 원빈 - (스타일, 일반)리뷰 작성 화면
+
     lateinit var fragmentWriteReviewBinding: FragmentWriteReviewBinding
     lateinit var mainActivity: MainActivity
 

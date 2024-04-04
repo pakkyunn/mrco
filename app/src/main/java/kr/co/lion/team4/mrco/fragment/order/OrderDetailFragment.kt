@@ -14,6 +14,8 @@ import kr.co.lion.team4.mrco.viewmodel.order.OrderDetailViewModel
 
 class OrderDetailFragment : Fragment() {
 
+    // 원빈 - 주문 상세 정보 화면
+
     lateinit var fragmentOrderDetailBinding: FragmentOrderDetailBinding
     lateinit var mainActivity: MainActivity
 

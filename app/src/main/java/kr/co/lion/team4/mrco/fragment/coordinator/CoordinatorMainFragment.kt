@@ -19,6 +19,8 @@ import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorMainViewModel
 
 class CoordinatorMainFragment : Fragment() {
 
+    // 원빈 - 코디네이터 화면(메인)
+
     lateinit var fragmentCoordinatorMainBinding: FragmentCoordinatorMainBinding
     lateinit var mainActivity: MainActivity
 
