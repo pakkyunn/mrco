@@ -6,7 +6,7 @@
     <data>
         <variable
             name="writeReviewViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.WriteReviewViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.review.WriteReviewViewModel" />
     </data>
 
     <LinearLayout

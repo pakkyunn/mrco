@@ -1,10 +1,12 @@
 package kr.co.lion.team4.mrco.fragment.coordinator
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,9 +20,9 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
-import kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRank2ViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRank2ViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
 
 class CoordinatorRankFragment : Fragment() {
 
@@ -115,6 +117,27 @@ class CoordinatorRankFragment : Fragment() {
         override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
             holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankNumber.text = "${position + 1}"
 
+            holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
+                Log.d("test1234", "인기 코디네이터 화면 : imageView - Click / 코디네이터 메인으로 이동")
+            }
+
+            // (팔로우/팔로잉) 버튼 클릭 시
+            holder.rowCoordinatorRankBinding.buttonRowCoordinatorRankFollower.setOnClickListener {
+                holder.rowCoordinatorRankBinding.buttonRowCoordinatorRankFollower.apply {
+                    val newTintList = if (text == "팔로우") {
+                        text = "팔로잉"
+                        ContextCompat.getColorStateList(context, R.color.buttonFollowing)
+                    } else {
+                        text = "팔로우"
+                        ContextCompat.getColorStateList(context, R.color.buttonFollow)
+                    }
+
+                    backgroundTintList = newTintList
+                }
+                Log.d("test1234", "인기 코디네이터 화면 : button - Click / 코디네이터 메인으로 이동")
+            }
+
             // 내부 리사이클러 뷰 설정
             val innerRecyclerView = holder.rowCoordinatorRankBinding.recyclerViewCoordinatorRank2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -174,12 +197,12 @@ class CoordinatorRankFragment : Fragment() {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         // 선택된 탭이 첫 번째 탭인 경우
                         if (tab?.position == 0) {
-                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_RANK, false, true, null)
                             mainActivity.removeFragment(MainFragmentName.COORDINATOR_INFO)
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_RANK, false, false, null)
                         }
                         else {
-                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_INFO, false, true, null)
                             mainActivity.removeFragment(MainFragmentName.COORDINATOR_RANK)
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_INFO, false, false, null)
                         }
                     }
 

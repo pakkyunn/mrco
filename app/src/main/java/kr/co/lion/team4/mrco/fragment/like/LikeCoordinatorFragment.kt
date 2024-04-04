@@ -13,9 +13,9 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinator2Binding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
-import kr.co.lion.team4.mrco.viewmodel.LikeCoordinatorViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinator2ViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinatorViewModel
+import kr.co.lion.team4.mrco.viewmodel.like.LikeCoordinatorViewModel
+import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinator2ViewModel
+import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
 
 class LikeCoordinatorFragment : Fragment() {
 

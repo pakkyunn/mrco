@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.salesManagement
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,26 +15,25 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.Tools
-import kr.co.lion.team4.mrco.databinding.FragmentSalesManagementCalendarBinding
-import kr.co.lion.team4.mrco.databinding.RowSalesManagementCalBinding
-import kr.co.lion.team4.mrco.viewmodel.SalesManagementCalendarViewModel
-import java.text.SimpleDateFormat
-import java.util.Date
+import kr.co.lion.team4.mrco.databinding.FragmentSalesManagementBinding
+import kr.co.lion.team4.mrco.databinding.RowSalesManagementBinding
+import kr.co.lion.team4.mrco.viewmodel.salesManagement.RowSalesManagementViewModel
+import kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesManagementViewModel
 
-class SalesManagementCalendarFragment : Fragment() {
+class SalesManagementFragment : Fragment() {
 
-    lateinit var fragmentSalesManagementCalendarBinding: FragmentSalesManagementCalendarBinding
+    lateinit var fragmentSalesManagementBinding: FragmentSalesManagementBinding
     lateinit var mainActivity: MainActivity
 
-    lateinit var salesManagementCalendarViewModel: SalesManagementCalendarViewModel
+    lateinit var salesManagementViewModel: SalesManagementViewModel
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        fragmentSalesManagementCalendarBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sales_management_calendar, container, false)
-        salesManagementCalendarViewModel = SalesManagementCalendarViewModel()
-        fragmentSalesManagementCalendarBinding.salesManagementCalendarViewModel = SalesManagementCalendarViewModel()
-        fragmentSalesManagementCalendarBinding.lifecycleOwner = this
+        fragmentSalesManagementBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sales_management, container, false)
+        salesManagementViewModel = SalesManagementViewModel()
+        fragmentSalesManagementBinding.salesManagementViewModel = SalesManagementViewModel()
+        fragmentSalesManagementBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
 
@@ -45,10 +44,10 @@ class SalesManagementCalendarFragment : Fragment() {
         settingTabs()
         settingSalesManagementTab()
 
-        // 리사이클러 뷰
+        // 리사이클러
         settingRecyclerViewSalesManagement()
 
-        return fragmentSalesManagementCalendarBinding.root
+        return fragmentSalesManagementBinding.root
     }
 
     // 툴바 설정
@@ -69,59 +68,57 @@ class SalesManagementCalendarFragment : Fragment() {
 
     // 탭바 및 바텀바 위치 설정
     fun settingTabs(){
-        fragmentSalesManagementCalendarBinding.apply {
+        fragmentSalesManagementBinding.apply {
             val tabLayout = tabs
-            tabLayout.getTabAt(1)?.select()
+            tabLayout.getTabAt(2)?.select()
         }
     }
 
     // 리사이클러 뷰 설정
     fun settingRecyclerViewSalesManagement() {
-        fragmentSalesManagementCalendarBinding.apply {
-            recyclerViewSalesManagementCalendar.apply {
+        fragmentSalesManagementBinding.apply {
+            recyclerViewSalesManagement.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
-                adapter = SalesManagementCalendarRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+                adapter = SalesManagementRecyclerViewAdapter()
+                layoutManager = LinearLayoutManager(mainActivity)
             }
         }
     }
 
     // 리사이클러 뷰 어뎁터
-    inner class SalesManagementCalendarRecyclerViewAdapter: RecyclerView.Adapter<SalesManagementCalendarRecyclerViewAdapter.SalesManagementCalViewHolder>(){
-        inner class SalesManagementCalViewHolder(rowSalesManagementCalBinding: RowSalesManagementCalBinding): RecyclerView.ViewHolder(rowSalesManagementCalBinding.root){
-            val rowSalesManagementCalBinding: RowSalesManagementCalBinding
+    inner class SalesManagementRecyclerViewAdapter: RecyclerView.Adapter<SalesManagementRecyclerViewAdapter.SalesManagementViewHolder>(){
+        inner class SalesManagementViewHolder(rowSalesManagementBinding: RowSalesManagementBinding): RecyclerView.ViewHolder(rowSalesManagementBinding.root){
+            val rowSalesManagementBinding: RowSalesManagementBinding
 
             init {
-                this.rowSalesManagementCalBinding = rowSalesManagementCalBinding
+                this.rowSalesManagementBinding = rowSalesManagementBinding
 
-                this.rowSalesManagementCalBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                this.rowSalesManagementBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SalesManagementCalViewHolder {
-            val rowSalesManagementCalBinding = RowSalesManagementCalBinding.inflate(layoutInflater)
-            val salesManagementCalViewHolder = SalesManagementCalViewHolder(rowSalesManagementCalBinding)
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SalesManagementViewHolder {
+            val rowSalesManagementBinding = DataBindingUtil.inflate<RowSalesManagementBinding>(
+                layoutInflater, R.layout.row_sales_management, parent, false
+            )
+            val rowSalesManagementViewModel = RowSalesManagementViewModel()
+            rowSalesManagementBinding.rowSalesManagementViewModel = rowSalesManagementViewModel
+            rowSalesManagementBinding.lifecycleOwner = this@SalesManagementFragment
 
-            return salesManagementCalViewHolder
+            val salesManagementViewHolder = SalesManagementViewHolder(rowSalesManagementBinding)
+
+            return salesManagementViewHolder
         }
 
         override fun getItemCount(): Int {
             return 6
         }
 
-        override fun onBindViewHolder(holder: SalesManagementCalViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: SalesManagementViewHolder, position: Int) {
 
-            val simpleDateFormatMonth = SimpleDateFormat("MM")
-            val simpleDateFormatDays = SimpleDateFormat("dd")
-            val month = (simpleDateFormatMonth.format(Date())).toInt() // toInt 하는건 01월 이거를 1월로 바꿈
-            val days = simpleDateFormatDays.format(Date()).toInt() // toInt 하는건 01일 이거를 1일로 바꿈 & 앞뒤 날짜 계산
-            
-            // 달마다 31일 30일 구분 -> % 이용해 구현 해야함 (아직 안함)
-            // -1 붙인 이유 UI에 오늘 날짜가 중앙에 배치 (첫 순서에 어제 날짜가 나오게 끔)
-            holder.rowSalesManagementCalBinding.textViewDate.text = "${month}월 ${days + position - 1}일"
         }
     }
 
@@ -133,7 +130,7 @@ class SalesManagementCalendarFragment : Fragment() {
     // 상단 탭 선택 설정
     fun settingSalesManagementTab(){
         CoroutineScope(Dispatchers.Main).launch {
-            fragmentSalesManagementCalendarBinding.apply {
+            fragmentSalesManagementBinding.apply {
                 val tabLayout = tabs
 
                 // 탭 선택 리스너 설정
@@ -164,5 +161,4 @@ class SalesManagementCalendarFragment : Fragment() {
             }
         }
     }
-
 }

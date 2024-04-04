@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rowCoordinatorRankViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowCoordinatorRankViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel" />
     </data>
 
     <LinearLayout
@@ -93,12 +93,12 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/buttonRowCoordinatorRankFollower"
                     android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
-                    android:backgroundTint="#102672"
+                    android:backgroundTint="@color/buttonFollow"
                     android:padding="0dp"
                     android:text="팔로우"
                     android:textSize="14dp"

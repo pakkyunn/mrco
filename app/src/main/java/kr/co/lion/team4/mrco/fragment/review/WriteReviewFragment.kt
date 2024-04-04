@@ -13,7 +13,7 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentWriteReviewBinding
-import kr.co.lion.team4.mrco.viewmodel.WriteReviewViewModel
+import kr.co.lion.team4.mrco.viewmodel.review.WriteReviewViewModel
 
 class WriteReviewFragment : Fragment() {
 

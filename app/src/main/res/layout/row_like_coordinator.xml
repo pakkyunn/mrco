@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rowLikeCoordinatorViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinatorViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel" />
     </data>
 
     <LinearLayout
@@ -78,7 +78,7 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
-                android:backgroundTint="#393939"
+                android:backgroundTint="@color/buttonFollowing"
                 android:padding="0dp"
                 android:text="팔로잉"
                 android:textSize="14dp"

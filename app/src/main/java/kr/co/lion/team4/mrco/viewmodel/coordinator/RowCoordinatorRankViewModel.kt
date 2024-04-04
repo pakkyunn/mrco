@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.viewmodel
+package kr.co.lion.team4.mrco.viewmodel.coordinator
 
 import androidx.lifecycle.MutableLiveData
 

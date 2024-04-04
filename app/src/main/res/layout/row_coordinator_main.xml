@@ -7,7 +7,7 @@
     <data>
         <variable
             name="rowCoordinatorMainViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowCoordinatorMainViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorMainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

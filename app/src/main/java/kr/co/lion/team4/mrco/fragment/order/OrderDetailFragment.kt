@@ -10,7 +10,7 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentOrderDetailBinding
-import kr.co.lion.team4.mrco.viewmodel.OrderDetailViewModel
+import kr.co.lion.team4.mrco.viewmodel.order.OrderDetailViewModel
 
 class OrderDetailFragment : Fragment() {
 

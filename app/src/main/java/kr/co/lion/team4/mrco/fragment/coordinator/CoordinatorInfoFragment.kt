@@ -17,7 +17,7 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorInfoViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorInfoViewModel
 
 class CoordinatorInfoFragment : Fragment() {
 
@@ -30,13 +30,15 @@ class CoordinatorInfoFragment : Fragment() {
         fragmentCoordinatorInfoBinding = FragmentCoordinatorInfoBinding.inflate(inflater)
 
         mainActivity = activity as MainActivity
-
+        
+        // 툴바, 하단바, 탭 관련
         mainActivity.viewTabsBar()
         mainActivity.settingToolbarMain()
-
-        settingRecyclerViewCoordinatorInfo()
         settingTabs()
         settingCoorditab()
+
+        // 리사이클러 뷰
+        settingRecyclerViewCoordinatorInfo()
 
         return fragmentCoordinatorInfoBinding.root
     }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rowLikeCoordinator2ViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowLikeCoordinator2ViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinator2ViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

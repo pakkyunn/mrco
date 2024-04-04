@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rowSalesManagementViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowSalesManagementViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.salesManagement.RowSalesManagementViewModel" />
     </data>
 
     <LinearLayout

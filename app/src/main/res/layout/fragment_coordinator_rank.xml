@@ -6,7 +6,7 @@
     <data>
         <variable
             name="coordinatorRankViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.CoordinatorRankViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel" />
     </data>
 
     <LinearLayout
@@ -22,12 +22,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#000000"
-            app:tabTextColor="#878787"
-            app:tabSelectedTextColor="#FFFFFF"
+            android:elevation="1dp"
             app:tabIndicatorColor="#DDF5FF"
             app:tabIndicatorFullWidth="true"
             app:tabRippleColor="#555555"
-            android:elevation="1dp">
+            app:tabSelectedTextColor="#FFFFFF"
+            app:tabTextColor="#878787">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/main_home_tab_mbti"

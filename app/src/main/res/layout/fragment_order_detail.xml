@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderDetailViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.OrderDetailViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.order.OrderDetailViewModel" />
     </data>
 
     <LinearLayout

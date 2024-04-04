@@ -6,7 +6,7 @@
     <data>
         <variable
             name="salesManagementCalendarViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.SalesManagementCalendarViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesManagementCalendarViewModel" />
     </data>
 
     <LinearLayout

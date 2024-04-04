@@ -13,8 +13,8 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainBinding
-import kr.co.lion.team4.mrco.viewmodel.CoordinatorMainViewModel
-import kr.co.lion.team4.mrco.viewmodel.RowCoordinatorMainViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorMainViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorMainViewModel
 
 
 class CoordinatorMainFragment : Fragment() {
