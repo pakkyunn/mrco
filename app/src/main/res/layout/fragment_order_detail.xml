@@ -151,37 +151,55 @@
                                 android:paddingLeft="10dp">
 
                                 <TextView
-                                    android:id="@+id/textView41"
+                                    android:id="@+id/textViewOrderDetailProductItem1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="코트 · M  (￦ 70,000)"
+                                    android:text="@{orderDetailViewModel.textViewOrderDetailProductItem1}"
                                     android:textColor="@color/black"
                                     android:textSize="16dp" />
 
                                 <TextView
-                                    android:id="@+id/textView42"
+                                    android:id="@+id/textViewOrderDetailProductItem2"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="상의 · M  (￦ 70,000)"
+                                    android:text="@{orderDetailViewModel.textViewOrderDetailProductItem2}"
                                     android:textColor="@color/black"
                                     android:textSize="16dp" />
 
                                 <TextView
-                                    android:id="@+id/textView43"
+                                    android:id="@+id/textViewOrderDetailProductItem3"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="하의 · M  (￦ 70,000)"
+                                    android:text="@{orderDetailViewModel.textViewOrderDetailProductItem3}"
                                     android:textColor="@color/black"
                                     android:textSize="16dp" />
 
                                 <TextView
-                                    android:id="@+id/textView44"
+                                    android:id="@+id/textViewOrderDetailProductItem4"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
-                                    android:text="신발 · 250  (￦ 70,000)"
+                                    android:text="@{orderDetailViewModel.textViewOrderDetailProductItem4}"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+
+                                <TextView
+                                    android:id="@+id/textViewOrderDetailProductItem5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@{orderDetailViewModel.textViewOrderDetailProductItem5}"
+                                    android:textColor="@color/black"
+                                    android:textSize="16dp" />
+
+                                <TextView
+                                    android:id="@+id/textViewOrderDetailProductItem6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@{orderDetailViewModel.textViewOrderDetailProductItem6}"
                                     android:textColor="@color/black"
                                     android:textSize="16dp" />
                             </LinearLayout>

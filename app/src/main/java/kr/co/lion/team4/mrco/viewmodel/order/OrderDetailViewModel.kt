@@ -10,6 +10,12 @@ class OrderDetailViewModel: ViewModel() {
     
     // 상품 정보 (코디이름)
     val textViewOrderDetailProductName = MutableLiveData<String>("호불호 없는 출근룩 코디 SET")
+    val textViewOrderDetailProductItem1 = MutableLiveData<String>("코트 · M  (￦ 70,000)")
+    val textViewOrderDetailProductItem2 = MutableLiveData<String>("상의 · M  (￦ 70,000)")
+    val textViewOrderDetailProductItem3 = MutableLiveData<String>("하의 · M  (￦ 70,000)")
+    val textViewOrderDetailProductItem4 = MutableLiveData<String>("신발 · 250  (￦ 70,000)")
+    val textViewOrderDetailProductItem5 = MutableLiveData<String>("")
+    val textViewOrderDetailProductItem6 = MutableLiveData<String>("")
     
     // 배송 정보 (수령인, 연락처, 주소, 배송 메모)
     val textViewOrderDetailUserName = MutableLiveData<String>("홍길동")
