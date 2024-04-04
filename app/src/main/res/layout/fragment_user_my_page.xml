@@ -22,9 +22,9 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/imageViewUserMyPage"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -42,13 +42,12 @@
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="44dp"
-                android:background="#ECECEC"
-                app:icon="@android:drawable/ic_menu_add"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="100dp"
+                app:icon="@android:drawable/ic_menu_edit"
                 app:iconTint="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+                app:layout_constraintStart_toStartOf="@+id/imageViewUserMyPage"
+                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
 
             <TextView
                 android:id="@+id/textViewNicknameUserMyPage"
@@ -58,8 +57,8 @@
                 android:text="@{userMyPageViewModel.textViewNicknameUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
+                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage"
                 tools:text="닉네임" />
 
             <TextView
@@ -70,7 +69,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@{userMyPageViewModel.textViewGenderUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage"
                 tools:text="성별" />
 
@@ -82,7 +81,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@{userMyPageViewModel.textViewMbtiUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
                 app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage"
                 tools:text="MBTI" />
 
@@ -104,7 +103,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
@@ -116,8 +114,10 @@
                 android:id="@+id/textViewMenuUserMyPage1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    주문/배송 조회"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -126,15 +126,16 @@
                 android:id="@+id/divider11"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    나의 리뷰"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -143,15 +144,16 @@
                 android:id="@+id/divider12"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    고객센터"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -160,15 +162,16 @@
                 android:id="@+id/divider13"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    코디네이터 등록 신청"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -177,15 +180,16 @@
                 android:id="@+id/divider14"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    로그아웃"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />

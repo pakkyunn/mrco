@@ -15,16 +15,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
+        android:transitionGroup="true"
         tools:context=".fragment.CoordinatorMyPageFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="240dp">
 
             <ImageView
                 android:id="@+id/imageViewCoordinatorMyPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -42,10 +43,9 @@
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="44dp"
-                android:background="#ECECEC"
-                app:icon="@android:drawable/ic_menu_add"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="100dp"
+                app:icon="@android:drawable/ic_menu_edit"
                 app:iconTint="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorMyPage"
                 app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorMyPage" />
@@ -118,7 +118,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="?android:attr/listDivider" />
 
         <LinearLayout
@@ -130,26 +129,29 @@
                 android:id="@+id/textViewMenuCoordinatorMyPage1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    코디 상품 등록"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <View
                 android:id="@+id/divider11"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuCoordinatorMyPage2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    등록 상품 관리"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -157,16 +159,17 @@
                 android:id="@+id/divider12"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuCoordinatorMyPage3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    배송 관리"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -174,16 +177,17 @@
                 android:id="@+id/divider13"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuCoordinatorMyPage4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    상품 문의 관리"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -191,16 +195,17 @@
                 android:id="@+id/divider14"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuCoordinatorMyPage5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    상품 판매 내역"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -208,16 +213,17 @@
                 android:id="@+id/divider15"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuCoordinatorMyPage6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    매출/정산 관리"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -225,16 +231,17 @@
                 android:id="@+id/divider16"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginBottom="8dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuCoordinatorMyPage7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_weight="0"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
                 android:drawableStart="@android:drawable/ic_media_play"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:text="    로그아웃"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

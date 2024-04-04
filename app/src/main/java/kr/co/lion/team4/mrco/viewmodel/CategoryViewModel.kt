@@ -11,21 +11,21 @@ class CategoryViewModel: ViewModel() {
 
 
     // 성별을 세팅하는 메서드
-    fun settingGender(gender:Gender){
-        // 성별로 분기한다.
-        when(gender){
-            Gender.MEN -> {
-                chipGroupCategoryGender.value = R.id.chipCategoryGenderMEN
-            }
-            Gender.WOMEN -> {
-                chipGroupCategoryGender.value = R.id.chipCategoryGenderWOMEN
-            }
-        }
-    }
-
-    // 성별값을 반환하는 메서드
-    fun gettingGender():Gender = when(chipGroupCategoryGender.value){
-        R.id.chipCategoryGenderMEN -> Gender.MEN
-        else -> Gender.WOMEN
-    }
+//    fun settingGender(gender:Gender){
+//        // 성별로 분기한다.
+//        when(gender){
+//            Gender.MEN -> {
+//                chipGroupCategoryGender.value = R.id.chipCategoryGenderMEN
+//            }
+//            Gender.WOMEN -> {
+//                chipGroupCategoryGender.value = R.id.chipCategoryGenderWOMEN
+//            }
+//        }
+//    }
+//
+//    // 성별값을 반환하는 메서드
+//    fun gettingGender():Gender = when(chipGroupCategoryGender.value){
+//        R.id.chipCategoryGenderMEN -> Gender.MEN
+//        else -> Gender.WOMEN
+//    }
 }

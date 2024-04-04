@@ -12,7 +12,8 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:transitionGroup="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,11 +25,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:paddingStart="16dp"
+                android:paddingTop="16dp"
+                android:paddingEnd="16dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
+                    android:layout_marginBottom="8dp"
                     android:hint="카테고리 검색"
                     app:endIconDrawable="@android:drawable/ic_menu_search"
                     app:endIconMode="custom">
@@ -37,7 +41,9 @@
                         android:id="@+id/textFieldCategorySearch"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={categoryViewModel.textFieldCategorySearch}"/>
+                        android:inputType="text"
+                        android:singleLine="true"
+                        android:text="@={categoryViewModel.textFieldCategorySearch}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -50,8 +56,9 @@
                         android:id="@+id/chipGroupCategoryGender"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:singleSelection="true"
-                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}">
+                        app:singleSelection="true">
+                        <!--                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}"-->
+
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/chipCategoryGenderMEN"
@@ -93,11 +100,10 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/textViewMbtiCategory"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:background="#E5E9EE"
-                        android:clickable="true"
                         android:gravity="center"
                         android:text="MBTI"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
@@ -109,7 +115,7 @@
                         android:background="?android:attr/listDivider" />
 
                     <TextView
-                        android:id="@+id/textViewNicknameUserMyPage"
+                        android:id="@+id/textViewTpoCategory"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:clickable="true"
@@ -124,7 +130,7 @@
                         android:background="?android:attr/listDivider" />
 
                     <TextView
-                        android:id="@+id/textViewGenderUserMyPage"
+                        android:id="@+id/textViewSeasonCategory"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:clickable="true"
@@ -139,7 +145,7 @@
                         android:background="?android:attr/listDivider" />
 
                     <TextView
-                        android:id="@+id/textViewMbtiUserMyPage"
+                        android:id="@+id/textViewMoodCategory"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:clickable="true"
@@ -154,7 +160,7 @@
                         android:background="?android:attr/listDivider" />
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/textViewAllCategory"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:clickable="true"
@@ -186,7 +192,7 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/extended_fab"
+            android:id="@+id/floatingButtonCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"

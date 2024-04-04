@@ -15,6 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
+        android:transitionGroup="true"
         tools:context=".fragment.CustomerServiceFragment">
 
         <Button
