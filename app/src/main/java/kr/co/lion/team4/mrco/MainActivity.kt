@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터) - (원빈)완료
+        // 탭으로 화면 이동 가능 / 코디화면, 코디네이터 화면
         // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
         replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
 

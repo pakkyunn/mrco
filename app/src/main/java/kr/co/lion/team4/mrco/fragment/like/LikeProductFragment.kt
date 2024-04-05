@@ -22,6 +22,7 @@ import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
 import kr.co.lion.team4.mrco.viewmodel.like.LikeCoordinatorViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.LikeProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
+import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
 
 class LikeProductFragment : Fragment() {
 
@@ -90,7 +91,13 @@ class LikeProductFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LikeProductViewHolder {
-            val rowLikeProductBinding = RowLikeProductBinding.inflate(layoutInflater)
+            val rowLikeProductBinding = DataBindingUtil.inflate<RowLikeProductBinding>(
+                layoutInflater, R.layout.row_like_product, parent, false
+            )
+            val rowLikeProductViewModel = RowLikeProductViewModel()
+            rowLikeProductBinding.rowLikeProductViewModel = rowLikeProductViewModel
+            rowLikeProductBinding.lifecycleOwner = this@LikeProductFragment
+
             val likeProductViewHolder = LikeProductViewHolder(rowLikeProductBinding)
 
             return likeProductViewHolder
