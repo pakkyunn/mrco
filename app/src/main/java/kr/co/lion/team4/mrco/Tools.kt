@@ -37,3 +37,7 @@ enum class MainFragmentName(var str: String) {
 
     CUSTOMER_SERVICE_FRAGMENT("CustomerServiceFragment"),
 }
+
+enum class HomeFragmentName(var str: String){
+    MAIN_HOME("MainHomeFragment")
+}

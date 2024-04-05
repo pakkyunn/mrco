@@ -37,9 +37,11 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
+        replaceFragment(MainFragmentName.MAIN_HOME, false, false, null)
+
         // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 - (원빈)완료
         // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
-        replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
@@ -89,7 +91,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         when(name){
+            // 홈 메인(첫 화면)
             MainFragmentName.MAIN_HOME -> newFragment = MainHomeFragment()
+
             // 코디네이터 소개
             MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
 
