@@ -3,5 +3,5 @@
     <item
         android:width="16dp"
         android:height="16dp"
-        android:drawable="@drawable/outline_favorite_border_24" />
+        android:drawable="@drawable/favorite_24px" />
 </layer-list>

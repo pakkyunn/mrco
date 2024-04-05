@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
+import kr.co.lion.team4.mrco.fragment.MainHomeFragment
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorInfoFragment
@@ -88,6 +89,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         when(name){
+            MainFragmentName.MAIN_HOME -> newFragment = MainHomeFragment()
             // 코디네이터 소개
             MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
 

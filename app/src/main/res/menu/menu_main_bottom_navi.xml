@@ -5,7 +5,7 @@
     <item
         android:id="@+id/main_bottom_navi_home"
         android:enabled="true"
-        android:icon="@drawable/outline_home_24"
+        android:icon="@drawable/home_24px"
         android:title="Home"
         app:showAsAction="always" />
     <item
@@ -17,7 +17,7 @@
     <item
         android:id="@+id/main_bottom_navi_like"
         android:enabled="true"
-        android:icon="@drawable/outline_favorite_border_24"
+        android:icon="@drawable/favorite_24px"
         android:title="Like"
         app:showAsAction="always" />
     <item
