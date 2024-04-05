@@ -2,11 +2,15 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <variable
+            name="salelistItemViewModel"
+            type="kr.co.lion.team4.mrco.SaleslistItemViewModel" />
+    </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview"
@@ -15,7 +19,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp" >
+            android:layout_marginBottom="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -28,7 +32,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="(상품코드) 상품명"
+                    android:hint="(상품코드) 상품명"
+                    android:text="@{salelistItemViewModel.textviewSaleslistProduct}"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/imageview_sales_list_detail"
                     app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +46,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="주문번호: 1234567890"
+                    android:hint="주문번호: 1234567890"
+                    android:text="@{salelistItemViewModel.textviewSaleslistOrderNumber}"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/imageview_sales_list_detail"
                     app:layout_constraintStart_toStartOf="parent"
@@ -55,7 +61,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="￦100,000"
+                    android:hint="￦100,000"
+                    android:text="@{salelistItemViewModel.textviewSaleslistPrice}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
