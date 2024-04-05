@@ -7,7 +7,7 @@
    -  프로젝트명  : MRCO (MBTI만 알아와, 코디해줄게!)
    -  기획기간    : 2024.03.13 ~ 2024.03.27
    -  개발기간    : 2024.03.28 ~ 2024.04.26
-   -  개발인원    : 6명
+   -  개발인원    : 5명
    -  개발환경    : Android Studio
    -  개발언어    : Kotlin
    -  데이터베이스: Firebase
@@ -15,7 +15,6 @@
 <hr>
 
 ## 👥 Member 👥
-<h5>(전원 Push 성공)</h5>
 <h4>🧑 박현준</h4>
 <a href="https://github.com/pakkyun0225">
     <img src="http://img.shields.io/badge/pakkyun0225-gray?logo=github"/>
@@ -35,10 +34,6 @@
 <h4>🧑 송상민</h4>
 <a href="https://github.com/wtoshm">
     <img src="http://img.shields.io/badge/wtoshm-gray?logo=github"/>
-</a>
-<h4>🧑 송준기</h4>
-<a href="https://github.com/songjuneki">
-    <img src="http://img.shields.io/badge/songjuneki-gray?logo=github"/>
 </a>
 
 <hr>

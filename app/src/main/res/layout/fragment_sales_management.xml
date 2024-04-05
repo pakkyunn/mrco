@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="salesManagementViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesManagementViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F6F6F6"
+        android:orientation="vertical"
+        android:transitionGroup="true"
+        tools:context=".fragment.coordinator.CoordinatorRankFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarSalesManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:tabTextColor="#878787">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/sales_management_tab_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리포트" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/sales_management_tab_cal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="캘린더" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/sales_management_tab_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정산 내역" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FFFFFF"
+                    android:orientation="horizontal"
+                    android:padding="30dp">
+
+                    <TextView
+                        android:id="@+id/textViewSalesManagementName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@{salesManagementViewModel.textViewSalesManagementName}"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewSalesManagement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10dp" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--  ImageView Style  -->
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item> <!-- 모서리 모양 (rounded: 둥근 모서리) -->
+        <item name="cornerSize">20%</item> <!-- 둥글기 정도. 너비/높이의 절반으로 설정하면 원 모양이 됩니다. -->
+    </style>
+
+    <style name="roundedImageView50">
+        <item name="cornerFamily">rounded</item> <!-- 모서리 모양 (rounded: 둥근 모서리) -->
+        <item name="cornerSize">50%</item> <!-- 둥글기 정도. 너비/높이의 절반으로 설정하면 원 모양이 됩니다. -->
+    </style>
+
+    <style name="PopupMenuStyle">
+        <!-- 팝업 메뉴 배경색 -->
+        <!-- 위치 res/color/popup_pressed_color.xml 에서 수정 가능함 -->
+        <item name="android:itemBackground">@color/popup_pressed_color</item>
+    </style>
+
+    <style name="ChipChoice">
+    <!--        -->
+        <item name="chipBackgroundColor">@color/chip_coordinator_main_background_selector</item>
+        <item name="android:textColor">@color/chip_coordination_main_text_selector</item>
+        <item name="checkedIcon">@drawable/done_24px</item>
+    </style>
+
+</resources>
