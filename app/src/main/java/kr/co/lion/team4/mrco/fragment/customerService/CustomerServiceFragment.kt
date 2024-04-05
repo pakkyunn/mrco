@@ -16,10 +16,7 @@ class CustomerServiceFragment : Fragment() {
     lateinit var fragmentCustomerServiceBinding: FragmentCustomerServiceBinding
     lateinit var mainActivity: MainActivity
     lateinit var customerServiceViewModel: CustomerServiceViewModel
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         fragmentCustomerServiceBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_customer_service, container, false)
@@ -28,6 +25,9 @@ class CustomerServiceFragment : Fragment() {
         fragmentCustomerServiceBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // 하단 바 안보이게
+        mainActivity.removeBottomSheet()
 
         return fragmentCustomerServiceBinding.root
     }
