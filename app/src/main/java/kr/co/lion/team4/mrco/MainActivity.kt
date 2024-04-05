@@ -7,11 +7,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
+import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
+import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorInfoFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorMainFragment
 import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorRankFragment
+import kr.co.lion.team4.mrco.fragment.customerService.CustomerServiceFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
+import kr.co.lion.team4.mrco.fragment.mypage.CoordinatorMyPageFragment
+import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
@@ -33,14 +38,14 @@ class MainActivity : AppCompatActivity() {
 
         // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 - (원빈)완료
         // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
-        // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
+        replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터) - (원빈)완료
         // 탭으로 화면 이동 가능 / 코디화면, 코디네이터 화면
         // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
-        replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
+        // replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
 
         // 리뷰 작성 페이지 - (원빈)완료
         // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
@@ -52,6 +57,13 @@ class MainActivity : AppCompatActivity() {
         // 탭으로 화면 이동 가능 / 리포트는 현재 연동 X
         // replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
         // replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, false, null)
+
+        // 현준님 화면??
+        // replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, false, false, null)
+        // replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+        // replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, false, false, null)
+        // replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, false, false, null)
+        // replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -95,7 +107,21 @@ class MainActivity : AppCompatActivity() {
             // 매출관리(캘린더)
             MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
 
-            // 추가 할 화면
+            // 현준님 화면??
+            // ??
+            MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
+
+            // ??
+            MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
+
+            // ??
+            MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT -> newFragment = CoordinatorMyPageFragment()
+
+            // ??
+            MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
+
+            // ??
+            MainFragmentName.USER_MYPAGE_FRAGMENT -> newFragment = UserMyPageFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
