@@ -58,12 +58,20 @@ class MainActivity : AppCompatActivity() {
         // replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
         // replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, false, null)
 
-        // 현준님 화면??
+        // 알림 - 현준(완료)
         // replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, false, false, null)
+
+        // 카테고리 - 현준(완료)
         // replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+
+        // 코디네이터 마이 페이지 - 현준(완료)
         // replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, false, false, null)
-        // replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, false, false, null)
+
+        // 사용자 마이 페이지 - 현준(완료)
         // replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+
+        // 고객센터 - 현준(완료)
+        // replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -101,27 +109,27 @@ class MainActivity : AppCompatActivity() {
             // 주문 상세 정보
             MainFragmentName.ORDER_DETAIL -> newFragment = OrderDetailFragment()
 
-            // 매출관리(내역)
+            // 매출관리(내역) 화면
             MainFragmentName.SALES_MANAGEMENT -> newFragment = SalesManagementFragment()
 
-            // 매출관리(캘린더)
+            // 매출관리(캘린더) 화면
             MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
 
             // 현준님 화면??
-            // ??
+            // 알림 화면
             MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
 
-            // ??
+            // 카테고리 화면
             MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
 
-            // ??
+            // 마이페이지 (코디네이터) 화면
             MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT -> newFragment = CoordinatorMyPageFragment()
 
-            // ??
-            MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
-
-            // ??
+            // 마이페이지 (사용자) 화면
             MainFragmentName.USER_MYPAGE_FRAGMENT -> newFragment = UserMyPageFragment()
+
+            // 고객센터 화면
+            MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.

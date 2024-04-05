@@ -12,14 +12,13 @@ class AppNoticeFragment : Fragment() {
 
     lateinit var fragmentAppNoticeBinding: FragmentAppNoticeBinding
     lateinit var mainActivity: MainActivity
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentAppNoticeBinding = FragmentAppNoticeBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        // 하단 바 안보이게
+        mainActivity.removeBottomSheet()
 
         return fragmentAppNoticeBinding.root
     }
