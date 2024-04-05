@@ -1,18 +1,15 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.category
 
-import android.graphics.Color
 import android.os.Bundle
-import android.os.SystemClock
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import kr.co.lion.team4.mrco.FragmentName
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryBinding
-import kr.co.lion.team4.mrco.viewmodel.CategoryViewModel
+import kr.co.lion.team4.mrco.viewmodel.category.CategoryViewModel
 
 class CategoryFragment : Fragment() {
 

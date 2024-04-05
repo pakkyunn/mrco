@@ -7,7 +7,7 @@
     <data>
         <variable
             name="rowAppNoticeViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowAppNoticeViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.appNotice.RowAppNoticeViewModel" />
     </data>
 
     <LinearLayout

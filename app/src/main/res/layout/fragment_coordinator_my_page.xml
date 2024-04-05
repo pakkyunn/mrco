@@ -7,7 +7,7 @@
     <data>
         <variable
             name="coordinatorMyPageViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.CoordinatorMyPageViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.mypage.CoordinatorMyPageViewModel" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:transitionGroup="true"
-        tools:context=".fragment.CoordinatorMyPageFragment">
+        tools:context=".fragment.mypage.CoordinatorMyPageFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

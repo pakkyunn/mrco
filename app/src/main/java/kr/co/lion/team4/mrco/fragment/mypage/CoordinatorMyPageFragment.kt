@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.mypage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMyPageBinding
-import kr.co.lion.team4.mrco.viewmodel.CoordinatorMyPageViewModel
+import kr.co.lion.team4.mrco.viewmodel.mypage.CoordinatorMyPageViewModel
 
 class CoordinatorMyPageFragment : Fragment() {
 

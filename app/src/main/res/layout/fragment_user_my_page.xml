@@ -7,7 +7,7 @@
     <data>
         <variable
             name="userMyPageViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.UserMyPageViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.mypage.UserMyPageViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".fragment.UserMyPageFragment">
+        tools:context=".fragment.mypage.UserMyPageFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

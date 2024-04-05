@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment
+package kr.co.lion.team4.mrco.fragment.customerService
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCustomerServiceBinding
-import kr.co.lion.team4.mrco.viewmodel.CustomerServiceViewModel
+import kr.co.lion.team4.mrco.viewmodel.customerService.CustomerServiceViewModel
 
 class CustomerServiceFragment : Fragment() {
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rowCustomerServiceViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.RowCustomerServiceViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.customerService.RowCustomerServiceViewModel" />
     </data>
 
     <LinearLayout

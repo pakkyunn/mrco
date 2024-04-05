@@ -27,9 +27,9 @@ enum class MainFragmentName(var str: String) {
     SALES_MANAGEMENT("Sales_Management_Fragment"),
     SALES_MANAGEMENT_CALENDAR("Sales_Management_Calendar_Fragment"),
   
-    APP_NOTICE_FRAGMENT("AppNoticeFragment"),
-    CATEGORY_FRAGMENT("CategoryFragment"),
-    COORDINATOR_MYPAGE_FRAGMENT("CoordinatorMyPageFragment"),
-    CUSTOMER_SERVICE_FRAGMENT("CustomerServiceFragment"),
-    USER_MYPAGE_FRAGMENT("UserMyPageFragment"),
+//    APP_NOTICE_FRAGMENT("AppNoticeFragment"),
+//    CATEGORY_FRAGMENT("CategoryFragment"),
+//    COORDINATOR_MYPAGE_FRAGMENT("CoordinatorMyPageFragment"),
+//    CUSTOMER_SERVICE_FRAGMENT("CustomerServiceFragment"),
+//    USER_MYPAGE_FRAGMENT("UserMyPageFragment"),
 }

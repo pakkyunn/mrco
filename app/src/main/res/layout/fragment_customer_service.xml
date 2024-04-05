@@ -7,7 +7,7 @@
     <data>
         <variable
             name="customerServiceViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.CustomerServiceViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.customerService.CustomerServiceViewModel" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:transitionGroup="true"
-        tools:context=".fragment.CustomerServiceFragment">
+        tools:context=".fragment.customerService.CustomerServiceFragment">
 
         <Button
             android:id="@+id/button"
