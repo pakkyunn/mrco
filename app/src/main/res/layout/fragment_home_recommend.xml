@@ -67,12 +67,12 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_recommend_banner"
                         android:layout_width="match_parent"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_height="240dp"
+                        android:background="#000000"
                         android:clipChildren="false"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
+                        android:paddingLeft="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -84,24 +84,28 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="32dp"
                         android:text="추천 코디"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#333"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/home_recommend_banner" />
 
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_recommend_recycler"
-                        android:layout_width="0dp"
-                        android:layout_height="256dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginEnd="16dp"
-                        android:clipChildren="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
-                        android:paddingEnd="64dp"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/home_recommend_content1" />
+                        app:layout_constraintTop_toBottomOf="@id/home_recommend_content1"
+                        app:spanCount="2" />
 
                     <Button
                         android:id="@+id/home_recommend_all_button"
@@ -122,7 +126,9 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="32dp"
                         android:text="MRCO 신규 코디"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#333"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/home_recommend_all_button" />
 
@@ -130,13 +136,12 @@
                         android:id="@+id/home_recommend_new_recycler"
                         android:layout_width="0dp"
                         android:layout_height="256dp"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="32dp"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginBottom="128dp"
                         android:clipChildren="false"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
+                        android:paddingLeft="16dp"
                         android:paddingEnd="64dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
