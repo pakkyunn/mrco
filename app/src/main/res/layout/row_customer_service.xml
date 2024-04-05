@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="rowCustomerServiceViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowCustomerServiceViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewCategoryRowCustomerService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="3"
+                android:text="@={rowCustomerServiceViewModel.textViewCategoryRowCustomerService}"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                tools:text="문의 카테고리" />
+
+            <TextView
+                android:id="@+id/textViewSubtitleRowCustomerService"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableRight="@android:drawable/arrow_down_float"
+                android:text="@={rowCustomerServiceViewModel.textViewSubtitleRowCustomerService}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                tools:text="문의 제목" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewAnswerRowCustomerService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@={rowCustomerServiceViewModel.textViewAnswerRowCustomerService}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="#3751E3"
+            tools:text="문의 답변...Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black" />
+    </LinearLayout>
+</layout>
