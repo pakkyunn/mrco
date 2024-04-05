@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="orderHistoryViewModel"
+            type="kr.co.lion.team4.mrco.OrderHistoryViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -70,6 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="상품명을 입력해주세요"
+                android:text="@={orderHistoryViewModel.editTextOrderHistoryKeyword}"
                 android:maxLines="1"
                 android:paddingStart="24dp" />
 
