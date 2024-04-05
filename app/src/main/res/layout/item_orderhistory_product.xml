@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="orderHistoryProductViewModel"
+            type="kr.co.lion.team4.mrco.OrderHistoryProductViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -13,8 +19,8 @@
             android:layout_width="80dp"
             android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/progressbar_ordered_item_state"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +41,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="출고준비중 (주문상태)"
+            android:hint="출고준비중 (주문상태)"
+            android:text="@{orderHistoryProductViewModel.textViewOrderedItemState}"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
             app:layout_constraintTop_toTopOf="@+id/cardview_ordered_item_thumbnail" />
@@ -49,7 +56,8 @@
             android:layout_marginEnd="16dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="(코디 상품명) OOOO 코디 SET"
+            android:hint="(코디 상품명) OOOO 코디 SET"
+            android:text="@{orderHistoryProductViewModel.textViewOrderedItemCoordiName}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
@@ -62,7 +70,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="옵션: 상의, 하의 등"
+            android:hint="옵션: 상의, 하의 등"
+            android:text="@{orderHistoryProductViewModel.textViewOrderedItemOption}"
             android:textColor="@color/material_dynamic_neutral60"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="100,000원"
+            android:hint="100,000원"
+            android:text="@{orderHistoryProductViewModel.textViewOrderedItemPrice}"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/cardview_ordered_item_thumbnail"
             app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_option" />
@@ -88,7 +98,7 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_ordered_item_state"
             android:button="@null"
-            android:checked="true"
+            android:checked="@{orderHistoryProductViewModel.radiobuttonOrderedItemStateReady}"
             android:enabled="false"
             android:gravity="center"
             android:minWidth="0dp"
@@ -100,19 +110,19 @@
             android:text="발송준비"
             android:textColor="@color/selector_ordered_item_text_color"
             android:textSize="8sp"
-            app:layout_constraintEnd_toStartOf="@+id/button_ordered_item_state_shipped"
+            app:layout_constraintEnd_toStartOf="@+id/radiobutton_ordered_item_state_shipped"
             app:layout_constraintStart_toStartOf="@+id/textview_ordered_item_price"
             app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
 
 
         <RadioButton
-            android:id="@+id/button_ordered_item_state_shipped"
+            android:id="@+id/radiobutton_ordered_item_state_shipped"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_ordered_item_state"
             android:button="@null"
-            android:checked="false"
+            android:checked="@{orderHistoryProductViewModel.radiobuttonOrderedItemStateShipped}"
             android:enabled="false"
             android:gravity="center"
             android:minWidth="0dp"
@@ -124,18 +134,18 @@
             android:text="배송시작"
             android:textColor="@color/selector_ordered_item_text_color"
             android:textSize="8sp"
-            app:layout_constraintEnd_toStartOf="@+id/button_ordered_item_in_transit"
+            app:layout_constraintEnd_toStartOf="@+id/radiobutton_ordered_item_state_in_transit"
             app:layout_constraintStart_toEndOf="@+id/radiobutton_ordered_item_state_ready"
             app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
 
         <RadioButton
-            android:id="@+id/button_ordered_item_in_transit"
+            android:id="@+id/radiobutton_ordered_item_state_in_transit"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_ordered_item_state"
             android:button="@null"
-            android:checked="false"
+            android:checked="@{orderHistoryProductViewModel.radiobuttonOrderedItemStateInTransit}"
             android:enabled="false"
             android:gravity="center"
             android:minWidth="0dp"
@@ -147,18 +157,18 @@
             android:text="배송중"
             android:textColor="@color/selector_ordered_item_text_color"
             android:textSize="8sp"
-            app:layout_constraintEnd_toStartOf="@+id/button_ordered_item_delivered"
-            app:layout_constraintStart_toEndOf="@+id/button_ordered_item_state_shipped"
+            app:layout_constraintEnd_toStartOf="@+id/radiobutton_ordered_item_state_delivered"
+            app:layout_constraintStart_toEndOf="@+id/radiobutton_ordered_item_state_shipped"
             app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
 
         <RadioButton
-            android:id="@+id/button_ordered_item_delivered"
+            android:id="@+id/radiobutton_ordered_item_state_delivered"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/selector_ordered_item_state"
             android:button="@null"
-            android:checked="false"
+            android:checked="@{orderHistoryProductViewModel.radiobuttonOrderedItemStateDelivered}"
             android:enabled="false"
             android:gravity="center"
             android:minWidth="0dp"
@@ -171,7 +181,7 @@
             android:textColor="@color/selector_ordered_item_text_color"
             android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="@+id/textview_ordered_item_option"
-            app:layout_constraintStart_toEndOf="@+id/button_ordered_item_in_transit"
+            app:layout_constraintStart_toEndOf="@+id/radiobutton_ordered_item_state_in_transit"
             app:layout_constraintTop_toBottomOf="@+id/textview_ordered_item_price" />
 
         <ProgressBar
@@ -184,9 +194,9 @@
             android:layout_marginEnd="24dp"
             android:maxHeight="0dp"
             android:minHeight="0dp"
-            android:paddingBottom="10dp"
-            android:progress="1"
-            app:layout_constraintEnd_toEndOf="@+id/button_ordered_item_delivered"
+            android:paddingBottom="16dp"
+            android:progress="@{orderHistoryProductViewModel.progressbarOrderedItemState}"
+            app:layout_constraintEnd_toEndOf="@+id/radiobutton_ordered_item_state_delivered"
             app:layout_constraintStart_toStartOf="@+id/radiobutton_ordered_item_state_ready"
             app:layout_constraintTop_toBottomOf="@+id/radiobutton_ordered_item_state_ready" />
 
