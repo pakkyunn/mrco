@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="cartItemViewModel"
+            type="kr.co.lion.team4.mrco.CartItemViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -9,7 +15,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardview_cart_item_product"
-            style="@style/Widget.Material3.CardView.Filled"
+            style="@style/Widget.Material3.CardView.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -29,6 +35,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:gravity="top"
+                    android:checked="@{cartItemViewModel.checkboxCartItemSelect}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,13 +60,13 @@
                         android:src="@drawable/ic_launcher_background" />
                 </com.google.android.material.card.MaterialCardView>
 
-
                 <TextView
                     android:id="@+id/textview_cart_item_coordinator"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="코디네이터명"
+                    android:hint="코디네이터명"
+                    android:text="@{cartItemViewModel.textviewCartItemCoordinator}"
                     android:textSize="10sp"
                     app:layout_constraintStart_toEndOf="@+id/cardview_cart_item_thumbnail"
                     app:layout_constraintTop_toTopOf="@+id/cardview_cart_item_thumbnail" />
@@ -71,7 +78,8 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="(코디 상품명) OOOO 코디 SET"
+                    android:hint="(코디 상품명) OOOO 코디 SET"
+                    android:text="@{cartItemViewModel.textviewCartItemCoordiName}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -85,7 +93,8 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="옵션: 상의, 하의 등"
+                    android:hint="옵션: 상의, 하의 등 / 수량: 1"
+                    android:text="@{cartItemViewModel.textviewCartItemOption}"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cardview_cart_item_thumbnail"
@@ -97,7 +106,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="100,000원"
+                    android:hint="100,000원"
+                    android:text="@{cartItemViewModel.textviewCartItemPrice}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
