@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment.coordinator
+package kr.co.lion.team4.mrco.fragment.coordinatormain
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

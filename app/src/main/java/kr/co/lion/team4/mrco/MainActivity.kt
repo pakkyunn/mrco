@@ -7,13 +7,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
-import kr.co.lion.team4.mrco.fragment.MainHomeFragment
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
-import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorInfoFragment
-import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorMainFragment
-import kr.co.lion.team4.mrco.fragment.coordinator.CoordinatorRankFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorInfoFragment
+import kr.co.lion.team4.mrco.fragment.coordinatormain.CoordinatorMainFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerServiceFragment
+import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
+import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
 import kr.co.lion.team4.mrco.fragment.mypage.CoordinatorMyPageFragment
@@ -37,10 +38,11 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        replaceFragment(MainFragmentName.MAIN_HOME, false, false, null)
 
-        // 인기 코디네이터, 코디네이터 소개, 코디네이터 메인 - (원빈)완료
-        // 탭으로 화면 이동 가능 / 코디네이터 메인은 코디네이터 소개에서 하나 클릭하면 이동가능
+        // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
+        // 탭으로 화면 이동 가능
+        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
@@ -92,7 +94,10 @@ class MainActivity : AppCompatActivity() {
 
         when(name){
             // 홈 메인(첫 화면)
-            MainFragmentName.MAIN_HOME -> newFragment = MainHomeFragment()
+            MainFragmentName.HOME_RECOMMEND, -> newFragment = HomeRecommendFragment()
+
+            // 홈 메인(MBTI 별 코디)
+            MainFragmentName.HOME_MBTI, -> newFragment = HomeMbtiFragment()
 
             // 코디네이터 소개
             MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()

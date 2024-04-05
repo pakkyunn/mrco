@@ -13,7 +13,9 @@ class Tools {
 
 // MainActivity에서 보여줄 프레그먼트들의 이름
 enum class MainFragmentName(var str: String) {
-    MAIN_HOME("MainHomeFragment"),
+//    MAIN_HOME("MainHomeFragment"),
+    HOME_RECOMMEND("HomeRecommendFragment"),
+    HOME_MBTI("MainMbtiFragment"),
     HOME_COORDINATOR_INFO("Home_CoordinatorInfo_Fragment"),
     HOME_COORDINATOR_RANK("Home_CoordinatorRank_Fragment"),
     COORDINATOR_MAIN("CoordinatorMain_Fragment"),
@@ -36,8 +38,4 @@ enum class MainFragmentName(var str: String) {
     USER_MYPAGE_FRAGMENT("UserMyPageFragment"),
 
     CUSTOMER_SERVICE_FRAGMENT("CustomerServiceFragment"),
-}
-
-enum class HomeFragmentName(var str: String){
-    MAIN_HOME("MainHomeFragment")
 }

@@ -15,7 +15,7 @@
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.coordinator.CoordinatorRankFragment">
+        tools:context=".fragment.home.coordinator.CoordinatorRankFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarLikeCoordinator"

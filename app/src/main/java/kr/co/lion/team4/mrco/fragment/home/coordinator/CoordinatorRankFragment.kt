@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment.coordinator
+package kr.co.lion.team4.mrco.fragment.home.coordinator
 
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +18,7 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
+import kr.co.lion.team4.mrco.databinding.FragmentMainHomeBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
@@ -27,7 +28,6 @@ import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
 class CoordinatorRankFragment : Fragment() {
 
     // 원빈 - 인기 코디네이터 화면
-
     lateinit var fragmentCoordinatorRankBinding: FragmentCoordinatorRankBinding
     lateinit var mainActivity: MainActivity
 
@@ -42,11 +42,15 @@ class CoordinatorRankFragment : Fragment() {
         fragmentCoordinatorRankBinding.coordinatorRankViewModel = CoordinatorRankViewModel()
         fragmentCoordinatorRankBinding.lifecycleOwner = this
 
+        val fragmentManager = activity?.supportFragmentManager
+        val fragment = fragmentManager?.findFragmentById(R.id.containerMainHome)
+
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
         settingTabs()
         settingCoorditab()
+        settingMainTab()
 
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorRank()
@@ -203,6 +207,46 @@ class CoordinatorRankFragment : Fragment() {
                         else {
                             mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
                             mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                        // Not implemented
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                        // Not implemented
+                    }
+                })
+            }
+        }
+    }
+
+    fun settingMainTab(){
+        CoroutineScope(Dispatchers.Main).launch {
+            fragmentCoordinatorRankBinding.apply {
+                val tabLayout = tabsMain
+
+                // 탭 선택 리스너 설정
+                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        // 선택된 탭이 첫 번째 탭인 경우
+                        if (tab?.position == 0) {
+                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
+                            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+                        }
+                        else if (tab?.position == 1) {
+                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
+                            mainActivity.replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
+                        } else {
+                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
+                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
+                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
+                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
                         }
                     }
 

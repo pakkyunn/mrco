@@ -9,7 +9,7 @@
         android:background="#FFFFFF"
         android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.coordinator.CoordinatorInfoFragment">
+        tools:context=".fragment.home.coordinator.CoordinatorInfoFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarMain"
