@@ -35,7 +35,7 @@
                 android:text="더보기"
                 android:textColor="@android:color/darker_gray"
                 app:iconTint="@android:color/darker_gray"
-                app:icon="@drawable/keyboard_arrow_right_24"
+                app:icon="@drawable/right_24px"
                 app:iconGravity="end" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -75,7 +75,7 @@
                 android:text="더보기"
                 android:textColor="@android:color/darker_gray"
                 app:iconTint="@android:color/darker_gray"
-                app:icon="@drawable/keyboard_arrow_right_24"
+                app:icon="@drawable/right_24px"
                 app:iconGravity="end" />
 
             <androidx.recyclerview.widget.RecyclerView

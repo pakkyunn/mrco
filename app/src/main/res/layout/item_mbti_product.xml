@@ -64,7 +64,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_mbti_product_rate"
                 app:layout_constraintStart_toStartOf="@id/item_mbti_product_owner"
                 app:tint="#FDB61D"
-                android:src="@drawable/round_star_border_24"/>
+                android:src="@drawable/star_24px"/>
 
 
             <TextView

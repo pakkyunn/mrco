@@ -81,7 +81,7 @@
             android:id="@+id/item_main_product_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@drawable/outline_favorite_border_24"
+            android:button="@drawable/favorite_24px"
             app:buttonTint="@android:color/darker_gray"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail" />

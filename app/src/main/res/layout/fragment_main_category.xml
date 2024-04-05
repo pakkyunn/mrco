@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/menu_main_category_toolbar"
-            app:navigationIcon="@drawable/menu_24"
+            app:navigationIcon="@drawable/menu_24px"
             app:title="전체"
             app:titleCentered="true"
             app:titleTextAppearance="@style/TextAppearance.Material3.TitleLarge" />
