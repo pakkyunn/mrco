@@ -14,7 +14,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/dummy_image" />
 
     <TextView
         android:id="@+id/textView32"
@@ -22,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="ENFJ" />
+        android:text="ENFJ"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 </GridLayout>

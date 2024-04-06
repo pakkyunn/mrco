@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawableRight="@android:drawable/arrow_down_float"
+                android:drawableRight="@drawable/stat_minus_1_24px"
                 android:text="@={rowCustomerServiceViewModel.textViewSubtitleRowCustomerService}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="bold"

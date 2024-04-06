@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="100dp"
-                app:icon="@android:drawable/ic_menu_edit"
+                app:icon="@drawable/add_circle_24px"
                 app:iconTint="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/imageViewUserMyPage"
                 app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                app:icon="@android:drawable/ic_menu_edit"
+                app:icon="@drawable/settings_24px"
                 app:iconTint="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -114,11 +114,11 @@
                 android:id="@+id/textViewMenuUserMyPage1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableStart="@drawable/contract_24px"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    주문/배송 조회"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -132,11 +132,11 @@
                 android:id="@+id/textViewMenuUserMyPage2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableStart="@drawable/reviews_24px"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    나의 리뷰"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -150,11 +150,11 @@
                 android:id="@+id/textViewMenuUserMyPage3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableStart="@drawable/customer_service_24px"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    고객센터"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -168,11 +168,11 @@
                 android:id="@+id/textViewMenuUserMyPage4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableStart="@drawable/assignment_ind_24px"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    코디네이터 등록 신청"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -186,11 +186,11 @@
                 android:id="@+id/textViewMenuUserMyPage5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableStart="@drawable/logout_24px"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:drawableStart="@android:drawable/ic_media_play"
                 android:text="    로그아웃"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
