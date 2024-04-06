@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="fragmentProductQuestionViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.product.FragmentProductQnaViewModel" />
+            name="productQnaViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductQnaViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,8 +30,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:checked="@={fragmentProductQuestionViewModel.product_question_secret_checkBox}"
-            android:onClickListener="@{ (view) -> fragmentProductQuestionViewModel.onCheckBoxChanged()}"
+            android:checked="@={productQnaViewModel.product_question_secret_checkBox}"
+            android:onClickListener="@{ (view) -> productQnaViewModel.onCheckBoxChanged()}"
             android:text="비밀글 제외" />
 
         <androidx.recyclerview.widget.RecyclerView

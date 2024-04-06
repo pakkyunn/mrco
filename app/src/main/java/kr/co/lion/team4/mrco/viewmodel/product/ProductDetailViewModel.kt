@@ -3,7 +3,7 @@ package kr.co.lion.team4.mrco.viewmodel.product
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class FragmentProductDetailViewModel: ViewModel() {
+class ProductDetailViewModel: ViewModel() {
     // 상품 상세페이지 코디상품명
     val product_detail_coordi_name = MutableLiveData<String>()
 

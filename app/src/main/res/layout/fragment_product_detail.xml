@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="fragmentProductDetailViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.product.FragmentProductDetailViewModel" />
+            name="productDetailViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductDetailViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
             android:id="@+id/product_detail_coordi_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{fragmentProductDetailViewModel.product_detail_coordi_name}"
+            android:text="@{productDetailViewModel.product_detail_coordi_name}"
             tools:text="호불호 없는 출근룩 코디 SET"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:textStyle="bold"
@@ -57,7 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="4dp"
             android:layout_marginHorizontal="16dp"
-            android:text="@{fragmentProductDetailViewModel.product_detail_item_name}"
+            android:text="@{productDetailViewModel.product_detail_item_name}"
             tools:text="스탠다드 셔츠"
             android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
             android:textStyle="bold" />
@@ -66,7 +66,7 @@
             android:id="@+id/product_detail_item_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{fragmentProductDetailViewModel.product_detail_item_category}"
+            android:text="@{productDetailViewModel.product_detail_item_category}"
             tools:text="상의"
             app:layout_constraintTop_toBottomOf="@id/product_detail_item_divider"
             app:layout_constraintEnd_toEndOf="parent"
@@ -97,7 +97,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="start"
-            android:text="@{fragmentProductDetailViewModel.product_detail_item_size}"
+            android:text="@{productDetailViewModel.product_detail_item_size}"
             tools:text="M"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
@@ -123,7 +123,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{fragmentProductDetailViewModel.product_detail_item_color}"
+            android:text="@{productDetailViewModel.product_detail_item_color}"
             tools:text="WHITE"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
@@ -149,7 +149,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:text="@{fragmentProductDetailViewModel.product_detail_item_number}"
+            android:text="@{productDetailViewModel.product_detail_item_number}"
             tools:text="1234abcd"
             android:textAppearance="@style/TextAppearance.Material3.LabelLarge" />
 
