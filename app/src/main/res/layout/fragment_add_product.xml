@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="addProductViewModel"
+            type="kr.co.lion.team4.mrco.AddProductViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -414,7 +420,8 @@
                     android:id="@+id/edittext_add_product_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={addProductViewModel.edittextAddProductName}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -435,7 +442,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="160dp"
                     android:gravity="start|top"
-                    android:inputType="text|textMultiLine" />
+                    android:inputType="text|textMultiLine"
+                    android:text="@={addProductViewModel.edittextAddProductComments}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -478,7 +486,8 @@
                     android:id="@+id/edittext_add_product_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="@={addProductViewModel.edittextAddProductPrice}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
