@@ -35,7 +35,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
-
+        //noinspection DataBindingWithoutKapt
         dataBinding = true
     }
 }
@@ -51,6 +51,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.aachartcore.kotlin)
-
-    implementation("com.google.android.material:material:1.11.0")
+    implementation(libs.material)
 }

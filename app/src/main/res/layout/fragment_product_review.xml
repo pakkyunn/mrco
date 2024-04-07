@@ -5,7 +5,7 @@
     <data>
         <variable
             name="pr"
-            type="kr.co.lion.team4.mrco.ViewModel.ProductReviewViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.ProductReviewViewModel" />
     </data>
 
     <LinearLayout

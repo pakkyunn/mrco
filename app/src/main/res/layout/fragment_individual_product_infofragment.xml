@@ -6,7 +6,7 @@
     <data>
         <variable
             name="ipi"
-            type="kr.co.lion.team4.mrco.ViewModel.IndividualProductInfoViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.IndividualProductInfoViewModel" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"

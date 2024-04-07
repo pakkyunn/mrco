@@ -5,7 +5,7 @@
     <data>
         <variable
             name="review"
-            type="kr.co.lion.team4.mrco.ViewModel.ReviewViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.ReviewViewModel" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"

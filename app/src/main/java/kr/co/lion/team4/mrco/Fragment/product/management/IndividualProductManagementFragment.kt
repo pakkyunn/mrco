@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.team4.mrco.Activity.MainActivity
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.ViewModel.CodiProductInfoShoesViewModel
-import kr.co.lion.team4.mrco.ViewModel.IndividualProductManagementViewModel
-import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoShoesBinding
+import kr.co.lion.team4.mrco.viewmodel.IndividualProductManagementViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentIndividualProdcutManagementBinding
 
 class IndividualProductManagementFragment : Fragment() {

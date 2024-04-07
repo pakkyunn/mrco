@@ -5,7 +5,7 @@
     <data>
         <variable
             name="codiProductInfo"
-            type="kr.co.lion.team4.mrco.ViewModel.CodiProductInfoViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel" />
     </data>
 
 <LinearLayout

@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.ViewModel
+package kr.co.lion.team4.mrco.viewmodel
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData

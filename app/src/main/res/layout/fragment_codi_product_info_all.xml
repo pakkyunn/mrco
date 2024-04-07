@@ -5,7 +5,7 @@
     <data>
         <variable
             name="cpia"
-            type="kr.co.lion.team4.mrco.ViewModel.CodiProductInfoAllViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAllViewModel" />
     </data>
 
 <LinearLayout
@@ -54,7 +54,7 @@
                 android:background="@drawable/round_background_border_black"
                 android:contentDescription="@string/contentDescription_codiImage"
                 android:scaleType="centerCrop"
-                android:src="@={cpia.productImage}" />
+                 />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.ViewModel
+package kr.co.lion.team4.mrco.viewmodel
 
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.MutableLiveData

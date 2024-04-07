@@ -5,13 +5,9 @@
 
     <data>
         <variable
-            name="ipm"
-            type="kr.co.lion.team4.mrco.ViewModel.IndividualProductManagementViewModel" />
+            name="rip"
+            type="kr.co.lion.team4.mrco.viewmodel.IndividualProductManagementViewModel" />
     </data>
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +19,7 @@
             android:id="@+id/imageView_rowIndividualProduct"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            android:src="@drawable/logo_mrco"/>
 
 
         <LinearLayout
@@ -39,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@={ipm.productName}"
+                android:text="@={rip.productName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <View
@@ -59,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@={ipm.productSerialNum}" />
+                    android:text="@={rip.productSerialNum}" />
 
                 <View
                     android:layout_width="0dp"
@@ -71,9 +67,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@={ipm.setProductStockNum}" />
+                    android:text="@={rip.productStockNum}" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </layout>

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import kr.co.lion.team4.mrco.Activity.MainActivity
 import kr.co.lion.team4.mrco.FragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.ViewModel.CodiProductInfoViewModel
+import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
 
 

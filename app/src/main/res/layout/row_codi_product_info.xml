@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
             name="rcpi"
-            type="kr.co.lion.team4.mrco.ViewModel.CodiProductInfoViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel" />
     </data>
 
     <LinearLayout
@@ -14,11 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView_codiProduct_name"
@@ -30,9 +23,7 @@
                 android:id="@+id/imageView_codiProduct"
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@={rcpi.codiProductImage}"/>
-        </LinearLayout>
+                android:layout_height="match_parent"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"

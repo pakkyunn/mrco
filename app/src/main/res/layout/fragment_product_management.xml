@@ -5,7 +5,7 @@
     <data>
         <variable
             name="productManagement"
-            type="kr.co.lion.team4.mrco.ViewModel.ProductManagementViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.ProductManagementViewModel" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"

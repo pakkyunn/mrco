@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.team4.mrco.Activity.MainActivity
-import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAccessoryFragment
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.ViewModel.IndividualProductInfoViewModel
+import kr.co.lion.team4.mrco.viewmodel.IndividualProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentIndividualProductInfofragmentBinding
 
 

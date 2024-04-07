@@ -5,7 +5,7 @@
     <data>
         <variable
             name="codiProductManagement"
-            type="kr.co.lion.team4.mrco.ViewModel.CodiProductManagementViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel" />
     </data>
 <LinearLayout
     android:layout_width="match_parent"

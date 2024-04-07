@@ -4,7 +4,7 @@
     <data>
         <variable
             name="cpm"
-            type="kr.co.lion.team4.mrco.ViewModel.CodiProductManagementViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel" />
     </data>
 
     <LinearLayout
