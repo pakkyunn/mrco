@@ -3,11 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="codiProductManagement"
+            name="cpm"
             type="kr.co.lion.team4.mrco.ViewModel.CodiProductManagementViewModel" />
     </data>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragment.product.management.CodiProductMangementFragment"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_codiProductManagement"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 </layout>

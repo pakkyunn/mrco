@@ -6,6 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAccessoryFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoBottomFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoShoesFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoTopFragment
+import kr.co.lion.team4.mrco.FragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 
@@ -43,12 +49,31 @@ class MainActivity : AppCompatActivity() {
         // 이름으로 분기한다.
         // Fragment의 객체를 생성하여 변수에 담아준다.
         when(name){
-            FragmentName.FRAGMENT_A-> {
-
+            FragmentName.FRAGMENT_CODI_PRODUCT_INFO -> {
+                newFragment = CodiProductInfoFragment()
             }
-            FragmentName.FRAGMENT_B-> {
 
+            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL-> {
+                newFragment = CodiProductInfoFragment()
             }
+            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_TOP-> {
+                newFragment = CodiProductInfoTopFragment()
+            }
+            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM -> {
+                newFragment = CodiProductInfoBottomFragment()
+            }
+            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES -> {
+                newFragment = CodiProductInfoShoesFragment()
+            }
+            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY -> {
+                newFragment = CodiProductInfoAccessoryFragment()
+            }
+//            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM -> {
+//                newFragment = CodiProductInfoBottomFragment()
+//            }
+//            FragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM -> {
+//                newFragment = CodiProductInfoBottomFragment()
+//            }
 
         }
 
@@ -112,15 +137,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     // BackStack에서 Fragment를 제거한다.
-    fun removeFragment(name:FragmentName){
+    fun removeFragment(name: FragmentName){
         SystemClock.sleep(200)
 
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
-}
-
-enum class FragmentName(var str: String){
-    FRAGMENT_A("fragment_a"),
-    FRAGMENT_B("fragment_b")
 }

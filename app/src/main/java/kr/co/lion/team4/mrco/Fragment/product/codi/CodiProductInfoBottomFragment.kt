@@ -5,9 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kr.co.lion.team4.mrco.Activity.MainActivity
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
+import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBottomBinding
 
 class CodiProductInfoBottomFragment : Fragment() {
+
+    private lateinit var binding: FragmentCodiProductInfoBottomBinding
+    private lateinit var viewModel: CodiProductInfoBottomFragment
+    private lateinit var mainActivity: MainActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

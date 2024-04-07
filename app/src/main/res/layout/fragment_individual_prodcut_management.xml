@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="individualProductManagement"
+            name="ipm"
             type="kr.co.lion.team4.mrco.ViewModel.IndividualProductManagementViewModel" />
     </data>
 
@@ -14,7 +14,7 @@
     tools:context=".Fragment.product.management.IndividualProductManagementFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_individualProductList"
+        android:id="@+id/recyclerView_individualProductManagement"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

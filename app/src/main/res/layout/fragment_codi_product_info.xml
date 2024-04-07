@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="codiProductInfo"
@@ -19,7 +20,8 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme" />
+        android:theme="?attr/actionBarTheme"
+        />
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
@@ -57,7 +59,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
-        android:id="@+id/frameLayout_codi_product_info_tab"
+        android:id="@+id/frameLayout_codiProductInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"/>

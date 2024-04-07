@@ -17,13 +17,14 @@
         android:id="@+id/toolbar_productManagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="30sp"
             android:text="@string/title_prodcutManagement"
             android:layout_gravity="center"/>
 
@@ -32,6 +33,7 @@
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         app:tabIndicatorFullWidth="true">
 
         <com.google.android.material.tabs.TabItem
@@ -48,11 +50,12 @@
 
     </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout_prodcutManagement_tabFragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer_productManagement"
+        android:name="kr.co.lion.team4.mrco.Fragment.product.management.CodiProductMangementFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp"/>
 
-    </FrameLayout>
 </LinearLayout>
 </layout>
