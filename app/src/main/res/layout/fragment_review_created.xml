@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="reviewCreated"
+            name="rc"
             type="kr.co.lion.team4.mrco.viewmodel.ReviewCreateViewModel" />
     </data>
 
@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/LoremIpsum" />
+        android:text="@={rc.reviewContentInfo}" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_reviewCreate_cardView"

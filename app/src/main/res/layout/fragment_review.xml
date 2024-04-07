@@ -4,18 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="review"
+            name="rv"
             type="kr.co.lion.team4.mrco.viewmodel.ReviewViewModel" />
     </data>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragment.review.ReviewFragment"
-    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:context=".Fragment.review.ReviewFragment"
         android:orientation="vertical">
 
         <LinearLayout
@@ -24,7 +20,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView_review_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="일반후기" />
@@ -36,10 +31,8 @@
 
             <Button
                 android:id="@+id/button_review_approve"
-                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/square_background_border"
                 android:text="@string/button_review_approve" />
 
 
@@ -50,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="2024.02.04" />
+            android:text="@={rv.reviewDate}" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -66,7 +59,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/logo_mrco" />
+                android:src="@={rv.reviewProductImage}" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,7 +71,7 @@
                     android:id="@+id/textView_review_codiProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="코디 이름"
+                    android:text="@={rv.reviewProductName}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <TextView
@@ -86,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="스타일링 / MBTI"
+                    android:text="@={rv.reviewProductMBTI}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
@@ -111,42 +104,42 @@
                 android:id="@+id/chip_review_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="커요"
+                android:text="@={rv.reviewProductSize}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_brightness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="보통이에요"
+                android:text="@={rv.reviewProductBright}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="보통이에요"
+                android:text="@={rv.reviewProductColor}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_packing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="꼼꼼해요"
+                android:text="@={rv.reviewProductPack}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_thickness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="얇아요"
+                android:text="@={rv.reviewProductThickness}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_delivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아쉬워요"
+                android:text="@={rv.reviewProductDelivery}"
                 app:chipCornerRadius="10dp" />
         </com.google.android.material.chip.ChipGroup>
 
@@ -154,9 +147,6 @@
             android:id="@+id/textView_review_reviewContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/LoremIpsum" />
+            android:text="@={rv.reviewContent}" />
     </LinearLayout>
-
-
-</LinearLayout>
 </layout>
