@@ -3,27 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/main_toolbar_close"
+        android:id="@+id/main_bottom_navi_home"
         android:enabled="true"
         android:icon="@drawable/home_24px"
-        android:title="Home"
+        android:title="홈"
         app:showAsAction="always" />
     <item
         android:id="@+id/main_bottom_navi_category"
         android:enabled="true"
         android:icon="@drawable/outline_widgets_24"
-        android:title="Category"
+        android:title="카테고리"
         app:showAsAction="always" />
     <item
         android:id="@+id/main_bottom_navi_like"
         android:enabled="true"
         android:icon="@drawable/favorite_24px"
-        android:title="Like"
+        android:title="좋아요"
         app:showAsAction="always" />
     <item
         android:id="@+id/main_bottom_navi_my"
         android:enabled="true"
         android:icon="@drawable/outline_account_box_24"
-        android:title="My"
+        android:title="마이"
         app:showAsAction="always" />
 </menu>

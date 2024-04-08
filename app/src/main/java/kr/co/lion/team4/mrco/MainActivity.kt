@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -48,8 +49,12 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-        // 하단 바
-        bottomSheet()
+
+        // Status 바 (최상단 / 툴바 위)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+
+        // 하단 바 설정(이동 관련)
+        bottomSheetSetting()
 
         // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
         // 탭으로 화면 이동 가능
@@ -256,11 +261,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 하단 바 설정
-    fun bottomSheet(){
+    fun bottomSheetSetting(){
         activityMainBinding.apply {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
-                    R.id.main_toolbar_close -> {
+                    R.id.main_bottom_navi_home -> {
                         replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
                     }
                     R.id.main_bottom_navi_category -> {
