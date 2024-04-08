@@ -12,7 +12,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.productQna.ProductQnaListFragment">
+        tools:context=".fragment.productQna.ProductQnaListFragment"
+        android:transitionGroup="true"
+        android:background="@color/material_dynamic_neutral90">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_qna_list"
@@ -21,7 +23,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorFullWidth="true">
+            app:tabIndicatorFullWidth="true"
+            android:background="@color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_qna_list_waiting"
@@ -56,7 +59,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_qna_list_sort" />
+            app:layout_constraintTop_toBottomOf="@+id/spinner_qna_list_sort"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

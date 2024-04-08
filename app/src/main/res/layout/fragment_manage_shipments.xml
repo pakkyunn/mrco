@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragment.salesManagement.ManageShipmentsFragment">
+        tools:context=".fragment.salesManagement.ManageShipmentsFragment"
+        android:transitionGroup="true">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textinput_manage_shipments_keyword"
@@ -89,7 +90,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_manage_shipments"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/material_dynamic_neutral90"/>
 
     </LinearLayout>
 </layout>
