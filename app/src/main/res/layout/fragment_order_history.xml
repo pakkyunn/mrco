@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragment.order.OrderHistoryFragment">
+        tools:context=".fragment.order.OrderHistoryFragment"
+        android:transitionGroup="true">
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/togglebutton_order_history_period"
@@ -87,7 +88,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:tabIndicatorFullWidth="true">
+            app:tabIndicatorFullWidth="true"
+            android:background="@color/white">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_order_history_all"

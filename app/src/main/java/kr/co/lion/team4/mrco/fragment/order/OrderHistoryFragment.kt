@@ -33,6 +33,9 @@ class OrderHistoryFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        // 하단 바 안보이게
+        mainActivity.removeBottomSheet()
+
         // 주문 내역 목록 리사이클러뷰
         settingOrderHistoryRecyclerView()
 

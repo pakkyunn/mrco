@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentUserMyPageBinding
 import kr.co.lion.team4.mrco.viewmodel.mypage.UserMyPageViewModel
@@ -29,6 +30,25 @@ class UserMyPageFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        settingUserMyPageMenuClickEvent()
+
         return fragmentUserMyPageBinding.root
+    }
+
+    // 마이페이지 메뉴 클릭 이벤트
+    fun settingUserMyPageMenuClickEvent(){
+        fragmentUserMyPageBinding.apply {
+            // 주문/배송 조회
+            textViewMenuUserMyPage1.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.ORDER_HISTORY_FRAGMENT, true, true, null)
+            }
+            // 나의 리뷰
+
+            // 고객센터
+            textViewMenuUserMyPage3.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, true, true, null)
+            }
+            // 코디네이터 등록 신청
+        }
     }
 }
