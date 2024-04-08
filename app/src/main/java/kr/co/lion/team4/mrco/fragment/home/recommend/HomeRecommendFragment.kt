@@ -21,6 +21,7 @@ import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
+import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorInfoViewModel
 
 class HomeRecommendFragment : Fragment() {
@@ -39,11 +40,12 @@ class HomeRecommendFragment : Fragment() {
 
         // 리사이클러 뷰
         settingRecyclerViewHomeRecommend()
+        settingRecyclerViewHomeRecommendNewCoordi()
 
         return fragmentHomeRecommendBinding.root
     }
 
-    // 홈 추천 화면 리사이클러 뷰 설정
+    // 홈(추천) - 추천 코디 리사이클러 뷰 설정
     fun settingRecyclerViewHomeRecommend() {
         fragmentHomeRecommendBinding.apply {
             homeRecommendRecycler.apply {
@@ -53,10 +55,13 @@ class HomeRecommendFragment : Fragment() {
         }
     }
 
-    class HorizontalSpacingItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            super.getItemOffsets(outRect, view, parent, state)
-            outRect.right = spacing
+    // 홈(추천) - 신규 코디 리사이클러 뷰 설정
+    fun settingRecyclerViewHomeRecommendNewCoordi() {
+        fragmentHomeRecommendBinding.apply {
+            homeRecommendNewRecycler.apply {
+                // 어뎁터 및 레이아웃 매니저 설정
+                adapter = HomeRecommendNewCoordiRecyclerViewAdapter()
+            }
         }
     }
 
@@ -100,8 +105,10 @@ class HomeRecommendFragment : Fragment() {
         }
     }
 
+    // 홈(추천) - 배너 리사이클러 뷰 어뎁터
 
-    // 코디네이터 소개 리사이클러 뷰 어뎁터 home_recommend_recycler
+
+    // 홈(추천) - 추천 코디 리사이클러 뷰 어뎁터
     inner class HomeRecommendRecyclerViewAdapter: RecyclerView.Adapter<HomeRecommendRecyclerViewAdapter.HomeRecommendViewHolder>(){
         inner class HomeRecommendViewHolder(rowHomeRecommendBinding: RowHomeRecommendBinding): RecyclerView.ViewHolder(rowHomeRecommendBinding.root){
             val rowHomeRecommendBinding: RowHomeRecommendBinding
@@ -126,10 +133,43 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 4
+            return 6
         }
 
         override fun onBindViewHolder(holder: HomeRecommendViewHolder, position: Int) {
+
+        }
+    }
+
+    // 홈(추천) - 신규 코디 리사이클러 뷰 어뎁터
+    inner class HomeRecommendNewCoordiRecyclerViewAdapter: RecyclerView.Adapter<HomeRecommendNewCoordiRecyclerViewAdapter.HomeRecommendNewCoordiViewHolder>(){
+        inner class HomeRecommendNewCoordiViewHolder(rowHomeRecommendNewCoordiBinding: RowHomeRecommendNewCoordiBinding): RecyclerView.ViewHolder(rowHomeRecommendNewCoordiBinding.root){
+            val rowHomeRecommendNewCoordiBinding: RowHomeRecommendNewCoordiBinding
+
+            init {
+                this.rowHomeRecommendNewCoordiBinding = rowHomeRecommendNewCoordiBinding
+
+                this.rowHomeRecommendNewCoordiBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecommendNewCoordiViewHolder {
+            // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+
+            val rowHomeRecommendNewCoordiBinding = RowHomeRecommendNewCoordiBinding.inflate(layoutInflater)
+            val homeRecommendNewCoordiViewHolder = HomeRecommendNewCoordiViewHolder(rowHomeRecommendNewCoordiBinding)
+
+            return homeRecommendNewCoordiViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return 6
+        }
+
+        override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
 
         }
     }

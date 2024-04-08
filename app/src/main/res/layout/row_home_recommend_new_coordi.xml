@@ -24,10 +24,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/iu_image2" />
+                app:srcCompat="@drawable/iu_image3" />
+
 
             <TextView
-                android:id="@+id/textViewRowHomeRecommendMBTI"
+                android:id="@+id/textViewRowHomeRecommendNewCoordiMBTI"
                 android:layout_width="64dp"
                 android:layout_height="32dp"
                 android:background="#BDB14C"
@@ -117,10 +118,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/iu_image2" />
+                app:srcCompat="@drawable/iu_image3" />
 
             <TextView
-                android:id="@+id/textViewRowHomeRecommendMBTI2"
+                android:id="@+id/textViewRowHomeRecommendNewCoordiMBTI2"
                 android:layout_width="64dp"
                 android:layout_height="32dp"
                 android:background="#BDB14C"

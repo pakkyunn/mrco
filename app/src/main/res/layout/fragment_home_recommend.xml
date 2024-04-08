@@ -134,19 +134,20 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_recommend_new_recycler"
-                        android:layout_width="0dp"
-                        android:layout_height="256dp"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginBottom="128dp"
-                        android:clipChildren="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
-                        android:paddingLeft="16dp"
-                        android:paddingEnd="64dp"
+                        android:paddingStart="8dp"
+                        android:paddingTop="8dp"
+                        android:paddingEnd="8dp"
+                        android:paddingBottom="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_content2" />
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_content2"
+                        app:spanCount="2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>
         </LinearLayout>
