@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activityProductViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ActivityProductViewModel" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -51,12 +58,13 @@
                             android:id="@+id/product_stylist_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{activityProductViewModel.product_stylist_text}"
                             app:layout_constraintTop_toBottomOf="@id/product_image_recycler"
                             app:layout_constraintStart_toStartOf="parent"
                             android:layout_marginTop="16dp"
                             android:layout_marginStart="16dp"
                             android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-                            tools:text="(스타일리스트명)" />
+                            tools:text="(코디네이터명)" />
                         <ImageView
                             android:id="@+id/product_stylist_icon"
                             android:layout_width="0dp"
@@ -90,6 +98,7 @@
                             android:id="@+id/product_like_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{activityProductViewModel.product_like_count}"
                             app:layout_constraintTop_toBottomOf="@id/product_like_icon"
                             app:layout_constraintStart_toStartOf="@id/product_like_icon"
                             app:layout_constraintEnd_toEndOf="@id/product_like_icon"
@@ -101,6 +110,7 @@
                             android:id="@+id/product_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{activityProductViewModel.product_name}"
                             tools:text="AAA 코디"
                             android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
                             app:layout_constraintTop_toBottomOf="@id/product_mbti_icon"
@@ -112,6 +122,7 @@
                             android:id="@+id/product_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@{activityProductViewModel.product_price}"
                             tools:text="100,000 원"
                             app:layout_constraintStart_toStartOf="@id/product_name"
                             app:layout_constraintTop_toBottomOf="@id/product_name"
@@ -143,19 +154,24 @@
                     android:id="@+id/product_tab_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <com.google.android.material.tabs.TabItem
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="배송" />
+                        tools:text="배송" />
                     <com.google.android.material.tabs.TabItem
+                        android:id="@+id/product_tabItem_review"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:text="후기\n138"
-                        android:text="후기\n" />
+                        android:text="@{activityProductViewModel.product_tabItem_review}"
+                        tools:text="후기\n138" />
                     <com.google.android.material.tabs.TabItem
+                        android:id="@+id/product_tabItem_question"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="문의" />
+                        android:text="@{activityProductViewModel.product_tabItem_question}"
+                        tools:text="문의\n77" />
+
                 </com.google.android.material.tabs.TabLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
