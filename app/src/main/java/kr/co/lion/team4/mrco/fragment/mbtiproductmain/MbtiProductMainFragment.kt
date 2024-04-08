@@ -30,7 +30,6 @@ class MbtiProductMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         mainActivity.removeBottomSheet()
-        settingToolbarMbtiMainFragment()
 
         // 리사이클러 뷰
         settingRecyclerViewMbtiProductMain()
@@ -38,23 +37,6 @@ class MbtiProductMainFragment : Fragment() {
         return fragmentMbtiProductMainBinding.root
     }
 
-    // 툴바 설정
-    fun settingToolbarMbtiMainFragment(){
-        fragmentMbtiProductMainBinding.apply {
-            toolbarMbtiProductMain.apply {
-                // 메뉴
-                setOnMenuItemClickListener {
-                    when (it.itemId) {
-                        // 드롭다운 클릭 시
-                        R.id.mbti_product_main_toolbar_close -> {
-                            backProcesss()
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
 
     // 리사이클러 뷰 설정
     fun settingRecyclerViewMbtiProductMain() {
