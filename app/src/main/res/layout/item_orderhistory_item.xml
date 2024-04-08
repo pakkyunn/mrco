@@ -58,7 +58,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/divider_ordered_item"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_media_play" />
+                    app:srcCompat="@drawable/chevron_right_24px" />
 
                 <View
                     android:id="@+id/divider_ordered_item"
