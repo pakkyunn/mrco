@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCustomerServiceBinding
 import kr.co.lion.team4.mrco.viewmodel.customerService.CustomerServiceViewModel
@@ -29,6 +30,17 @@ class CustomerServiceFragment : Fragment() {
         // 하단 바 안보이게
         mainActivity.removeBottomSheet()
 
+        leaveCustomerInquiry()
+
         return fragmentCustomerServiceBinding.root
+    }
+
+    // '1:1 문의하기 버튼' 클릭이벤트
+    fun leaveCustomerInquiry(){
+        fragmentCustomerServiceBinding.apply {
+            button.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, null)
+            }
+        }
     }
 }
