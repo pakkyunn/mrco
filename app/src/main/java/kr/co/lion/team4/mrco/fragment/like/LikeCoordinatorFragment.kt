@@ -52,7 +52,7 @@ class LikeCoordinatorFragment : Fragment() {
         return fragmentLikeCoordinatorBinding.root
     }
 
-    // 인기 코디네이터 리사이클러 뷰 설정
+    // 리사이클러 뷰 설정
     fun settingRecyclerViewLikeCoordinator() {
         fragmentLikeCoordinatorBinding.apply {
             recyclerViewLikeCoordinator.apply {
@@ -71,7 +71,7 @@ class LikeCoordinatorFragment : Fragment() {
         }
     }
 
-    // 인기 코디네이터 리사이클러 뷰 어뎁터
+    // 리사이클러 뷰 어뎁터
     inner class LikeCoordinatorRecyclerViewAdapter: RecyclerView.Adapter<LikeCoordinatorRecyclerViewAdapter.LikeCorrdinatorViewHolder>(){
         inner class LikeCorrdinatorViewHolder(rowLikeCoordinatorBinding: RowLikeCoordinatorBinding): RecyclerView.ViewHolder(rowLikeCoordinatorBinding.root){
             val rowLikeCoordinatorBinding: RowLikeCoordinatorBinding
@@ -108,6 +108,11 @@ class LikeCoordinatorFragment : Fragment() {
             val innerRecyclerView = holder.rowLikeCoordinatorBinding.recyclerViewLikeCoordinator2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
+
+            holder.rowLikeCoordinatorBinding.imageViewRowLikeCoordinatorProfile.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
+                Log.d("test1234", "좋아요(코디네이터) 화면 : imageView - Click / 코디네이터 메인으로 이동")
+            }
 
             // (팔로우/팔로잉) 버튼 클릭 시
             holder.rowLikeCoordinatorBinding.buttonRowLikeCoordinatorFollower.setOnClickListener {

@@ -19,6 +19,7 @@ import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
 import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
+import kr.co.lion.team4.mrco.fragment.mbtiproductmain.MbtiProductMainFragment
 import kr.co.lion.team4.mrco.fragment.mypage.CoordinatorMyPageFragment
 import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         // replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
+        // replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
         // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
 
         // 좋아요 화면(코디네이터) - (원빈)완료
@@ -116,6 +118,9 @@ class MainActivity : AppCompatActivity() {
 
             // 인기 코디네이터
             MainFragmentName.HOME_COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
+
+            // 메인 MBTI 상품 페이지
+            MainFragmentName.MBTI_PRODUCT_MAIN -> newFragment = MbtiProductMainFragment()
 
             // 메인 코디네이터 상세 페이지
             MainFragmentName.COORDINATOR_MAIN -> newFragment = CoordinatorMainFragment()

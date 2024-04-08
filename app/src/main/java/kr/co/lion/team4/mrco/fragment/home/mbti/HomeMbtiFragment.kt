@@ -49,6 +49,9 @@ class HomeMbtiFragment : Fragment() {
         settingRecyclerViewHomeMBTI()
         settingRecyclerViewHomeMBTI2()
 
+        // 버튼(더보기)
+        settingContentMoreButton()
+
         return fragmentHomeMbtiBinding.root
     }
 
@@ -96,6 +99,19 @@ class HomeMbtiFragment : Fragment() {
                         // Not implemented
                     }
                 })
+            }
+        }
+    }
+
+    // 더보기 버튼
+    fun settingContentMoreButton(){
+        fragmentHomeMbtiBinding.apply {
+            homeMbtiContent1MoreButton.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
+            }
+
+            homeMbtiContent2MoreButton.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
             }
         }
     }

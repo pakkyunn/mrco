@@ -71,7 +71,7 @@ class LikeProductFragment : Fragment() {
         }
     }
 
-    // 인기 코디네이터 리사이클러 뷰 어뎁터
+    // 리사이클러 뷰 어뎁터
     inner class LikeProductRecyclerViewAdapter: RecyclerView.Adapter<LikeProductRecyclerViewAdapter.LikeProductViewHolder>(){
         inner class LikeProductViewHolder(rowLikeProductBinding: RowLikeProductBinding): RecyclerView.ViewHolder(rowLikeProductBinding.root){
             val rowLikeProductBinding: RowLikeProductBinding
