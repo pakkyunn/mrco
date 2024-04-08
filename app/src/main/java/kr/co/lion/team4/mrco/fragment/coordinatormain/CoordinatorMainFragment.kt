@@ -46,13 +46,12 @@ class CoordinatorMainFragment : Fragment() {
     }
 
     // 툴바 설정
-    fun toolbarSetting(){
+    fun toolbarSetting() {
         fragmentCoordinatorMainBinding.toolbarCoordinatorMain.apply {
-                title = "(스타일리스트 명)"
-                // 네비게이션
-                setNavigationIcon(R.drawable.arrow_back_24px)
-                setNavigationOnClickListener {
-                    backProcesss()
+            // 네비게이션
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcesss()
             }
         }
     }
@@ -110,5 +109,4 @@ class CoordinatorMainFragment : Fragment() {
         mainActivity.removeFragment(MainFragmentName.COORDINATOR_MAIN)
         mainActivity.viewBottomSheet()
     }
-
 }

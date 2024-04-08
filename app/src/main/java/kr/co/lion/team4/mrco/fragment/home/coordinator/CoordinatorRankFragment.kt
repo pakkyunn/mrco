@@ -51,6 +51,8 @@ class CoordinatorRankFragment : Fragment() {
         settingTabs()
         settingCoorditab()
         settingMainTab()
+        settingToolbar()
+        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorRank()
@@ -58,6 +60,31 @@ class CoordinatorRankFragment : Fragment() {
         return fragmentCoordinatorRankBinding.root
     }
 
+    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
+    fun settingToolbar() {
+        fragmentCoordinatorRankBinding.apply {
+            toolbarMain.apply {
+                setOnMenuItemClickListener {
+
+                    when (it.itemId) {
+                        // 검색 클릭 시
+                        R.id.home_toolbar_search -> {
+
+                        }
+                        // 알람 클릭 시
+                        R.id.home_toolbar_notification -> {
+                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
+                        }
+                        // 장바구니 클릭 시
+                        R.id.home_toolbar_shopping -> {
+                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+                        }
+                    }
+                    true
+                }
+            }
+        }
+    }
 
     // 인기 코디네이터 리사이클러 뷰 설정
     fun settingRecyclerViewCoordinatorRank() {

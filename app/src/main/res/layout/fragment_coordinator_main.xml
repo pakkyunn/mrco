@@ -23,7 +23,12 @@
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:subtitleTextColor="#000000" />
+            app:subtitle="ISFP"
+            app:subtitleCentered="true"
+            app:subtitleTextColor="#878787"
+            app:title="(스타일리스트 명)"
+            app:titleCentered="true"
+            app:titleTextColor="#000000" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

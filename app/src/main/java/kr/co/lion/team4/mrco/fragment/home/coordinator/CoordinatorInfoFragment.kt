@@ -37,11 +37,39 @@ class CoordinatorInfoFragment : Fragment() {
         settingTabs()
         settingCoorditab()
         settingMainTab()
+        settingToolbar()
+        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorInfo()
 
         return fragmentCoordinatorInfoBinding.root
+    }
+
+    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
+    fun settingToolbar() {
+        fragmentCoordinatorInfoBinding.apply {
+            toolbarMain.apply {
+                setOnMenuItemClickListener {
+
+                    when (it.itemId) {
+                        // 검색 클릭 시
+                        R.id.home_toolbar_search -> {
+
+                        }
+                        // 알람 클릭 시
+                        R.id.home_toolbar_notification -> {
+                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
+                        }
+                        // 장바구니 클릭 시
+                        R.id.home_toolbar_shopping -> {
+                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+                        }
+                    }
+                    true
+                }
+            }
+        }
     }
 
     // 코디네이터 소개 리사이클러 뷰 설정

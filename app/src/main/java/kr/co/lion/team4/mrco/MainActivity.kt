@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-
         // 하단 바
         bottomSheet()
 
@@ -256,7 +255,7 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.apply {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
-                    R.id.main_bottom_navi_home -> {
+                    R.id.main_toolbar_close -> {
                         replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
                     }
                     R.id.main_bottom_navi_category -> {
