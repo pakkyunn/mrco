@@ -5,15 +5,15 @@
     
     <data>
         <variable
-            name="productQnaViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.productQna.ProductQnaViewModel" />
+            name="registerProductQnaViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.productQna.RegisterProductQnaViewModel" />
     </data>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        tools:context=".fragment.productQna.ProductQnaFragment">
+        tools:context=".fragment.productQna.RegisterProductQnaFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
