@@ -17,4 +17,10 @@
         <item>환불 문의</item>
         <item>기타 문의</item>
     </string-array>
+
+    <!--고객센터 문의 답변 방식-->
+    <string-array name="array_customerinquiry_answer">
+        <item>이메일 답변</item>
+        <item>문자 답변</item>
+    </string-array>
 </resources>

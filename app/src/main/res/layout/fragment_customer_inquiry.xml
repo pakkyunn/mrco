@@ -115,9 +115,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
+                    app:simpleItems="@array/array_customerinquiry_answer"
                     android:text="@={customerInquiryViewModel.textviewCustomerInquiryAnswerWay}" />
-                <!--답변 방식 항목 추가 필요-->
-                <!--app:simpleItems="@array/답변방식 "-->
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
