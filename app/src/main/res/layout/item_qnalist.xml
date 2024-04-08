@@ -5,7 +5,7 @@
     <data>
         <variable
             name="itemQnaListViewModel"
-            type="kr.co.lion.team4.mrco.ItemQnaListViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.productQna.ItemQnaListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

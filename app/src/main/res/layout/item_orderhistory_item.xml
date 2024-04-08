@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderHistoryItemViewModel"
-            type="kr.co.lion.team4.mrco.OrderHistoryItemViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryItemViewModel" />
     </data>
 
     <LinearLayout

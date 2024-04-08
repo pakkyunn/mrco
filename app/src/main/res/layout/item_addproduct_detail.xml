@@ -6,7 +6,7 @@
     <data>
         <variable
             name="addProductDetailViewModel"
-            type="kr.co.lion.team4.mrco.AddProductDetailViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductDetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
