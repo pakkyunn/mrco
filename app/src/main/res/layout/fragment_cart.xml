@@ -12,7 +12,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:transitionGroup="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000"
+            app:title="장바구니"
+            app:titleCentered="true" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -29,8 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="전체선택"
-                    android:checked="@{cartViewModel.checkboxCartSelectAll}"/>
+                    android:checked="@{cartViewModel.checkboxCartSelectAll}"
+                    android:text="전체선택" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerview_cart_products"

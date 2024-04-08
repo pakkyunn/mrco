@@ -31,10 +31,24 @@ class CartFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        mainActivity.removeBottomSheet()
+        toolbarSetting()
+
         settingCartProductsRecyclerView()
         checkOutProducts()
 
         return fragmentCartBinding.root
+    }
+
+    // 툴바 설정
+    fun toolbarSetting(){
+        fragmentCartBinding.toolbarCart.apply {
+            // 네비게이션
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcesss()
+            }
+        }
     }
 
     // 결제 버튼 클릭이벤트 (결제할 상품 확인 후, 결제 화면으로 이동)
@@ -97,5 +111,11 @@ class CartFragment : Fragment() {
         override fun getItemCount(): Int {
             return 5
         }
+    }
+
+    // 뒤로가기 처리
+    fun backProcesss(){
+        mainActivity.removeFragment(MainFragmentName.CART_FRAGMENT)
+        mainActivity.viewBottomSheet()
     }
 }
