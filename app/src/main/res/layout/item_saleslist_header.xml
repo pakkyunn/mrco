@@ -4,7 +4,7 @@
     <data>
         <variable
             name="saleslistViewModel"
-            type="kr.co.lion.team4.mrco.SaleslistHeaderViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.salesManagement.SaleslistHeaderViewModel" />
     </data>
 
     <LinearLayout

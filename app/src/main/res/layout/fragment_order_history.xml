@@ -6,14 +6,14 @@
     <data>
         <variable
             name="orderHistoryViewModel"
-            type="kr.co.lion.team4.mrco.OrderHistoryViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".OrderHistoryFragment">
+        tools:context=".fragment.order.OrderHistoryFragment">
 
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/togglebutton_order_history_period"

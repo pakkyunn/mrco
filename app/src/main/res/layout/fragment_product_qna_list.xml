@@ -6,13 +6,13 @@
     <data>
         <variable
             name="productQnaListViewModel"
-            type="kr.co.lion.team4.mrco.ProductQnaListViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.productQna.ProductQnaListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProductQnaListFragment">
+        tools:context=".fragment.productQna.ProductQnaListFragment">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_qna_list"

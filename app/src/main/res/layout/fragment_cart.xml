@@ -6,7 +6,7 @@
     <data>
         <variable
             name="cartViewModel"
-            type="kr.co.lion.team4.mrco.CartViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.cart.CartViewModel" />
     </data>
 
     <LinearLayout

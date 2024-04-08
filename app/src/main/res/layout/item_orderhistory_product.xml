@@ -6,7 +6,7 @@
     <data>
         <variable
             name="orderHistoryProductViewModel"
-            type="kr.co.lion.team4.mrco.OrderHistoryProductViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryProductViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
