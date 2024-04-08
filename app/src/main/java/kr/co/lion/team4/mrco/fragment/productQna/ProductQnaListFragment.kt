@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.viewmodel.productQna.ItemQnaListViewModel
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.productQna.ProductQnaListViewModel
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentProductQnaListBinding
@@ -84,6 +85,11 @@ class ProductQnaListFragment : Fragment() {
             // 문의내용
             holder.itemQnalistBinding.itemQnaListViewModel?.textviewQnaListContent?.value = "문의 내용 lorem ipsum dolor sit amet, \n consectetur adipiscing elit"
 
+            // 답변 등록 버튼
+            holder.itemQnalistBinding.buttonQnalistItemAnswer.setOnClickListener {
+                // to do - 문의 인덱스 번호 전달할 것
+                mainActivity.replaceFragment(MainFragmentName.REGISTER_QNA_ANSWER_FRAGMENT, true, true, null)
+            }
         }
 
         override fun getItemCount(): Int {
