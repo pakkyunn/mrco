@@ -24,10 +24,11 @@
             android:background="@color/white"
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            android:theme="@style/ToolbarTheme"
             app:menu="@menu/menu_main_home_toolbar"
-            app:subtitleTextColor="#000000"
-            app:title="MRCO" />
+            app:title="MRCO"
+            app:titleMarginStart="30dp"
+            app:titleTextColor="#002254" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsMain"

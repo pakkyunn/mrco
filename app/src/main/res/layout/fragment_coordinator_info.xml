@@ -18,10 +18,11 @@
             android:background="@color/white"
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            android:theme="@style/ToolbarTheme"
             app:menu="@menu/menu_main_home_toolbar"
-            app:subtitleTextColor="#000000"
-            app:title="MRCO" />
+            app:title="MRCO"
+            app:titleMarginStart="30dp"
+            app:titleTextColor="#002254" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsMain"
@@ -99,8 +100,10 @@
                     android:layout_marginTop="20dp"
                     android:text="COORDINATOR"
                     android:textAlignment="center"
-                    android:textColor="#00364E"
-                    android:textSize="24dp" />
+                    android:textColor="#000000"
+                    android:textSize="24dp"
+                    android:textStyle="bold"
+                    android:theme="@style/Coordinator_Info_Semi_Title_Theme" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewCoordinatorInfo"

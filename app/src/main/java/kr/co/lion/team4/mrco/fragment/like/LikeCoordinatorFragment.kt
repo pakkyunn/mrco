@@ -137,6 +137,11 @@ class LikeCoordinatorFragment : Fragment() {
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
 
+            holder.rowLikeCoordinatorBinding.imageViewRowLikeCoordinatorProfile.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
+                Log.d("test1234", "좋아요(코디네이터) 화면 : imageView - Click / 코디네이터 메인으로 이동")
+            }
+
             // (팔로우/팔로잉) 버튼 클릭 시
             holder.rowLikeCoordinatorBinding.buttonRowLikeCoordinatorFollower.setOnClickListener {
                 holder.rowLikeCoordinatorBinding.buttonRowLikeCoordinatorFollower.apply {
