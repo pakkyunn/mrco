@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mbti_product_main_toolbar_close"
+        android:id="@+id/home_toolbar_search"
         android:icon="@drawable/search_24px"
         android:title="검색"
         app:showAsAction="ifRoom" />
