@@ -240,6 +240,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 하단 바 보이게 하기
+    fun viewBottomSheet(){
+        activityMainBinding.apply {
+            mainBottomNavi.isVisible = true
+        }
+    }
+
     // 하단 바 설정
     fun bottomSheet(){
         activityMainBinding.apply {

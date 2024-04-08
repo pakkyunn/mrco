@@ -37,7 +37,7 @@ class CoordinatorMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
-        settingTabs()
+        mainActivity.removeBottomSheet()
         
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorInfo()
@@ -105,16 +105,10 @@ class CoordinatorMainFragment : Fragment() {
         }
     }
 
-    // 바텀바 위치 설정
-    fun settingTabs(){
-        mainActivity.activityMainBinding.apply {
-            val bottomBar = mainBottomNavi
-            bottomBar.selectedItemId = R.id.main_bottom_navi_category
-        }
-    }
-
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.COORDINATOR_MAIN)
+        mainActivity.viewBottomSheet()
     }
+
 }
