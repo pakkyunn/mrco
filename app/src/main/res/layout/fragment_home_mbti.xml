@@ -91,16 +91,15 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_mbti_content1_recycler"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingEnd="64dp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/home_mbti_content1" />
@@ -130,23 +129,24 @@
                     app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
                     app:layout_constraintEnd_toEndOf="parent" />
 
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/home_mbti_content2_recycler"
-                    android:layout_width="0dp"
-                    android:layout_height="200dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="128dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:clipChildren="false"
                     android:clipToPadding="false"
-                    android:orientation="horizontal"
-                    android:paddingEnd="64dp"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/home_mbti_content2" />
+                    app:layout_constraintTop_toBottomOf="@+id/home_mbti_content2"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
