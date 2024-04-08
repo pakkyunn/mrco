@@ -31,6 +31,7 @@ class UserMyPageFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         settingUserMyPageMenuClickEvent()
+        mainActivity.viewBottomSheet()
 
         return fragmentUserMyPageBinding.root
     }
