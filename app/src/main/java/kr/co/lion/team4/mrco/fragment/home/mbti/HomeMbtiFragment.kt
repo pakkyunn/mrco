@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
@@ -16,18 +17,28 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
+import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
 
 class HomeMbtiFragment : Fragment() {
 
     lateinit var fragmentHomeMbtiBinding: FragmentHomeMbtiBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var homeMbtiViewModel: HomeMbtiViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentHomeMbtiBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_mbti, container, false)
+        homeMbtiViewModel = HomeMbtiViewModel()
+        fragmentHomeMbtiBinding.homeMbtiViewModel = HomeMbtiViewModel()
+        fragmentHomeMbtiBinding.lifecycleOwner = this
 
-        fragmentHomeMbtiBinding = FragmentHomeMbtiBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
@@ -95,7 +106,7 @@ class HomeMbtiFragment : Fragment() {
             homeMbtiContent1Recycler.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
                 adapter = HomeMBTIRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+                // layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
             }
         }
     }
@@ -106,7 +117,7 @@ class HomeMbtiFragment : Fragment() {
             homeMbtiContent2Recycler.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
                 adapter = HomeMBTIRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+                // layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
             }
         }
     }
@@ -127,9 +138,13 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMBTIViewHolder {
-            // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+            val rowHomeMbtiBinding = DataBindingUtil.inflate<RowHomeMbtiBinding>(
+                layoutInflater, R.layout.row_home_mbti, parent, false
+            )
+            val rowHomeMbtiViewModel = RowHomeMbtiViewModel()
+            rowHomeMbtiBinding.rowHomeMbtiViewModel = rowHomeMbtiViewModel
+            rowHomeMbtiBinding.lifecycleOwner = this@HomeMbtiFragment
 
-            val rowHomeMbtiBinding = RowHomeMbtiBinding.inflate(layoutInflater)
             val homeMBTIViewHolder = HomeMBTIViewHolder(rowHomeMbtiBinding)
 
             return homeMBTIViewHolder
