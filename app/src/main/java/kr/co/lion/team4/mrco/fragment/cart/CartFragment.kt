@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.viewmodel.cart.CartItemViewModel
 import kr.co.lion.team4.mrco.viewmodel.cart.CartViewModel
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCartBinding
 import kr.co.lion.team4.mrco.databinding.ItemCartBinding
@@ -31,8 +32,21 @@ class CartFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         settingCartProductsRecyclerView()
+        checkOutProducts()
 
         return fragmentCartBinding.root
+    }
+
+    // 결제 버튼 클릭이벤트 (결제할 상품 확인 후, 결제 화면으로 이동)
+    fun checkOutProducts(){
+        fragmentCartBinding.apply {
+            // to do - 선택된 상품이 있는지, 없는지 확인
+
+            buttonCartCheckout.setOnClickListener {
+                // to do - 장바구니에서 선택한 상품 정보를 주문 화면으로 전달할 것!
+                mainActivity.replaceFragment(MainFragmentName.ORDER_FRAGMENT, true, true, null)
+            }
+        }
     }
 
     // 장바구니에 담은 상품 목록 리사이클러뷰 세팅
