@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +15,7 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
+import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 
 class HomeMbtiFragment : Fragment() {
 
@@ -82,6 +84,39 @@ class HomeMbtiFragment : Fragment() {
                     }
                 })
             }
+        }
+    }
+
+    // 홈(MBTI) - MBTI @@에게 잘 어울리는 코디 리사이클러 뷰 어뎁터
+    inner class HomeRecommendRecyclerViewAdapter: RecyclerView.Adapter<HomeRecommendRecyclerViewAdapter.HomeRecommendViewHolder>(){
+        inner class HomeRecommendViewHolder(rowHomeRecommendBinding: RowHomeRecommendBinding): RecyclerView.ViewHolder(rowHomeRecommendBinding.root){
+            val rowHomeRecommendBinding: RowHomeRecommendBinding
+
+            init {
+                this.rowHomeRecommendBinding = rowHomeRecommendBinding
+
+                this.rowHomeRecommendBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecommendViewHolder {
+            // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+
+            val rowHomeRecommendBinding = RowHomeRecommendBinding.inflate(layoutInflater)
+            val homeRecommendViewHolder = HomeRecommendViewHolder(rowHomeRecommendBinding)
+
+            return homeRecommendViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return 6
+        }
+
+        override fun onBindViewHolder(holder: HomeRecommendViewHolder, position: Int) {
+
         }
     }
 }
