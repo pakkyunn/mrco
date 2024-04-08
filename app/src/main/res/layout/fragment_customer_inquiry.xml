@@ -32,9 +32,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
+                    app:simpleItems="@array/array_customerinquiry_type"
                     android:text="@={customerInquiryViewModel.autotextviewCustomerInquiryType}" />
-                    <!--문의 유형 항목 추가 필요-->
-                    <!--app:simpleItems="@array/문의유형"-->
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
