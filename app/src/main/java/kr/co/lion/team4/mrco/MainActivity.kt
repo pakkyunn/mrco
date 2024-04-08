@@ -144,7 +144,7 @@ class MainActivity : AppCompatActivity() {
             // 판매자 - 판매 내역 관리 화면
             MainFragmentName.SALES_LIST_FRAGMENT -> newFragment = SalesListFragment()
 
-            // 현준님 화면??
+
             // 알림 화면
             MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
 
@@ -160,6 +160,7 @@ class MainActivity : AppCompatActivity() {
             // 고객센터 화면
             MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
 
+
             // 고객센터 1:1 문의 작성 화면
             MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT -> newFragment = CustomerInquiryFragment()
 
@@ -168,13 +169,16 @@ class MainActivity : AppCompatActivity() {
 
             // 주문 및 결제 화면
             MainFragmentName.ORDER_FRAGMENT -> newFragment = OrderFragment()
+
             // 구매자 주문내역 화면
             MainFragmentName.ORDER_HISTORY_FRAGMENT -> newFragment = OrderHistoryFragment()
 
             // 상품 1:1문의 작성화면
             MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
+
             // 판매자 - 상품 문의 내역 화면
             MainFragmentName.PRODUCT_QNA_LIST_FRAGMENT -> newFragment = ProductQnaListFragment()
+
             // 상품 문의 답변 등록 화면
             MainFragmentName.REGISTER_QNA_ANSWER_FRAGMENT -> newFragment = RegisterQnaAnswerFragment()
 

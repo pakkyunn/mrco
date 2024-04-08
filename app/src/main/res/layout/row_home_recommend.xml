@@ -82,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/selector_favorite"
-                app:buttonTint="@android:color/darker_gray"
+                app:buttonTint="#B31010"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail" />
 
@@ -175,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/selector_favorite"
-                app:buttonTint="@android:color/darker_gray"
+                app:buttonTint="#B31010"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail2" />
 

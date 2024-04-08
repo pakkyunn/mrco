@@ -135,7 +135,7 @@ class CoordinatorRankFragment : Fragment() {
 
                     backgroundTintList = newTintList
                 }
-                Log.d("test1234", "인기 코디네이터 화면 : button - Click / 코디네이터 메인으로 이동")
+                Log.d("test1234", "인기 코디네이터 화면 : button - Click / 팔로잉,팔로우 버튼")
             }
 
             // 내부 리사이클러 뷰 설정

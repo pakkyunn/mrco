@@ -1,10 +1,12 @@
 package kr.co.lion.team4.mrco.fragment.like
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -106,6 +108,22 @@ class LikeCoordinatorFragment : Fragment() {
             val innerRecyclerView = holder.rowLikeCoordinatorBinding.recyclerViewLikeCoordinator2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
+
+            // (팔로우/팔로잉) 버튼 클릭 시
+            holder.rowLikeCoordinatorBinding.buttonRowLikeCoordinatorFollower.setOnClickListener {
+                holder.rowLikeCoordinatorBinding.buttonRowLikeCoordinatorFollower.apply {
+                    val newTintList = if (text == "팔로우") {
+                        Log.d("test1234", "좋아요(코디네이터) 화면 : button - Click / 다시 팔로잉")
+                        text = "팔로잉"
+                        ContextCompat.getColorStateList(context, R.color.buttonFollowing)
+                    } else {
+                        Log.d("test1234", "좋아요(코디네이터) 화면 : button - Click / 팔로잉 취소")
+                        text = "팔로우"
+                        ContextCompat.getColorStateList(context, R.color.buttonFollow)
+                    }
+                    backgroundTintList = newTintList
+                }
+            }
         }
     }
 
