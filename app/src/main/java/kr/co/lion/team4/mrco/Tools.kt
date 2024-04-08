@@ -19,6 +19,7 @@ enum class MainFragmentName(var str: String) {
     HOME_COORDINATOR_INFO("Home_CoordinatorInfo_Fragment"),
     HOME_COORDINATOR_RANK("Home_CoordinatorRank_Fragment"),
     COORDINATOR_MAIN("CoordinatorMain_Fragment"),
+    MBTI_PRODUCT_MAIN("MbtiProductMainFragment"),
 
     LIKE_PRODUCT("Like_Product_Fragment"),
     LIKE_COORDINATOR("Like_Coordinator_Fragment"),
