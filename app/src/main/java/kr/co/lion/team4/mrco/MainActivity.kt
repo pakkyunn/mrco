@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(activityMainBinding.root)
 
         // Status 바 (최상단 / 툴바 위)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+        // window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
         // 하단 바 설정(이동 관련)
         bottomSheetSetting()
