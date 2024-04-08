@@ -15,10 +15,7 @@ class ProductQnaFragment : Fragment() {
     lateinit var fragmentProductQnaBinding: FragmentProductQnaBinding
     lateinit var mainActivity: MainActivity
     lateinit var productQnaViewModel: ProductQnaViewModel
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         fragmentProductQnaBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product_qna, container, false)

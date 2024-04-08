@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
+        // 하단 바
+        bottomSheet()
 
         // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
         // 탭으로 화면 이동 가능
@@ -235,6 +237,29 @@ class MainActivity : AppCompatActivity() {
     fun removeBottomSheet(){
         activityMainBinding.apply {
             mainBottomNavi.isVisible = false
+        }
+    }
+
+    // 하단 바 설정
+    fun bottomSheet(){
+        activityMainBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
+                    }
+                    else -> {
+                        replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
         }
     }
 }

@@ -47,10 +47,6 @@ class HomeMbtiFragment : Fragment() {
             val tabLayout = tabsMain
             tabLayout.getTabAt(1)?.select()
         }
-        mainActivity.activityMainBinding.apply {
-            val bottomBar = mainBottomNavi
-            bottomBar.selectedItemId = R.id.main_bottom_navi_home
-        }
     }
 
     fun settingMainTab(){

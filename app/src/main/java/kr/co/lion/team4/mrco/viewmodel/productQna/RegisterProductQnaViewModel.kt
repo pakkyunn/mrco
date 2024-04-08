@@ -14,5 +14,4 @@ class RegisterProductQnaViewModel : ViewModel() {
     // 문의 내용
     val edittextProductqnaContent = MutableLiveData<String>()
     val checkboxProductqnaSecret = MutableLiveData<Boolean>()
-
 }
