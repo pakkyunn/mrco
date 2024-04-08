@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="buttonFollow">#102672</color>
     <color name="buttonFollowing">#393939</color>
+    <color name="transparent"/>
 </resources>
