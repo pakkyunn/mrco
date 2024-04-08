@@ -8,9 +8,11 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
+import kr.co.lion.team4.mrco.fragment.cart.CartFragment
 import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorInfoFragment
 import kr.co.lion.team4.mrco.fragment.coordinatormain.CoordinatorMainFragment
+import kr.co.lion.team4.mrco.fragment.customerService.CustomerInquiryFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerServiceFragment
 import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
@@ -20,9 +22,17 @@ import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
 import kr.co.lion.team4.mrco.fragment.mypage.CoordinatorMyPageFragment
 import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
+import kr.co.lion.team4.mrco.fragment.order.OrderFragment
+import kr.co.lion.team4.mrco.fragment.order.OrderHistoryFragment
+import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
+import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
+import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
+import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
+import kr.co.lion.team4.mrco.fragment.salesManagement.ManageShipmentsFragment
+import kr.co.lion.team4.mrco.fragment.salesManagement.SalesListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -126,6 +136,12 @@ class MainActivity : AppCompatActivity() {
             // 매출관리(캘린더) 화면
             MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
 
+            // 판매자 - 배송관리 화면
+            MainFragmentName.MANAGE_SHIPMENT_FRAGMENT -> newFragment = ManageShipmentsFragment()
+
+            // 판매자 - 판매 내역 관리 화면
+            MainFragmentName.SALES_LIST_FRAGMENT -> newFragment = SalesListFragment()
+
             // 현준님 화면??
             // 알림 화면
             MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
@@ -141,6 +157,27 @@ class MainActivity : AppCompatActivity() {
 
             // 고객센터 화면
             MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
+
+            // 고객센터 1:1 문의 작성 화면
+            MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT -> newFragment = CustomerInquiryFragment()
+
+            // 장바구니 화면
+            MainFragmentName.CART_FRAGMENT -> newFragment = CartFragment()
+
+            // 주문 및 결제 화면
+            MainFragmentName.ORDER_FRAGMENT -> newFragment = OrderFragment()
+            // 구매자 주문내역 화면
+            MainFragmentName.ORDER_HISTORY_FRAGMENT -> newFragment = OrderHistoryFragment()
+
+            // 상품 1:1문의 작성화면
+            MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
+            // 판매자 - 상품 문의 내역 화면
+            MainFragmentName.PRODUCT_QNA_LIST_FRAGMENT -> newFragment = ProductQnaListFragment()
+            // 상품 문의 답변 등록 화면
+            MainFragmentName.REGISTER_QNA_ANSWER_FRAGMENT -> newFragment = RegisterQnaAnswerFragment()
+
+            // 판매자 - 코디 상품등록 화면
+            MainFragmentName.ADD_PRODUCT_FRAGMENT -> newFragment = AddProductFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
