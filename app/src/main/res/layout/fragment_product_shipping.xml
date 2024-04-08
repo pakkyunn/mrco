@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="상품 페이지의 배송 탭 프래그먼트" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            android:transitionGroup="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="배송안내"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:lineSpacingMultiplier="1.5"
+                android:text="- MRCO는 전 상품 입점 업체(브랜드) 배송입니다.\n- 배송은 결제확인 후 1~3일 정도 소요됩니다. (예약상품, 해외배송 상품은 배송기간이 다를 수 있습니다." />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="교환, 환불, A/S 안내"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:lineSpacingMultiplier="1.5"
+                android:text="- 상품 수령일로부터 7일 이내 반품 / 환불 가능합니다.\n- 변심 반품의 경우 왕복배송비를 차감한 금액이 환불되며, 제품 및 포장 상태가 재판매 가능하여야 합니다.\n- 동일상품 또는 동일상품 내 추가금액이 없는 옵션만 교환가능합니다.\n- 상품 불량인 경우는 배송비를 포함한 전액이 환불됩니다.\n- 출고 이후 환불요청 시 상품 회수 후 처리됩니다.\n- 주얼리 등 주문제작상품 / 밀봉포장상품 등은 변심에 따른 반품 / 환불이 불가합니다.\n- 상품설명에 별도로 기입된 교환 / 환불 / AS 기준이 우선합니다.\n- 구매자가 미성년자인 경우에는 상품 구입 시 법정대리인이 동의하지 아니하면 미성년자 본인 또는 법정대리인이 구매취소 할 수 있습니다.\n- 상품의 색상과 이미지는 기기의 해상도에 따라 다르게 보일 수 있습니다." />
+        </LinearLayout>
+    </ScrollView>
 </layout>

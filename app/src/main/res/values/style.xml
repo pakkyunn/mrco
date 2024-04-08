@@ -25,4 +25,18 @@
         <item name="checkedIcon">@drawable/done_24px</item>
     </style>
 
+    <!-- MRCO 툴바 타이틀 글꼴 변경 -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/title</item>
+    </style>
+
+    <!-- 기본 문자 글꼴 -->
+    <style name="Basic_Font_Theme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+    </style>
+
+    <style name="Coordinator_Info_Semi_Title_Theme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/coordinator_info_semi_title</item>
+    </style>
+
 </resources>

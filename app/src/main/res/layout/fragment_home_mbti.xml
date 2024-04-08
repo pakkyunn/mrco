@@ -24,10 +24,11 @@
             android:background="@color/white"
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
+            android:theme="@style/ToolbarTheme"
             app:menu="@menu/menu_main_home_toolbar"
-            app:subtitleTextColor="#000000"
-            app:title="MRCO" />
+            app:title="MRCO"
+            app:titleMarginStart="30dp"
+            app:titleTextColor="#002254" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsMain"
@@ -78,6 +79,8 @@
                     android:layout_marginTop="32dp"
                     android:text="@{homeMbtiViewModel.textViewHomeMbtiTextFirst}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,6 +124,8 @@
                     android:layout_marginTop="32dp"
                     android:text="@{homeMbtiViewModel.textViewHomeMbtiTextSecond}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/home_mbti_content1_recycler" />
 

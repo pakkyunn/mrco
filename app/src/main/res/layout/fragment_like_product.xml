@@ -81,13 +81,15 @@
                 android:id="@+id/like_tab_coordi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="코디" />
+                android:text="코디"
+                android:theme="@style/Basic_Font_Theme" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/like_tab_stylist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="코디네이터" />
+                android:text="코디네이터"
+                android:theme="@style/Basic_Font_Theme" />
 
         </com.google.android.material.tabs.TabLayout>
 
