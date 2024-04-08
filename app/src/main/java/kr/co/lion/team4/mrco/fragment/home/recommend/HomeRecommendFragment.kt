@@ -153,7 +153,7 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: HomeRecommendBannerViewHolder, position: Int) {
-
+            holder.rowHomeRecommendBannerBinding.textViewBannerPage.text = "${position+1}/6"
         }
     }
 
