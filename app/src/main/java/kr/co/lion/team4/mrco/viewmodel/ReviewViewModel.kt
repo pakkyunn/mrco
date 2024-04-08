@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 class ReviewViewModel: ViewModel() {
 
-    var reviewProductImage = MutableLiveData<Drawable>()
+//    var reviewProductImage = MutableLiveData<Drawable>()
 
     var reviewDate = MutableLiveData<String>() // 작성일자
 
@@ -14,7 +14,7 @@ class ReviewViewModel: ViewModel() {
 
     var reviewProductMBTI = MutableLiveData<String>() // 스타일링 / MBTI
 
-    var reviewStar = MutableLiveData<Int>() // 별 갯수
+//    var reviewStar = MutableLiveData<Int>() // 별 갯수
 
     var reviewProductSize = MutableLiveData<String>()
 

@@ -12,6 +12,7 @@ import kr.co.lion.team4.mrco.FragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
+import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
 
 
 class CodiProductInfoFragment : Fragment() {
@@ -21,9 +22,10 @@ class CodiProductInfoFragment : Fragment() {
     private lateinit var mainActivity: MainActivity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        mainActivity = activity as MainActivity
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info, container, false )
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info, container, false)
         viewModel = ViewModelProvider(this).get(CodiProductInfoViewModel::class.java)
+        mainActivity = activity as MainActivity
+        binding.lifecycleOwner = this
 
 
 

@@ -21,6 +21,10 @@ class ProductManagementFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_product_management, container, false)
+        viewModel = ProductManagementViewModel()
+        mainActivity  = activity as MainActivity
+        binding.lifecycleOwner = this
+
 
 
         return binding.root

@@ -59,7 +59,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@={rv.reviewProductImage}" />
+                android:src="@drawable/logo_mrco" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

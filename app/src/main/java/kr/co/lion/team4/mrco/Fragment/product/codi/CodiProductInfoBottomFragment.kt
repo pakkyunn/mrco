@@ -5,21 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import kr.co.lion.team4.mrco.Activity.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBottomBinding
+import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAllViewModel
+import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
 
 class CodiProductInfoBottomFragment : Fragment() {
 
     private lateinit var binding: FragmentCodiProductInfoBottomBinding
-    private lateinit var viewModel: CodiProductInfoBottomFragment
+    private lateinit var viewModel: CodiProductInfoBottomViewModel
     private lateinit var mainActivity: MainActivity
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_codi_product_info_bottom, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_bottom, container, false)
+        viewModel = ViewModelProvider(this).get(CodiProductInfoBottomViewModel::class.java)
+        mainActivity = activity as MainActivity
+        binding.lifecycleOwner = this
+
+
+
+        return binding.root
     }
 }

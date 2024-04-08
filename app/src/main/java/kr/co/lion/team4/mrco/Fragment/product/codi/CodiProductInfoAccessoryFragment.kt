@@ -23,9 +23,13 @@ class CodiProductInfoAccessoryFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_accessory, container, false)
         viewModel = ViewModelProvider(this).get(CodiProductInfoAccesoryViewModel::class.java)
+        mainActivity = activity as MainActivity
+        binding.lifecycleOwner = this
 
         
         return binding.root
 
     }
+
+
 }
