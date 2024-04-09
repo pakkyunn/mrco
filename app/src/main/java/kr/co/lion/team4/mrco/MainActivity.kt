@@ -7,6 +7,16 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAccessoryFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAllFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoBottomFragment
+import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoShoesFragment
+import kr.co.lion.team4.mrco.Fragment.product.individual.IndividualProductInfoFragment
+import kr.co.lion.team4.mrco.Fragment.product.management.IndividualProductManagementFragment
+import kr.co.lion.team4.mrco.Fragment.product.management.ProductManagementFragment
+import kr.co.lion.team4.mrco.Fragment.review.CreateReviewFragment
+import kr.co.lion.team4.mrco.Fragment.review.ProductReviewFragment
+import kr.co.lion.team4.mrco.Fragment.review.ReviewCreatedFragment
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.cart.CartFragment
@@ -26,10 +36,14 @@ import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderHistoryFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoTopFragment
+import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
+import kr.co.lion.team4.mrco.fragment.review.ReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
@@ -193,6 +207,36 @@ class MainActivity : AppCompatActivity() {
 
             // 판매자 - 코디 상품등록 화면
             MainFragmentName.ADD_PRODUCT_FRAGMENT -> newFragment = AddProductFragment()
+
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO -> newFragment = CodiProductInfoFragment()
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL -> newFragment = CodiProductInfoAllFragment()
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_TOP -> newFragment = CodiProductInfoTopFragment()
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM -> newFragment = CodiProductInfoBottomFragment()
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES -> newFragment = CodiProductInfoShoesFragment()
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY -> newFragment = CodiProductInfoAccessoryFragment()
+
+            MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT -> newFragment = ProductManagementFragment()
+
+            MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT -> newFragment = IndividualProductManagementFragment()
+
+            MainFragmentName.FRAGMENT_CODI_PRODUCT_MANAGEMENT -> newFragment = CodiProductMangementFragment()
+
+            MainFragmentName.FRAGMENT_REVIEW_CREATED -> newFragment = ReviewCreatedFragment()
+
+            MainFragmentName.FRAGMENT_PRODUCT_REVIEW -> newFragment = ProductReviewFragment()
+
+            MainFragmentName.FRAGMENT_CREATE_REVIEW_FRAGMENT -> newFragment = CreateReviewFragment()
+
+            MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
+
+            MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
+
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.

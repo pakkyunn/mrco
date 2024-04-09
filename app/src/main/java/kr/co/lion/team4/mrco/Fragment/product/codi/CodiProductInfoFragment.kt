@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.Fragment.product.codi
+package kr.co.lion.team4.mrco.fragment.product.codi
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import kr.co.lion.team4.mrco.Activity.MainActivity
-import kr.co.lion.team4.mrco.FragmentName
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
@@ -28,38 +28,37 @@ class CodiProductInfoFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
+        settingClickEvent()
 
         return binding.root
     }
-
-    fun setEvent(){
+    fun settingClickEvent(){
         binding.apply {
-            // CodiProductInfoAll Fragment
-
+            // 전체 탭
             tabItemProuctInfoAll.setOnClickListener {
 
-                mainActivity.replaceFragment(FragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL, true, true, null)
             }
 
-            // CodiProductInfoTop Fragment
+            // 상의 탭
             tabItemProuctInfoTop.setOnClickListener {
-                // frameLayout 바꾸기
-                mainActivity.replaceFragment(FragmentName.FRAGMENT_CODI_PRODUCT_INFO_TOP, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_TOP, true, true, null)
+
             }
-            // CodiProductInfoBottom Fragment
+
+            // 하의 탭
             tabItemProuctInfoBottoms.setOnClickListener {
-                // frameLayout 바꾸기
-                mainActivity.replaceFragment(FragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM, true, true, null)
             }
-            // CodiProductInfoShoes Fragment
+
+            // 신발 탭
             tabItemProuctInfoShoes.setOnClickListener {
-                // frameLayout 바꾸기
-                mainActivity.replaceFragment(FragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES, true, true, null)
             }
-            // CodiProductInfoAccessory Fragment
+
+            // 악세서리 탭
             tabItemProuctInfoAccessory.setOnClickListener {
-                // frameLayout 바꾸기
-                mainActivity.replaceFragment(FragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY, true, true, null)
             }
         }
     }

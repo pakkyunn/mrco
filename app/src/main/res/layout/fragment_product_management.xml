@@ -19,16 +19,9 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="@string/title_prodcutManagement"
-            android:layout_gravity="center"/>
-
-    </com.google.android.material.appbar.MaterialToolbar>
+        android:theme="?attr/actionBarTheme"
+        app:title="등록상품관리"
+        app:navigationIcon="@drawable/arrow_back_24px"/>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
@@ -52,7 +45,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer_productManagement"
-        android:name="kr.co.lion.team4.mrco.Fragment.product.management.CodiProductMangementFragment"
+        android:name="kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"/>

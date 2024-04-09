@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.Fragment.product.codi
+package kr.co.lion.team4.mrco.fragment.product.codi
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.RecyclerView
-import kr.co.lion.team4.mrco.Activity.MainActivity
-import kr.co.lion.team4.mrco.ProductCategoryLinkedList
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoTopBinding
 import kr.co.lion.team4.mrco.databinding.RowCodiProductInfoBinding
@@ -22,7 +21,7 @@ class CodiProductInfoTopFragment : Fragment() {
     private lateinit var viewModel: CodiProductInfoTopViewModel
     private lateinit var mainActivity: MainActivity
     // 상품의 정보를 담고있는 리스트
-    var productTopList = mutableListOf<ProductCategoryLinkedList>()
+    var productTopList = mutableListOf<ProductCategoryLinkedListModel>()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -32,8 +31,17 @@ class CodiProductInfoTopFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
+        settingView()
 
         return binding.root
+    }
+
+    fun settingView(){
+        binding.apply {
+            recyclerViewProductInfoTop.apply {
+                adapter = CodiProductInfoTopAdapater()
+            }
+        }
     }
 
 

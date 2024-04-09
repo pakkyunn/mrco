@@ -43,6 +43,9 @@ class CoordinatorMyPageFragment : Fragment() {
             }
 
             // 등록 상품 관리
+            textViewMenuCoordinatorMyPage2.setOnClickListener {
+
+            }
 
             // 배송 관리
             textViewMenuCoordinatorMyPage3.setOnClickListener {
