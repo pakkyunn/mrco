@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="productReviewTabViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.product.ProductReviewTabViewModel" />
+            name="productReviewViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductReviewViewModel" />
     </data>
 
     <LinearLayout
@@ -48,7 +48,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:numStars="5"
-                        android:rating="@{productReviewTabViewModel.ratingBarProductReview}"
+                        android:rating="@{productReviewViewModel.ratingBarProductReview}"
                         android:stepSize="1" />
 
                     <TextView
@@ -56,7 +56,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="@={productReviewTabViewModel.textViewRatingBarProductReview}"
+                        android:text="@={productReviewViewModel.textViewRatingBarProductReview}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textSize="10sp"
                         tools:text="3.9 / 5" />
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
-                        android:text="@={productReviewTabViewModel.textViewRatingOptionProductReview1}"
+                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview1}"
                         tools:text="잘 어울려요" />
 
                     <ProgressBar
@@ -152,7 +152,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@={productReviewTabViewModel.progressBarRatingOptionProductReview1"
+                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview1"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -162,7 +162,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:textSize="8sp"
-                        android:text="@={productReviewTabViewModel.progressRatioRatingOptionProductReview1}"
+                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview1}"
                         tools:text="66%" />
                 </LinearLayout>
 
@@ -183,7 +183,7 @@
                         android:layout_width="68dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
-                        android:text="@={productReviewTabViewModel.textViewRatingOptionProductReview2}"
+                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview2}"
                         tools:text="무난해요" />
 
                     <ProgressBar
@@ -194,7 +194,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@={productReviewTabViewModel.progressBarRatingOptionProductReview2"
+                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview2"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -204,7 +204,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:textSize="8sp"
-                        android:text="@={productReviewTabViewModel.progressRatioRatingOptionProductReview2}"
+                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview2}"
                         tools:text="26%" />
                 </LinearLayout>
 
@@ -225,7 +225,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
-                        android:text="@={productReviewTabViewModel.textViewRatingOptionProductReview3}"
+                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview3}"
                         tools:text="안 어울려요" />
 
                     <ProgressBar
@@ -236,7 +236,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@={productReviewTabViewModel.progressBarRatingOptionProductReview3"
+                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview3"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -246,7 +246,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
                         android:textSize="8sp"
-                        android:text="@={productReviewTabViewModel.progressRatioRatingOptionProductReview3}"
+                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview3}"
                         tools:text="8%" />
                 </LinearLayout>
             </LinearLayout>
@@ -338,7 +338,7 @@
             android:layout_marginBottom="8dp"
             app:selectionRequired="true"
             app:singleSelection="true"
-            android:checkedButtonId="@={productReviewTabViewModel.toggleGroupProductReview}">
+            android:checkedButtonId="@={productReviewViewModel.toggleGroupProductReview}">
 
             <Button
                 android:id="@+id/toggleButtonProductReview1"
@@ -375,7 +375,7 @@
                 android:layout_height="wrap_content"
                 android:entries="@array/array_product_review_sort"
                 android:overlapAnchor="false"
-                android:selectedItemPosition="@={productReviewTabViewModel.spinnerSortProductReview}" />
+                android:selectedItemPosition="@={productReviewViewModel.spinnerSortProductReview}" />
 
         </LinearLayout>
 

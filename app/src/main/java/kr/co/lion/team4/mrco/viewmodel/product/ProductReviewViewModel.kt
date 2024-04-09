@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kr.co.lion.team4.mrco.R
 
-class ProductReviewTabViewModel: ViewModel() {
+class ProductReviewViewModel: ViewModel() {
     // 상품페이지 상품 평점
     val ratingBarProductReview = MutableLiveData<Int>()
     // 상품페이지 리뷰탭 평점평균
