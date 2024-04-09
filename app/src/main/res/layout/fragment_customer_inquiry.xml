@@ -4,134 +4,153 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="customerInquiryViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.customerService.CustomerInquiryViewModel" />
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.customerService.CustomerInquiryFragment"
-        android:transitionGroup="true">
+        android:transitionGroup="true"
+        android:orientation="vertical"
+        tools:context=".fragment.customerService.CustomerInquiryFragment">
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarCustomerInquiry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000"
+            app:title="1:1 문의"
+            app:titleCentered="true" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/menu_customer_inquiry_type"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="문의 유형">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autotextview_customer_inquiry_type"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    app:simpleItems="@array/array_customerinquiry_type"
-                    android:text="@={customerInquiryViewModel.autotextviewCustomerInquiryType}" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:hint="주문 번호">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinput_customer_inquiry_order_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number|numberDecimal"
-                    android:text="@={customerInquiryViewModel.textinputCustomerInquiryOrderNumber}" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:hint="제목">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinput_customer_inquiry_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:text="@={customerInquiryViewModel.textinputCustomerInquiryTitle}" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="16dp"
-                android:hint="문의 내용">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinput_customer_inquiry_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="start|top"
-                    android:inputType="text|textMultiLine"
-                    android:text="@={customerInquiryViewModel.textinputCustomerInquiryContent}" />
-            </com.google.android.material.textfield.TextInputLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/button_customer_inquiry_attach_file"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="파일선택"
-                    android:backgroundTint="#102672"
-                    android:textSize="16dp"
-                    app:cornerRadius="10dp" />
-
-                <TextView
-                    android:id="@+id/textview_customer_inquiry_filename"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:hint="파일명.jpg"
-                    android:text="@={customerInquiryViewModel.textviewCustomerInquiryFilename}"
-                    android:visibility="invisible"/>
-            </LinearLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/menu_customer_inquiry_answer_way"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="답변 방식">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <AutoCompleteTextView
-                    android:id="@+id/textview_customer_inquiry_answer_way"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menu_customer_inquiry_type"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none"
-                    app:simpleItems="@array/array_customerinquiry_answer"
-                    android:text="@={customerInquiryViewModel.textviewCustomerInquiryAnswerWay}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="문의 유형">
 
-            <Button
-                android:id="@+id/button_customer_inquiry_submit"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="1:1 문의 접수"
-                android:textColor="@color/black" />
+                    <AutoCompleteTextView
+                        android:id="@+id/autotextview_customer_inquiry_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:text="@={customerInquiryViewModel.autotextviewCustomerInquiryType}"
+                        app:simpleItems="@array/array_customerinquiry_type" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
-    </ScrollView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:hint="주문 번호">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textinput_customer_inquiry_order_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number|numberDecimal"
+                        android:text="@={customerInquiryViewModel.textinputCustomerInquiryOrderNumber}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:hint="제목">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textinput_customer_inquiry_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={customerInquiryViewModel.textinputCustomerInquiryTitle}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="문의 내용">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textinput_customer_inquiry_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start|top"
+                        android:inputType="text|textMultiLine"
+                        android:text="@={customerInquiryViewModel.textinputCustomerInquiryContent}" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_customer_inquiry_attach_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#102672"
+                        android:text="파일선택"
+                        android:textSize="16dp"
+                        app:cornerRadius="10dp" />
+
+                    <TextView
+                        android:id="@+id/textview_customer_inquiry_filename"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:hint="파일명.jpg"
+                        android:text="@={customerInquiryViewModel.textviewCustomerInquiryFilename}"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/menu_customer_inquiry_answer_way"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="답변 방식">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/textview_customer_inquiry_answer_way"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        android:text="@={customerInquiryViewModel.textviewCustomerInquiryAnswerWay}"
+                        app:simpleItems="@array/array_customerinquiry_answer" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/button_customer_inquiry_submit"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="1:1 문의 접수"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 </layout>
