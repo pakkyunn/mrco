@@ -41,12 +41,23 @@ class OrderHistoryFragment : Fragment() {
 
         // 하단 바 안보이게
         mainActivity.removeBottomSheet()
+        // 툴바 설정
+        settingToolbarOrderHistory()
 
         // 주문 내역 목록 리사이클러뷰
         settingOrderHistoryRecyclerView()
         settingOrderHistoryPeriodButtonClickListener()
 
         return fragmentOrderHistoryBinding.root
+    }
+
+    fun settingToolbarOrderHistory(){
+        fragmentOrderHistoryBinding.toolbarOrderHistory.apply {
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                mainActivity.removeFragment(MainFragmentName.ORDER_HISTORY_FRAGMENT)
+            }
+        }
     }
 
     // 조회기간 버튼 클릭 이벤트
