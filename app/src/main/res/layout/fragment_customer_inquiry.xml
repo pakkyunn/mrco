@@ -90,7 +90,10 @@
                     android:id="@+id/button_customer_inquiry_attach_file"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="파일선택" />
+                    android:text="파일선택"
+                    android:backgroundTint="#102672"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
 
                 <TextView
                     android:id="@+id/textview_customer_inquiry_filename"
@@ -126,7 +129,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="1:1 문의 접수" />
+                android:text="1:1 문의 접수"
+                android:textColor="@color/black" />
 
         </LinearLayout>
     </ScrollView>

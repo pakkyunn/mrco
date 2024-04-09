@@ -89,7 +89,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:tabIndicatorFullWidth="true"
-            android:background="@color/white">
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabSelectedTextColor="#000000"
+            app:tabRippleColor="#CCCCCC"
+            app:tabTextColor="#676767">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_order_history_all"
