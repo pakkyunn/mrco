@@ -34,6 +34,9 @@ class MbtiProductMainFragment : Fragment() {
         // 리사이클러 뷰
         settingRecyclerViewMbtiProductMain()
 
+        // 버튼
+        settingButton()
+
         return fragmentMbtiProductMainBinding.root
     }
 
@@ -46,6 +49,26 @@ class MbtiProductMainFragment : Fragment() {
                 adapter = MbtiProductMainRecyclerViewAdapter()
             }
         }
+    }
+
+    fun settingButton(){
+        fragmentMbtiProductMainBinding.apply {
+            buttonMbtiProductMainMBTI.setOnClickListener {
+                showMBTIBottomSheet()
+            }
+        }
+    }
+
+    // MBTI를 설정할 BottomSheet를 띄워준다.
+    fun showMBTIBottomSheet(){
+        val mbtiProductBottomFragment = MbtiProductBottomFragment()
+        mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
+    }
+
+    // 성별을 설정할 BottomSheet를 띄워준다.
+    fun showGenderBottomSheet(){
+//        val mbtiProductBottomFragment = MbtiProductBottomFragment()
+//        mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
     }
 
     // 리사이클러 뷰 어뎁터
