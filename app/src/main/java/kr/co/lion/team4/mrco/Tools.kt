@@ -54,6 +54,8 @@ enum class MainFragmentName(var str: String) {
     REGISTER_QNA_ANSWER_FRAGMENT("RegisterQnaAnswerFragment"), // 상품 문의 답변 등록 화면
 
     ADD_PRODUCT_FRAGMENT("AddProductFragment"), // 상품등록 화면
+
+    PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"), // 상품리뷰탭 화면
 }
 
 enum class FragmentName(var str: String){

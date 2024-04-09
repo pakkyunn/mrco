@@ -1,5 +1,4 @@
 <resources>
-
     <string name="app_name">MRCO</string>
     <!-- TODO: Remove or change this placeholder text -->
 
@@ -16,6 +15,13 @@
         <item>교환/반품/취소 문의</item>
         <item>환불 문의</item>
         <item>기타 문의</item>
+    </string-array>
+
+    <!--상품페이지 리뷰 정렬 방식-->
+    <string-array name="array_product_review_sort">
+        <item>최신 리뷰 순</item>
+        <item>평점 높은 순</item>
+        <item>평점 낮은 순</item>
     </string-array>
 
     <!--고객센터 문의 답변 방식-->
