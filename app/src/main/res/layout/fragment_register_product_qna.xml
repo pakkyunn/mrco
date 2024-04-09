@@ -2,149 +2,168 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
+
         <variable
             name="registerProductQnaViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.productQna.RegisterProductQnaViewModel" />
     </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
+        android:orientation="vertical"
         tools:context=".fragment.productQna.RegisterProductQnaFragment">
 
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarRegisterProductQna"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F6F6F6"
-            android:orientation="vertical">
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000"
+            app:title="상품 문의하기"
+            app:titleCentered="true" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardview_productqna_product"
-                style="@style/Widget.Material3.CardView.Filled"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardview_productqna_thumbnail"
-                        android:layout_width="70dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        app:layout_constraintBottom_toBottomOf="@id/textview_productqna_price"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/imageview_productqna_thumbnail"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_launcher_background" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:id="@+id/textview_productqna_coordinator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:hint="코디네이터명(홍길동)"
-                        android:text="@{registerProductQnaViewModel.textviewProductqnaCoordinator}"
-                        android:textColor="@color/material_dynamic_neutral70"
-                        android:textSize="10sp"
-                        app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
-                        app:layout_constraintTop_toTopOf="@+id/cardview_productqna_thumbnail" />
-
-                    <TextView
-                        android:id="@+id/textview_productqna_coordi_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="10dp"
-                        android:hint="(코디 상품명) OOOO 코디 SET"
-                        android:text="@{registerProductQnaViewModel.textviewProductqnaCoordiName}"
-                        app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
-                        app:layout_constraintTop_toBottomOf="@+id/textview_productqna_coordinator" />
-
-                    <TextView
-                        android:id="@+id/textview_productqna_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:hint="100,000원"
-                        android:text="@{registerProductQnaViewModel.textviewProductqnaPrice}"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
-                        app:layout_constraintTop_toBottomOf="@+id/textview_productqna_coordi_name" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_weight="1"
-                android:background="#FFFFFF"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardview_productqna_product">
+                android:layout_height="wrap_content"
+                android:background="#F6F6F6"
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/edittext_productqna_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="16dp"
-                    android:background="@drawable/shape_rounded_edittext"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:hint="문의 내용을 남겨주세요."
-                    android:text="@={registerProductQnaViewModel.edittextProductqnaContent}"
-                    android:inputType="textMultiLine"
-                    android:padding="16dp" />
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/checkbox_productqna_secret"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:checked="@={registerProductQnaViewModel.checkboxProductqnaSecret}"
-                    android:text="비밀글로 문의하기" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="주문/배송/교환/취소 관련 문의는 마이페이지>고객센터>1:1 문의하기를 이용해주세요."
-                    android:textColor="@color/material_dynamic_neutral70" />
-
-                <Button
-                    android:id="@+id/button_productqna_submit"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_productqna_product"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:text="문의 내용 등록" />
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardview_productqna_thumbnail"
+                            android:layout_width="70dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintBottom_toBottomOf="@id/textview_productqna_price"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/imageview_productqna_thumbnail"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/ic_launcher_background" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/textview_productqna_coordinator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:hint="코디네이터명(홍길동)"
+                            android:text="@{registerProductQnaViewModel.textviewProductqnaCoordinator}"
+                            android:textColor="@color/material_dynamic_neutral70"
+                            android:textSize="10sp"
+                            app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
+                            app:layout_constraintTop_toTopOf="@+id/cardview_productqna_thumbnail" />
+
+                        <TextView
+                            android:id="@+id/textview_productqna_coordi_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="10dp"
+                            android:hint="(코디 상품명) OOOO 코디 SET"
+                            android:text="@{registerProductQnaViewModel.textviewProductqnaCoordiName}"
+                            app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
+                            app:layout_constraintTop_toBottomOf="@+id/textview_productqna_coordinator" />
+
+                        <TextView
+                            android:id="@+id/textview_productqna_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:hint="100,000원"
+                            android:text="@{registerProductQnaViewModel.textviewProductqnaPrice}"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cardview_productqna_thumbnail"
+                            app:layout_constraintTop_toBottomOf="@+id/textview_productqna_coordi_name" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardview_productqna_product">
+
+                    <EditText
+                        android:id="@+id/edittext_productqna_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_margin="16dp"
+                        android:background="@drawable/shape_rounded_edittext"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:hint="문의 내용을 남겨주세요."
+                        android:inputType="textMultiLine"
+                        android:padding="16dp"
+                        android:text="@={registerProductQnaViewModel.edittextProductqnaContent}" />
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/checkbox_productqna_secret"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:checked="@={registerProductQnaViewModel.checkboxProductqnaSecret}"
+                        android:text="비밀글로 문의하기" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="주문/배송/교환/취소 관련 문의는 마이페이지>고객센터>1:1 문의하기를 이용해주세요."
+                        android:textColor="@color/material_dynamic_neutral70" />
+
+                    <Button
+                        android:id="@+id/button_productqna_submit"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="문의 내용 등록" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 </layout>
