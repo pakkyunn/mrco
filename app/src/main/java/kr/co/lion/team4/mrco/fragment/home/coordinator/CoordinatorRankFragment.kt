@@ -138,7 +138,7 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 10
         }
 
         override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
@@ -220,7 +220,15 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: InnerViewHolder, position: Int) {
-
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 5) {
+                0 -> R.drawable.iu_image5
+                1 -> R.drawable.iu_image4
+                2 -> R.drawable.iu_image3
+                3 -> R.drawable.iu_image2
+                else -> R.drawable.iu_image
+            }
+            holder.rowCoordinatorRank2Binding.imageViewRowCoordinatorRank2Photo.setImageResource(imageResource)
         }
     }
 

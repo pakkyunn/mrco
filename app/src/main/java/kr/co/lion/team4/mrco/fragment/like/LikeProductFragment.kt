@@ -132,7 +132,15 @@ class LikeProductFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: LikeProductViewHolder, position: Int) {
-
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 5) {
+                0 -> R.drawable.iu_image
+                1 -> R.drawable.iu_image2
+                2 -> R.drawable.iu_image3
+                3 -> R.drawable.iu_image4
+                else -> R.drawable.iu_image5
+            }
+            holder.rowLikeProductBinding.itemMainLikeProductThumbnail.setImageResource(imageResource)
         }
     }
 

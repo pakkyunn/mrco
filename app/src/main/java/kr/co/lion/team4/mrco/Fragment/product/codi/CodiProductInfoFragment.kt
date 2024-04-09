@@ -12,7 +12,6 @@ import kr.co.lion.team4.mrco.FragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
-import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
 
 
 class CodiProductInfoFragment : Fragment() {

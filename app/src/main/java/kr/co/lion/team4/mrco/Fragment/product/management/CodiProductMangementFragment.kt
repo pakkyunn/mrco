@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import kr.co.lion.team4.mrco.Activity.MainActivity
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductMangementBinding
 import kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel
 

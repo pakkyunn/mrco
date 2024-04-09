@@ -11,7 +11,6 @@ import kr.co.lion.team4.mrco.Activity.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoShoesViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoShoesBinding
-import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
 
 class CodiProductInfoShoesFragment : Fragment() {
 

@@ -137,6 +137,16 @@ class LikeCoordinatorFragment : Fragment() {
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter = InnerRecyclerViewAdapter() // 내부 리사이클러 뷰 어댑터 설정
 
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 5) {
+                0 -> R.drawable.iu_image
+                1 -> R.drawable.iu_image2
+                2 -> R.drawable.iu_image3
+                3 -> R.drawable.iu_image4
+                else -> R.drawable.iu_image5
+            }
+            holder.rowLikeCoordinatorBinding.imageViewRowLikeCoordinatorProfile.setImageResource(imageResource)
+
             holder.rowLikeCoordinatorBinding.imageViewRowLikeCoordinatorProfile.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
                 Log.d("test1234", "좋아요(코디네이터) 화면 : imageView - Click / 코디네이터 메인으로 이동")
@@ -196,6 +206,26 @@ class LikeCoordinatorFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: InnerViewHolder, position: Int) {
+            val rowLikeCoordinator2ViewModel = RowLikeCoordinator2ViewModel()
+
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 5) {
+                0 -> {
+                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image)
+                }
+                1 -> {
+                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image2)
+                }
+                2 -> {
+                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image3)
+                }
+                3 -> {
+                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image4)
+                }
+                else -> {
+                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image5)
+                }
+            }
 
         }
     }
