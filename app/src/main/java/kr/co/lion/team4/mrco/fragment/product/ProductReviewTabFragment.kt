@@ -8,19 +8,19 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
-import kr.co.lion.team4.mrco.viewmodel.product.ProductReviewViewModel
+import kr.co.lion.team4.mrco.databinding.FragmentProductReviewTabBinding
+import kr.co.lion.team4.mrco.viewmodel.product.ProductReviewTabViewModel
 
-class ProductReviewFragment : Fragment() {
-    lateinit var fragmentProductReviewBinding: FragmentProductReviewBinding
+class ProductReviewTabFragment : Fragment() {
+    lateinit var fragmentProductReviewBinding: FragmentProductReviewTabBinding
     lateinit var mainActivity: MainActivity
-    lateinit var productReviewViewModel: ProductReviewViewModel
+    lateinit var productReviewTabViewModel: ProductReviewTabViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         fragmentProductReviewBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_product_review, container, false)
-        productReviewViewModel = ProductReviewViewModel()
-        fragmentProductReviewBinding.productReviewViewModel = productReviewViewModel
+            DataBindingUtil.inflate(inflater, R.layout.fragment_product_review_tab, container, false)
+        productReviewTabViewModel = ProductReviewTabViewModel()
+        fragmentProductReviewBinding.productReviewViewModel = productReviewTabViewModel
         fragmentProductReviewBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity

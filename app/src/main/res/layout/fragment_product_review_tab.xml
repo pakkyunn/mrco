@@ -6,7 +6,7 @@
     <data>
         <variable
             name="productReviewViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.product.ProductReviewViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductReviewTabViewModel" />
     </data>
 
     <LinearLayout
