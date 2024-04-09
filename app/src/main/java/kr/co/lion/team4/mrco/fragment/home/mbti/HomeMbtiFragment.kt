@@ -18,11 +18,13 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
+import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbti2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
 
 class HomeMbtiFragment : Fragment() {
@@ -160,7 +162,7 @@ class HomeMbtiFragment : Fragment() {
         fragmentHomeMbtiBinding.apply {
             homeMbtiContent2Recycler.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
-                adapter = HomeMBTIRecyclerViewAdapter()
+                adapter = HomeMBTI2RecyclerViewAdapter()
                 // layoutManager = LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
             }
         }
@@ -199,6 +201,43 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: HomeMBTIViewHolder, position: Int) {
+
+        }
+    }
+
+    // 홈(MBTI) - MBTI 성별이 좋아하는 이성의 코디
+    inner class HomeMBTI2RecyclerViewAdapter: RecyclerView.Adapter<HomeMBTI2RecyclerViewAdapter.HomeMBTI2ViewHolder>(){
+        inner class HomeMBTI2ViewHolder(rowHomeMbti2Binding: RowHomeMbti2Binding): RecyclerView.ViewHolder(rowHomeMbti2Binding.root){
+            val rowHomeMbti2Binding: RowHomeMbti2Binding
+
+            init {
+                this.rowHomeMbti2Binding = rowHomeMbti2Binding
+
+                this.rowHomeMbti2Binding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMBTI2ViewHolder {
+            val rowHomeMbti2Binding = DataBindingUtil.inflate<RowHomeMbti2Binding>(
+                layoutInflater, R.layout.row_home_mbti2, parent, false
+            )
+            val rowHomeMbti2ViewModel = RowHomeMbti2ViewModel()
+            rowHomeMbti2Binding.rowHomeMbti2ViewModel = rowHomeMbti2ViewModel
+            rowHomeMbti2Binding.lifecycleOwner = this@HomeMbtiFragment
+
+            val homeMBTI2ViewHolder = HomeMBTI2ViewHolder(rowHomeMbti2Binding)
+
+            return homeMBTI2ViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return 6
+        }
+
+        override fun onBindViewHolder(holder: HomeMBTI2ViewHolder, position: Int) {
 
         }
     }

@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="rowHomeRecommendBannerViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="광고, 이벤트, 가이드"
+                android:text="@{rowHomeRecommendBannerViewModel.textViewHomeRecommendBannerTitle}"
                 android:textColor="#FFFFFF"
                 android:textSize="24dp"
                 android:textStyle="bold"
@@ -37,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="(광고, 이벤트, 가이드 설명)"
+                android:text="@{rowHomeRecommendBannerViewModel.textViewHomeRecommendBannerContent}"
                 android:textColor="#E6E6E6"
                 android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"

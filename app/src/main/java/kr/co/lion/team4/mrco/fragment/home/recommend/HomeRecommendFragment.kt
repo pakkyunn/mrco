@@ -22,10 +22,15 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorInfoBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorInfoViewModel
+import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendNewCoordiViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendViewModel
 
 class HomeRecommendFragment : Fragment() {
 
@@ -168,9 +173,13 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecommendBannerViewHolder {
-            // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+            val rowHomeRecommendBannerBinding = DataBindingUtil.inflate<RowHomeRecommendBannerBinding>(
+                layoutInflater, R.layout.row_home_recommend_banner, parent, false
+            )
+            val rowHomeRecommendBannerViewModel = RowHomeRecommendBannerViewModel()
+            rowHomeRecommendBannerBinding.rowHomeRecommendBannerViewModel = rowHomeRecommendBannerViewModel
+            rowHomeRecommendBannerBinding.lifecycleOwner = this@HomeRecommendFragment
 
-            val rowHomeRecommendBannerBinding = RowHomeRecommendBannerBinding.inflate(layoutInflater)
             val homeRecommendBannerViewHolder = HomeRecommendBannerViewHolder(rowHomeRecommendBannerBinding)
 
             return homeRecommendBannerViewHolder
@@ -201,9 +210,13 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecommendViewHolder {
-            // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
+            val rowHomeRecommendBinding = DataBindingUtil.inflate<RowHomeRecommendBinding>(
+                layoutInflater, R.layout.row_home_recommend, parent, false
+            )
+            val rowHomeRecommendViewModel = RowHomeRecommendViewModel()
+            rowHomeRecommendBinding.rowHomeRecommendViewModel = rowHomeRecommendViewModel
+            rowHomeRecommendBinding.lifecycleOwner = this@HomeRecommendFragment
 
-            val rowHomeRecommendBinding = RowHomeRecommendBinding.inflate(layoutInflater)
             val homeRecommendViewHolder = HomeRecommendViewHolder(rowHomeRecommendBinding)
 
             return homeRecommendViewHolder
@@ -236,7 +249,14 @@ class HomeRecommendFragment : Fragment() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeRecommendNewCoordiViewHolder {
             // val rowCoordinatorInfoBinding = RowCoordinatorInfoBinding.inflate(layoutInflater)
 
-            val rowHomeRecommendNewCoordiBinding = RowHomeRecommendNewCoordiBinding.inflate(layoutInflater)
+            val rowHomeRecommendNewCoordiBinding = DataBindingUtil.inflate<RowHomeRecommendNewCoordiBinding>(
+                layoutInflater, R.layout.row_home_recommend_new_coordi, parent, false
+            )
+            val rowHomeRecommendNewCoordiViewModel = RowHomeRecommendNewCoordiViewModel()
+            rowHomeRecommendNewCoordiBinding.rowHomeRecommendNewCoordiViewModel = rowHomeRecommendNewCoordiViewModel
+            rowHomeRecommendNewCoordiBinding.lifecycleOwner = this@HomeRecommendFragment
+
+
             val homeRecommendNewCoordiViewHolder = HomeRecommendNewCoordiViewHolder(rowHomeRecommendNewCoordiBinding)
 
             return homeRecommendNewCoordiViewHolder

@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="rowHomeRecommendNewCoordiViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendNewCoordiViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/iu_image3" />
+                app:srcCompat="@drawable/iu_image5" />
 
 
             <TextView
@@ -33,7 +39,7 @@
                 android:layout_height="32dp"
                 android:background="#BDB14C"
                 android:gravity="center"
-                android:text="ISFP"
+                android:text="@{rowHomeRecommendNewCoordiViewModel.textViewRowHomeRecommendNewCoordiProductMbti}"
                 android:textColor="#FFFFFF"
                 android:textSize="16dp"
                 android:textStyle="bold"
@@ -45,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="홍길동 코디이름"
+                android:text="@{rowHomeRecommendNewCoordiViewModel.textViewRowHomeRecommendNewCoordiProductName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/black"
                 app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_like"
@@ -58,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="30%"
+                android:text="@{rowHomeRecommendNewCoordiViewModel.textViewRowHomeRecommendNewCoordiProductDiscountPercent}"
                 android:textColor="#FC5306"
                 app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_price"
                 app:layout_constraintEnd_toStartOf="@id/item_main_product_price"
@@ -71,7 +77,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="8dp"
-                android:text="178,000"
+                android:text="@{rowHomeRecommendNewCoordiViewModel.textViewRowHomeRecommendNewCoordiProductPrice}"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/item_main_product_pick_button"
                 app:layout_constraintStart_toEndOf="@id/item_main_product_discount_percent"
@@ -118,7 +124,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/iu_image3" />
+                app:srcCompat="@drawable/iu_image4" />
 
             <TextView
                 android:id="@+id/textViewRowHomeRecommendNewCoordiMBTI2"

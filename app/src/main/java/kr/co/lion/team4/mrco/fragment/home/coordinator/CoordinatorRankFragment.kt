@@ -144,6 +144,16 @@ class CoordinatorRankFragment : Fragment() {
         override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
             holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankNumber.text = "${position + 1}"
 
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 5) {
+                0 -> R.drawable.iu_image
+                1 -> R.drawable.iu_image2
+                2 -> R.drawable.iu_image3
+                3 -> R.drawable.iu_image4
+                else -> R.drawable.iu_image5
+            }
+            holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setImageResource(imageResource)
+
             holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
                 Log.d("test1234", "인기 코디네이터 화면 : imageView - Click / 코디네이터 메인으로 이동")
