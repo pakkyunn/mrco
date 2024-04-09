@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar_myReview"
                 android:layout_width="match_parent"
@@ -42,7 +41,7 @@
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView_productReview"
-                android:name="kr.co.lion.team4.mrco.Fragment.review.ReviewCreatedFragment"
+                android:name="kr.co.lion.team4.mrco.fragment.review.ReviewCreatedFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
     </LinearLayout>
