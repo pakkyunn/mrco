@@ -31,6 +31,8 @@ class AddProductFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        mainActivity.removeBottomSheet() // 하단 메뉴 숨기기
+
         settingAddProductPhotoRecyclerView()
         settingAddProductDetailRecyclerView()
 
