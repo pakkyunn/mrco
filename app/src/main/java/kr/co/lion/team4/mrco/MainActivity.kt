@@ -2,7 +2,6 @@ package kr.co.lion.team4.mrco
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -31,7 +30,7 @@ import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
-import kr.co.lion.team4.mrco.fragment.review.ProductReviewFragment
+import kr.co.lion.team4.mrco.fragment.review.MyReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
@@ -200,7 +199,7 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.REVIEW_FRAGMENT -> newFragment = ReviewFragment()
             
             // 상품 리뷰 페이지
-            MainFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
+            MainFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = MyReviewFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.

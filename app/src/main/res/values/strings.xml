@@ -82,8 +82,8 @@
     <!-- Review Fragment -->
     <string name="textView_reviewCreate_reviewInfo">후기작성 안내</string>
     <string name="textView_createdReview_reviewInfo">후기작성 안내</string>
-    <string name="tabItem_productReview_reviewCreate">리뷰 작성</string>
-    <string name="tabItem_productReview_createdReview">작성한 리뷰</string>
+    <string name="tabItem_myReview_reviewCreate">리뷰 작성</string>
+    <string name="tabItem_myReview_createdReview">작성한 리뷰</string>
     <string name="textView_reviewCreate_purchaseDate">구매일자 / 구매확정 여부</string>
     <string name="textView_reviewCreate_productPrice">₩ 100,000</string>
     <string name="textView_reviewCreate_productType">스타일링 / MBTI</string>

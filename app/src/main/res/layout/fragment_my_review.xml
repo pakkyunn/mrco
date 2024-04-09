@@ -5,7 +5,7 @@
     <data>
         <variable
             name="pr"
-            type="kr.co.lion.team4.mrco.viewmodel.ProductReviewViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.MyReviewViewModel" />
     </data>
 
     <LinearLayout
@@ -15,7 +15,7 @@
 
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_productReview"
+                android:id="@+id/toolbar_myReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?attr/colorPrimary"
@@ -28,16 +28,16 @@
                 app:tabIndicatorFullWidth="true">
 
                 <com.google.android.material.tabs.TabItem
-                    android:id="@+id/tabItem_productReview_reviewCreate"
+                    android:id="@+id/tabItem_myReview_reviewCreate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabItem_productReview_reviewCreate" />
+                    android:text="@string/tabItem_myReview_reviewCreate" />
 
                 <com.google.android.material.tabs.TabItem
                     android:id="@+id/tabItem_productReview_createdReview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tabItem_productReview_createdReview" />
+                    android:text="@string/tabItem_myReview_createdReview" />
             </com.google.android.material.tabs.TabLayout>
 
             <androidx.fragment.app.FragmentContainerView
