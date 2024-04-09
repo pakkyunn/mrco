@@ -31,16 +31,16 @@ class LoginFragment : Fragment() {
     }
 
     fun settingButtonLoginJoin() {
-//        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
-//            mainActivity.replaceFragment(MainFragmentName.JOIN_FRAGMENT, true, true, null )
+        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
+            mainActivity.replaceFragment(MainFragmentName.JOIN_FRAGMENT, true, true, null )
 
         //테스트 용 회원정보 수정 화면으로 이동
 //        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
 //            mainActivity.replaceFragment(MainFragmentName.MODIFY_USER_FRAGMENT, true, true, null )
 
-        //테스트 용 코디네이터 등록 신청 화면으로 이동
-        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
-            mainActivity.replaceFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT, true, true, null )
+//        //테스트 용 코디네이터 등록 신청 화면으로 이동
+//        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
+//            mainActivity.replaceFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT, true, true, null )
 
         //테스트 용 코디네이터 정보 수정 화면으로 이동
 //        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
