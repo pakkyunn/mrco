@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="mbtiBottomSheetViewModel"
+            type="kr.co.lion.mrco_01.viewmodel.MbtiBottomSheetViewModel" />
+    </data>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +35,8 @@
         android:minWidth="250dp"
         app:checkedButton="@id/buttonE"
         app:selectionRequired="true"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonEI}">
 
         <Button
             android:id="@+id/buttonE"
@@ -57,7 +64,8 @@
         android:minWidth="250dp"
         app:checkedButton="@id/buttonN"
         app:selectionRequired="true"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonSN}">
 
         <Button
             android:id="@+id/buttonS"
@@ -85,7 +93,8 @@
         android:minWidth="250dp"
         app:checkedButton="@id/buttonF"
         app:selectionRequired="true"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonTF}">
 
         <Button
             android:id="@+id/buttonT"
@@ -113,7 +122,8 @@
         android:minWidth="250dp"
         app:checkedButton="@id/buttonP"
         app:selectionRequired="true"
-        app:singleSelection="true">
+        app:singleSelection="true"
+        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonPJ}">
 
         <Button
             android:id="@+id/buttonP"

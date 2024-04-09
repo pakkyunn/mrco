@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="joinViewModel"
+            type="kr.co.lion.mrco_01.viewmodel.JoinViewModel" />
+    </data>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -49,7 +55,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={joinViewModel.textFieldJoinUserId}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -77,7 +84,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text|textPassword"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinViewModel.textFieldJoinUserPw}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -93,7 +101,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text|textPassword"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinViewModel.textFieldJoinUserPw2}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -108,7 +117,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinViewModel.textFieldJoinUserName}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -119,29 +129,34 @@
                 android:text="성별"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <RadioGroup
-                android:id="@+id/checkboxJoinUserGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="16dp">
+            <LinearLayout
+                android:id="@+id/checkBoxGroupJoinGender"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/checkboxJoinMale"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkBoxJoinMale"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="남자"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:checked="@={joinViewModel.checkBoxJoinMale}"
+                    android:onClickListener="@{ (view) -> joinViewModel.toggleMaleCheckBox()}"/>
 
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/checkboxJoinFemale"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/checkBoxJoinFemale"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
                     android:text="여자"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-            </RadioGroup>
+                    android:checked="@={joinViewModel.checkBoxJoinFemale}"
+                    android:onClickListener="@{ (view) -> joinViewModel.toggleFemaleCheckBox()}"/>
+
+
+            </LinearLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -156,7 +171,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinViewModel.textFieldJoinUserEmail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -170,25 +186,33 @@
                     android:id="@+id/textFieldJoinUserMBTI"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinViewModel.textFieldJoinUserMBTI}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/checkboxJoinUserConsent01"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="16dp"
-                android:text="개인정보 제 3자 제공 동의 (선택)" />
+                android:text="개인정보 제 3자 제공 동의 (선택)"
+                android:checked="@={joinViewModel.checkBoxJoinUserConsent01}"
+                android:setOnCheckedChangeListener="@{ (view, ischecked) -> joinViewModel.toggleUserConsent01CheckBox()}"/>
 
-            <CheckBox
+            <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/checkboxJoinUserConsent02"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="4dp"
-                android:text="상품 정보 및 혜택 수신 동의 (선택)" />
+                android:text="상품 정보 및 혜택 수신 동의 (선택)"
+                android:checked="@={joinViewModel.checkBoxJoinUserConsent02}"
+                android:setOnCheckedChangeListener="@{ (view, ischecked) -> joinViewModel.toggleUserConsent02CheckBox()}"/>
 
             <TextView
                 android:layout_width="match_parent"

@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="modifyCoordinatorViewModel"
+            type="kr.co.lion.mrco_01.viewmodel.ModifyCoordinatorViewModel" />
+    </data>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -56,7 +62,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorName}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -91,7 +98,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text|textMultiLine"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorIntroText}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -110,11 +118,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserCoordinatorEmail"
+                    android:id="@+id/textFieldModifyCoordinatorEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorEmail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -137,7 +146,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorOfficialPhone}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -162,16 +172,17 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textFieldModifyUserPhone"
+                        android:id="@+id/textFieldModifyCoordinatorPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorPhone}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/buttonModifyUserRequestAuth"
+                    android:id="@+id/buttonModifyCoordinatorRequestAuth"
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -193,11 +204,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserAuthNumber"
+                    android:id="@+id/textFieldModifyCoordinatorAuthNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorAuthNumber}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -222,16 +234,17 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textFieldModifyUserAddress"
+                        android:id="@+id/textFieldModifyCoordinatorAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorAddress}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/buttonModifyUserSearchAddress"
+                    android:id="@+id/buttonModifyCoordinatorSearchAddress"
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -250,11 +263,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserAddressDetail"
+                    android:id="@+id/textFieldModifyCoordinatorAddressDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorAddressDetail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -292,7 +306,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorWarehouseAddress}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -319,7 +334,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorWarehouseAddressDetail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -349,7 +365,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorReturnAddress}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -376,7 +393,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldJModifyCoordinatorReturnAddressDetail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -408,7 +426,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorSettlementBank}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -423,7 +442,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorSettlementAccountHolder}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -438,7 +458,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorSettlementAccountNumber}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button

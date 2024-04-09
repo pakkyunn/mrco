@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="joinCoordinatorNextViewModel"
+            type="kr.co.lion.mrco_01.viewmodel.JoinCoordinatorNextViewModel" />
+    </data>
+
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -65,7 +71,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextWarehouseAddress}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -92,7 +99,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextWarehouseAddressDetail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -122,7 +130,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextReturnAddress}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -149,7 +158,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextReturnAddressDetail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -181,7 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextSettlementBank}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -196,7 +207,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextSettlementAccountHolder}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -211,7 +223,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextSettlementAccountNumber}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout

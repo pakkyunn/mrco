@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="modifyUserViewModel"
+            type="kr.co.lion.mrco_01.viewmodel.ModifyUserViewModel" />
+    </data>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -49,7 +55,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserName}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -72,7 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserEmail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -94,8 +102,12 @@
                     android:id="@+id/textFieldModifyUserUserMBTI"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:cursorVisible="false"
+                    android:focusableInTouchMode="false"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserMBTI}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -120,12 +132,13 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textFieldModifyUserPhone"
+                        android:id="@+id/textFieldModifyUserUserPhone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyUserViewModel.textFieldModifyUserUserPhone}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -148,11 +161,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserAuthNumber"
+                    android:id="@+id/textFieldModifyUserUserAuthNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserAuthNumber}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -177,12 +191,13 @@
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textFieldModifyUserAddress"
+                        android:id="@+id/textFieldModifyUserUserAddress"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:text="@={modifyUserViewModel.textFieldModifyUserUserAddress}"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -205,11 +220,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserAddressDetail"
+                    android:id="@+id/textFieldModifyUserUserAddressDetail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserAddressDetail}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -228,11 +244,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserRefundBankName"
+                    android:id="@+id/textFieldModifyUserUserRefundBankName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserRefundBankName}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -243,11 +260,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserRefundBankAccountHolder"
+                    android:id="@+id/textFieldModifyUserUserRefundBankAccountHolder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserRefundBankAccountHolder}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -258,11 +276,12 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldModifyUserRefundBankAccountNumber"
+                    android:id="@+id/textFieldModifyUserUserRefundBankAccountNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={modifyUserViewModel.textFieldModifyUserUserRefundBankAccountNumber}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -295,7 +314,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldModifyUserUserHeight"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={modifyUserViewModel.textFieldModifyUserUserHeight}"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -322,15 +342,24 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldModifyUserUserWeight"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@={modifyUserViewModel.textFieldModifyUserUserWeight}"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginTop="16dp"
                 android:text="앱 알림 설정" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchModifyUserNotification"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="이벤트/혜택/추천코디에 대한 알림을 받습니다."
+                android:checked="@={modifyUserViewModel.switchModifyUserNotification}"
+                android:setOnCheckedChangeListener="@{ (view, ischecked) -> ModifyUserViewModel.toggleNotificationSwitch()}"/>
 
 
             <Button
