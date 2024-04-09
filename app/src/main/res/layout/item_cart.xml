@@ -31,11 +31,11 @@
                 <CheckBox
                     android:id="@+id/checkbox_cart_item_select"
                     android:layout_width="24dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="48dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:gravity="top"
                     android:checked="@{cartItemViewModel.checkboxCartItemSelect}"
+                    android:gravity="top"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,7 +134,8 @@
                     android:minWidth="0dp"
                     android:minHeight="0dp"
                     android:text="옵션 / 수량"
-                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cardview_cart_item_thumbnail"
                     app:layout_constraintStart_toStartOf="@+id/textview_cart_item_option"

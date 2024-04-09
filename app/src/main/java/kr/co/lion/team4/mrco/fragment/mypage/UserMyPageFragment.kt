@@ -44,12 +44,19 @@ class UserMyPageFragment : Fragment() {
                 mainActivity.replaceFragment(MainFragmentName.ORDER_HISTORY_FRAGMENT, true, true, null)
             }
             // 나의 리뷰
+            textViewMenuUserMyPage2.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
+            }
 
             // 고객센터
             textViewMenuUserMyPage3.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, true, true, null)
             }
+
             // 코디네이터 등록 신청
+            textViewMenuUserMyPage4.setOnClickListener {
+                // mainActivity.replaceFragment(MainFragmentName.Tools코디등록이름, true, true, null)
+            }
         }
     }
 }

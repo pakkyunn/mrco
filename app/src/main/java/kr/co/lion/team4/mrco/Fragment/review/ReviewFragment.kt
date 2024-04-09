@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import kr.co.lion.team4.mrco.Activity.MainActivity
+import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
 import kr.co.lion.team4.mrco.viewmodel.ReviewViewModel
@@ -23,7 +23,6 @@ class ReviewFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ReviewViewModel::class.java)
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
-
 
         return binding.root
     }
