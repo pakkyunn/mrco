@@ -116,6 +116,5 @@ class CartFragment : Fragment() {
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.CART_FRAGMENT)
-        mainActivity.viewBottomSheet()
     }
 }

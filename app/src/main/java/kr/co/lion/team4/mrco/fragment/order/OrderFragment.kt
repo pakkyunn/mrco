@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.viewmodel.order.ItemOrderViewModel
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.order.OrderViewModel
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentOrderBinding
@@ -28,13 +29,26 @@ class OrderFragment : Fragment() {
         fragmentOrderBinding.orderViewModel = orderViewModel
         fragmentOrderBinding.lifecycleOwner = this
 
-        // Activity
         mainActivity = activity as MainActivity
+
+        // 툴바 세팅
+        toolbarSetting()
 
         // 주문할 상품 목록 RecyclerView 세팅
         settingRecyclerViewOrderProducts()
 
         return fragmentOrderBinding.root
+    }
+
+    // 툴바 설정
+    fun toolbarSetting(){
+        fragmentOrderBinding.toolbarOrder.apply {
+            // 네비게이션
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcesss()
+            }
+        }
     }
 
     fun settingRecyclerViewOrderProducts(){
@@ -84,5 +98,10 @@ class OrderFragment : Fragment() {
         override fun getItemCount(): Int {
             return 2
         }
+    }
+
+    // 뒤로가기 처리
+    fun backProcesss(){
+        mainActivity.removeFragment(MainFragmentName.ORDER_FRAGMENT)
     }
 }
