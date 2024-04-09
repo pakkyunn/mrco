@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.Fragment.review
+package kr.co.lion.team4.mrco.fragment.review
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

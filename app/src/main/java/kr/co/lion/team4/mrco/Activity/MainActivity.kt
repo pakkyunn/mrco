@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
-import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAccessoryFragment
-import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoBottomFragment
-import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoFragment
-import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoShoesFragment
-import kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoTopFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAccessoryFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoBottomFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoShoesFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoTopFragment
 import kr.co.lion.team4.mrco.FragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding

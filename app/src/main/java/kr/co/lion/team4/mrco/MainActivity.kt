@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import kr.co.lion.team4.mrco.fragment.review.ReviewFragment
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.cart.CartFragment
@@ -193,6 +194,9 @@ class MainActivity : AppCompatActivity() {
 
             // 판매자 - 코디 상품등록 화면
             MainFragmentName.ADD_PRODUCT_FRAGMENT -> newFragment = AddProductFragment()
+
+            // 리뷰페이지
+            MainFragmentName.REVIEW_FRAGMENT -> newFragment = ReviewFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
