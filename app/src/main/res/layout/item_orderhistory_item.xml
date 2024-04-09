@@ -29,6 +29,21 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white">
 
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonOrderHistory"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주문상세"
+                    android:textColor="@android:color/darker_gray"
+                    app:icon="@drawable/right_24px"
+                    app:iconGravity="end"
+                    app:iconTint="@android:color/darker_gray"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerview_ordered_items"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/textview_ordered_item_date"
                     android:layout_width="wrap_content"
@@ -40,25 +55,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="주문상세"
-                    app:layout_constraintBottom_toTopOf="@+id/divider_ordered_item"
-                    app:layout_constraintEnd_toStartOf="@+id/imageview_ordered_item_detail"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <!-- 아이콘 교체 필요 -->
-                <ImageView
-                    android:id="@+id/imageview_ordered_item_detail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintBottom_toTopOf="@+id/divider_ordered_item"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/chevron_right_24px" />
 
                 <View
                     android:id="@+id/divider_ordered_item"

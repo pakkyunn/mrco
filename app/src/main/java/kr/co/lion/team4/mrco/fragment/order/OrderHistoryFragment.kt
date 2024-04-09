@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryItemViewModel
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryViewModel
@@ -86,6 +87,11 @@ class OrderHistoryFragment : Fragment() {
                 val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
                 deco.isLastItemDecorated = false // 마지막 아이템에는 MaterialDividerItemDecoration 제거
                 addItemDecoration(deco)
+            }
+
+            // 주문상세 > 이거 눌렀을 때
+            holder.itemOrderhistoryItemBinding.buttonOrderHistory.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
             }
         }
 
