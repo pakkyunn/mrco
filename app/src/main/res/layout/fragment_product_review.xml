@@ -1,16 +1,387 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <data>
+        <variable
+            name="productReviewViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductReviewViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:text="상품 페이지의 후기 탭 프래그먼트" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="평점"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/ratingBarProductReview"
+                        style="?android:attr/ratingBarStyleIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:numStars="5"
+                        android:rating="@{productReviewViewModel.ratingBarProductReview}"
+                        android:stepSize="1" />
+
+                    <TextView
+                        android:id="@+id/textViewRatingBarProductReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@={productReviewViewModel.textViewRatingBarProductReview}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textSize="10sp"
+                        tools:text="3.9 / 5" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="32dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewRatingConceptProductReview"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="4dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:text="컨셉매칭"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                        <ImageView
+                            android:id="@+id/imageButtonRatingConceptProductReview"
+                            android:layout_width="15dp"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/help_24px" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textViewRatingDeliveryProductReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="배송"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                    <TextView
+                        android:id="@+id/textViewRatingQualityProductReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="32dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="품질"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+                    <TextView
+                        android:id="@+id/textViewRatingCostProductReview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:text="가성비"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/sentiment_1_24px" />
+
+                    <TextView
+                        android:id="@+id/textViewRatingOptionProductReview1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview1}"
+                        tools:text="잘 어울려요" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarRatingOptionProductReview1"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"
+                        android:max="100"
+                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview1"
+                        android:progressDrawable="@drawable/rating_progress_bar"
+                        android:progressTint="#4E5B9C" />
+
+                    <TextView
+                        android:id="@+id/progressRatioRatingOptionProductReview1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="8sp"
+                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview1}"
+                        tools:text="66%" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/sentiment_2_24px" />
+
+                    <TextView
+                        android:id="@+id/textViewRatingOptionProductReview2"
+                        android:layout_width="68dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview2}"
+                        tools:text="무난해요" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarRatingOptionProductReview2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"
+                        android:max="100"
+                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview2"
+                        android:progressDrawable="@drawable/rating_progress_bar"
+                        android:progressTint="#4E5B9C" />
+
+                    <TextView
+                        android:id="@+id/progressRatioRatingOptionProductReview2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="8sp"
+                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview2}"
+                        tools:text="26%" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageViewSentimentProductReview1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:srcCompat="@drawable/sentiment_3_24px" />
+
+                    <TextView
+                        android:id="@+id/textViewRatingOptionProductReview3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="8dp"
+                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview3}"
+                        tools:text="안 어울려요" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarRatingOptionProductReview3"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="200dp"
+                        android:layout_height="10dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="8dp"
+                        android:max="100"
+                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview3"
+                        android:progressDrawable="@drawable/rating_progress_bar"
+                        android:progressTint="#4E5B9C" />
+
+                    <TextView
+                        android:id="@+id/progressRatioRatingOptionProductReview3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="8sp"
+                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview3}"
+                        tools:text="8%" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="후기 사진" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            tools:layout_height="200dp">
+
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4">
+
+                            <ImageButton
+                                android:id="@+id/imageButton3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="60dp"
+                                android:background="#FDF6FE"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/expand_circle_right_48px" />
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="더 보기"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                                android:textSize="12sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleGroupProductReview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:selectionRequired="true"
+            app:singleSelection="true"
+            android:checkedButtonId="@={productReviewViewModel.toggleGroupProductReview}">
+
+            <Button
+                android:id="@+id/toggleButtonProductReview1"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="스타일 리뷰"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/toggleButtonProductReview2"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="일반 리뷰"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="12sp" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinnerSortProductReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/array_product_review_sort"
+                android:overlapAnchor="false"
+                android:selectedItemPosition="@={productReviewViewModel.spinnerSortProductReview}" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProductReview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </layout>

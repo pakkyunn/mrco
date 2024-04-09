@@ -24,5 +24,4 @@
         <item name="android:textColor">@color/chip_coordination_main_text_selector</item>
         <item name="checkedIcon">@drawable/done_24px</item>
     </style>
-
 </resources>
