@@ -34,17 +34,28 @@ class ProductQnaListFragment : Fragment() {
         fragmentProductQnaListBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // 툴바, 하단 메뉴 세팅
+        mainActivity.removeBottomSheet() // 하단 메뉴 제거
+        settingtoolbarProduntQnaList()
+
         settingQnaListAdapter()
 
         return fragmentProductQnaListBinding.root
     }
 
+    fun settingtoolbarProduntQnaList(){
+        fragmentProductQnaListBinding.toolbarProduntQnaList.apply {
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcess()
+            }
+        }
+    }
     fun settingQnaListAdapter(){
         fragmentProductQnaListBinding.recyclerviewQnaList.apply {
             adapter = ProductQnaListRecyclerViewAdapter()
             layoutManager = LinearLayoutManager(mainActivity)
-            // to do - layoutManager = LinearLayoutManager("context")
-
         }
     }
 
@@ -95,5 +106,9 @@ class ProductQnaListFragment : Fragment() {
         override fun getItemCount(): Int {
             return 10
         }
+    }
+
+    fun backProcess(){
+        mainActivity.removeFragment(MainFragmentName.PRODUCT_QNA_LIST_FRAGMENT)
     }
 }
