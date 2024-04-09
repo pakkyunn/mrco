@@ -359,7 +359,7 @@
                 android:layout_height="match_parent"
                 android:text="이벤트/혜택/추천코디에 대한 알림을 받습니다."
                 android:checked="@={modifyUserViewModel.switchModifyUserNotification}"
-                android:setOnCheckedChangeListener="@{ (view, ischecked) -> ModifyUserViewModel.toggleNotificationSwitch()}"/>
+                android:setOnCheckedChangeListener="@{ (view, ischecked) -> modifyUserViewModel.toggleNotificationSwitch()}"/>
 
 
             <Button

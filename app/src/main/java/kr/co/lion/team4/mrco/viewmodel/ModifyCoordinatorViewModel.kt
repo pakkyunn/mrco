@@ -15,7 +15,7 @@ class ModifyCoordinatorViewModel : ViewModel() {
     val textFieldModifyCoordinatorCustomerRelationPhone = MutableLiveData<String>()
 
     //휴대폰 번호
-    val textFieldModifyCoordinatorOfficialPhone = MutableLiveData<String>()
+    val textFieldModifyCoordinatorPhone = MutableLiveData<String>()
     //휴대폰 인증번호
     val textFieldModifyCoordinatorAuthNumber = MutableLiveData<String>()
     //주소

@@ -147,7 +147,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorOfficialPhone}"/>
+                    android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorCustomerRelationPhone}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
