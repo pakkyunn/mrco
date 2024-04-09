@@ -56,19 +56,11 @@ class MbtiProductMainFragment : Fragment() {
             buttonMbtiProductMainMBTI.setOnClickListener {
                 showMBTIBottomSheet()
             }
+
+            buttonMbtiProductMainGender.setOnClickListener {
+                showGenderBottomSheet()
+            }
         }
-    }
-
-    // MBTI를 설정할 BottomSheet를 띄워준다.
-    fun showMBTIBottomSheet(){
-        val mbtiProductBottomFragment = MbtiProductBottomFragment()
-        mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
-    }
-
-    // 성별을 설정할 BottomSheet를 띄워준다.
-    fun showGenderBottomSheet(){
-//        val mbtiProductBottomFragment = MbtiProductBottomFragment()
-//        mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
     }
 
     // 리사이클러 뷰 어뎁터
@@ -108,6 +100,18 @@ class MbtiProductMainFragment : Fragment() {
             }
             holder.rowMbtiProductMainBinding.itemMbtiProductThumbnail.setImageResource(imageResource)
         }
+    }
+
+    // MBTI를 설정할 BottomSheet를 띄워준다.
+    fun showMBTIBottomSheet(){
+        val mbtiProductBottomFragment = MbtiProductBottomFragment()
+        mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
+    }
+
+    // 성별을 설정할 BottomSheet를 띄워준다.
+    fun showGenderBottomSheet(){
+        val mbtiProductBottomGenderFragment = MbtiProductBottomGenderFragment()
+        mbtiProductBottomGenderFragment.show(mainActivity.supportFragmentManager, "GenderBottomSheet")
     }
 
     // 뒤로가기 처리

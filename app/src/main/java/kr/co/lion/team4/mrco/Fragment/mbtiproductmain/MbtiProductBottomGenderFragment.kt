@@ -1,9 +1,9 @@
 package kr.co.lion.team4.mrco.fragment.mbtiproductmain
 
 import android.app.Dialog
-import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +13,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductBottomBinding
+import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductBottomGenderBinding
 
-class MbtiProductBottomFragment : BottomSheetDialogFragment() {
+class MbtiProductBottomGenderFragment : BottomSheetDialogFragment() {
 
-    lateinit var fragmentMbtiProductBottomBinding: FragmentMbtiProductBottomBinding
+    lateinit var fragmentMbtiProductBottomGenderBinding: FragmentMbtiProductBottomGenderBinding
     lateinit var mainActivity: MainActivity
 
-      override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-          fragmentMbtiProductBottomBinding = FragmentMbtiProductBottomBinding.inflate(inflater)
-          mainActivity = activity as MainActivity
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        fragmentMbtiProductBottomGenderBinding = FragmentMbtiProductBottomGenderBinding.inflate(inflater)
+        mainActivity = activity as MainActivity
 
-          return fragmentMbtiProductBottomBinding.root
+        return fragmentMbtiProductBottomGenderBinding.root
     }
 
     // 다이얼로그가 만들어질 때 자동으로 호출되는 메서드
@@ -56,9 +57,9 @@ class MbtiProductBottomFragment : BottomSheetDialogFragment() {
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
-    // BottomSheet의 높이를 구한다 (화면 액정의 51% 크기)
+    // BottomSheet의 높이를 구한다 (화면 액정의 27% 크기)
     fun getBottomSheetDialogHeight(): Int {
-        return (getWindowHeight() * 0.51).toInt()
+        return (getWindowHeight() * 0.27).toInt()
     }
 
     // 사용자 단말기 액정의 세로 길이를 구해 반환하는 메서드
