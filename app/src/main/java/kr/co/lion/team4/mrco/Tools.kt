@@ -24,8 +24,6 @@ enum class MainFragmentName(var str: String) {
     LIKE_PRODUCT("Like_Product_Fragment"),
     LIKE_COORDINATOR("Like_Coordinator_Fragment"),
 
-    PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"),
-    REVIEW_FRAGMENT("ReviewFragment"),
     WRITE_REVIEW("Write_Review_Fragment"),
 
     ORDER_DETAIL("Order_Detail_Fragment"),

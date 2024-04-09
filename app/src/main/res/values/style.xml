@@ -39,4 +39,9 @@
         <item name="android:fontFamily">@font/coordinator_info_semi_title</item>
     </style>
 
+    <!-- 카테고리 문자 글꼴 -->
+    <style name="Categori_Font_Theme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/m_plus1_code_font_medium</item>
+    </style>
+
 </resources>

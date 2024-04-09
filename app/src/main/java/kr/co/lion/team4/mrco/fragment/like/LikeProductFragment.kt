@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.like
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -132,6 +133,9 @@ class LikeProductFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: LikeProductViewHolder, position: Int) {
+
+            val rowLikeProductViewModel = RowLikeProductViewModel()
+
             // position 값에 따라 다른 이미지 설정
             val imageResource = when (position % 5) {
                 0 -> R.drawable.iu_image

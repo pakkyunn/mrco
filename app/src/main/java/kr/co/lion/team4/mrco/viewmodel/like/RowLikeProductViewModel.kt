@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class RowLikeProductViewModel: ViewModel() {
-    val textViewRowLikeProductName = MutableLiveData<String>("홍길동 코디이름")
-    val textViewRowLikeProductMBTI = MutableLiveData<String>("ISFP")
-    val textViewRowLikeProductDiscountPrice = MutableLiveData<String>("30%")
-    val textViewRowLikeProductPrice = MutableLiveData<String>("178,000원")
+    var textViewRowLikeProductName = MutableLiveData<String>("홍길동 코디이름")
+    var textViewRowLikeProductMBTI = MutableLiveData<String>("ISFP")
+    var textViewRowLikeProductDiscountPrice = MutableLiveData<String>("30%")
+    var textViewRowLikeProductPrice = MutableLiveData<String>("178,000원")
 }

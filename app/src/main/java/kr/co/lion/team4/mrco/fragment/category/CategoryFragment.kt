@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.category
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,16 +29,70 @@ class CategoryFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        categoriTextViewClick()
+
         return fragmentCategoryBinding.root
     }
 
-//    fun click() {
-//        fragmentCategoryBinding.apply {
-//            textViewMoodCategory.apply {
-//                setOnClickListener {
-//                    setBackgroundColor(Color.parseColor("#FFE5E9EE"))
-//                }
-//            }
-//        }
-//    }
+    fun categoriTextViewClick() {
+        fragmentCategoryBinding.apply {
+
+            textViewMbtiCategory.apply {
+                setOnClickListener {
+                    resetBackground()
+                    setBackgroundColor(Color.BLACK)
+                    setTextColor(Color.WHITE)
+                }
+            }
+
+            textViewTpoCategory.apply {
+                setOnClickListener {
+                    resetBackground()
+                    setBackgroundColor(Color.BLACK)
+                    setTextColor(Color.WHITE)
+                }
+            }
+
+
+            textViewSeasonCategory.apply {
+                setOnClickListener {
+                    resetBackground()
+                    setBackgroundColor(Color.BLACK)
+                    setTextColor(Color.WHITE)
+                }
+            }
+
+            textViewMoodCategory.apply {
+                setOnClickListener {
+                    resetBackground()
+                    setBackgroundColor(Color.BLACK)
+                    setTextColor(Color.WHITE)
+                }
+            }
+
+            textViewAllCategory.apply {
+                setOnClickListener {
+                    resetBackground()
+                    setBackgroundColor(Color.BLACK)
+                    setTextColor(Color.WHITE)
+                }
+            }
+        }
+    }
+
+    // 카테고리 선택 백그라운드 초기화
+    fun resetBackground() {
+        fragmentCategoryBinding.apply {
+            textViewMbtiCategory.setBackgroundColor(Color.WHITE)
+            textViewMbtiCategory.setTextColor(Color.BLACK)
+            textViewTpoCategory.setBackgroundColor(Color.WHITE)
+            textViewTpoCategory.setTextColor(Color.BLACK)
+            textViewSeasonCategory.setBackgroundColor(Color.WHITE)
+            textViewSeasonCategory.setTextColor(Color.BLACK)
+            textViewMoodCategory.setBackgroundColor(Color.WHITE)
+            textViewMoodCategory.setTextColor(Color.BLACK)
+            textViewAllCategory.setBackgroundColor(Color.WHITE)
+            textViewAllCategory.setTextColor(Color.BLACK)
+        }
+    }
 }

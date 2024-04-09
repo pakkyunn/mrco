@@ -9,11 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
+// import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
 import kr.co.lion.team4.mrco.viewmodel.ReviewViewModel
 
 class ReviewFragment : Fragment() {
-
+/*
     lateinit var binding: FragmentProductReviewBinding
     lateinit var viewModel: ReviewViewModel
     lateinit var mainActivity: MainActivity
@@ -25,5 +25,5 @@ class ReviewFragment : Fragment() {
         binding.lifecycleOwner = this
 
         return binding.root
-    }
+    }*/
 }
