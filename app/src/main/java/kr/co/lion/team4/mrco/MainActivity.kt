@@ -2,7 +2,6 @@ package kr.co.lion.team4.mrco
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -208,7 +207,6 @@ class MainActivity : AppCompatActivity() {
             // 판매자 - 코디 상품등록 화면
             MainFragmentName.ADD_PRODUCT_FRAGMENT -> newFragment = AddProductFragment()
 
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO -> newFragment = CodiProductInfoFragment()
 
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL -> newFragment = CodiProductInfoAllFragment()
@@ -236,7 +234,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
 
             MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
-
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
