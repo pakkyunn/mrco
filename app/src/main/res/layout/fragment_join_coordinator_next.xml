@@ -7,7 +7,7 @@
     <data>
         <variable
             name="joinCoordinatorNextViewModel"
-            type="kr.co.lion.mrco_01.viewmodel.JoinCoordinatorNextViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.JoinCoordinatorNextViewModel" />
     </data>
 
     <LinearLayout

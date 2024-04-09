@@ -7,7 +7,7 @@
     <data>
         <variable
             name="loginViewModel"
-            type="kr.co.lion.mrco_01.viewmodel.LoginViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.LoginViewModel" />
     </data>
 
 <LinearLayout

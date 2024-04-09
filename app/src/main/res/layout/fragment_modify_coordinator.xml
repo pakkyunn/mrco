@@ -7,7 +7,7 @@
     <data>
         <variable
             name="modifyCoordinatorViewModel"
-            type="kr.co.lion.mrco_01.viewmodel.ModifyCoordinatorViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.ModifyCoordinatorViewModel" />
     </data>
 
 <LinearLayout

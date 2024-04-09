@@ -7,7 +7,7 @@
     <data>
         <variable
             name="joinViewModel"
-            type="kr.co.lion.mrco_01.viewmodel.JoinViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.JoinViewModel" />
     </data>
 
 <LinearLayout
