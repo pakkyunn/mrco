@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import kr.co.lion.team4.mrco.Activity.MainActivity
+import androidx.lifecycle.get
+import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBottomBinding
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel

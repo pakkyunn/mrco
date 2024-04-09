@@ -58,11 +58,13 @@
             android:text="@string/tab_item_accessory" />
     </com.google.android.material.tabs.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/frameLayout_codiProductInfo"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_CodiProductInfo"
+        android:name="kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAllFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"/>
+
 
 </LinearLayout>
 </layout>

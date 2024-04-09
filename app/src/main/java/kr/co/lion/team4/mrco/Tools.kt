@@ -55,16 +55,26 @@ enum class MainFragmentName(var str: String) {
 
     ADD_PRODUCT_FRAGMENT("AddProductFragment"), // 상품등록 화면
 
-    PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"), // 상품리뷰탭 화면
-}
+    // product.codi 패키지
+    FRAGMENT_CODI_PRODUCT_INFO("CodiPRoductInfo"), // 판매자 - 코디상품관리 탭 레이아웃 화면
+    FRAGMENT_CODI_PRODUCT_INFO_ALL("CodiProductInfoAllFragment"), // 판매자 - 코디상품관리 상품 전체 화면
+    FRAGMENT_CODI_PRODUCT_INFO_TOP("CodiProductInfoTopFragment"), // 판매자 - 코디사품관리 상의 화면
+    FRAGMENT_CODI_PRODUCT_INFO_BOTTOM("CodiProductInfoBottomFragment"), // 판매자 - 코디상품관리 하의 화면
+    FRAGMENT_CODI_PRODUCT_INFO_SHOES("CodiProductInfoShoesFragment"), // 판매자 - 코디상품관리 신발 화면
+    FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY("CodiProductInfoAccessoryFragment"), // 판매자 - 코디상품관리 악세서리 화면
 
-enum class FragmentName(var str: String){
-    FRAGMENT_CODI_PRODUCT_INFO("CodiProductInfoFragment"),
-    FRAGMENT_CODI_PRODUCT_INFO_ALL("CodiProductInfoAllFragment"),
-    FRAGMENT_CODI_PRODUCT_INFO_TOP("CodiProductInfoTopFragment"),
-    FRAGMENT_CODI_PRODUCT_INFO_BOTTOM("CodiProductInfoBottomFragment"),
-    FRAGMENT_CODI_PRODUCT_INFO_SHOES("CodiProductInfoShoesFragment"),
-    FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY("CodiProductInfoAccessoryFragment"),
+    // product.individual 패키지
+    FRAGMENT_INDIVIDUAL_PRODUCT_INFO("IndividualProductInfoFragment"), // 판매자 개별상품 정보 화면
+
+    // product.management 패키지
+    FRAGMENT_PRODUCT_MANAGEMENT("ProductManagementFragment"), // 등록상품관리 탭 레이아웃
+    FRAGMENT_CODI_PRODUCT_MANAGEMENT("CodiProductManagementFragment"), // 코디상품관리 탭 클릭시 나오는 리스트 화면
+    FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT("IndividualProductManagement"), // 개별상품관리 탭 클릭시 나오는 리스트 화면
+
+    FRAGMENT_CREATE_REVIEW_FRAGMENT("CreateReviewFragment"), // ProductReviewFragment - 리뷰작성 클릭시 나오는 화면
+    FRAGMENT_PRODUCT_REVIEW("ProductReviewFragment"), // 상품 리뷰 화면
+    FRAGMENT_REVIEW_CREATED("ReviewCreatedFragment"), // ProductReviewFragment - 작성한 리뷰 클릭시 나오는 화면
+    FRAGMENT_REVIEW("ReviewFragment"), // 작성한 리뷰
 
 }
 
@@ -83,4 +93,27 @@ enum class ProductSize(var ps: String){
 enum class ProductColor(var pc: String){
     COLOR_BLACK("Black"),
     COLOR_WHITE("White")
+}
+
+enum class CategoryId(var cate: String){
+    LOREM("Lorem")
+}
+
+enum class CodiMbti(var mbti: String){
+    ENFP("ENFP"),
+    ENFJ("ENFJ"),
+    ENTJ("ENTJ"),
+    ENTP("ENTP"),
+    ESFP("ESFP"),
+    ESFJ("ESFJ"),
+    ESTP("ESTP"),
+    ESTJ("ESTJ"),
+    INFP("INFP"),
+    INFJ("INFJ"),
+    INTP("INTP"),
+    INTJ("INTJ"),
+    ISFP("ISFP"),
+    ISFJ("ISFJ"),
+    ISTP("ISTP"),
+    ISTJ("ISTJ")
 }

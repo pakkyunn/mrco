@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -26,6 +27,9 @@ import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderHistoryFragment
 import kr.co.lion.team4.mrco.fragment.product.ProductReviewFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoFragment
+import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoTopFragment
+import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -193,8 +197,6 @@ class MainActivity : AppCompatActivity() {
 
             // 판매자 - 코디 상품등록 화면
             MainFragmentName.ADD_PRODUCT_FRAGMENT -> newFragment = AddProductFragment()
-
-            MainFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.

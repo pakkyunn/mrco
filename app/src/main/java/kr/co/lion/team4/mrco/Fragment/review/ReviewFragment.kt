@@ -1,4 +1,3 @@
-/*
 package kr.co.lion.team4.mrco.fragment.review
 
 import android.os.Bundle
@@ -8,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Recycler
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
@@ -28,4 +29,3 @@ class ReviewFragment : Fragment() {
         return binding.root
     }
 }
-*/
