@@ -16,15 +16,35 @@
         android:transitionGroup="true"
         android:background="@color/material_dynamic_neutral90">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarProduntQnaList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="상품 문의 내역"
+            app:titleCentered="true"
+            app:subtitleTextColor="#000000" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_qna_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarMain"
+            app:tabIndicatorColor="#000000"
             app:tabIndicatorFullWidth="true"
-            android:background="@color/white">
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextColor="#878787">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_qna_list_waiting"
