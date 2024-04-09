@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
@@ -18,6 +21,8 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentOrderHistoryBinding
 import kr.co.lion.team4.mrco.databinding.ItemOrderhistoryItemBinding
 import kr.co.lion.team4.mrco.databinding.ItemOrderhistoryProductBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 /* (구매자) 주문 내역 화면 */
 class OrderHistoryFragment : Fragment() {
@@ -39,8 +44,82 @@ class OrderHistoryFragment : Fragment() {
 
         // 주문 내역 목록 리사이클러뷰
         settingOrderHistoryRecyclerView()
+        settingOrderHistoryPeriodButtonClickListener()
 
         return fragmentOrderHistoryBinding.root
+    }
+
+    // 조회기간 버튼 클릭 이벤트
+    fun settingOrderHistoryPeriodButtonClickListener(){
+        fragmentOrderHistoryBinding.apply {
+            // 조회 기간 1개월
+            buttonOrderHistoryOneMonth.setOnClickListener {
+                settingOrderHistoryPeriod(R.id.button_order_history_one_month)
+            }
+            buttonOrderHistoryThreeMonths.setOnClickListener {
+                settingOrderHistoryPeriod(R.id.button_order_history_three_months)
+            }
+            buttonOrderHistorySixMonths.setOnClickListener {
+                settingOrderHistoryPeriod(R.id.button_order_history_six_months)
+            }
+            buttonOrderHistorySetPeriod.setOnClickListener {
+                // 날짜는 최대 오늘까지 선택할 수 있도록 선택 가능한 기간 설정
+                val calendarConstraints = CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now()).build()
+                val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
+                    .setTitleText("조회기간을 설정해주세요")
+                    .setCalendarConstraints(calendarConstraints)
+                    .build()
+                dateRangePicker.show(mainActivity.supportFragmentManager, "orderHistoryPeriod")
+                dateRangePicker.addOnPositiveButtonClickListener {
+                    // 시작일
+                    orderHistoryViewModel?.periodStart?.value = getDateFromLongValue(it.first)
+                    // 종료일
+                    orderHistoryViewModel?.periodEnd?.value = getDateFromLongValue(it.second)
+                }
+
+                // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
+            }
+        }
+    }
+
+    // dateRangePicker에서 선택된 날짜의 Long 값을 날짜로 변환
+    fun getDateFromLongValue(date: Long) : String{
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = date
+        val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+
+        return date
+    }
+
+    // 현재 날짜로부터 1개월, 3개월, 6개월 조회 기간을 설정
+    fun settingOrderHistoryPeriod(periodType: Int){
+        val calendar = Calendar.getInstance()
+        calendar.time = Date()
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        // 종료일 (현재)
+        orderHistoryViewModel.periodEnd.value = simpleDateFormat.format(calendar.time)
+
+        when(periodType){
+            // 조회기간 1개월
+            R.id.button_order_history_one_month -> {
+                calendar.add(Calendar.MONTH, -1)
+                // 1개월 전의 날짜로 설정
+                orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
+            }
+            // 조회기간 3개월
+            R.id.button_order_history_three_months -> {
+                calendar.add(Calendar.MONTH, -3)
+                // 3개월 전의 날짜로 설정
+                orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
+            }
+            // 조회기간 6개월
+            R.id.button_order_history_six_months -> {
+                calendar.add(Calendar.MONTH, -6)
+                // 6개월 전의 날짜로 설정
+                orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
+            }
+        }
+        // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
     }
 
     fun settingOrderHistoryRecyclerView(){
