@@ -16,6 +16,18 @@
         tools:context=".fragment.order.OrderHistoryFragment"
         android:transitionGroup="true">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarOrderHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:subtitleTextColor="#000000"
+            app:title="주문/배송 조회"
+            app:titleCentered="true" />
+
         <com.google.android.material.button.MaterialButtonToggleGroup
             android:id="@+id/togglebutton_order_history_period"
             android:layout_width="match_parent"
