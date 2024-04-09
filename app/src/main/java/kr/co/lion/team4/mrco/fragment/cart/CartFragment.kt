@@ -34,8 +34,6 @@ class CartFragment : Fragment() {
         mainActivity.removeBottomSheet()
         toolbarSetting()
 
-        mainActivity.removeBottomSheet() // 하단 메뉴 제거
-
         settingCartProductsRecyclerView()
         checkOutProducts()
 
