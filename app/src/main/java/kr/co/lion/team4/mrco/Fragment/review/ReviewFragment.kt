@@ -9,12 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
+import kr.co.lion.team4.mrco.databinding.FragmentReviewBinding
 import kr.co.lion.team4.mrco.viewmodel.ReviewViewModel
 
 class ReviewFragment : Fragment() {
 
-    lateinit var binding: FragmentProductReviewBinding
+    lateinit var binding: FragmentReviewBinding
     lateinit var viewModel: ReviewViewModel
     lateinit var mainActivity: MainActivity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
