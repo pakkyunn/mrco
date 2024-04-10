@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="userMyPageViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.mypage.UserMyPageViewModel" />
@@ -21,44 +22,57 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageViewUserMyPage"
+            <LinearLayout
+                android:id="@+id/layoutProfileUserMyPage"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@android:drawable/gallery_thumb" />
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="64dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewProfileUserMyPage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/dummy_image" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
 
             <Button
                 android:id="@+id/iconButtonImageUserMyPage"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginStart="96dp"
+                android:layout_marginTop="96dp"
+                android:insetLeft="4dp"
+                android:insetRight="4dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
                 app:icon="@drawable/add_circle_24px"
-                app:iconTint="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/imageViewUserMyPage"
-                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
+                app:iconSize="40dp"
+                app:iconTint="#8F000000"
+                app:layout_constraintStart_toStartOf="@+id/layoutProfileUserMyPage"
+                app:layout_constraintTop_toTopOf="@+id/layoutProfileUserMyPage"
+                app:rippleColor="@color/popup_pressed_color" />
 
             <TextView
                 android:id="@+id/textViewNicknameUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:text="@{userMyPageViewModel.textViewNicknameUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
-                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage"
+                app:layout_constraintStart_toEndOf="@+id/layoutProfileUserMyPage"
+                app:layout_constraintTop_toTopOf="@+id/layoutProfileUserMyPage"
                 tools:text="닉네임" />
 
             <TextView
@@ -69,7 +83,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@{userMyPageViewModel.textViewGenderUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
+                app:layout_constraintStart_toEndOf="@+id/layoutProfileUserMyPage"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage"
                 tools:text="성별" />
 
@@ -81,7 +95,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@{userMyPageViewModel.textViewMbtiUserMyPage}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
+                app:layout_constraintStart_toEndOf="@+id/layoutProfileUserMyPage"
                 app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage"
                 tools:text="MBTI" />
 
@@ -92,10 +106,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
                 app:icon="@drawable/settings_24px"
-                app:iconTint="@color/black"
+                app:iconSize="40dp"
+                app:iconTint="#8F000000"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="@color/popup_pressed_color" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
