@@ -41,7 +41,7 @@ class ProductReviewViewModel: ViewModel() {
 
 
     // 성별을 셋팅하는 메서드
-    fun settingReviewType(reviewType:ReviewType){
+    /*fun settingReviewType(reviewType:ReviewType){
         // 성별로 분기한다.
         when(reviewType){
             ReviewType.SyleReview -> {
@@ -51,13 +51,13 @@ class ProductReviewViewModel: ViewModel() {
                 toggleGroupProductReview.value = R.id.toggleButtonProductReview2
             }
         }
-    }
+    }*/
 
     // 성별값을 반환하는 메서드
-    fun gettinggReviewType():ReviewType = when(toggleGroupProductReview.value){
+    /*fun gettinggReviewType():ReviewType = when(toggleGroupProductReview.value){
         R.id.toggleButtonProductReview1 -> ReviewType.MALE
         else -> ReviewType.FEMALE
-    }
+    }*/
 
 
 

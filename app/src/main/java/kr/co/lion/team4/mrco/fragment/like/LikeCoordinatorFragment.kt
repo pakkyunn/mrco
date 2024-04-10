@@ -99,7 +99,7 @@ class LikeCoordinatorFragment : Fragment() {
         }
     }
 
-    // 인기 코디네이터 리사이클러 뷰 어뎁터
+    // 리사이클러 뷰 어뎁터
     inner class LikeCoordinatorRecyclerViewAdapter: RecyclerView.Adapter<LikeCoordinatorRecyclerViewAdapter.LikeCorrdinatorViewHolder>(){
         inner class LikeCorrdinatorViewHolder(rowLikeCoordinatorBinding: RowLikeCoordinatorBinding): RecyclerView.ViewHolder(rowLikeCoordinatorBinding.root){
             val rowLikeCoordinatorBinding: RowLikeCoordinatorBinding

@@ -152,7 +152,6 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview1"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -194,7 +193,6 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview2"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -236,7 +234,6 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@={productReviewViewModel.progressBarRatingOptionProductReview3"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -337,8 +334,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:selectionRequired="true"
-            app:singleSelection="true"
-            android:checkedButtonId="@={productReviewViewModel.toggleGroupProductReview}">
+            app:singleSelection="true">
+            <!--android:checkedButtonId="@={productReviewViewModel.toggleGroupProductReview}"-->
 
             <Button
                 android:id="@+id/toggleButtonProductReview1"

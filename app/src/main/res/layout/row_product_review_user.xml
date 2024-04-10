@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+<!--    <data>
         <variable
             name="rowProductReviewViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.product.RowProductReviewViewModel" />
-    </data>
+    </data>-->
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.Material3.CardView.Outlined"
