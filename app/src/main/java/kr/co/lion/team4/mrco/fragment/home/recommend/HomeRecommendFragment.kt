@@ -85,7 +85,7 @@ class HomeRecommendFragment : Fragment() {
         }
     }
 
-    // 홈(추천) - 신규 코디 리사이클러 뷰 설정
+    // 홈(추천) - 배너 리사이클러 뷰 설정
     fun settingRecyclerViewHomeRecommendBanner() {
         fragmentHomeRecommendBinding.apply {
             homeRecommendBanner.apply {

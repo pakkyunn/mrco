@@ -44,9 +44,9 @@
                         android:layout_height="wrap_content">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/product_image_recycler"
+                            android:id="@+id/recyclerViewProductBanner"
                             android:layout_width="match_parent"
-                            android:layout_height="400dp"
+                            android:layout_height="480dp"
                             android:clipChildren="false"
                             android:clipToPadding="false"
                             android:orientation="horizontal"
@@ -65,7 +65,7 @@
                             android:textColor="#1969B2"
                             android:textSize="16dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/product_image_recycler" />
+                            app:layout_constraintTop_toBottomOf="@id/recyclerViewProductBanner" />
 
                         <ImageView
                             android:id="@+id/product_stylist_icon"
@@ -103,7 +103,7 @@
                             android:layout_marginEnd="16dp"
                             android:src="@drawable/favorite_24"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/product_image_recycler"
+                            app:layout_constraintTop_toBottomOf="@id/recyclerViewProductBanner"
                             app:tint="#FB0006" />
 
                         <TextView
