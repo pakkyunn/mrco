@@ -14,14 +14,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="30dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="30dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/buttonMbtiProductMainMBTI"
@@ -31,6 +31,7 @@
                     android:text="MBTI"
                     android:textColor="#1049AE"
                     android:textSize="20dp"
+                    android:theme="@style/Basic_Font_Theme"
                     app:icon="@drawable/arrow_drop_down_24px"
                     app:iconGravity="end"
                     app:iconTint="#1049AE"
@@ -46,6 +47,7 @@
                     android:text="성별"
                     android:textColor="#1049AE"
                     android:textSize="20dp"
+                    android:theme="@style/Basic_Font_Theme"
                     app:icon="@drawable/arrow_drop_down_24px"
                     app:iconGravity="end"
                     app:iconTint="#1049AE"
@@ -55,22 +57,31 @@
 
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#F1F1F1" />
+
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
                 android:text="ISFP 에게 잘 어울리는 코디"
                 android:textColor="#000000"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
-            android:background="?android:attr/listDivider" />
+            android:background="#F1F1F1" />
 
         <LinearLayout
             android:layout_width="match_parent"
