@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -322,5 +323,14 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
+    }
+
+    // ProductActivity 실행
+    fun startProductActivity(){
+        // ProductActivity 실행하고 현재 Acrivity는 종료한다.
+        val productIntent = Intent(this, ProductActivity::class.java)
+        startActivity(productIntent)
+
+        finish()
     }
 }

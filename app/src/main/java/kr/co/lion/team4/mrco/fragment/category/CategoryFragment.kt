@@ -172,8 +172,8 @@ class CategoryFragment : Fragment() {
             textViewMbtiCategory.apply {
                 setOnClickListener {
                     resetBackground()
-                    setBackgroundColor(Color.BLACK)
-                    setTextColor(Color.WHITE)
+                    setBackgroundColor(Color.parseColor("#80CDCDCD"))
+                    setTextColor(Color.BLACK)
                     checkMbtiCategory = true
                     settingRecyclerViewCategory()
                     fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
@@ -183,8 +183,8 @@ class CategoryFragment : Fragment() {
             textViewTpoCategory.apply {
                 setOnClickListener {
                     resetBackground()
-                    setBackgroundColor(Color.BLACK)
-                    setTextColor(Color.WHITE)
+                    setBackgroundColor(Color.parseColor("#80CDCDCD"))
+                    setTextColor(Color.BLACK)
                     checkTpoCategory = true
                     settingRecyclerViewCategory()
                     fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
@@ -195,8 +195,8 @@ class CategoryFragment : Fragment() {
             textViewSeasonCategory.apply {
                 setOnClickListener {
                     resetBackground()
-                    setBackgroundColor(Color.BLACK)
-                    setTextColor(Color.WHITE)
+                    setBackgroundColor(Color.parseColor("#80CDCDCD"))
+                    setTextColor(Color.BLACK)
                     checkSeasonCategory = true
                     settingRecyclerViewCategory()
                     fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
@@ -206,8 +206,8 @@ class CategoryFragment : Fragment() {
             textViewMoodCategory.apply {
                 setOnClickListener {
                     resetBackground()
-                    setBackgroundColor(Color.BLACK)
-                    setTextColor(Color.WHITE)
+                    setBackgroundColor(Color.parseColor("#80CDCDCD"))
+                    setTextColor(Color.BLACK)
                     checkMoodCategory = true
                     settingRecyclerViewCategory()
                     fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
@@ -217,8 +217,8 @@ class CategoryFragment : Fragment() {
             textViewAllCategory.apply {
                 setOnClickListener {
                     resetBackground()
-                    setBackgroundColor(Color.BLACK)
-                    setTextColor(Color.WHITE)
+                    setBackgroundColor(Color.parseColor("#80CDCDCD"))
+                    setTextColor(Color.BLACK)
                     checkAllCategory = true
                     settingRecyclerViewCategory()
                     fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
@@ -231,15 +231,15 @@ class CategoryFragment : Fragment() {
     fun resetBackground() {
         fragmentCategoryBinding.apply {
             textViewMbtiCategory.setBackgroundColor(Color.WHITE)
-            textViewMbtiCategory.setTextColor(Color.BLACK)
+            textViewMbtiCategory.setTextColor(Color.parseColor("#656565"))
             textViewTpoCategory.setBackgroundColor(Color.WHITE)
-            textViewTpoCategory.setTextColor(Color.BLACK)
+            textViewTpoCategory.setTextColor(Color.parseColor("#656565"))
             textViewSeasonCategory.setBackgroundColor(Color.WHITE)
-            textViewSeasonCategory.setTextColor(Color.BLACK)
+            textViewSeasonCategory.setTextColor(Color.parseColor("#656565"))
             textViewMoodCategory.setBackgroundColor(Color.WHITE)
-            textViewMoodCategory.setTextColor(Color.BLACK)
+            textViewMoodCategory.setTextColor(Color.parseColor("#656565"))
             textViewAllCategory.setBackgroundColor(Color.WHITE)
-            textViewAllCategory.setTextColor(Color.BLACK)
+            textViewAllCategory.setTextColor(Color.parseColor("#656565"))
 
             checkMbtiCategory = false
             checkTpoCategory = false

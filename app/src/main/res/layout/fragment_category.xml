@@ -39,6 +39,10 @@
                         android:layout_height="56dp"
                         android:layout_marginBottom="8dp"
                         android:hint="카테고리 검색"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:boxCornerRadiusTopStart="30dp"
                         app:endIconDrawable="@drawable/search_24px"
                         app:endIconMode="custom">
 
@@ -108,10 +112,10 @@
                             android:id="@+id/textViewMbtiCategory"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
-                            android:background="#000000"
+                            android:background="#80CDCDCD"
                             android:gravity="center"
                             android:text="MBTI"
-                            android:textColor="#FFFFFF"
+                            android:textColor="@color/black"
                             android:textSize="20dp"
                             android:theme="@style/Basic_Font_Theme" />
 
@@ -128,7 +132,7 @@
                             android:clickable="true"
                             android:gravity="center"
                             android:text="TPO"
-                            android:textColor="@color/black"
+                            android:textColor="#656565"
                             android:textSize="20dp"
                             android:theme="@style/Basic_Font_Theme" />
 
@@ -145,7 +149,7 @@
                             android:clickable="true"
                             android:gravity="center"
                             android:text="SEASON"
-                            android:textColor="@color/black"
+                            android:textColor="#656565"
                             android:textSize="20dp"
                             android:theme="@style/Basic_Font_Theme" />
 
@@ -162,7 +166,7 @@
                             android:clickable="true"
                             android:gravity="center"
                             android:text="MOOD"
-                            android:textColor="@color/black"
+                            android:textColor="#656565"
                             android:textSize="20dp"
                             android:theme="@style/Basic_Font_Theme" />
 
@@ -179,7 +183,7 @@
                             android:clickable="true"
                             android:gravity="center"
                             android:text="ALL"
-                            android:textColor="@color/black"
+                            android:textColor="#656565"
                             android:textSize="20dp"
                             android:theme="@style/Basic_Font_Theme" />
 
@@ -192,7 +196,7 @@
 
                     <View
                         android:id="@+id/divider20"
-                        android:layout_width="1dp"
+                        android:layout_width="0.5dp"
                         android:layout_height="match_parent"
                         android:background="?android:attr/listDivider" />
 
@@ -201,6 +205,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.5"
+                        android:background="#80DADADA"
                         android:padding="0dp" />
 
                 </LinearLayout>

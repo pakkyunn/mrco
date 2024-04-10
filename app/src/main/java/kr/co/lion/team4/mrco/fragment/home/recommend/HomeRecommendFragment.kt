@@ -67,7 +67,7 @@ class HomeRecommendFragment : Fragment() {
                     when (it.itemId) {
                         // 검색 클릭 시
                         R.id.home_toolbar_search -> {
-
+                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
                         }
                         // 알람 클릭 시
                         R.id.home_toolbar_notification -> {
@@ -227,7 +227,9 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: HomeRecommendViewHolder, position: Int) {
-
+            holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
+                mainActivity.startProductActivity()
+            }
         }
     }
 
@@ -267,7 +269,9 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
-
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail.setOnClickListener {
+                mainActivity.startProductActivity()
+            }
         }
     }
 }
