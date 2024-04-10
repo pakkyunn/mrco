@@ -86,19 +86,18 @@ class ProductActivity : AppCompatActivity() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 8
         }
 
         override fun onBindViewHolder(holder: ProductBannerViewHolder, position: Int) {
-            holder.rowProductBannerBinding.textViewBannerPage.text = "${position+1}/6"
+            holder.rowProductBannerBinding.textViewBannerPage.text = "${position+1}/8"
 
             // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 5) {
+            val imageResource = when (position % 4) {
                 0 -> R.drawable.iu_image2
-                1 -> R.drawable.iu_image3
-                2 -> R.drawable.iu_image4
-                3 -> R.drawable.iu_image5
-                else -> R.drawable.iu_image
+                1 -> R.drawable.iu_image6
+                2 -> R.drawable.iu_image3
+                else -> R.drawable.iu_image7
             }
             holder.rowProductBannerBinding.constraintLayout.setBackgroundResource(imageResource)
         }
