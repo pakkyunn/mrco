@@ -21,6 +21,9 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        // 하단 바 제거
+        mainActivity.removeBottomSheet()
+
         settingButtonLoginJoin()
         settingButtonLoginSubmit()
 
@@ -52,8 +55,7 @@ class LoginFragment : Fragment() {
 
         //테스트 용 회원정보 수정 화면으로 이동
         fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
-            mainActivity.replaceFragment(MainFragmentName.MODIFY_USER_FRAGMENT, true, true, null )
-
+            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null )
         }
     }
 

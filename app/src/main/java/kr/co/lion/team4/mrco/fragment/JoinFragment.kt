@@ -17,18 +17,32 @@ class JoinFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentJoinBinding = FragmentJoinBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        // 툴바, 하단 바 세팅
+        mainActivity.removeBottomSheet()
+        settingToolbar()
+
         settingButtonJoinSubmit()
 
         return fragmentJoinBinding.root
+    }
+
+    // 툴바 설정
+    fun settingToolbar() {
+        fragmentJoinBinding.apply {
+            toolbarJoin.apply {
+                // 네비게이션
+                setNavigationIcon(R.drawable.arrow_back_24px)
+                setNavigationOnClickListener {
+                    backProcesss()
+                }
+            }
+        }
     }
 
     fun settingButtonJoinSubmit(){
@@ -37,5 +51,8 @@ class JoinFragment : Fragment() {
         }
     }
 
-
+    // 뒤로가기 처리
+    fun backProcesss(){
+        mainActivity.removeFragment(MainFragmentName.JOIN_FRAGMENT)
+    }
 }

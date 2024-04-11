@@ -14,10 +14,7 @@ class ModifyCoordinatorFragment : Fragment() {
     lateinit var fragmentModifyCoordinatorBinding: FragmentModifyCoordinatorBinding
     lateinit var mainActivity: MainActivity
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentModifyCoordinatorBinding = FragmentModifyCoordinatorBinding.inflate(inflater)

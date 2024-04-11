@@ -18,12 +18,15 @@
     android:transitionGroup="true"
     tools:context=".fragment.JoinFragment">
 
-    <TextView
-        android:id="@+id/textView2"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarJoin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MRCO 회원 가입"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:background="@color/white"
+        android:backgroundTint="#FFFFFF"
+        app:title="MRCO 회원가입"
+        app:titleCentered="true"
+        app:titleTextColor="@color/black" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -61,14 +64,15 @@
 
                 <Button
                     android:id="@+id/buttonJoinCheckId"
-                    style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
+                    android:backgroundTint="#102672"
                     android:gravity="center_vertical|end"
                     android:minHeight="68dip"
                     android:text="중복확인"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -223,13 +227,15 @@
 
             <Button
                 android:id="@+id/buttonJoinSubmit"
-                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="@color/black"
                 android:minHeight="68dip"
                 android:text="회원가입 완료"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:cornerRadius="10dp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

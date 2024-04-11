@@ -24,6 +24,9 @@ class JoinCoordinatorFragment : Fragment() {
         fragmentJoinCoordinatorBinding = FragmentJoinCoordinatorBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
+        // 하단 바 제거
+        mainActivity.removeBottomSheet()
+
         settingButtonJoinCoordinatorNext()
 
         return fragmentJoinCoordinatorBinding.root

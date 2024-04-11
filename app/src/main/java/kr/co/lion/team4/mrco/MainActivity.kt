@@ -77,9 +77,12 @@ class MainActivity : AppCompatActivity() {
         // 하단 바 설정(이동 관련)
         bottomSheetSetting()
 
+        // 로그인부터 시작 - 테스트
+        replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
+
         // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
         // 탭으로 화면 이동 가능
-        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
         // replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
         // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)

@@ -18,12 +18,16 @@
     android:transitionGroup="true"
     tools:context=".fragment.JoinFragment">
 
-    <TextView
-        android:id="@+id/textView2"
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarModifyUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MRCO 회원정보 수정"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:background="@color/white"
+        android:backgroundTint="#FFFFFF"
+        app:title="MRCO 회원정보 수정"
+        app:titleCentered="true"
+        app:titleTextColor="@color/black" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -147,10 +151,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
+                    android:backgroundTint="#102672"
                     android:gravity="center_vertical|end"
                     android:minHeight="68dip"
                     android:text="인증요청"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -202,14 +208,16 @@
 
                 <Button
                     android:id="@+id/buttonModifyUserSearchAddress"
-                    style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="0dp"
+                    android:backgroundTint="#102672"
                     android:gravity="center_vertical|end"
                     android:minHeight="68dip"
                     android:text="주소검색"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
+
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -368,9 +376,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:backgroundTint="#000000"
+                android:padding="12dp"
                 android:minHeight="68dip"
                 android:text="수정 완료"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

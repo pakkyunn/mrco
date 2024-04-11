@@ -64,8 +64,14 @@ class UserMyPageFragment : Fragment() {
 
             // 로그아웃
             textViewMenuUserMyPage5.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, true, null)
+                mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
             }
+
+            // 내 정보 변경
+            iconButtonEditUserMyPage.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.MODIFY_USER_FRAGMENT, true, true, null)
+            }
+
         }
     }
 }
