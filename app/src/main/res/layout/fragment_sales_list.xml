@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
+
     <data>
         <variable
             name="salesListViewModel"
@@ -13,17 +13,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragment.salesManagement.SalesListFragment"
-        android:transitionGroup="true">
+        android:transitionGroup="true"
+        tools:context=".fragment.salesManagement.SalesListFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:subtitleTextColor="#000000"
+            app:title="판매 내역"
+            app:titleCentered="true" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_sales_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tabIndicatorFullWidth="true">
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextColor="#878787">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/item_sales_list_waiting"
