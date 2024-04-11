@@ -75,11 +75,11 @@ class MainActivity : AppCompatActivity() {
         // 하단 바 설정(이동 관련)
         bottomSheetSetting()
 
-        // 로그인 화면 - 일단 로그인으로 적용
-        replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
+        // 로그인 화면
+        // replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
 
         // 홈 화면(추천)
-        // replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -294,8 +294,6 @@ class MainActivity : AppCompatActivity() {
         // ProductActivity 실행하고 현재 Acrivity는 종료한다.
         val productIntent = Intent(this, ProductActivity::class.java)
         startActivity(productIntent)
-
         finish()
-        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
     }
 }

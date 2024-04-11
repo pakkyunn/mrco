@@ -16,20 +16,31 @@ class JoinCoordinatorFragment : Fragment() {
     lateinit var fragmentJoinCoordinatorBinding: FragmentJoinCoordinatorBinding
     lateinit var mainActivity: MainActivity
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentJoinCoordinatorBinding = FragmentJoinCoordinatorBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        // 하단 바 제거
+        // 툴바 및 하단 바 세팅
         mainActivity.removeBottomSheet()
+        settingToolbar()
 
         settingButtonJoinCoordinatorNext()
 
         return fragmentJoinCoordinatorBinding.root
+    }
+
+    // 툴바 설정
+    fun settingToolbar() {
+        fragmentJoinCoordinatorBinding.apply {
+            toolbarJoinCoordinator.apply {
+                // 네비게이션
+                setNavigationIcon(R.drawable.arrow_back_24px)
+                setNavigationOnClickListener {
+                    backProcesss()
+                }
+            }
+        }
     }
 
     fun settingButtonJoinCoordinatorNext() {
@@ -40,5 +51,9 @@ class JoinCoordinatorFragment : Fragment() {
         }
     }
 
+    // 뒤로가기 처리
+    fun backProcesss(){
+        mainActivity.removeFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT)
+    }
 
 }

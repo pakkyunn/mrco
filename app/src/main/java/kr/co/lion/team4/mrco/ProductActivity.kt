@@ -108,7 +108,6 @@ class ProductActivity : AppCompatActivity() {
         // MainActivity 실행하고 현재 Acrivity는 종료한다.
         val mainIntent = Intent(this, MainActivity::class.java)
         startActivity(mainIntent)
-
         finish()
     }
 }

@@ -10,294 +10,312 @@
             type="kr.co.lion.team4.mrco.viewmodel.JoinCoordinatorViewModel" />
     </data>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:transitionGroup="true"
-    tools:context=".fragment.JoinFragment">
-
-    <TextView
-        android:id="@+id/textView2"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MRCO 코디네이터 등록 신청"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:transitionGroup="true"
+        tools:context=".fragment.JoinFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarJoinCoordinator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            app:title="MRCO 코디네이터 등록 신청"
+            app:titleCentered="true"
+            app:titleTextColor="@color/black" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="코디네이터 활동명(활동명 변경은 1회로 제한)"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="코디네이터 활동명 (활동명 변경은 1회로 제한)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="활동명: 10글자 이내"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textFieldJoinCoordinatorName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:inputType="text"
+                            android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorName}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/buttonJoinCoordinatorCheckName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="0dp"
+                        android:backgroundTint="#102672"
+                        android:gravity="center_vertical|end"
+                        android:minHeight="68dip"
+                        android:text="중복확인"
+                        android:textSize="16dp"
+                        app:cornerRadius="10dp" />
+                </LinearLayout>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="활동명: 10글자 이내"
+                    android:layout_marginTop="16dp"
+                    android:text="코디네이터 소개글"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="50자이내로 입력"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textFieldJoinCoordinatorName"
+                        android:id="@+id/textFieldJoinCoordinatorIntroText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:inputType="text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorName}"/>
+                        android:inputType="text|textMultiLine"
+                        android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorIntroText}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <Button
-                    android:id="@+id/buttonJoinCoordinatorCheckName"
-                    style="@style/Widget.MaterialComponents.Button"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="0dp"
-                    android:gravity="center_vertical|end"
-                    android:minHeight="68dip"
-                    android:text="중복확인"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:layout_marginTop="16dp"
+                    android:text="코디네이터 사진 등록"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageJoinCoordinatorPhoto"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/panorama_24px" />
+
+                <Button
+                    android:id="@+id/buttonJoinCoordinatorPhotoSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#102672"
+                    android:text="파일첨부"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="스타일리스트 자격증(자격증 미첨부 시 아래 포트폴리오 첨부 필수"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageJoinCoordinatorStylelistCerti"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/panorama_24px" />
+
+                <Button
+                    android:id="@+id/buttonJoinCoordinatorStylelistCertiSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#102672"
+                    android:text="파일첨부"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="자격증 번호 입력"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textFieldJoinCoordinatorStylelistCertiNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorStylelistCertiNumber}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="포트폴리오(자격증 첨부시 포트폴리오 첨부는 선택)"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonJoinCoordinatorPortfolioSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#102672"
+                    android:text="파일첨부"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="사업자 등록 증명"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/buttonJoinCoordinatorBizLicenseSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#102672"
+                    android:text="파일첨부"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
+
+                <ImageView
+                    android:id="@+id/imageJoinCoordinatorBizLicenseNumber"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/panorama_24px" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="사업자 등록번호 입력"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textFieldJoinCoordinatorBizLicenseNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorBizLicenseNumber}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="MBTI"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="MBTI"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textFieldJoinCoordinatorMBTI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:cursorVisible="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="text"
+                        android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorMBTI}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="고객노출 연락처 변경"
+                    android:textColor="@color/black"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="'-' 없이 숫자만"
+                    app:endIconMode="clear_text">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textFieldJoinCoordinatorCustomerRelationPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorCustomerRelationPhone}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <CheckBox
+                    android:id="@+id/checkBoxJoinCoordinatorConsent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="4dp"
+                    android:checked="@={joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent}"
+                    android:setOnCheckedChangeListener="@{ (view, ischecked) -> joinCoordinatorViewModel.toggleCoordinatorConsentCheckBox()}"
+                    android:text="약관 동의(필수)" />
+
+                <Button
+                    android:id="@+id/buttonJoinCoordinatorNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/black"
+                    android:minHeight="60dp"
+                    android:text="다음"
+                    android:textSize="16dp"
+                    app:cornerRadius="10dp" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="코디네이터 소개글"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="50자이내로 입력"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldJoinCoordinatorIntroText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text|textMultiLine"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorIntroText}"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="코디네이터 사진 등록"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <ImageView
-                android:id="@+id/imageJoinCoordinatorPhoto"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/panorama_24px" />
-
-            <Button
-                android:id="@+id/buttonJoinCoordinatorPhotoSubmit"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="68dip"
-                android:text="파일첨부"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="스타일리스트 자격증(자격증 미첨부 시 아래 포트폴리오 첨부 필수"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <ImageView
-                android:id="@+id/imageJoinCoordinatorStylelistCerti"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/panorama_24px" />
-
-            <Button
-                android:id="@+id/buttonJoinCoordinatorStylelistCertiSubmit"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="68dip"
-                android:text="파일첨부"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="자격증 번호 입력"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldJoinCoordinatorStylelistCertiNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorStylelistCertiNumber}"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="포트폴리오(자격증 첨부시 포트폴리오 첨부는 선택)"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <Button
-                android:id="@+id/buttonJoinCoordinatorPortfolioSubmit"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="68dip"
-                android:text="파일첨부"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="사업자 등록 증명"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <Button
-                android:id="@+id/buttonJoinCoordinatorBizLicenseSubmit"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="68dip"
-                android:text="파일첨부"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <ImageView
-                android:id="@+id/imageJoinCoordinatorBizLicenseNumber"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
-                app:srcCompat="@drawable/panorama_24px" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="사업자 등록번호 입력"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldJoinCoordinatorBizLicenseNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorBizLicenseNumber}"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="MBTI"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="MBTI"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldJoinCoordinatorMBTI"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:cursorVisible="false"
-                    android:focusableInTouchMode="false"
-                    android:inputType="text"
-                    android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorMBTI}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="고객노출 연락처 변경"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:hint="'-' 없이 숫자만"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldJoinCoordinatorCustomerRelationPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorCustomerRelationPhone}"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <CheckBox
-                android:id="@+id/checkBoxJoinCoordinatorConsent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_marginTop="4dp"
-                android:text="약관 동의(필수)"
-                android:checked="@={joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent}"
-                android:setOnCheckedChangeListener="@{ (view, ischecked) -> joinCoordinatorViewModel.toggleCoordinatorConsentCheckBox()}"/>
-
-            <Button
-                android:id="@+id/buttonJoinCoordinatorNext"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:minHeight="68dip"
-                android:text="다 음"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </layout>
