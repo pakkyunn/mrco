@@ -18,13 +18,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="260dp"
             android:layout_marginTop="15dp">
 
             <ImageView
                 android:id="@+id/imageViewUserMyPage"
                 android:layout_width="160dp"
-                android:layout_height="200dp"
+                android:layout_height="230dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
@@ -43,9 +43,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="홍길동"
-                android:textColor="@color/black"
-                android:textSize="28dp"
+                android:text="사용자이름(닉네임)"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
                 app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
@@ -55,10 +54,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="여성"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage" />
 
@@ -67,48 +65,47 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:text="ISFP"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
                 app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage" />
 
-            <Button
-                android:id="@+id/iconButtonEditUserMyPage"
-                style="?attr/materialIconButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="0dp"
-                app:icon="@drawable/my_setting_24px"
-                app:iconSize="35dp"
-                app:iconTint="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.938"
-                app:layout_constraintStart_toEndOf="@+id/textViewNicknameUserMyPage"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.064" />
+            <!--            <Button-->
+            <!--                android:id="@+id/iconButtonEditUserMyPage"-->
+            <!--                style="?attr/materialIconButtonStyle"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="0dp"-->
+            <!--                app:icon="@drawable/my_setting_24px"-->
+            <!--                app:iconSize="35dp"-->
+            <!--                app:iconTint="@color/black"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintHorizontal_bias="0.938"-->
+            <!--                app:layout_constraintStart_toEndOf="@+id/textViewNicknameUserMyPage"-->
+            <!--                app:layout_constraintTop_toTopOf="parent"-->
+            <!--                app:layout_constraintVertical_bias="0.064" />-->
 
             <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
+                android:id="@+id/iconButtonEditUserMyPage"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="#000000"
-                android:text="프로필 편집"
+                android:backgroundTint="#152F7E"
+                android:text="회원정보 수정"
                 android:textSize="16sp"
                 app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintHorizontal_bias="0.457"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/divider10"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="4dp"
             android:layout_marginTop="8dp"
             android:background="?android:attr/listDivider" />
 
@@ -117,10 +114,35 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabsMypage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ffffff"
+                android:elevation="1dp"
+                app:tabIndicatorColor="#000000"
+                app:tabIndicatorFullWidth="true"
+                app:tabSelectedTextColor="#000000"
+                app:tabRippleColor="#CCCCCC"
+                app:tabTextColor="#878787">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/my_page_tab_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="사용자" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/my_page_tab_coordinator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="코디네이터" />
+            </com.google.android.material.tabs.TabLayout>
+
             <TextView
                 android:id="@+id/textViewMenuUserMyPage1"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="65dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/contract_24px"
@@ -143,7 +165,7 @@
             <TextView
                 android:id="@+id/textViewMenuUserMyPage2"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="65dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/reviews_24px"
@@ -166,7 +188,7 @@
             <TextView
                 android:id="@+id/textViewMenuUserMyPage3"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="65dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/customer_service_24px"
@@ -189,7 +211,7 @@
             <TextView
                 android:id="@+id/textViewMenuUserMyPage4"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="65dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/assignment_ind_24px"
@@ -212,7 +234,7 @@
             <TextView
                 android:id="@+id/textViewMenuUserMyPage5"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="65dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/logout_24px"
@@ -223,23 +245,6 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="로그아웃"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/textViewMenuUserMyPage6"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:drawableStart="@drawable/outline_account_box_24"
-                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
-                android:drawablePadding="20dp"
-                android:drawableTint="@color/black"
-                android:gravity="center|start"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="코디네이터 마이페이지(임시)"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/black" />
 

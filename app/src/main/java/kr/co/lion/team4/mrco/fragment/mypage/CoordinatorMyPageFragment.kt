@@ -6,6 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
@@ -17,10 +21,7 @@ class CoordinatorMyPageFragment : Fragment() {
     lateinit var fragmentCoordinatorMyPageBinding: FragmentCoordinatorMyPageBinding
     lateinit var mainActivity: MainActivity
     lateinit var coordinatorMyPageViewModel: CoordinatorMyPageViewModel
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         fragmentCoordinatorMyPageBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_coordinator_my_page, container, false)
@@ -30,9 +31,52 @@ class CoordinatorMyPageFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        // 탭바 설정
+        settingTabs()
+        settingMypagetab()
+
+
         settingCoordiMyPageMenuClickEvent()
 
         return fragmentCoordinatorMyPageBinding.root
+    }
+
+
+    // 탭바 위치 설정
+    fun settingTabs(){
+        fragmentCoordinatorMyPageBinding.apply {
+            val tabLayout = tabsMypage
+            tabLayout.getTabAt(1)?.select()
+        }
+    }
+
+    // 탭 이동 설정
+    fun settingMypagetab() {
+        CoroutineScope(Dispatchers.Main).launch {
+            fragmentCoordinatorMyPageBinding.apply {
+                val tabLayout = tabsMypage
+
+                // 탭 선택 리스너 설정
+                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        // 선택된 탭이 첫 번째 탭인 경우
+                        if (tab?.position == 0) {
+                            mainActivity.removeFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT)
+                            mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                        } else {
+                            mainActivity.removeFragment(MainFragmentName.USER_MYPAGE_FRAGMENT)
+                            mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, false, false, null)
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                    }
+                })
+            }
+        }
     }
 
     fun settingCoordiMyPageMenuClickEvent(){
@@ -64,7 +108,18 @@ class CoordinatorMyPageFragment : Fragment() {
 
             // 매출/정산 관리
             textViewMenuCoordinatorMyPage6.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, true, true, null)
+            }
+
+            // 로그아웃
+            textViewMenuCoordinatorMyPage7.setOnClickListener {
+                // 임시
+                mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
+            }
+
+            // 코디네이터 정보 수정
+            iconButtonEditCoordinatorMyPage.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.MODIFY_COORDINATOR_FRAGMENT, true, true, null)
             }
         }
     }
