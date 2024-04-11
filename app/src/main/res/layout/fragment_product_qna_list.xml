@@ -39,7 +39,7 @@
             android:elevation="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarMain"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarProduntQnaList"
             app:tabIndicatorColor="#000000"
             app:tabIndicatorFullWidth="true"
             app:tabRippleColor="#CCCCCC"
