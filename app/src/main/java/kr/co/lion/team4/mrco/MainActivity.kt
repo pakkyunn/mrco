@@ -8,6 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
+import kr.co.lion.team4.mrco.fragment.JoinCoordinatorFragment
+import kr.co.lion.team4.mrco.fragment.JoinCoordinatorNextFragment
+import kr.co.lion.team4.mrco.fragment.JoinFragment
+import kr.co.lion.team4.mrco.fragment.LoginFragment
+import kr.co.lion.team4.mrco.fragment.ModifyCoordinatorFragment
+import kr.co.lion.team4.mrco.fragment.ModifyUserFragment
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.cart.CartFragment
 import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
@@ -239,6 +245,19 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
 
             MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
+
+            // 상민
+            MainFragmentName.LOGIN_FRAGMENT -> newFragment = LoginFragment()
+
+            MainFragmentName.JOIN_FRAGMENT -> newFragment = JoinFragment()
+
+            MainFragmentName.MODIFY_USER_FRAGMENT -> newFragment = ModifyUserFragment()
+
+            MainFragmentName.JOIN_COORDINATOR_FRAGMENT -> newFragment = JoinCoordinatorFragment()
+
+            MainFragmentName.JOIN_COORDINATOR_NEXT_FRAGMENT -> newFragment = JoinCoordinatorNextFragment()
+
+            MainFragmentName.MODIFY_COORDINATOR_FRAGMENT -> newFragment = ModifyCoordinatorFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
