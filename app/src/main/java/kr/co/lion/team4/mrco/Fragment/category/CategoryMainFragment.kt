@@ -28,7 +28,7 @@ class CategoryMainFragment : Fragment() {
 
         // 툴바
         toolbarSetting()
-        
+
         // 리사이클러 뷰
         settingRecyclerViewCategory()
 

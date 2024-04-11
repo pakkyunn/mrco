@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/category_toolbar_search"
-        android:icon="@drawable/search_24px"
-        android:title="검색"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/category_toolbar_shopping"
         android:icon="@drawable/outline_shopping_bag_24"
         android:title="장바구니"

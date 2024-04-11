@@ -18,6 +18,9 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:menu="@menu/menu_main_category_toolbar"
+            app:subtitle="MBTI"
+            app:subtitleCentered="true"
+            app:subtitleTextColor="@color/black"
             app:titleCentered="true"
             app:titleTextColor="#000000" />
 
@@ -28,16 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textViewCategoryMainTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="전체"
-                    android:textColor="@color/black"
-                    android:textSize="24dp"
-                    android:textStyle="bold" />
 
                 <HorizontalScrollView
                     android:layout_width="match_parent"
