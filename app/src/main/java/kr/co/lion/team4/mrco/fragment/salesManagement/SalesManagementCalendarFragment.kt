@@ -128,37 +128,35 @@ class SalesManagementCalendarFragment : Fragment() {
 
     // 상단 탭 선택 설정
     fun settingSalesManagementTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentSalesManagementCalendarBinding.apply {
-                val tabLayout = tabs
+        fragmentSalesManagementCalendarBinding.apply {
+            val tabLayout = tabs
 
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
-                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
-                        }
-                        else if (tab?.position == 1) {
-                            mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, true, null)
-                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
-                        }
-                        else {
-                            mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, true, null)
-                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
-                        }
+            // 탭 선택 리스너 설정
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    // 선택된 탭이 첫 번째 탭인 경우
+                    if (tab?.position == 0) {
+//                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
+//                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
                     }
+                    else if (tab?.position == 1) {
+                        mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, true, false, null)
+                        // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
+                    }
+                    else {
+                        mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, false, null)
+                        // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
+                    }
+                }
 
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    // Not implemented
+                }
 
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    // Not implemented
+                }
+            })
         }
     }
 

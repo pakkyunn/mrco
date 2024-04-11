@@ -25,7 +25,8 @@
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:subtitleTextColor="#000000" />
+            app:subtitleTextColor="#000000"
+            app:titleCentered="true" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
