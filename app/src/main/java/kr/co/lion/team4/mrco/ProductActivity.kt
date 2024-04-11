@@ -18,7 +18,7 @@ import kr.co.lion.team4.mrco.databinding.RowProductBannerBinding
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
 
 class ProductActivity : AppCompatActivity() {
-
+    // commit test
     lateinit var activityProductBinding: ActivityProductBinding
     lateinit var mainActivity: MainActivity
 
