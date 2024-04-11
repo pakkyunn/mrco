@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         tools:context=".fragment.productQna.ProductQnaListFragment"
         android:transitionGroup="true"
-        android:background="@color/material_dynamic_neutral90">
+        android:background="@color/white">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarProduntQnaList"
