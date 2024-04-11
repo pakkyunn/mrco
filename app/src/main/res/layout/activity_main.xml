@@ -21,12 +21,12 @@
             android:id="@+id/main_bottom_navi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:itemBackground="@color/white"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemBackground="@color/bottomSheetColor"
             app:itemIconTint="@color/bottom_navigation_selector_color"
             app:itemTextColor="@color/bottom_navigation_selector_color"
             app:labelVisibilityMode="labeled"
             app:layout_insetEdge="bottom"
-            app:itemActiveIndicatorStyle="@null"
             app:menu="@menu/menu_main_bottom_navi" />
 
     </LinearLayout>
