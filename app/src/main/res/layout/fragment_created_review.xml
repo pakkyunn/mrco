@@ -11,7 +11,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragment.review.CreateReviewFragment" >
+    tools:context=".fragment.review.CreateReviewFragment" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView_createdReview_reviewFragment"
-        android:name="kr.co.lion.team4.mrco.Fragment.review.ReviewFragment"
+        android:name="kr.co.lion.team4.mrco.fragment.review.ReviewFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

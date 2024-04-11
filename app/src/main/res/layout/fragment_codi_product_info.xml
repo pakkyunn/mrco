@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragment.product.codi.CodiProductInfoFragment">
+    tools:context=".fragment.product.codi.CodiProductInfoFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_product_info"
@@ -60,7 +60,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_CodiProductInfo"
-        android:name="kr.co.lion.team4.mrco.Fragment.product.codi.CodiProductInfoAllFragment"
+        android:name="kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAllFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"/>

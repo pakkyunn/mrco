@@ -13,21 +13,21 @@ class ProductReviewViewModel: ViewModel() {
     // 상품페이지 리뷰탭 평가항목1
     val textViewRatingOptionProductReview1 = MutableLiveData<String>()
     // 상품페이지 리뷰탭 평가항목1 프로그레스
-    val progressBarRatingOptionProductReview1 = MutableLiveData<Int>()
+    val progressBarRatingOptionProductReview1 = MutableLiveData<Int>(66)
     // 상품페이지 리뷰탭 평가항목1 비율
     val progressRatioRatingOptionProductReview1 = MutableLiveData<String>()
 
     // 상품페이지 리뷰탭 평가항목2
     val textViewRatingOptionProductReview2 = MutableLiveData<String>()
     // 상품페이지 리뷰탭 평가항목2 프로그레스
-    val progressBarRatingOptionProductReview2 = MutableLiveData<Int>()
+    val progressBarRatingOptionProductReview2 = MutableLiveData<Int>(26)
     // 상품페이지 리뷰탭 평가항목2 비율
     val progressRatioRatingOptionProductReview2 = MutableLiveData<String>()
 
     // 상품페이지 리뷰탭 평가항목3
     val textViewRatingOptionProductReview3 = MutableLiveData<String>()
     // 상품페이지 리뷰탭 평가항목3 프로그레스
-    val progressBarRatingOptionProductReview3 = MutableLiveData<Int>()
+    val progressBarRatingOptionProductReview3 = MutableLiveData<Int>(8)
     // 상품페이지 리뷰탭 평가항목3 비율
     val progressRatioRatingOptionProductReview3 = MutableLiveData<String>()
 

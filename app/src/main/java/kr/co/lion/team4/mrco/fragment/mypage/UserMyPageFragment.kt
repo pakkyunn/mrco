@@ -61,6 +61,11 @@ class UserMyPageFragment : Fragment() {
             textViewMenuUserMyPage5.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, true, true, null)
             }
+
+            // 로그아웃
+            textViewMenuUserMyPage5.setOnClickListener {
+                // mainActivity.replaceFragment(MainFragmentName.Tools로그인화면, false, true, null)
+            }
         }
     }
 }
