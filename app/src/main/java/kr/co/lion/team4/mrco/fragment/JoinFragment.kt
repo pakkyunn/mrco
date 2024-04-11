@@ -1,10 +1,12 @@
 package kr.co.lion.team4.mrco.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.snackbar.Snackbar
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.MainFragmentName
@@ -48,6 +50,11 @@ class JoinFragment : Fragment() {
     fun settingButtonJoinSubmit(){
         fragmentJoinBinding.buttonJoinSubmit.setOnClickListener {
             mainActivity.removeFragment(MainFragmentName.JOIN_FRAGMENT)
+            val joinSnackbar = Snackbar.make(it, "회원가입이 완료되었습니다", Snackbar.LENGTH_SHORT)
+            joinSnackbar.setTextColor(Color.WHITE)
+            joinSnackbar.setBackgroundTint(Color.parseColor("#757575"))
+            joinSnackbar.animationMode = Snackbar.ANIMATION_MODE_FADE
+            joinSnackbar.show()
         }
     }
 

@@ -26,8 +26,9 @@ class CategoryMainFragment : Fragment() {
         fragmentCategoryMainBinding = FragmentCategoryMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        // 툴바
+        // 툴바, 하단바, 탭 관련
         toolbarSetting()
+        settingBottomTabs()
 
         // 리사이클러 뷰
         settingRecyclerViewCategory()
@@ -44,6 +45,14 @@ class CategoryMainFragment : Fragment() {
                 backProcesss()
             }
             // setNavigationIcon(R.drawable.event_list_24px)
+        }
+    }
+
+    // 하단 바 홈으로 체크 표시 설정
+    fun settingBottomTabs() {
+        mainActivity.activityMainBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_category
+            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

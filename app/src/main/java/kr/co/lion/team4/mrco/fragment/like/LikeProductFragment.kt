@@ -44,9 +44,10 @@ class LikeProductFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
+        settingToolbar()
         settingTabs()
         settingLikeTab()
-        settingToolbar()
+        settingBottomTabs()
         mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
@@ -78,6 +79,14 @@ class LikeProductFragment : Fragment() {
                     true
                 }
             }
+        }
+    }
+
+    // 하단 바 홈으로 체크 표시 설정
+    fun settingBottomTabs() {
+        mainActivity.activityMainBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_like
+            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

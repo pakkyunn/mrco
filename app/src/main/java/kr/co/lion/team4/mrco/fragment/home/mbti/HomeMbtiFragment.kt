@@ -47,6 +47,7 @@ class HomeMbtiFragment : Fragment() {
         settingTabs()
         settingMainTab()
         settingToolbar()
+        settingBottomTabs()
         mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
@@ -143,6 +144,14 @@ class HomeMbtiFragment : Fragment() {
             homeMbtiContent2MoreButton.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
             }
+        }
+    }
+
+    // 하단 바 홈으로 체크 표시 설정
+    fun settingBottomTabs() {
+        mainActivity.activityMainBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_home
+            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

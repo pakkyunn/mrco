@@ -1,10 +1,12 @@
 package kr.co.lion.team4.mrco.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import kr.co.lion.team4.mrco.databinding.FragmentLoginBinding
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
@@ -52,7 +54,6 @@ class LoginFragment : Fragment() {
     }
 
     fun settingButtonLoginSubmit() {
-
         //테스트 용 회원정보 수정 화면으로 이동
         fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
             mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null )

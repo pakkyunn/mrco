@@ -52,6 +52,7 @@ class CoordinatorRankFragment : Fragment() {
         settingCoorditab()
         settingMainTab()
         settingToolbar()
+        settingBottomTabs()
         mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
@@ -83,6 +84,14 @@ class CoordinatorRankFragment : Fragment() {
                     true
                 }
             }
+        }
+    }
+
+    // 하단 바 홈으로 체크 표시 설정
+    fun settingBottomTabs() {
+        mainActivity.activityMainBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_home
+            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

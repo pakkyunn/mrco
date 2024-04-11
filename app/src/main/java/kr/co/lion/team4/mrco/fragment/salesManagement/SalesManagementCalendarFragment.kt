@@ -137,7 +137,8 @@ class SalesManagementCalendarFragment : Fragment() {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
                         // 선택된 탭이 첫 번째 탭인 경우
                         if (tab?.position == 0) {
-
+                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
+                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
                         }
                         else if (tab?.position == 1) {
                             mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, true, null)

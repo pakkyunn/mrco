@@ -96,7 +96,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         when(name){
-
             // 로그인, 회원가입(사용자, 코디네이터 신청)
             MainFragmentName.LOGIN_FRAGMENT -> newFragment = LoginFragment()
             MainFragmentName.JOIN_FRAGMENT -> newFragment = JoinFragment()
@@ -149,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
             MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT -> newFragment = CustomerInquiryFragment()
 
-
             // 상품 1:1문의 작성화면
             MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
 
@@ -172,32 +170,25 @@ class MainActivity : AppCompatActivity() {
             // 판매자 - 코디 상품등록 화면
             MainFragmentName.ADD_PRODUCT_FRAGMENT -> newFragment = AddProductFragment()
 
+            // 상품정보
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO -> newFragment = CodiProductInfoFragment()
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL -> newFragment = CodiProductInfoAllFragment()
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_TOP -> newFragment = CodiProductInfoTopFragment()
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM -> newFragment = CodiProductInfoBottomFragment()
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES -> newFragment = CodiProductInfoShoesFragment()
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY -> newFragment = CodiProductInfoAccessoryFragment()
 
             MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT -> newFragment = ProductManagementFragment()
-
-            MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT -> newFragment = IndividualProductManagementFragment()
-
             MainFragmentName.FRAGMENT_CODI_PRODUCT_MANAGEMENT -> newFragment = CodiProductMangementFragment()
 
-            MainFragmentName.FRAGMENT_REVIEW_CREATED -> newFragment = ReviewCreatedFragment()
-
-            MainFragmentName.FRAGMENT_PRODUCT_REVIEW -> newFragment = ProductReviewFragment()
-
-            MainFragmentName.FRAGMENT_CREATE_REVIEW_FRAGMENT -> newFragment = CreateReviewFragment()
-
+            MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT -> newFragment = IndividualProductManagementFragment()
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
 
+            // 리뷰 관련
+            MainFragmentName.FRAGMENT_PRODUCT_REVIEW -> newFragment = ProductReviewFragment()
+            MainFragmentName.FRAGMENT_CREATE_REVIEW_FRAGMENT -> newFragment = CreateReviewFragment()
+
+            MainFragmentName.FRAGMENT_REVIEW_CREATED -> newFragment = ReviewCreatedFragment()
             MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
         }
 

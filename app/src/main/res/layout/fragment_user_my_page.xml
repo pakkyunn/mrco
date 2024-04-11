@@ -226,6 +226,23 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/black" />
 
+            <TextView
+                android:id="@+id/textViewMenuUserMyPage6"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:drawableStart="@drawable/outline_account_box_24"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/black"
+                android:gravity="center|start"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="코디네이터 마이페이지(임시)"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
+
         </LinearLayout>
 
     </LinearLayout>

@@ -128,36 +128,35 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="성별"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/checkBoxGroupJoinGender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkBoxJoinMale"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="남자"
+                    android:layout_marginRight="10dp"
                     android:checked="@={joinViewModel.checkBoxJoinMale}"
-                    android:onClickListener="@{ (view) -> joinViewModel.toggleMaleCheckBox()}"/>
+                    android:onClickListener="@{ (view) -> joinViewModel.toggleMaleCheckBox()}"
+                    android:text="남성" />
 
                 <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/checkBoxJoinFemale"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="여자"
                     android:checked="@={joinViewModel.checkBoxJoinFemale}"
-                    android:onClickListener="@{ (view) -> joinViewModel.toggleFemaleCheckBox()}"/>
+                    android:onClickListener="@{ (view) -> joinViewModel.toggleFemaleCheckBox()}"
+                    android:text="여성" />
 
 
             </LinearLayout>
@@ -221,8 +220,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="코디네이터 신청은 마이 페이지-코디네이터 등록 신청 에서 가능합니다!" />
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="코디네이터 신청은 마이 페이지-코디네이터 등록 신청 에서 가능합니다!"
+                android:textColor="#0057A8"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
 
             <Button

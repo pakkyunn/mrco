@@ -67,6 +67,11 @@ class UserMyPageFragment : Fragment() {
                 mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
             }
 
+            // 테스트 코디네이터 마이페이지
+            textViewMenuUserMyPage6.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, true, true, null)
+            }
+
             // 내 정보 변경
             iconButtonEditUserMyPage.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.MODIFY_USER_FRAGMENT, true, true, null)
