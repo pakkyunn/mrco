@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // 지정한 Fragment를 보여주는 메서드
-    fun replaceFragment(name: MainFragmentName, addToBackStack: Boolean, isAnimate: Boolean, data: Bundle?){
+    fun replaceFragment(name: MainFragmentName, addToBackStack: Boolean, isAnimate: Boolean, data: Bundle?) {
 
         // SystemClock.sleep(50)
 

@@ -18,7 +18,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             app:menu="@menu/menu_main_category_toolbar"
-            app:subtitle="MBTI"
+            app:subtitle="MOOD"
             app:subtitleCentered="true"
             app:subtitleTextColor="@color/black"
             app:titleCentered="true"
