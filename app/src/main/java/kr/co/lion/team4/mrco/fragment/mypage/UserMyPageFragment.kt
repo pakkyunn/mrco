@@ -64,7 +64,7 @@ class UserMyPageFragment : Fragment() {
 
             // 로그아웃
             textViewMenuUserMyPage5.setOnClickListener {
-                // mainActivity.replaceFragment(MainFragmentName.Tools로그인화면, false, true, null)
+                mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, true, null)
             }
         }
     }
