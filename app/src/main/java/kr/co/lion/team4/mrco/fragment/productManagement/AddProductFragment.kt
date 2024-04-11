@@ -37,6 +37,8 @@ class AddProductFragment : Fragment() {
         mainActivity.removeBottomSheet() // 하단 메뉴 숨기기
         settingToolbarAddProduct()
 
+        settingCategoryClickEvent()
+
         settingAddProductPhotoRecyclerView()
         settingAddProductDetailRecyclerView()
 
@@ -48,6 +50,63 @@ class AddProductFragment : Fragment() {
         fragmentAddProductBinding.toolbarAddProduct.apply {
             setNavigationOnClickListener {
                 backProcess()
+            }
+        }
+    }
+
+    // 카테고리 클릭 이벤트 설정
+    fun settingCategoryClickEvent(){
+        showSubCategoryTPO()
+        showSubCategorySeason()
+        showSubCategoryMood()
+    }
+
+    // 카테고리 TPO 선택하면 하위 카테고리 보이게 표시
+    fun showSubCategoryTPO(){
+        fragmentAddProductBinding.apply {
+            chipAddProductTpo.setOnCheckedChangeListener { chip, isChecked ->
+                // 체크된 상태
+                if(isChecked){
+                    textviewAddProductSubCategory.visibility = View.VISIBLE
+                    chipgroupAddProductTpoSub.visibility = View.VISIBLE
+                }
+                // 체크 해제된 상태
+                else{
+                    textviewAddProductSubCategory.visibility = View.GONE
+                    chipgroupAddProductTpoSub.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    // 카테고리 SEASON 선택하면 하위 카테고리 보이게 표시
+    fun showSubCategorySeason(){
+        fragmentAddProductBinding.apply {
+            chipAddProductSeason.setOnCheckedChangeListener { chip, isChecked ->
+                // 체크된 상태
+                if(isChecked){
+                    textviewAddProductSubCategory.visibility = View.VISIBLE
+                    chipgroupAddProductSeasonSub.visibility = View.VISIBLE
+                }else{
+                    textviewAddProductSubCategory.visibility = View.GONE
+                    chipgroupAddProductSeasonSub.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    // 카테고리 MOOD 선택하면 하위 카테고리 보이게 표시
+    fun showSubCategoryMood(){
+        fragmentAddProductBinding.apply {
+            chipAddProductMood.setOnCheckedChangeListener { chip, isChecked ->
+                // 체크된 상태
+                if(isChecked){
+                    textviewAddProductSubCategory.visibility = View.VISIBLE
+                    chipgroupAddProductMoodSub.visibility = View.VISIBLE
+                }else{
+                    textviewAddProductSubCategory.visibility = View.GONE
+                    chipgroupAddProductMoodSub.visibility = View.GONE
+                }
             }
         }
     }
