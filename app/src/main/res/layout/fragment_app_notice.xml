@@ -29,33 +29,29 @@
             android:transitionGroup="true"
             tools:context=".fragment.appNotice.AppNoticeFragment">
 
-            <view
-                android:id="@+id/recyclerViewMain"
-                class="androidx.recyclerview.widget.RecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="10dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="385dp"
-                android:layout_marginBottom="705dp"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewAppNotice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewAppNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="180dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/textViewMainEmpty"
-                app:layout_constraintEnd_toEndOf="@+id/recyclerViewMain"
-                tools:srcCompat="@android:drawable/ic_menu_send" />
+                app:layout_constraintBottom_toTopOf="@+id/textViewEmptyAppNotice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/outline_notifications_24"
+                app:tint="#8F000000" />
 
             <TextView
-                android:id="@+id/textViewMainEmpty"
+                android:id="@+id/textViewEmptyAppNotice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="알림이 없습니다."
@@ -63,11 +59,11 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#8F000000"
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/recyclerViewMain"
-                app:layout_constraintEnd_toEndOf="@+id/recyclerViewMain"
+                app:layout_constraintBottom_toBottomOf="@+id/recyclerViewAppNotice"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerViewAppNotice"
                 app:layout_constraintHorizontal_bias="0.494"
-                app:layout_constraintStart_toStartOf="@+id/recyclerViewMain"
-                app:layout_constraintTop_toTopOf="@+id/recyclerViewMain"
+                app:layout_constraintStart_toStartOf="@+id/recyclerViewAppNotice"
+                app:layout_constraintTop_toTopOf="@+id/recyclerViewAppNotice"
                 app:layout_constraintVertical_bias="0.3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
