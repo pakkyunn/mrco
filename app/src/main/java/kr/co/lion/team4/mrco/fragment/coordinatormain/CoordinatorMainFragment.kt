@@ -1,18 +1,23 @@
 package kr.co.lion.team4.mrco.fragment.coordinatormain
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.api.Distribution.BucketOptions.Linear
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainBinding
+import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainItemBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorMainViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorMainViewModel
 
@@ -38,6 +43,9 @@ class CoordinatorMainFragment : Fragment() {
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
         mainActivity.removeBottomSheet()
+
+        // 팔로우/팔로잉 버튼
+        settingButton()
         
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorInfo()
@@ -55,6 +63,22 @@ class CoordinatorMainFragment : Fragment() {
             }
         }
     }
+    
+    // 팔로우/팔로잉 버튼 클릭 시
+    fun settingButton() {
+        fragmentCoordinatorMainBinding.buttonCoordinatorMainFollower.apply {
+            setOnClickListener {
+                val newTintList = if (text == "팔로우") {
+                    text = "팔로잉"
+                    ContextCompat.getColorStateList(context, R.color.buttonFollowing)
+                } else {
+                    text = "팔로우"
+                    ContextCompat.getColorStateList(context, R.color.buttonFollow)
+                }
+                backgroundTintList = newTintList
+            }
+        }
+    }
 
     // 코디네이터 메인 리사클러뷰 설정
     fun settingRecyclerViewCoordinatorInfo() {
@@ -62,20 +86,21 @@ class CoordinatorMainFragment : Fragment() {
             recyclerViewCoordinatorMain.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
                 adapter = CoordinatorMainRecyclerViewAdapter()
-                layoutManager = GridLayoutManager(mainActivity, 2)
+                // layoutManager = GridLayoutManager(mainActivity, 2)
+                layoutManager = LinearLayoutManager(mainActivity)
             }
         }
     }
 
     // 코디네이터 메인 리사이클러 뷰 어뎁터
     inner class CoordinatorMainRecyclerViewAdapter: RecyclerView.Adapter<CoordinatorMainRecyclerViewAdapter.CorrdinatorMainViewHolder>(){
-        inner class CorrdinatorMainViewHolder(rowCoordinatorMainBinding: RowCoordinatorMainBinding): RecyclerView.ViewHolder(rowCoordinatorMainBinding.root){
-            val rowCoordinatorMainBinding: RowCoordinatorMainBinding
+        inner class CorrdinatorMainViewHolder(rowCoordinatorMainItemBinding: RowCoordinatorMainItemBinding): RecyclerView.ViewHolder(rowCoordinatorMainItemBinding.root){
+            val rowCoordinatorMainItemBinding: RowCoordinatorMainItemBinding
 
             init {
-                this.rowCoordinatorMainBinding = rowCoordinatorMainBinding
+                this.rowCoordinatorMainItemBinding = rowCoordinatorMainItemBinding
 
-                this.rowCoordinatorMainBinding.root.layoutParams = ViewGroup.LayoutParams(
+                this.rowCoordinatorMainItemBinding.root.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
@@ -83,24 +108,32 @@ class CoordinatorMainFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CorrdinatorMainViewHolder {
-            val rowCoordinatorMainBinding = DataBindingUtil.inflate<RowCoordinatorMainBinding>(
-                layoutInflater, R.layout.row_coordinator_main, parent, false
+            val rowCoordinatorMainItemBinding = DataBindingUtil.inflate<RowCoordinatorMainItemBinding>(
+                layoutInflater, R.layout.row_coordinator_main_item, parent, false
             )
             val rowCoordinatorMainViewModel = RowCoordinatorMainViewModel()
-            rowCoordinatorMainBinding.rowCoordinatorMainViewModel = rowCoordinatorMainViewModel
-            rowCoordinatorMainBinding.lifecycleOwner = this@CoordinatorMainFragment
+            rowCoordinatorMainItemBinding.rowCoordinatorMainViewModel = rowCoordinatorMainViewModel
+            rowCoordinatorMainItemBinding.lifecycleOwner = this@CoordinatorMainFragment
 
-            val coordinatorMainViewHolder = CorrdinatorMainViewHolder(rowCoordinatorMainBinding)
+            val coordinatorMainViewHolder = CorrdinatorMainViewHolder(rowCoordinatorMainItemBinding)
 
             return coordinatorMainViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 8
+            return 6
         }
 
         override fun onBindViewHolder(holder: CorrdinatorMainViewHolder, position: Int) {
-
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 5) {
+                0 -> R.drawable.iu_image7
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image6
+                3 -> R.drawable.iu_image2
+                else -> R.drawable.iu_image4
+            }
+            holder.rowCoordinatorMainItemBinding.itemCoordinatorMainProductThumbnail.setImageResource(imageResource)
         }
     }
 

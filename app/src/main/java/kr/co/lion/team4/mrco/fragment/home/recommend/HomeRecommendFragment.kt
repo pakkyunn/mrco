@@ -231,6 +231,9 @@ class HomeRecommendFragment : Fragment() {
             holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
                 mainActivity.startProductActivity()
             }
+            holder.rowHomeRecommendBinding.itemMainProductThumbnail2.setOnClickListener {
+                mainActivity.startProductActivity()
+            }
         }
     }
 
@@ -271,6 +274,9 @@ class HomeRecommendFragment : Fragment() {
 
         override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail.setOnClickListener {
+                mainActivity.startProductActivity()
+            }
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail2.setOnClickListener {
                 mainActivity.startProductActivity()
             }
         }

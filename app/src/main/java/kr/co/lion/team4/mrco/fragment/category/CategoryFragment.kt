@@ -28,10 +28,10 @@ class CategoryFragment : Fragment() {
         "INFJ", "INFP", "INTJ", "INTP", "ISFJ", "ISFP", "ISTJ", "ISTP")
     var tpoData = mutableListOf<String>("여행", "데이트", "카페", "출근", "데일리", "캠퍼스", "바다", "결혼식")
     var seasonData = mutableListOf<String>("봄", "여름", "가을", "겨울")
-    var moodData = mutableListOf<String>("미니멀", "비즈니스캐주얼", "원마일웨어", "아메카지", "시티보이", "스트릿", "스포티", "레트로", "러블리", "모던캐주얼")
-    var allData = mutableListOf<String>("ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
+    var moodData = mutableListOf<String>("미니멀", "비즈니스 캐주얼", "원마일웨어", "아메카지", "시티보이", "스트릿", "스포티", "레트로", "러블리", "모던캐주얼")
+    var allData = mutableListOf<String>("전체", "ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
         "INFJ", "INFP", "INTJ", "INTP", "ISFJ", "ISFP", "ISTJ", "ISTP", "여행", "데이트", "카페", "출근", "데일리", "캠퍼스", "바다", "결혼식",
-        "봄", "여름", "가을", "겨울", "미니멀", "비즈니스캐주얼", "원마일웨어", "아메카지", "시티보이", "스트릿", "스포티", "레트로", "러블리", "모던캐주얼")
+        "봄", "여름", "가을", "겨울", "미니멀", "비즈니스\n 캐주얼", "원마일웨어", "아메카지", "시티보이", "스트릿", "스포티", "레트로", "러블리", "모던캐주얼")
 
     var checkMbtiCategory = true
     var checkTpoCategory = false

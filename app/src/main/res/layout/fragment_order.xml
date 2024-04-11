@@ -23,9 +23,9 @@
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:subtitleTextColor="#000000"
             app:title="결제"
-            app:titleCentered="true" />
+            app:titleCentered="true"
+            app:titleTextColor="@color/black" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

@@ -27,9 +27,9 @@
 
                 <ImageView
                     android:id="@+id/imageViewRowCategorySemiCategory"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/ic_launcher_foreground"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:background="@mipmap/mrco_launcher_foreground"
                     android:scaleType="centerCrop" />
             </androidx.cardview.widget.CardView>
 

@@ -23,7 +23,8 @@
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:subtitleTextColor="#000000" />
+            app:titleCentered="true"
+            app:titleTextColor="@color/black" />
 
         <ScrollView
             android:layout_width="match_parent"

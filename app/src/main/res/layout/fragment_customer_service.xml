@@ -17,6 +17,18 @@
         android:transitionGroup="true"
         tools:context=".fragment.customerService.CustomerServiceFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarCustomerService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="고객센터"
+            app:titleCentered="true"
+            app:titleTextColor="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

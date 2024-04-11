@@ -135,12 +135,15 @@ class CoordinatorInfoFragment : Fragment() {
             }
 
             // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 5) {
+            val imageResource = when (position % 8) {
                 0 -> R.drawable.iu_image
                 1 -> R.drawable.iu_image2
-                2 -> R.drawable.iu_image3
-                3 -> R.drawable.iu_image4
-                else -> R.drawable.iu_image5
+                2 -> R.drawable.iu_image8
+                3 -> R.drawable.iu_image7
+                4 -> R.drawable.iu_image3
+                5 -> R.drawable.iu_image4
+                6 -> R.drawable.iu_image5
+                else -> R.drawable.iu_image6
             }
             holder.rowCoordinatorInfoBinding.imageViewCoordinatorInfo.setImageResource(imageResource)
         }

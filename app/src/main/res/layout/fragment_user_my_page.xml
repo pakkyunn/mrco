@@ -14,94 +14,101 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
         tools:context=".fragment.mypage.UserMyPageFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
 
             <ImageView
                 android:id="@+id/imageViewUserMyPage"
-                android:layout_width="128dp"
-                android:layout_height="128dp"
+                android:layout_width="160dp"
+                android:layout_height="200dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@android:drawable/gallery_thumb" />
-
-            <Button
-                android:id="@+id/iconButtonImageUserMyPage"
-                style="?attr/materialIconButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="100dp"
-                app:icon="@drawable/add_circle_24px"
-                app:iconTint="@color/black"
-                app:layout_constraintStart_toStartOf="@+id/imageViewUserMyPage"
-                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/iu_image6" />
 
             <TextView
                 android:id="@+id/textViewNicknameUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@{userMyPageViewModel.textViewNicknameUserMyPage}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="홍길동"
+                android:textColor="@color/black"
+                android:textSize="28dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
-                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage"
-                tools:text="닉네임" />
+                app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
 
             <TextView
                 android:id="@+id/textViewGenderUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@{userMyPageViewModel.textViewGenderUserMyPage}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginTop="12dp"
+                android:text="여성"
+                android:textColor="@color/black"
+                android:textSize="20dp"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage"
-                tools:text="성별" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage" />
 
             <TextView
                 android:id="@+id/textViewMbtiUserMyPage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="@{userMyPageViewModel.textViewMbtiUserMyPage}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:layout_marginTop="12dp"
+                android:text="ISFP"
+                android:textColor="@color/black"
+                android:textSize="20dp"
                 app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
-                app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage"
-                tools:text="MBTI" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage" />
 
             <Button
                 android:id="@+id/iconButtonEditUserMyPage"
                 style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:icon="@drawable/settings_24px"
+                android:padding="0dp"
+                app:icon="@drawable/my_setting_24px"
+                app:iconSize="35dp"
                 app:iconTint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintHorizontal_bias="0.938"
+                app:layout_constraintStart_toEndOf="@+id/textViewNicknameUserMyPage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.064" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#000000"
+                android:text="프로필 편집"
+                android:textSize="16sp"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.135"
+                app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:id="@+id/divider10"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
+            android:layout_height="2dp"
             android:layout_marginTop="8dp"
             android:background="?android:attr/listDivider" />
 
@@ -113,86 +120,111 @@
             <TextView
                 android:id="@+id/textViewMenuUserMyPage1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/contract_24px"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:text="    주문/배송 조회"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/black"
+                android:gravity="center|start"
+                android:paddingLeft="16dp"
+                android:paddingEnd="16dp"
+                android:text="주문/배송 조회"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
 
             <View
                 android:id="@+id/divider11"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/reviews_24px"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:text="    나의 리뷰"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/black"
+                android:gravity="center|start"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="나의 리뷰"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
 
             <View
                 android:id="@+id/divider12"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/customer_service_24px"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:text="    고객센터"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/black"
+                android:gravity="center|start"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="고객센터"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
 
             <View
                 android:id="@+id/divider13"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/assignment_ind_24px"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:text="    코디네이터 등록 신청"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/black"
+                android:gravity="center|start"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="코디네이터 등록 신청"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
 
             <View
                 android:id="@+id/divider14"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:background="?android:attr/listDivider" />
 
             <TextView
                 android:id="@+id/textViewMenuUserMyPage5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
                 android:drawableStart="@drawable/logout_24px"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:text="    로그아웃"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/black"
+                android:gravity="center|start"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="로그아웃"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 

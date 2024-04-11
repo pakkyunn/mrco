@@ -30,9 +30,24 @@ class CustomerServiceFragment : Fragment() {
         // 하단 바 안보이게
         mainActivity.removeBottomSheet()
 
+        // 툴바 세팅
+        toolbarSetting()
+
+        // 1:1 문의 버튼
         leaveCustomerInquiry()
 
         return fragmentCustomerServiceBinding.root
+    }
+
+    // 툴바 설정
+    fun toolbarSetting(){
+        fragmentCustomerServiceBinding.toolbarCustomerService.apply {
+            // 네비게이션
+            setNavigationIcon(R.drawable.arrow_back_24px)
+            setNavigationOnClickListener {
+                backProcesss()
+            }
+        }
     }
 
     // '1:1 문의하기 버튼' 클릭이벤트
@@ -42,5 +57,10 @@ class CustomerServiceFragment : Fragment() {
                 mainActivity.replaceFragment(MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, null)
             }
         }
+    }
+
+    // 뒤로가기 처리
+    fun backProcesss(){
+        mainActivity.removeFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT)
     }
 }
