@@ -7,48 +7,51 @@
             name="productManagement"
             type="kr.co.lion.team4.mrco.viewmodel.ProductManagementViewModel" />
     </data>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".fragment.product.management.ProductManagementFragment" >
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar_productManagement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:title="등록상품관리"
-        app:navigationIcon="@drawable/arrow_back_24px"/>
-
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        app:tabIndicatorFullWidth="true">
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem_productManagement_codiProductManagement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabItem_codiProductManagement" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/tabItem_prodcutManagement_individualProductManagement"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tabItem_individualProductManagement" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainer_productManagement"
-        android:name="kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"/>
+        android:orientation="vertical"
+        android:transitionGroup="true"
+        tools:context=".fragment.product.management.ProductManagementFragment">
 
-</LinearLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_productManagement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:title="등록상품관리"
+            app:titleCentered="true" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:tabIndicatorFullWidth="true">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem_productManagement_codiProductManagement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabItem_codiProductManagement" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem_prodcutManagement_individualProductManagement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabItem_individualProductManagement" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainer_productManagement"
+            android:name="kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp" />
+
+    </LinearLayout>
 </layout>
