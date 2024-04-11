@@ -36,6 +36,7 @@ enum class MainFragmentName(var str: String) {
     APP_NOTICE_FRAGMENT("AppNoticeFragment"),
 
     CATEGORY_FRAGMENT("CategoryFragment"),
+    CATEGORY_MAIN_FRAGMENT("CategoryMainFragment"),
 
     COORDINATOR_MYPAGE_FRAGMENT("CoordinatorMyPageFragment"),
     USER_MYPAGE_FRAGMENT("UserMyPageFragment"),
