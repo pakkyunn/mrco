@@ -44,7 +44,7 @@ class CoordinatorMyPageFragment : Fragment() {
 
             // 등록 상품 관리
             textViewMenuCoordinatorMyPage2.setOnClickListener {
-
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT, true, true, null)
             }
 
             // 배송 관리
@@ -61,7 +61,11 @@ class CoordinatorMyPageFragment : Fragment() {
             textViewMenuCoordinatorMyPage5.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.SALES_LIST_FRAGMENT, true, true, null)
             }
+
             // 매출/정산 관리
+            textViewMenuCoordinatorMyPage6.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, true, null)
+            }
         }
     }
 }
