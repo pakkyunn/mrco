@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductDetailViewModel
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductViewModel
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentAddProductBinding
 import kr.co.lion.team4.mrco.databinding.ItemAddproductDetailBinding
@@ -31,12 +33,28 @@ class AddProductFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        // setting toolbar, bottom navigation
         mainActivity.removeBottomSheet() // 하단 메뉴 숨기기
+        settingToolbarAddProduct()
 
         settingAddProductPhotoRecyclerView()
         settingAddProductDetailRecyclerView()
 
         return fragmentAddProductBinding.root
+    }
+
+    // setting toolbar
+    fun settingToolbarAddProduct(){
+        fragmentAddProductBinding.toolbarAddProduct.apply {
+            setNavigationOnClickListener {
+                backProcess()
+            }
+        }
+    }
+
+    // 이전 화면으로 돌아가기
+    fun backProcess(){
+        mainActivity.removeFragment(MainFragmentName.ADD_PRODUCT_FRAGMENT)
     }
 
     // 코디 사진의 리사이클러뷰 setting
@@ -55,9 +73,11 @@ class AddProductFragment : Fragment() {
             recyclerviewAddProductDetail.apply {
                 adapter = AddDetailRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
+                val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
+                deco.isLastItemDecorated = false
+                addItemDecoration(deco)
             }
         }
-
     }
 
     // 코디 사진의 리사이클러뷰 Adapter
