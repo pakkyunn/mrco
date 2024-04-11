@@ -50,6 +50,9 @@ class HomeRecommendFragment : Fragment() {
         settingToolbar()
         mainActivity.viewBottomSheet()
 
+        // 버튼
+        settingButton()
+
         // 리사이클러 뷰
         settingRecyclerViewHomeRecommendBanner()
         settingRecyclerViewHomeRecommend()
@@ -80,6 +83,16 @@ class HomeRecommendFragment : Fragment() {
                         }
                     }
                     true
+                }
+            }
+        }
+    }
+
+    fun settingButton(){
+        fragmentHomeRecommendBinding.apply {
+            homeRecommendAllButton.apply {
+                setOnClickListener {
+                    mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, false, null)
                 }
             }
         }

@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryBinding
 import kr.co.lion.team4.mrco.databinding.RowCategorySemiCategory2Grid4Binding
@@ -56,7 +57,7 @@ class CategoryFragment : Fragment() {
         return fragmentCategoryBinding.root
     }
 
-    // 코디네이터 소개 리사이클러 뷰 설정
+    // 리사이클러 뷰 설정
     fun settingRecyclerViewCategory() {
         fragmentCategoryBinding.apply {
             recyclerViewCategory.apply {
@@ -117,6 +118,11 @@ class CategoryFragment : Fragment() {
             } else {
                 holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = moodData[position]
             }
+
+            // 이미지 클릭시
+            holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, true, null)
+            }
         }
     }
 
@@ -160,7 +166,7 @@ class CategoryFragment : Fragment() {
             }
             // 이미지 클릭시
             holder.rowCategorySemiCategory2Grid4Binding.imageViewRowCategorySemiCategory.setOnClickListener {
-                
+                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, true, null)
             }
         }
     }

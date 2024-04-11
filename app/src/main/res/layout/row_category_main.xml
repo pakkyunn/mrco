@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="rowHomeRecommendViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_main_product_thumbnail"
+                android:layout_width="168dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/iu_image2" />
+
+            <TextView
+                android:id="@+id/item_main_product_mbti"
+                android:layout_width="64dp"
+                android:layout_height="32dp"
+                android:background="#BDB14C"
+                android:gravity="center"
+                android:text="ISFP"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/item_main_product_thumbnail"
+                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail"
+                app:layout_constraintTop_toTopOf="@+id/item_main_product_thumbnail"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/item_main_coordinator_name"
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="4dp"
+                android:text="아이유"
+                android:textColor="#878787"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_main_product_thumbnail" />
+
+
+            <TextView
+                android:id="@+id/item_main_product_name"
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:text="호불호 없는 출근룩 코디 SET"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_main_coordinator_name" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_main_product_like"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="5dp"
+                android:button="@drawable/selector_favorite"
+                app:buttonTint="#B31010"
+                app:layout_constraintBottom_toBottomOf="@+id/item_main_product_thumbnail"
+                app:layout_constraintEnd_toEndOf="@+id/item_main_product_thumbnail"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/item_main_product_thumbnail"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/item_main_product_discount_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
+                android:text="10%"
+                android:textColor="#FC5306"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_main_product_name"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/item_main_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="20dp"
+                android:text="123,456원"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_main_product_name"
+                app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+</layout>

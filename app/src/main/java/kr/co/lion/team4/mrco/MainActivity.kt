@@ -11,6 +11,7 @@ import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.cart.CartFragment
 import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
+import kr.co.lion.team4.mrco.fragment.category.CategoryMainFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorInfoFragment
 import kr.co.lion.team4.mrco.fragment.coordinatormain.CoordinatorMainFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerInquiryFragment
@@ -166,6 +167,9 @@ class MainActivity : AppCompatActivity() {
 
             // 판매자 - 판매 내역 관리 화면
             MainFragmentName.SALES_LIST_FRAGMENT -> newFragment = SalesListFragment()
+
+            // 카테고리 메인 화면
+            MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
 
 
             // 알림 화면
