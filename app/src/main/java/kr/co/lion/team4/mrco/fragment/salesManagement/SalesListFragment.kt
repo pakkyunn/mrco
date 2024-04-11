@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesListViewModel
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.SaleslistHeaderViewModel
@@ -32,9 +33,25 @@ class SalesListFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        // setting toolbar, bottom navigation
+        mainActivity.removeBottomSheet()
+        settingToolbarSalesList()
+
         settingSalesListRecyclerView()
 
         return fragmentSalesListBinding.root
+    }
+
+    fun settingToolbarSalesList(){
+        fragmentSalesListBinding.toolbarSalesList.apply {
+            setNavigationOnClickListener {
+                backProcess()
+            }
+        }
+    }
+
+    fun backProcess(){
+        mainActivity.removeFragment(MainFragmentName.SALES_LIST_FRAGMENT)
     }
 
     fun settingSalesListRecyclerView(){

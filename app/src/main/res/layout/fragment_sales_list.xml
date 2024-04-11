@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="salesListViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesListViewModel" />
@@ -17,7 +18,7 @@
         tools:context=".fragment.salesManagement.SalesListFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarCart"
+            android:id="@+id/toolbar_sales_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
