@@ -55,7 +55,11 @@ class UserMyPageFragment : Fragment() {
 
             // 코디네이터 등록 신청
             textViewMenuUserMyPage4.setOnClickListener {
-                // mainActivity.replaceFragment(MainFragmentName.Tools코디등록이름, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT, true, true, null)
+            }
+            // 코디네이터 등록 신청
+            textViewMenuUserMyPage5.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, true, true, null)
             }
         }
     }

@@ -132,28 +132,18 @@ class MainActivity : AppCompatActivity() {
         }
 
         when(name){
-            // 홈 메인(첫 화면)
+            // 홈 메인 (첫 화면 - 추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개) 순서
             MainFragmentName.HOME_RECOMMEND, -> newFragment = HomeRecommendFragment()
-
-            // 홈 메인(MBTI 별 코디)
             MainFragmentName.HOME_MBTI, -> newFragment = HomeMbtiFragment()
-
-            // 코디네이터 소개
+            MainFragmentName.HOME_COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
             MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
 
-            // 인기 코디네이터
-            MainFragmentName.HOME_COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
-
-            // 메인 MBTI 상품 페이지
+            // 메인 MBTI 상품 페이지 와 메인 코디네이터 상세 페이지
             MainFragmentName.MBTI_PRODUCT_MAIN -> newFragment = MbtiProductMainFragment()
-
-            // 메인 코디네이터 상세 페이지
             MainFragmentName.COORDINATOR_MAIN -> newFragment = CoordinatorMainFragment()
 
-            // 좋아요 화면 (코디)
+            // 좋아요 화면 (코디, 코디네이터)
             MainFragmentName.LIKE_PRODUCT -> newFragment = LikeProductFragment()
-
-            // 좋아요 화면 (코디네이터)
             MainFragmentName.LIKE_COORDINATOR -> newFragment = LikeCoordinatorFragment()
 
             // 리뷰 작성 화면
