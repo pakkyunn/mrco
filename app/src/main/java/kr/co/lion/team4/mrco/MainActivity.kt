@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -71,54 +72,14 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // Status 바 (최상단 / 툴바 위)
-        // window.statusBarColor = ContextCompat.getColor(this, R.color.black)
-
         // 하단 바 설정(이동 관련)
         bottomSheetSetting()
 
-        // 로그인부터 시작 - 테스트
+        // 로그인 화면 - 일단 로그인으로 적용
         replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
 
-        // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
-        // 탭으로 화면 이동 가능
+        // 홈 화면(추천)
         // replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-        // replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
-        // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-        // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
-        // replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
-        // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
-
-        // 좋아요 화면(코디네이터) - (원빈)완료
-        // 탭으로 화면 이동 가능 / 코디화면, 코디네이터 화면
-        // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
-        // replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
-
-        // 리뷰 작성 페이지 - (원빈)완료
-        // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
-
-        // 주문 상세 정보 페이지 - (원빈)완료
-        // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
-
-        // 매출관리(내역), 매출관리(캘린더) - (원빈)완료
-        // 탭으로 화면 이동 가능 / 리포트는 현재 연동 X
-        // replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
-        // replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, false, null)
-
-        // 알림 - 현준(완료)
-        // replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, false, false, null)
-
-        // 카테고리 - 현준(완료)
-        // replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-
-        // 코디네이터 마이 페이지 - 현준(완료)
-        // replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, false, false, null)
-
-        // 사용자 마이 페이지 - 현준(완료)
-        // replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
-
-        // 고객센터 - 현준(완료)
-        // replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -135,6 +96,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         when(name){
+
+            // 로그인, 회원가입(사용자, 코디네이터 신청)
+            MainFragmentName.LOGIN_FRAGMENT -> newFragment = LoginFragment()
+            MainFragmentName.JOIN_FRAGMENT -> newFragment = JoinFragment()
+            MainFragmentName.JOIN_COORDINATOR_FRAGMENT -> newFragment = JoinCoordinatorFragment()
+            MainFragmentName.JOIN_COORDINATOR_NEXT_FRAGMENT -> newFragment = JoinCoordinatorNextFragment()
+
+            // 회원 정보 수정 (사용자, 코디네이터)
+            MainFragmentName.MODIFY_USER_FRAGMENT -> newFragment = ModifyUserFragment()
+            MainFragmentName.MODIFY_COORDINATOR_FRAGMENT -> newFragment = ModifyCoordinatorFragment()
+
+            // 알림 화면
+            MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
+
+            // 장바구니 화면
+            MainFragmentName.CART_FRAGMENT -> newFragment = CartFragment()
+
+            // 결제 화면
+            MainFragmentName.ORDER_FRAGMENT -> newFragment = OrderFragment()
+
             // 홈 메인 (첫 화면 - 추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개) 순서
             MainFragmentName.HOME_RECOMMEND, -> newFragment = HomeRecommendFragment()
             MainFragmentName.HOME_MBTI, -> newFragment = HomeMbtiFragment()
@@ -145,62 +126,42 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.MBTI_PRODUCT_MAIN -> newFragment = MbtiProductMainFragment()
             MainFragmentName.COORDINATOR_MAIN -> newFragment = CoordinatorMainFragment()
 
+            // 카테고리 (카테고리 선택, 메인) 화면
+            MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
+            MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
+
             // 좋아요 화면 (코디, 코디네이터)
             MainFragmentName.LIKE_PRODUCT -> newFragment = LikeProductFragment()
             MainFragmentName.LIKE_COORDINATOR -> newFragment = LikeCoordinatorFragment()
 
+            // 마이페이지 (사용자, 코디네이터) 화면
+            MainFragmentName.USER_MYPAGE_FRAGMENT -> newFragment = UserMyPageFragment()
+            MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT -> newFragment = CoordinatorMyPageFragment()
+
+            // 주문/배송 조회 및 주문 상세 정보
+            MainFragmentName.ORDER_HISTORY_FRAGMENT -> newFragment = OrderHistoryFragment()
+            MainFragmentName.ORDER_DETAIL -> newFragment = OrderDetailFragment()
+
             // 리뷰 작성 화면
             MainFragmentName.WRITE_REVIEW -> newFragment = WriteReviewFragment()
 
-            // 주문 상세 정보
-            MainFragmentName.ORDER_DETAIL -> newFragment = OrderDetailFragment()
+            // 고객센터 화면 + 1:1 문의 작성 화면
+            MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
+            MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT -> newFragment = CustomerInquiryFragment()
 
-            // 매출관리(내역) 화면
-            MainFragmentName.SALES_MANAGEMENT -> newFragment = SalesManagementFragment()
 
-            // 매출관리(캘린더) 화면
+            // 상품 1:1문의 작성화면
+            MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
+
+            // 판매자 - 매출관리(캘린더, 내역) 화면
             MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
+            MainFragmentName.SALES_MANAGEMENT -> newFragment = SalesManagementFragment()
 
             // 판매자 - 배송관리 화면
             MainFragmentName.MANAGE_SHIPMENT_FRAGMENT -> newFragment = ManageShipmentsFragment()
 
             // 판매자 - 판매 내역 관리 화면
             MainFragmentName.SALES_LIST_FRAGMENT -> newFragment = SalesListFragment()
-
-            // 카테고리 메인 화면
-            MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
-
-
-            // 알림 화면
-            MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
-
-            // 카테고리 화면
-            MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
-
-            // 마이페이지 (코디네이터) 화면
-            MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT -> newFragment = CoordinatorMyPageFragment()
-
-            // 마이페이지 (사용자) 화면
-            MainFragmentName.USER_MYPAGE_FRAGMENT -> newFragment = UserMyPageFragment()
-
-            // 고객센터 화면
-            MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
-
-
-            // 고객센터 1:1 문의 작성 화면
-            MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT -> newFragment = CustomerInquiryFragment()
-
-            // 장바구니 화면
-            MainFragmentName.CART_FRAGMENT -> newFragment = CartFragment()
-
-            // 주문 및 결제 화면
-            MainFragmentName.ORDER_FRAGMENT -> newFragment = OrderFragment()
-
-            // 구매자 주문내역 화면
-            MainFragmentName.ORDER_HISTORY_FRAGMENT -> newFragment = OrderHistoryFragment()
-
-            // 상품 1:1문의 작성화면
-            MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
 
             // 판매자 - 상품 문의 내역 화면
             MainFragmentName.PRODUCT_QNA_LIST_FRAGMENT -> newFragment = ProductQnaListFragment()
@@ -238,19 +199,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
 
             MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
-
-            // 상민
-            MainFragmentName.LOGIN_FRAGMENT -> newFragment = LoginFragment()
-
-            MainFragmentName.JOIN_FRAGMENT -> newFragment = JoinFragment()
-
-            MainFragmentName.MODIFY_USER_FRAGMENT -> newFragment = ModifyUserFragment()
-
-            MainFragmentName.JOIN_COORDINATOR_FRAGMENT -> newFragment = JoinCoordinatorFragment()
-
-            MainFragmentName.JOIN_COORDINATOR_NEXT_FRAGMENT -> newFragment = JoinCoordinatorNextFragment()
-
-            MainFragmentName.MODIFY_COORDINATOR_FRAGMENT -> newFragment = ModifyCoordinatorFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
@@ -298,7 +246,7 @@ class MainActivity : AppCompatActivity() {
 
     // BackStack에서 Fragment를 제거한다.
     fun removeFragment(name: MainFragmentName){
-        // SystemClock.sleep(50)
+        SystemClock.sleep(50)
 
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -348,5 +296,6 @@ class MainActivity : AppCompatActivity() {
         startActivity(productIntent)
 
         finish()
+        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
     }
 }
