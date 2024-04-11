@@ -99,7 +99,6 @@
 
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="170dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -107,7 +106,7 @@
                     android:text="코디네이터 순위"
                     android:textColor="#000000"
                     android:textSize="20dp"
-                    android:textStyle="normal" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textViewCoordinatorRankDate"
@@ -122,7 +121,7 @@
                     android:id="@+id/recyclerViewCoordinatorRank"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="20dp" />
+                    android:layout_marginTop="15dp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
