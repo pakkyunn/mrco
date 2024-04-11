@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsItemViewModel
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsViewModel
@@ -34,8 +35,24 @@ class ManageShipmentsFragment : Fragment() {
         // Activity
         mainActivity = activity as MainActivity
 
+        // setting Toolbar, BottomNavigation
+        mainActivity.removeBottomSheet()
+        settingToolbarManageShipments()
+
         settingManageShipmentsRecyclerView()
         return fragmentManageShipmentsBinding.root
+    }
+
+    fun settingToolbarManageShipments(){
+        fragmentManageShipmentsBinding.toolbarManageShipments.apply {
+            setNavigationOnClickListener {
+                backProcess()
+            }
+        }
+    }
+
+    fun backProcess(){
+        mainActivity.removeFragment(MainFragmentName.MANAGE_SHIPMENT_FRAGMENT)
     }
 
     fun settingManageShipmentsRecyclerView(){
