@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="manageShipmentsProductViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsProductViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="8dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview_manage_shipments_thumbnail"
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/button_manage_shipment_tracking_num"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageview_manage_shipments_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/textview_manage_shipments_state"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:hint="출고준비중 (주문상태)"
+            android:text="@{manageShipmentsProductViewModel.textViewManageShipmentsState}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/cardview_manage_shipments_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/cardview_manage_shipments_thumbnail" />
+
+        <TextView
+            android:id="@+id/textview_manage_shipments_coordi_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:hint="(코디 상품명) OOOO 코디 SET"
+            android:text="@{manageShipmentsProductViewModel.textViewManageShipmentsCoordiName}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardview_manage_shipments_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textview_manage_shipments_state" />
+
+        <TextView
+            android:id="@+id/textview_manage_shipments_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="옵션: 상의, 하의 등"
+            android:text="@{manageShipmentsProductViewModel.textViewManageShipmentsOption}"
+            android:textColor="@color/material_dynamic_neutral60"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cardview_manage_shipments_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textview_manage_shipments_coordi_name" />
+
+        <TextView
+            android:id="@+id/textview_manage_shipments_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:hint="100,000원"
+            android:text="@{manageShipmentsProductViewModel.textViewManageShipmentsPrice}"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/cardview_manage_shipments_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/textview_manage_shipments_option" />
+
+        <Button
+            android:id="@+id/button_manage_shipment_tracking_num"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="운송장 등록"
+            app:layout_constraintEnd_toStartOf="@+id/button_manamge_shipment_cancel"
+            app:layout_constraintStart_toStartOf="@+id/textview_manage_shipments_price"
+            app:layout_constraintTop_toBottomOf="@+id/textview_manage_shipments_price"
+            tools:minHeight="0dp" />
+
+        <Button
+            android:id="@+id/button_manamge_shipment_cancel"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="주문 취소"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_manage_shipment_tracking_num"
+            app:layout_constraintTop_toTopOf="@+id/button_manage_shipment_tracking_num"
+            tools:minHeight="0dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

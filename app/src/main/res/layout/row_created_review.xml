@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="rv"
+            type="kr.co.lion.team4.mrco.viewmodel.ReviewViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Fragment.review.ReviewFragment"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일반후기" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/button_review_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_review_approve" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_review_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@={rv.reviewDate}" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/logo_mrco" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView_review_codiProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={rv.reviewProductName}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:id="@+id/textView_review_mbti"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@={rv.reviewProductMBTI}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <RatingBar
+            android:id="@+id/ratingBar_review"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="4" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_review_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={rv.reviewProductSize}"
+                app:chipCornerRadius="10dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_review_brightness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={rv.reviewProductBright}"
+                app:chipCornerRadius="10dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_review_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={rv.reviewProductColor}"
+                app:chipCornerRadius="10dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_review_packing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={rv.reviewProductPack}"
+                app:chipCornerRadius="10dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_review_thickness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={rv.reviewProductThickness}"
+                app:chipCornerRadius="10dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_review_delivery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@={rv.reviewProductDelivery}"
+                app:chipCornerRadius="10dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/textView_review_reviewContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={rv.reviewContent}" />
+    </LinearLayout>
+</layout>

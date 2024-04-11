@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="rowHomeRecommendViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_main_product_thumbnail"
+                android:layout_width="184dp"
+                android:layout_height="184dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/iu_image2" />
+
+            <TextView
+                android:id="@+id/textViewRowHomeRecommendMBTI"
+                android:layout_width="64dp"
+                android:layout_height="32dp"
+                android:background="#BDB14C"
+                android:gravity="center"
+                android:text="@{rowHomeRecommendViewModel.textViewRowHomeRecommendProductMbti}"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/item_main_product_thumbnail"
+                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail" />
+
+            <TextView
+                android:id="@+id/item_main_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@{rowHomeRecommendViewModel.textViewRowHomeRecommendProductName}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_like"
+                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail" />
+
+            <TextView
+                android:id="@+id/item_main_product_discount_percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{rowHomeRecommendViewModel.textViewRowHomeRecommendProductDiscountPercent}"
+                android:textColor="#FC5306"
+                app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_price"
+                app:layout_constraintEnd_toStartOf="@id/item_main_product_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_name" />
+
+            <TextView
+                android:id="@+id/item_main_product_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="8dp"
+                android:text="@{rowHomeRecommendViewModel.textViewRowHomeRecommendProductPrice}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/item_main_product_pick_button"
+                app:layout_constraintStart_toEndOf="@id/item_main_product_discount_percent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_name" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_main_product_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_favorite"
+                app:buttonTint="#B31010"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail" />
+
+            <Button
+                android:id="@+id/item_main_product_pick_button"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="장바구니 담기"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_price" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/item_main_product_thumbnail2"
+                android:layout_width="184dp"
+                android:layout_height="184dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/iu_image3" />
+
+            <TextView
+                android:id="@+id/textViewRowHomeRecommendMBTI2"
+                android:layout_width="64dp"
+                android:layout_height="32dp"
+                android:background="#36C87C"
+                android:gravity="center"
+                android:text="ENFP"
+                android:textColor="#FFFFFF"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/item_main_product_thumbnail2"
+                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail2" />
+
+            <TextView
+                android:id="@+id/item_main_product_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="홍길동 코디이름"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/black"
+                app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_like2"
+                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail2"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail2" />
+
+            <TextView
+                android:id="@+id/item_main_product_discount_percent2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="30%"
+                android:textColor="#FC5306"
+                app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_price2"
+                app:layout_constraintEnd_toStartOf="@id/item_main_product_price2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_name2" />
+
+            <TextView
+                android:id="@+id/item_main_product_price2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="8dp"
+                android:text="178,000"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/item_main_product_pick_button2"
+                app:layout_constraintStart_toEndOf="@id/item_main_product_discount_percent2"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_name2" />
+
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/item_main_product_like2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/selector_favorite"
+                app:buttonTint="#B31010"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail2" />
+
+            <Button
+                android:id="@+id/item_main_product_pick_button2"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="장바구니 담기"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_price2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

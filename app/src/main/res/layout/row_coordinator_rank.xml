@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="rowCoordinatorRankViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewRowCoordinatorRankNumber"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:gravity="bottom"
+                android:padding="0dp"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="40dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="100dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewRowCoordinatorRankProfile"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/iu_image" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewRowCoordinatorRankName"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:gravity="center|start"
+                        android:text="@{rowCoordinatorRankViewModel.textViewRowCoordinatorRankName}"
+                        android:textColor="#000000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:text="팔로워 "
+                            android:textColor="#8D8D8D"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/textViewRowCoordinatorRankFollower"
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:text="@{rowCoordinatorRankViewModel.textViewRowCoordinatorRankFollower}"
+                            android:textColor="#8D8D8D"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/buttonRowCoordinatorRankFollower"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:backgroundTint="@color/buttonFollow"
+                    android:padding="0dp"
+                    android:text="팔로우"
+                    android:textSize="14dp"
+                    android:textStyle="normal"
+                    app:cornerRadius="10dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCoordinatorRank2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+</layout>

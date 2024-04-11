@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="productQnaListViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.productQna.ProductQnaListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.productQna.ProductQnaListFragment"
+        android:transitionGroup="true"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarProduntQnaList"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="상품 문의 내역"
+            app:titleCentered="true"
+            app:subtitleTextColor="#000000" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_qna_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarProduntQnaList"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextColor="#878787">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_qna_list_waiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="답변 대기 중" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/item_qna_list_answered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="답변 완료" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <Spinner
+            android:id="@+id/spinner_qna_list_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="8dp"
+            android:entries="@array/array_qnalist_sort"
+            android:selectedItemPosition="@={productQnaListViewModel.spinnerQnaListSort}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_qna_list" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_qna_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_qna_list_sort"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="homeMbtiViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:transitionGroup="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:menu="@menu/menu_main_home_toolbar"
+            app:title="MRCO"
+            app:titleMarginStart="30dp"
+            app:titleTextColor="#002254" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabSelectedTextColor="#000000"
+            app:tabRippleColor="#CCCCCC"
+            app:tabTextColor="#878787">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/main_home_tab_recommand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추천" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/main_home_tab_mbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MBTI별 코디" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/main_home_tab_stylist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코디네이터" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/home_mbti_content1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@{homeMbtiViewModel.textViewHomeMbtiTextFirst}"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_mbti_content1_more_button"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="더보기"
+                    android:textColor="@android:color/darker_gray"
+                    app:icon="@drawable/right_24px"
+                    app:iconGravity="end"
+                    app:iconTint="@android:color/darker_gray"
+                    app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content1"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_mbti_content1_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_mbti_content1"
+                    app:spanCount="2" />
+
+                <TextView
+                    android:id="@+id/home_mbti_content2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@{homeMbtiViewModel.textViewHomeMbtiTextSecond}"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/home_mbti_content1_recycler" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_mbti_content2_more_button"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="더보기"
+                    android:textColor="@android:color/darker_gray"
+                    app:icon="@drawable/right_24px"
+                    app:iconGravity="end"
+                    app:iconTint="@android:color/darker_gray"
+                    app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/home_mbti_content2_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:paddingStart="8dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="8dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_mbti_content2"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:spanCount="2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</layout>

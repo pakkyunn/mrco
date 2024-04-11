@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="categoryViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.category.CategoryViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:transitionGroup="true">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:context=".fragment.category.CategoryFragment">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="16dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginBottom="8dp"
+                        android:hint="카테고리 검색"
+                        app:boxCornerRadiusBottomEnd="30dp"
+                        app:boxCornerRadiusBottomStart="30dp"
+                        app:boxCornerRadiusTopEnd="30dp"
+                        app:boxCornerRadiusTopStart="30dp"
+                        app:endIconDrawable="@drawable/search_24px"
+                        app:endIconMode="custom">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textFieldCategorySearch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:singleLine="true"
+                            android:text="@={categoryViewModel.textFieldCategorySearch}" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupCategoryGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true">
+                            <!--                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}"-->
+
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipCategoryGenderMEN"
+                                style="@style/Widget.Material3.Chip.Suggestion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="MEN"
+                                app:checkedIconVisible="false"
+                                app:chipCornerRadius="20dp"
+                                app:chipStrokeColor="@color/black" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipCategoryGenderWOMEN"
+                                style="@style/Widget.Material3.Chip.Suggestion"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="WOMEN"
+                                app:chipCornerRadius="20dp"
+                                app:chipStrokeColor="@color/black" />
+
+                        </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider15"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="?android:attr/listDivider" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textViewMbtiCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:background="#80CDCDCD"
+                            android:gravity="center"
+                            android:text="MBTI"
+                            android:textColor="@color/black"
+                            android:textSize="20dp"
+                            android:theme="@style/Basic_Font_Theme" />
+
+                        <View
+                            android:id="@+id/divider21"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <TextView
+                            android:id="@+id/textViewTpoCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:text="TPO"
+                            android:textColor="#656565"
+                            android:textSize="20dp"
+                            android:theme="@style/Basic_Font_Theme" />
+
+                        <View
+                            android:id="@+id/divider16"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <TextView
+                            android:id="@+id/textViewSeasonCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:text="SEASON"
+                            android:textColor="#656565"
+                            android:textSize="20dp"
+                            android:theme="@style/Basic_Font_Theme" />
+
+                        <View
+                            android:id="@+id/divider17"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <TextView
+                            android:id="@+id/textViewMoodCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:text="MOOD"
+                            android:textColor="#656565"
+                            android:textSize="20dp"
+                            android:theme="@style/Basic_Font_Theme" />
+
+                        <View
+                            android:id="@+id/divider18"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
+
+                        <TextView
+                            android:id="@+id/textViewAllCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="56dp"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:text="ALL"
+                            android:textColor="#656565"
+                            android:textSize="20dp"
+                            android:theme="@style/Basic_Font_Theme" />
+
+                        <View
+                            android:id="@+id/divider19"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="?android:attr/listDivider" />
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/divider20"
+                        android:layout_width="0.5dp"
+                        android:layout_height="match_parent"
+                        android:background="?android:attr/listDivider" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerViewCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.4"
+                        android:background="#80DADADA"
+                        android:padding="0dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/floatingButtonCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp"
+                app:backgroundTint="#000000"
+                app:icon="@drawable/baseline_arrow_forward_ios_24"
+                app:iconTint="#FFFFFF" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </LinearLayout>
+
+</layout>

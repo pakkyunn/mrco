@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:transitionGroup="true"
+        tools:context=".fragment.mbtiproductmain.MbtiProductMainFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="30dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonMbtiProductMainMBTI"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MBTI"
+                    android:textColor="#1049AE"
+                    android:textSize="20dp"
+                    android:theme="@style/Basic_Font_Theme"
+                    app:icon="@drawable/arrow_drop_down_24px"
+                    app:iconGravity="end"
+                    app:iconTint="#1049AE"
+                    app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:paddingLeft="0dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonMbtiProductMainGender"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="성별"
+                    android:textColor="#1049AE"
+                    android:textSize="20dp"
+                    android:theme="@style/Basic_Font_Theme"
+                    app:icon="@drawable/arrow_drop_down_24px"
+                    app:iconGravity="end"
+                    app:iconTint="#1049AE"
+                    app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:paddingLeft="0dp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#F1F1F1" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:text="ISFP 에게 잘 어울리는 코디"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#F1F1F1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMbtiProductMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingStart="8dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="8dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_recommend_content1"
+                app:spanCount="2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
