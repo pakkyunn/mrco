@@ -152,6 +152,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
+                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview1}"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -192,6 +193,7 @@
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
+                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview2}"
                         android:max="100"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
@@ -233,6 +235,7 @@
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
+                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview3}"
                         android:max="100"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />

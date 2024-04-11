@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="8dp"
-    tools:context=".Fragment.product.codi.CodiProductInfoAllFragment" >
+    tools:context=".fragment.product.codi.CodiProductInfoAllFragment" >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_productInfoBottom"

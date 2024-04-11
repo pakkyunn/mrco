@@ -57,6 +57,11 @@ class UserMyPageFragment : Fragment() {
             textViewMenuUserMyPage4.setOnClickListener {
                 // mainActivity.replaceFragment(MainFragmentName.Tools코디등록이름, true, true, null)
             }
+
+            // 로그아웃
+            textViewMenuUserMyPage5.setOnClickListener {
+                // mainActivity.replaceFragment(MainFragmentName.Tools로그인화면, false, true, null)
+            }
         }
     }
 }
