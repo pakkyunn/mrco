@@ -1,303 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+        <variable
+            name="productPurchaseViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductPurchaseViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textViewBottomProductPurchase1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="상품명1"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                    android:layout_height="500dp"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase1_1"
+                        <TextView
+                            android:id="@+id/textViewBottomProductPurchase1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false"/>
+                            android:gravity="center_vertical"
+                            android:text="@={productPurchaseViewModel.textViewBottomProductPurchase1}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase1_2"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false"/>
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase1_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_size_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase1_1}" />
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase1_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_color_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase1_2}"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewBottomProductPurchase2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@={productPurchaseViewModel.textViewBottomProductPurchase2}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase2_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_size_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase2_1}"/>
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase2_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_color_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase2_2}" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewBottomProductPurchase3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@={productPurchaseViewModel.textViewBottomProductPurchase3}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase3_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_size_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase3_1}" />
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase3_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_color_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase3_2}" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewBottomProductPurchase4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@={productPurchaseViewModel.textViewBottomProductPurchase4}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase4_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_size_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase4_1}" />
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase4_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_color_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase4_2}" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@color/black" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewBottomProductPurchase5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="@={productPurchaseViewModel.textViewBottomProductPurchase5}"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase5_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_size_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase5_1}" />
+
+                            <Spinner
+                                android:id="@+id/spinnerSortProductPurchase5_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:entries="@array/array_product_purchase_color_sort"
+                                android:overlapAnchor="false"
+                                android:selectedItemPosition="@={productPurchaseViewModel.spinnerSortProductPurchase5_2}" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/black" />
+                    android:background="@color/black"
+                    app:dividerColor="#000000" />
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewProductPurchase"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp">
 
-                    <TextView
-                        android:id="@+id/textViewBottomProductPurchase2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="상품명2"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase2_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false" />
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase2_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                </androidx.recyclerview.widget.RecyclerView>
 
                 <com.google.android.material.divider.MaterialDivider
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:background="@color/black" />
+                    android:background="@color/black"
+                    app:dividerColor="#000000" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textViewBottomProductPurchase3"
+                        android:id="@+id/textViewBottomProductPurchase6"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="상품명3"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase3_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false"/>
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase3_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                        android:text="상품 n개"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                     <TextView
-                        android:id="@+id/textViewBottomProductPurchase4"
+                        android:id="@+id/textViewBottomProductPurchase7"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="상품명4"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase4_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false" />
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase4_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <com.google.android.material.divider.MaterialDivider
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textViewBottomProductPurchase5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="상품명5"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase5_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false" />
-
-                        <Spinner
-                            android:id="@+id/spinnerSortProductPurchase5_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:entries="@array/array_product_review_sort"
-                            android:overlapAnchor="false"/>
-                    </LinearLayout>
-
+                        android:text="000,000원"
+                        android:textAlignment="textEnd"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
                 </LinearLayout>
 
             </LinearLayout>
+        </ScrollView>
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/black"
-                app:dividerColor="#000000" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewProductPurchase"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/black"
-                app:dividerColor="#000000" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewBottomProductPurchase6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="상품 n개"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <TextView
-                    android:id="@+id/textViewBottomProductPurchase7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="000,000원"
-                    android:textAlignment="textEnd"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+    </LinearLayout>
+</layout>
