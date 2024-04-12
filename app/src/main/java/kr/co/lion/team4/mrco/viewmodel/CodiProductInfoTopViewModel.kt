@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 
 class CodiProductInfoTopViewModel: ViewModel() {
     // 코디 상품명
-    var codiProductName = MutableLiveData<String>()
+    var codiProductNameTop = MutableLiveData<String>()
 
     // 상의 상품명
-    var codiProductNameTop  = MutableLiveData<String>()
-    var codiProductTypeTop = MutableLiveData<String>()
-    var codiProductSizeTop = MutableLiveData<String>()
-    var codiProductColorTop = MutableLiveData<String>()
-    var codiProductSerialNumTop = MutableLiveData<String>()
-    var codiProductPriceTop = MutableLiveData<String>()
+    var productNameTop  = MutableLiveData<String>()
+    var productTypeTop = MutableLiveData<String>()
+    var productSizeTop = MutableLiveData<String>()
+    var productColorTop = MutableLiveData<String>()
+    var productSerialNumTop = MutableLiveData<String>()
+    var productPriceTop = MutableLiveData<String>()
 }

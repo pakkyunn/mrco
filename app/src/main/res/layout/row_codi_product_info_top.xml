@@ -4,7 +4,7 @@
     <data>
         <variable
             name="rcpi"
-            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoTopViewModel" />
     </data>
 
     <LinearLayout
@@ -13,17 +13,17 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textView_codiProduct_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@={rcpi.codiProductName}"/>
+        <TextView
+            android:id="@+id/textView_codiProduct_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={rcpi.codiProductNameTop}"/>
 
-            <ImageView
-                android:id="@+id/imageView_codiProduct"
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/imageView_codiProduct"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -51,7 +51,7 @@
                     android:layout_marginStart="1dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={rcpi.productName}"/>
+                    android:text="@={rcpi.productNameTop}"/>
 
                 <View
                     android:layout_width="0dp"
@@ -63,11 +63,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="1dp"
-                    android:text="@={rcpi.codiProductType}"/>
+                    android:text="@={rcpi.productTypeTop}"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={rcpi.codiProductIndex}"/>
+                    android:text="@={rcpi.productTypeTop}"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="200dp"
-                android:text="@={rcpi.codiProductSize}"/>
+                android:text="@={rcpi.productSizeTop}"/>
         </LinearLayout>
 
         <LinearLayout
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="200dp"
-                android:text="@={rcpi.codiProductColor}"/>
+                android:text="@={rcpi.productColorTop}"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="16dp"
@@ -140,7 +140,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="200dp"
-                android:text="@={rcpi.codiProductSerialNum}"/>
+                android:text="@={rcpi.productSerialNumTop}"/>
         </LinearLayout>
 
         <LinearLayout
@@ -164,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="200dp"
-                android:text="@={rcpi.codiProductPrice}"/>
+                android:text="@={rcpi.productPriceTop}"/>
 
         </LinearLayout>
 
