@@ -85,20 +85,4 @@ class ProductManagementFragment : Fragment() {
         transaction.replace(R.id.fragmentContainer_productManagement, newFragment)
         transaction.commit()
     }
-
-    // 탭 위치 설정
-    fun settingTab0(){
-        binding.apply {
-            val tabLayout = tabsProductManagement
-            tabLayout.getTabAt(0)?.select()
-        }
-    }
-
-    // 탭 위치 설정
-    fun settingTab1(){
-        binding.apply {
-            val tabLayout = tabsProductManagement
-            tabLayout.getTabAt(1)?.select()
-        }
-    }
 }

@@ -208,8 +208,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.4"
                         android:background="#80DADADA"
-                        android:paddingBottom="72dp"
-                        android:clipToPadding="false"/>
+                        android:clipToPadding="false"
+                        android:paddingBottom="72dp" />
                 </LinearLayout>
 
             </LinearLayout>

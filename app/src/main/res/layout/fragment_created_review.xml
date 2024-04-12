@@ -21,16 +21,22 @@
             android:orientation="horizontal">
 
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabsCreatedReview"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#ffffff"
+                android:elevation="1dp"
                 app:tabGravity="start"
-                app:tabIndicatorColor="#00FFFFFF"
-                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorColor="#000000"
+                app:tabIndicatorFullWidth="true"
                 app:tabIndicatorGravity="stretch"
                 app:tabInlineLabel="false"
                 app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/black"
+                app:tabRippleColor="#CCCCCC"
+                app:tabSelectedTextColor="@color/white"
                 app:tabTextAppearance="@style/TextAppearance.AppCompat.Small"
+                app:tabTextColor="#676767"
                 app:tabUnboundedRipple="false">
 
                 <com.google.android.material.tabs.TabItem

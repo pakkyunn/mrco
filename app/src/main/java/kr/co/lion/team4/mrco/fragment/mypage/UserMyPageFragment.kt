@@ -92,7 +92,7 @@ class UserMyPageFragment : Fragment() {
             }
             // 나의 리뷰
             textViewMenuUserMyPage2.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.MY_REVIEW, true, true, null)
             }
 
             // 고객센터

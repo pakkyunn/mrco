@@ -10,10 +10,12 @@ import kr.co.lion.team4.mrco.databinding.FragmentReviewCreatedBinding
 
 class ReviewCreatedFragment : Fragment() {
 
+    lateinit var binding: FragmentReviewCreatedBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        lateinit var binding: FragmentReviewCreatedBinding
 
+        binding = FragmentReviewCreatedBinding.inflate(inflater)
 
-        return inflater.inflate(R.layout.fragment_review_created, container, false)
+        return binding.root
     }
 }

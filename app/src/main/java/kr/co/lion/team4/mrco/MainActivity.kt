@@ -50,6 +50,7 @@ import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
 import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
+import kr.co.lion.team4.mrco.fragment.review.MyReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.ReviewCreatedFragment
 import kr.co.lion.team4.mrco.fragment.review.ReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
@@ -141,7 +142,8 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.ORDER_HISTORY_FRAGMENT -> newFragment = OrderHistoryFragment()
             MainFragmentName.ORDER_DETAIL -> newFragment = OrderDetailFragment()
 
-            // 리뷰 작성 화면
+            // 상품리뷰, 리뷰 작성 화면
+            MainFragmentName.MY_REVIEW -> newFragment = MyReviewFragment()
             MainFragmentName.WRITE_REVIEW -> newFragment = WriteReviewFragment()
 
             // 고객센터 화면 + 1:1 문의 작성 화면

@@ -69,6 +69,7 @@ enum class MainFragmentName(var str: String) {
     LIKE_PRODUCT("Like_Product_Fragment"),
     LIKE_COORDINATOR("Like_Coordinator_Fragment"),
 
+    MY_REVIEW("My_Review_Fragment"),
     WRITE_REVIEW("Write_Review_Fragment"),
 
     ORDER_DETAIL("Order_Detail_Fragment"),

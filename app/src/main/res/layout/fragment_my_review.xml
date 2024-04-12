@@ -18,14 +18,27 @@
             android:id="@+id/toolbar_myReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" />
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:subtitleTextColor="#000000"
+            app:title="상품 리뷰"
+            app:titleCentered="true" />
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsMyReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorFullWidth="true">
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextColor="#676767">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabItem_myReview_reviewCreate"
