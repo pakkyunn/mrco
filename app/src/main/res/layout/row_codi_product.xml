@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@={cpm.codiProductName}"
+                    android:text="@{cpm.codiProductName}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
                 <View
@@ -58,7 +58,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@={cpm.codiProductSerialNum}" />
+                        android:text="@{cpm.codiProductSerialNum}" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

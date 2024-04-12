@@ -30,19 +30,21 @@ class ProductManagementFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
-
+        // 툴바, 탭 세팅
         settingToolbar()
         settingClickEvent()
+
+
 
         return binding.root
     }
 
     fun settingToolbar(){
         binding.toolbarProductManagement.apply {
-//            setNavigationOnClickListener {
-//                // 뒤로가기
-//                mainActivity.removeFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT)
-//            }
+            setNavigationOnClickListener {
+                // 뒤로가기
+                mainActivity.removeFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT)
+            }
         }
     }
 

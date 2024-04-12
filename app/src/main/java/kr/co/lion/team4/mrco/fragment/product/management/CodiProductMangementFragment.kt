@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.MainActivity
@@ -13,8 +14,10 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductMangementBinding
 import kr.co.lion.team4.mrco.databinding.RowCodiProductBinding
+import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel
+import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
 
 class CodiProductMangementFragment : Fragment() {
 
@@ -40,6 +43,7 @@ class CodiProductMangementFragment : Fragment() {
         binding.recyclerViewCodiProductManagement.apply {
             // 어댑터 설정
             adapter = CodiProductManagementAdapter()
+            layoutManager = LinearLayoutManager(mainActivity)
             val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
             addItemDecoration(deco)
         }
@@ -62,31 +66,41 @@ class CodiProductMangementFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CodiProductManagementViewHolder {
-            val binding = RowCodiProductBinding.inflate(layoutInflater)
+
+
+            val binding = DataBindingUtil.inflate<RowCodiProductBinding>(
+                layoutInflater, R.layout.row_codi_product, parent, false
+            )
+            val codiProductManagementViewModel = CodiProductManagementViewModel()
+            binding.cpm = codiProductManagementViewModel
+            binding.lifecycleOwner = this@CodiProductMangementFragment
+
             val viewHolder = CodiProductManagementViewHolder(binding)
             return viewHolder
         }
 
         override fun getItemCount(): Int {
-            return codiProductList.size
+            return 10
+            // return codiProductList.size
         }
 
         override fun onBindViewHolder(holder: CodiProductManagementViewHolder, position: Int) {
-            holder.binding.textViewRowCodiProductProductName.text = codiProductList[position].coordiName
-            holder.binding.textViewRowCodiProductSerialNumber.text = codiProductList[position].productIdx.toString()
+            // holder.binding.textViewRowCodiProductProductName.text = codiProductList[position].coordiName
+            // holder.binding.textViewRowCodiProductSerialNumber.text = codiProductList[position].productIdx.toString()
+
             // 사진 등록 필요
-//            holder.binding.imageViewRowCodiProduct.
+            // holder.binding.imageViewRowCodiProduct.setImageResource(R.drawable.이미지이름)
 
 
             // 항목을 눌렀을 때 동작할 리스너
             holder.binding.root.setOnClickListener {
                 // 필요한 데이터 담아주기
-                val readBundle = Bundle()
-                readBundle.putInt("codiIdx", codiProductList[position].productIdx)
+                // val readBundle = Bundle()
+                // readBundle.putInt("codiIdx", codiProductList[position].productIdx)
 
                 // 화면 전환 -> CodiProductInfo
-                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, readBundle)
-
+                // 에러 나면서 팅겨서 주석처리 해둠
+                // mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, null)
             }
         }
     }

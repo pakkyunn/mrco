@@ -19,7 +19,8 @@
             android:id="@+id/imageView_rowIndividualProduct"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/logo_mrco"/>
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_mrco" />
 
 
         <LinearLayout
@@ -35,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@={rip.productName}"
+                android:text="@{rip.productName}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <View
@@ -55,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@={rip.productSerialNum}" />
+                    android:text="@{rip.productSerialNum}" />
 
                 <View
                     android:layout_width="0dp"
@@ -67,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@={rip.productStockNum}" />
+                    android:text="@{rip.productStockNum}" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

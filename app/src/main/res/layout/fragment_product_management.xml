@@ -29,9 +29,15 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabsProductManagement"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
-            app:tabIndicatorFullWidth="true">
+            android:layout_marginTop="16dp"
+            app:tabIndicatorFullWidth="true"
+            android:backgroundTint="#ffffff"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabSelectedTextColor="#000000"
+            app:tabRippleColor="#CCCCCC"
+            app:tabTextColor="#676767">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/tabItem_productManagement_codiProductManagement"
