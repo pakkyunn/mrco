@@ -36,6 +36,8 @@ class MyReviewFragment : Fragment() {
         settingToolbar()
         settingTab()
 
+        changeFragment(CreateReviewFragment())
+
         return binding.root
     }
 
@@ -44,7 +46,7 @@ class MyReviewFragment : Fragment() {
         binding.toolbarMyReview.apply {
             setNavigationOnClickListener {
                 // 뒤로가기
-                mainActivity.removeFragment(MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO)
+                mainActivity.removeFragment(MainFragmentName.MY_REVIEW)
             }
         }
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.databinding.FragmentCreatedReviewBinding
 import kr.co.lion.team4.mrco.databinding.FragmentReviewCreatedBinding
 
 class ReviewCreatedFragment : Fragment() {
