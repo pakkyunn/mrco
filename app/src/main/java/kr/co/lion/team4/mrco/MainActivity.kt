@@ -167,6 +167,9 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.MBTI_PRODUCT_MAIN -> newFragment = MbtiProductMainFragment()
             MainFragmentName.COORDINATOR_MAIN -> newFragment = CoordinatorMainFragment()
 
+            // 상품 구매 페이지
+            MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
+
             // 카테고리 (카테고리 선택, 메인) 화면
             MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
             MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
