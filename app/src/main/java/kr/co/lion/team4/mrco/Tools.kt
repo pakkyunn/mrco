@@ -122,6 +122,8 @@ enum class MainFragmentName(var str: String) {
     FRAGMENT_REVIEW_CREATED("ReviewCreatedFragment"), // ProductReviewFragment - 작성한 리뷰 클릭시 나오는 화면
     FRAGMENT_REVIEW("ReviewFragment"), // 작성한 리뷰
 
+    // 상품구매관련
+    PRODUCT_FRAGMENT("ProductFragment"),
     
     // 상민
     LOGIN_FRAGMENT("LoginFragment"),

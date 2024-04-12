@@ -1,4 +1,4 @@
-package kr.co.lion.team4.mrco.fragment.product.buy
+package kr.co.lion.team4.mrco.fragment.product.purchase
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

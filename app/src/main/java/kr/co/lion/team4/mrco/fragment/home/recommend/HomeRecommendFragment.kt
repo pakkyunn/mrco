@@ -242,10 +242,10 @@ class HomeRecommendFragment : Fragment() {
 
         override fun onBindViewHolder(holder: HomeRecommendViewHolder, position: Int) {
             holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
-                mainActivity.startProductActivity()
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
             holder.rowHomeRecommendBinding.itemMainProductThumbnail2.setOnClickListener {
-                mainActivity.startProductActivity()
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
         }
     }
@@ -287,10 +287,10 @@ class HomeRecommendFragment : Fragment() {
 
         override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail.setOnClickListener {
-                mainActivity.startProductActivity()
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail2.setOnClickListener {
-                mainActivity.startProductActivity()
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
         }
     }

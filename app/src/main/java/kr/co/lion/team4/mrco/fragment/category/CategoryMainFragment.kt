@@ -41,7 +41,7 @@ class CategoryMainFragment : Fragment() {
             // 네비게이션
             setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
-                backProcesss()
+                backProcess()
             }
             // setNavigationIcon(R.drawable.event_list_24px)
         }
@@ -86,13 +86,13 @@ class CategoryMainFragment : Fragment() {
         override fun onBindViewHolder(holder: CategoryMainViewHolder, position: Int) {
             // 이미지 클릭시
             holder.rowCategoryMainBinding.itemMainProductThumbnail.setOnClickListener {
-                mainActivity.startProductActivity()
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
         }
     }
 
     // 뒤로가기 처리
-    fun backProcesss(){
+    fun backProcess(){
         mainActivity.removeFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT)
     }
 }

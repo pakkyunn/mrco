@@ -33,7 +33,7 @@ import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderHistoryFragment
-import kr.co.lion.team4.mrco.fragment.product.buy.ProductReviewFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductReviewFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAccessoryFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAllFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoBottomFragment
@@ -44,6 +44,7 @@ import kr.co.lion.team4.mrco.fragment.product.individual.IndividualProductInfoFr
 import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -239,6 +240,8 @@ class MainActivity : AppCompatActivity() {
 
             MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
 
+            MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
+
             // 상민
             MainFragmentName.LOGIN_FRAGMENT -> newFragment = LoginFragment()
 
@@ -339,14 +342,5 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
-    }
-
-    // ProductActivity 실행
-    fun startProductActivity(){
-        // ProductActivity 실행하고 현재 Acrivity는 종료한다.
-        val productIntent = Intent(this, ProductActivity::class.java)
-        startActivity(productIntent)
-
-        finish()
     }
 }
