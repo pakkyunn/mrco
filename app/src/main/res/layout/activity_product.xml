@@ -172,27 +172,39 @@
                     android:elevation="1dp"
                     app:tabIndicatorColor="#000000"
                     app:tabIndicatorFullWidth="true"
-                    app:tabMinWidth="120dp"
-                    app:tabMode="fixed"
+                    app:tabMinWidth="110dp"
+                    app:tabMode="scrollable"
                     app:tabRippleColor="#CCCCCC"
                     app:tabSelectedTextColor="#000000"
                     app:tabTextColor="#676767">
 
                     <com.google.android.material.tabs.TabItem
+                        android:id="@+id/product_tabItem_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상품 상세" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/product_tabItem_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="실축 사이즈" />
+
+                    <com.google.android.material.tabs.TabItem
                         android:id="@+id/product_tabItem_delivery"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="배송" />
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/product_tabItem_review"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="후기 (138)" />
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/product_tabItem_question"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="문의 (77)" />
 
@@ -232,13 +244,15 @@
 
                     <Button
                         android:id="@+id/button3"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginEnd="8dp"
-                        android:layout_weight="2"
-                        android:backgroundTint="#000000"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
                         android:drawableStart="@drawable/add_shopping_cart_24px"
                         android:text="장바구니"
+                        android:textColor="@color/black"
                         app:cornerRadius="5dp" />
 
                     <Button
