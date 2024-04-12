@@ -31,9 +31,10 @@ class CoordinatorMyPageFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 탭바 설정
+        // 탭바, 하단바 설정
         settingTabs()
         settingMypagetab()
+        mainActivity.viewBottomSheet()
 
 
         settingCoordiMyPageMenuClickEvent()
