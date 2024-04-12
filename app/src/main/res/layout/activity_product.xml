@@ -17,7 +17,7 @@
 
         <kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <com.google.android.material.appbar.AppBarLayout
@@ -38,7 +38,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerViewProductBanner"
                             android:layout_width="match_parent"
-                            android:layout_height="480dp"
+                            android:layout_height="400dp"
                             android:clipChildren="false"
                             android:clipToPadding="false"
                             android:orientation="horizontal"
@@ -170,39 +170,27 @@
                     android:elevation="1dp"
                     app:tabIndicatorColor="#000000"
                     app:tabIndicatorFullWidth="true"
-                    app:tabMinWidth="110dp"
-                    app:tabMode="scrollable"
+                    app:tabMinWidth="120dp"
+                    app:tabMode="fixed"
                     app:tabRippleColor="#CCCCCC"
                     app:tabSelectedTextColor="#000000"
                     app:tabTextColor="#676767">
 
                     <com.google.android.material.tabs.TabItem
-                        android:id="@+id/product_tabItem_detail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="상품 상세" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:id="@+id/product_tabItem_size"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="실축 사이즈" />
-
-                    <com.google.android.material.tabs.TabItem
                         android:id="@+id/product_tabItem_delivery"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="배송" />
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/product_tabItem_review"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="후기 (138)" />
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/product_tabItem_question"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="문의 (77)" />
 
@@ -220,19 +208,48 @@
                     android:layout_height="match_parent" />
             </androidx.core.widget.NestedScrollView>
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/product_shopping_button"
-                android:layout_width="wrap_content"
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomButtonProduct"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="16dp"
-                android:contentDescription="구매하기"
-                android:text="구매하기"
-                android:textColor="@color/white"
-                app:backgroundTint="#000000"
-                app:icon="@drawable/outline_shopping_bag_24"
-                app:iconTint="@color/white" />
+                android:layout_gravity="bottom"
+                android:background="@color/mrco_launcher_background"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:itemActiveIndicatorStyle="@null"
+                app:itemIconTint="@color/bottom_navigation_selector_color"
+                app:itemTextColor="@color/bottom_navigation_selector_color"
+                app:labelVisibilityMode="labeled"
+                app:layout_insetEdge="bottom">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="2"
+                        android:backgroundTint="#000000"
+                        android:drawableStart="@drawable/add_shopping_cart_24px"
+                        android:text="장바구니"
+                        app:cornerRadius="5dp" />
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#000000"
+                        android:drawableStart="@drawable/shopping_cart_checkout_24px"
+                        android:text="구매하기"
+                        app:cornerRadius="5dp" />
+                </LinearLayout>
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
 
         </kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout>
 

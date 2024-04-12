@@ -33,7 +33,7 @@ import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderHistoryFragment
-import kr.co.lion.team4.mrco.fragment.product.ProductReviewFragment
+import kr.co.lion.team4.mrco.fragment.product.buy.ProductReviewFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAccessoryFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAllFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoBottomFragment
