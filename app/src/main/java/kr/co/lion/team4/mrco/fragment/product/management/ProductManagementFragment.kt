@@ -6,6 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.ProductManagementViewModel
@@ -17,12 +22,12 @@ class ProductManagementFragment : Fragment() {
 
     private lateinit var binding: FragmentProductManagementBinding
     private lateinit var viewModel: ProductManagementViewModel
-    private lateinit var mainActivity: kr.co.lion.team4.mrco.MainActivity
+    private lateinit var mainActivity: MainActivity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_product_management, container, false)
         viewModel = ProductManagementViewModel()
-        mainActivity = activity as kr.co.lion.team4.mrco.MainActivity
+        mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
 
@@ -34,24 +39,40 @@ class ProductManagementFragment : Fragment() {
 
     fun settingToolbar(){
         binding.toolbarProductManagement.apply {
-            setNavigationOnClickListener {
-                // 뒤로가기
-                mainActivity.removeFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT)
-            }
+//            setNavigationOnClickListener {
+//                // 뒤로가기
+//                mainActivity.removeFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT)
+//            }
         }
     }
 
     fun settingClickEvent(){
-        binding.apply {
-            // 코디상품관리 탭 클릭
-            tabItemProductManagementCodiProductManagement.setOnClickListener {
-//                fragmentContainerProductManagement -> CodiProductManagemnetFragment
-            }
+        CoroutineScope(Dispatchers.Main).launch {
+            binding.apply {
+                val tab = tabsProductManagement
 
-            // 개별상품관리 탭 클릭
-            tabItemProdcutManagementIndividualProductManagement.setOnClickListener {
-//                fragmentContainerProductManagement -> IndividualProductManagemnetFragment
+                // 탭 선택 리스너 설정
+                tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                    override fun onTabSelected(tab: TabLayout.Tab?) {
+                        // 코디상품관리 탭 클릭
+                        if (tab?.position == 0) {
+                            // fragmentContainerProductManagement -> CodiProductManagemnetFragment
+                            changeFragment(CodiProductMangementFragment())
 
+                        }
+                        // 코디상품관리 탭 클릭
+                        else {
+                            // fragmentContainerProductManagement -> IndividualProductManagemnetFragment
+                            changeFragment(IndividualProductManagementFragment())
+                        }
+                    }
+
+                    override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    }
+
+                    override fun onTabReselected(tab: TabLayout.Tab?) {
+                    }
+                })
             }
         }
     }
