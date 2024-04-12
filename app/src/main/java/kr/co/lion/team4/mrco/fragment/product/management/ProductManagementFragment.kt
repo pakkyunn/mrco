@@ -32,7 +32,7 @@ class ProductManagementFragment : Fragment() {
 
         // 툴바, 탭 세팅
         settingToolbar()
-        settingClickEvent()
+        settingTab()
 
 
 
@@ -48,11 +48,10 @@ class ProductManagementFragment : Fragment() {
         }
     }
 
-    fun settingClickEvent(){
+    fun settingTab(){
         CoroutineScope(Dispatchers.Main).launch {
             binding.apply {
                 val tab = tabsProductManagement
-
                 // 탭 선택 리스너 설정
                 tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                     override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -60,7 +59,6 @@ class ProductManagementFragment : Fragment() {
                         if (tab?.position == 0) {
                             // fragmentContainerProductManagement -> CodiProductManagemnetFragment
                             changeFragment(CodiProductMangementFragment())
-
                         }
                         // 코디상품관리 탭 클릭
                         else {
@@ -86,5 +84,21 @@ class ProductManagementFragment : Fragment() {
 
         transaction.replace(R.id.fragmentContainer_productManagement, newFragment)
         transaction.commit()
+    }
+
+    // 탭 위치 설정
+    fun settingTab0(){
+        binding.apply {
+            val tabLayout = tabsProductManagement
+            tabLayout.getTabAt(0)?.select()
+        }
+    }
+
+    // 탭 위치 설정
+    fun settingTab1(){
+        binding.apply {
+            val tabLayout = tabsProductManagement
+            tabLayout.getTabAt(1)?.select()
+        }
     }
 }

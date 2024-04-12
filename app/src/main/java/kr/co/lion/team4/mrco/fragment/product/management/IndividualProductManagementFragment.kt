@@ -16,6 +16,7 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.IndividualProductManagementViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentIndividualProdcutManagementBinding
+import kr.co.lion.team4.mrco.databinding.FragmentProductManagementBinding
 import kr.co.lion.team4.mrco.databinding.RowIndividualProductBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.viewmodel.IndividualProductInfoViewModel
@@ -23,9 +24,10 @@ import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
 
 class IndividualProductManagementFragment : Fragment() {
 
-    private lateinit var binding: FragmentIndividualProdcutManagementBinding
-    private lateinit var viewModel: IndividualProductManagementViewModel
-    private lateinit var mainActivity: MainActivity
+    lateinit var binding: FragmentIndividualProdcutManagementBinding
+    lateinit var viewModel: IndividualProductManagementViewModel
+
+    lateinit var mainActivity: MainActivity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_individual_prodcut_management, container, false)
@@ -83,7 +85,9 @@ class IndividualProductManagementFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: IndividualProductViewHolder, position: Int) {
-
+            holder.rowIndividualProductBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO, true, true, null)
+            }
         }
     }
 }

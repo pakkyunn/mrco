@@ -24,6 +24,7 @@ class CodiProductMangementFragment : Fragment() {
     private lateinit var binding: FragmentCodiProductMangementBinding
     private lateinit var viewModel: CodiProductManagementViewModel
     lateinit var mainActivity: MainActivity
+    lateinit var productManagementFragment: ProductManagementFragment
 
     // 코디 상품 리스트
     val codiProductList = mutableListOf<ProductModel>()
@@ -44,8 +45,8 @@ class CodiProductMangementFragment : Fragment() {
             // 어댑터 설정
             adapter = CodiProductManagementAdapter()
             layoutManager = LinearLayoutManager(mainActivity)
-            val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
-            addItemDecoration(deco)
+            // val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
+            // addItemDecoration(deco)
         }
     }
 
@@ -99,8 +100,7 @@ class CodiProductMangementFragment : Fragment() {
                 // readBundle.putInt("codiIdx", codiProductList[position].productIdx)
 
                 // 화면 전환 -> CodiProductInfo
-                // 에러 나면서 팅겨서 주석처리 해둠
-                // mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, null)
             }
         }
     }

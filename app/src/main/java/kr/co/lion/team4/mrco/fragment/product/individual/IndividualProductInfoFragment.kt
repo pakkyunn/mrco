@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.IndividualProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentIndividualProductInfofragmentBinding
@@ -25,7 +26,18 @@ class IndividualProductInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
+        // 툴바 세팅
+        settingToolbar()
 
         return binding.root
+    }
+
+    fun settingToolbar(){
+        binding.toolbarIndividualProductInfo.apply {
+            setNavigationOnClickListener {
+                // 뒤로가기
+                mainActivity.removeFragment(MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO)
+            }
+        }
     }
 }
