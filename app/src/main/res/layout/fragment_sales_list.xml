@@ -69,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            app:checkedButton="@id/button_sales_list_one_month"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -78,7 +79,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="1개월" />
+                android:text="1개월"
+                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:textColor="@color/selector_add_product_option_text_color" />
 
             <Button
                 android:id="@+id/button_sales_list_three_months"
@@ -86,7 +89,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="3개월" />
+                android:text="3개월"
+                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:textColor="@color/selector_add_product_option_text_color" />
 
             <Button
                 android:id="@+id/button_sales_list_six_months"
@@ -94,7 +99,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="6개월" />
+                android:text="6개월"
+                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:textColor="@color/selector_add_product_option_text_color" />
 
             <Button
                 android:id="@+id/button_sales_list_set_period"
@@ -102,7 +109,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="기간 설정" />
+                android:text="기간 설정"
+                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:textColor="@color/selector_add_product_option_text_color" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <View
