@@ -89,7 +89,7 @@ class LikeCoordinatorFragment : Fragment() {
         }
     }
 
-    // 인기 코디네이터 리사이클러 뷰 설정
+    // 리사이클러 뷰 설정
     fun settingRecyclerViewLikeCoordinator() {
         fragmentLikeCoordinatorBinding.apply {
             recyclerViewLikeCoordinator.apply {
