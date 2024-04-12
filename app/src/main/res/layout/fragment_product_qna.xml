@@ -6,28 +6,28 @@
             name="productQnaViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.product.ProductQnaViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <Button
             android:id="@+id/product_question_upload_button"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginHorizontal="16dp"
-            android:text="상품 문의 남기기"/>
+            android:backgroundTint="#000000"
+            android:padding="12dp"
+            android:text="상품 문의 남기기"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp" />
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/product_question_secret_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/product_question_upload_button"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:checked="@={productQnaViewModel.product_question_secret_checkBox}"
@@ -37,11 +37,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/product_question_recycler"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintTop_toBottomOf="@id/product_question_secret_checkBox"
             app:layout_constraintBottom_toBottomOf="parent"
             android:clipToPadding="false"
             android:paddingBottom="32dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
