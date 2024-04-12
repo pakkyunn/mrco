@@ -39,6 +39,9 @@ class AddProductFragment : Fragment() {
 
         settingCategoryClickEvent()
 
+        settingButtonAddProductDetail()
+
+        // 리사이클러뷰 어댑터
         settingAddProductPhotoRecyclerView()
         settingAddProductDetailRecyclerView()
 
@@ -51,6 +54,14 @@ class AddProductFragment : Fragment() {
             setNavigationOnClickListener {
                 backProcess()
             }
+        }
+    }
+
+    // 코디 상품 및 재고 등록
+    fun settingButtonAddProductDetail(){
+        fragmentAddProductBinding.buttonAddProductDetail.setOnClickListener {
+            val width = getDeviceWidth()
+            AddProductDialog(width!!).show(childFragmentManager, null)
         }
     }
 
@@ -199,5 +210,13 @@ class AddProductFragment : Fragment() {
         override fun getItemCount(): Int {
             return 4
         }
+    }
+
+    // Dialog의 가로 길이를 조정하기 위해 필요한 '디바이스의 가로 길이' 구하기
+   fun getDeviceWidth() : Int? {
+        val display = mainActivity.applicationContext?.resources?.displayMetrics
+        val deviceWidth = display?.widthPixels // 디바이스의 가로길이
+
+        return deviceWidth
     }
 }
