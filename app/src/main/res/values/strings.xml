@@ -30,6 +30,22 @@
         <item>문자 답변</item>
     </string-array>
 
+    <!--상품페이지 상품구매 옵션_사이즈 정렬-->
+    <string-array name="array_product_purchase_size_sort">
+        <item>사이즈 선택</item>
+        <item>@string/product_size</item>
+        <item>@string/product_size</item>
+        <item>@string/product_size</item>
+    </string-array>
+
+    <!--상품페이지 상품구매 옵션_색상 정렬-->
+    <string-array name="array_product_purchase_color_sort">
+        <item>색상 선택</item>
+        <item>@string/product_color</item>
+        <item>@string/product_color</item>
+        <item>@string/product_color</item>
+    </string-array>
+
     <string name="LoremIpsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
     <!-- 시각장애인들을 위한 contentDescription 설명 추가 -->
@@ -72,7 +88,6 @@
     <string name="title_prodcutManagement">등록상품관리</string>
     <string name="tabItem_codiProductManagement">코디상품관리</string>
     <string name="tabItem_individualProductManagement">개별상품관리</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--  상품관리 리스트  -->
