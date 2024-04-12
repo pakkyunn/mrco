@@ -22,7 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <TextView
                 android:id="@+id/item_product_qna_status_text"
                 android:layout_width="wrap_content"
@@ -31,6 +30,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@{rowProductQnaViewModel.item_product_qna_status_text}"
                 android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:textColor="@color/material_dynamic_neutral70"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -46,10 +46,8 @@
                 android:drawablePadding="8dp"
                 android:ellipsize="end"
                 android:gravity="center|start"
-                android:maxLines="1"
                 android:text="@{rowProductQnaViewModel.item_product_question_content}"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:drawableStartCompat="@drawable/outline_lock_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/item_product_qna_status_text"
@@ -79,8 +77,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/item_product_question_owner"
                 tools:text="2024-01-05" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -93,7 +89,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout_product_qna_question">
-
 
             <com.google.android.material.divider.MaterialDivider
                 android:id="@+id/item_product_question_divider_end"
@@ -136,7 +131,6 @@
                 android:layout_marginTop="8dp"
                 android:text="@{rowProductQnaViewModel.item_product_answer_owner}"
                 android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-
                 android:textColor="@color/material_dynamic_neutral60"
                 app:layout_constraintStart_toStartOf="@id/item_product_answer_content"
                 app:layout_constraintTop_toBottomOf="@id/item_product_answer_content"
@@ -147,14 +141,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:text="@{rowProductQnaViewModel.item_product_question_answer_date}"
                 android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-
                 android:textColor="@color/material_dynamic_neutral60"
                 app:layout_constraintBaseline_toBaselineOf="@id/item_product_answer_owner"
                 app:layout_constraintStart_toEndOf="@id/item_product_answer_owner"
                 tools:text="2024-01-05" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
