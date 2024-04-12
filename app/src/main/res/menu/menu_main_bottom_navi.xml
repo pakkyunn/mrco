@@ -24,6 +24,6 @@
         android:id="@+id/main_bottom_navi_my"
         android:enabled="true"
         android:icon="@drawable/outline_account_box_24"
-        android:title="마이"
+        android:title="마이페이지"
         app:showAsAction="always" />
 </menu>
