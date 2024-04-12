@@ -68,27 +68,26 @@
                             app:singleSelection="true">
                             <!--                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}"-->
 
-
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCategoryGenderMEN"
-                                style="@style/Widget.Material3.Chip.Suggestion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checked="true"
+                                android:checkable="true"
                                 android:text="MEN"
                                 app:checkedIconVisible="false"
-                                app:chipCornerRadius="20dp"
-                                app:chipStrokeColor="@color/black" />
+                                android:textColor="@color/selector_add_product_option_text_color"
+                                app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCategoryGenderWOMEN"
-                                style="@style/Widget.Material3.Chip.Suggestion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:checkable="true"
                                 android:text="WOMEN"
-                                app:chipCornerRadius="20dp"
-                                app:chipStrokeColor="@color/black" />
-
+                                app:chipStrokeColor="@color/black"
+                                android:textColor="@color/selector_add_product_option_text_color"
+                                app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
                         </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
                 </LinearLayout>
