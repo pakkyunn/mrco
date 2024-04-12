@@ -1,47 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
         <variable
             name="productQnaViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.product.ProductQnaViewModel" />
     </data>
-    <LinearLayout
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:transitionGroup="true">
 
-        <Button
-            android:id="@+id/product_question_upload_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginHorizontal="16dp"
-            android:backgroundTint="#000000"
-            android:padding="12dp"
-            android:text="상품 문의 남기기"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:cornerRadius="10dp" />
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/product_question_secret_checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:checked="@={productQnaViewModel.product_question_secret_checkBox}"
-            android:onClickListener="@{ (view) -> productQnaViewModel.onCheckBoxChanged()}"
-            android:text="비밀글 제외" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_question_recycler"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/product_question_secret_checkBox"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:clipToPadding="false"
-            android:paddingBottom="32dp"/>
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/product_question_upload_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#000000"
+                android:padding="12dp"
+                android:text="상품 문의 남기기"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="10dp" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/product_question_secret_checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:checked="@={productQnaViewModel.product_question_secret_checkBox}"
+                android:onClickListener="@{ (view) -> productQnaViewModel.onCheckBoxChanged()}"
+                android:text="비밀글 제외" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_question_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/product_question_secret_checkBox" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
