@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="dialogAddProductViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.productManagement.DialogAddProductViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,13 +48,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="예) mrco슬랙스">
+                android:hint="예) mrco슬랙스"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_dialog_add_product_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text|textMultiLine" />
+                    android:inputType="text"
+                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductName}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -77,14 +86,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="예) L(100)">
+                android:hint="예) L(100)"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_dialog_add_product_size"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text|textCapWords"
-                    android:singleLine="true" />
+                    android:inputType="text"
+                    android:singleLine="true"
+                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductSize}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -113,15 +124,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="단위 (개)">
+                android:hint="단위 (개)"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_dialog_add_product_stock"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="number"
-                    android:numeric="integer"
-                    android:singleLine="true" />
+                    android:inputType="number|numberDecimal"
+                    android:singleLine="true"
+                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductStock}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -150,13 +162,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="예) 상의/하의/신발/액세서리">
+                android:hint="예) 상의/하의/신발/액세서리"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_dialog_add_product_type"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clickable="true" />
+                    android:clickable="true"
+                    android:inputType="text"
+                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductType}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -185,14 +200,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="예) Gray">
+                android:hint="예) Gray"
+                app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edittext_dialog_add_product_color"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductColor}" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -232,7 +249,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
             <Button

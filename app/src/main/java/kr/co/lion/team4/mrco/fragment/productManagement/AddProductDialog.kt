@@ -9,13 +9,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.DialogAddProductBinding
+import kr.co.lion.team4.mrco.viewmodel.productManagement.DialogAddProductViewModel
 
 class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
 
     lateinit var dialogAddProductBinding: DialogAddProductBinding
+    lateinit var dialogAddProductViewModel : DialogAddProductViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialogAddProductBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_add_product, null, false)
+        dialogAddProductViewModel = DialogAddProductViewModel()
+        dialogAddProductBinding.dialogAddProductViewModel = dialogAddProductViewModel
         dialogAddProductBinding.lifecycleOwner = this
 
         return dialogAddProductBinding.root
