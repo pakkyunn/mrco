@@ -28,5 +28,7 @@ class RowProductQnaViewModel: ViewModel() {
     // 답변 작성자(코디네이터명)
     val item_product_answer_owner = MutableLiveData<String>()
 
+    // 답변 작성일
+    val item_product_question_answer_date = MutableLiveData<String>(question_date)
 
 }
