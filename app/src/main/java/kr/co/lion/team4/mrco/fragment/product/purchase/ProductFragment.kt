@@ -1,59 +1,52 @@
-package kr.co.lion.team4.mrco
+package kr.co.lion.team4.mrco.fragment.product.purchase
 
-import android.content.Intent
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
-import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
-import kr.co.lion.team4.mrco.databinding.ActivityProductBinding
-import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
+import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.databinding.FragmentProductBinding
 import kr.co.lion.team4.mrco.databinding.RowProductBannerBinding
-import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
+import kr.co.lion.team4.mrco.viewmodel.product.ProductViewModel
 
-class ProductActivity : AppCompatActivity() {
-
-    lateinit var activityProductBinding: ActivityProductBinding
+class ProductFragment : Fragment() {
+    lateinit var fragmentProductBinding: FragmentProductBinding
     lateinit var mainActivity: MainActivity
+    lateinit var productViewModel: ProductViewModel
 
     lateinit var snapHelper: SnapHelper
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        activityProductBinding = ActivityProductBinding.inflate(layoutInflater)
-        setContentView(activityProductBinding.root)
+        fragmentProductBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false)
+        productViewModel = ProductViewModel()
+        fragmentProductBinding.productViewModel = productViewModel
+        fragmentProductBinding.lifecycleOwner = this
 
-        // 툴바
-        settingToolbar()
+        mainActivity = activity as MainActivity
+
 
         // 리사이클러 뷰
         settingRecyclerViewHomeRecommendBanner()
-    }
 
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        activityProductBinding.apply {
-            productToolbar.apply {
-                // 네비게이션
-                setNavigationIcon(R.drawable.arrow_back_24px)
-                setNavigationOnClickListener {
-                    startMainActivity()
-                }
-            }
-        }
+
+        return fragmentProductBinding.root
     }
 
     //  Product - 배너 리사이클러 뷰 설정
     fun settingRecyclerViewHomeRecommendBanner() {
-        activityProductBinding.apply {
-            recyclerViewProductBanner.apply {
+        fragmentProductBinding.apply {
+            recyclerViewBannerProduct.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
                 adapter = ProductBannerRecyclerViewAdapter()
 
@@ -62,7 +55,6 @@ class ProductActivity : AppCompatActivity() {
             }
         }
     }
-
     // Product - 배너 리사이클러 뷰 어뎁터
     inner class ProductBannerRecyclerViewAdapter: RecyclerView.Adapter<ProductBannerRecyclerViewAdapter.ProductBannerViewHolder>(){
         inner class ProductBannerViewHolder(rowProductBannerBinding: RowProductBannerBinding): RecyclerView.ViewHolder(rowProductBannerBinding.root){
@@ -103,11 +95,4 @@ class ProductActivity : AppCompatActivity() {
         }
     }
 
-    // MainActivity 실행
-    fun startMainActivity(){
-        // MainActivity 실행하고 현재 Acrivity는 종료한다.
-        val mainIntent = Intent(this, MainActivity::class.java)
-        startActivity(mainIntent)
-        finish()
-    }
 }

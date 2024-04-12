@@ -34,7 +34,7 @@ import kr.co.lion.team4.mrco.fragment.mypage.UserMyPageFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderDetailFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderFragment
 import kr.co.lion.team4.mrco.fragment.order.OrderHistoryFragment
-import kr.co.lion.team4.mrco.fragment.product.buy.ProductReviewFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductReviewFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAccessoryFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAllFragment
 import kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoBottomFragment
@@ -45,6 +45,7 @@ import kr.co.lion.team4.mrco.fragment.product.individual.IndividualProductInfoFr
 import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -73,14 +74,54 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
+        // Status 바 (최상단 / 툴바 위)
+        // window.statusBarColor = ContextCompat.getColor(this, R.color.black)
+
         // 하단 바 설정(이동 관련)
         bottomSheetSetting()
 
-        // 로그인 화면
-        // replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
+        // 로그인부터 시작 - 테스트
+        replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
 
-        // 홈 화면(추천)
-        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+        // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
+        // 탭으로 화면 이동 가능
+        // replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
+        // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
+        // replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
+        // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
+
+        // 좋아요 화면(코디네이터) - (원빈)완료
+        // 탭으로 화면 이동 가능 / 코디화면, 코디네이터 화면
+        // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
+        // replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
+
+        // 리뷰 작성 페이지 - (원빈)완료
+        // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
+
+        // 주문 상세 정보 페이지 - (원빈)완료
+        // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
+
+        // 매출관리(내역), 매출관리(캘린더) - (원빈)완료
+        // 탭으로 화면 이동 가능 / 리포트는 현재 연동 X
+        // replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
+        // replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, false, null)
+
+        // 알림 - 현준(완료)
+        // replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, false, false, null)
+
+        // 카테고리 - 현준(완료)
+        // replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+
+        // 코디네이터 마이 페이지 - 현준(완료)
+        // replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, false, false, null)
+
+        // 사용자 마이 페이지 - 현준(완료)
+        // replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+
+        // 고객센터 - 현준(완료)
+        // replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -280,13 +321,5 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
-    }
-
-    // ProductActivity 실행
-    fun startProductActivity(){
-        // ProductActivity 실행하고 현재 Acrivity는 종료한다.
-        val productIntent = Intent(this, ProductActivity::class.java)
-        startActivity(productIntent)
-        finish()
     }
 }
