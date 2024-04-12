@@ -8,73 +8,39 @@
             type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:transitionGroup="true"
-        tools:context=".fragment.product.codi.CodiProductInfoFragment">
+        android:layout_height="match_parent">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_product_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="?attr/colorPrimary"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            app:title="코디상품상세"
             app:navigationIcon="@drawable/arrow_back_24px"
-            app:titleCentered="true" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabsCodiProductInfo"
+            android:id="@+id/tabLayout_codiProductInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:tabIndicatorFullWidth="true"
-            android:backgroundTint="#ffffff"
-            android:elevation="1dp"
-            app:tabIndicatorColor="#000000"
-            app:tabSelectedTextColor="#000000"
-            app:tabRippleColor="#CCCCCC"
-            app:tabTextColor="#676767">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem_prouct_info_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_item_all" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem_prouct_info_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_item_top" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem_prouct_info_bottoms"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_item_bottom" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem_prouct_info_shoes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_item_shoes" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabItem_prouct_info_accessory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_item_accessory" />
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/container_CodiProductInfo"
-            android:name="kr.co.lion.team4.mrco.fragment.product.codi.CodiProductInfoAllFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar_product_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
 
-    </LinearLayout>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager_codiProductInfo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout_codiProductInfo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

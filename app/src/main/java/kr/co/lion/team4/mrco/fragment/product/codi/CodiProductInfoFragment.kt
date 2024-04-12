@@ -6,18 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoViewModel
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBinding
-import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
-import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManagementFragment
+import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
 
 
 class CodiProductInfoFragment : Fragment() {
@@ -32,70 +31,57 @@ class CodiProductInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
-        // 툴바, 탭 세팅
-        settingTab()
-        settingToolbar()
+        viewPagerActivation()
+
 
         return binding.root
     }
 
-    fun settingToolbar(){
-        binding.toolbarProductInfo.apply {
-            setNavigationOnClickListener {
-                // 뒤로가기
-                mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO)
+    private fun settingView(){
+        binding.apply {
+            toolbarProductInfo.apply {
+                setNavigationOnClickListener {
+                    // 뒤로가기
+                    mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO)
+                }
             }
         }
     }
 
-    // 탭바 세팅
-    fun settingTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            binding.apply {
-                val tab = tabsCodiProductInfo
 
-                // 탭 선택 리스너 설정
-                tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 전체 탭
-                        if (tab?.position == 0) {
-                            changeFragment(CodiProductInfoAllFragment())
 
-                        }
-                        // 상의 탭
-                        else if (tab?.position == 1) {
-                            changeFragment(CodiProductInfoTopFragment())
-                        }
-                        // 하의 탭
-                        else if (tab?.position == 2) {
-                            changeFragment(CodiProductInfoBottomFragment())
-                        }
-                        // 신발 탭
-                        else if (tab?.position == 3) {
-                            changeFragment(CodiProductInfoShoesFragment())
-                        }
-                        // 악세사리 탭
-                        else {
-                            changeFragment(CodiProductInfoAccessoryFragment())
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                    }
-                })
-            }
+    // ViewPager 활성화
+    private fun viewPagerActivation(){
+        binding.apply {
+            // 1. 페이지 데이터를 로드
+            val list = listOf(
+                CodiProductInfoAllFragment(),
+                CodiProductInfoTopFragment(),
+                CodiProductInfoBottomFragment(),
+                CodiProductInfoShoesFragment(),
+                CodiProductInfoAccessoryFragment())
+            // 2. Adpater 생성
+            val pagerAdapter = FragmentPagerAdapter(list, mainActivity)
+            // 3. Adpater와 ViewPager 연결
+            viewPagerCodiProductInfo.adapter = pagerAdapter
+            // 4. 탭 메뉴와 갯수만큰 제목을 목록으로 생성
+            val titles = listOf("전체", "상의", "하의", "신발", "악세서리")
+            // 5. Tab Layout과 ViewPager 연결
+            TabLayoutMediator(tabLayoutCodiProductInfo, viewPagerCodiProductInfo){ tab, position ->
+                tab.text = titles.get(position)
+            }.attach()
         }
     }
 
-    // FragmentContainerView 전환
-    fun changeFragment(changeFragment: Fragment){
-        val newFragment = changeFragment
-        val transaction = childFragmentManager.beginTransaction()
+    private inner class FragmentPagerAdapter(val fragmentList: List<Fragment>, fragmentActivity: FragmentActivity):
+        FragmentStateAdapter(fragmentActivity){
+        override fun getItemCount(): Int {
+            return fragmentList.size
+        }
 
-        transaction.replace(R.id.container_CodiProductInfo, newFragment)
-        transaction.commit()
+        override fun createFragment(position: Int): Fragment {
+            return fragmentList.get(position)
+        }
+
     }
 }

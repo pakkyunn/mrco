@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBottomBinding
+import kr.co.lion.team4.mrco.databinding.RowCodiProductInfoBottomBinding
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
 
 class CodiProductInfoBottomFragment : Fragment() {
@@ -28,5 +30,36 @@ class CodiProductInfoBottomFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    inner class CodiProductInfoBottomAdapter: RecyclerView.Adapter<CodiProductInfoBottomAdapter.CodiProductInfoBottomViewHolder>(){
+        // ViewHolder
+        inner class CodiProductInfoBottomViewHolder(binding: RowCodiProductInfoBottomBinding): RecyclerView.ViewHolder(binding.root){
+            val binding: RowCodiProductInfoBottomBinding
+
+            init {
+                this.binding = binding
+
+                this.binding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): CodiProductInfoBottomViewHolder {
+            TODO("Not yet implemented")
+        }
+
+        override fun getItemCount(): Int {
+            return 0
+        }
+
+        override fun onBindViewHolder(holder: CodiProductInfoBottomViewHolder, position: Int) {
+            TODO("Not yet implemented")
+        }
     }
 }

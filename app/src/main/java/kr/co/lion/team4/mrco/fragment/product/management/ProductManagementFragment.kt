@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.google.android.material.tabs.TabLayoutMediator
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
@@ -23,6 +24,7 @@ class ProductManagementFragment : Fragment() {
     private lateinit var binding: FragmentProductManagementBinding
     private lateinit var viewModel: ProductManagementViewModel
     private lateinit var mainActivity: MainActivity
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_product_management, container, false)
@@ -30,59 +32,39 @@ class ProductManagementFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
-        // 툴바, 탭 세팅
-        settingToolbar()
-        settingTab()
-
+        viewPagerActiviation()
 
 
         return binding.root
     }
 
-    fun settingToolbar(){
-        binding.toolbarProductManagement.apply {
-            setNavigationOnClickListener {
-                // 뒤로가기
-                mainActivity.removeFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT)
-            }
+    //
+    private fun viewPagerActiviation(){
+        binding.apply {
+            // 1. 페이지 데이터를 로드
+            val list = listOf(CodiProductMangementFragment(), IndividualProductManagementFragment())
+            // 2. Adapter 생성
+            val pagerAdapter = FragmentPagerAdapter(list, mainActivity)
+            // 3. Adapater와 Pager연결
+            viewPagerProductManagement.adapter = pagerAdapter
+            // 4. 탭 메뉴의 갯수만큼 제목을 목록으로 생성
+            val titles = listOf("코디상품관리", "개별상품관리")
+            // 5. 탭 레이아웃과 뷰페이저 연결
+            TabLayoutMediator(tablayoutProductManagement, viewPagerProductManagement){tab, position ->
+                tab.text = titles.get(position)
+            }.attach()
+
         }
     }
 
-    fun settingTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            binding.apply {
-                val tab = tabsProductManagement
-                // 탭 선택 리스너 설정
-                tab.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 코디상품관리 탭 클릭
-                        if (tab?.position == 0) {
-                            // fragmentContainerProductManagement -> CodiProductManagemnetFragment
-                            changeFragment(CodiProductMangementFragment())
-                        }
-                        // 코디상품관리 탭 클릭
-                        else {
-                            // fragmentContainerProductManagement -> IndividualProductManagemnetFragment
-                            changeFragment(IndividualProductManagementFragment())
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                    }
-                })
-            }
+    private inner class FragmentPagerAdapter(val fragmentList: List<Fragment>, fragmentActivity: FragmentActivity):
+        FragmentStateAdapter(fragmentActivity){
+        override fun getItemCount(): Int {
+            return fragmentList.size
         }
-    }
 
-    // FragmentContainerView 전환
-    fun changeFragment(changeFragment: Fragment){
-        val newFragment = changeFragment
-        val transaction = childFragmentManager.beginTransaction()
-
-        transaction.replace(R.id.fragmentContainer_productManagement, newFragment)
-        transaction.commit()
+        override fun createFragment(position: Int): Fragment {
+            return fragmentList.get(position)
+        }
     }
 }
