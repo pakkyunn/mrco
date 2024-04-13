@@ -172,6 +172,7 @@ class MainActivity : AppCompatActivity() {
 
             // 상품 구매 페이지
             MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
+            MainFragmentName.PRODUCT_DETAIL_FRAGMENT -> newFragment = ProductDetailFragment()
 
             // 카테고리 (카테고리 선택, 메인) 화면
             MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
