@@ -10,11 +10,24 @@
             type="kr.co.lion.team4.mrco.viewmodel.product.ProductViewModel" />
     </data>
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".fragment.product.ProductFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:menu="@menu/menu_product"
+            app:navigationIcon="@drawable/arrow_back_ios_24px"
+            app:navigationIconTint="@color/black"/>
 
         <kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout
             android:layout_width="match_parent"
@@ -49,12 +62,12 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/textViewCoordinatorNameProduct"
+                            android:id="@+id/textViewCoordinatorName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:text="@={productViewModel.textViewCoordinatorNameProduct}"
+                            android:text="@={productViewModel.textViewCoordinatorName}"
                             android:textColor="#1969B2"
                             android:textSize="16dp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -66,78 +79,78 @@
                             android:layout_height="0dp"
                             android:layout_marginStart="8dp"
                             android:src="@drawable/home_24px"
-                            app:layout_constraintBottom_toBottomOf="@id/textViewCoordinatorNameProduct"
+                            app:layout_constraintBottom_toBottomOf="@id/textViewCoordinatorName"
                             app:layout_constraintDimensionRatio="1:1"
-                            app:layout_constraintStart_toEndOf="@id/textViewCoordinatorNameProduct"
-                            app:layout_constraintTop_toTopOf="@id/textViewCoordinatorNameProduct" />
+                            app:layout_constraintStart_toEndOf="@id/textViewCoordinatorName"
+                            app:layout_constraintTop_toTopOf="@id/textViewCoordinatorName" />
 
 
                         <TextView
-                            android:id="@+id/textIconMbtiProduct"
+                            android:id="@+id/textIconMbti"
                             android:layout_width="64dp"
                             android:layout_height="32dp"
                             android:layout_marginTop="5dp"
                             android:background="#13D4EF"
                             android:gravity="center"
-                            android:text="@={productViewModel.textIconMbtiProduct}"
+                            android:text="@={productViewModel.textIconMbti}"
                             android:textColor="#FFFFFF"
                             android:textSize="16dp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="@id/textViewCoordinatorNameProduct"
-                            app:layout_constraintTop_toBottomOf="@id/textViewCoordinatorNameProduct"
+                            app:layout_constraintStart_toStartOf="@id/textViewCoordinatorName"
+                            app:layout_constraintTop_toBottomOf="@id/textViewCoordinatorName"
                             tools:text="ESFJ" />
 
-                        <ImageView
-                            android:id="@+id/imageButtonLikeProduct"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
-                            android:src="@drawable/favorite_24"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/recyclerViewBannerProduct"
-                            app:tint="#FB0006" />
-
-                        <TextView
-                            android:id="@+id/textViewLikeCountProduct"
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/checkBoxLike"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@={productViewModel.textViewLikeCountProduct}"
+                            android:layout_marginEnd="16dp"
+                            android:button="@drawable/selector_favorite"
+                            app:buttonTint="#B31010"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/recyclerViewBannerProduct" />
+
+                        <TextView
+                            android:id="@+id/textViewLikeCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="@={productViewModel.textViewLikeCount}"
                             android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                            android:textColor="#FB0006"
-                            app:layout_constraintEnd_toEndOf="@id/imageButtonLikeProduct"
-                            app:layout_constraintStart_toStartOf="@id/imageButtonLikeProduct"
-                            app:layout_constraintTop_toBottomOf="@id/imageButtonLikeProduct"
+                            android:textColor="#B31010"
+                            app:layout_constraintEnd_toEndOf="@id/checkBoxLike"
+                            app:layout_constraintStart_toStartOf="@id/checkBoxLike"
+                            app:layout_constraintTop_toTopOf="@+id/checkBoxLike"
                             tools:text="807" />
 
                         <TextView
-                            android:id="@+id/textViewNameProduct"
+                            android:id="@+id/textViewProductName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="@={productViewModel.textViewProductNameProduct}"
+                            android:text="@={productViewModel.textViewProductName}"
                             android:textColor="@color/black"
                             android:textSize="32dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/textIconMbtiProduct" />
+                            app:layout_constraintTop_toBottomOf="@id/textIconMbti" />
 
 
                         <TextView
-                            android:id="@+id/textViewPriceProduct"
+                            android:id="@+id/textViewProductPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@={productViewModel.textViewProductPriceProduct}"
+                            android:text="@={productViewModel.textViewProductPrice}"
                             android:textColor="@color/black"
                             android:textSize="16dp"
                             android:theme="@style/Basic_Font_Theme"
-                            app:layout_constraintStart_toStartOf="@id/textViewNameProduct"
-                            app:layout_constraintTop_toBottomOf="@id/textViewNameProduct" />
+                            app:layout_constraintStart_toStartOf="@id/textViewProductName"
+                            app:layout_constraintTop_toBottomOf="@id/textViewProductName" />
 
                         <Button
-                            android:id="@+id/buttonDetailProduct"
+                            android:id="@+id/buttonProductDetail"
                             style="@style/Widget.Material3.Button.TextButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -152,8 +165,8 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="1.0"
-                            app:layout_constraintStart_toEndOf="@+id/textViewPriceProduct"
-                            app:layout_constraintTop_toBottomOf="@id/textViewNameProduct" />
+                            app:layout_constraintStart_toEndOf="@+id/textViewProductPrice"
+                            app:layout_constraintTop_toBottomOf="@id/textViewProductName" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -164,6 +177,8 @@
                     android:background="#F1F1F1" />
 
                 <com.google.android.material.tabs.TabLayout
+
+                    android:id="@+id/tabLayputProduct"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
@@ -177,33 +192,34 @@
                     app:tabTextColor="#676767">
 
                     <com.google.android.material.tabs.TabItem
-                        android:id="@+id/tabItemShippingProduct"
+                        android:id="@+id/tabItemShipping"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="배송" />
 
                     <com.google.android.material.tabs.TabItem
-                        android:id="@+id/tabItemReviewProduct"
+                        android:id="@+id/tabItemReview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="후기\n138" />
 
                     <com.google.android.material.tabs.TabItem
-                        android:id="@+id/tabItemQnaProduct"
+                        android:id="@+id/tabItemQna"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="리뷰\n77" />
+                        android:text="문의\n77" />
 
                 </com.google.android.material.tabs.TabLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
                 <androidx.fragment.app.FragmentContainerView
-                    android:id="@+id/fragmentContainerProduct"
+                    android:id="@+id/fragmentContainerViewProduct"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
             </androidx.core.widget.NestedScrollView>
@@ -228,7 +244,7 @@
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/buttonBottomAddCartProduct"
+                        android:id="@+id/buttonBottomAddCart"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_marginEnd="8dp"
@@ -239,7 +255,7 @@
                         app:cornerRadius="5dp" />
 
                     <Button
-                        android:id="@+id/buttonBottomPurchaseProduct"
+                        android:id="@+id/buttonBottomPurchase"
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
                         android:layout_weight="1"

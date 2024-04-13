@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -15,14 +14,9 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
-import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
-import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
-import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbti2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel

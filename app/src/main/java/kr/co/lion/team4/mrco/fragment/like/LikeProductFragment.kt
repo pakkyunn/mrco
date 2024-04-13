@@ -1,6 +1,5 @@
 package kr.co.lion.team4.mrco.fragment.like
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -18,11 +16,8 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeProductBinding
-import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
-import kr.co.lion.team4.mrco.viewmodel.like.LikeCoordinatorViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.LikeProductViewModel
-import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
 
 class LikeProductFragment : Fragment() {

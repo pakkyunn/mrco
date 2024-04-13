@@ -1,6 +1,5 @@
 package kr.co.lion.team4.mrco
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -44,7 +43,10 @@ import kr.co.lion.team4.mrco.fragment.product.individual.IndividualProductInfoFr
 import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductDetailFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductQnaFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductShippingFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -150,6 +152,10 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.LIKE_PRODUCT -> newFragment = LikeProductFragment()
             MainFragmentName.LIKE_COORDINATOR -> newFragment = LikeCoordinatorFragment()
 
+            // 상품 구매 화면
+            MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
+            MainFragmentName.PRODUCT_DETAIL_FRAGMENT -> newFragment = ProductDetailFragment()
+
             // 리뷰 작성 화면
             MainFragmentName.WRITE_REVIEW -> newFragment = WriteReviewFragment()
 
@@ -175,7 +181,7 @@ class MainActivity : AppCompatActivity() {
             // 알림 화면
             MainFragmentName.APP_NOTICE_FRAGMENT -> newFragment = AppNoticeFragment()
 
-            // 카테고리 화면
+            // 카테고리 선택 화면
             MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
 
             // 마이페이지 (코디네이터) 화면
@@ -240,7 +246,6 @@ class MainActivity : AppCompatActivity() {
 
             MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
 
-            MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
 
             // 상민
             MainFragmentName.LOGIN_FRAGMENT -> newFragment = LoginFragment()

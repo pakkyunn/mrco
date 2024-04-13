@@ -12,6 +12,7 @@
             android:id="@+id/item_product_imageview"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/dummy_image" />
     </com.google.android.material.carousel.MaskableFrameLayout>
 </layout>

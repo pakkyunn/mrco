@@ -123,8 +123,9 @@ enum class MainFragmentName(var str: String) {
     FRAGMENT_REVIEW("ReviewFragment"), // 작성한 리뷰
 
     // 상품구매관련
-    PRODUCT_FRAGMENT("ProductFragment"),
-    
+    PRODUCT_FRAGMENT("ProductFragment"), // 코디상품 클릭시 나오는 화면
+    PRODUCT_DETAIL_FRAGMENT("ProductDetailFragment"), // 코디 상세 버튼 클릭시 나오는 화면
+
     // 상민
     LOGIN_FRAGMENT("LoginFragment"),
     JOIN_FRAGMENT("JoinFragment"),
@@ -132,6 +133,12 @@ enum class MainFragmentName(var str: String) {
     JOIN_COORDINATOR_FRAGMENT("JoinCoordinatorFragment"),
     JOIN_COORDINATOR_NEXT_FRAGMENT("JoinCoordinatorNextFragment"),
     MODIFY_COORDINATOR_FRAGMENT("ModifyCoordinatorFragment"),
+}
+
+enum class SubFragmentName(var str: String) {
+    PRODUCT_SHIPPING_FRAGMENT("ProductShippingFragment"), // 배송 탭
+    PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"), // 후기 탭
+    PRODUCT_QNA_FRAGMENT("ProductQnaFragment"), // 문의 탭
 }
 
 enum class ProductSize(var ps: String){

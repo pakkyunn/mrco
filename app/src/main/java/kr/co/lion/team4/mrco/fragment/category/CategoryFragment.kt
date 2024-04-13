@@ -1,8 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.category
 
 import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
-import android.graphics.drawable.GradientDrawable.Orientation
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

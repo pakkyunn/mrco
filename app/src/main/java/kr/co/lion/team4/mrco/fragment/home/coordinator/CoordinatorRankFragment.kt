@@ -18,7 +18,6 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
-import kr.co.lion.team4.mrco.databinding.FragmentMainHomeBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
