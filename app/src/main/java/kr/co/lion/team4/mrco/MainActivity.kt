@@ -45,7 +45,10 @@ import kr.co.lion.team4.mrco.fragment.product.individual.IndividualProductInfoFr
 import kr.co.lion.team4.mrco.fragment.product.management.CodiProductMangementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductDetailFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductQnaFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ProductShippingFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment

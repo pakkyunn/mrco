@@ -10,10 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentCategoryBinding
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
-import kr.co.lion.team4.mrco.databinding.RowCategorySemiCategoryBinding
 
 class CategoryMainFragment : Fragment() {
 
