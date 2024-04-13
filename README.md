@@ -16,8 +16,8 @@
 
 ## 👥 Member 👥
 <h4>🧑 박현준</h4>
-<a href="https://github.com/pakkyun0225">
-    <img src="http://img.shields.io/badge/pakkyun0225-gray?logo=github"/>
+<a href="https://github.com/pakkyunn">
+    <img src="http://img.shields.io/badge/pakkyunn-gray?logo=github"/>
 </a>
 <h4>👧 이보람</h4>
 <a href="https://github.com/dev-worthwhile">
