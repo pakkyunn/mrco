@@ -126,9 +126,6 @@ class ProductPurchaseBottomFragment(var buttonIdx:Boolean) : BottomSheetDialogFr
                 adapter = BottomRecyclerViewAdapter()
                 // 레이아웃 매니저
                 layoutManager = LinearLayoutManager(mainActivity)
-                // 데코레이션
-                val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
-                addItemDecoration(deco)
             }
         }
     }
