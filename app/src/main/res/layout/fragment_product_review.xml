@@ -138,7 +138,7 @@
 
                     <TextView
                         android:id="@+id/textViewRatingOptionProductReview1"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
                         android:text="@={productReviewViewModel.textViewRatingOptionProductReview1}"
@@ -180,7 +180,7 @@
 
                     <TextView
                         android:id="@+id/textViewRatingOptionProductReview2"
-                        android:layout_width="68dp"
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
                         android:text="@={productReviewViewModel.textViewRatingOptionProductReview2}"
@@ -193,8 +193,8 @@
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
-                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview2}"
                         android:max="100"
+                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview2}"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
@@ -222,7 +222,7 @@
 
                     <TextView
                         android:id="@+id/textViewRatingOptionProductReview3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
                         android:text="@={productReviewViewModel.textViewRatingOptionProductReview3}"
@@ -365,7 +365,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             android:gravity="end"
             android:orientation="vertical">
 
@@ -380,8 +380,8 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewProductReview"
+            android:id="@+id/recyclerViewProductReviewUser"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </layout>

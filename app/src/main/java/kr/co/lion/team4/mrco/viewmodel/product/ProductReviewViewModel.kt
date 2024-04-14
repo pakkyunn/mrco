@@ -6,30 +6,30 @@ import kr.co.lion.team4.mrco.R
 
 class ProductReviewViewModel: ViewModel() {
     // 상품페이지 상품 평점
-    val ratingBarProductReview = MutableLiveData<Int>()
+    val ratingBarProductReview = MutableLiveData<Int>(5)
     // 상품페이지 리뷰탭 평점평균
-    val textViewRatingBarProductReview = MutableLiveData<String>()
+    val textViewRatingBarProductReview = MutableLiveData<String>("4.8")
 
     // 상품페이지 리뷰탭 평가항목1
-    val textViewRatingOptionProductReview1 = MutableLiveData<String>()
+    val textViewRatingOptionProductReview1 = MutableLiveData<String>("항목평가1")
     // 상품페이지 리뷰탭 평가항목1 프로그레스
     val progressBarRatingOptionProductReview1 = MutableLiveData<Int>(66)
     // 상품페이지 리뷰탭 평가항목1 비율
-    val progressRatioRatingOptionProductReview1 = MutableLiveData<String>()
+    val progressRatioRatingOptionProductReview1 = MutableLiveData<String>("66%")
 
     // 상품페이지 리뷰탭 평가항목2
-    val textViewRatingOptionProductReview2 = MutableLiveData<String>()
+    val textViewRatingOptionProductReview2 = MutableLiveData<String>("항목평가2")
     // 상품페이지 리뷰탭 평가항목2 프로그레스
     val progressBarRatingOptionProductReview2 = MutableLiveData<Int>(26)
     // 상품페이지 리뷰탭 평가항목2 비율
-    val progressRatioRatingOptionProductReview2 = MutableLiveData<String>()
+    val progressRatioRatingOptionProductReview2 = MutableLiveData<String>("26%")
 
     // 상품페이지 리뷰탭 평가항목3
-    val textViewRatingOptionProductReview3 = MutableLiveData<String>()
+    val textViewRatingOptionProductReview3 = MutableLiveData<String>("항목평가3")
     // 상품페이지 리뷰탭 평가항목3 프로그레스
     val progressBarRatingOptionProductReview3 = MutableLiveData<Int>(8)
     // 상품페이지 리뷰탭 평가항목3 비율
-    val progressRatioRatingOptionProductReview3 = MutableLiveData<String>()
+    val progressRatioRatingOptionProductReview3 = MutableLiveData<String>("8%")
 
     // 리뷰 타입
     val toggleGroupProductReview = MutableLiveData<Int>()

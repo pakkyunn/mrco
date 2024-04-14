@@ -70,17 +70,14 @@ class ProductPurchaseBottomFragment(var buttonIdx:Boolean) : BottomSheetDialogFr
                 if (buttonIdx == false) { // 장바구니버튼을 눌러서 다이얼로그가 실행된 경우
                     text = "장바구니에 담기"
                     setOnClickListener {
-                        // 다이얼로그 종료
+                        // 장바구니에 데이터 담고 다이얼로그 종료
                     }
                 } else { // 구매하기버튼을 눌러서 다이얼로그가 실행된 경우
                     text = "상품 구매하기"
                     setOnClickListener {
+                        // 다이얼로그 종료
                         mainActivity.replaceFragment(
-                            MainFragmentName.ORDER_FRAGMENT,
-                            true,
-                            true,
-                            null
-                        ) // bundle에 구매하는 상품 정보 전달해야 함
+                            MainFragmentName.ORDER_FRAGMENT,true,true,null) // bundle에 구매하는 상품 정보 전달해야 함
                     }
                 }
             }
@@ -165,10 +162,5 @@ class ProductPurchaseBottomFragment(var buttonIdx:Boolean) : BottomSheetDialogFr
 
         }
     }
-
-
-
-
-
 
 }
