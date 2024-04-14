@@ -43,6 +43,11 @@ class CodiProductInfoFragment : Fragment() {
                 setNavigationOnClickListener {
                     // 뒤로가기
                     mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO)
+                    mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL)
+                    mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_TOP)
+                    mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM)
+                    mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES)
+                    mainActivity.removeFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY)
                 }
             }
         }

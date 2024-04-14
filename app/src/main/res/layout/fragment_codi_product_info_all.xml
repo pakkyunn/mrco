@@ -51,8 +51,11 @@
                 android:id="@+id/imageView_condiProductInfo_all_codiImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+
                 android:background="@drawable/round_background_border_black"
+                android:src="@drawable/iu_image4"
                 android:contentDescription="@string/contentDescription_codiImage"
+                android:clipToOutline="true"
                 android:scaleType="centerCrop"
                  />
         </LinearLayout>
