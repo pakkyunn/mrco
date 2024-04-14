@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="cpit"
+            name="codiProductInfoTopViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoTopViewModel" />
     </data>
 <LinearLayout
