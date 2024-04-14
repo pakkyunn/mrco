@@ -1,6 +1,5 @@
 package kr.co.lion.team4.mrco
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
@@ -47,8 +46,6 @@ import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManage
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductDetailFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
-import kr.co.lion.team4.mrco.fragment.product.purchase.ProductQnaFragment
-import kr.co.lion.team4.mrco.fragment.product.purchase.ProductShippingFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -62,6 +59,7 @@ import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.ManageShipmentsFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesListFragment
+import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementInvoiceReportFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -207,7 +205,8 @@ class MainActivity : AppCompatActivity() {
             // 상품 1:1문의 작성화면
             MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
 
-            // 판매자 - 매출관리(캘린더, 내역) 화면
+            // 판매자 - 매출관리(리포트, 캘린더, 내역) 화면
+            MainFragmentName.SALES_MANAGEMENT_INVOICE_REPORT -> newFragment = SalesManagementInvoiceReportFragment()
             MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
             MainFragmentName.SALES_MANAGEMENT -> newFragment = SalesManagementFragment()
 
