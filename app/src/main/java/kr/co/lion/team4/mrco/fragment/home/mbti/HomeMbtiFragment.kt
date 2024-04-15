@@ -37,9 +37,6 @@ class HomeMbtiFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 툴바, 하단바, 탭 관련
-        mainActivity.viewBottomSheet()
-
         // 리사이클러 뷰
         settingRecyclerViewHomeMBTI()
         settingRecyclerViewHomeMBTI2()

@@ -50,7 +50,6 @@ class HomeMainFullFragment : Fragment() {
         settingBottomTabs()
         mainActivity.viewBottomSheet()
 
-
         return fragmentHomeMainFullBinding.root
     }
 

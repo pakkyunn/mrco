@@ -41,9 +41,6 @@ class CoordinatorRankFragment : Fragment() {
         fragmentCoordinatorRankBinding.coordinatorRankViewModel = CoordinatorRankViewModel()
         fragmentCoordinatorRankBinding.lifecycleOwner = this
 
-        val fragmentManager = activity?.supportFragmentManager
-        val fragment = fragmentManager?.findFragmentById(R.id.containerMainHome)
-
         mainActivity = activity as MainActivity
 
         // 리사이클러 뷰
@@ -62,18 +59,6 @@ class CoordinatorRankFragment : Fragment() {
             }
         }
     }
-
-    // 탭바 위치 설정
-//    fun settingTabs(){
-//        fragmentCoordinatorRankBinding.apply {
-//            val tabLayout = tabsMain
-//            tabLayout.getTabAt(2)?.select()
-//        }
-//        fragmentCoordinatorRankBinding.apply {
-//            val tabLayout = tabs
-//            tabLayout.getTabAt(0)?.select()
-//        }
-//    }
 
     // 인기 코디네이터 리사이클러 뷰 어뎁터
     inner class CoordinatorRankRecyclerViewAdapter: RecyclerView.Adapter<CoordinatorRankRecyclerViewAdapter.CorrdinatorRankViewHolder>(){

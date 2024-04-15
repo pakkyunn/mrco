@@ -37,9 +37,6 @@ class HomeRecommendFragment : Fragment() {
         fragmentHomeRecommendBinding = FragmentHomeRecommendBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        // 툴바, 하단바, 탭 관련
-        mainActivity.viewBottomSheet()
-
         // 버튼
         settingButton()
 
