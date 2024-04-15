@@ -9,7 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:transitionGroup="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar_productManagement"
@@ -22,16 +23,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:title="등록상품관리" />
+            app:title="등록상품관리"
+            app:titleCentered="true"
+            />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout_productManagement"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar_productManagement"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:tabIndicatorFullWidth="true"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_productManagement"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextColor="#878787"
+            android:backgroundTint="@color/white"/>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager_productManagement"
