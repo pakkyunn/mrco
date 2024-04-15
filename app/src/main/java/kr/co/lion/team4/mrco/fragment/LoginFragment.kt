@@ -56,7 +56,7 @@ class LoginFragment : Fragment() {
     fun settingButtonLoginSubmit() {
         //테스트 용 회원정보 수정 화면으로 이동
         fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
-            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null )
+            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null )
         }
     }
 

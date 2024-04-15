@@ -23,6 +23,8 @@ import kr.co.lion.team4.mrco.fragment.coordinatormain.CoordinatorMainFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerInquiryFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerServiceFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeCoordinatorFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
 import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
 import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
@@ -159,8 +161,10 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.ORDER_FRAGMENT -> newFragment = OrderFragment()
 
             // 홈 메인 (첫 화면 - 추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개) 순서
-            MainFragmentName.HOME_RECOMMEND, -> newFragment = HomeRecommendFragment()
-            MainFragmentName.HOME_MBTI, -> newFragment = HomeMbtiFragment()
+            MainFragmentName.HOME_MAIN_FULL -> newFragment = HomeMainFullFragment()
+            MainFragmentName.HOME_RECOMMEND -> newFragment = HomeRecommendFragment()
+            MainFragmentName.HOME_MBTI -> newFragment = HomeMbtiFragment()
+            MainFragmentName.HOME_COORDINATOR -> newFragment = HomeCoordinatorFragment()
             MainFragmentName.HOME_COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
             MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
 
@@ -310,7 +314,7 @@ class MainActivity : AppCompatActivity() {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.main_bottom_navi_home -> {
-                        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
+                        replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
                     }
                     R.id.main_bottom_navi_category -> {
                         replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)

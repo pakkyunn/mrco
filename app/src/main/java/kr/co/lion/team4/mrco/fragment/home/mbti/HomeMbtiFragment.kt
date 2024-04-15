@@ -38,10 +38,6 @@ class HomeMbtiFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        settingTabs()
-        settingMainTab()
-        settingToolbar()
-        settingBottomTabs()
         mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
@@ -54,80 +50,6 @@ class HomeMbtiFragment : Fragment() {
         return fragmentHomeMbtiBinding.root
     }
 
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        fragmentHomeMbtiBinding.apply {
-            toolbarMain.apply {
-                setOnMenuItemClickListener {
-
-                    when (it.itemId) {
-                        // 검색 클릭 시
-                        R.id.home_toolbar_search -> {
-                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-                        }
-                        // 알람 클릭 시
-                        R.id.home_toolbar_notification -> {
-                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
-                        }
-                        // 장바구니 클릭 시
-                        R.id.home_toolbar_shopping -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
-
-    // 탭바 위치 설정
-    fun settingTabs(){
-        fragmentHomeMbtiBinding.apply {
-            val tabLayout = tabsMain
-            tabLayout.getTabAt(1)?.select()
-        }
-    }
-
-    fun settingMainTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentHomeMbtiBinding.apply {
-                val tabLayout = tabsMain
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-                        }
-                        else if (tab?.position == 1) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
-                        } else {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
-        }
-    }
-
     // 더보기 버튼
     fun settingContentMoreButton(){
         fragmentHomeMbtiBinding.apply {
@@ -138,14 +60,6 @@ class HomeMbtiFragment : Fragment() {
             homeMbtiContent2MoreButton.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
             }
-        }
-    }
-
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_home
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

@@ -38,9 +38,6 @@ class HomeRecommendFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        settingMainTab()
-        settingToolbar()
-        settingBottomTabs()
         mainActivity.viewBottomSheet()
 
         // 버튼
@@ -52,33 +49,6 @@ class HomeRecommendFragment : Fragment() {
         settingRecyclerViewHomeRecommendNewCoordi()
 
         return fragmentHomeRecommendBinding.root
-    }
-
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        fragmentHomeRecommendBinding.apply {
-            toolbarMain.apply {
-                setOnMenuItemClickListener {
-
-                    when (it.itemId) {
-                        // 검색 클릭 시
-                        R.id.home_toolbar_search -> {
-                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-
-                        }
-                        // 알람 클릭 시
-                        R.id.home_toolbar_notification -> {
-                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
-                        }
-                        // 장바구니 클릭 시
-                        R.id.home_toolbar_shopping -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
     }
 
     fun settingButton(){
@@ -120,54 +90,6 @@ class HomeRecommendFragment : Fragment() {
             homeRecommendNewRecycler.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
                 adapter = HomeRecommendNewCoordiRecyclerViewAdapter()
-            }
-        }
-    }
-
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_home
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
-        }
-    }
-
-    fun settingMainTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentHomeRecommendBinding.apply {
-                val tabLayout = tabsMain
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-                        }
-                        else if (tab?.position == 1) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
-                        } else {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
             }
         }
     }

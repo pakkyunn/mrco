@@ -17,50 +17,6 @@
         android:orientation="vertical"
         android:transitionGroup="true">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:backgroundTint="#FFFFFF"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="@style/ToolbarTheme"
-            app:menu="@menu/menu_main_home_toolbar"
-            app:title="MRCO"
-            app:titleMarginStart="30dp"
-            app:titleTextColor="#002254" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabsMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#ffffff"
-            android:elevation="1dp"
-            app:tabIndicatorColor="#000000"
-            app:tabIndicatorFullWidth="true"
-            app:tabSelectedTextColor="#000000"
-            app:tabRippleColor="#CCCCCC"
-            app:tabTextColor="#878787">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/main_home_tab_recommand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="추천" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/main_home_tab_mbti"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MBTI별 코디" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/main_home_tab_stylist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="코디네이터" />
-        </com.google.android.material.tabs.TabLayout>
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
