@@ -1,10 +1,9 @@
 package kr.co.lion.team4.mrco.viewmodel
 
-import android.graphics.drawable.Drawable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ReviewViewModel: ViewModel() {
+class RowReviewCreatedViewModel: ViewModel() {
 
 //    var reviewProductImage = MutableLiveData<Drawable>()
 

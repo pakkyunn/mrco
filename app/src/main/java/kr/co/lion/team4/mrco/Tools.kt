@@ -120,10 +120,9 @@ enum class MainFragmentName(var str: String) {
     FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT("IndividualProductManagement"), // 개별상품관리 탭 클릭시 나오는 리스트 화면
 
     FRAGMENT_CREATE_REVIEW_FRAGMENT("CreateReviewFragment"), // ProductReviewFragment - 리뷰작성 클릭시 나오는 화면
-    FRAGMENT_PRODUCT_REVIEW("ProductReviewFragment"), // 상품 리뷰 화면
+    FRAGMENT_PRODUCT_REVIEW("ProductReviewFragment"),
     FRAGMENT_REVIEW_CREATED("ReviewCreatedFragment"), // ProductReviewFragment - 작성한 리뷰 클릭시 나오는 화면
-    FRAGMENT_REVIEW("ReviewFragment"), // 작성한 리뷰
-
+    FRAGMENT_MY_REVIEW("MyReviewFragment"),// 상품 리뷰 화면
     // 상품구매관련
     PRODUCT_FRAGMENT("ProductFragment"), // 코디상품 클릭시 나오는 화면
     PRODUCT_DETAIL_FRAGMENT("ProductDetailFragment"), // 코디 상세 버튼 클릭시 나오는 화면

@@ -32,7 +32,7 @@ class CodiProductInfoFragment : Fragment() {
         binding.lifecycleOwner = this
 
         viewPagerActivation()
-
+        settingView()
 
         return binding.root
     }
