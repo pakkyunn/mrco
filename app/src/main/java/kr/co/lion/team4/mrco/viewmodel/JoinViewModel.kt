@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kr.co.lion.team4.mrco.Gender
 
 class JoinViewModel : ViewModel() {
     //아이디
@@ -33,6 +34,14 @@ class JoinViewModel : ViewModel() {
     fun toggleFemaleCheckBox(){
         checkBoxJoinMale.value = !checkBoxJoinMale.value!!
         //checkBoxJoinFemale.value = !checkBoxJoinFemale.value!!
+    }
+
+    // 성별값을 반환하는 메서드
+    fun gettingGender(): Gender {
+        if(checkBoxJoinMale.value == true){
+            return Gender.MALE
+        }
+        return Gender.FEMALE
     }
 
     //선택동의01 체크박스 토글
