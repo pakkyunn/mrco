@@ -32,10 +32,4 @@ class SalesManagementInvoiceReportFragment : Fragment() {
 
         return fragmentInvoiceReportBinding.root
     }
-
-
-    // 이전 화면으로 뒤로 가기
-    fun backProcess(){
-        mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_INVOICE_REPORT)
-    }
 }

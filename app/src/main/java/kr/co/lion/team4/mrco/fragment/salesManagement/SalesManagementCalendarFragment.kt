@@ -102,9 +102,4 @@ class SalesManagementCalendarFragment : Fragment() {
         }
     }
 
-    // 뒤로가기 처리
-    fun backProcess(){
-        mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
-    }
-
 }

@@ -206,8 +206,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
 
             // 판매자 - 매출관리(리포트, 캘린더, 내역) 화면
-            MainFragmentName.SALES_MANAGEMENT_INVOICE_REPORT -> newFragment = SalesManagementInvoiceReportFragment()
-            MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
             MainFragmentName.SALES_MANAGEMENT -> newFragment = SalesManagementFragment()
 
             // 판매자 - 배송관리 화면

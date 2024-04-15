@@ -75,8 +75,6 @@ enum class MainFragmentName(var str: String) {
     ORDER_DETAIL("Order_Detail_Fragment"),
 
     SALES_MANAGEMENT("Sales_Management_Fragment"),
-    SALES_MANAGEMENT_CALENDAR("Sales_Management_Calendar_Fragment"),
-    SALES_MANAGEMENT_INVOICE_REPORT("SalesManagementInvoiceReportFragment"),
     MANAGE_SHIPMENT_FRAGMENT("ManageShipmentsFragment"), // 판매자 - 배송관리 화면
     SALES_LIST_FRAGMENT("SalesListFragment"), // 판매 내역 화면
 
