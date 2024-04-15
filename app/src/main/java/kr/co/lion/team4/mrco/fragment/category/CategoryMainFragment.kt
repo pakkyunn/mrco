@@ -1,17 +1,20 @@
 package kr.co.lion.team4.mrco.fragment.category
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
+import kr.co.lion.team4.mrco.databinding.HeaderCategoryDrawerBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
 
 class CategoryMainFragment : Fragment() {
@@ -28,6 +31,7 @@ class CategoryMainFragment : Fragment() {
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
         settingBottomTabs()
+        settingNavigationView()
         mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
@@ -40,9 +44,10 @@ class CategoryMainFragment : Fragment() {
     fun toolbarSetting(){
         fragmentCategoryMainBinding.toolbarCoordinatorMain.apply {
             // 네비게이션
-            setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
-                backProcess()
+                // 여기 햄버거 메뉴 나오게 하기
+                // Drawer 메뉴가 나타나게 한다.
+                fragmentCategoryMainBinding.drawerLayoutContent.open()
             }
             setOnMenuItemClickListener {
                 when (it.itemId) {
@@ -50,12 +55,62 @@ class CategoryMainFragment : Fragment() {
                     R.id.category_toolbar_shopping -> {
                         mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
                     }
-                    // 햄버거 메뉴 클릭 시
-                    R.id.category_toolbar_category_menu -> {
-                        Log.d("test1234", "카테고리 - Menu 클릭")
-                    }
                 }
                 true
+            }
+        }
+    }
+
+    // 네비게이션 뷰 설정
+    fun settingNavigationView(){
+        fragmentCategoryMainBinding.apply {
+            navigationViewContent.apply {
+
+                // 헤더로 보여줄 View를 생성한다.
+                val headerCategoryDrawerBinding = HeaderCategoryDrawerBinding.inflate(layoutInflater)
+                // 헤더로 보여줄 View를 설정한다.
+                addHeaderView(headerCategoryDrawerBinding.root)
+
+                // 메뉴를 눌렀을 때 동작하는 리스너
+                setNavigationItemSelectedListener {
+
+                    // 딜레이
+                    SystemClock.sleep(50)
+
+                    when(it.itemId) {
+                        R.id.menuItemCategoryNavigationMbti -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationTpo -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationSeason -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationMood -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationAll -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                    }
+                    true
+                }
+
             }
         }
     }

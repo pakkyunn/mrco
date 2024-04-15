@@ -131,7 +131,7 @@ class CategoryFragment : Fragment() {
 
             // 이미지 클릭시
             holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
             }
         }
     }
@@ -176,7 +176,7 @@ class CategoryFragment : Fragment() {
             }
             // 이미지 클릭시
             holder.rowCategorySemiCategory2Grid4Binding.imageViewRowCategorySemiCategory.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
             }
         }
     }
