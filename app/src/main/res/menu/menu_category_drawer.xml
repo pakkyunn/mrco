@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkable="false"
+        android:title="전체 카테고리">
+
+        <menu
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <item
+                android:id="@+id/menuItemCategoryNavigationMbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:icon="@drawable/local_shipping_24px"
+                android:title="MBTI"
+                app:showAsAction="ifRoom">
+                <menu>
+                    <item android:title="Item" />
+                </menu>
+            </item>
+            <item
+                android:id="@+id/menuItemCategoryNavigationTpo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:icon="@drawable/post_add_24px"
+                android:title="TPO"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/menuItemCategoryNavigationSeason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:icon="@drawable/compost_24px"
+                android:title="SEASON"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/menuItemCategoryNavigationMood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:icon="@drawable/package_24px"
+                android:title="MOOD"
+                app:showAsAction="ifRoom" />
+            <item
+                android:id="@+id/menuItemCategoryNavigationAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:icon="@drawable/approval_24px"
+                android:title="ALL"
+                app:showAsAction="ifRoom" />
+        </menu>
+    </item>
+</menu>
