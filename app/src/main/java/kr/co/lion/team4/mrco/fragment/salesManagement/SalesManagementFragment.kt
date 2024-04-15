@@ -58,7 +58,7 @@ class SalesManagementFragment : Fragment() {
             // 네비게이션
             setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
-                backProcesss()
+                backProcess()
             }
         }
     }
@@ -120,7 +120,7 @@ class SalesManagementFragment : Fragment() {
     }
 
     // 뒤로가기 처리
-    fun backProcesss(){
+    fun backProcess(){
         mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
     }
 
@@ -134,15 +134,16 @@ class SalesManagementFragment : Fragment() {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     // 선택된 탭이 첫 번째 탭인 경우
                     if (tab?.position == 0) {
+                        mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_INVOICE_REPORT, true, false, null)
 //                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
 //                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
                     }
                     else if (tab?.position == 1) {
                         mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, true, false, null)
-                        // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
+                    // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
                     }
                     else {
-                        mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, false, null)
+                        //mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, false, null)
                         // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
                     }
                 }
