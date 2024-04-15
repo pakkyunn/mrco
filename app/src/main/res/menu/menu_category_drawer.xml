@@ -19,9 +19,6 @@
                 android:icon="@drawable/local_shipping_24px"
                 android:title="MBTI"
                 app:showAsAction="ifRoom">
-                <menu>
-                    <item android:title="Item" />
-                </menu>
             </item>
             <item
                 android:id="@+id/menuItemCategoryNavigationTpo"

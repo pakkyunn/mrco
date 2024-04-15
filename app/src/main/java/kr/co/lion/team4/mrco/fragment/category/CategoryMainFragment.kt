@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
@@ -16,6 +17,9 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
 import kr.co.lion.team4.mrco.databinding.HeaderCategoryDrawerBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
+import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
+import kr.co.lion.team4.mrco.viewmodel.category.RowCategoryMainViewModel
+import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
 
 class CategoryMainFragment : Fragment() {
 
@@ -149,20 +153,43 @@ class CategoryMainFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryMainViewHolder {
-            val rowCategoryMainBinding = RowCategoryMainBinding.inflate(layoutInflater)
+            val rowCategoryMainBinding = DataBindingUtil.inflate<RowCategoryMainBinding>(
+                layoutInflater, R.layout.row_category_main, parent, false
+            )
+            val rowCategoryMainViewModel = RowCategoryMainViewModel()
+            rowCategoryMainBinding.rowCategoryMainViewModel = rowCategoryMainViewModel
+            rowCategoryMainBinding.lifecycleOwner = this@CategoryMainFragment
+
             val categoryMainViewHolder = CategoryMainViewHolder(rowCategoryMainBinding)
 
             return categoryMainViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return 24
         }
 
         override fun onBindViewHolder(holder: CategoryMainViewHolder, position: Int) {
-            // 이미지 클릭시
-            holder.rowCategoryMainBinding.itemMainProductThumbnail.setOnClickListener {
+
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 6) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image4
+                3 -> R.drawable.iu_image5
+                4 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowCategoryMainBinding.itemMainProductThumbnail.setImageResource(imageResource)
+
+            // 이미지 -> 상품 이미지 클릭 시
+            holder.rowCategoryMainBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
+            }
+            
+            // 버튼 -> 카트 담기 클릭 시
+            holder.rowCategoryMainBinding.buttonRowCategoryMainCart.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
             }
         }
     }

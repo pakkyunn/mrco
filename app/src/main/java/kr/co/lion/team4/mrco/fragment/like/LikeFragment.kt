@@ -78,6 +78,10 @@ class LikeFragment : Fragment() {
     }
 
     private fun viewPagerActiviation(){
+
+        val coordicnt = 7
+        val coordinatorcnt = 6
+
         fragmentLikeBinding.apply {
             // 1. 페이지 데이터를 로드
             val list = listOf(LikeProductFragment(), LikeCoordinatorFragment())
@@ -86,7 +90,7 @@ class LikeFragment : Fragment() {
             // 3. Adapater와 Pager연결
             viewPagerLike.adapter = pagerAdapter
             // 4. 탭 메뉴의 갯수만큼 제목을 목록으로 생성
-            val titles = listOf("코디", "코디네이터")
+            val titles = listOf("코디 (${coordicnt})", "코디네이터 (${coordinatorcnt})")
             // 5. 탭 레이아웃과 뷰페이저 연결
             TabLayoutMediator(tabsLike, viewPagerLike) { tab, position ->
                 tab.text = titles.get(position)

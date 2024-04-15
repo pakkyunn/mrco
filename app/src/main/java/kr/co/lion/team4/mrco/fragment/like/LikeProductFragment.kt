@@ -88,7 +88,7 @@ class LikeProductFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return 7
         }
 
         override fun onBindViewHolder(holder: LikeProductViewHolder, position: Int) {

@@ -17,16 +17,17 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbarCoordinatorMain"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="88dp"
                 android:background="@color/white"
                 android:backgroundTint="#FFFFFF"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:menu="@menu/menu_main_category_toolbar"
                 app:navigationIcon="@drawable/menu_24px"
-                app:subtitle="MOOD"
+                app:subtitle="아메카지"
                 app:subtitleCentered="true"
-                app:subtitleTextColor="@color/black"
+                app:subtitleTextColor="#666"
+                app:title="MOOD"
                 app:titleCentered="true"
                 app:titleTextColor="#000000" />
 
@@ -112,7 +113,8 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerViewCategoryMain"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="match_parent"
+                            android:paddingTop="10dp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
