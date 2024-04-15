@@ -104,6 +104,16 @@ class LikeProductFragment : Fragment() {
                 else -> R.drawable.iu_image5
             }
             holder.rowLikeProductBinding.itemMainLikeProductThumbnail.setImageResource(imageResource)
+
+            // 리사이클러 뷰 항목 클릭
+            holder.rowLikeProductBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
+
+            // 장바구니 담기 버튼 클릭
+            holder.rowLikeProductBinding.buttonRowLikeProductCart.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+            }
         }
     }
 }

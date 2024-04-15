@@ -166,22 +166,16 @@ class LikeCoordinatorFragment : Fragment() {
             val rowLikeCoordinator2ViewModel = RowLikeCoordinator2ViewModel()
 
             // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 5) {
-                0 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image)
-                }
-                1 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image2)
-                }
-                2 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image3)
-                }
-                3 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image4)
-                }
-                else -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image5)
-                }
+            when (position % 5) {
+                0 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image)
+                1 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image2)
+                2 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image3)
+                3 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image4)
+                else -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image5)
+            }
+
+            holder.rowLikeCoordinator2Binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
             }
 
         }

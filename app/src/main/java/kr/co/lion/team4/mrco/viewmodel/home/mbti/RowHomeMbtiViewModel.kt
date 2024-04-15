@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 
 class RowHomeMbtiViewModel: ViewModel() {
     val textViewRowHomeMbtiProductMbti = MutableLiveData<String>("ISTJ")
-    val textViewRowHomeMbtiProductName = MutableLiveData<String>("홍길동 코디이름")
-    val textViewRowHomeMbtiProductDiscountPercent = MutableLiveData<String>("30%")
-    val textViewRowHomeMbtiProductPrice = MutableLiveData<String>("178,000")
+    val textViewRowHomeMbtiCoordinatorName = MutableLiveData<String>("코디네이터")
+    val textViewRowHomeMbtiProductName = MutableLiveData<String>("호불호 없는 출근룩 코디 SET")
+    val textViewRowHomeMbtiProductDiscountPercent = MutableLiveData<String>("10%")
+    val textViewRowHomeMbtiProductPrice = MutableLiveData<String>("124,545")
 }

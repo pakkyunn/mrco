@@ -37,7 +37,9 @@ class MbtiProductBottomFragment : BottomSheetDialogFragment() {
             val bottomSheetDialog = it as BottomSheetDialog
             // 높이를 설정한다.
             setBottomSheetHeight(bottomSheetDialog)
-            // bottomSheetDialog.window?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.setBackgroundColor(Color.WHITE)
+
+            // 바텀시트의 배경색을 변경한다 (둥근 모서리를 유지하기 위해 drawable 지정)
+            bottomSheetDialog.window?.setBackgroundDrawableResource(R.drawable.bottom_sheet_background)
         }
 
         return dialog
@@ -54,6 +56,9 @@ class MbtiProductBottomFragment : BottomSheetDialogFragment() {
         layoutParams.height = getBottomSheetDialogHeight()
         bottomSheet.layoutParams = layoutParams
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
+
+        // 바텀시트의 배경색을 변경한다 (둥근 모서리를 유지하기 위해 drawable 지정)
+        // bottomSheet.setBackgroundResource(R.drawable.bottom_sheet_background)
     }
 
     // BottomSheet의 높이를 구한다 (화면 액정의 51% 크기)

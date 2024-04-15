@@ -1,11 +1,13 @@
 package kr.co.lion.team4.mrco.fragment.home.mbti
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -91,7 +93,7 @@ class HomeMbtiFragment : Fragment() {
                 this.rowHomeMbtiBinding = rowHomeMbtiBinding
 
                 this.rowHomeMbtiBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -111,11 +113,32 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 12
         }
 
         override fun onBindViewHolder(holder: HomeMBTIViewHolder, position: Int) {
 
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 4) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowHomeMbtiBinding.itemMainMbtiProductThumbnail.setImageResource(imageResource)
+
+            // position 값에 따라 다른 MBTI 색상 설정
+            val colorResource = when (position % 4) {
+                0 -> Color.parseColor("#13D4EF")
+                1 -> Color.parseColor("#BDB14C")
+                2 -> Color.parseColor("#B75AB6")
+                else -> Color.parseColor("#36C87C")
+            }
+            holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(colorResource)
+
+            holder.rowHomeMbtiBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
         }
     }
 
@@ -128,7 +151,7 @@ class HomeMbtiFragment : Fragment() {
                 this.rowHomeMbti2Binding = rowHomeMbti2Binding
 
                 this.rowHomeMbti2Binding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -148,11 +171,34 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 12
         }
 
         override fun onBindViewHolder(holder: HomeMBTI2ViewHolder, position: Int) {
 
+            val rowHomeMbti2ViewModel = RowHomeMbti2ViewModel()
+
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 4) {
+                0 -> R.drawable.iu_image4
+                1 -> R.drawable.iu_image5
+                2 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowHomeMbti2Binding.itemMainMbtiProductThumbnail2.setImageResource(imageResource)
+
+            // position 값에 따라 다른 MBTI 색상 설정
+            val colorResource = when (position % 4) {
+                0 -> Color.parseColor("#13D4EF")
+                1 -> Color.parseColor("#BDB14C")
+                2 -> Color.parseColor("#B75AB6")
+                else -> Color.parseColor("#36C87C")
+            }
+            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(colorResource)
+
+            holder.rowHomeMbti2Binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
         }
     }
 }

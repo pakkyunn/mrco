@@ -6,7 +6,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
@@ -17,7 +16,6 @@
             android:layout_marginVertical="8dp"
             android:gravity="center"
             android:text="변경할 MBTI를 선택해주세요"
-            android:textColor="#102672"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -37,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="E"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -48,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="I"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -70,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="N"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -81,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="S"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -103,7 +101,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="F"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -114,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="T"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -136,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="J"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
@@ -147,15 +145,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
                 android:text="P"
                 android:textColor="@color/selector_add_product_option_text_color"
                 android:textStyle="bold" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="345dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
@@ -177,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="4dp"
                 android:layout_weight="1"
-                android:backgroundTint="#102672"
+                android:backgroundTint="@color/black"
                 android:text="변경"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +16,7 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
 import kr.co.lion.team4.mrco.databinding.HeaderCategoryDrawerBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
-import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
 import kr.co.lion.team4.mrco.viewmodel.category.RowCategoryMainViewModel
-import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
 
 class CategoryMainFragment : Fragment() {
 

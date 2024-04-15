@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
@@ -20,6 +21,8 @@ import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
+import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendNewCoordiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendViewModel
@@ -29,12 +32,19 @@ class HomeRecommendFragment : Fragment() {
     lateinit var fragmentHomeRecommendBinding: FragmentHomeRecommendBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var homeRecommendViewModel: HomeRecommendViewModel
+
     lateinit var snapHelper: SnapHelper
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentHomeRecommendBinding = FragmentHomeRecommendBinding.inflate(inflater)
+        fragmentHomeRecommendBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_recommend, container, false)
+        homeRecommendViewModel = HomeRecommendViewModel()
+        fragmentHomeRecommendBinding.homeRecommendViewModel = HomeRecommendViewModel()
+        fragmentHomeRecommendBinding.lifecycleOwner = this
+
         mainActivity = activity as MainActivity
 
         // 버튼
@@ -206,10 +216,10 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
-            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail.setOnClickListener {
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
-            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail2.setOnClickListener {
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail4.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
         }
