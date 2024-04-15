@@ -34,10 +34,6 @@ class CoordinatorInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
         
         // 툴바, 하단바, 탭 관련
-        settingTabs()
-        settingCoorditab()
-        settingMainTab()
-        settingToolbar()
         mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
@@ -46,31 +42,6 @@ class CoordinatorInfoFragment : Fragment() {
         return fragmentCoordinatorInfoBinding.root
     }
 
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        fragmentCoordinatorInfoBinding.apply {
-            toolbarMain.apply {
-                setOnMenuItemClickListener {
-
-                    when (it.itemId) {
-                        // 검색 클릭 시
-                        R.id.home_toolbar_search -> {
-                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-                        }
-                        // 알람 클릭 시
-                        R.id.home_toolbar_notification -> {
-                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
-                        }
-                        // 장바구니 클릭 시
-                        R.id.home_toolbar_shopping -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
 
     // 코디네이터 소개 리사이클러 뷰 설정
     fun settingRecyclerViewCoordinatorInfo() {
@@ -80,18 +51,6 @@ class CoordinatorInfoFragment : Fragment() {
                 adapter = CoordinatorInfoRecyclerViewAdapter()
                 layoutManager = GridLayoutManager(mainActivity, 2)
             }
-        }
-    }
-
-    // 탭바 위치 설정
-    fun settingTabs(){
-        fragmentCoordinatorInfoBinding.apply {
-            val tabLayout = tabsMain
-            tabLayout.getTabAt(2)?.select()
-        }
-        fragmentCoordinatorInfoBinding.apply {
-            val tabLayout = tabs
-            tabLayout.getTabAt(1)?.select()
         }
     }
 
@@ -146,77 +105,6 @@ class CoordinatorInfoFragment : Fragment() {
                 else -> R.drawable.iu_image6
             }
             holder.rowCoordinatorInfoBinding.imageViewCoordinatorInfo.setImageResource(imageResource)
-        }
-    }
-
-    fun settingCoorditab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentCoordinatorInfoBinding.apply {
-                val tabLayout = tabs
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-                        }
-                        else {
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
-        }
-    }
-
-    fun settingMainTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentCoordinatorInfoBinding.apply {
-                val tabLayout = tabsMain
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-                        }
-                        else if (tab?.position == 1) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
-                        } else {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
         }
     }
 }
