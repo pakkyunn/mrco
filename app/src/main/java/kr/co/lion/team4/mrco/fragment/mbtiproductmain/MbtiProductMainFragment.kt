@@ -22,6 +22,8 @@ class MbtiProductMainFragment : Fragment() {
     lateinit var fragmentMbtiProductMainBinding: FragmentMbtiProductMainBinding
     lateinit var mainActivity: MainActivity
 
+    var MBTI: String = "ISFP"
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
@@ -29,6 +31,7 @@ class MbtiProductMainFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
+        settingToolbar()
         mainActivity.removeBottomSheet()
 
         // 리사이클러 뷰
@@ -40,6 +43,25 @@ class MbtiProductMainFragment : Fragment() {
         return fragmentMbtiProductMainBinding.root
     }
 
+    fun settingToolbar(){
+        fragmentMbtiProductMainBinding.apply {
+            toolbarMbtiProductMain.apply {
+                subtitle = "$MBTI 에게 잘 어울리는 코디"
+                setNavigationOnClickListener {
+                    backProcesss()
+                }
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        // 장바구니 클릭 시
+                        R.id.menuItemShoppingBagProduct -> {
+                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+                        }
+                    }
+                    true
+                }
+            }
+        }
+    }
 
     // 리사이클러 뷰 설정
     fun settingRecyclerViewMbtiProductMain() {
@@ -99,6 +121,9 @@ class MbtiProductMainFragment : Fragment() {
                 else -> R.drawable.iu_image5
             }
             holder.rowMbtiProductMainBinding.itemMbtiProductThumbnail.setImageResource(imageResource)
+            holder.rowMbtiProductMainBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
         }
     }
 
@@ -118,5 +143,4 @@ class MbtiProductMainFragment : Fragment() {
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.MBTI_PRODUCT_MAIN)
     }
-
 }

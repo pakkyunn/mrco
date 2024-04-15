@@ -22,8 +22,8 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/item_mbti_product_thumbnail"
-                    android:layout_width="200dp"
-                    android:layout_height="272dp"
+                    android:layout_width="180dp"
+                    android:layout_height="210dp"
                     android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -38,22 +38,20 @@
                     android:layout_marginTop="8dp"
                     android:text="ABCDEDFG 코디"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/item_mbti_product_thumbnail" />
 
-                <Button
+
+                <com.google.android.material.checkbox.MaterialCheckBox
                     android:id="@+id/item_mbti_product_like_button"
-                    style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:checked="true"
-                    app:icon="@drawable/selector_favorite"
-                    app:iconTint="#FF0000"
-                    app:layout_constraintBottom_toBottomOf="@id/item_mbti_product_thumbnail"
-                    app:layout_constraintEnd_toEndOf="@id/item_mbti_product_thumbnail" />
-
+                    android:button="@drawable/selector_favorite"
+                    app:buttonTint="#B31010"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"  />
 
                 <TextView
                     android:id="@+id/item_mbti_product_owner"
@@ -80,7 +78,6 @@
                     android:id="@+id/item_mbti_product_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="4.3"
                     android:textColor="#FDB61D"
@@ -103,7 +100,7 @@
                     android:id="@+id/item_mbti_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:text="178,000"
                     app:layout_constraintStart_toEndOf="@id/item_mbti_product_discount_percent"

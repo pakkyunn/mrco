@@ -10,71 +10,58 @@
         android:transitionGroup="true"
         tools:context=".fragment.mbtiproductmain.MbtiProductMainFragment">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarMbtiProductMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:menu="@menu/menu_product"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:navigationIconTint="@color/black"
+            app:subtitleCentered="true"
+            app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Large"
+            app:subtitleTextColor="@color/black" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp">
+            android:orientation="horizontal"
+            android:paddingLeft="30dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="30dp">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonMbtiProductMainMBTI"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MBTI"
-                    android:textColor="#1049AE"
-                    android:textSize="20dp"
-                    android:theme="@style/Basic_Font_Theme"
-                    app:icon="@drawable/arrow_drop_down_24px"
-                    app:iconGravity="end"
-                    app:iconTint="#1049AE"
-                    app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:paddingLeft="0dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/buttonMbtiProductMainGender"
-                    style="@style/Widget.Material3.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="성별"
-                    android:textColor="#1049AE"
-                    android:textSize="20dp"
-                    android:theme="@style/Basic_Font_Theme"
-                    app:icon="@drawable/arrow_drop_down_24px"
-                    app:iconGravity="end"
-                    app:iconTint="#1049AE"
-                    app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:paddingLeft="0dp" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="#F1F1F1" />
-
-            <TextView
-                android:id="@+id/textView13"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMbtiProductMainMBTI"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:text="ISFP 에게 잘 어울리는 코디"
-                android:textColor="#000000"
+                android:text="MBTI"
+                android:textColor="#1049AE"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:theme="@style/Basic_Font_Theme"
+                app:icon="@drawable/arrow_drop_down_24px"
+                app:iconGravity="end"
+                app:iconTint="#1049AE"
+                app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:paddingLeft="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonMbtiProductMainGender"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:textColor="#1049AE"
+                android:textSize="20dp"
+                android:theme="@style/Basic_Font_Theme"
+                app:icon="@drawable/arrow_drop_down_24px"
+                app:iconGravity="end"
+                app:iconTint="#1049AE"
+                app:layout_constraintBaseline_toBaselineOf="@id/home_mbti_content2"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:paddingLeft="0dp" />
 
         </LinearLayout>
 
