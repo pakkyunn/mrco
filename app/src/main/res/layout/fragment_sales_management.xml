@@ -15,7 +15,7 @@
         android:background="#F6F6F6"
         android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.home.coordinator.CoordinatorRankFragment">
+        tools:context=".fragment.salesManagement.SalesManagementFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarSalesManagement"
@@ -81,13 +81,13 @@
 
                     <TextView
                         android:id="@+id/textViewSalesManagementName"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="@{salesManagementViewModel.textViewSalesManagementName}"
                         android:textColor="@color/black"
-                        android:textSize="16dp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
