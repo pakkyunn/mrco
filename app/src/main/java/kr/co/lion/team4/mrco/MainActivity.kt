@@ -53,7 +53,6 @@ import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
 import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.MyReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.ReviewCreatedFragment
-import kr.co.lion.team4.mrco.fragment.review.ReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
@@ -196,7 +195,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_PRODUCT_REVIEW -> newFragment = ProductReviewFragment()
             MainFragmentName.FRAGMENT_CREATE_REVIEW_FRAGMENT -> newFragment = CreateReviewFragment()
             MainFragmentName.FRAGMENT_REVIEW_CREATED -> newFragment = ReviewCreatedFragment()
-            MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
 
             // 고객센터 화면 + 1:1 문의 작성 화면
             MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
@@ -239,6 +237,9 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY -> newFragment = CodiProductInfoAccessoryFragment()
             // 개별 상품 관리 - 상세
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
+
+            // 상품리뷰 화면
+            MainFragmentName.FRAGMENT_MY_REVIEW -> newFragment = MyReviewFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
