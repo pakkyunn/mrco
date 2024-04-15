@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="codiProductInfoAccessory"
+            name="codiProductInfoAccessoryViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAccesoryViewModel" />
     </data>
 <LinearLayout
