@@ -109,7 +109,7 @@ class CoordinatorMyPageFragment : Fragment() {
 
             // 매출/정산 관리
             textViewMenuCoordinatorMyPage6.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, true, null)
             }
 
             // 로그아웃
