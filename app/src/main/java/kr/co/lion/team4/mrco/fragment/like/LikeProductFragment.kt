@@ -27,54 +27,17 @@ class LikeProductFragment : Fragment() {
     lateinit var fragmentLikeProductBinding: FragmentLikeProductBinding
     lateinit var mainActivity: MainActivity
 
-    lateinit var likeProductViewModel: LikeProductViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        fragmentLikeProductBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_like_product, container, false)
-        likeProductViewModel = LikeProductViewModel()
-        fragmentLikeProductBinding.likeProductViewModel = LikeProductViewModel()
+        fragmentLikeProductBinding = FragmentLikeProductBinding.inflate(inflater)
         fragmentLikeProductBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
-
-        // 툴바, 하단바, 탭 관련
-        settingToolbar()
-        settingTabs()
-        settingLikeTab()
-        settingBottomTabs()
-        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewLikeProduct()
 
         return fragmentLikeProductBinding.root
-    }
-
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        fragmentLikeProductBinding.apply {
-            toolbarLikeProduct.apply {
-                setOnMenuItemClickListener {
-
-                    when (it.itemId) {
-                        // 검색 클릭 시
-                        R.id.home_toolbar_search -> {
-
-                        }
-                        // 알람 클릭 시
-                        R.id.home_toolbar_notification -> {
-                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
-                        }
-                        // 장바구니 클릭 시
-                        R.id.home_toolbar_shopping -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
     }
 
     // 하단 바 홈으로 체크 표시 설정
@@ -93,14 +56,6 @@ class LikeProductFragment : Fragment() {
                 adapter = LikeProductRecyclerViewAdapter()
                 layoutManager = GridLayoutManager(mainActivity, 2)
             }
-        }
-    }
-
-    // 탭바 및 바텀바 위치 설정
-    fun settingTabs() {
-        fragmentLikeProductBinding.apply {
-            val tabLayout = tabsLike
-            tabLayout.getTabAt(0)?.select()
         }
     }
 
@@ -149,39 +104,6 @@ class LikeProductFragment : Fragment() {
                 else -> R.drawable.iu_image5
             }
             holder.rowLikeProductBinding.itemMainLikeProductThumbnail.setImageResource(imageResource)
-        }
-    }
-
-
-    // Like 상단 탭 설정
-    fun settingLikeTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentLikeProductBinding.apply {
-                val tabLayout = tabsLike
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.LIKE_COORDINATOR)
-                            mainActivity.replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
-                        }
-                        else {
-                            mainActivity.removeFragment(MainFragmentName.LIKE_PRODUCT)
-                            mainActivity.replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
         }
     }
 }

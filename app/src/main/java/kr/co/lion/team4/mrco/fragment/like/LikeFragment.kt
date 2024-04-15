@@ -1,47 +1,37 @@
 package kr.co.lion.team4.mrco.fragment.home.coordinator
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
-import kr.co.lion.team4.mrco.databinding.FragmentHomeCoordinatorBinding
-import kr.co.lion.team4.mrco.databinding.FragmentHomeMainFullBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
-import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
-import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
-import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
-import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRank2ViewModel
-import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
+import kr.co.lion.team4.mrco.databinding.FragmentLikeBinding
+import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
+import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
+import kr.co.lion.team4.mrco.viewmodel.like.LikeViewModel
 
-class HomeMainFullFragment : Fragment() {
+class LikeFragment : Fragment() {
 
-    // 원빈 - 인기 코디네이터 화면
-    lateinit var fragmentHomeMainFullBinding: FragmentHomeMainFullBinding
+    // 원빈 - 좋아요 화면(코디네이터)
+    lateinit var fragmentLikeBinding: FragmentLikeBinding
     lateinit var mainActivity: MainActivity
+
+    lateinit var likeViewModel: LikeViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-
-        fragmentHomeMainFullBinding = FragmentHomeMainFullBinding.inflate(inflater)
+        // Inflate the layout for this fragment
+        fragmentLikeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_like, container, false)
+        likeViewModel = LikeViewModel()
+        fragmentLikeBinding.likeViewModel = LikeViewModel()
+        fragmentLikeBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
 
@@ -51,15 +41,14 @@ class HomeMainFullFragment : Fragment() {
         settingBottomTabs()
         mainActivity.viewBottomSheet()
 
-        return fragmentHomeMainFullBinding.root
+        return fragmentLikeBinding.root
     }
 
     // 툴바 세팅(메인 / 검색, 알림, 장바구니)
     fun settingToolbar() {
-        fragmentHomeMainFullBinding.apply {
-            toolbarMain.apply {
+        fragmentLikeBinding.apply {
+            toolbarLike.apply {
                 setOnMenuItemClickListener {
-
                     when (it.itemId) {
                         // 검색 클릭 시
                         R.id.home_toolbar_search -> {
@@ -83,28 +72,28 @@ class HomeMainFullFragment : Fragment() {
     // 하단 바 홈으로 체크 표시 설정
     fun settingBottomTabs() {
         mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_home
+            val menuItemId = R.id.main_bottom_navi_like
             mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 
     private fun viewPagerActiviation(){
-        fragmentHomeMainFullBinding.apply {
+        fragmentLikeBinding.apply {
             // 1. 페이지 데이터를 로드
-            val list = listOf(HomeRecommendFragment(), HomeMbtiFragment(), HomeCoordinatorFragment())
+            val list = listOf(LikeProductFragment(), LikeCoordinatorFragment())
             // 2. Adapter 생성
             val pagerAdapter = FragmentPagerAdapter(list, mainActivity)
             // 3. Adapater와 Pager연결
-            viewPagerHomeMainFull.adapter = pagerAdapter
+            viewPagerLike.adapter = pagerAdapter
             // 4. 탭 메뉴의 갯수만큼 제목을 목록으로 생성
-            val titles = listOf("추천", "MBTI별 코디", "코디네이터")
+            val titles = listOf("코디", "코디네이터")
             // 5. 탭 레이아웃과 뷰페이저 연결
-            TabLayoutMediator(tabsMain, viewPagerHomeMainFull) { tab, position ->
+            TabLayoutMediator(tabsLike, viewPagerLike) { tab, position ->
                 tab.text = titles.get(position)
             }.attach()
 
             // ViewPager 드래그 비활성화
-            viewPagerHomeMainFull.isUserInputEnabled = false
+            viewPagerLike.isUserInputEnabled = false
         }
     }
 
@@ -118,4 +107,5 @@ class HomeMainFullFragment : Fragment() {
             return fragmentList.get(position)
         }
     }
+
 }

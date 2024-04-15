@@ -70,6 +70,9 @@ class HomeCoordinatorFragment : Fragment() {
             TabLayoutMediator(tabs, viewPagerHomeCoordinator) { tab, position ->
                 tab.text = titles.get(position)
             }.attach()
+
+            // ViewPager 드래그 비활성화
+            viewPagerHomeCoordinator.isUserInputEnabled = false
         }
     }
 

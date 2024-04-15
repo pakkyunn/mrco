@@ -25,6 +25,7 @@ import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerServiceFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.LikeFragment
 import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
 import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
@@ -181,6 +182,7 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
 
             // 좋아요 화면 (코디, 코디네이터)
+            MainFragmentName.LIKE -> newFragment = LikeFragment()
             MainFragmentName.LIKE_PRODUCT -> newFragment = LikeProductFragment()
             MainFragmentName.LIKE_COORDINATOR -> newFragment = LikeCoordinatorFragment()
 
@@ -320,7 +322,7 @@ class MainActivity : AppCompatActivity() {
                         replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
                     }
                     R.id.main_bottom_navi_like -> {
-                        replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
+                        replaceFragment(MainFragmentName.LIKE, false, false, null)
                     }
                     else -> {
                         replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
