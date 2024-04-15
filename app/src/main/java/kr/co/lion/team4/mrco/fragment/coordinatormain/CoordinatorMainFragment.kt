@@ -140,6 +140,5 @@ class CoordinatorMainFragment : Fragment() {
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.COORDINATOR_MAIN)
-        mainActivity.viewBottomSheet()
     }
 }

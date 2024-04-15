@@ -48,6 +48,7 @@ class CategoryFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         settingBottomTabs()
+        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewCategory()

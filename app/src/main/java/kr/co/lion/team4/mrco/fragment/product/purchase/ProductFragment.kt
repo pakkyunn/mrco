@@ -251,7 +251,6 @@ class ProductFragment : Fragment() {
 
     fun backProcess(){
         mainActivity.removeFragment(MainFragmentName.PRODUCT_FRAGMENT)
-        mainActivity.viewBottomSheet()
     }
 
 

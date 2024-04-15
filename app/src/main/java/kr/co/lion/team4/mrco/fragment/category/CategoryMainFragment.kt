@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.category
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class CategoryMainFragment : Fragment() {
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
         settingBottomTabs()
+        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewCategory()
@@ -42,7 +44,19 @@ class CategoryMainFragment : Fragment() {
             setNavigationOnClickListener {
                 backProcess()
             }
-            // setNavigationIcon(R.drawable.event_list_24px)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    // 장바구니 클릭 시
+                    R.id.category_toolbar_shopping -> {
+                        mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+                    }
+                    // 햄버거 메뉴 클릭 시
+                    R.id.category_toolbar_category_menu -> {
+                        Log.d("test1234", "카테고리 - Menu 클릭")
+                    }
+                }
+                true
+            }
         }
     }
 
