@@ -32,13 +32,21 @@ class ProductManagementFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
+        settingToolbarProductManagement()
         viewPagerActiviation()
-
 
         return binding.root
     }
 
-    //
+    // setting toolbar
+    fun settingToolbarProductManagement(){
+        binding.toolbarProductManagement.apply {
+            setNavigationOnClickListener {
+                backProcess()
+            }
+        }
+    }
+
     private fun viewPagerActiviation(){
         binding.apply {
             // 1. 페이지 데이터를 로드
@@ -66,5 +74,10 @@ class ProductManagementFragment : Fragment() {
         override fun createFragment(position: Int): Fragment {
             return fragmentList.get(position)
         }
+    }
+
+    // 이전 화면으로
+    fun backProcess(){
+        mainActivity.removeFragment(MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT)
     }
 }
