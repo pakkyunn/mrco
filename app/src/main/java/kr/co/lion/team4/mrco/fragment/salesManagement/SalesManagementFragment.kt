@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,9 +13,8 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.SalesManagementSubFragmentName
 import kr.co.lion.team4.mrco.databinding.FragmentSalesManagementBinding
-import kr.co.lion.team4.mrco.databinding.RowSalesManagementBinding
-import kr.co.lion.team4.mrco.viewmodel.salesManagement.RowSalesManagementViewModel
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.SalesManagementViewModel
 
 class SalesManagementFragment : Fragment() {
@@ -29,6 +26,8 @@ class SalesManagementFragment : Fragment() {
 
     lateinit var salesManagementViewModel: SalesManagementViewModel
 
+    var oldFragment: Fragment? = null
+    var newFragment: Fragment? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -44,9 +43,6 @@ class SalesManagementFragment : Fragment() {
         toolbarSetting()
         settingTabs()
         settingSalesManagementTab()
-
-        // 리사이클러
-        settingRecyclerViewSalesManagement()
 
         return fragmentSalesManagementBinding.root
     }
@@ -67,55 +63,8 @@ class SalesManagementFragment : Fragment() {
     fun settingTabs(){
         fragmentSalesManagementBinding.apply {
             val tabLayout = tabs
-            tabLayout.getTabAt(2)?.select()
-        }
-    }
-
-    // 리사이클러 뷰 설정
-    fun settingRecyclerViewSalesManagement() {
-        fragmentSalesManagementBinding.apply {
-            recyclerViewSalesManagement.apply {
-                // 어뎁터 및 레이아웃 매니저 설정
-                adapter = SalesManagementRecyclerViewAdapter()
-                layoutManager = LinearLayoutManager(mainActivity)
-            }
-        }
-    }
-
-    // 리사이클러 뷰 어뎁터
-    inner class SalesManagementRecyclerViewAdapter: RecyclerView.Adapter<SalesManagementRecyclerViewAdapter.SalesManagementViewHolder>(){
-        inner class SalesManagementViewHolder(rowSalesManagementBinding: RowSalesManagementBinding): RecyclerView.ViewHolder(rowSalesManagementBinding.root){
-            val rowSalesManagementBinding: RowSalesManagementBinding
-
-            init {
-                this.rowSalesManagementBinding = rowSalesManagementBinding
-
-                this.rowSalesManagementBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            }
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SalesManagementViewHolder {
-            val rowSalesManagementBinding = DataBindingUtil.inflate<RowSalesManagementBinding>(
-                layoutInflater, R.layout.row_sales_management, parent, false
-            )
-            val rowSalesManagementViewModel = RowSalesManagementViewModel()
-            rowSalesManagementBinding.rowSalesManagementViewModel = rowSalesManagementViewModel
-            rowSalesManagementBinding.lifecycleOwner = this@SalesManagementFragment
-
-            val salesManagementViewHolder = SalesManagementViewHolder(rowSalesManagementBinding)
-
-            return salesManagementViewHolder
-        }
-
-        override fun getItemCount(): Int {
-            return 6
-        }
-
-        override fun onBindViewHolder(holder: SalesManagementViewHolder, position: Int) {
-
+            tabLayout.getTabAt(0)?.select()
+            replaceFragment(SalesManagementSubFragmentName.SALES_INVOICE_REPORT,null)
         }
     }
 
@@ -132,19 +81,25 @@ class SalesManagementFragment : Fragment() {
             // 탭 선택 리스너 설정
             tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
-                    // 선택된 탭이 첫 번째 탭인 경우
-                    if (tab?.position == 0) {
-                        mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_INVOICE_REPORT, true, false, null)
-//                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
-//                            mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
-                    }
-                    else if (tab?.position == 1) {
-                        mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, true, false, null)
-                    // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
-                    }
-                    else {
-                        //mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, false, null)
-                        // mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
+                    when(tab?.position) {
+                        // 리포트
+                        0 -> {
+                            replaceFragment(SalesManagementSubFragmentName.SALES_INVOICE_REPORT, null)
+                            salesManagementViewModel?.textViewSalesManagementName?.value =
+                                "XXX 코디네이터님의 매출 리포트입니다"
+                        }
+                        // 캘린더
+                        1 -> {
+                            replaceFragment(SalesManagementSubFragmentName.SALES_CALENDAR,null)
+                            salesManagementViewModel?.textViewSalesManagementName?.value =
+                                "XXX 코디네이터님의 매출 캘린더입니다"
+                        }
+                        // 정산 내역
+                        2 -> {
+                            replaceFragment(SalesManagementSubFragmentName.SALES_HISTORY,null)
+                            salesManagementViewModel?.textViewSalesManagementName?.value =
+                                "XXX 코디네이터님의 정산 내역입니다"
+                        }
                     }
                 }
 
@@ -156,6 +111,38 @@ class SalesManagementFragment : Fragment() {
                     // Not implemented
                 }
             })
+        }
+    }
+
+    // Fragment 교체
+    fun replaceFragment(name: SalesManagementSubFragmentName, data: Bundle?) {
+        // Fragment를 교체할 수 있는 객체를 추출한다.
+        val fragmentTransaction = childFragmentManager.beginTransaction()
+
+        // oldFragment에 newFragment가 가지고 있는 Fragment 객체를 담아준다.
+        if(newFragment != null){
+            oldFragment = newFragment
+        }
+
+        when(name){
+            SalesManagementSubFragmentName.SALES_INVOICE_REPORT -> newFragment = SalesManagementInvoiceReportFragment()
+
+            SalesManagementSubFragmentName.SALES_CALENDAR -> newFragment = SalesManagementCalendarFragment()
+
+            SalesManagementSubFragmentName.SALES_HISTORY -> newFragment = SalesManagementHistoryFragment()
+        }
+
+        // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
+        if(data != null){
+            newFragment?.arguments = data
+        }
+
+        if(newFragment != null){
+            // Fragment를 교체한다.(이전 Fragment가 없으면 새롭게 추가하는 역할을 수행한다)
+            fragmentTransaction.replace(R.id.fragment_container_view_sales_management, newFragment!!)
+
+            // Fragment 교체를 확정한다.
+            fragmentTransaction.commit()
         }
     }
 }

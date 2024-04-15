@@ -143,6 +143,12 @@ enum class SubFragmentName(var str: String) {
     PRODUCT_QNA_FRAGMENT("ProductQnaFragment"), // 문의 탭
 }
 
+enum class SalesManagementSubFragmentName(var str: String) {
+    SALES_INVOICE_REPORT("SalesManagementInvoiceReportFragment"), // 리포트 탭
+    SALES_CALENDAR("SalesManagementCalendarFragment"), // 캘린더 탭
+    SALES_HISTORY("SalesManagementHistoryFragment"), // 정산 내역 탭
+}
+
 enum class ProductSize(var ps: String){
     SIZE_XXXSMALL("XXXS"),
     SIZE_XXSMALL("XXS"),
