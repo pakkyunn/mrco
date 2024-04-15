@@ -4,247 +4,319 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="ir"
             type="kr.co.lion.team4.mrco.viewmodel.salesManagement.InvoiceReportViewModel" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollview_invoice_report"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:background="#F6F6F6"
+        android:orientation="vertical"
         android:transitionGroup="true"
-        tools:context=".fragment.salesManagement.SalesManagementInvoiceReportFragment">
+        tools:context=".fragment.salesManagement.SalesManagementFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_invoice_report"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:subtitleTextColor="#000000"
+            app:title="매출 관리(정산)"
+            app:titleCentered="true" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs_invoice_report"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabRippleColor="#CCCCCC"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:tabTextColor="#878787">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/invoice_report_tab_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리포트" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/invoice_report_tab_cal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="캘린더" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/invoice_report_tab_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정산 내역" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollview_invoice_report"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:transitionGroup="true">
+            android:fillViewport="true"
+            android:transitionGroup="true"
+            tools:context=".fragment.salesManagement.SalesManagementInvoiceReportFragment">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/invoice_report_date_input_layout"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:hint="날짜"
-                app:hintEnabled="true"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:transitionGroup="true">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/invoice_report_date_input"
+                <TextView
+                    android:id="@+id/textview_invoice_report_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:padding="30dp"
+                    android:text="@{ir.textviewInvoiceReportName}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/invoice_report_date_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={ir.invoiceDate}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="날짜"
+                    app:hintEnabled="true"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_invoice_report_name"
+                    tools:layout_editor_absoluteX="16dp">
 
-            <TextView
-                android:id="@+id/invoice_report_guest_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="결제 고객 분석"
-                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_date_input_layout" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/invoice_report_date_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@={ir.invoiceDate}" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/invoice_report_guest_date_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_title"
-                tools:text="3월 21일 (목)" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="결제 고객 분석"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_date_input_layout" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text=" 고객의 분석 정보입니다."
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintBaseline_toBaselineOf="@id/invoice_report_guest_date_text"
-                app:layout_constraintStart_toEndOf="@id/invoice_report_guest_date_text" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_date_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_title"
+                    tools:text="3월 21일 (목)" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/invoice_report_guest_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_date_text" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text=" 고객의 분석 정보입니다."
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    app:layout_constraintBaseline_toBaselineOf="@id/invoice_report_guest_date_text"
+                    app:layout_constraintStart_toEndOf="@id/invoice_report_guest_date_text" />
 
-            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-                android:id="@+id/invoice_report_guest_chart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_divider" />
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/invoice_report_guest_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_date_text" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/invoice_report_guest_chart_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_chart" />
+                <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                    android:id="@+id/invoice_report_guest_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_divider" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result1_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="평균 객단가"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_chart_divider" />
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/invoice_report_guest_chart_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_chart" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result2_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="신규 고객 매출"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result1_text" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result1_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="평균 객단가"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_chart_divider" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result3_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text="재방문객 매출"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result2_text" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result2_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="신규 고객 매출"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result1_text" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result1_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-                app:layout_constraintBottom_toBottomOf="@id/invoice_report_guest_result1_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/invoice_report_guest_result1_text"
-                tools:text="11,587 원" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result3_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="재방문객 매출"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result2_text" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result2_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-                app:layout_constraintBottom_toBottomOf="@id/invoice_report_guest_result2_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/invoice_report_guest_result2_text"
-                tools:text="373,500 원 (40%)" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result1_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+                    app:layout_constraintBottom_toBottomOf="@id/invoice_report_guest_result1_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/invoice_report_guest_result1_text"
+                    tools:text="11,587 원" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result3_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
-                app:layout_constraintBottom_toBottomOf="@id/invoice_report_guest_result3_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/invoice_report_guest_result3_text"
-                tools:text="553,500 원 (60%)" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result2_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+                    app:layout_constraintBottom_toBottomOf="@id/invoice_report_guest_result2_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/invoice_report_guest_result2_text"
+                    tools:text="373,500 원 (40%)" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/invoice_report_guest_result_sum_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result3_text" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result3_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelSmall"
+                    app:layout_constraintBottom_toBottomOf="@id/invoice_report_guest_result3_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/invoice_report_guest_result3_text"
+                    tools:text="553,500 원 (60%)" />
 
-            <TextView
-                android:id="@+id/invoice_report_guest_result_sum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result_sum_divider"
-                tools:text="927,000 원" />
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/invoice_report_guest_result_sum_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result3_text" />
 
-
-            <TextView
-                android:id="@+id/invoice_report_time_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="64dp"
-                android:text="결제 시간 분석"
-                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result_sum" />
-
-            <TextView
-                android:id="@+id/invoice_report_guest_time_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_time_title"
-                tools:text="3월 21일 (목)" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:text=" 결제된 카드 매출의 시간대 정보입니다."
-                android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                app:layout_constraintBaseline_toBaselineOf="@id/invoice_report_guest_time_text"
-                app:layout_constraintStart_toEndOf="@id/invoice_report_guest_time_text" />
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/invoice_report_time_chart_divider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_time_text" />
-
-            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-                android:id="@+id/invoice_report_time_chart"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_time_chart_divider" />
+                <TextView
+                    android:id="@+id/invoice_report_guest_result_sum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textAppearance="@style/TextAppearance.Material3.LabelLarge"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result_sum_divider"
+                    tools:text="927,000 원" />
 
 
-            <!-- Fragment 끝 여백을 위한 Divider 지워도 됨 -->
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="128dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/invoice_report_time_chart" />
+                <TextView
+                    android:id="@+id/invoice_report_time_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="64dp"
+                    android:text="결제 시간 분석"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_result_sum" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/invoice_report_guest_time_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_time_title"
+                    tools:text="3월 21일 (목)" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text=" 결제된 카드 매출의 시간대 정보입니다."
+                    android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
+                    app:layout_constraintBaseline_toBaselineOf="@id/invoice_report_guest_time_text"
+                    app:layout_constraintStart_toEndOf="@id/invoice_report_guest_time_text" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/invoice_report_time_chart_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_time_text" />
+
+                <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                    android:id="@+id/invoice_report_time_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_time_chart_divider" />
+
+
+                <!-- Fragment 끝 여백을 위한 Divider 지워도 됨 -->
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="128dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/invoice_report_time_chart" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </layout>

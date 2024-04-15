@@ -58,7 +58,7 @@ class SalesManagementCalendarFragment : Fragment() {
             // 네비게이션
             setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
-                backProcesss()
+                backProcess()
             }
         }
     }
@@ -122,8 +122,8 @@ class SalesManagementCalendarFragment : Fragment() {
     }
 
     // 뒤로가기 처리
-    fun backProcesss(){
-        mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT)
+    fun backProcess(){
+        mainActivity.removeFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR)
     }
 
     // 상단 탭 선택 설정
