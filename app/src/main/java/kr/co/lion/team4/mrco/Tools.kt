@@ -141,6 +141,7 @@ enum class SubFragmentName(var str: String) {
     PRODUCT_SHIPPING_FRAGMENT("ProductShippingFragment"), // 배송 탭
     PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"), // 후기 탭
     PRODUCT_QNA_FRAGMENT("ProductQnaFragment"), // 문의 탭
+    REVIEW_IMAGE_MORE_FRAGMENT(""), // 후기 탭의 후기 사진 더보기 버튼 클릭시 보이는 화면
 }
 
 enum class ProductSize(var ps: String){

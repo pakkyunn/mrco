@@ -261,8 +261,6 @@ class ProductFragment : Fragment() {
     }
 
 
-
-
     fun replaceFragment(name: SubFragmentName, addToBackStack: Boolean, isAnimate: Boolean, data: Bundle?) {
 
         // Fragment를 교체할 수 있는 객체를 추출한다.
@@ -279,6 +277,8 @@ class ProductFragment : Fragment() {
             SubFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
 
             SubFragmentName.PRODUCT_QNA_FRAGMENT -> newFragment = ProductQnaFragment()
+
+            SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ProductQnaFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
