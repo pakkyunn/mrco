@@ -25,7 +25,6 @@
                 android:id="@+id/item_main_mbti_full_product_thumbnail"
                 android:layout_width="0dp"
                 android:layout_height="288dp"
-                android:layout_marginTop="8dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
