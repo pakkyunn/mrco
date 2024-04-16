@@ -90,14 +90,18 @@ class ProductPurchaseBottomFragment(var buttonIdx:Boolean) : BottomSheetDialogFr
     fun settingBottomSheetHeight(bottomSheetDialog: BottomSheetDialog){
         // BottomSheet의 기본 뷰 객체를 가져온다
         val bottomSheet = bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)!!
+
+        // 바텀시트의 배경색을 변경한다 (둥근 모서리를 유지하기 위해 drawable 지정)
+        bottomSheet.setBackgroundResource(R.drawable.bottom_sheet_background)
+
         // BottomSheet 높이를 설정할 수 있는 객체를 생성한다.
         val behavior = BottomSheetBehavior.from(bottomSheet)
+
         // 높이를 설정한다.
         val layoutParams = bottomSheet.layoutParams
         layoutParams.height = getBottomSheetDialogHeight()
         bottomSheet.layoutParams = layoutParams
         behavior.state = BottomSheetBehavior.STATE_EXPANDED
-
     }
 
     // BottomSheet의 높이를 구한다(화면 액정의 85% 크기)

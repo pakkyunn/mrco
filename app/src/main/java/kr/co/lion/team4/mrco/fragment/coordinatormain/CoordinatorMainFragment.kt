@@ -42,7 +42,6 @@ class CoordinatorMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
-        mainActivity.removeBottomSheet()
 
         // 팔로우/팔로잉 버튼
         settingButton()
@@ -57,7 +56,6 @@ class CoordinatorMainFragment : Fragment() {
     fun toolbarSetting() {
         fragmentCoordinatorMainBinding.toolbarCoordinatorMain.apply {
             // 네비게이션
-            setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
                 backProcesss()
             }
@@ -134,12 +132,15 @@ class CoordinatorMainFragment : Fragment() {
                 else -> R.drawable.iu_image4
             }
             holder.rowCoordinatorMainItemBinding.itemCoordinatorMainProductThumbnail.setImageResource(imageResource)
+
+            holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true ,null)
+            }
         }
     }
 
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.COORDINATOR_MAIN)
-        mainActivity.viewBottomSheet()
     }
 }

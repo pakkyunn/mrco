@@ -17,51 +17,6 @@
             android:orientation="vertical"
             android:transitionGroup="true">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbarMain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:backgroundTint="#FFFFFF"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="@style/ToolbarTheme"
-                app:menu="@menu/menu_main_home_toolbar"
-                app:title="MRCO"
-                app:titleMarginStart="30dp"
-                app:titleTextAppearance="@style/TextAppearance.AppCompat.Large"
-                app:titleTextColor="#002254" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabsMain"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#ffffff"
-                android:elevation="1dp"
-                app:tabIndicatorColor="#000000"
-                app:tabIndicatorFullWidth="true"
-                app:tabSelectedTextColor="#000000"
-                app:tabRippleColor="#CCCCCC"
-                app:tabTextColor="#878787">
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/main_home_tab_recommand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="추천" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/main_home_tab_mbti"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="MBTI별 코디" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:id="@+id/main_home_tab_stylist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="코디네이터" />
-            </com.google.android.material.tabs.TabLayout>
-
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -75,7 +30,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_recommend_banner"
                         android:layout_width="match_parent"
-                        android:layout_height="240dp"
+                        android:layout_height="280dp"
                         android:background="#131313"
                         android:clipChildren="false"
                         android:clipToPadding="false"
@@ -147,10 +102,22 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/home_recommend_all_button" />
 
+                    <TextView
+                        android:id="@+id/textViewCoordinatorRankDate"
+                        android:layout_width="152dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text="@{homeRecommendViewModel.textViewHomeRecommendDate}"
+                        android:textColor="#9A9A9A"
+                        android:textSize="12dp"
+                        app:layout_constraintStart_toStartOf="@+id/home_recommend_content2"
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_content2" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_recommend_new_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:clipToPadding="false"
                         android:orientation="horizontal"
                         android:paddingStart="8dp"
@@ -161,7 +128,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_content2"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCoordinatorRankDate"
+                        app:layout_constraintVertical_bias="0.0"
                         app:spanCount="2" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>

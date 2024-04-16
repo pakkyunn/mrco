@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="cpibv"
-            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel" />
+            name="codiProductInfoShoesViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoShoesViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="@={cpibv.codiProductName}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView_rowCodiProductInfoShoes_codiProductName"
-            app:srcCompat="@drawable/iu_image2" />
+            app:srcCompat="@drawable/iu_image7" />
 
         <View
             android:id="@+id/divider"
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:text="@={cpibv.codiProductTypeBottom}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductTypeShoes}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="@={cpibv.codiProductNameBottom}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductNameShoes}"
             app:layout_constraintStart_toEndOf="@+id/productName"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductSizeBottom}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductSizeShoes}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductInfoShoes_productName" />
 
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductColorBottom}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductColorShoes}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductShoesInfo_productSize" />
 
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductSerialNumBottom}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductSerialNumShoes}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductShoesInfo_productColor" />
 
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductPriceBottom}"
+            android:text="@={codiProductInfoShoesViewModel.codiProductPriceShoes}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductShoesInfo_productSerialNumber" />
     </androidx.constraintlayout.widget.ConstraintLayout>

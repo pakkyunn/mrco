@@ -22,7 +22,6 @@ class JoinCoordinatorFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바 및 하단 바 세팅
-        mainActivity.removeBottomSheet()
         settingToolbar()
 
         settingButtonJoinCoordinatorNext()

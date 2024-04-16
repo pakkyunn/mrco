@@ -5,6 +5,5 @@ import androidx.lifecycle.ViewModel
 
 class RowCoordinatorInfoViewModel: ViewModel() {
     val textViewRowInfoMBTI = MutableLiveData<String>("ISFP")
-    val textViewRowInfoName = MutableLiveData<String>("아이유 >")
-    val textViewRowInfoFollower = MutableLiveData<String>("1,361")
+    val textViewRowInfoName = MutableLiveData<String>("아이유")
 }

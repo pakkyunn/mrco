@@ -43,53 +43,77 @@
             app:layout_constraintStart_toStartOf="@id/item_main_like_product_thumbnail" />
 
         <TextView
+            android:id="@+id/item_main_like_coordinator_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:text="@{rowLikeProductViewModel.textViewRowLikeCoordinatorName}"
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/item_main_like_product_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/item_main_like_product_thumbnail" />
+
+        <TextView
             android:id="@+id/item_main_like_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintStart_toStartOf="@id/item_main_like_product_thumbnail"
-            app:layout_constraintTop_toBottomOf="@id/item_main_like_product_thumbnail"
-            app:layout_constraintBaseline_toBaselineOf="@id/checkBoxRowLikeProductLike"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:text="@{rowLikeProductViewModel.textViewRowLikeProductName}"
-            android:textColor="@color/black" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            app:layout_constraintStart_toStartOf="@+id/item_main_like_product_thumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/item_main_like_coordinator_name" />
 
         <TextView
             android:id="@+id/item_main_like_product_discount_percent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@id/item_main_like_product_price"
-            app:layout_constraintStart_toStartOf="@id/item_main_like_product_name"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:text="@{rowLikeProductViewModel.textViewRowLikeProductDiscountPrice}"
-            android:textColor="#FC5306" />
+            android:textColor="#FC5306"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/item_main_like_product_price"
+            app:layout_constraintStart_toStartOf="@id/item_main_like_product_name" />
 
         <TextView
             android:id="@+id/item_main_like_product_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintStart_toEndOf="@id/item_main_like_product_discount_percent"
-            app:layout_constraintTop_toBottomOf="@id/item_main_like_product_name"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="12dp"
             android:text="@{rowLikeProductViewModel.textViewRowLikeProductPrice}"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/item_main_like_product_discount_percent"
+            app:layout_constraintTop_toBottomOf="@id/item_main_like_product_name" />
 
 
         <com.google.android.material.checkbox.MaterialCheckBox
             android:id="@+id/checkBoxRowLikeProductLike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="4dp"
             android:button="@drawable/selector_favorite"
+            android:checked="true"
             app:buttonTint="#B31010"
+            app:checkedState="checked"
+            app:layout_constraintEnd_toEndOf="@+id/item_main_like_product_thumbnail"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_main_like_product_thumbnail" />
 
         <Button
+            android:id="@+id/buttonRowLikeProductCart"
             style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="174dp"
+            android:layout_height="45dp"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -99,6 +123,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_main_like_product_price" />
+            app:layout_constraintTop_toBottomOf="@id/item_main_like_product_price"
+            app:strokeColor="#BFBFBF" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

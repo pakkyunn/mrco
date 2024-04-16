@@ -1,17 +1,22 @@
 package kr.co.lion.team4.mrco.fragment.category
 
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
+import kr.co.lion.team4.mrco.databinding.HeaderCategoryDrawerBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
+import kr.co.lion.team4.mrco.viewmodel.category.RowCategoryMainViewModel
 
 class CategoryMainFragment : Fragment() {
 
@@ -26,7 +31,9 @@ class CategoryMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
+        bottomSheetSetting()
         settingBottomTabs()
+        settingNavigationView()
 
         // 리사이클러 뷰
         settingRecyclerViewCategory()
@@ -38,19 +45,105 @@ class CategoryMainFragment : Fragment() {
     fun toolbarSetting(){
         fragmentCategoryMainBinding.toolbarCoordinatorMain.apply {
             // 네비게이션
-            setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
-                backProcess()
+                // 여기 햄버거 메뉴 나오게 하기
+                // Drawer 메뉴가 나타나게 한다.
+                fragmentCategoryMainBinding.drawerLayoutContent.open()
             }
-            // setNavigationIcon(R.drawable.event_list_24px)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    // 장바구니 클릭 시
+                    R.id.category_toolbar_shopping -> {
+                        mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    // 네비게이션 뷰 설정
+    fun settingNavigationView(){
+        fragmentCategoryMainBinding.apply {
+            navigationViewContent.apply {
+
+                // 헤더로 보여줄 View를 생성한다.
+                val headerCategoryDrawerBinding = HeaderCategoryDrawerBinding.inflate(layoutInflater)
+                // 헤더로 보여줄 View를 설정한다.
+                addHeaderView(headerCategoryDrawerBinding.root)
+
+                // 메뉴를 눌렀을 때 동작하는 리스너
+                setNavigationItemSelectedListener {
+
+                    // 딜레이
+                    SystemClock.sleep(50)
+
+                    when(it.itemId) {
+                        R.id.menuItemCategoryNavigationMbti -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationTpo -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationSeason -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationMood -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                        //
+                        R.id.menuItemCategoryNavigationAll -> {
+
+                            // NavigationView를 닫아준다.
+                            drawerLayoutContent.close()
+                        }
+                    }
+                    true
+                }
+
+            }
+        }
+    }
+
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentCategoryMainBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+                    else -> {
+                        mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
         }
     }
 
     // 하단 바 홈으로 체크 표시 설정
     fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
+        fragmentCategoryMainBinding.apply {
             val menuItemId = R.id.main_bottom_navi_category
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+            fragmentCategoryMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 
@@ -80,20 +173,43 @@ class CategoryMainFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryMainViewHolder {
-            val rowCategoryMainBinding = RowCategoryMainBinding.inflate(layoutInflater)
+            val rowCategoryMainBinding = DataBindingUtil.inflate<RowCategoryMainBinding>(
+                layoutInflater, R.layout.row_category_main, parent, false
+            )
+            val rowCategoryMainViewModel = RowCategoryMainViewModel()
+            rowCategoryMainBinding.rowCategoryMainViewModel = rowCategoryMainViewModel
+            rowCategoryMainBinding.lifecycleOwner = this@CategoryMainFragment
+
             val categoryMainViewHolder = CategoryMainViewHolder(rowCategoryMainBinding)
 
             return categoryMainViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return 24
         }
 
         override fun onBindViewHolder(holder: CategoryMainViewHolder, position: Int) {
-            // 이미지 클릭시
-            holder.rowCategoryMainBinding.itemMainProductThumbnail.setOnClickListener {
+
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 6) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image4
+                3 -> R.drawable.iu_image5
+                4 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowCategoryMainBinding.itemMainProductThumbnail.setImageResource(imageResource)
+
+            // 이미지 -> 상품 이미지 클릭 시
+            holder.rowCategoryMainBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
+            }
+            
+            // 버튼 -> 카트 담기 클릭 시
+            holder.rowCategoryMainBinding.buttonRowCategoryMainCart.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
             }
         }
     }

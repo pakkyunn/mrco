@@ -40,10 +40,7 @@ class ProductFragment : Fragment() {
     // 장바구니버튼인지 구매하기버튼인지 구분
     var buttonIdx = true
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         fragmentProductBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false)
@@ -55,20 +52,16 @@ class ProductFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-
         mainActivity.removeBottomSheet()
 
         // 상단 코디상품 이미지 리사이클러 뷰
         settingRecyclerViewHomeRecommendBanner()
-
         settingToolbar()
 
         clickCoordinatorName()
-
         clickProductDetailButton()
 
         settingTab()
-
         settingBottomButton()
 
         settingButtonImageMore()

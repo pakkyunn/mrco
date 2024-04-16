@@ -1,11 +1,13 @@
 package kr.co.lion.team4.mrco.fragment.home.mbti
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
@@ -37,13 +39,6 @@ class HomeMbtiFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 툴바, 하단바, 탭 관련
-        settingTabs()
-        settingMainTab()
-        settingToolbar()
-        settingBottomTabs()
-        mainActivity.viewBottomSheet()
-
         // 리사이클러 뷰
         settingRecyclerViewHomeMBTI()
         settingRecyclerViewHomeMBTI2()
@@ -52,80 +47,6 @@ class HomeMbtiFragment : Fragment() {
         settingContentMoreButton()
 
         return fragmentHomeMbtiBinding.root
-    }
-
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        fragmentHomeMbtiBinding.apply {
-            toolbarMain.apply {
-                setOnMenuItemClickListener {
-
-                    when (it.itemId) {
-                        // 검색 클릭 시
-                        R.id.home_toolbar_search -> {
-                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-                        }
-                        // 알람 클릭 시
-                        R.id.home_toolbar_notification -> {
-                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
-                        }
-                        // 장바구니 클릭 시
-                        R.id.home_toolbar_shopping -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
-
-    // 탭바 위치 설정
-    fun settingTabs(){
-        fragmentHomeMbtiBinding.apply {
-            val tabLayout = tabsMain
-            tabLayout.getTabAt(1)?.select()
-        }
-    }
-
-    fun settingMainTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentHomeMbtiBinding.apply {
-                val tabLayout = tabsMain
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-                        }
-                        else if (tab?.position == 1) {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_RANK)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
-                        } else {
-                            mainActivity.removeFragment(MainFragmentName.HOME_RECOMMEND)
-                            mainActivity.removeFragment(MainFragmentName.HOME_MBTI)
-                            mainActivity.removeFragment(MainFragmentName.HOME_COORDINATOR_INFO)
-                            mainActivity.replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
-        }
     }
 
     // 더보기 버튼
@@ -138,14 +59,6 @@ class HomeMbtiFragment : Fragment() {
             homeMbtiContent2MoreButton.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
             }
-        }
-    }
-
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_home
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 
@@ -180,7 +93,7 @@ class HomeMbtiFragment : Fragment() {
                 this.rowHomeMbtiBinding = rowHomeMbtiBinding
 
                 this.rowHomeMbtiBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -200,11 +113,32 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 12
         }
 
         override fun onBindViewHolder(holder: HomeMBTIViewHolder, position: Int) {
 
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 4) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowHomeMbtiBinding.itemMainMbtiProductThumbnail.setImageResource(imageResource)
+
+            // position 값에 따라 다른 MBTI 색상 설정
+            val colorResource = when (position % 4) {
+                0 -> Color.parseColor("#13D4EF")
+                1 -> Color.parseColor("#BDB14C")
+                2 -> Color.parseColor("#B75AB6")
+                else -> Color.parseColor("#36C87C")
+            }
+            holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(colorResource)
+
+            holder.rowHomeMbtiBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
         }
     }
 
@@ -217,7 +151,7 @@ class HomeMbtiFragment : Fragment() {
                 this.rowHomeMbti2Binding = rowHomeMbti2Binding
 
                 this.rowHomeMbti2Binding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -237,11 +171,34 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 12
         }
 
         override fun onBindViewHolder(holder: HomeMBTI2ViewHolder, position: Int) {
 
+            val rowHomeMbti2ViewModel = RowHomeMbti2ViewModel()
+
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 4) {
+                0 -> R.drawable.iu_image4
+                1 -> R.drawable.iu_image5
+                2 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowHomeMbti2Binding.itemMainMbtiProductThumbnail2.setImageResource(imageResource)
+
+            // position 값에 따라 다른 MBTI 색상 설정
+            val colorResource = when (position % 4) {
+                0 -> Color.parseColor("#13D4EF")
+                1 -> Color.parseColor("#BDB14C")
+                2 -> Color.parseColor("#B75AB6")
+                else -> Color.parseColor("#36C87C")
+            }
+            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(colorResource)
+
+            holder.rowHomeMbti2Binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
         }
     }
 }

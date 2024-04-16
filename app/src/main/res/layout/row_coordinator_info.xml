@@ -11,21 +11,23 @@
     </data>
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
         android:padding="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1"
             tools:layout_editor_absoluteX="20dp"
             tools:layout_editor_absoluteY="20dp">
 
             <ImageView
                 android:id="@+id/imageViewCoordinatorInfo"
-                android:layout_width="180dp"
-                android:layout_height="240dp"
+                android:layout_width="0dp"
+                android:layout_height="258dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -37,15 +39,14 @@
                 android:id="@+id/textViewRowInfoMBTI"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="188dp"
                 android:text="@{rowCoordinatorInfoViewModel.textViewRowInfoMBTI}"
-                android:textColor="#dcdcdc"
-                android:textSize="16dp"
+                android:textColor="#ededed"
+                android:textSize="18dp"
                 android:textStyle="normal"
-                app:layout_constraintBottom_toTopOf="@+id/textViewRowInfoName"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo" />
 
             <TextView
                 android:id="@+id/textViewRowInfoName"
@@ -57,10 +58,19 @@
                 android:textStyle="normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorInfo"
-                app:layout_constraintVertical_bias="0.95" />
+                app:layout_constraintStart_toStartOf="@+id/imageViewCoordinatorInfo"
+                app:layout_constraintTop_toBottomOf="@+id/textViewRowInfoMBTI"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:drawableEnd="@drawable/baseline_arrow_forward_ios_24"
+                android:drawableTint="#EFEFEF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

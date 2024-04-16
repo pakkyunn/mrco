@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="cpibv"
+            name="codiProductInfoBottomViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel" />
     </data>
 
@@ -20,7 +20,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="@={cpibv.codiProductName}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
-            android:text="@={cpibv.codiProductTypeBottom}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductTypeBottom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider" />
 
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
-            android:text="@={cpibv.codiProductNameBottom}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductNameBottom}"
             app:layout_constraintStart_toEndOf="@+id/productName"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
 
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductSizeBottom}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductSizeBottom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductInfoBottom_productName" />
 
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductColorBottom}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductColorBottom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductInfoBottom_productSize" />
 
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductSerialNumBottom}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductSerialNumBottom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductInfoBottom_productColor" />
 
@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
-            android:text="@={cpibv.codiProductPriceBottom}"
+            android:text="@={codiProductInfoBottomViewModel.codiProductPriceBottom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_rowCodiProductInfoBottom_productSerialNumber" />
     </androidx.constraintlayout.widget.ConstraintLayout>
