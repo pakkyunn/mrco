@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco
 
+import android.Manifest
 import android.os.Bundle
 import android.os.SystemClock
 import androidx.appcompat.app.AppCompatActivity
@@ -72,54 +73,27 @@ class MainActivity : AppCompatActivity() {
     var oldFragment: Fragment? = null
     var newFragment: Fragment? = null
 
+    // 확인할 권한 목록
+    val permissionList = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.ACCESS_MEDIA_LOCATION
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // 로그인부터 시작 - 테스트
-        replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
+        // 권한 확인
+        requestPermissions(permissionList, 0)
 
-        // 홈 화면(추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개, 코디네이터 메인) - (원빈)완료
-        // 탭으로 화면 이동 가능
-        // replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-        // replaceFragment(MainFragmentName.HOME_MBTI, false, false, null)
-        // replaceFragment(MainFragmentName.HOME_COORDINATOR_RANK, false, false, null)
-        // replaceFragment(MainFragmentName.HOME_COORDINATOR_INFO, false, false, null)
-        // replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
-        // replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
-
-        // 좋아요 화면(코디네이터) - (원빈)완료
-        // 탭으로 화면 이동 가능 / 코디화면, 코디네이터 화면
-        // replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
-        // replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
-
-        // 리뷰 작성 페이지 - (원빈)완료
-        // replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
-
-        // 주문 상세 정보 페이지 - (원빈)완료
-        // replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
-
-        // 매출관리(내역), 매출관리(캘린더) - (원빈)완료
-        // 탭으로 화면 이동 가능 / 리포트는 현재 연동 X
-        // replaceFragment(MainFragmentName.SALES_MANAGEMENT, false, false, null)
-        // replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, false, false, null)
-
-        // 알림 - 현준(완료)
-        // replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, false, false, null)
-
-        // 카테고리 - 현준(완료)
-        // replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-
-        // 코디네이터 마이 페이지 - 현준(완료)
-        // replaceFragment(MainFragmentName.COORDINATOR_MYPAGE_FRAGMENT, false, false, null)
-
-        // 사용자 마이 페이지 - 현준(완료)
-        // replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
-
-        // 고객센터 - 현준(완료)
-        // replaceFragment(MainFragmentName.CUSTOMER_SERVICE_FRAGMENT, false, false, null)
+        // 로그인부터 시작
+        // replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
+        
+        // 메인화면부터 시작
+        replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
     }
 
     // 지정한 Fragment를 보여주는 메서드
@@ -225,9 +199,11 @@ class MainActivity : AppCompatActivity() {
 
             // 판매자 - 등록상품 관리
             MainFragmentName.FRAGMENT_PRODUCT_MANAGEMENT -> newFragment = ProductManagementFragment()
+
             // 코디 상품 관리, 개별 상품 관리 탭
             MainFragmentName.FRAGMENT_CODI_PRODUCT_MANAGEMENT -> newFragment = CodiProductMangementFragment()
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT -> newFragment = IndividualProductManagementFragment()
+
             // 코디 상품 관리 - 상세
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO -> newFragment = CodiProductInfoFragment()
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ALL -> newFragment = CodiProductInfoAllFragment()
@@ -235,6 +211,7 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_BOTTOM -> newFragment = CodiProductInfoBottomFragment()
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_SHOES -> newFragment = CodiProductInfoShoesFragment()
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY -> newFragment = CodiProductInfoAccessoryFragment()
+
             // 개별 상품 관리 - 상세
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
 
