@@ -23,6 +23,9 @@
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
+            app:menu="@menu/menu_product"
+            app:navigationIcon="@drawable/arrow_back_ios_24px"
+            app:navigationIconTint="@color/black"
             app:titleCentered="true"
             app:titleTextColor="#000000" />
 

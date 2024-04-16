@@ -31,7 +31,6 @@ class CartFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        mainActivity.removeBottomSheet()
         toolbarSetting()
 
         settingCartProductsRecyclerView()

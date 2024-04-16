@@ -32,9 +32,6 @@ class OrderDetailFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 툴바, 하단바, 탭 관련
-        mainActivity.removeBottomSheet()
-
         // 툴바 세팅
         toolbarSetting()
 

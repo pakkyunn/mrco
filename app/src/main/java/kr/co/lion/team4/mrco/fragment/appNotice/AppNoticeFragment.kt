@@ -22,8 +22,6 @@ class AppNoticeFragment : Fragment() {
         fragmentAppNoticeBinding = FragmentAppNoticeBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        // 하단 바 안보이게
-        mainActivity.removeBottomSheet()
         // 툴바
         toolbarSetting()
         // 알림목록
@@ -64,7 +62,6 @@ class AppNoticeFragment : Fragment() {
     // 뒤로가기 처리
     fun backProcesss() {
         mainActivity.removeFragment(MainFragmentName.APP_NOTICE_FRAGMENT)
-        mainActivity.viewBottomSheet()
     }
 
     fun settingRecyclerViewAppNotice() {

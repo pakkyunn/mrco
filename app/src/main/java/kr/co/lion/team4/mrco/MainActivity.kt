@@ -77,12 +77,6 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
 
-        // Status 바 (최상단 / 툴바 위)
-        // window.statusBarColor = ContextCompat.getColor(this, R.color.black)
-
-        // 하단 바 설정(이동 관련)
-        bottomSheetSetting()
-
         // 로그인부터 시작 - 테스트
         replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
 
@@ -295,42 +289,5 @@ class MainActivity : AppCompatActivity() {
 
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
-
-    // 하단 바 안보이게 하기
-    fun removeBottomSheet(){
-        activityMainBinding.apply {
-            mainBottomNavi.isVisible = false
-        }
-    }
-
-    // 하단 바 보이게 하기
-    fun viewBottomSheet(){
-        activityMainBinding.apply {
-            mainBottomNavi.isVisible = true
-        }
-    }
-
-    // 하단 바 설정
-    fun bottomSheetSetting(){
-        activityMainBinding.apply {
-            mainBottomNavi.setOnItemSelectedListener { item ->
-                when(item.itemId) {
-                    R.id.main_bottom_navi_home -> {
-                        replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
-                    }
-                    R.id.main_bottom_navi_category -> {
-                        replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-                    }
-                    R.id.main_bottom_navi_like -> {
-                        replaceFragment(MainFragmentName.LIKE, false, false, null)
-                    }
-                    else -> {
-                        replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
-                    }
-                }
-                true
-            }
-        }
     }
 }

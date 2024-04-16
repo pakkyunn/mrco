@@ -37,7 +37,6 @@ class ManageShipmentsFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // setting Toolbar, BottomNavigation
-        mainActivity.removeBottomSheet()
         settingToolbarManageShipments()
 
         // 캘린더 아이콘 - DateRangePicker로 조회기간 설정
