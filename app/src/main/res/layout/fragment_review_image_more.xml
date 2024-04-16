@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -7,15 +8,17 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarReviewImageMore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="전체 후기 사진"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/arrow_back_24px" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewImageMore"
+            android:id="@+id/recyclerViewReviewImageMore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
+import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.SubFragmentName
 import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
@@ -45,14 +46,10 @@ class ProductReviewFragment : Fragment() {
         return fragmentProductReviewBinding.root
     }
 
-
     fun settingButtonImageMore() {
         fragmentProductReviewBinding.apply {
             buttonImageMore.setOnClickListener {
-                ProductFragment().removeFragment(SubFragmentName.PRODUCT_REVIEW_FRAGMENT)
-                ProductFragment().removeFragment(SubFragmentName.PRODUCT_QNA_FRAGMENT)
-                ProductFragment().removeFragment(SubFragmentName.PRODUCT_SHIPPING_FRAGMENT)
-                ProductFragment().replaceFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT, false, false, null)
+                mainActivity.replaceFragment(MainFragmentName.REVIEW_IMAGE_MORE_FRAGMENT,true,true,null)
             }
         }
     }
@@ -166,4 +163,5 @@ class ProductReviewFragment : Fragment() {
 
         }
     }
+
 }
