@@ -51,49 +51,74 @@
                         <com.google.android.material.chip.ChipGroup
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:chipSpacingHorizontal="8dp">
+                            app:chipSpacingHorizontal="8dp"
+                            app:singleSelection="true">
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain1"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="미니멀" />
+                                android:text="미니멀"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain2"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="비즈니스 캐주얼" />
+                                android:text="비즈니스 캐주얼"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain3"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="원마일웨어" />
+                                android:text="원마일웨어"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain4"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="아메카지" />
+                                android:text="아메카지"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain5"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="시티보이" />
+                                android:text="시티보이"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain6"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="스트릿" />
+                                android:text="스트릿"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain7"
@@ -107,21 +132,33 @@
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="레트로" />
+                                android:text="레트로"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain9"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="러블리" />
+                                android:text="러블리"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain10"
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="모던캐주얼" />
+                                android:text="모던캐주얼"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                         </com.google.android.material.chip.ChipGroup>
                     </HorizontalScrollView>
