@@ -19,7 +19,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme"
             app:menu="@menu/menu_product"
-            app:navigationIcon="@drawable/arrow_back_24px"
+            app:navigationIcon="@drawable/arrow_back_ios_24px"
             app:navigationIconTint="@color/black"
             app:subtitleCentered="true"
             app:subtitleTextAppearance="@style/TextAppearance.AppCompat.Large"

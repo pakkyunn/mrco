@@ -57,7 +57,6 @@ class CoordinatorMainFragment : Fragment() {
     fun toolbarSetting() {
         fragmentCoordinatorMainBinding.toolbarCoordinatorMain.apply {
             // 네비게이션
-            setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
                 backProcesss()
             }
@@ -134,6 +133,10 @@ class CoordinatorMainFragment : Fragment() {
                 else -> R.drawable.iu_image4
             }
             holder.rowCoordinatorMainItemBinding.itemCoordinatorMainProductThumbnail.setImageResource(imageResource)
+
+            holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true ,null)
+            }
         }
     }
 
