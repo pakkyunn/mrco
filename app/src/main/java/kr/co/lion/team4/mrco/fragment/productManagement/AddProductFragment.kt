@@ -34,7 +34,6 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
     lateinit var mainActivity: MainActivity
 
-    private val individualProductLists: ArrayList<String> = arrayListOf("MRCO 맨투맨", "L(100)", "500개", "상의", "Gray", "Image.Url")
     private val individualProductData: MutableList<ArrayList<String>> = mutableListOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -54,8 +53,11 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         settingButtonAddProductDetail()
 
 
-        // individualProductList의 모든 요소를 individualProductData에 추가
+        // individualProductList의 모든 요소를 individualProductData에 추가 (테스트 용)
+        val individualProductLists: ArrayList<String> = arrayListOf("MRCO 맨투맨", "L(100)", "500", "상의", "Gray", "R.drawable.iu_image")
+        val individualProductLists2: ArrayList<String> = arrayListOf("MRCO 슬랙스", "28", "1000", "하의", "Black", "R.drawable.iu_image2")
         individualProductData.add(individualProductLists)
+        individualProductData.add(individualProductLists2)
 
         // 리사이클러뷰 어댑터
         settingAddProductPhotoRecyclerView()
@@ -226,10 +228,10 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value =
                 "${individualProductData[position][1]} / ${individualProductData[position][2]}개 / ${individualProductData[position][3]} / ${individualProductData[position][4]}"
 
+            holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.iu_image6)
+
             holder.itemAddproductDetailBinding.buttonAddProductDetailRemove.setOnClickListener {
                 individualProductData.removeAt(position)
-
-                // 리사이클러 뷰를 갱신한다.
                 fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
             }
         }
