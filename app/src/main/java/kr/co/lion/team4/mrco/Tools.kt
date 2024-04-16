@@ -4,10 +4,18 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.concurrent.thread
 
 class Tools {
@@ -53,6 +61,31 @@ class Tools {
             materialAlertDialogBuilder.show()
         }
 
+        // DateRangerPicker
+        fun setPeriodFromDateRagnePicker(fragmentManager: FragmentManager, periodStart:MutableLiveData<String>, periodEnd:MutableLiveData<String> ){
+            // 날짜는 최대 오늘까지 선택할 수 있도록 선택 가능한 기간 설정
+            val calendarConstraints = CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now()).build()
+            val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
+                .setTitleText("조회기간을 설정해주세요")
+                .setCalendarConstraints(calendarConstraints)
+                .build()
+            dateRangePicker.show(fragmentManager, "manageShipmentsPeriod")
+            dateRangePicker.addOnPositiveButtonClickListener {
+                // 시작일
+                periodStart.value = getDateFromLongValue(it.first)
+                // 종료일
+                periodEnd.value = getDateFromLongValue(it.second)
+            }
+        }
+
+        // dateRangePicker에서 선택된 날짜의 Long 값을 날짜로 변환
+        fun getDateFromLongValue(date: Long) : String{
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = date
+            val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+
+            return date
+        }
     }
 }
 
