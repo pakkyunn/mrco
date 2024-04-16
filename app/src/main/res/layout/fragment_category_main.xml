@@ -125,7 +125,11 @@
                                 style="@style/Widget.MaterialComponents.Chip.Filter"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="스포티" />
+                                android:text="스포티"
+                                android:textColor="@color/black"
+                                app:chipBackgroundColor="@color/white"
+                                app:chipStrokeColor="#787878"
+                                app:chipStrokeWidth="1dp" />
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCoordinatorMain8"
