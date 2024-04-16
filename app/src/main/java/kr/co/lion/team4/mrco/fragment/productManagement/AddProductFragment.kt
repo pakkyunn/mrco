@@ -34,7 +34,6 @@ class AddProductFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // setting toolbar, bottom navigation
-        mainActivity.removeBottomSheet() // 하단 메뉴 숨기기
         settingToolbarAddProduct()
 
         settingCategoryClickEvent()

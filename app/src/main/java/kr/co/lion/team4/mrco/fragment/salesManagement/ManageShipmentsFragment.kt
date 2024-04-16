@@ -15,6 +15,7 @@ import kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsItemViewMo
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.salesManagement.ManageShipmentsViewModel
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.databinding.FragmentManageShipmentsBinding
 import kr.co.lion.team4.mrco.databinding.ItemMangeshipmentsBinding
 import kr.co.lion.team4.mrco.databinding.ItemMangeshipmentsProductBinding
@@ -36,13 +37,28 @@ class ManageShipmentsFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // setting Toolbar, BottomNavigation
-        mainActivity.removeBottomSheet()
         settingToolbarManageShipments()
 
+        // 캘린더 아이콘 - DateRangePicker로 조회기간 설정
+        settingManageShipmentsPeriodButtonClickListener()
+
+        // 리사이클러뷰
         settingManageShipmentsRecyclerView()
         return fragmentManageShipmentsBinding.root
     }
 
+    // 배송관리 조회기간 지정
+    fun settingManageShipmentsPeriodButtonClickListener(){
+        // 검색어 입력창의 캘린더 아이콘 클릭 이벤트
+        fragmentManageShipmentsBinding.textinputManageShipmentsKeyword.setStartIconOnClickListener {
+            // 배송관리 조회기간의 시작일과 종료일 설정
+            Tools.setPeriodFromDateRagnePicker(mainActivity.supportFragmentManager,
+                manageShipmentsViewModel.shipmentsPeriodStart, manageShipmentsViewModel.shipmentsPeriodEnd
+            )
+
+            // to do - 조회기간 기준으로 recycler view data 갱신
+        }
+    }
     fun settingToolbarManageShipments(){
         fragmentManageShipmentsBinding.toolbarManageShipments.apply {
             setNavigationOnClickListener {

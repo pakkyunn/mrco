@@ -13,9 +13,12 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeProductBinding
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductMainBinding
+import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
 import kr.co.lion.team4.mrco.databinding.RowMbtiProductMainBinding
+import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
+import kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.RowMbtiProductMainViewModel
 
 class MbtiProductMainFragment : Fragment() {
 
@@ -32,7 +35,6 @@ class MbtiProductMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         settingToolbar()
-        mainActivity.removeBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewMbtiProductMain()
@@ -46,7 +48,7 @@ class MbtiProductMainFragment : Fragment() {
     fun settingToolbar(){
         fragmentMbtiProductMainBinding.apply {
             toolbarMbtiProductMain.apply {
-                subtitle = "$MBTI 에게 잘 어울리는 코디"
+                // subtitle = "$MBTI 에게 잘 어울리는 코디"
                 setNavigationOnClickListener {
                     backProcesss()
                 }
@@ -78,10 +80,6 @@ class MbtiProductMainFragment : Fragment() {
             buttonMbtiProductMainMBTI.setOnClickListener {
                 showMBTIBottomSheet()
             }
-
-            buttonMbtiProductMainGender.setOnClickListener {
-                showGenderBottomSheet()
-            }
         }
     }
 
@@ -101,7 +99,13 @@ class MbtiProductMainFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MbtiProductMainViewHolder {
-            val rowMbtiProductMainBinding = RowMbtiProductMainBinding.inflate(layoutInflater)
+            val rowMbtiProductMainBinding = DataBindingUtil.inflate<RowMbtiProductMainBinding>(
+                layoutInflater, R.layout.row_mbti_product_main, parent, false
+            )
+            val rowMbtiProductMainViewModel = RowMbtiProductMainViewModel()
+            rowMbtiProductMainBinding.rowMbtiProductMainViewModel = rowMbtiProductMainViewModel
+            rowMbtiProductMainBinding.lifecycleOwner = this@MbtiProductMainFragment
+
             val mbtiProductMainViewHolder = MbtiProductMainViewHolder(rowMbtiProductMainBinding)
 
             return mbtiProductMainViewHolder
@@ -120,7 +124,7 @@ class MbtiProductMainFragment : Fragment() {
                 3 -> R.drawable.iu_image4
                 else -> R.drawable.iu_image5
             }
-            holder.rowMbtiProductMainBinding.itemMbtiProductThumbnail.setImageResource(imageResource)
+            holder.rowMbtiProductMainBinding.itemMainMbtiFullProductThumbnail.setImageResource(imageResource)
             holder.rowMbtiProductMainBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
             }
@@ -131,12 +135,6 @@ class MbtiProductMainFragment : Fragment() {
     fun showMBTIBottomSheet(){
         val mbtiProductBottomFragment = MbtiProductBottomFragment()
         mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
-    }
-
-    // 성별을 설정할 BottomSheet를 띄워준다.
-    fun showGenderBottomSheet(){
-        val mbtiProductBottomGenderFragment = MbtiProductBottomGenderFragment()
-        mbtiProductBottomGenderFragment.show(mainActivity.supportFragmentManager, "GenderBottomSheet")
     }
 
     // 뒤로가기 처리

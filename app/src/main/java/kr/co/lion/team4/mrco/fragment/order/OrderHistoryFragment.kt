@@ -12,6 +12,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kr.co.lion.team4.mrco.InquiryPeriod
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryItemViewModel
@@ -39,8 +40,6 @@ class OrderHistoryFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 하단 바 안보이게
-        mainActivity.removeBottomSheet()
         // 툴바 설정
         settingToolbarOrderHistory()
 
@@ -65,13 +64,13 @@ class OrderHistoryFragment : Fragment() {
         fragmentOrderHistoryBinding.apply {
             // 조회 기간 1개월
             buttonOrderHistoryOneMonth.setOnClickListener {
-                settingOrderHistoryPeriod(R.id.button_order_history_one_month)
+                settingOrderHistoryPeriod(InquiryPeriod.ONE_MONTH)
             }
             buttonOrderHistoryThreeMonths.setOnClickListener {
-                settingOrderHistoryPeriod(R.id.button_order_history_three_months)
+                settingOrderHistoryPeriod(InquiryPeriod.THREE_MONTHS)
             }
             buttonOrderHistorySixMonths.setOnClickListener {
-                settingOrderHistoryPeriod(R.id.button_order_history_six_months)
+                settingOrderHistoryPeriod(InquiryPeriod.SIX_MONTHS)
             }
             buttonOrderHistorySetPeriod.setOnClickListener {
                 // 날짜는 최대 오늘까지 선택할 수 있도록 선택 가능한 기간 설정
@@ -97,35 +96,35 @@ class OrderHistoryFragment : Fragment() {
     fun getDateFromLongValue(date: Long) : String{
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = date
-        val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+        val date = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(calendar.time)
 
         return date
     }
 
     // 현재 날짜로부터 1개월, 3개월, 6개월 조회 기간을 설정
-    fun settingOrderHistoryPeriod(periodType: Int){
+    fun settingOrderHistoryPeriod(periodType: InquiryPeriod){
         val calendar = Calendar.getInstance()
         calendar.time = Date()
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
         // 종료일 (현재)
         orderHistoryViewModel.periodEnd.value = simpleDateFormat.format(calendar.time)
 
         when(periodType){
             // 조회기간 1개월
-            R.id.button_order_history_one_month -> {
-                calendar.add(Calendar.MONTH, -1)
+            InquiryPeriod.ONE_MONTH -> {
+                calendar.add(Calendar.MONTH, InquiryPeriod.ONE_MONTH.num)
                 // 1개월 전의 날짜로 설정
                 orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
             }
             // 조회기간 3개월
-            R.id.button_order_history_three_months -> {
-                calendar.add(Calendar.MONTH, -3)
+            InquiryPeriod.THREE_MONTHS -> {
+                calendar.add(Calendar.MONTH, InquiryPeriod.THREE_MONTHS.num)
                 // 3개월 전의 날짜로 설정
                 orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
             }
             // 조회기간 6개월
-            R.id.button_order_history_six_months -> {
-                calendar.add(Calendar.MONTH, -6)
+            InquiryPeriod.SIX_MONTHS -> {
+                calendar.add(Calendar.MONTH, InquiryPeriod.SIX_MONTHS.num)
                 // 6개월 전의 날짜로 설정
                 orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
             }

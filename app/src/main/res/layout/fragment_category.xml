@@ -18,7 +18,9 @@
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:transitionGroup="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,11 +74,11 @@
                                 android:id="@+id/chipCategoryGenderMEN"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:checked="true"
                                 android:checkable="true"
+                                android:checked="true"
                                 android:text="MEN"
-                                app:checkedIconVisible="false"
                                 android:textColor="@color/selector_add_product_option_text_color"
+                                app:checkedIconVisible="false"
                                 app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
 
                             <com.google.android.material.chip.Chip
@@ -85,9 +87,9 @@
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
                                 android:text="WOMEN"
-                                app:chipStrokeColor="@color/black"
                                 android:textColor="@color/selector_add_product_option_text_color"
-                                app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
+                                app:chipBackgroundColor="@color/selector_add_product_option_chip_color"
+                                app:chipStrokeColor="@color/black" />
                         </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
                 </LinearLayout>
@@ -225,6 +227,19 @@
                 app:iconTint="#FFFFFF" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemBackground="@color/bottomSheetColor"
+            app:itemIconTint="@color/bottom_navigation_selector_color"
+            app:itemTextColor="@color/bottom_navigation_selector_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:layout_insetEdge="bottom"
+            app:menu="@menu/menu_main_bottom_navi" />
     </LinearLayout>
 
 </layout>

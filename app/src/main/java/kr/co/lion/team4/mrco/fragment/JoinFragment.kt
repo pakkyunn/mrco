@@ -54,7 +54,6 @@ class JoinFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단 바 세팅
-        mainActivity.removeBottomSheet()
         settingToolbar()
 
         settingButtonJoinSubmit()

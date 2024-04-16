@@ -35,12 +35,13 @@ class UserMyPageFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 탭바 설정
+        // 탭바 및 하단바 설정
         settingTabs()
         settingMypagetab()
+        bottomSheetSetting()
+        settingBottomTabs()
 
         settingUserMyPageMenuClickEvent()
-        mainActivity.viewBottomSheet()
 
         return fragmentUserMyPageBinding.root
     }
@@ -50,6 +51,37 @@ class UserMyPageFragment : Fragment() {
         fragmentUserMyPageBinding.apply {
             val tabLayout = tabsMypage
             tabLayout.getTabAt(0)?.select()
+        }
+    }
+
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentUserMyPageBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+                    else -> {
+                        mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    // 하단 바 마이 페이지로 체크 표시 설정
+    fun settingBottomTabs() {
+        fragmentUserMyPageBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_my
+            fragmentUserMyPageBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

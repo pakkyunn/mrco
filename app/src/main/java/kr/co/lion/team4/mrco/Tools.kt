@@ -4,10 +4,18 @@ import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.concurrent.thread
 
 class Tools {
@@ -53,19 +61,46 @@ class Tools {
             materialAlertDialogBuilder.show()
         }
 
+        // DateRangerPicker
+        fun setPeriodFromDateRagnePicker(fragmentManager: FragmentManager, periodStart:MutableLiveData<String>, periodEnd:MutableLiveData<String> ){
+            // 날짜는 최대 오늘까지 선택할 수 있도록 선택 가능한 기간 설정
+            val calendarConstraints = CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now()).build()
+            val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
+                .setTitleText("조회기간을 설정해주세요")
+                .setCalendarConstraints(calendarConstraints)
+                .build()
+            dateRangePicker.show(fragmentManager, "manageShipmentsPeriod")
+            dateRangePicker.addOnPositiveButtonClickListener {
+                // 시작일
+                periodStart.value = getDateFromLongValue(it.first)
+                // 종료일
+                periodEnd.value = getDateFromLongValue(it.second)
+            }
+        }
+
+        // dateRangePicker에서 선택된 날짜의 Long 값을 날짜로 변환
+        fun getDateFromLongValue(date: Long) : String{
+            val calendar = Calendar.getInstance()
+            calendar.timeInMillis = date
+            val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
+
+            return date
+        }
     }
 }
 
 // MainActivity에서 보여줄 프레그먼트들의 이름
 enum class MainFragmentName(var str: String) {
-//    MAIN_HOME("MainHomeFragment"),
+    HOME_MAIN_FULL("HomeMainFullFragment"),
     HOME_RECOMMEND("HomeRecommendFragment"),
     HOME_MBTI("MainMbtiFragment"),
+    HOME_COORDINATOR("HomeCoordinatorFragment"),
     HOME_COORDINATOR_INFO("Home_CoordinatorInfo_Fragment"),
     HOME_COORDINATOR_RANK("Home_CoordinatorRank_Fragment"),
     COORDINATOR_MAIN("CoordinatorMain_Fragment"),
     MBTI_PRODUCT_MAIN("MbtiProductMainFragment"),
 
+    LIKE("LikeFragment"),
     LIKE_PRODUCT("Like_Product_Fragment"),
     LIKE_COORDINATOR("Like_Coordinator_Fragment"),
 
@@ -75,8 +110,6 @@ enum class MainFragmentName(var str: String) {
     ORDER_DETAIL("Order_Detail_Fragment"),
 
     SALES_MANAGEMENT("Sales_Management_Fragment"),
-    SALES_MANAGEMENT_CALENDAR("Sales_Management_Calendar_Fragment"),
-    SALES_MANAGEMENT_INVOICE_REPORT("SalesManagementInvoiceReportFragment"),
     MANAGE_SHIPMENT_FRAGMENT("ManageShipmentsFragment"), // 판매자 - 배송관리 화면
     SALES_LIST_FRAGMENT("SalesListFragment"), // 판매 내역 화면
 
@@ -120,13 +153,13 @@ enum class MainFragmentName(var str: String) {
     FRAGMENT_INDIVIDUAL_PRODUCT_MANAGEMENT("IndividualProductManagement"), // 개별상품관리 탭 클릭시 나오는 리스트 화면
 
     FRAGMENT_CREATE_REVIEW_FRAGMENT("CreateReviewFragment"), // ProductReviewFragment - 리뷰작성 클릭시 나오는 화면
-    FRAGMENT_PRODUCT_REVIEW("ProductReviewFragment"), // 상품 리뷰 화면
+    FRAGMENT_PRODUCT_REVIEW("ProductReviewFragment"),
     FRAGMENT_REVIEW_CREATED("ReviewCreatedFragment"), // ProductReviewFragment - 작성한 리뷰 클릭시 나오는 화면
-    FRAGMENT_REVIEW("ReviewFragment"), // 작성한 리뷰
-
+    FRAGMENT_MY_REVIEW("MyReviewFragment"),// 상품 리뷰 화면
     // 상품구매관련
     PRODUCT_FRAGMENT("ProductFragment"), // 코디상품 클릭시 나오는 화면
     PRODUCT_DETAIL_FRAGMENT("ProductDetailFragment"), // 코디 상세 버튼 클릭시 나오는 화면
+    REVIEW_IMAGE_MORE_FRAGMENT("ReviewImageMoreFragment"), // 후기 탭의 후기 사진 더보기 버튼 클릭시 보이는 화면
 
     // 상민
     LOGIN_FRAGMENT("LoginFragment"),
@@ -141,6 +174,12 @@ enum class SubFragmentName(var str: String) {
     PRODUCT_SHIPPING_FRAGMENT("ProductShippingFragment"), // 배송 탭
     PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"), // 후기 탭
     PRODUCT_QNA_FRAGMENT("ProductQnaFragment"), // 문의 탭
+}
+
+enum class SalesManagementSubFragmentName(var str: String) {
+    SALES_INVOICE_REPORT("SalesManagementInvoiceReportFragment"), // 리포트 탭
+    SALES_CALENDAR("SalesManagementCalendarFragment"), // 캘린더 탭
+    SALES_HISTORY("SalesManagementHistoryFragment"), // 정산 내역 탭
 }
 
 enum class ProductSize(var ps: String){
@@ -215,4 +254,11 @@ enum class UserState(var str:String, var num:Int){
 enum class Gender(var str:String, var num:Int){
     MALE("male", 1),
     FEMALE("female", 2)
+}
+
+// 검색 조회 기간
+enum class InquiryPeriod(var num: Int){
+    ONE_MONTH(-1),
+    THREE_MONTHS(-3),
+    SIX_MONTHS(-6)
 }
