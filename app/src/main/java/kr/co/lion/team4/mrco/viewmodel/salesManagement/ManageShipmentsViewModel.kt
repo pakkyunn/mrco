@@ -7,4 +7,9 @@ import androidx.lifecycle.ViewModel
 class ManageShipmentsViewModel : ViewModel(){
     // 상품명 입력창
     val edittextManageShipmentsKeyword = MutableLiveData<String>()
+
+    // 조회 기간 - 시작일
+    val shipmentsPeriodStart = MutableLiveData<String>()
+    // 조회 기간 - 종료일
+    val shipmentsPeriodEnd = MutableLiveData<String>()
 }
