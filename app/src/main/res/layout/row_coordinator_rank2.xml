@@ -39,10 +39,12 @@
             android:layout_marginBottom="8dp"
             android:text="@{rowCoordinatorRank2ViewModel.textViewRowCoordinatorRank2HeartCount}"
             android:textColor="#FFFFFF"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewRowCoordinatorRank2Photo"
             app:layout_constraintEnd_toEndOf="@+id/imageViewRowCoordinatorRank2Photo"
             app:layout_constraintHorizontal_bias="0.05"
-            app:layout_constraintStart_toEndOf="@+id/textViewRowCoordinatorRank2Heart" />
+            app:layout_constraintStart_toEndOf="@+id/textViewRowCoordinatorRank2Heart"
+            tools:text="1,324" />
 
         <TextView
             android:id="@+id/textViewRowCoordinatorRank2Heart"
@@ -52,6 +54,7 @@
             android:layout_marginBottom="8dp"
             android:text="♡"
             android:textColor="#FFFFFF"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewRowCoordinatorRank2Photo"
             app:layout_constraintStart_toStartOf="parent" />

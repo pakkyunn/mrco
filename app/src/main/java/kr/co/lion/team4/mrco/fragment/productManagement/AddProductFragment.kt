@@ -204,6 +204,10 @@ class AddProductFragment : Fragment() {
         override fun onBindViewHolder(holder: AddDetailViewHolder, position: Int) {
             holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailName?.value = "코디 상품명"
             holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value = "색상 / 사이즈 / 수량 등"
+
+            holder.itemAddproductDetailBinding.buttonAddProductDetailRemove.setOnClickListener {
+
+            }
         }
 
         override fun getItemCount(): Int {
