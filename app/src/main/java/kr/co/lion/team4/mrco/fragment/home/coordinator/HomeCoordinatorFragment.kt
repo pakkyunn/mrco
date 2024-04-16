@@ -43,17 +43,8 @@ class HomeCoordinatorFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         viewPagerActiviation()
-        settingBottomTabs()
 
         return fragmentHomeCoordinatorBinding.root
-    }
-
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_home
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
-        }
     }
 
     private fun viewPagerActiviation(){

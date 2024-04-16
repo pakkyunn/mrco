@@ -39,8 +39,6 @@ class OrderHistoryFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 하단 바 안보이게
-        mainActivity.removeBottomSheet()
         // 툴바 설정
         settingToolbarOrderHistory()
 

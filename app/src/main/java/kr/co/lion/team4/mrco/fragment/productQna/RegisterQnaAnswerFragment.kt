@@ -30,7 +30,6 @@ class RegisterQnaAnswerFragment : Fragment() {
 
         // 툴바, 하단바 설정
         settingToolbarRegisterQnaAnswer()
-        mainActivity.removeBottomSheet()
         return fragmentRegisterQnaAnswerBinding.root
     }
 

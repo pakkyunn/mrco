@@ -31,9 +31,9 @@ class CategoryMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
+        bottomSheetSetting()
         settingBottomTabs()
         settingNavigationView()
-        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewCategory()
@@ -116,11 +116,34 @@ class CategoryMainFragment : Fragment() {
         }
     }
 
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentCategoryMainBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+                    else -> {
+                        mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
+        }
+    }
+
     // 하단 바 홈으로 체크 표시 설정
     fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
+        fragmentCategoryMainBinding.apply {
             val menuItemId = R.id.main_bottom_navi_category
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+            fragmentCategoryMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

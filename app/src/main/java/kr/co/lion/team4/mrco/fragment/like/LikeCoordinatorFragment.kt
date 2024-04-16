@@ -37,14 +37,6 @@ class LikeCoordinatorFragment : Fragment() {
         return fragmentLikeCoordinatorBinding.root
     }
 
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_like
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
-        }
-    }
-
     // 리사이클러 뷰 설정
     fun settingRecyclerViewLikeCoordinator() {
         fragmentLikeCoordinatorBinding.apply {

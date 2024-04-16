@@ -29,7 +29,6 @@ class CustomerInquiryFragment : Fragment() {
 
         // 툴바, bottom navigation 설정
         settingCustomerInquiryToolbar()
-        mainActivity.removeBottomSheet()
 
         return fragmentCustomerInquiryBinding.root
     }

@@ -35,7 +35,6 @@ class MbtiProductMainFragment : Fragment() {
 
         // 툴바, 하단바, 탭 관련
         settingToolbar()
-        mainActivity.removeBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewMbtiProductMain()

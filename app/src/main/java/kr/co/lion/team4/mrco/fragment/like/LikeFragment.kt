@@ -38,8 +38,8 @@ class LikeFragment : Fragment() {
         // 툴바, 하단바, 탭 관련
         viewPagerActiviation()
         settingToolbar()
+        bottomSheetSetting()
         settingBottomTabs()
-        mainActivity.viewBottomSheet()
 
         return fragmentLikeBinding.root
     }
@@ -69,11 +69,34 @@ class LikeFragment : Fragment() {
         }
     }
 
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentLikeBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+                    else -> {
+                        mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
+        }
+    }
+
     // 하단 바 홈으로 체크 표시 설정
     fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
+        fragmentLikeBinding.apply {
             val menuItemId = R.id.main_bottom_navi_like
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+            fragmentLikeBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 

@@ -23,9 +23,6 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
-        // 하단 바 제거
-        mainActivity.removeBottomSheet()
-
         settingButtonLoginJoin()
         settingButtonLoginSubmit()
 

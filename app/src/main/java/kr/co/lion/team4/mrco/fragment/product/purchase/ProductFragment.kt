@@ -46,7 +46,6 @@ class ProductFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        mainActivity.removeBottomSheet()
         // 상단 코디상품 이미지 리사이클러 뷰
         settingRecyclerViewHomeRecommendBanner()
         settingToolbar()

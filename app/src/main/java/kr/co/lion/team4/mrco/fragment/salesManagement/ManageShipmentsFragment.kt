@@ -36,7 +36,6 @@ class ManageShipmentsFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // setting Toolbar, BottomNavigation
-        mainActivity.removeBottomSheet()
         settingToolbarManageShipments()
 
         settingManageShipmentsRecyclerView()

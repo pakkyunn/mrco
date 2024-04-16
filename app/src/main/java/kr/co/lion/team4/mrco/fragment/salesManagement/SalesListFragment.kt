@@ -34,7 +34,6 @@ class SalesListFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // setting toolbar, bottom navigation
-        mainActivity.removeBottomSheet()
         settingToolbarSalesList()
 
         settingSalesListRecyclerView()
