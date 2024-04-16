@@ -254,3 +254,10 @@ enum class Gender(var str:String, var num:Int){
     MALE("male", 1),
     FEMALE("female", 2)
 }
+
+// 검색 조회 기간
+enum class InquiryPeriod(var num: Int){
+    ONE_MONTH(-1),
+    THREE_MONTHS(-3),
+    SIX_MONTHS(-6)
+}
