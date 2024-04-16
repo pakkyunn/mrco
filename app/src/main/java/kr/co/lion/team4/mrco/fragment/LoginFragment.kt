@@ -51,7 +51,8 @@ class LoginFragment : Fragment() {
 
     fun settingButtonLoginJoin() {
         fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
-            mainActivity.replaceFragment(MainFragmentName.JOIN_FRAGMENT, true, true, null )
+            mainActivity.replaceFragment(MainFragmentName.JOIN_FRAGMENT, true, true, null)
+        }
 
         //테스트 용 회원정보 수정 화면으로 이동
 //        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
@@ -66,8 +67,6 @@ class LoginFragment : Fragment() {
 //            mainActivity.replaceFragment(MainFragmentName.MODIFY_COORDINATOR_FRAGMENT, true, true, null )
 
 
-
-        }
     }
 
     fun settingButtonLoginSubmit() {
@@ -78,11 +77,15 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
 
             // 유효성 검사
+            // 임시 주석 및 임시 이동
+            /*
             val validation = checkLoginInput()
 
             if (validation) {
                 loginProcess()
             }
+            */
+            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null )
         }
     }
 
@@ -162,7 +165,7 @@ class LoginFragment : Fragment() {
 
                     Snackbar.make(fragmentLoginBinding.root, "로그인에 성공하였습니다", Snackbar.LENGTH_SHORT).show()
                     // 홈화면 추천화면 fragment로 이동
-                    mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, true, true, null)
+                    mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, true, true, null)
                 }
             }
 
