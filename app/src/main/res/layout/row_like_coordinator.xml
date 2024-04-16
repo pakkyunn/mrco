@@ -47,7 +47,9 @@
                     android:layout_height="30dp"
                     android:gravity="center|start"
                     android:text="@{rowLikeCoordinatorViewModel.textViewRowLikeCoordinatorName}"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    tools:text="아이유" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -67,7 +69,8 @@
                         android:layout_height="20dp"
                         android:text="@{rowLikeCoordinatorViewModel.textViewRowLikeCoordinatorFollower}"
                         android:textColor="#8D8D8D"
-                        android:textSize="12dp" />
+                        android:textSize="12dp"
+                        tools:text="1,324" />
                 </LinearLayout>
 
             </LinearLayout>

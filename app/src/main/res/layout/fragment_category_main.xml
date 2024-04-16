@@ -46,8 +46,7 @@
                 <com.google.android.material.chip.ChipGroup
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:chipSpacingHorizontal="8dp"
-                    app:singleSelection="true">
+                    app:chipSpacingHorizontal="8dp">
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipCoordinatorMain1"
