@@ -49,6 +49,7 @@ import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManage
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductDetailFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ReviewImageMoreFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -169,6 +170,7 @@ class MainActivity : AppCompatActivity() {
             // 상품 구매 페이지
             MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
             MainFragmentName.PRODUCT_DETAIL_FRAGMENT -> newFragment = ProductDetailFragment()
+            MainFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
 
             // 카테고리 (카테고리 선택, 메인) 화면
             MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()

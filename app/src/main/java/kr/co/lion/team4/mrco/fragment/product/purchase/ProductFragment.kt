@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -20,13 +21,16 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.SubFragmentName
 import kr.co.lion.team4.mrco.databinding.FragmentProductBinding
+import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
 import kr.co.lion.team4.mrco.databinding.RowProductBannerBinding
+import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
 import kr.co.lion.team4.mrco.viewmodel.product.ProductViewModel
 
 class ProductFragment : Fragment() {
     lateinit var fragmentProductBinding: FragmentProductBinding
     lateinit var mainActivity: MainActivity
     lateinit var productViewModel: ProductViewModel
+    lateinit var fragmentProductReviewBinding: FragmentProductReviewBinding
 
     lateinit var snapHelper: SnapHelper
 
@@ -40,26 +44,31 @@ class ProductFragment : Fragment() {
 
         fragmentProductBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_product, container, false)
+        fragmentProductReviewBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_product_review, container, false)
         productViewModel = ProductViewModel()
         fragmentProductBinding.productViewModel = productViewModel
         fragmentProductBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
 
+        mainActivity.removeBottomSheet()
+
         // 상단 코디상품 이미지 리사이클러 뷰
         settingRecyclerViewHomeRecommendBanner()
         settingToolbar()
-        
+
         clickCoordinatorName()
         clickProductDetailButton()
 
         settingTab()
         settingBottomButton()
 
-        replaceFragment(SubFragmentName.PRODUCT_SHIPPING_FRAGMENT,false,false,null)
+        settingButtonImageMore()
 
         return fragmentProductBinding.root
     }
+
     fun settingToolbar() {
         fragmentProductBinding.apply {
             toolbarProduct.apply {
@@ -70,7 +79,12 @@ class ProductFragment : Fragment() {
                     when (it.itemId) {
                         // 검색 클릭 시
                         R.id.menuItemShoppingBagProduct -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+                            mainActivity.replaceFragment(
+                                MainFragmentName.CART_FRAGMENT,
+                                true,
+                                true,
+                                null
+                            )
                         }
                     }
                     true
@@ -78,75 +92,90 @@ class ProductFragment : Fragment() {
             }
         }
     }
-    fun clickCoordinatorName(){
+
+    fun clickCoordinatorName() {
         fragmentProductBinding.apply {
             textViewCoordinatorName.setOnClickListener {
 //                val bundle = "coordinator_data"
-                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN,true,true, null)
+                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
             }
         }
     }
 
-    fun clickProductDetailButton(){
+    fun clickProductDetailButton() {
         fragmentProductBinding.apply {
             buttonProductDetail.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.PRODUCT_DETAIL_FRAGMENT,true,true, null)
+                mainActivity.replaceFragment(
+                    MainFragmentName.PRODUCT_DETAIL_FRAGMENT,
+                    true,
+                    true,
+                    null
+                )
             }
         }
     }
 
-    fun settingTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentProductBinding.apply {
-                val tabLayout = tabLayputProduct
+    fun settingTab() {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerViewProduct, ProductShippingFragment()).commit()
 
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            removeFragment(SubFragmentName.PRODUCT_REVIEW_FRAGMENT)
-                            removeFragment(SubFragmentName.PRODUCT_QNA_FRAGMENT)
-                            replaceFragment(SubFragmentName.PRODUCT_SHIPPING_FRAGMENT, false, false, null)
-                        }
-                        else if (tab?.position == 1) {
-                            removeFragment(SubFragmentName.PRODUCT_SHIPPING_FRAGMENT)
-                            removeFragment(SubFragmentName.PRODUCT_QNA_FRAGMENT)
-                            replaceFragment(SubFragmentName.PRODUCT_REVIEW_FRAGMENT, false, false, null)
-                        } else {
-                            removeFragment(SubFragmentName.PRODUCT_SHIPPING_FRAGMENT)
-                            removeFragment(SubFragmentName.PRODUCT_REVIEW_FRAGMENT)
-                            replaceFragment(SubFragmentName.PRODUCT_QNA_FRAGMENT, false, false, null)
-                        }
-                    }
+        fragmentProductBinding.apply {
+            val tabLayout = tabLayputProduct
 
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
+            // 탭 선택 리스너 설정
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    // 선택된 탭이 첫 번째 탭인 경우
+                    if (tab?.position == 0) {
+                        changeFragment(ProductShippingFragment())
+                    } else if (tab?.position == 1) {
+                        changeFragment(ProductReviewFragment())
+                    } else {
+                        changeFragment(ProductQnaFragment())
                     }
+                }
 
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
+                override fun onTabUnselected(tab: TabLayout.Tab?) {
+                    // Not implemented
+                }
+
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    // Not implemented
+                }
+            })
+        }
+    }
+
+    fun settingButtonImageMore() {
+        fragmentProductReviewBinding.apply {
+            buttonImageMore.setOnClickListener {
+                fragmentProductBinding.bottomButtonView.isVisible = false
             }
         }
     }
-    
-    fun settingBottomButton(){
+
+    fun settingBottomButton() {
         fragmentProductBinding.apply {
             buttonBottomAddCart.setOnClickListener {
                 buttonIdx = false
                 val productPurchaseBottomFragment = ProductPurchaseBottomFragment(buttonIdx)
-                productPurchaseBottomFragment.show(mainActivity.supportFragmentManager, "ReplyBottomSheet")
+                productPurchaseBottomFragment.show(
+                    mainActivity.supportFragmentManager,
+                    "ReplyBottomSheet"
+                )
             }
 
             buttonBottomPurchase.setOnClickListener {
                 buttonIdx = true
                 val productPurchaseBottomFragment = ProductPurchaseBottomFragment(buttonIdx)
-                productPurchaseBottomFragment.show(mainActivity.supportFragmentManager, "ReplyBottomSheet")
+                productPurchaseBottomFragment.show(
+                    mainActivity.supportFragmentManager,
+                    "ReplyBottomSheet"
+                )
             }
         }
     }
+
 
     //  Product - 배너 리사이클러 뷰 설정
     fun settingRecyclerViewHomeRecommendBanner() {
@@ -160,9 +189,12 @@ class ProductFragment : Fragment() {
             }
         }
     }
+
     // Product - 배너 리사이클러 뷰 어뎁터
-    inner class ProductBannerRecyclerViewAdapter: RecyclerView.Adapter<ProductBannerRecyclerViewAdapter.ProductBannerViewHolder>(){
-        inner class ProductBannerViewHolder(rowProductBannerBinding: RowProductBannerBinding): RecyclerView.ViewHolder(rowProductBannerBinding.root){
+    inner class ProductBannerRecyclerViewAdapter :
+        RecyclerView.Adapter<ProductBannerRecyclerViewAdapter.ProductBannerViewHolder>() {
+        inner class ProductBannerViewHolder(rowProductBannerBinding: RowProductBannerBinding) :
+            RecyclerView.ViewHolder(rowProductBannerBinding.root) {
             val rowProductBannerBinding: RowProductBannerBinding
 
             init {
@@ -187,7 +219,7 @@ class ProductFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ProductBannerViewHolder, position: Int) {
-            holder.rowProductBannerBinding.textViewBannerPage.text = "${position+1}/8"
+            holder.rowProductBannerBinding.textViewBannerPage.text = "${position + 1}/8"
 
             // position 값에 따라 다른 이미지 설정
             val imageResource = when (position % 4) {
@@ -200,24 +232,27 @@ class ProductFragment : Fragment() {
         }
     }
 
-    fun backProcess(){
+    fun backProcess() {
         mainActivity.removeFragment(MainFragmentName.PRODUCT_FRAGMENT)
     }
 
 
-
-
-    fun replaceFragment(name: SubFragmentName, addToBackStack: Boolean, isAnimate: Boolean, data: Bundle?) {
+    fun replaceFragment(
+        name: SubFragmentName,
+        addToBackStack: Boolean,
+        isAnimate: Boolean,
+        data: Bundle?
+    ) {
 
         // Fragment를 교체할 수 있는 객체를 추출한다.
         val fragmentTransaction = mainActivity.supportFragmentManager.beginTransaction()
 
         // oldFragment에 newFragment가 가지고 있는 Fragment 객체를 담아준다.
-        if(newFragment != null){
+        if (newFragment != null) {
             oldFragment = newFragment
         }
 
-        when(name){
+        when (name) {
             SubFragmentName.PRODUCT_SHIPPING_FRAGMENT -> newFragment = ProductShippingFragment()
 
             SubFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
@@ -226,16 +261,16 @@ class ProductFragment : Fragment() {
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
-        if(data != null){
+        if (data != null) {
             newFragment?.arguments = data
         }
 
-        if(newFragment != null){
+        if (newFragment != null) {
 
             // 애니메이션 설정
-            if(isAnimate == true){
+            if (isAnimate == true) {
 
-                if(oldFragment != null){
+                if (oldFragment != null) {
                     // old에서 new가 새롭게 보여질 때 old의 애니메이션
                     oldFragment?.exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
                     // new에서 old로 되돌아갈때 old의 애니메이션
@@ -258,7 +293,7 @@ class ProductFragment : Fragment() {
             fragmentTransaction.replace(R.id.fragmentContainerViewProduct, newFragment!!)
 
             // addToBackStack 변수의 값이 true면 새롭게 보여질 Fragment를 BackStack에 포함시켜 준다.
-            if(addToBackStack == true){
+            if (addToBackStack == true) {
                 // BackStack 포함 시킬때 이름을 지정해주면 원하는 Fragment를 BackStack에서 제거할 수 있다.
                 fragmentTransaction.addToBackStack(name.str)
             }
@@ -267,9 +302,29 @@ class ProductFragment : Fragment() {
         }
     }
 
+    fun changeFragment(changeFragment: Fragment) {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainerViewProduct, changeFragment).commit()
+    }
+
     // BackStack에서 Fragment를 제거한다.
-    fun removeFragment(name: SubFragmentName){
+    fun removeFragment(name: SubFragmentName) {
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
-        mainActivity.supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        mainActivity.supportFragmentManager.popBackStack(
+            name.str,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
+    }
+
+    fun hideBottomButton() {
+        fragmentProductBinding.apply {
+            bottomButtonView.isVisible = false
+        }
+    }
+
+    fun showBottomButton() {
+        fragmentProductBinding.apply {
+            bottomButtonView.isVisible = true
+        }
     }
 }
