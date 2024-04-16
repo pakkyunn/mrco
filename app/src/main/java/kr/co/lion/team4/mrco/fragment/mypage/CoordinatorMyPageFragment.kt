@@ -34,8 +34,8 @@ class CoordinatorMyPageFragment : Fragment() {
         // 탭바, 하단바 설정
         settingTabs()
         settingMypagetab()
-        mainActivity.viewBottomSheet()
-
+        bottomSheetSetting()
+        settingBottomTabs()
 
         settingCoordiMyPageMenuClickEvent()
 
@@ -80,6 +80,37 @@ class CoordinatorMyPageFragment : Fragment() {
         }
     }
 
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentCoordinatorMyPageBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+                    else -> {
+                        mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    // 하단 바 마이 페이지로 체크 표시 설정
+    fun settingBottomTabs() {
+        fragmentCoordinatorMyPageBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_my
+            fragmentCoordinatorMyPageBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+        }
+    }
+
     fun settingCoordiMyPageMenuClickEvent(){
         fragmentCoordinatorMyPageBinding.apply {
             // 코디 상품 등록
@@ -109,7 +140,7 @@ class CoordinatorMyPageFragment : Fragment() {
 
             // 매출/정산 관리
             textViewMenuCoordinatorMyPage6.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT_CALENDAR, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.SALES_MANAGEMENT, true, true, null)
             }
 
             // 로그아웃

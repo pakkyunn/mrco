@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -61,7 +61,6 @@
 
         </com.google.android.material.tabs.TabLayout>
 
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -72,38 +71,24 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/textViewSalesManagementName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
-                    android:orientation="horizontal"
-                    android:padding="30dp">
+                    android:gravity="center"
+                    android:padding="30dp"
+                    android:text="@{salesManagementViewModel.textViewSalesManagementName}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/textViewSalesManagementName"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@{salesManagementViewModel.textViewSalesManagementName}"
-                        android:textColor="@color/black"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewSalesManagement"
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragment_container_view_sales_management"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="10dp" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
-
         </androidx.core.widget.NestedScrollView>
-
     </LinearLayout>
-
 
 </layout>

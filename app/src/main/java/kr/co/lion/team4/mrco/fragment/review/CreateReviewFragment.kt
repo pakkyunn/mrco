@@ -1,33 +1,30 @@
 package kr.co.lion.team4.mrco.fragment.review
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentCreatedReviewBinding
-import kr.co.lion.team4.mrco.databinding.FragmentReviewCreatedBinding
-import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
-import kr.co.lion.team4.mrco.databinding.RowReviewCreateCardviewBinding
+import kr.co.lion.team4.mrco.databinding.FragmentCreateReviewBinding
+import kr.co.lion.team4.mrco.databinding.RowCreateReviewBinding
 import kr.co.lion.team4.mrco.viewmodel.CreateReviewViewModel
-import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
 
 class CreateReviewFragment : Fragment() {
-    lateinit var binding: FragmentReviewCreatedBinding
+    lateinit var binding: FragmentCreateReviewBinding
     lateinit var viewModel: CreateReviewViewModel
     lateinit var mainActivity: MainActivity
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_review_created, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_create_review, container, false)
         viewModel = ViewModelProvider(this).get(CreateReviewViewModel::class.java)
         mainActivity = activity as MainActivity
 
@@ -40,23 +37,26 @@ class CreateReviewFragment : Fragment() {
     // 리사이클러 뷰 설정
     fun settingRecyclerViewLikeProduct() {
         binding.apply {
-            recyclerViewReviewCreateCardView.apply {
+            recyclerviewCreateReview.apply {
                 // 어뎁터 및 레이아웃 매니저 설정
                 adapter = CreateReviewRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
+
+                val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
+                addItemDecoration(deco)
             }
         }
     }
 
     // 리사이클러 뷰 어뎁터
     inner class CreateReviewRecyclerViewAdapter: RecyclerView.Adapter<CreateReviewRecyclerViewAdapter.CreateReviewViewHolder>(){
-        inner class CreateReviewViewHolder(rowReviewCreateCardViewBinding: RowReviewCreateCardviewBinding): RecyclerView.ViewHolder(rowReviewCreateCardViewBinding.root){
-            val rowReviewCreateCardViewBinding: RowReviewCreateCardviewBinding
+        inner class CreateReviewViewHolder(rowBinding: RowCreateReviewBinding): RecyclerView.ViewHolder(rowBinding.root){
+            val rowBinding: RowCreateReviewBinding
 
             init {
-                this.rowReviewCreateCardViewBinding = rowReviewCreateCardViewBinding
+                this.rowBinding = rowBinding
 
-                this.rowReviewCreateCardViewBinding.root.layoutParams = ViewGroup.LayoutParams(
+                this.rowBinding.root.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
@@ -64,8 +64,13 @@ class CreateReviewFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CreateReviewViewHolder {
-            val rowReviewCreateCardViewBinding = RowReviewCreateCardviewBinding.inflate(layoutInflater)
-            val createReviewViewHolder = CreateReviewViewHolder(rowReviewCreateCardViewBinding)
+            val viewModel = viewModel
+            val binding = DataBindingUtil.inflate<RowCreateReviewBinding>(layoutInflater, R.layout.row_create_review, parent, false)
+                binding.createReviewViewModel = viewModel
+                binding.lifecycleOwner = this@CreateReviewFragment
+
+            val createReviewViewHolder = CreateReviewViewHolder(binding)
+
 
             return createReviewViewHolder
         }
@@ -75,7 +80,9 @@ class CreateReviewFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: CreateReviewViewHolder, position: Int) {
-            holder.rowReviewCreateCardViewBinding.buttonRowReviewCreatedWriteReview.setOnClickListener {
+
+            // 리뷰작성 버튼 클릭시 화면전환
+            holder.rowBinding.buttonRowReviewCreatedWriteReview.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.WRITE_REVIEW, true, true, null)
             }
         }

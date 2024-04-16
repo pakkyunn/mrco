@@ -28,7 +28,6 @@ class RegisterProductQnaFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         settingToolbarRegisterProductQna() // 상단 툴바
-        mainActivity.removeBottomSheet() // 하단 메뉴 없애기
 
         settingButtonPproductqnaSubmit()
 

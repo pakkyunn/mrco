@@ -34,7 +34,6 @@ class WriteReviewFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
-        mainActivity.removeBottomSheet()
         settingToolbarWriteReview()
         settingButtonEvent()
 

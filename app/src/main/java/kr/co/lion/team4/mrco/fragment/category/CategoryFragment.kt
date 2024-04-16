@@ -47,8 +47,8 @@ class CategoryFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
+        bottomSheetSetting()
         settingBottomTabs()
-        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewCategory()
@@ -59,11 +59,34 @@ class CategoryFragment : Fragment() {
         return fragmentCategoryBinding.root
     }
 
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentCategoryBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                    }
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                    }
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+                    else -> {
+                        mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
+                    }
+                }
+                true
+            }
+        }
+    }
+
     // 하단 바 홈으로 체크 표시 설정
     fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
+        fragmentCategoryBinding.apply {
             val menuItemId = R.id.main_bottom_navi_category
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+            fragmentCategoryBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 
@@ -131,7 +154,7 @@ class CategoryFragment : Fragment() {
 
             // 이미지 클릭시
             holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
             }
         }
     }
@@ -176,7 +199,7 @@ class CategoryFragment : Fragment() {
             }
             // 이미지 클릭시
             holder.rowCategorySemiCategory2Grid4Binding.imageViewRowCategorySemiCategory.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
             }
         }
     }

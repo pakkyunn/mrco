@@ -10,17 +10,12 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentLikeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinator2Binding
 import kr.co.lion.team4.mrco.databinding.RowLikeCoordinatorBinding
-import kr.co.lion.team4.mrco.viewmodel.like.LikeCoordinatorViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinator2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeCoordinatorViewModel
 
@@ -31,62 +26,15 @@ class LikeCoordinatorFragment : Fragment() {
     lateinit var fragmentLikeCoordinatorBinding: FragmentLikeCoordinatorBinding
     lateinit var mainActivity: MainActivity
 
-    lateinit var likeCoordinatorViewModel: LikeCoordinatorViewModel
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        fragmentLikeCoordinatorBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_like_coordinator, container, false)
-        likeCoordinatorViewModel = LikeCoordinatorViewModel()
-        fragmentLikeCoordinatorBinding.likeCoordinatorViewModel = LikeCoordinatorViewModel()
-        fragmentLikeCoordinatorBinding.lifecycleOwner = this
-
+        fragmentLikeCoordinatorBinding = FragmentLikeCoordinatorBinding.inflate(inflater)
         mainActivity = activity as MainActivity
-
-        // 툴바, 하단바, 탭 관련
-        settingToolbar()
-        settingTabs()
-        settingLikeTab()
-        settingBottomTabs()
-        mainActivity.viewBottomSheet()
 
         // 리사이클러 뷰
         settingRecyclerViewLikeCoordinator()
 
         return fragmentLikeCoordinatorBinding.root
-    }
-
-    // 툴바 세팅(메인 / 검색, 알림, 장바구니)
-    fun settingToolbar() {
-        fragmentLikeCoordinatorBinding.apply {
-            toolbarLikeCoordinator.apply {
-                setOnMenuItemClickListener {
-
-                    when (it.itemId) {
-                        // 검색 클릭 시
-                        R.id.home_toolbar_search -> {
-
-                        }
-                        // 알람 클릭 시
-                        R.id.home_toolbar_notification -> {
-                            mainActivity.replaceFragment(MainFragmentName.APP_NOTICE_FRAGMENT, true, true, null)
-                        }
-                        // 장바구니 클릭 시
-                        R.id.home_toolbar_shopping -> {
-                            mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-                        }
-                    }
-                    true
-                }
-            }
-        }
-    }
-
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
-        mainActivity.activityMainBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_like
-            mainActivity.activityMainBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
-        }
     }
 
     // 리사이클러 뷰 설정
@@ -97,14 +45,6 @@ class LikeCoordinatorFragment : Fragment() {
                 adapter = LikeCoordinatorRecyclerViewAdapter()
                 layoutManager = LinearLayoutManager(mainActivity)
             }
-        }
-    }
-
-    // 탭바 및 바텀바 위치 설정
-    fun settingTabs(){
-        fragmentLikeCoordinatorBinding.apply {
-            val tabLayout = tabsLike
-            tabLayout.getTabAt(1)?.select()
         }
     }
 
@@ -218,57 +158,18 @@ class LikeCoordinatorFragment : Fragment() {
             val rowLikeCoordinator2ViewModel = RowLikeCoordinator2ViewModel()
 
             // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 5) {
-                0 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image)
-                }
-                1 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image2)
-                }
-                2 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image3)
-                }
-                3 -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image4)
-                }
-                else -> {
-                    holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image5)
-                }
+            when (position % 5) {
+                0 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image)
+                1 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image2)
+                2 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image3)
+                3 -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image4)
+                else -> holder.rowLikeCoordinator2Binding.imageViewCoordinatorInfo.setImageResource(R.drawable.iu_image5)
+            }
+
+            holder.rowLikeCoordinator2Binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
             }
 
         }
     }
-
-    // Like 상단 탭 설정
-    fun settingLikeTab(){
-        CoroutineScope(Dispatchers.Main).launch {
-            fragmentLikeCoordinatorBinding.apply {
-                val tabLayout = tabsLike
-
-                // 탭 선택 리스너 설정
-                tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                    override fun onTabSelected(tab: TabLayout.Tab?) {
-                        // 선택된 탭이 첫 번째 탭인 경우
-                        if (tab?.position == 0) {
-                            mainActivity.removeFragment(MainFragmentName.LIKE_COORDINATOR)
-                            mainActivity.replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
-                        }
-                        else {
-                            mainActivity.removeFragment(MainFragmentName.LIKE_PRODUCT)
-                            mainActivity.replaceFragment(MainFragmentName.LIKE_COORDINATOR, false, false, null)
-                        }
-                    }
-
-                    override fun onTabUnselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-
-                    override fun onTabReselected(tab: TabLayout.Tab?) {
-                        // Not implemented
-                    }
-                })
-            }
-        }
-    }
-
 }

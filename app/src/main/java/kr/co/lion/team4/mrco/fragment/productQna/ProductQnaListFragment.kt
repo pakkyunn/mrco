@@ -35,7 +35,6 @@ class ProductQnaListFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 툴바, 하단 메뉴 세팅
-        mainActivity.removeBottomSheet() // 하단 메뉴 제거
         settingtoolbarProduntQnaList()
 
         settingQnaListAdapter()

@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="rv"
-            type="kr.co.lion.team4.mrco.viewmodel.ReviewViewModel" />
+            name="rowReviewCreatedViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.RowReviewCreatedViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.review.ReviewFragment"
         android:orientation="vertical">
 
         <LinearLayout
@@ -43,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@={rv.reviewDate}" />
+            android:text="@={rowReviewCreatedViewModel.reviewDate}" />
 
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
@@ -71,7 +70,7 @@
                     android:id="@+id/textView_review_codiProductName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@={rv.reviewProductName}"
+                    android:text="@={rowReviewCreatedViewModel.reviewProductName}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
                 <TextView
@@ -79,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@={rv.reviewProductMBTI}"
+                    android:text="@={rowReviewCreatedViewModel.reviewProductMBTI}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
@@ -104,42 +103,42 @@
                 android:id="@+id/chip_review_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={rv.reviewProductSize}"
+                android:text="@={rowReviewCreatedViewModel.reviewProductSize}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_brightness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={rv.reviewProductBright}"
+                android:text="@={rowReviewCreatedViewModel.reviewProductBright}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={rv.reviewProductColor}"
+                android:text="@={rowReviewCreatedViewModel.reviewProductColor}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_packing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={rv.reviewProductPack}"
+                android:text="@={rowReviewCreatedViewModel.reviewProductPack}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_thickness"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={rv.reviewProductThickness}"
+                android:text="@={rowReviewCreatedViewModel.reviewProductThickness}"
                 app:chipCornerRadius="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_review_delivery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={rv.reviewProductDelivery}"
+                android:text="@={rowReviewCreatedViewModel.reviewProductDelivery}"
                 app:chipCornerRadius="10dp" />
         </com.google.android.material.chip.ChipGroup>
 
@@ -147,6 +146,6 @@
             android:id="@+id/textView_review_reviewContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@={rv.reviewContent}" />
+            android:text="@={rowReviewCreatedViewModel.reviewContent}" />
     </LinearLayout>
 </layout>

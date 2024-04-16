@@ -26,8 +26,8 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme"
             app:menu="@menu/menu_product"
-            app:navigationIcon="@drawable/arrow_back_ios_24px"
-            app:navigationIconTint="@color/black"/>
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:navigationIconTint="@color/black" />
 
         <kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout
             android:layout_width="match_parent"
@@ -225,6 +225,7 @@
             </androidx.core.widget.NestedScrollView>
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomButtonView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"

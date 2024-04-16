@@ -27,8 +27,6 @@ class CustomerServiceFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 하단 바 안보이게
-        mainActivity.removeBottomSheet()
 
         // 툴바 세팅
         toolbarSetting()

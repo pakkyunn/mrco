@@ -41,10 +41,8 @@ class LoginFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // 하단 바 제거
-        mainActivity.removeBottomSheet()
-
         settingLoginInput()
+
         settingButtonLoginJoin()
         settingButtonLoginSubmit()
 
@@ -78,6 +76,7 @@ class LoginFragment : Fragment() {
 //            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null )
 //        }
         fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
+
             // 유효성 검사
             val validation = checkLoginInput()
 
@@ -166,6 +165,9 @@ class LoginFragment : Fragment() {
                     mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, true, true, null)
                 }
             }
+
+            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null )
+
         }
     }
 

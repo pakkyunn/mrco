@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class RowHomeRecommendViewModel: ViewModel() {
+    val textViewRowHomeRecommendCoordinatorName = MutableLiveData<String>("코디네이터")
     val textViewRowHomeRecommendProductMbti = MutableLiveData<String>("ISFP")
-    val textViewRowHomeRecommendProductName = MutableLiveData<String>("홍길동 코디이름")
-    val textViewRowHomeRecommendProductDiscountPercent = MutableLiveData<String>("30%")
+    val textViewRowHomeRecommendProductName = MutableLiveData<String>("세련된 분위기 데이트룩 SET")
+    val textViewRowHomeRecommendProductDiscountPercent = MutableLiveData<String>("10%")
     val textViewRowHomeRecommendProductPrice = MutableLiveData<String>("178,000")
 }

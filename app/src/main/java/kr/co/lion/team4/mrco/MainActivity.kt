@@ -23,6 +23,9 @@ import kr.co.lion.team4.mrco.fragment.coordinatormain.CoordinatorMainFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerInquiryFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorRankFragment
 import kr.co.lion.team4.mrco.fragment.customerService.CustomerServiceFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeCoordinatorFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
+import kr.co.lion.team4.mrco.fragment.home.coordinator.LikeFragment
 import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
 import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
@@ -46,6 +49,7 @@ import kr.co.lion.team4.mrco.fragment.product.management.IndividualProductManage
 import kr.co.lion.team4.mrco.fragment.product.management.ProductManagementFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductDetailFragment
 import kr.co.lion.team4.mrco.fragment.product.purchase.ProductFragment
+import kr.co.lion.team4.mrco.fragment.product.purchase.ReviewImageMoreFragment
 import kr.co.lion.team4.mrco.fragment.productManagement.AddProductFragment
 import kr.co.lion.team4.mrco.fragment.productQna.ProductQnaListFragment
 import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
@@ -53,7 +57,6 @@ import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
 import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.MyReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.ReviewCreatedFragment
-import kr.co.lion.team4.mrco.fragment.review.ReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
@@ -74,12 +77,6 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
-
-        // Status 바 (최상단 / 툴바 위)
-        // window.statusBarColor = ContextCompat.getColor(this, R.color.black)
-
-        // 하단 바 설정(이동 관련)
-        bottomSheetSetting()
 
         // 로그인부터 시작 - 테스트
         replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
@@ -159,8 +156,10 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.ORDER_FRAGMENT -> newFragment = OrderFragment()
 
             // 홈 메인 (첫 화면 - 추천, MBTI 별 코디, 인기 코디네이터, 코디네이터 소개) 순서
-            MainFragmentName.HOME_RECOMMEND, -> newFragment = HomeRecommendFragment()
-            MainFragmentName.HOME_MBTI, -> newFragment = HomeMbtiFragment()
+            MainFragmentName.HOME_MAIN_FULL -> newFragment = HomeMainFullFragment()
+            MainFragmentName.HOME_RECOMMEND -> newFragment = HomeRecommendFragment()
+            MainFragmentName.HOME_MBTI -> newFragment = HomeMbtiFragment()
+            MainFragmentName.HOME_COORDINATOR -> newFragment = HomeCoordinatorFragment()
             MainFragmentName.HOME_COORDINATOR_RANK -> newFragment = CoordinatorRankFragment()
             MainFragmentName.HOME_COORDINATOR_INFO -> newFragment = CoordinatorInfoFragment()
 
@@ -171,12 +170,14 @@ class MainActivity : AppCompatActivity() {
             // 상품 구매 페이지
             MainFragmentName.PRODUCT_FRAGMENT -> newFragment = ProductFragment()
             MainFragmentName.PRODUCT_DETAIL_FRAGMENT -> newFragment = ProductDetailFragment()
+            MainFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
 
             // 카테고리 (카테고리 선택, 메인) 화면
             MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
             MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
 
             // 좋아요 화면 (코디, 코디네이터)
+            MainFragmentName.LIKE -> newFragment = LikeFragment()
             MainFragmentName.LIKE_PRODUCT -> newFragment = LikeProductFragment()
             MainFragmentName.LIKE_COORDINATOR -> newFragment = LikeCoordinatorFragment()
 
@@ -196,7 +197,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_PRODUCT_REVIEW -> newFragment = ProductReviewFragment()
             MainFragmentName.FRAGMENT_CREATE_REVIEW_FRAGMENT -> newFragment = CreateReviewFragment()
             MainFragmentName.FRAGMENT_REVIEW_CREATED -> newFragment = ReviewCreatedFragment()
-            MainFragmentName.FRAGMENT_REVIEW -> newFragment = ReviewFragment()
 
             // 고객센터 화면 + 1:1 문의 작성 화면
             MainFragmentName.CUSTOMER_SERVICE_FRAGMENT -> newFragment = CustomerServiceFragment()
@@ -206,8 +206,6 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
 
             // 판매자 - 매출관리(리포트, 캘린더, 내역) 화면
-            MainFragmentName.SALES_MANAGEMENT_INVOICE_REPORT -> newFragment = SalesManagementInvoiceReportFragment()
-            MainFragmentName.SALES_MANAGEMENT_CALENDAR -> newFragment = SalesManagementCalendarFragment()
             MainFragmentName.SALES_MANAGEMENT -> newFragment = SalesManagementFragment()
 
             // 판매자 - 배송관리 화면
@@ -239,6 +237,9 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO_ACCESSORY -> newFragment = CodiProductInfoAccessoryFragment()
             // 개별 상품 관리 - 상세
             MainFragmentName.FRAGMENT_INDIVIDUAL_PRODUCT_INFO -> newFragment = IndividualProductInfoFragment()
+
+            // 상품리뷰 화면
+            MainFragmentName.FRAGMENT_MY_REVIEW -> newFragment = MyReviewFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
@@ -290,42 +291,5 @@ class MainActivity : AppCompatActivity() {
 
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-    }
-
-    // 하단 바 안보이게 하기
-    fun removeBottomSheet(){
-        activityMainBinding.apply {
-            mainBottomNavi.isVisible = false
-        }
-    }
-
-    // 하단 바 보이게 하기
-    fun viewBottomSheet(){
-        activityMainBinding.apply {
-            mainBottomNavi.isVisible = true
-        }
-    }
-
-    // 하단 바 설정
-    fun bottomSheetSetting(){
-        activityMainBinding.apply {
-            mainBottomNavi.setOnItemSelectedListener { item ->
-                when(item.itemId) {
-                    R.id.main_bottom_navi_home -> {
-                        replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null)
-                    }
-                    R.id.main_bottom_navi_category -> {
-                        replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
-                    }
-                    R.id.main_bottom_navi_like -> {
-                        replaceFragment(MainFragmentName.LIKE_PRODUCT, false, false, null)
-                    }
-                    else -> {
-                        replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
-                    }
-                }
-                true
-            }
-        }
     }
 }
