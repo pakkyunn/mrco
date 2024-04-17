@@ -10,162 +10,193 @@
             type="kr.co.lion.team4.mrco.viewmodel.MbtiBottomSheetViewModel" />
     </data>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="16dp"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".fragment.MbtiBottomSheetFragment">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="MBTI 선택"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButtonEI"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:minWidth="250dp"
-        app:checkedButton="@id/buttonE"
-        app:selectionRequired="true"
-        app:singleSelection="true"
-        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonEI}">
-
-        <Button
-            android:id="@+id/buttonE"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="E" />
-
-        <Button
-            android:id="@+id/buttonI"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="I" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButtonSN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:minWidth="250dp"
-        app:checkedButton="@id/buttonN"
-        app:selectionRequired="true"
-        app:singleSelection="true"
-        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonSN}">
-
-        <Button
-            android:id="@+id/buttonS"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="S" />
-
-        <Button
-            android:id="@+id/buttonN"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="N" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButtonTF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:minWidth="250dp"
-        app:checkedButton="@id/buttonF"
-        app:selectionRequired="true"
-        app:singleSelection="true"
-        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonTF}">
-
-        <Button
-            android:id="@+id/buttonT"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="T" />
-
-        <Button
-            android:id="@+id/buttonF"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="F" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButtonPJ"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:minWidth="250dp"
-        app:checkedButton="@id/buttonP"
-        app:selectionRequired="true"
-        app:singleSelection="true"
-        android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonPJ}">
-
-        <Button
-            android:id="@+id/buttonP"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="P" />
-
-        <Button
-            android:id="@+id/buttonJ"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="J" />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="10dp"
+        tools:context=".fragment.MbtiBottomSheetFragment">
 
-        <Button
-            android:id="@+id/buttonMbtiBottomSheetCancel"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="MBTI를 선택해주세요"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButtonEI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:text="취소" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonEI}"
+            android:minWidth="250dp"
+            app:checkedButton="@id/buttonE"
+            app:selectionRequired="true"
+            app:singleSelection="true">
 
-        <Button
-            android:id="@+id/buttonMbtiBottomSheetSubmit"
+            <Button
+                android:id="@+id/buttonE"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="E"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonI"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="I"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButtonSN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_weight="1"
-            android:text="완료" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonSN}"
+            android:minWidth="250dp"
+            app:checkedButton="@id/buttonN"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/buttonS"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="S"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonN"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="N"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButtonTF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonTF}"
+            android:minWidth="250dp"
+            app:checkedButton="@id/buttonF"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/buttonT"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="T"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonF"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="F"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButtonPJ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:checkedButtonId="@={mbtiBottomSheetViewModel.toggleButtonPJ}"
+            android:minWidth="250dp"
+            app:checkedButton="@id/buttonP"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/buttonP"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="P"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonJ"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/selector_add_product_option_chip_color2_mbti"
+                android:text="J"
+                android:textColor="@color/selector_add_product_option_text_color"
+                android:textStyle="bold" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonMbtiBottomSheetCancel"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                android:text="취소"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:cornerRadius="15dp" />
+
+            <Button
+                android:id="@+id/buttonMbtiBottomSheetSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/black"
+                android:text="완료"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:cornerRadius="15dp" />
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
 
 </layout>

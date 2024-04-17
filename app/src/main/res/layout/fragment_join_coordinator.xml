@@ -64,8 +64,8 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
                         android:layout_weight="1"
                         android:hint="(10자 이내)"
                         app:endIconMode="clear_text">
@@ -73,22 +73,24 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/textFieldJoinCoordinatorName"
                             android:layout_width="match_parent"
-                            android:layout_height="56dp"
+                            android:layout_height="match_parent"
                             android:layout_marginEnd="16dp"
                             android:inputType="text"
+                            android:padding="0dp"
                             android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorName}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <Button
                         android:id="@+id/buttonJoinCoordinatorCheckName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="64dp"
-                        android:layout_gravity="center_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="2.6"
                         android:backgroundTint="#102672"
                         android:minHeight="68dip"
                         android:text="중복확인"
-                        android:textSize="16dp"
+                        android:textSize="15dp"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -110,7 +112,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldJoinCoordinatorIntro"
                         android:layout_width="match_parent"
-                        android:layout_height="100dp"
+                        android:layout_height="150dp"
                         android:inputType="text|textMultiLine"
                         android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorIntro}"
                         android:textAlignment="textStart"
@@ -174,12 +176,12 @@
                     android:layout_marginTop="8dp"
                     android:adjustViewBounds="true"
                     android:scaleType="fitXY"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/dummy_image" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="10dp"
                     android:hint="자격증 번호 입력 ex) 0000000-F"
                     app:endIconMode="clear_text">
@@ -187,8 +189,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldJoinCoordinatorCertificationNumber"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:inputType="text"
+                        android:padding="0dp"
                         android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorCertificationNumber}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -255,12 +258,13 @@
                     android:layout_height="150dp"
                     android:layout_marginTop="8dp"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
                     app:srcCompat="@drawable/dummy_image" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="8dp"
                     android:hint="사업자 등록번호 입력 ex) 000-00-00000"
                     app:endIconMode="clear_text">
@@ -268,8 +272,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldJoinCoordinatorBizLicenseNumber"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:inputType="text"
+                        android:padding="0dp"
                         android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorBizLicenseNumber}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -296,7 +301,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="8dp"
                     android:hint="본인의 MBTI를 선택해주세요"
                     app:endIconMode="clear_text">
@@ -304,11 +309,12 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldJoinCoordinatorMBTI"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:clickable="false"
                         android:cursorVisible="false"
                         android:focusableInTouchMode="false"
                         android:inputType="text"
+                        android:padding="0dp"
                         android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorMBTI}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -324,7 +330,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="45dp"
                     android:layout_marginTop="8dp"
                     android:hint="'-' 없이 숫자만 입력해주세요"
                     app:endIconMode="clear_text">
@@ -332,8 +338,9 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textFieldJoinCoordinatorContactNumber"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
                         android:inputType="number"
+                        android:padding="0dp"
                         android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorContactNumber}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
                 </com.google.android.material.textfield.TextInputLayout>

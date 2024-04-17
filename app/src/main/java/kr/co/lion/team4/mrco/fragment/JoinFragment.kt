@@ -122,7 +122,7 @@ class JoinFragment : Fragment() {
 
     // BottomSheet를 띄워준다.
     fun showMbtiBottomSheet(){
-        val mbtiBottomSheetFragment = MbtiBottomSheetFragment()
+        val mbtiBottomSheetFragment = MbtiBottomSheetFragment(joinViewModel.textFieldJoinUserMBTI)
         mbtiBottomSheetFragment.show(mainActivity.supportFragmentManager, "MbtiBottomSheet")
     }
 

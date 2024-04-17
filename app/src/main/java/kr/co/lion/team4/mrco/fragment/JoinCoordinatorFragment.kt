@@ -54,11 +54,7 @@ class JoinCoordinatorFragment : Fragment() {
     // 이미지를 첨부한 적이 있는지..
     var isAddPicture = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         //fragmentJoinCoordinatorBinding = FragmentJoinCoordinatorBinding.inflate(inflater)
         fragmentJoinCoordinatorBinding =
@@ -183,7 +179,7 @@ class JoinCoordinatorFragment : Fragment() {
     fun showMbtiBottomSheet() {
         fragmentJoinCoordinatorBinding.apply {
             textFieldJoinCoordinatorMBTI.setOnClickListener {
-                val bottomSheet = MbtiBottomSheetFragment()
+                val bottomSheet = MbtiBottomSheetFragment(joinCoordinatorViewModel?.textFieldJoinCoordinatorMBTI!!)
                 bottomSheet.show(mainActivity.supportFragmentManager, "MbtiBottomSheet")
             }
         }
@@ -283,7 +279,7 @@ class JoinCoordinatorFragment : Fragment() {
     fun backProcess() {
         mainActivity.removeFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT)
     }
-
+      
     fun checkInput(): Boolean {
         // 입력을 체크할 항목 구성
         val coordiName = joinCoordinatorViewModel.textFieldJoinCoordinatorName.value!!

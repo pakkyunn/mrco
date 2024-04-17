@@ -44,7 +44,6 @@ class OrderFragment : Fragment() {
     fun toolbarSetting(){
         fragmentOrderBinding.toolbarOrder.apply {
             // 네비게이션
-            setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
                 backProcesss()
             }

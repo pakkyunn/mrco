@@ -1,33 +1,32 @@
 package kr.co.lion.team4.mrco
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.os.Bundle
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.RippleDrawable
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.FileOutputStream
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.thread
@@ -67,12 +66,26 @@ class Tools {
         // 입력 요소가 비어있을때 보여줄 다이얼로그를 구성하는 메서드
         fun showErrorDialog(context: Context, view: View, title:String, message:String){
             val materialAlertDialogBuilder = MaterialAlertDialogBuilder(context)
+
+            // 배경색을 흰색으로 설정
+            materialAlertDialogBuilder.setBackground(ContextCompat.getDrawable(context, R.drawable.dialog_background_white))
+
             materialAlertDialogBuilder.setTitle(title)
             materialAlertDialogBuilder.setMessage(message)
             materialAlertDialogBuilder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
                 showSoftInput(context, view)
             }
-            materialAlertDialogBuilder.show()
+
+            // PositiveButton 가져오기
+            val positiveButton = materialAlertDialogBuilder.show().getButton(DialogInterface.BUTTON_POSITIVE)
+
+            // 버튼에 스타일 적용
+            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.gray))
+
+            // Ripple 효과의 색상을 변경
+            val rippleColor = ContextCompat.getColor(context, R.color.gray)
+            val positiveButtonBackground = positiveButton.background as RippleDrawable
+            positiveButtonBackground.setColor(ColorStateList.valueOf(rippleColor))
         }
 
         // DateRangerPicker
@@ -99,6 +112,15 @@ class Tools {
             val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
 
             return date
+        }
+
+        // 가격(Int)을 1000 단위 표기법으로 변환
+        // 100000 => return 100,000원
+        fun gettingPriceDecimalFormat(price: Int) : String{
+            val decimalFormat = DecimalFormat("#,###")
+            val priceText = "${decimalFormat.format(price)}원"
+
+            return priceText
         }
 
         ///////// 카메라 관련 /////////

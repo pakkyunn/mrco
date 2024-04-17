@@ -58,21 +58,26 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
 
         mainActivity = activity as MainActivity
 
+        // Type(분류) 스피너 세팅
         settingSpinner()
+
+        // 카메라 앨범 사용
         settingAlbumLauncher()
 
-        settingAddPhoto()
+        // 입력 초기화
+        settingInputForm()
+
+        // 사진 추가 버튼
+        settingAddPhotoButton()
+
+        // 취소, 등록 버튼
+        settingButtonCancel() // 취소
+        settingButtonSubmit() // 등록
 
         return dialogAddProductBinding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        settingButtonCancel() // 취소
-        settingButtonSubmit() // 등록
-    }
-
+    // 분류 스피너 설정
     private fun settingSpinner(){
         // Spinner 데이터 설정
         val spinner: Spinner = dialogAddProductBinding.spinnerDialogAddProductType
@@ -94,7 +99,7 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
     }
 
     // 사진 추가 버튼
-    private fun settingAddPhoto() {
+    private fun settingAddPhotoButton() {
         dialogAddProductBinding.imageviewDialogAddProduct.setOnClickListener {
             // 사진 추가 버튼
             startAlbumLauncher()
@@ -108,36 +113,42 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
         }
     }
 
+    // 등록 버튼
     private fun settingButtonSubmit() {
         dialogAddProductBinding.buttonDialogAddProductSubmit.setOnClickListener {
 
             // 서버에서의 첨부 이미지 파일 이름
             var serverFileName:String? = null
 
-            CoroutineScope(Dispatchers.Main).launch {
-                // 첨부된 이미지가 있다면
-                if(isAddPicture == true) {
-                    // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                    Tools.saveImageViewData(mainActivity, dialogAddProductBinding.imageviewDialogAddProduct, "uploadTemp.jpg")
-                    // 서버에서의 파일 이름
-                    serverFileName = "image_${System.currentTimeMillis()}.jpg"
-                    // 서버로 업로드한다.
-                    ProductDao.uploadItemsImage(mainActivity, "uploadTemp.jpg", serverFileName!!)
+            // 입력 요소 유효성 검사
+            val chk = checkInputForm()
+
+            if(chk == true) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    // 첨부된 이미지가 있다면
+                    if(isAddPicture == true) {
+                        // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
+                        Tools.saveImageViewData(mainActivity, dialogAddProductBinding.imageviewDialogAddProduct, "uploadTemp.jpg")
+                        // 서버에서의 파일 이름
+                        serverFileName = "image_${System.currentTimeMillis()}.jpg"
+                        // 서버로 업로드한다.
+                        ProductDao.uploadItemsImage(mainActivity, "uploadTemp.jpg", serverFileName!!)
+                    }
+
+                    val productData = mapOf(
+                        "0" to dialogAddProductBinding.edittextDialogAddProductName.text.toString(),
+                        "1" to dialogAddProductBinding.edittextDialogAddProductSize.text.toString(),
+                        "2" to dialogAddProductBinding.edittextDialogAddProductStock.text.toString(),
+                        "3" to productType,
+                        "4" to dialogAddProductBinding.edittextDialogAddProductColor.text.toString(),
+                        "5" to serverFileName.toString()
+                    )
+
+                    // 리스너 실행 및 데이터 전달
+                    listener.onAddProductClicked(productData, isAddPicture)
+
+                    dismiss()
                 }
-
-                val productData = mapOf(
-                    "0" to dialogAddProductBinding.edittextDialogAddProductName.text.toString(),
-                    "1" to dialogAddProductBinding.edittextDialogAddProductSize.text.toString(),
-                    "2" to dialogAddProductBinding.edittextDialogAddProductStock.text.toString(),
-                    "3" to productType,
-                    "4" to dialogAddProductBinding.edittextDialogAddProductColor.text.toString(),
-                    "5" to serverFileName.toString()
-                )
-
-                // 리스너 실행 및 데이터 전달
-                listener.onAddProductClicked(productData, isAddPicture)
-
-                dismiss()
             }
         }
     }
@@ -147,11 +158,12 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
         super.onResume()
 
         val layoutParams : ViewGroup.LayoutParams? = dialog?.window?.attributes
-        // 디바이스의 90% 크기로 설정
-        layoutParams?.width = (deviceWidth * 0.9).toInt()
+        // 디바이스의 100% 크기로 설정
+        layoutParams?.width = (deviceWidth * 1).toInt()
         dialog?.window?.attributes = layoutParams as LayoutParams
     }
 
+    // 리스너 세팅
     fun setListener(listener: AddProductDialogListener) {
         this.listener = listener
     }
@@ -219,24 +231,54 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
 
 
 
+    // 입력 요소 초기화
+    fun settingInputForm() {
+        dialogAddProductBinding.edittextDialogAddProductName.setText("")
+        dialogAddProductBinding.edittextDialogAddProductSize.setText("")
+        dialogAddProductBinding.edittextDialogAddProductStock.setText("")
+        dialogAddProductBinding.edittextDialogAddProductColor.setText("")
+    }
+
     // 입력 요소 유효성 검사
     fun checkInputForm():Boolean{
         // 입력한 내용을 가져온다.
         val productName = dialogAddProductBinding.edittextDialogAddProductName.text.toString()
         val productSize =  dialogAddProductBinding.edittextDialogAddProductSize.text.toString()
+        val productStock =  dialogAddProductBinding.edittextDialogAddProductStock.text.toString()
+        val productColor =  dialogAddProductBinding.edittextDialogAddProductColor.text.toString()
 
         if(productName.isEmpty()){
             Tools.showErrorDialog(mainActivity, dialogAddProductBinding.edittextDialogAddProductName,
-                "상품명 입력 오류", "상품명을 입력해주세요")
+                "상품명 입력 오류", "해당 상품의 상품명을 입력해주세요")
             return false
         }
 
         if(productSize.isEmpty()){
             Tools.showErrorDialog(mainActivity, dialogAddProductBinding.edittextDialogAddProductSize,
-                "사이즈 입력 오류", "사이즈를 입력해주세요")
+                "사이즈 입력 오류", "해당 상품의 사이즈를 입력해주세요")
             return false
         }
 
+        if(productStock.isEmpty()){
+            Tools.showErrorDialog(mainActivity, dialogAddProductBinding.edittextDialogAddProductStock,
+                "재고 입력 오류", "해당 상품의 재고를 입력해주세요")
+            return false
+        }
+
+        if(productColor.isEmpty()){
+            Tools.showErrorDialog(mainActivity, dialogAddProductBinding.edittextDialogAddProductColor,
+                "색상 입력 오류", "해당 상품의 색상을 입력해주세요")
+            return false
+        }
         return true
     }
+
+    /*
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        settingButtonCancel() // 취소
+        settingButtonSubmit() // 등록
+    }
+    */
 }
