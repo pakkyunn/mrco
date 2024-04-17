@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -45,21 +46,17 @@
                 android:text="상품명"
                 android:textSize="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_dialog_add_product_name"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="예) mrco슬랙스"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edittext_dialog_add_product_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:padding="0dp"
-                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductName}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:background="@drawable/border_background"
+                android:hint="MRCO 맨투맨"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="@={dialogAddProductViewModel.edittextDialogAddProductName}" />
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -84,22 +81,17 @@
                 android:text="사이즈"
                 android:textSize="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_dialog_add_product_size"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="예) L(100)"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edittext_dialog_add_product_size"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:padding="0dp"
-                    android:singleLine="true"
-                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductSize}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:background="@drawable/border_background"
+                android:hint="L 또는 100"
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="@={dialogAddProductViewModel.edittextDialogAddProductSize}" />
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -124,22 +116,17 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_dialog_add_product_stock"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="단위 (개)"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edittext_dialog_add_product_stock"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="number|numberDecimal"
-                    android:padding="0dp"
-                    android:singleLine="true"
-                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductStock}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:background="@drawable/border_background"
+                android:hint="단위(개)"
+                android:inputType="number|numberDecimal"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="@={dialogAddProductViewModel.edittextDialogAddProductStock}" />
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -164,22 +151,19 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:hint="예) 상의/하의/신발/액세서리"
-                app:endIconMode="clear_text">
+                android:background="@drawable/border_background">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edittext_dialog_add_product_type"
+                <Spinner
+                    android:id="@+id/spinner_dialog_add_product_type"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:clickable="true"
-                    android:inputType="text"
-                    android:padding="0dp"
-                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductType}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    tools:layout_editor_absoluteX="41dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
@@ -204,22 +188,18 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textSize="16dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edittext_dialog_add_product_color"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
+                android:background="@drawable/border_background"
                 android:hint="예) Gray"
-                app:endIconMode="clear_text">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edittext_dialog_add_product_color"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="text"
-                    android:padding="0dp"
-                    android:singleLine="true"
-                    android:text="@={dialogAddProductViewModel.edittextDialogAddProductColor}" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:inputType="text"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:text="@={dialogAddProductViewModel.edittextDialogAddProductColor}" />
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider

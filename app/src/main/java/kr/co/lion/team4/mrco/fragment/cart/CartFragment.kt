@@ -22,6 +22,7 @@ class CartFragment : Fragment() {
     lateinit var cartViewModel : CartViewModel
 
     lateinit var mainActivity: MainActivity
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentCartBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_cart, container, false)
@@ -33,10 +34,17 @@ class CartFragment : Fragment() {
 
         toolbarSetting()
 
+        initViews()
         settingCartProductsRecyclerView()
         checkOutProducts()
 
         return fragmentCartBinding.root
+    }
+
+    // View 초기화
+    fun initViews(){
+        // 전체선택 체크박스
+        fragmentCartBinding.cartViewModel?.checkboxCartSelectAll?.value = true
     }
 
     // 툴바 설정
@@ -45,7 +53,7 @@ class CartFragment : Fragment() {
             // 네비게이션
             setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
-                backProcesss()
+                backProcess()
             }
         }
     }
@@ -87,7 +95,8 @@ class CartFragment : Fragment() {
             val itemCartBinding = DataBindingUtil.inflate<ItemCartBinding>(
                 layoutInflater, R.layout.item_cart, parent, false)
             val cartItemViewModel = CartItemViewModel()
-            itemCartBinding.cartItemViewModel = cartItemViewModel
+            itemCartBinding.cartItemViewModel = cartItemViewModel // 카드에 담긴 item의 View Model
+            itemCartBinding.cartParentViewModel = cartViewModel // CartFragment의 View Model
             itemCartBinding.lifecycleOwner = this@CartFragment
 
             val cartProductViewHolder = CartProductViewHolder(itemCartBinding)
@@ -105,6 +114,18 @@ class CartFragment : Fragment() {
             // 옵션, 수량
             holder.itemCartBinding.cartItemViewModel?.textviewCartItemOption?.value = "옵션: 상의, 하의, 신발 / 수량: 1"
             holder.itemCartBinding.cartItemViewModel?.textviewCartItemPrice?.value = "100,000원"
+
+            // 전체 선택 시 값을 변경 해주기 위해 check box 상태를 별도 리스트에 관리
+            val cartItemCheckBoxState = holder.itemCartBinding.cartItemViewModel?.checkboxCartItemSelect
+            // CartFragment의 ViewModel의 장바구니 아이템 체크상태 리스트에 추가
+            cartViewModel.cartItemCheckBoxList.add(position, cartItemCheckBoxState!!)
+
+            // 제거 버튼
+            holder.itemCartBinding.imageviewCartItemRemove.setOnClickListener {
+                // to do 1. db에서 제거  2. list에서 제거  3. cartItemCheckBoxList 초기화  4. recyclerView 갱신
+                //cartViewModel.cartItemCheckBoxList.removeAt(position)
+                //fragmentCartBinding.recyclerviewCartProducts.adapter?.notifyItemRemoved(position)
+            }
         }
 
         override fun getItemCount(): Int {
@@ -113,7 +134,7 @@ class CartFragment : Fragment() {
     }
 
     // 뒤로가기 처리
-    fun backProcesss(){
+    fun backProcess(){
         mainActivity.removeFragment(MainFragmentName.CART_FRAGMENT)
     }
 }

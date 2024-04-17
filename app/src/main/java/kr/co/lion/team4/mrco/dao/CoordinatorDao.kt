@@ -14,7 +14,6 @@ class CoordinatorDao {
     companion object {
 
         // 코디네이터 정보를 저장한다. (코디네이터 가입 신청시)
-        /*
         suspend fun insertCoordinatorData(coordinatorModel: CoordinatorModel){
             val job1 = CoroutineScope(Dispatchers.IO).launch {
 
@@ -29,8 +28,6 @@ class CoordinatorDao {
             job1.join()
 
         }
-        */
-
 
         suspend fun checkCoordiName(coodiName:String) : Boolean{
             var chk = false
@@ -56,6 +53,40 @@ class CoordinatorDao {
         }
 
 
+        // 코디네이터 시퀀스 값을 가져온다.
+        suspend fun getCoordinatorSequence(): Int{
+
+            var coordinatorSequence = -1
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("Sequence")
+                // 사용자 번호 시퀀스 값을 가지고 있는 문서에 접근할 수 있는 객체를 가져온다.
+                val documentReference = collectionReference.document("CoordinatorSequence")
+                // 문서내에 있는 데이터를 가져올 수 있는 객체를 가져온다.
+                val documentSnapShot = documentReference.get().await()
+                coordinatorSequence = documentSnapShot.getLong("value")?.toInt()!!
+            }
+            job1.join()
+
+            return coordinatorSequence
+        }
+
+        // 코디네이터 시퀀스 값을 업데이트 한다.
+        suspend fun updateCoordinatorSequence(coordinatorSequence:Int){
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("Sequence")
+                // 사용자 번호 시퀀스 값을 가지고 있는 문서에 접근할 수 있는 객체를 가져온다.
+                val documentReference = collectionReference.document("CoordinatorSequence")
+                // 저장할 데이터를 담을 HashMap을 만들어준다.
+                val map = mutableMapOf<String, Long>()
+                map["value"] = coordinatorSequence.toLong()
+                // 저장한다.
+                documentReference.set(map)
+            }
+            job1.join()
+        }
     }
 
 }
