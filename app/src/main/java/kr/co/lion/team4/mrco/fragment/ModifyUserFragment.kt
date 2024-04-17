@@ -25,6 +25,8 @@ class ModifyUserFragment : Fragment() {
         fragmentModifyUserBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_modify_user, container, false)
         modifyUserViewModel = ModifyUserViewModel()
         fragmentModifyUserBinding.modifyUserViewModel = modifyUserViewModel
+        fragmentModifyUserBinding.lifecycleOwner = this
+
         mainActivity = activity as MainActivity
 
         settingToolbar()
@@ -54,7 +56,6 @@ class ModifyUserFragment : Fragment() {
     fun showMbtiBottomSheet(){
         val mbtiBottomSheetFragment = MbtiBottomSheetFragment(modifyUserViewModel.textFieldModifyUserUserMBTI)
         mbtiBottomSheetFragment.show(mainActivity.supportFragmentManager, "MbtiBottomSheet")
-        // to do 선택한 mbti가 edittext에 표기되지 않는 문제 해결
     }
 
     // 뒤로가기 처리
