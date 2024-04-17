@@ -3,9 +3,12 @@ package kr.co.lion.team4.mrco
 import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.RippleDrawable
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
@@ -15,6 +18,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import com.google.android.material.datepicker.CalendarConstraints
@@ -62,12 +66,26 @@ class Tools {
         // 입력 요소가 비어있을때 보여줄 다이얼로그를 구성하는 메서드
         fun showErrorDialog(context: Context, view: View, title:String, message:String){
             val materialAlertDialogBuilder = MaterialAlertDialogBuilder(context)
+
+            // 배경색을 흰색으로 설정
+            materialAlertDialogBuilder.setBackground(ContextCompat.getDrawable(context, R.drawable.dialog_background_white))
+
             materialAlertDialogBuilder.setTitle(title)
             materialAlertDialogBuilder.setMessage(message)
             materialAlertDialogBuilder.setPositiveButton("확인"){ dialogInterface: DialogInterface, i: Int ->
                 showSoftInput(context, view)
             }
-            materialAlertDialogBuilder.show()
+
+            // PositiveButton 가져오기
+            val positiveButton = materialAlertDialogBuilder.show().getButton(DialogInterface.BUTTON_POSITIVE)
+
+            // 버튼에 스타일 적용
+            positiveButton.setTextColor(ContextCompat.getColor(context, R.color.gray))
+
+            // Ripple 효과의 색상을 변경
+            val rippleColor = ContextCompat.getColor(context, R.color.gray)
+            val positiveButtonBackground = positiveButton.background as RippleDrawable
+            positiveButtonBackground.setColor(ColorStateList.valueOf(rippleColor))
         }
 
         // DateRangerPicker
