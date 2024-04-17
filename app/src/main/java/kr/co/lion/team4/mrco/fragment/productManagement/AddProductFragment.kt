@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.productManagement
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.ImageDecoder
 import android.os.Build
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.google.firebase.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +51,10 @@ interface AddProductDialogListener {
 }
 
 class AddProductFragment : Fragment(), AddProductDialogListener {
+
+    // FirebaseStorage 인스턴스 생성
+    val storage = FirebaseStorage.getInstance()
+
     lateinit var fragmentAddProductBinding: FragmentAddProductBinding
     lateinit var addProductViewModel: AddProductViewModel
 
@@ -276,8 +282,24 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value =
                 "${individualProductData[position]["1"]} / ${individualProductData[position]["2"]}개 / ${individualProductData[position]["3"]} / ${individualProductData[position]["4"]}"
 
-            // FireStore Items 이미지 경로
-            Log.d("test1234", "product_image/items/${individualProductData[position]["5"]}")
+            // FireStore Items 이미지 파일명
+            val imageFileName = (individualProductData[position]["5"]).toString()
+            Log.d("test1234", "product_image/items/$imageFileName")
+
+            // Firebase Storage에서 이미지 다운로드 및 비트맵으로 변환
+            downloadImageFromFirebase(imageFileName,
+                onSuccess = { bitmap ->
+                    // 비트맵을 ImageView에 설정합니다.
+                    holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageBitmap(bitmap)
+                },
+                onFailure = { exception ->
+                    // 다운로드 중에 오류가 발생하면 로그에 오류를 출력합니다.
+                    Log.e("test1234", "Error downloading image: $exception")
+                }
+            )
+
+//            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.iu_image2)
+//            holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageBitmap(bitmap)
 
             holder.itemAddproductDetailBinding.buttonAddProductDetailRemove.setOnClickListener {
                 individualProductData.removeAt(position)
@@ -384,5 +406,23 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             return false
         }
         return true
+    }
+
+    // FirebaseStorage에서 이미지 다운로드 및 비트맵으로 변환하는 함수
+    fun downloadImageFromFirebase(imageFileName: String, onSuccess: (Bitmap) -> Unit, onFailure: (Exception) -> Unit) {
+        // Firebase Storage에서 이미지를 참조합니다.
+        val storageRef = storage.reference.child("product_image/items/$imageFileName")
+
+        // 이미지를 다운로드하여 byte 배열로 가져옵니다.
+        storageRef.getBytes(512 * 512) // 최대 512KB
+            .addOnSuccessListener { bytes ->
+                // byte 배열을 Bitmap으로 변환합니다.
+                val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                onSuccess(bitmap)
+            }
+            .addOnFailureListener { exception ->
+                // 다운로드 중에 오류가 발생하면 onFailure 콜백을 호출합니다.
+                onFailure(exception)
+            }
     }
 }
