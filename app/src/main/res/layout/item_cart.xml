@@ -39,15 +39,15 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:checked="@={cartItemViewModel.checkboxCartItemSelect}"
-                    android:onClickListener="@{(view) -> cartParentViewModel.onItemCheckBoxChanged()}"
                     android:gravity="top"
+                    android:onClickListener="@{(view) -> cartParentViewModel.onItemCheckBoxChanged()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_cart_item_thumbnail"
                     style="@style/Widget.Material3.CardView.Filled"
-                    android:layout_width="56dp"
+                    android:layout_width="76dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="16dp"
@@ -61,8 +61,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_launcher_background" />
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/iu_image7" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <TextView
@@ -81,8 +81,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="12dp"
                     android:hint="(코디 상품명) OOOO 코디 SET"
                     android:text="@{cartItemViewModel.textviewCartItemCoordiName}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
@@ -96,8 +96,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="12dp"
                     android:hint="옵션: 상의, 하의 등 / 수량: 1"
                     android:text="@{cartItemViewModel.textviewCartItemOption}"
                     android:textSize="12sp"
@@ -109,7 +109,7 @@
                     android:id="@+id/textview_cart_item_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_marginBottom="16dp"
                     android:hint="100,000원"
                     android:text="@{cartItemViewModel.textviewCartItemPrice}"
@@ -118,16 +118,20 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <ImageView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/imageview_cart_item_remove"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="4dp"
+                    android:textColor="@color/black"
+                    app:icon="@android:drawable/ic_menu_close_clear_cancel"
+                    app:iconGravity="end"
+                    app:iconTint="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/textview_cart_item_coordinator"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/close_24px" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/button_cart_item_modify_option"
@@ -138,9 +142,14 @@
                     android:layout_marginBottom="16dp"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
                     android:text="옵션 / 수량"
                     android:textColor="@color/black"
                     android:textSize="14sp"
+                    app:cornerRadius="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/cardview_cart_item_thumbnail"
                     app:layout_constraintStart_toStartOf="@+id/textview_cart_item_option"
