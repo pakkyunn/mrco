@@ -11,15 +11,15 @@ MBTI, 핸드폰, 고객용 오픈 핸드폰, 출고지
 */
 
 data class CoordinatorModel(var coordi_idx: Int, var coordi_user_idx: Int, var coordi_name: String, var coordi_intro_text: String,
-    var coordi_photo: String, var coordi_license: String, var coordi_license_num: Int, var coordi_portfolio: String,
-    var coordi_mbti: Int, var coordi_phone: Int, var coordi_business_phone: Int, var coordi_forwarding_loc: String,
-    var coordi_return_loc: String, var coordi_bank: String, var coordi_account_holder: String, var coordi_account: Int,
+    var coordi_photo: String, var coordi_license: String, var coordi_license_num: String, var coordi_portfolio: String, var coordi_business_license : String,
+    var coordi_mbti: Int, var coordi_business_phone: String, var coordi_forwarding_loc: String,
+    var coordi_return_loc: String, var coordi_bank: String, var coordi_account_holder: String, var coordi_account: String,
     var coordi_followers: Int, var coordi_permission: Boolean, var coordi_request_date: String) {
 
     // 매개 변수가 없는 생성자 (FireStore 연동 후 사용)
     constructor(): this(0, 0, "", "",
-        "", "", 0, "",
-        0, 0, 0, "",
-        "", "", "", 0,
+        "", "", "", "", "",
+        0, "", "",
+        "", "", "", "",
         0, false, "")
 }
