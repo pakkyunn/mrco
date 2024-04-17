@@ -1,13 +1,10 @@
 package kr.co.lion.team4.mrco
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
-import android.os.Bundle
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.RippleDrawable
@@ -15,7 +12,6 @@ import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
 import android.os.SystemClock
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -23,8 +19,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
