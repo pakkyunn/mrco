@@ -52,12 +52,12 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
         settingButtonAddProductDetail()
 
+        settingBottomButton()
+
 
         // individualProductList의 모든 요소를 individualProductData에 추가 (테스트 용)
         val individualProductLists: ArrayList<String> = arrayListOf("MRCO 맨투맨", "L(100)", "500", "상의", "Gray", "R.drawable.iu_image")
-        val individualProductLists2: ArrayList<String> = arrayListOf("MRCO 슬랙스", "28", "1000", "하의", "Black", "R.drawable.iu_image2")
         individualProductData.add(individualProductLists)
-        individualProductData.add(individualProductLists2)
 
         // 리사이클러뷰 어댑터
         settingAddProductPhotoRecyclerView()
@@ -139,6 +139,20 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                     textviewAddProductSubCategory.visibility = View.GONE
                     chipgroupAddProductMoodSub.visibility = View.GONE
                 }
+            }
+        }
+    }
+
+    // 취소 버튼
+    fun settingBottomButton(){
+        fragmentAddProductBinding.apply {
+            // 취소 버튼
+            buttonAddProductCancel.setOnClickListener {
+                backProcess()
+            }
+            // 등록 버튼
+            buttonAddProductSubmit.setOnClickListener {
+                Log.d("test1234", "${individualProductData}")
             }
         }
     }
@@ -228,7 +242,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value =
                 "${individualProductData[position][1]} / ${individualProductData[position][2]}개 / ${individualProductData[position][3]} / ${individualProductData[position][4]}"
 
-            holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.iu_image6)
+            holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.logo_mrco_removebg)
 
             holder.itemAddproductDetailBinding.buttonAddProductDetailRemove.setOnClickListener {
                 individualProductData.removeAt(position)
