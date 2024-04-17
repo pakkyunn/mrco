@@ -40,7 +40,6 @@ class JoinCoordinatorFragment : Fragment() {
     lateinit var fragmentJoinCoordinatorBinding: FragmentJoinCoordinatorBinding
     lateinit var mainActivity: MainActivity
     lateinit var joinCoordinatorViewModel: JoinCoordinatorViewModel
-    lateinit var fragmentCameraAlbumBottomSheetBinding: FragmentCameraAlbumBottomSheetBinding
 
     var coordiNameChk: Boolean = false
 
@@ -59,13 +58,6 @@ class JoinCoordinatorFragment : Fragment() {
         //fragmentJoinCoordinatorBinding = FragmentJoinCoordinatorBinding.inflate(inflater)
         fragmentJoinCoordinatorBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_join_coordinator, container, false)
-        fragmentCameraAlbumBottomSheetBinding =
-            DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_camera_album_bottom_sheet,
-                container,
-                false
-            )
         joinCoordinatorViewModel = JoinCoordinatorViewModel()
         fragmentJoinCoordinatorBinding.joinCoordinatorViewModel = joinCoordinatorViewModel
         fragmentJoinCoordinatorBinding.lifecycleOwner = this
@@ -141,7 +133,6 @@ class JoinCoordinatorFragment : Fragment() {
             buttonCoordinatorImage.setOnClickListener {
                 // 코디네이터 소개 사진 첨부
                 showCameraAlbumBottomSheet()
-                settingCameraAlbumBottomSheetButton(imageJoinCoordinatorPhoto)
             }
         }
     }
@@ -151,7 +142,6 @@ class JoinCoordinatorFragment : Fragment() {
             buttonJoinCoordinatorCertificationSubmit.setOnClickListener {
                 // 스타일리스트 자격증 사진 첨부
                 showCameraAlbumBottomSheet()
-                settingCameraAlbumBottomSheetButton(imageJoinCoordinatorCertification)
             }
         }
     }
@@ -171,7 +161,6 @@ class JoinCoordinatorFragment : Fragment() {
             buttonJoinCoordinatorBizLicenseSubmit.setOnClickListener {
                 // 사업자 등록 증명서 사진 첨부
                 showCameraAlbumBottomSheet()
-                settingCameraAlbumBottomSheetButton(imageJoinCoordinatorBizLicense)
             }
         }
     }
@@ -189,20 +178,6 @@ class JoinCoordinatorFragment : Fragment() {
     fun showCameraAlbumBottomSheet() {
         val bottomSheet = CameraAlbumBottomSheetFragment()
         bottomSheet.show(mainActivity.supportFragmentManager, "CameraAlbumBottomSheet")
-    }
-
-    fun settingCameraAlbumBottomSheetButton(imageView: ImageView) {
-        fragmentCameraAlbumBottomSheetBinding.apply {
-            imageButtonCamera.setOnClickListener {
-                settingCameraLauncher(imageView)
-                Log.d("test1","클릭됨")
-            }
-            imageButtonAlbum.setOnClickListener {
-                settingAlbumLauncher(imageView)
-                Log.d("test2","클릭됨")
-
-            }
-        }
     }
 
     fun settingButtonNext() {
