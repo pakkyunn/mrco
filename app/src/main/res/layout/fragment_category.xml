@@ -36,26 +36,13 @@
                     android:paddingTop="16dp"
                     android:paddingEnd="16dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
+                    <com.google.android.material.search.SearchBar
+                        android:id="@+id/searchBarMain"
+                        style="@style/Widget.Material3.SearchBar.Outlined"
                         android:layout_width="match_parent"
-                        android:layout_height="56dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_height="wrap_content"
                         android:hint="카테고리 검색"
-                        app:boxCornerRadiusBottomEnd="30dp"
-                        app:boxCornerRadiusBottomStart="30dp"
-                        app:boxCornerRadiusTopEnd="30dp"
-                        app:boxCornerRadiusTopStart="30dp"
-                        app:endIconDrawable="@drawable/search_24px"
-                        app:endIconMode="custom">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/textFieldCategorySearch"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text"
-                            android:singleLine="true"
-                            android:text="@={categoryViewModel.textFieldCategorySearch}" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                        app:backgroundTint="@color/white" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -226,20 +213,35 @@
                 app:icon="@drawable/baseline_arrow_forward_ios_24"
                 app:iconTint="#FFFFFF" />
 
+            <com.google.android.material.search.SearchView
+                android:id="@+id/searchViewMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_anchor="@id/searchBarMain">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewMainSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </com.google.android.material.search.SearchView>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/main_bottom_navi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                app:itemActiveIndicatorStyle="@null"
+                app:itemBackground="@color/bottomSheetColor"
+                app:itemIconTint="@color/bottom_navigation_selector_color"
+                app:itemTextColor="@color/bottom_navigation_selector_color"
+                app:labelVisibilityMode="labeled"
+                app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+                app:layout_insetEdge="bottom"
+                app:menu="@menu/menu_main_bottom_navi" />
+
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/main_bottom_navi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:itemActiveIndicatorStyle="@null"
-            app:itemBackground="@color/bottomSheetColor"
-            app:itemIconTint="@color/bottom_navigation_selector_color"
-            app:itemTextColor="@color/bottom_navigation_selector_color"
-            app:labelVisibilityMode="labeled"
-            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-            app:layout_insetEdge="bottom"
-            app:menu="@menu/menu_main_bottom_navi" />
     </LinearLayout>
 
 </layout>

@@ -1,6 +1,9 @@
 package kr.co.lion.team4.mrco.fragment.productManagement
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,11 +22,20 @@ import kr.co.lion.team4.mrco.databinding.ItemAddproductDetailBinding
 import kr.co.lion.team4.mrco.databinding.ItemAddproductPhotoBinding
 
 /* (판매자) 코디 상품 등록 화면 */
-class AddProductFragment : Fragment() {
+
+// 다이얼로그 코디상품(개별) 등록 인터페이스
+interface AddProductDialogListener {
+    fun onAddProductClicked(productData: ArrayList<String>)
+}
+
+class AddProductFragment : Fragment(), AddProductDialogListener {
     lateinit var fragmentAddProductBinding: FragmentAddProductBinding
     lateinit var addProductViewModel: AddProductViewModel
 
     lateinit var mainActivity: MainActivity
+
+    private val individualProductData: MutableList<ArrayList<String>> = mutableListOf()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentAddProductBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_add_product, container, false)
@@ -39,6 +51,13 @@ class AddProductFragment : Fragment() {
         settingCategoryClickEvent()
 
         settingButtonAddProductDetail()
+
+        settingBottomButton()
+
+
+        // individualProductList의 모든 요소를 individualProductData에 추가 (테스트 용)
+        val individualProductLists: ArrayList<String> = arrayListOf("MRCO 맨투맨", "L(100)", "500", "상의", "Gray", "R.drawable.iu_image")
+        individualProductData.add(individualProductLists)
 
         // 리사이클러뷰 어댑터
         settingAddProductPhotoRecyclerView()
@@ -60,7 +79,10 @@ class AddProductFragment : Fragment() {
     fun settingButtonAddProductDetail(){
         fragmentAddProductBinding.buttonAddProductDetail.setOnClickListener {
             val width = getDeviceWidth()
-            AddProductDialog(width!!).show(childFragmentManager, null)
+            val dialog = AddProductDialog(width!!)
+            // 다이얼로그페이지 리스너 등록
+            dialog.setListener(this)
+            dialog.show(childFragmentManager, "AddProductDialog")
         }
     }
 
@@ -110,13 +132,27 @@ class AddProductFragment : Fragment() {
         fragmentAddProductBinding.apply {
             chipAddProductMood.setOnCheckedChangeListener { chip, isChecked ->
                 // 체크된 상태
-                if(isChecked){
+                if (isChecked){
                     textviewAddProductSubCategory.visibility = View.VISIBLE
                     chipgroupAddProductMoodSub.visibility = View.VISIBLE
-                }else{
+                } else{
                     textviewAddProductSubCategory.visibility = View.GONE
                     chipgroupAddProductMoodSub.visibility = View.GONE
                 }
+            }
+        }
+    }
+
+    // 취소 버튼
+    fun settingBottomButton(){
+        fragmentAddProductBinding.apply {
+            // 취소 버튼
+            buttonAddProductCancel.setOnClickListener {
+                backProcess()
+            }
+            // 등록 버튼
+            buttonAddProductSubmit.setOnClickListener {
+                Log.d("test1234", "${individualProductData}")
             }
         }
     }
@@ -202,16 +238,20 @@ class AddProductFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: AddDetailViewHolder, position: Int) {
-            holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailName?.value = "코디 상품명"
-            holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value = "색상 / 사이즈 / 수량 등"
+            holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailName?.value = "${individualProductData[position][0]}"
+            holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value =
+                "${individualProductData[position][1]} / ${individualProductData[position][2]}개 / ${individualProductData[position][3]} / ${individualProductData[position][4]}"
+
+            holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.logo_mrco_removebg)
 
             holder.itemAddproductDetailBinding.buttonAddProductDetailRemove.setOnClickListener {
-
+                individualProductData.removeAt(position)
+                fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
             }
         }
 
         override fun getItemCount(): Int {
-            return 4
+            return individualProductData.size
         }
     }
 
@@ -221,5 +261,13 @@ class AddProductFragment : Fragment() {
         val deviceWidth = display?.widthPixels // 디바이스의 가로길이
 
         return deviceWidth
+    }
+
+    // 리스너 실행 후
+    override fun onAddProductClicked(productData: ArrayList<String>) {
+        // 등록된 데이터 추가
+        individualProductData.add(productData)
+        // 리사이클러 뷰 초기화 
+        fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
     }
 }
