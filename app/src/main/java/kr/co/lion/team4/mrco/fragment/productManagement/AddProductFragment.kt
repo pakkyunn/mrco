@@ -1,7 +1,5 @@
 package kr.co.lion.team4.mrco.fragment.productManagement
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,6 +10,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.CategoryId
+import kr.co.lion.team4.mrco.CodiMbti
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductDetailViewModel
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductViewModel
 import kr.co.lion.team4.mrco.MainActivity
@@ -20,12 +23,17 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentAddProductBinding
 import kr.co.lion.team4.mrco.databinding.ItemAddproductDetailBinding
 import kr.co.lion.team4.mrco.databinding.ItemAddproductPhotoBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.ProductDao
+import kr.co.lion.team4.mrco.model.ProductModel
 
 /* (판매자) 코디 상품 등록 화면 */
 
 // 다이얼로그 코디상품(개별) 등록 인터페이스
 interface AddProductDialogListener {
-    fun onAddProductClicked(productData: ArrayList<String>)
+    fun onAddProductClicked(productData: Map<String, String>, isAddPicture: Boolean)
 }
 
 class AddProductFragment : Fragment(), AddProductDialogListener {
@@ -34,7 +42,10 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
     lateinit var mainActivity: MainActivity
 
-    private val individualProductData: MutableList<ArrayList<String>> = mutableListOf()
+    private val individualProductData: ArrayList<Map<String, String>> = ArrayList()
+
+    // 개별 상품 추가 -> 이미지를 첨부한 적이 있는지...
+    var isProductAddPicture = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentAddProductBinding = DataBindingUtil.inflate(inflater,
@@ -56,8 +67,8 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
 
         // individualProductList의 모든 요소를 individualProductData에 추가 (테스트 용)
-        val individualProductLists: ArrayList<String> = arrayListOf("MRCO 맨투맨", "L(100)", "500", "상의", "Gray", "R.drawable.iu_image")
-        individualProductData.add(individualProductLists)
+        // val individualProductLists: ArrayList<String> = arrayListOf("MRCO 맨투맨", "L(100)", "500", "상의", "Gray", "R.drawable.iu_image")
+        // individualProductData[0] = individualProductLists
 
         // 리사이클러뷰 어댑터
         settingAddProductPhotoRecyclerView()
@@ -153,6 +164,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 등록 버튼
             buttonAddProductSubmit.setOnClickListener {
                 Log.d("test1234", "${individualProductData}")
+                uploadProductData()
             }
         }
     }
@@ -238,9 +250,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         }
 
         override fun onBindViewHolder(holder: AddDetailViewHolder, position: Int) {
-            holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailName?.value = "${individualProductData[position][0]}"
+            holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailName?.value = "${individualProductData[position]["0"]}"
             holder.itemAddproductDetailBinding.addProductDetailViewModel?.textviewAddProductDetailOption?.value =
-                "${individualProductData[position][1]} / ${individualProductData[position][2]}개 / ${individualProductData[position][3]} / ${individualProductData[position][4]}"
+                "${individualProductData[position]["1"]} / ${individualProductData[position]["2"]}개 / ${individualProductData[position]["3"]} / ${individualProductData[position]["4"]}"
 
             holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.logo_mrco_removebg)
 
@@ -264,10 +276,79 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     }
 
     // 리스너 실행 후
-    override fun onAddProductClicked(productData: ArrayList<String>) {
-        // 등록된 데이터 추가
+    override fun onAddProductClicked(productData: Map<String, String>, isAddPicture: Boolean) {
         individualProductData.add(productData)
+        isProductAddPicture = isAddPicture
+        Log.d("test1234", "개별 상품 사진 등록 여부: $isProductAddPicture")
         // 리사이클러 뷰 초기화 
         fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
+    }
+
+    // 글 작성처리 메서드
+    fun uploadProductData() {
+        CoroutineScope(Dispatchers.Main).launch {
+
+            // 서버에서의 첨부 이미지 파일 이름
+            var serverFileName:String? = null
+
+            // 첨부된 이미지가 있다면
+            /*
+            if(isProductAddPicture == true) {
+                // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
+                Tools.saveImageViewData(mainActivity, fragmentAddProductBinding.imageviewAddProductPhoto, "uploadTemp.jpg")
+                // 서버에서의 파일 이름
+                serverFileName = "image_${System.currentTimeMillis()}.jpg"
+                // 서버로 업로드한다.
+                ProductDao.uploadImage(mainActivity, "uploadTemp.jpg", serverFileName)
+            }
+            */
+
+            // 게시글 시퀀스 값을 가져온다.
+            val productSequence = ProductDao.getContentSequence()
+            // 게시글 시퀀스 값을 업데이트 한다.
+            ProductDao.updateProductSequence(productSequence + 1)
+
+            // 업로드할 정보를 담아준다.
+            val productIdx = productSequence + 1
+            val categoryId = CategoryId.TPO.str
+            val coordinatorIdx = 0
+            val coordiName = addProductViewModel.edittextAddProductName.value!!
+            val coordiImage = "코디 이미지들(이거 Map이나 List로 바꿔야함)"
+            val codiMainImage = "코디 대표 이미지"
+            val coordiGender = 0
+            val coordiText = addProductViewModel.edittextAddProductComments.value!!
+            val price = (addProductViewModel.edittextAddProductPrice.value!!).toInt()
+            val coordiItem = individualProductData
+            val coordiMBTI = CodiMbti.ENFJ.str
+            val coordiTPO = 0
+            val coordiSeason = 0
+            val coordiMood = 0
+            val coordiState = 0
+
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val coordiWriteDate = simpleDateFormat.format(Date())
+            /*
+            val contentSubject = addContentViewModel.textFieldAddContentSubject.value!!
+            val contentType = addContentViewModel.gettingContentType().number
+            val contentText = addContentViewModel.textFieldAddContentText.value!!
+            val contentImage = serverFileName
+            val contentWriterIdx = contentActivity.loginUserIdx
+
+            val contentState = ContentState.CONTENT_STATE_NORMAL.number
+            */
+            val productModel = ProductModel(productIdx, categoryId, coordinatorIdx, coordiName, coordiImage, codiMainImage, coordiGender,
+                coordiText, price, coordiItem, coordiMBTI, coordiTPO, coordiSeason, coordiMood, coordiState, coordiWriteDate)
+            // 업로드한다.
+            ProductDao.insertProductData(productModel)
+
+            // ReadContentFragment로 이동한다.
+            Tools.hideSoftInput(mainActivity)
+
+            // 글 번호를 담는다.
+            val readBundle = Bundle()
+            readBundle.putInt("productIdx", productIdx)
+
+            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, readBundle)
+        }
     }
 }
