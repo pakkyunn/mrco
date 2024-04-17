@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.dao
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
@@ -19,7 +20,7 @@ class ProductDao {
     companion object {
 
         // 이미지 데이터를 firebase storage에 업로드는 메서드
-        suspend fun uploadImage(context: Context, fileName:String, uploadFileName:String){
+        suspend fun uploadItemsImage(context: Context, fileName:String, uploadFileName:String) {
             // 외부저장소 까지의 경로를 가져온다.
             val filePath = context.getExternalFilesDir(null).toString()
             // 서버로 업로드할 파일의 경로
@@ -28,7 +29,7 @@ class ProductDao {
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // Storage에 접근할 수 있는 객체를 가져온다.(폴더의 이름과 파일이름을 저장해준다.
-                val storageRef = Firebase.storage.reference.child("image/$uploadFileName")
+                val storageRef = Firebase.storage.reference.child("product_image/items/$uploadFileName")
                 // 업로드한다.
                 storageRef.putFile(uri)
             }
@@ -37,10 +38,10 @@ class ProductDao {
         }
 
         // 이미지 데이터를 받아오는 메서드
-        suspend fun gettingContentImage(context: Context, imageFileName:String, imageView: ImageView){
+        suspend fun gettingProductImage(context: Context, imageFileName:String, imageView: ImageView){
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 이미지에 접근할 수 있는 객체를 가져온다.
-                val storageRef = Firebase.storage.reference.child("image/$imageFileName")
+                val storageRef = Firebase.storage.reference.child("product_image/items/$imageFileName")
                 // 이미지의 주소를 가지고 있는 Uri 객체를 받아온다.
                 val imageUri = storageRef.downloadUrl.await()
                 // 이미지 데이터를 받아와 이미지 뷰에 보여준다.

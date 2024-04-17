@@ -19,9 +19,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.DialogAddProductBinding
 import kr.co.lion.team4.mrco.viewmodel.productManagement.DialogAddProductViewModel
 
@@ -106,19 +110,35 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
 
     private fun settingButtonSubmit() {
         dialogAddProductBinding.buttonDialogAddProductSubmit.setOnClickListener {
-            val productData = mapOf(
-                "0" to dialogAddProductBinding.edittextDialogAddProductName.text.toString(),
-                "1" to dialogAddProductBinding.edittextDialogAddProductSize.text.toString(),
-                "2" to dialogAddProductBinding.edittextDialogAddProductStock.text.toString(),
-                "3" to productType,
-                "4" to dialogAddProductBinding.edittextDialogAddProductColor.text.toString(),
-                "5" to "image.url"
-            )
 
-            // 리스너 실행 및 데이터 전달
-            listener.onAddProductClicked(productData, isAddPicture)
+            // 서버에서의 첨부 이미지 파일 이름
+            var serverFileName:String? = null
 
-            dismiss()
+            CoroutineScope(Dispatchers.Main).launch {
+                // 첨부된 이미지가 있다면
+                if(isAddPicture == true) {
+                    // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
+                    Tools.saveImageViewData(mainActivity, dialogAddProductBinding.imageviewDialogAddProduct, "uploadTemp.jpg")
+                    // 서버에서의 파일 이름
+                    serverFileName = "image_${System.currentTimeMillis()}.jpg"
+                    // 서버로 업로드한다.
+                    ProductDao.uploadItemsImage(mainActivity, "uploadTemp.jpg", serverFileName!!)
+                }
+
+                val productData = mapOf(
+                    "0" to dialogAddProductBinding.edittextDialogAddProductName.text.toString(),
+                    "1" to dialogAddProductBinding.edittextDialogAddProductSize.text.toString(),
+                    "2" to dialogAddProductBinding.edittextDialogAddProductStock.text.toString(),
+                    "3" to productType,
+                    "4" to dialogAddProductBinding.edittextDialogAddProductColor.text.toString(),
+                    "5" to serverFileName.toString()
+                )
+
+                // 리스너 실행 및 데이터 전달
+                listener.onAddProductClicked(productData, isAddPicture)
+
+                dismiss()
+            }
         }
     }
 
