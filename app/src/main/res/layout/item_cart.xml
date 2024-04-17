@@ -6,6 +6,10 @@
         <variable
             name="cartItemViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.cart.CartItemViewModel" />
+
+        <variable
+            name="cartParentViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.cart.CartViewModel" />
     </data>
 
     <LinearLayout
@@ -34,14 +38,15 @@
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:checked="@{cartItemViewModel.checkboxCartItemSelect}"
+                    android:checked="@={cartItemViewModel.checkboxCartItemSelect}"
+                    android:onClickListener="@{(view) -> cartParentViewModel.onItemCheckBoxChanged()}"
                     android:gravity="top"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/cardview_cart_item_thumbnail"
-                    style="@style/Widget.Material3.CardView.Outlined"
+                    style="@style/Widget.Material3.CardView.Filled"
                     android:layout_width="56dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
