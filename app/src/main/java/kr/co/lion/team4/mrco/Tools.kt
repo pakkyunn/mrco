@@ -1,8 +1,10 @@
 package kr.co.lion.team4.mrco
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Bundle
 import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
@@ -17,6 +19,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -330,23 +334,23 @@ enum class CodiMbti(var str: String){
 
 // 상민
 enum class MbtiEI(var str:String){
-    E("e"),
-    I("i")
+    E("E"),
+    I("I")
 }
 
 enum class MbtiSN(var str:String){
-    S("s"),
-    N("n")
+    S("S"),
+    N("N")
 }
 
 enum class MbtiTF(var str:String){
-    T("t"),
-    F("f")
+    T("T"),
+    F("F")
 }
 
 enum class MbtiPJ(var str:String){
-    P("p"),
-    J("j")
+    P("P"),
+    J("J")
 }
 
 // 회원 상태를 나타내는 값을 정의한다

@@ -29,6 +29,30 @@ class CoordinatorDao {
 
         }
 
+        suspend fun checkCoordiName(coodiName:String) : Boolean{
+            var chk = false
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("CoordiData")
+                // UserId 필드가 사용자가 입력한 아이디와 같은 문서들을 가져온다.
+                // whereEqualTo : 같은것
+                // whereGreaterThan : 큰것
+                // whereGreaterThanOrEqualTo : 크거나 같은 것
+                // whereLessThan : 작은 것
+                // whereLessThanOrEqualTo : 작거나 같은 것
+                // whereNotEqualTo : 다른 것
+                // 필드의 이름, 값 형태로 넣어준다
+                val queryShapshot = collectionReference.whereEqualTo("coordiName", coodiName).get().await()
+                // 반환되는 리스트에 담긴 문서 객체가 없다면 존재하는 아이디로 취급한다.
+                chk = queryShapshot.isEmpty
+            }
+            job1.join()
+
+            return chk
+        }
+
+
         // 코디네이터 시퀀스 값을 가져온다.
         suspend fun getCoordinatorSequence(): Int{
 
