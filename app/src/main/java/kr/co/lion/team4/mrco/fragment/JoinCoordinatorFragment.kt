@@ -35,11 +35,7 @@ class JoinCoordinatorFragment : Fragment() {
     // true면 활동명 중복 확인 검사를 완료한 것으로 취급한다.
     var checkCoordinatorNameDuplicate = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         //fragmentJoinCoordinatorBinding = FragmentJoinCoordinatorBinding.inflate(inflater)
         fragmentJoinCoordinatorBinding =

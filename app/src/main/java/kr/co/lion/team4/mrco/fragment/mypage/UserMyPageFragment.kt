@@ -136,10 +136,6 @@ class UserMyPageFragment : Fragment() {
             textViewMenuUserMyPage4.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT, true, true, null)
             }
-            // 코디네이터 등록 신청
-            textViewMenuUserMyPage5.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, true, true, null)
-            }
 
             // 로그아웃
             textViewMenuUserMyPage5.setOnClickListener {
