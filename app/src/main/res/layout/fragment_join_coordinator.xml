@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="코디네이터 메인 사진"
+                    android:text="코디네이터 소개 사진"
                     android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold" />

@@ -16,6 +16,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
@@ -124,6 +125,21 @@ class Tools {
 
         ///////// 카메라 관련 /////////
 
+        // 촬영된 사진이 저장될 경로를 구해서 반환하는 메서드
+        // authorities : AndroidManifest.xml에 등록한 File Provider의 이름
+        fun getPictureUri(context:Context, authorities:String):Uri{
+            // 촬영한 사진이 저장될 경로
+            // 외부 저장소 중에 애플리케이션 영역 경로를 가져온다.
+            val rootPath = context.getExternalFilesDir(null).toString()
+            // 이미지 파일명을 포함한 경로
+            val picPath = "${rootPath}/tempImage.jpg"
+            // File 객체 생성
+            val file = File(picPath)
+            // 사진이 저장된 위치를 관리할 Uri 생성
+            val contentUri = FileProvider.getUriForFile(context, authorities, file)
+
+            return contentUri
+        }
 
         ///// 카메라, 앨범 공통 ////////
         // 사진의 회전 각도값을 반환하는 메서드
@@ -215,6 +231,12 @@ class Tools {
             fileOutputStream.flush()
             fileOutputStream.close()
         }
+
+
+
+
+
+
     }
 }
 
