@@ -24,10 +24,8 @@ import java.util.*
 
 class JoinCoordinatorNextFragment : Fragment() {
     lateinit var fragmentJoinCoordinatorNextBinding: FragmentJoinCoordinatorNextBinding
-    lateinit var joinCoordinatorNextViewModel: JoinCoordinatorNextViewModel
-
     lateinit var mainActivity: MainActivity
-
+    lateinit var joinCoordinatorNextViewModel: JoinCoordinatorNextViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentJoinCoordinatorNextBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_join_coordinator_next, container, false)
         joinCoordinatorNextViewModel = JoinCoordinatorNextViewModel()
