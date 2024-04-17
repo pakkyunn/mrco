@@ -27,6 +27,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.io.FileOutputStream
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.thread
@@ -98,6 +99,15 @@ class Tools {
             val date = SimpleDateFormat("yyyy-MM-dd").format(calendar.time)
 
             return date
+        }
+
+        // 가격(Int)을 1000 단위 표기법으로 변환
+        // 100000 => return 100,000원
+        fun gettingPriceDecimalFormat(price: Int) : String{
+            val decimalFormat = DecimalFormat("#,###")
+            val priceText = "${decimalFormat.format(price)}원"
+
+            return priceText
         }
 
         ///////// 카메라 관련 /////////
