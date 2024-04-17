@@ -68,21 +68,25 @@ class MbtiBottomSheetViewModel : ViewModel() {
     }
 
     // MBTI값을 반환하는 메서드
-    fun gettingMbtiEI():MbtiEI = when(toggleButtonEI.value){
+    fun gettingMbtiEI():MbtiEI? = when(toggleButtonEI.value){
         R.id.buttonE -> MbtiEI.E
-        else -> MbtiEI.I
+        R.id.buttonI -> MbtiEI.I
+        else -> null
     }
-    fun gettingMbtiSN():MbtiSN = when(toggleButtonSN.value){
+    fun gettingMbtiSN():MbtiSN? = when(toggleButtonSN.value){
         R.id.buttonS -> MbtiSN.S
-        else -> MbtiSN.N
+        R.id.buttonN -> MbtiSN.N
+        else -> null
     }
-    fun gettingMbtiTF():MbtiTF = when(toggleButtonTF.value){
+    fun gettingMbtiTF():MbtiTF? = when(toggleButtonTF.value){
         R.id.buttonT -> MbtiTF.T
-        else -> MbtiTF.F
+        R.id.buttonF -> MbtiTF.F
+        else -> null
     }
-    fun gettingMbtiPJ():MbtiPJ = when(toggleButtonPJ.value){
+    fun gettingMbtiPJ():MbtiPJ? = when(toggleButtonPJ.value){
         R.id.buttonP -> MbtiPJ.P
-        else -> MbtiPJ.J
+        R.id.buttonJ -> MbtiPJ.J
+        else -> null
     }
 
     companion object {
