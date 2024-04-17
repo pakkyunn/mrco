@@ -5,17 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiBottomSheetBinding
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
-import kr.co.lion.team4.mrco.viewmodel.JoinCoordinatorViewModel
 import kr.co.lion.team4.mrco.viewmodel.MbtiBottomSheetViewModel
 
 
-class MbtiBottomSheetFragment : BottomSheetDialogFragment() {
+class MbtiBottomSheetFragment(var mbtiEditText: MutableLiveData<String>) : BottomSheetDialogFragment() {
 
     lateinit var fragmentMbtiBottomSheetBinding: FragmentMbtiBottomSheetBinding
     lateinit var mainActivity: MainActivity
@@ -30,6 +30,7 @@ class MbtiBottomSheetFragment : BottomSheetDialogFragment() {
         mbtiBottomSheetViewModel = MbtiBottomSheetViewModel()
         fragmentMbtiBottomSheetBinding.mbtiBottomSheetViewModel = mbtiBottomSheetViewModel
 
+        selectMbti()
         return fragmentMbtiBottomSheetBinding.root
     }
 
@@ -58,28 +59,27 @@ class MbtiBottomSheetFragment : BottomSheetDialogFragment() {
         bottomSheet.setBackgroundResource(R.drawable.bottom_sheet_background)
     }
 
-//    fun selectMbti(){
-//        fragmentMbtiBottomSheetBinding.apply {
-//            buttonMbtiBottomSheetCancel.setOnClickListener {
-//                dismiss()
-//            }
-//            buttonMbtiBottomSheetSubmit.setOnClickListener {
-//                val selectedEI = mbtiBottomSheetViewModel?.settingMbtiEI(mbtiBottomSheetViewModel.gettingMbtiEI()).toString()
-//                val selectedSN = mbtiBottomSheetViewModel?.settingMbtiSN(mbtiBottomSheetViewModel.gettingMbtiSN()).toString()
-//                val selectedTF = mbtiBottomSheetViewModel?.settingMbtiTF(mbtiBottomSheetViewModel.gettingMbtiTF()).toString()
-//                val selectedPJ = mbtiBottomSheetViewModel?.settingMbtiPJ(mbtiBottomSheetViewModel.gettingMbtiPJ()).toString()
-//
-//                if (selectedEI.isNotEmpty()&&selectedSN.isNotEmpty()&&selectedTF.isNotEmpty()&&selectedPJ.isNotEmpty()){
-//
-//                    val selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
-//
-//                    JoinCoordinatorFragment().fragmentJoinCoordinatorBinding.textFieldJoinCoordinatorMBTI.setText(selectedMbti)
-//                    dismiss()
-//                }else{
-//                    Tools.showErrorDialog(mainActivity,toggleButtonEI,"MBTI 입력 오류","MBTI 선택이 완료되지 않았습니다.")
-//                }
-//            }
-//        }
-//    }
+    fun selectMbti(){
+        fragmentMbtiBottomSheetBinding.apply {
+            buttonMbtiBottomSheetCancel.setOnClickListener {
+                dismiss()
+            }
+            buttonMbtiBottomSheetSubmit.setOnClickListener {
+                val selectedEI = mbtiBottomSheetViewModel?.gettingMbtiEI()?.str
+                val selectedSN = mbtiBottomSheetViewModel?.gettingMbtiSN()?.str
+                val selectedTF = mbtiBottomSheetViewModel?.gettingMbtiTF()?.str
+                val selectedPJ = mbtiBottomSheetViewModel?.gettingMbtiPJ()?.str
+
+                if (!selectedEI.isNullOrEmpty() && !selectedSN.isNullOrEmpty() && !selectedTF.isNullOrEmpty() && !selectedPJ.isNullOrEmpty()){
+                    val selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
+                    mbtiEditText.value = selectedMbti
+
+                    dismiss()
+                }else{
+                    Tools.showErrorDialog(mainActivity,toggleButtonEI,"MBTI 입력 오류","MBTI 선택이 완료되지 않았습니다.")
+                }
+            }
+        }
+    }
 
 }

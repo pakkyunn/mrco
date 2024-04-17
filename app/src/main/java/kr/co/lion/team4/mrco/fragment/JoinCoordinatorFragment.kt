@@ -139,7 +139,7 @@ class JoinCoordinatorFragment : Fragment() {
     fun showMbtiBottomSheet() {
         fragmentJoinCoordinatorBinding.apply {
             textFieldJoinCoordinatorMBTI.setOnClickListener {
-                val bottomSheet = MbtiBottomSheetFragment()
+                val bottomSheet = MbtiBottomSheetFragment(joinCoordinatorViewModel?.textFieldJoinCoordinatorMBTI!!)
                 bottomSheet.show(mainActivity.supportFragmentManager, "MbtiBottomSheet")
             }
         }
@@ -253,7 +253,7 @@ class JoinCoordinatorFragment : Fragment() {
 
         // BottomSheet를 띄워준다.
         fun showMbtiBottomSheet() {
-            val mbtiBottomSheetFragment = MbtiBottomSheetFragment()
+            val mbtiBottomSheetFragment = MbtiBottomSheetFragment(joinCoordinatorViewModel?.textFieldJoinCoordinatorMBTI!!)
             mbtiBottomSheetFragment.show(mainActivity.supportFragmentManager, "MbtiBottomSheet")
         }
 
