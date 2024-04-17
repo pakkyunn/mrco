@@ -51,9 +51,17 @@ class CartFragment : Fragment() {
     fun toolbarSetting(){
         fragmentCartBinding.toolbarCart.apply {
             // 네비게이션
-            setNavigationIcon(R.drawable.arrow_back_24px)
             setNavigationOnClickListener {
                 backProcess()
+            }
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    // 홈 클릭 시
+                    R.id.cart_toolbar_home -> {
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, true, true, null)
+                    }
+                }
+                true
             }
         }
     }

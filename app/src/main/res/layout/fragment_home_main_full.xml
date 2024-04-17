@@ -14,13 +14,15 @@
             android:id="@+id/toolbarMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:background="@color/white"
             android:backgroundTint="#FFFFFF"
             android:minHeight="?attr/actionBarSize"
             android:theme="@style/ToolbarTheme"
             app:menu="@menu/menu_main_home_toolbar"
             app:title="MRCO"
-            app:titleMarginStart="30dp"
+            app:titleMarginStart="20dp"
             app:titleTextColor="#002254" />
 
         <com.google.android.material.tabs.TabLayout
