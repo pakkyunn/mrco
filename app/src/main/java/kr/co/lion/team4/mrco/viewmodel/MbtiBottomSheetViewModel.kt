@@ -37,7 +37,8 @@ class MbtiBottomSheetViewModel : ViewModel() {
     fun settingMbtiSN(mbtiSN: MbtiSN){
         when(mbtiSN){
             MbtiSN.S -> {
-                toggleButtonSN.value = R.id.buttonS            }
+                toggleButtonSN.value = R.id.buttonS
+            }
             MbtiSN.N -> {
                 toggleButtonSN.value = R.id.buttonN
             }
@@ -64,6 +65,24 @@ class MbtiBottomSheetViewModel : ViewModel() {
                 toggleButtonPJ.value = R.id.buttonJ
             }
         }
+    }
+
+    // MBTI값을 반환하는 메서드
+    fun gettingMbtiEI():MbtiEI = when(toggleButtonEI.value){
+        R.id.buttonE -> MbtiEI.E
+        else -> MbtiEI.I
+    }
+    fun gettingMbtiSN():MbtiSN = when(toggleButtonSN.value){
+        R.id.buttonS -> MbtiSN.S
+        else -> MbtiSN.N
+    }
+    fun gettingMbtiTF():MbtiTF = when(toggleButtonTF.value){
+        R.id.buttonT -> MbtiTF.T
+        else -> MbtiTF.F
+    }
+    fun gettingMbtiPJ():MbtiPJ = when(toggleButtonPJ.value){
+        R.id.buttonP -> MbtiPJ.P
+        else -> MbtiPJ.J
     }
 
     companion object {
