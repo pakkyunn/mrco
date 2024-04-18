@@ -526,6 +526,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 게시글 시퀀스 값을 업데이트 한다.
             ProductDao.updateProductSequence(productSequence + 1)
 
+            // Chip 클릭시 정보 동기화
+            settingChipEvent()
+
             // 업로드할 정보를 담아준다.
             val productIdx = productSequence + 1
             val categoryId = CategoryId.TPO.str
