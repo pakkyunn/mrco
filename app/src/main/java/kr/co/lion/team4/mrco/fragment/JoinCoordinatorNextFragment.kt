@@ -32,6 +32,8 @@ class JoinCoordinatorNextFragment : Fragment() {
         fragmentJoinCoordinatorNextBinding.joinCoordinatorNextViewModel = joinCoordinatorNextViewModel
         fragmentJoinCoordinatorNextBinding.lifecycleOwner = this
 
+        mainActivity = activity as MainActivity
+
         settingButtonPrevious() // 뒤로가기 버튼
         // settingButtonJoinCoordinatorNextSubmit() // 신청완료 버튼
 

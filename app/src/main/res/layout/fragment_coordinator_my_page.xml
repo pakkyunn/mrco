@@ -52,20 +52,6 @@
                         app:layout_constraintVertical_bias="0.0"
                         app:srcCompat="@drawable/iu_image8" />
 
-                    <Button
-                        android:id="@+id/iconButtonEditCoordinatorMyPage"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="12dp"
-                        android:backgroundTint="#152F7E"
-                        android:text="코디네이터 정보 수정"
-                        android:textSize="16sp"
-                        app:cornerRadius="10dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.457"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage" />
-
                     <TextView
                         android:id="@+id/textViewNameCoordinatorMyPage"
                         android:layout_width="wrap_content"
@@ -77,52 +63,83 @@
                         app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
                         app:layout_constraintTop_toTopOf="@+id/imageViewCoordinatorMyPage" />
 
-                    <TextView
-                        android:id="@+id/textViewGenderCoordinatorMyPage"
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="여성"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:orientation="horizontal"
                         app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewNameCoordinatorMyPage" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNameCoordinatorMyPage">
 
-                    <TextView
-                        android:id="@+id/textViewMbtiCoordinatorMyPage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:text="ISFP"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewGenderCoordinatorMyPage" />
+                        <TextView
+                            android:id="@+id/textViewGenderCoordinatorMyPage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="여성"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:text=","
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:id="@+id/textViewMbtiCoordinatorMyPage2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="ISFP"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            app:layout_constraintStart_toEndOf="@+id/textViewGenderCoordinatorMyPage"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewNameCoordinatorMyPage" />
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/textViewIntroductionCoordinatorMyPage"
-                        android:layout_width="0dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="소개글 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                        android:maxLines="6"
+                        android:text="코디네이터\n소개글이\n들어가는\n공간입니다.\n최대 100자,\n최대 6줄입니다."
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewMbtiCoordinatorMyPage" />
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-                    <!--                    <Button-->
-                    <!--                        android:id="@+id/iconButtonEditCoordinatorMyPage"-->
-                    <!--                        style="?attr/materialIconButtonStyle"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginTop="8dp"-->
-                    <!--                        android:layout_marginEnd="8dp"-->
-                    <!--                        app:icon="@drawable/settings_24px"-->
-                    <!--                        app:iconTint="@color/black"-->
-                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                    <!--                        app:layout_constraintTop_toTopOf="parent" />-->
+                    <Button
+                        android:id="@+id/iconButtonEditCoordinatorMyPage"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:backgroundTint="#152F7E"
+                        android:text="프로필 수정"
+                        android:textSize="16sp"
+                        app:cornerRadius="10dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.457"
+                        app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage" />
+<!--                                        <Button-->
+<!--                                            android:id="@+id/iconButtonEditCoordinatorMyPage"-->
+<!--                                            style="?attr/materialIconButtonStyle"-->
+<!--                                            android:layout_width="wrap_content"-->
+<!--                                            android:layout_height="wrap_content"-->
+<!--                                            android:layout_marginTop="8dp"-->
+<!--                                            android:layout_marginEnd="8dp"-->
+<!--                                            app:icon="@drawable/settings_24px"-->
+<!--                                            app:iconTint="@color/black"-->
+<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                            app:layout_constraintTop_toTopOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
