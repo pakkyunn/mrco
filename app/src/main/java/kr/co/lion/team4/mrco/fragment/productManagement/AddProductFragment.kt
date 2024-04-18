@@ -348,6 +348,8 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 게시글 시퀀스 값을 업데이트 한다.
             ProductDao.updateProductSequence(productSequence + 1)
 
+
+            // 커밋 생성용 주석
             // Chip 버튼의 입력상태를 받아온다.
             settingChipEvent()
 
