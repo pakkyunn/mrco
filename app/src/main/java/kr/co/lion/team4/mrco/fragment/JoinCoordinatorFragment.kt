@@ -1,8 +1,10 @@
 package kr.co.lion.team4.mrco.fragment
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
@@ -17,6 +19,7 @@ import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.view.size
@@ -25,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
@@ -104,21 +108,58 @@ class JoinCoordinatorFragment : Fragment() {
         joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent.value = false
     }
 
+    // 활동명 중복확인
     fun settingButtonCheckName() {
         fragmentJoinCoordinatorBinding.apply {
             buttonJoinCoordinatorCheckName.setOnClickListener {
                 val coordiName = joinCoordinatorViewModel!!.textFieldJoinCoordinatorName.value
 
-                if (10 < coordiName!!.length) {
-                    // 활동명은 10자 이내(공백포함)로 생성 가능합니다. 문구 출력
+                if (coordiName.isNullOrEmpty()) { // 활동명이 입력되지 않은 경우)
+                    Tools.showErrorDialog(
+                        mainActivity, fragmentJoinCoordinatorBinding.textFieldJoinCoordinatorName,
+                        "활동명 입력 오류", "활동명을 입력해주세요"
+                    )
+                    return@setOnClickListener
+                }
+                if (10 < coordiName.length) { // 활동명의 기준에 적합하지 않은 경우
+                    Tools.showErrorDialog(
+                        mainActivity, fragmentJoinCoordinatorBinding.textFieldJoinCoordinatorName,
+                        "활동명 입력 오류", "활동명은 공백 포함 10자 이내로 생성 가능합니다"
+                    )
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
                         coordiNameChk =
                             CoordinatorDao.checkCoordiName(joinCoordinatorViewModel?.textFieldJoinCoordinatorName?.value!!)
-                        if (coordiNameChk == false) {
-                            // 중복된 활동명이 있다는 문구 출력
-                        } else {
-                            // 사용 가능한 활동명이라는 문구 출력과 함께 editable과 clickable을 false로 설정 -> 중복확인 클릭 후 수정 방지
+                        if (coordiNameChk == false) {  // 입력한 활동명이 중복된 경우
+                            joinCoordinatorViewModel?.textFieldJoinCoordinatorName?.value = ""
+                            Tools.showErrorDialog( mainActivity, fragmentJoinCoordinatorBinding.textFieldJoinCoordinatorName,
+                                "활동명 중복", "존재하는 활동명입니다\n다른 활동명을 입력해주세요" )
+                        }
+                        // 중복되지 않은 활동명을 입력한 경우
+                        else {
+                            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity, R.style.MaterialAlertDialog_Theme)
+                            materialAlertDialogBuilder.setMessage("사용 가능한 활동명 입니다")
+                            // 다른 활동명으로 변경하고 싶은 경우
+                            materialAlertDialogBuilder.setNegativeButton("취소") { dialogInterface: DialogInterface, i: Int ->
+                                coordiNameChk = false // 활동명을 변경할 수 있게 해준다.
+                            }
+                            // 활동명 선택한 경우
+                            materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
+                                // 사용 가능한 활동명이라는 문구 출력과 함께 editable과 clickable을 false로 설정 -> 중복확인 클릭 후 수정 방지
+                                fragmentJoinCoordinatorBinding.apply {
+                                    textFieldJoinCoordinatorName.apply {
+                                        isEnabled = false
+                                        isClickable = false
+                                    }
+                                    buttonJoinCoordinatorCheckName.apply {
+                                        isEnabled = false // 중복확인 버튼을 클릭할 수 없게 설정
+                                        // 버튼의 배경색과 글자색을 변경
+                                        backgroundTintList = ContextCompat.getColorStateList(mainActivity, R.color.gray)
+                                        setTextColor(Color.parseColor("#E1E3E5"))
+                                    }
+                                }
+                            }
+                            materialAlertDialogBuilder.show()
                         }
                     }
                 }

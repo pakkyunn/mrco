@@ -3,30 +3,21 @@ package kr.co.lion.team4.mrco.fragment.productManagement
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.google.firebase.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import kr.co.lion.team4.mrco.CategoryId
 import kr.co.lion.team4.mrco.CodiMbti
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductDetailViewModel
@@ -64,6 +55,8 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
     // Activity 실행을 위한 런처
     lateinit var albumLauncher: ActivityResultLauncher<Intent>
+
+    lateinit var bitmap: Bitmap
 
     // 개별 상품 추가 -> 이미지를 첨부한 적이 있는지...
     var isProductAddPicture = false
@@ -116,6 +109,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 다이얼로그페이지 리스너 등록
             dialog.setListener(this)
             dialog.show(childFragmentManager, "AddProductDialog")
+            Log.d("test1234", "AddProductFragment - 추가 등록 버튼(Dialog) : ${individualProductData}")
         }
     }
 
@@ -189,7 +183,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                 val chk = checkInputForm()
 
                 if(chk == true) {
-                    Log.d("test1234", "${individualProductData}")
+                    Log.d("test1234", "AddProductFragment - 등록 버튼 : ${individualProductData}")
                     uploadProductData()
                 }
             }
@@ -294,7 +288,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                 },
                 onFailure = { exception ->
                     // 다운로드 중에 오류가 발생하면 로그에 오류를 출력합니다.
-                    Log.e("test1234", "Error downloading image: $exception")
+                    Log.e("test1234", "리사이클러 뷰 내부: Error downloading image: $exception")
                 }
             )
 
@@ -324,8 +318,8 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     override fun onAddProductClicked(productData: Map<String, String>, isAddPicture: Boolean) {
         individualProductData.add(productData)
         isProductAddPicture = isAddPicture
-        Log.d("test1234", "개별 상품 사진 등록 여부: $isProductAddPicture")
-        Log.d("test1234", "상품 이미지 경로 - ${productData["5"]}")
+        Log.d("test1234", "onAddProductClicked: 개별 상품 사진 등록 여부: $isProductAddPicture")
+        Log.d("test1234", "onAddProductClicked: 상품 이미지 경로 - ${productData["5"]}")
 
         // 리사이클러 뷰 초기화 
         fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
@@ -414,7 +408,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         val storageRef = storage.reference.child("product_image/items/$imageFileName")
 
         // 이미지를 다운로드하여 byte 배열로 가져옵니다.
-        storageRef.getBytes(512 * 512) // 최대 512KB
+        storageRef.getBytes(256 * 256) // 최대 256KB
             .addOnSuccessListener { bytes ->
                 // byte 배열을 Bitmap으로 변환합니다.
                 val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
