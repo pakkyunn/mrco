@@ -1,23 +1,22 @@
 package kr.co.lion.team4.mrco.fragment.mbtiproductmain
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentLikeProductBinding
+import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductMainBinding
-import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
-import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
 import kr.co.lion.team4.mrco.databinding.RowMbtiProductMainBinding
-import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
-import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
+import kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.MbtiProductMainViewModel
 import kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.RowMbtiProductMainViewModel
 
 class MbtiProductMainFragment : Fragment() {
@@ -25,12 +24,16 @@ class MbtiProductMainFragment : Fragment() {
     lateinit var fragmentMbtiProductMainBinding: FragmentMbtiProductMainBinding
     lateinit var mainActivity: MainActivity
 
-    var MBTI: String = "ISFP"
+
+    lateinit var mbtiProductMainViewModel: MbtiProductMainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        fragmentMbtiProductMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_mbti_product_main, container, false)
+        mbtiProductMainViewModel = MbtiProductMainViewModel()
+        fragmentMbtiProductMainBinding.mbtiProductMainViewModel = MbtiProductMainViewModel()
+        fragmentMbtiProductMainBinding.lifecycleOwner = this
 
-        fragmentMbtiProductMainBinding = FragmentMbtiProductMainBinding.inflate(inflater)
         mainActivity = activity as MainActivity
 
         // 툴바, 하단바, 탭 관련
@@ -41,6 +44,8 @@ class MbtiProductMainFragment : Fragment() {
 
         // 버튼
         settingButton()
+
+        settingTextField()
 
         return fragmentMbtiProductMainBinding.root
     }
@@ -133,12 +138,19 @@ class MbtiProductMainFragment : Fragment() {
 
     // MBTI를 설정할 BottomSheet를 띄워준다.
     fun showMBTIBottomSheet(){
-        val mbtiProductBottomFragment = MbtiProductBottomFragment()
+        val mbtiProductBottomFragment = MbtiProductBottomFragment(mbtiProductMainViewModel.textViewMbtiProductMainMBTI)
         mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
+        Log.d("mbtiProductMain", "현재 MBTI: ${mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value}")
     }
 
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.MBTI_PRODUCT_MAIN)
+    }
+
+    // 초기설정
+    fun settingTextField(){
+        // 입력 요소들을 초기화 한다.
+        mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = "ISFP"
     }
 }
