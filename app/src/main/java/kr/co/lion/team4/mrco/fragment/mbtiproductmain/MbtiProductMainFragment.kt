@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.mbtiproductmain
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -45,7 +46,11 @@ class MbtiProductMainFragment : Fragment() {
         // 버튼
         settingButton()
 
-        settingTextField()
+        // MBTI TextView 관찰
+        mbtiProductMainViewModel.textViewMbtiProductMainMBTI.observe(viewLifecycleOwner) { mbti ->
+            // MBTI TextView 업데이트
+            fragmentMbtiProductMainBinding.textViewMbti.text = mbti
+        }
 
         return fragmentMbtiProductMainBinding.root
     }
@@ -138,19 +143,12 @@ class MbtiProductMainFragment : Fragment() {
 
     // MBTI를 설정할 BottomSheet를 띄워준다.
     fun showMBTIBottomSheet(){
-        val mbtiProductBottomFragment = MbtiProductBottomFragment(mbtiProductMainViewModel.textViewMbtiProductMainMBTI)
+        val mbtiProductBottomFragment = MbtiProductBottomFragment(mbtiProductMainViewModel?.textViewMbtiProductMainMBTI!!)
         mbtiProductBottomFragment.show(mainActivity.supportFragmentManager, "MBTIBottomSheet")
-        Log.d("mbtiProductMain", "현재 MBTI: ${mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value}")
     }
 
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.MBTI_PRODUCT_MAIN)
-    }
-
-    // 초기설정
-    fun settingTextField(){
-        // 입력 요소들을 초기화 한다.
-        mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = "ISFP"
     }
 }

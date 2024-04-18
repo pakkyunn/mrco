@@ -657,10 +657,11 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                     if (imageBitmaps.size > currentPosition) { imageBitmaps[currentPosition] = bitmap3 }
                     else { imageBitmaps.add(bitmap3) }
 
+                    Log.d("test1234", "이미지 배열: imageBitmaps")
+
                     // 서버에서의 첨부 이미지 파일 이름
                     var serverFileName = "image_individual_item${currentPosition}_${System.currentTimeMillis()}.jpg"
                     imagePath.add(serverFileName)
-                    // Log.d("test1234", "개별 상품 이미지 경로 배열: $imagePath")
 
                     // 리사이클러뷰를 새로 고침하여 업데이트
                     fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
