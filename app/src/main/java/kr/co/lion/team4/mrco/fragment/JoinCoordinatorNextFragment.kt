@@ -34,10 +34,20 @@ class JoinCoordinatorNextFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        settingJoinCoordinatorNextToolbar()
         settingButtonPrevious() // 뒤로가기 버튼
         // settingButtonJoinCoordinatorNextSubmit() // 신청완료 버튼
 
         return fragmentJoinCoordinatorNextBinding.root
+    }
+
+    fun settingJoinCoordinatorNextToolbar(){
+        fragmentJoinCoordinatorNextBinding.toolbarJoinCoordinatorNext.apply {
+            // 뒤로가기 아이콘
+            setNavigationOnClickListener {
+                backProcess()
+            }
+        }
     }
 
     // 신청완료 버튼

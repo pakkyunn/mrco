@@ -23,7 +23,11 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:backgroundTint="#FFFFFF"
-            app:title="MRCO 코디네이터 등록 신청(계속)"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:navigationIconTint="@color/black"
+            app:title="MRCO 코디네이터 등록 신청"
             app:titleCentered="true"
             app:titleTextColor="@color/black" />
 
@@ -41,10 +45,10 @@
                     android:id="@+id/textView30"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
                     android:text="배송정보"
                     android:textColor="@color/black"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -54,7 +58,7 @@
                     android:layout_marginTop="16dp"
                     android:text="출고지 주소"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -64,7 +68,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="주소입력"
@@ -89,7 +93,7 @@
                         android:gravity="center_vertical|end"
                         android:minHeight="68dip"
                         android:text="주소검색"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -116,7 +120,7 @@
                     android:layout_marginTop="16dp"
                     android:text="반품/교환지 주소"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -126,7 +130,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="주소 등록"
@@ -151,7 +155,7 @@
                         android:gravity="center_vertical|end"
                         android:minHeight="68dip"
                         android:text="주소검색"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -179,7 +183,7 @@
                     android:layout_marginTop="32dp"
                     android:text="정산정보"
                     android:textColor="@color/black"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -189,7 +193,7 @@
                     android:layout_marginTop="16dp"
                     android:text="정산대금 입금계좌"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -255,7 +259,7 @@
                         android:layout_weight="1"
                         android:text="뒤로가기"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:cornerRadius="10dp" />
 
                     <Button
@@ -266,7 +270,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="@color/black"
                         android:text="신청완료"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
