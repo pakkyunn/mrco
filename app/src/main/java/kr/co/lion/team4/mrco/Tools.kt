@@ -213,11 +213,9 @@ class Tools {
         }
 
         // 이미지뷰의 이미지를 추출해 로컬에 저장한다.
-        fun saveImageViewData(context: Context, imageView: ImageView, fileName: String){
+        fun saveImageViewIndividualItemData(context: Context, bitmap: Bitmap, fileName: String) {
             // 외부 저장소까지의 경로를 가져온다.
             val filePath = context.getExternalFilesDir(null).toString()
-            // 이미지 뷰에서 BitmapDrawable 객체를 추출한다.
-            val bitmapDrawable = imageView.drawable as BitmapDrawable
 
             // 로컬에 저장할 경로
             val file = File("${filePath}/${fileName}")
@@ -227,7 +225,7 @@ class Tools {
             // 첫 번째 : 이미지 데이터 포멧(JPEG, PNG, WEBP_LOSSLESS, WEBP_LOSSY)
             // 두 번째 : 이미지의 퀄리티
             // 세 번째 : 이미지 데이터를 저장할 파일과 연결된 스트림
-            bitmapDrawable.bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
             fileOutputStream.flush()
             fileOutputStream.close()
         }

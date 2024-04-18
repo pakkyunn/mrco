@@ -13,7 +13,7 @@ data class ProductModel(
     var coordiGender: Int,
     var coordiText: String,
     var price : Int,
-    var coordiItem: ArrayList<Map<String, String>>, // List, Map
+    var coordiItem: ArrayList<MutableMap<String, String>>, // List, Map
     var coordiMBTI: String,
     var coordiTPO: Int, // Enum
     var coordiSeason: Int, // Enum
