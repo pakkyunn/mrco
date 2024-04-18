@@ -30,7 +30,6 @@ import kr.co.lion.team4.mrco.databinding.DialogAddProductBinding
 import kr.co.lion.team4.mrco.viewmodel.productManagement.DialogAddProductViewModel
 
 
-
 class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
 
     // Activity 실행을 위한 런처
@@ -133,6 +132,7 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
                         serverFileName = "image_${System.currentTimeMillis()}.jpg"
                         // 서버로 업로드한다.
                         ProductDao.uploadItemsImage(mainActivity, "uploadTemp.jpg", serverFileName!!)
+                        Log.d("test1234", "DialogFragment - 사진 서버로 업로드 완료")
                     }
 
                     val productData = mapOf(
@@ -145,6 +145,7 @@ class AddProductDialog(val deviceWidth : Int) : DialogFragment() {
                     )
 
                     // 리스너 실행 및 데이터 전달
+                    Log.d("test1234", "DialogFragment - 리스너 실행 및 데이터 전달")
                     listener.onAddProductClicked(productData, isAddPicture)
 
                     dismiss()
