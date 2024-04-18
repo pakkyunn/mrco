@@ -1,23 +1,27 @@
 package kr.co.lion.team4.mrco.model
 
 import kr.co.lion.team4.mrco.CategoryId
+import kr.co.lion.team4.mrco.CategoryIdSubMOOD
+import kr.co.lion.team4.mrco.CategoryIdSubSEASON
+import kr.co.lion.team4.mrco.CategoryIdSubTPO
 import kr.co.lion.team4.mrco.CodiMbti
+import kr.co.lion.team4.mrco.Gender
 
 data class ProductModel(
     var productIdx : Int,
     var categoryId : String, // enum
     var coordinatorIdx: Int,
     var coordiName: String,
-    var coordiImage: String, // Map
+    var coordiImage: Map<Int, String>, // Map
     var codiMainImage: String,
     var coordiGender: Int,
     var coordiText: String,
     var price : Int,
     var coordiItem: ArrayList<Map<String, String>>, // List, Map
     var coordiMBTI: String,
-    var coordiTPO: Int, // Enum
-    var coordiSeason: Int, // Enum
-    var coordiMood: Int, // List<Enum>
+    var coordiTPO: CategoryIdSubTPO?, // Enum
+    var coordiSeason: CategoryIdSubSEASON?, // Enum
+    var coordiMood: CategoryIdSubMOOD?, // List<Enum>
     var coordiState: Int,
     var coordiWriteDate: String
 ) {
@@ -26,16 +30,16 @@ data class ProductModel(
         CategoryId.TPO.str,
         0,
         "",
-        "",
+        mapOf(),
         "",
         0,
         "",
         0,
         ArrayList(),
         CodiMbti.INFP.str,
-        0,
-        0,
-        0,
+        CategoryIdSubTPO.DEFAULT,
+        CategoryIdSubSEASON.DEFAULT,
+        CategoryIdSubMOOD.DEFAULT,
         0,
         "")
 }
