@@ -12,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductBottomBinding
 
 class MbtiProductBottomFragment : BottomSheetDialogFragment() {
@@ -75,4 +76,27 @@ class MbtiProductBottomFragment : BottomSheetDialogFragment() {
         // 세로 길이를 반환
         return displayMetrics.heightPixels
     }
+
+//    fun selectMbti(){
+//        fragmentMbtiProductBottomBinding.apply {
+//            buttonMbtiBottomSheetCancel.setOnClickListener {
+//                dismiss()
+//            }
+//            buttonMbtiBottomSheetSubmit.setOnClickListener {
+//                val selectedEI = mbtiBottomSheetViewModel?.gettingMbtiEI()?.str
+//                val selectedSN = mbtiBottomSheetViewModel?.gettingMbtiSN()?.str
+//                val selectedTF = mbtiBottomSheetViewModel?.gettingMbtiTF()?.str
+//                val selectedPJ = mbtiBottomSheetViewModel?.gettingMbtiPJ()?.str
+//
+//                if (!selectedEI.isNullOrEmpty() && !selectedSN.isNullOrEmpty() && !selectedTF.isNullOrEmpty() && !selectedPJ.isNullOrEmpty()){
+//                    val selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
+//                    mbtiEditText.value = selectedMbti
+//
+//                    dismiss()
+//                }else{
+//                    Tools.showErrorDialog(mainActivity,toggleButtonEI,"MBTI 입력 오류","MBTI 선택이 완료되지 않았습니다.")
+//                }
+//            }
+//        }
+//    }
 }
