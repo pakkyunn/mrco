@@ -1,20 +1,16 @@
 package kr.co.lion.team4.mrco.fragment
 
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageDecoder
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -34,7 +30,6 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.dao.CoordinatorDao
-import kr.co.lion.team4.mrco.databinding.FragmentCameraAlbumBottomSheetBinding
 import kr.co.lion.team4.mrco.databinding.FragmentJoinCoordinatorBinding
 import kr.co.lion.team4.mrco.viewmodel.JoinCoordinatorViewModel
 import java.io.File
@@ -51,8 +46,11 @@ class JoinCoordinatorFragment : Fragment() {
     var coordiNameChk: Boolean = false
 
     // Activity 실행을 위한 런처
-//    lateinit var cameraLauncher: ActivityResultLauncher<Intent>
     lateinit var albumLauncher: ActivityResultLauncher<Intent>
+
+    // 버튼 분기를 위한 객체
+    var button = 0
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -75,7 +73,7 @@ class JoinCoordinatorFragment : Fragment() {
 
         settingButtonNext()
 
-        settingAlbumLauncher(fragmentJoinCoordinatorBinding.imageJoinCoordinatorPhoto)
+        settingAlbumLauncher()
 
         settingButtonCoordinatorPhoto()
         settingButtonCoordinatorCertification()
@@ -169,9 +167,9 @@ class JoinCoordinatorFragment : Fragment() {
 
     fun settingButtonCoordinatorPhoto() {
         fragmentJoinCoordinatorBinding.apply {
-            buttonCoordinatorImage.setOnClickListener {
+            buttonCoordinatorPhoto.setOnClickListener {
                 // 코디네이터 소개 사진 첨부
-                settingAlbumLauncher(imageJoinCoordinatorPhoto)
+                button = R.id.buttonCoordinatorPhoto
                 settingAddPhotoButton()
             }
         }
@@ -179,9 +177,9 @@ class JoinCoordinatorFragment : Fragment() {
 
     fun settingButtonCoordinatorCertification() {
         fragmentJoinCoordinatorBinding.apply {
-            buttonJoinCoordinatorCertificationSubmit.setOnClickListener {
+            buttonCoordinatorCertification.setOnClickListener {
                 // 스타일리스트 자격증 사진 첨부
-//                settingAlbumLauncher(imageJoinCoordinatorCertification)
+                button = R.id.buttonCoordinatorCertification
                 settingAddPhotoButton()
             }
         }
@@ -198,10 +196,10 @@ class JoinCoordinatorFragment : Fragment() {
 
     fun settingButtonCoordinatorBizLicenseSubmit() {
         fragmentJoinCoordinatorBinding.apply {
-            buttonJoinCoordinatorBizLicenseSubmit.setOnClickListener {
+            buttonCoordinatorBizLicense.setOnClickListener {
                 // 사업자 등록 증명서 사진 첨부
-//                showCameraAlbumBottomSheet()
-//                settingAlbumLauncher(imageJoinCoordinatorBizLicense)
+                button = R.id.buttonCoordinatorBizLicense
+                settingAddPhotoButton()
             }
         }
     }
@@ -299,15 +297,15 @@ class JoinCoordinatorFragment : Fragment() {
         val coordiName = joinCoordinatorViewModel.textFieldJoinCoordinatorName.value!!
         // coordiNameChk
         val coordiIntro = joinCoordinatorViewModel.textFieldJoinCoordinatorIntro.value!!
-        val coordiPhoto = fragmentJoinCoordinatorBinding.imageJoinCoordinatorPhoto
+        val coordiPhoto = fragmentJoinCoordinatorBinding.imageViewJoinCoordinatorPhoto
         val coordiCertifiPhoto =
-            fragmentJoinCoordinatorBinding.imageJoinCoordinatorCertification
+            fragmentJoinCoordinatorBinding.imageViewJoinCoordinatorCertification
         val coordiCertifiNum =
             joinCoordinatorViewModel.textFieldJoinCoordinatorCertificationNumber.value!!
         val coordiPortfolio =
             fragmentJoinCoordinatorBinding.recyclerViewJoinCoordinatorPortfolio.size
         val coordiBizLicensePhoto =
-            fragmentJoinCoordinatorBinding.imageJoinCoordinatorBizLicense
+            fragmentJoinCoordinatorBinding.imageViewJoinCoordinatorBizLicense
         val coordiBizLicenseNum =
             joinCoordinatorViewModel.textFieldJoinCoordinatorBizLicenseNumber.value!!
         val coordiMBTI = joinCoordinatorViewModel.textFieldJoinCoordinatorMBTI.value!!
@@ -390,48 +388,61 @@ class JoinCoordinatorFragment : Fragment() {
 
 
     // 앨범 런처 설정
-    fun settingAlbumLauncher(imageView: ImageView) {
+    fun settingAlbumLauncher() {
         // 앨범 실행을 위한 런처
         val contract = ActivityResultContracts.StartActivityForResult()
-        albumLauncher = registerForActivityResult(contract){
-            // 사진 선택을 완료한 후 돌아왔다면
-            if(it.resultCode == AppCompatActivity.RESULT_OK){
-                imageView.isVisible = true
-                // 선택한 이미지의 경로 데이터를 관리하는 Uri 객체를 추출한다.
-                val uri = it.data?.data
-                if(uri != null){
-                    // 안드로이드 Q(10) 이상이라면
-                    val bitmap = if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-                        // 이미지를 생성할 수 있는 객체를 생성한다.
-                        val source = ImageDecoder.createSource(mainActivity.contentResolver, uri)
-                        // Bitmap을 생성한다.
-                        ImageDecoder.decodeBitmap(source)
-                    } else {
-                        // 컨텐츠 프로바이더를 통해 이미지 데이터에 접근한다.
-                        val cursor = mainActivity.contentResolver.query(uri, null, null, null, null)
-                        if(cursor != null){
-                            cursor.moveToNext()
-
-                            // 이미지의 경로를 가져온다.
-                            val idx = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
-                            val source = cursor.getString(idx)
-
-                            // 이미지를 생성한다
-                            BitmapFactory.decodeFile(source)
-                        }  else {
-                            null
-                        }
+        albumLauncher = registerForActivityResult(contract) {
+            fragmentJoinCoordinatorBinding.apply {
+                // 사진 선택을 완료한 후 돌아왔다면
+                if (it.resultCode == AppCompatActivity.RESULT_OK) {
+                    when (button) {
+                        R.id.buttonCoordinatorPhoto -> imageViewJoinCoordinatorPhoto.isVisible = true
+                        R.id.buttonCoordinatorCertification -> imageViewJoinCoordinatorCertification.isVisible = true
+                        R.id.buttonCoordinatorBizLicense -> imageViewJoinCoordinatorBizLicense.isVisible = true
                     }
 
-                    // 회전 각도값을 가져온다.
-                    val degree = Tools.getDegree(mainActivity, uri)
-                    // 회전 이미지를 가져온다
-                    val bitmap2 = Tools.rotateBitmap(bitmap!!, degree.toFloat())
-                    // 크기를 줄인 이미지를 가져온다.
-                    val bitmap3 = Tools.resizeBitmap(bitmap2, 256)
+                    // 선택한 이미지의 경로 데이터를 관리하는 Uri 객체를 추출한다.
+                    val uri = it.data?.data
+                    if (uri != null) {
+                        // 안드로이드 Q(10) 이상이라면
+                        val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            // 이미지를 생성할 수 있는 객체를 생성한다.
+                            val source =
+                                ImageDecoder.createSource(mainActivity.contentResolver, uri)
+                            // Bitmap을 생성한다.
+                            ImageDecoder.decodeBitmap(source)
+                        } else {
+                            // 컨텐츠 프로바이더를 통해 이미지 데이터에 접근한다.
+                            val cursor =
+                                mainActivity.contentResolver.query(uri, null, null, null, null)
+                            if (cursor != null) {
+                                cursor.moveToNext()
 
-                    imageView.setImageBitmap(bitmap3)
-                    isAddPicture = true
+                                // 이미지의 경로를 가져온다.
+                                val idx = cursor.getColumnIndex(MediaStore.Images.Media.DATA)
+                                val source = cursor.getString(idx)
+
+                                // 이미지를 생성한다
+                                BitmapFactory.decodeFile(source)
+                            } else {
+                                null
+                            }
+                        }
+
+                        // 회전 각도값을 가져온다.
+                        val degree = Tools.getDegree(mainActivity, uri)
+                        // 회전 이미지를 가져온다
+                        val bitmap2 = Tools.rotateBitmap(bitmap!!, degree.toFloat())
+                        // 크기를 줄인 이미지를 가져온다.
+                        val bitmap3 = Tools.resizeBitmap(bitmap2, 256)
+
+                        when (button) {
+                            R.id.buttonCoordinatorPhoto -> imageViewJoinCoordinatorPhoto.setImageBitmap(bitmap3)
+                            R.id.buttonCoordinatorCertification -> imageViewJoinCoordinatorCertification.setImageBitmap(bitmap3)
+                            R.id.buttonCoordinatorBizLicense -> imageViewJoinCoordinatorBizLicense.setImageBitmap(bitmap3)
+                        }
+                        isAddPicture = true
+                    }
                 }
             }
         }

@@ -130,7 +130,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/imageJoinCoordinatorPhoto"
+                    android:id="@+id/imageViewJoinCoordinatorPhoto"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="8dp"
@@ -140,7 +140,7 @@
                     app:srcCompat="@drawable/dummy_image" />
 
                 <Button
-                    android:id="@+id/buttonCoordinatorImage"
+                    android:id="@+id/buttonCoordinatorPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -170,7 +170,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageJoinCoordinatorCertification"
+                    android:id="@+id/imageViewJoinCoordinatorCertification"
                     android:layout_width="150dp"
                     android:layout_height="100dp"
                     android:layout_marginTop="8dp"
@@ -197,7 +197,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/buttonJoinCoordinatorCertificationSubmit"
+                    android:id="@+id/buttonCoordinatorCertification"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -253,7 +253,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/imageJoinCoordinatorBizLicense"
+                    android:id="@+id/imageViewJoinCoordinatorBizLicense"
                     android:layout_width="100dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="8dp"
@@ -280,7 +280,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/buttonJoinCoordinatorBizLicenseSubmit"
+                    android:id="@+id/buttonCoordinatorBizLicense"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
