@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco.fragment
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageDecoder
@@ -24,6 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
@@ -51,6 +53,24 @@ class JoinCoordinatorFragment : Fragment() {
     // 버튼 분기를 위한 객체
     var button = 0
 
+    // 데이터 복원을 위한 프로퍼티들
+    // 다음 화면에서 다시 이전 화면으로 돌아왔을 때의 처리를 위한 Bitmap 객체
+    var bitmapCoordiPhoto : Bitmap? = null // 코디네이터 소개 사진
+    var bitmapCoordiCertification : Bitmap? = null // 코디네이터 자격증
+    var bitmapCoordiBizLicense : Bitmap? = null // 사업자등록증
+
+    // 다음 화면에서 다시 이전 화면으로 돌아왔을 때의 처리를 위한 String
+    var tempCoordiName = "" // 코디네이터 활동명
+    var tempCoordiIntro = "" // 코디네이터 소개글
+    var tempCoordiCertificateNumber = "" // 코디네이터 자격증 번호
+    var tempCoordiBizLicenseNum = "" // 사업자 등록 번호
+    var tempCoordiMbti = "" // mbti
+    var tempCoordiContactNumber = "" // 고객노출 연락처
+
+    // Firebase에 업로드 된 첨부파일 파일명
+    var tempCoordiPhotoFilename = "" // 코디네이터 소개 사진
+    var tempCoordiCertificationFilename = "" // 코디네이터 자격증
+    var tempCoordiBizLicenseFilename = "" // 사업자등록증
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -79,6 +99,7 @@ class JoinCoordinatorFragment : Fragment() {
         settingButtonCoordinatorCertification()
         settingButtonCoordinatorPortfolio()
         settingButtonCoordinatorBizLicenseSubmit()
+        showMbtiBottomSheet()
 
         return fragmentJoinCoordinatorBinding.root
     }
@@ -96,14 +117,58 @@ class JoinCoordinatorFragment : Fragment() {
         }
     }
 
+    // View 초기화
     fun initInput() {
-        joinCoordinatorViewModel.textFieldJoinCoordinatorName.value = ""
-        joinCoordinatorViewModel.textFieldJoinCoordinatorIntro.value = ""
-        joinCoordinatorViewModel.textFieldJoinCoordinatorCertificationNumber.value = ""
-        joinCoordinatorViewModel.textFieldJoinCoordinatorBizLicenseNumber.value = ""
-        joinCoordinatorViewModel.textFieldJoinCoordinatorMBTI.value = ""
-        joinCoordinatorViewModel.textFieldJoinCoordinatorContactNumber.value = ""
-        joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent.value = false
+        joinCoordinatorViewModel.apply {
+            // 코디네이터 활동명
+            initStringValue(textFieldJoinCoordinatorName, tempCoordiName)
+
+            // 코디네이터 소개글
+            initStringValue(textFieldJoinCoordinatorIntro, tempCoordiIntro)
+
+            // 코디네이터 자격증 번호
+            initStringValue(textFieldJoinCoordinatorCertificationNumber, tempCoordiCertificateNumber)
+
+            // 사업자 등록 번호
+            initStringValue(textFieldJoinCoordinatorBizLicenseNumber, tempCoordiBizLicenseNum)
+
+            // mbti
+            initStringValue(textFieldJoinCoordinatorMBTI, tempCoordiMbti)
+
+            // 연락처
+            initStringValue(textFieldJoinCoordinatorContactNumber, tempCoordiContactNumber)
+        }
+
+        // 동의 여부
+//        joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent.value = false
+
+        //이미지 객체가 null이 아닐 경우, 이미지뷰에 이미지를 넣어주는 코드
+        // 다시 이 화면으로 돌아왔을 때, onCreateView에서 호출하여 복원
+        fragmentJoinCoordinatorBinding.apply {
+            // 코디네이터 소개 사진
+            initImageValue(imageViewJoinCoordinatorPhoto, bitmapCoordiPhoto)
+            // 코디네이터 자격증
+            initImageValue(imageViewJoinCoordinatorCertification, bitmapCoordiCertification)
+            // 사업자등록증
+            initImageValue(imageViewJoinCoordinatorBizLicense, bitmapCoordiBizLicense)
+        }
+    }
+
+    fun initStringValue(viewLiveData: MutableLiveData<String>, tempData: String){
+        if(tempData != ""){
+            viewLiveData.value = tempData
+        }else{
+            viewLiveData.value = ""
+        }
+    }
+
+    fun initImageValue(imageView: ImageView, tempBitmap: Bitmap?){
+        mainActivity.runOnUiThread {
+            if(tempBitmap != null){
+                imageView.setImageBitmap(tempBitmap)
+                imageView.visibility = View.VISIBLE
+            }
+        }
     }
 
     // 활동명 중복확인
@@ -224,52 +289,61 @@ class JoinCoordinatorFragment : Fragment() {
                     // JoinCoordinatorNextFragment를 보여준다.
                     val joinCoordinatorBundle = Bundle()
 
+                    // 다음 화면에서 다시 이전 화면으로 돌아왔을 때를 대비하여 작성내용 저장
+                    tempCoordiName = joinCoordinatorViewModel?.textFieldJoinCoordinatorName?.value!!
                     joinCoordinatorBundle.putString(
                         "coordiName",
                         textFieldJoinCoordinatorName.text.toString()
                     )
+                    tempCoordiIntro = joinCoordinatorViewModel?.textFieldJoinCoordinatorIntro?.value!!
                     joinCoordinatorBundle.putString(
                         "coordIntro",
                         textFieldJoinCoordinatorIntro.text.toString()
                     )
 
+                    // todo 파일명 임시저장
                     //코디네이터 소개 사진은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     joinCoordinatorBundle.putString(
                         "coordiMainImage",
                         textFieldJoinCoordinatorIntro.text.toString()
                     )
 
+                    // todo 파일명 임시저장
                     //스타일리스트 자격증 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     joinCoordinatorBundle.putString(
                         "coordiCertification",
                         textFieldJoinCoordinatorIntro.text.toString()
                     )
+                    tempCoordiCertificateNumber = joinCoordinatorViewModel?.textFieldJoinCoordinatorCertificationNumber?.value!!
                     joinCoordinatorBundle.putString(
                         "coordiCertificationNumber",
                         textFieldJoinCoordinatorCertificationNumber.text.toString()
                     )
 
+                    // todo 파일명 임시저장
                     //포트폴리오 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     joinCoordinatorBundle.putString(
                         "coordiPortfolio",
                         textFieldJoinCoordinatorIntro.text.toString()
                     )
 
+                    // todo 파일명 임시저장
                     //사업자 등록 증명 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     joinCoordinatorBundle.putString(
                         "coordiBizLicense",
                         textFieldJoinCoordinatorIntro.text.toString()
                     )
+                    tempCoordiBizLicenseNum = joinCoordinatorViewModel?.textFieldJoinCoordinatorBizLicenseNumber?.value!!
                     joinCoordinatorBundle.putString(
                         "coordiBizLicenseNumber",
                         textFieldJoinCoordinatorBizLicenseNumber.text.toString()
                     )
-
+                    tempCoordiMbti = joinCoordinatorViewModel?.textFieldJoinCoordinatorMBTI?.value!!
                     joinCoordinatorBundle.putString(
                         "coordiMBTI",
                         textFieldJoinCoordinatorMBTI.text.toString()
                     )
-
+                    tempCoordiContactNumber = joinCoordinatorViewModel?.textFieldJoinCoordinatorContactNumber?.value!!
                     joinCoordinatorBundle.putString(
                         "coordiContactNumber",
                         textFieldJoinCoordinatorContactNumber.text.toString()
@@ -435,6 +509,12 @@ class JoinCoordinatorFragment : Fragment() {
                         val bitmap2 = Tools.rotateBitmap(bitmap!!, degree.toFloat())
                         // 크기를 줄인 이미지를 가져온다.
                         val bitmap3 = Tools.resizeBitmap(bitmap2, 256)
+
+                        when (button) {
+                            R.id.buttonCoordinatorPhoto -> bitmapCoordiPhoto = bitmap3
+                            R.id.buttonCoordinatorCertification -> bitmapCoordiCertification = bitmap3
+                            R.id.buttonCoordinatorBizLicense -> bitmapCoordiBizLicense = bitmap3
+                        }
 
                         when (button) {
                             R.id.buttonCoordinatorPhoto -> imageViewJoinCoordinatorPhoto.setImageBitmap(bitmap3)
