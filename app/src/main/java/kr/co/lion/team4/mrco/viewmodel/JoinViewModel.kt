@@ -18,6 +18,8 @@ class JoinViewModel : ViewModel() {
     val checkBoxJoinFemale = MutableLiveData<Boolean>()
     //이메일
     val textFieldJoinUserEmail = MutableLiveData<String>()
+    // 연락처
+    val textFieldJoinUserPhone = MutableLiveData<String>()
     //MBTI
     val textFieldJoinUserMBTI = MutableLiveData<String>()
     //동의 선택01

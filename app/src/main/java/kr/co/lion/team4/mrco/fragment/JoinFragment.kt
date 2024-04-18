@@ -98,6 +98,8 @@ class JoinFragment : Fragment() {
         //부가정보
         //이름
         joinViewModel.textFieldJoinUserName.value = ""
+        // 연락처
+        joinViewModel.textFieldJoinUserPhone.value = ""
         //이메일
         joinViewModel.textFieldJoinUserEmail.value = ""
         //MBTI
@@ -163,6 +165,8 @@ class JoinFragment : Fragment() {
 
         //이름
         val userName = joinViewModel.textFieldJoinUserName.value!!
+        // 연락처
+        val userPhone = joinViewModel.textFieldJoinUserPhone.value!!
         //이메일
         val userEmail = joinViewModel.textFieldJoinUserEmail.value!!
         //MBTI
@@ -212,6 +216,13 @@ class JoinFragment : Fragment() {
             return false
         }
 
+        // 연락처를 입력하지 않았다면
+        if(userPhone.isEmpty()){
+            Tools.showErrorDialog(mainActivity, fragmentJoinBinding.textFieldJoinUserPhone, "연락처 입력 오류",
+                "연락처를 입력해주세요")
+            return false
+        }
+
         // 이메일을 입력하지 않았다면
         if(userEmail.isEmpty()){
             Tools.showErrorDialog(mainActivity, fragmentJoinBinding.textFieldJoinUserEmail, "이메일 입력 오류",
@@ -240,7 +251,7 @@ class JoinFragment : Fragment() {
                     Tools.showErrorDialog(mainActivity, fragmentJoinBinding.textFieldJoinUserId,
                         "아이디 입력 오류", "존재하는 아이디입니다\n다른 아이디를 입력해주세요")
                 } else {
-                    val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
+                    val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity, R.style.MaterialAlertDialog_Theme)
                     materialAlertDialogBuilder.setMessage("사용 가능한 아이디 입니다")
                     materialAlertDialogBuilder.setPositiveButton("확인", null)
                     materialAlertDialogBuilder.show()
@@ -271,17 +282,18 @@ class JoinFragment : Fragment() {
             val userMBTI = joinViewModel.textFieldJoinUserMBTI.value!!
             val userConsent01 = joinViewModel.checkBoxJoinUserConsent01.value!!
             val userConsent02 = joinViewModel.checkBoxJoinUserConsent02.value!!
+            val userPhone = joinViewModel.textFieldJoinUserPhone.value!!
 
             val userState = UserState.USER_STATE_NORMAL.num
 
             // 저장할 데이터를 객체에 담는다.
             val userModel = UserModel(userIdx, userId, userPw, userName, userGender,
-                userEmail, userMBTI, userConsent01, userConsent02, userState)
+                userEmail, userMBTI, userConsent01, userConsent02, userState, userPhone)
 
             // 사용자 정보를 저장한다.
             UserDao.insertUserData(userModel)
 
-            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity, R.style.MaterialAlertDialog_Theme)
             materialAlertDialogBuilder.setTitle("가입완료")
             materialAlertDialogBuilder.setMessage("가입이 완료되었습니다\n로그인해주세요")
             materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
