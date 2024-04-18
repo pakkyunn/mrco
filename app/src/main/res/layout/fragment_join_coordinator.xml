@@ -47,7 +47,7 @@
                         android:layout_height="wrap_content"
                         android:text="코디네이터 활동명"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -90,7 +90,7 @@
                         android:backgroundTint="#102672"
                         android:minHeight="68dip"
                         android:text="중복확인"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         app:cornerRadius="10dp" />
                 </LinearLayout>
 
@@ -100,7 +100,7 @@
                     android:layout_marginTop="16dp"
                     android:text="코디네이터 소개글"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -113,6 +113,7 @@
                         android:id="@+id/textFieldJoinCoordinatorIntro"
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
+                        android:gravity="start|top"
                         android:inputType="text|textMultiLine"
                         android:text="@={joinCoordinatorViewModel.textFieldJoinCoordinatorIntro}"
                         android:textAlignment="textStart"
@@ -126,7 +127,7 @@
                     android:layout_marginTop="16dp"
                     android:text="코디네이터 소개 사진"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -146,7 +147,7 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#102672"
                     android:text="파일첨부"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:cornerRadius="10dp" />
 
                 <LinearLayout
@@ -160,7 +161,7 @@
                         android:layout_marginTop="16dp"
                         android:text="스타일리스트 자격증"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -203,7 +204,7 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#102672"
                     android:text="파일첨부"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:cornerRadius="10dp" />
 
                 <LinearLayout
@@ -217,7 +218,7 @@
                         android:layout_marginTop="16dp"
                         android:text="포트폴리오"
                         android:textColor="@color/black"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -240,7 +241,7 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#102672"
                     android:text="파일첨부"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:cornerRadius="10dp" />
 
                 <TextView
@@ -249,7 +250,7 @@
                     android:layout_marginTop="16dp"
                     android:text="사업자 등록 증명"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -286,7 +287,7 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#102672"
                     android:text="파일첨부"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:cornerRadius="10dp" />
 
                 <TextView
@@ -295,7 +296,7 @@
                     android:layout_marginTop="16dp"
                     android:text="MBTI"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
 
@@ -325,7 +326,7 @@
                     android:layout_marginTop="16dp"
                     android:text="고객노출 연락처"
                     android:textColor="@color/black"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -363,7 +364,7 @@
                     android:backgroundTint="@color/black"
                     android:minHeight="60dp"
                     android:text="다음"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:cornerRadius="10dp" />
             </LinearLayout>
         </ScrollView>
