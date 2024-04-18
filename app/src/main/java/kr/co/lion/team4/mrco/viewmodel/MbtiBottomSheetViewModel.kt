@@ -119,6 +119,4 @@ class MbtiBottomSheetViewModel : ViewModel() {
             return group.checkedButtonId
         }
     }
-
-
 }

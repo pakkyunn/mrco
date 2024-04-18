@@ -26,10 +26,10 @@ class MbtiProductBottomSheetViewModel: ViewModel() {
     fun settingMbtiEI(mbtiEI: MbtiEI){
         when(mbtiEI){
             MbtiEI.E -> {
-                toggleButtonEI.value = R.id.buttonE
+                toggleButtonEI.value = R.id.mbti_selector_e_button
             }
             MbtiEI.I -> {
-                toggleButtonEI.value = R.id.buttonI
+                toggleButtonEI.value = R.id.mbti_selector_i_button
             }
         }
     }
@@ -37,10 +37,10 @@ class MbtiProductBottomSheetViewModel: ViewModel() {
     fun settingMbtiSN(mbtiSN: MbtiSN){
         when(mbtiSN){
             MbtiSN.S -> {
-                toggleButtonSN.value = R.id.buttonS
+                toggleButtonSN.value = R.id.mbti_selector_s_button
             }
             MbtiSN.N -> {
-                toggleButtonSN.value = R.id.buttonN
+                toggleButtonSN.value = R.id.mbti_selector_n_button
             }
         }
     }
@@ -48,10 +48,10 @@ class MbtiProductBottomSheetViewModel: ViewModel() {
     fun settingMbtiTF(mbtiTF: MbtiTF){
         when(mbtiTF){
             MbtiTF.T -> {
-                toggleButtonTF.value = R.id.buttonT
+                toggleButtonTF.value = R.id.mbti_selector_t_button
             }
             MbtiTF.F -> {
-                toggleButtonTF.value = R.id.buttonF
+                toggleButtonTF.value = R.id.mbti_selector_f_button
             }
         }
     }
@@ -59,37 +59,38 @@ class MbtiProductBottomSheetViewModel: ViewModel() {
     fun settingMbtiPJ(mbtiPJ: MbtiPJ){
         when(mbtiPJ){
             MbtiPJ.P -> {
-                toggleButtonPJ.value = R.id.buttonP
+                toggleButtonPJ.value = R.id.mbti_selector_p_button
             }
             MbtiPJ.J -> {
-                toggleButtonPJ.value = R.id.buttonJ
+                toggleButtonPJ.value = R.id.mbti_selector_j_button
             }
         }
     }
 
     // MBTI값을 반환하는 메서드
     fun gettingMbtiEI(): MbtiEI? = when(toggleButtonEI.value){
-        R.id.buttonE -> MbtiEI.E
-        R.id.buttonI -> MbtiEI.I
+        R.id.mbti_selector_e_button -> MbtiEI.E
+        R.id.mbti_selector_i_button -> MbtiEI.I
         else -> null
     }
     fun gettingMbtiSN(): MbtiSN? = when(toggleButtonSN.value){
-        R.id.buttonS -> MbtiSN.S
-        R.id.buttonN -> MbtiSN.N
+        R.id.mbti_selector_s_button -> MbtiSN.S
+        R.id.mbti_selector_n_button -> MbtiSN.N
         else -> null
     }
     fun gettingMbtiTF(): MbtiTF? = when(toggleButtonTF.value){
-        R.id.buttonT -> MbtiTF.T
-        R.id.buttonF -> MbtiTF.F
+        R.id.mbti_selector_t_button -> MbtiTF.T
+        R.id.mbti_selector_f_button -> MbtiTF.F
         else -> null
     }
     fun gettingMbtiPJ(): MbtiPJ? = when(toggleButtonPJ.value){
-        R.id.buttonP -> MbtiPJ.P
-        R.id.buttonJ -> MbtiPJ.J
+        R.id.mbti_selector_p_button -> MbtiPJ.P
+        R.id.mbti_selector_j_button -> MbtiPJ.J
         else -> null
     }
 
     companion object {
+
         // ViewModel에 값을 설정하여 화면에 반영하는 작업을 할 때 호출된다.
         // () 안에는 속성의 이름을 넣어준다. 속성의 이름은 자유롭게 해주면 되지만 기존의 속성 이름과 중복되지 않게
         // 해줘야 한다.
