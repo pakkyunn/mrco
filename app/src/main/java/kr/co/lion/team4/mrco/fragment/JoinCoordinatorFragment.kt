@@ -97,6 +97,7 @@ class JoinCoordinatorFragment : Fragment() {
         settingToolbar()
 
         initInput()
+        coordiNameChangeListener()
 
         settingButtonCheckName()
 
@@ -130,7 +131,18 @@ class JoinCoordinatorFragment : Fragment() {
         }
     }
 
-
+    fun coordiNameChangeListener(){
+        fragmentJoinCoordinatorBinding.apply {
+            textFieldJoinCoordinatorName.addTextChangedListener {
+                coordiNameChk = false
+                buttonJoinCoordinatorCheckName.apply {
+                    isEnabled = true
+                    backgroundTintList = ContextCompat.getColorStateList(mainActivity,R.color.buttonFollow)
+                    setTextColor(Color.parseColor("#FFFFFF"))
+                }
+            }
+        }
+    }
 
     // View 초기화
     fun initInput() {
@@ -373,7 +385,7 @@ class JoinCoordinatorFragment : Fragment() {
                         true,
                         null
                     )
-                }
+//                }
             }
         }
     }
