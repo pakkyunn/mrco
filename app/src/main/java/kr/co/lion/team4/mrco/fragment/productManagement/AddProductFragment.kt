@@ -24,11 +24,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.CategoryId
+import kr.co.lion.team4.mrco.CategoryIdSubMOOD
+import kr.co.lion.team4.mrco.CategoryIdSubSEASON
+import kr.co.lion.team4.mrco.CategoryIdSubTPO
 import kr.co.lion.team4.mrco.CodiMbti
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductDetailViewModel
 import kr.co.lion.team4.mrco.viewmodel.productManagement.AddProductViewModel
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentAddProductBinding
 import kr.co.lion.team4.mrco.databinding.ItemAddproductDetailBinding
@@ -58,6 +62,12 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     lateinit var addProductViewModel: AddProductViewModel
 
     lateinit var mainActivity: MainActivity
+
+    // 첨부 이미지 인덱스
+    var imageIdx = -1
+
+    // 첨부 이미지 리스트
+    val imageProductList = mapOf<Int, String>()
 
     private val individualProductData: ArrayList<MutableMap<String, String>> = ArrayList()
 
@@ -183,7 +193,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         }
     }
 
-    // 취소 버튼
+    // 등록, 취소 버튼
     fun settingBottomButton(){
         fragmentAddProductBinding.apply {
             // 취소 버튼
@@ -332,6 +342,166 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
     }
 
+    // Chip 입력 처리 메서드
+    fun settingChipEvent(){
+        fragmentAddProductBinding.apply {
+
+            // 성별
+            chipgroupAddProductGender.apply {
+                if (chipAddProductMale.isChecked){
+                    Log.d("test1234", "ChipGroup is Working!")
+                    addProductViewModel?.chipgroupAddProductGender?.value = 0
+                } else if (chipAddProductFemale.isChecked){
+                    addProductViewModel?.chipgroupAddProductGender?.value = 1
+                } else {
+                    addProductViewModel?.chipgroupAddProductGender?.value = -1
+                }
+            }
+            // TPO
+            chipgroupAddProductTpoSub.apply {
+                if (chipAddProductTravel.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.TRAVEL
+                } else if (chipAddProductDate.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.DATE
+                } else if (chipAddProductCafe.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.CAFE
+                } else if (chipAddProductWork.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.WORK
+                } else if (chipAddProductDaily.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.DAILY
+                } else if (chipAddProductCampus.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.CAMPUS
+                } else if (chipAddProductOcean.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.OCEAN
+                } else if (chipAddProductWedding.isChecked) {
+                    addProductViewModel?.chipgroupAddProductTpoSub?.value = CategoryIdSubTPO.WEDDING
+                }
+            }
+
+            // SEASON
+            chipgroupAddProductSeasonSub.apply {
+                if (chipAddProductSpring.isChecked){
+                    addProductViewModel?.chipgroupAddProductSeasonSub?.value = CategoryIdSubSEASON.SPRING
+                }
+                else if ( chipAddProductSummer.isChecked){
+                    addProductViewModel?.chipgroupAddProductSeasonSub?.value = CategoryIdSubSEASON.SUMMER
+                }
+                else if ( chipAddProductFall.isChecked){
+                    addProductViewModel?.chipgroupAddProductSeasonSub?.value = CategoryIdSubSEASON.FALL
+                }
+                else if ( chipAddProductWinter.isChecked){
+                    addProductViewModel?.chipgroupAddProductSeasonSub?.value = CategoryIdSubSEASON.WINTER
+                }
+            }
+
+            // MOOD
+            chipgroupAddProductMoodSub.apply {
+                if(chipAddProductMinimal.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.MINIMAL
+                }
+                else if (chipAddProductBusiness.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.BUSINESS
+                }
+                else if (chipAddProductOneMile.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.ONE_MILE
+                }
+                else if (chipAddProductAmecaji.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.AMECAJI
+                }
+                else if (chipAddProductCityBoy.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.CITY_BOY
+                }
+                else if (chipAddProductStreet.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.STREET
+                }
+                else if (chipAddProductSporty.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.SPORTY
+                }
+                else if (chipAddProductRetro.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.RETRO
+                }
+                else if (chipAddProductLovely.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.LOVELY
+                }
+                else if (chipAddProductModern.isChecked){
+                    addProductViewModel?.chipgroupAddProductMoodSub?.value = CategoryIdSubMOOD.MODERN
+                }
+            }
+
+
+//            for (items in chipgroupAddProductTpoSub){
+//                if (items.chip ){
+//                    Log.d("test1234", "Working")
+//                    addProductViewModel?.chipgroupAddProductTpoSub?.value = TRAVEL
+//                }
+//            }
+
+//            // TPO
+//            chipgroupAddProductTpoSub.apply {
+//                if (this.checkedChipId){
+//                    Log.d("test1234", "Working")
+//                    addProductViewModel?.chipgroupAddProductTpoSub?.value = TRAVEL
+//                }
+//            }
+
+
+//            chipgroupAddProductGender.setOnCheckedStateChangeListener{ group, checkedId ->
+//                Log.d("test1234","Working")
+//                addProductViewModel?.chipgroupAddProductGender?.value = when (group.checkedChipId){
+//                    R.id.chip_add_product_male -> 0
+//                    R.id.chip_add_product_female -> 1
+//                    else -> 0
+//                }
+//                Log.d("test1234","End")
+//            }
+
+            // TPO
+//            chipgroupAddProductTpoSub.setOnCheckedStateChangeListener{ _, checkedId ->
+//                addProductViewModel?.chipgroupAddProductTpoSub?.value = when (checkedId){
+//
+//                    chipAddProductTravel -> TRAVEL
+//                    chipAddProductDate -> DATE
+//                    chipAddProductCafe -> CAFE
+//                    chipAddProductWork -> WORK
+//                    chipAddProductDaily -> DAILY
+//                    chipAddProductCampus -> CAMPUS
+//                    chipAddProductOcean -> OCEAN
+//                    chipAddProductWedding -> WEDDING
+//                    else -> TRAVEL
+//                }
+//            }
+
+//            // Season
+//            chipgroupAddProductSeasonSub.setOnCheckedStateChangeListener{ group, checkedId ->
+//                addProductViewModel?.chipgroupAddProductSeasonSub?.value = when(checkedId){
+//                    chipAddProductSpring -> SPRING
+//                    chipAddProductSummer -> SUMMER
+//                    chipAddProductFall -> FALL
+//                    chipAddProductWinter -> WINTER
+//                    else -> SPRING
+//                }
+//            }
+
+//            // Mood
+//            chipgroupAddProductMoodSub.setOnCheckedStateChangeListener{ group, checkedId ->
+//                addProductViewModel?.chipgroupAddProductMoodSub?.value = when(checkedId){
+//                    chipAddProductMinimal -> MINIMAL
+//                    chipAddProductBusiness -> BUSINESS
+//                    chipAddProductOneMile -> ONE_MILE
+//                    chipAddProductAmecaji -> AMECAJI
+//                    chipAddProductCityBoy -> CITY_BOY
+//                    chipAddProductStreet -> STREET
+//                    chipAddProductSporty -> SPORTY
+//                    chipAddProductRetro -> RETRO
+//                    chipAddProductLovely -> LOVELY
+//                    chipAddProductModern -> MODERN
+//                    else -> MINIMAL
+//                }
+//            }
+        }
+    }
+
+
     // 글 작성처리 메서드
     fun uploadProductData() {
         CoroutineScope(Dispatchers.Main).launch {
@@ -359,19 +529,19 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 업로드할 정보를 담아준다.
             val productIdx = productSequence + 1
             val categoryId = CategoryId.TPO.str
-            val coordinatorIdx = 0
+            val coordinatorIdx = 0 // TEMP
             val coordiName = addProductViewModel.edittextAddProductName.value!!
-            val coordiImage = "코디 이미지들(이거 Map이나 List로 바꿔야함)"
+            val coordiImage = imageProductList
             val codiMainImage = "코디 대표 이미지"
-            val coordiGender = 0
+            val coordiGender = addProductViewModel.chipgroupAddProductGender.value!!
             val coordiText = addProductViewModel.edittextAddProductComments.value!!
             val price = (addProductViewModel.edittextAddProductPrice.value!!).toInt()
             val coordiItem = individualProductData
             val coordiMBTI = CodiMbti.ENFJ.str
-            val coordiTPO = 0
-            val coordiSeason = 0
-            val coordiMood = 0
-            val coordiState = 0
+            val coordiTPO = addProductViewModel.chipgroupAddProductTpoSub.value
+            val coordiSeason = addProductViewModel.chipgroupAddProductSeasonSub.value
+            val coordiMood = addProductViewModel.chipgroupAddProductMoodSub.value
+            val coordiState = ProductState.PRODUCT_STATE_NORMAL.num
 
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
             val coordiWriteDate = simpleDateFormat.format(Date())
@@ -397,6 +567,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         addProductViewModel.edittextAddProductName.value = ""
         addProductViewModel.edittextAddProductComments.value = ""
         addProductViewModel.edittextAddProductPrice.value = ""
+
+        addProductViewModel.chipgroupAddProductGender.value = -1
+        addProductViewModel.chipgroupAddProductMbti.value = CodiMbti.DEFAULT_MBTI
     }
 
     // 입력 요소 유효성 검사
@@ -405,6 +578,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         val productName = addProductViewModel.edittextAddProductName.value!!
         val productComments = addProductViewModel.edittextAddProductComments.value!!
         val productPrice = addProductViewModel.edittextAddProductPrice.value!!
+
+//        val productGender = addProductViewModel.chipgroupAddProductGender.value!!
+//        val productMbti = addProductViewModel.chipgroupAddProductMbti.value!!
 
         if(productName.isEmpty()){
             Tools.showErrorDialog(mainActivity, fragmentAddProductBinding.edittextAddProductName,
@@ -421,6 +597,16 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                 "코디 상품 가격 오류", "코디 상품 가격을 입력해주세요")
             return false
         }
+//        if (productGender == -1){
+//            Tools.showErrorDialog(mainActivity, fragmentAddProductBinding.chipgroupAddProductGender,
+//                "코디 성별 미입력 오류", "코디 상품 대상 성별을 입력해주세요")
+//            return false
+//        }
+//        if (productMbti == CodiMbti.DEFAULT_MBTI){
+//            Tools.showErrorDialog(mainActivity, fragmentAddProductBinding.chipAddProductMbti,
+//                "코디 MBTI 미입력 오류", "코디 상품 대상 MBTI를 입력해주셍요")
+//            return false
+//        }
         return true
     }
 
