@@ -318,7 +318,6 @@ enum class MainFragmentName(var str: String) {
     JOIN_COORDINATOR_NEXT_FRAGMENT("JoinCoordinatorNextFragment"),
     MODIFY_COORDINATOR_FRAGMENT("ModifyCoordinatorFragment"),
 }
-
 enum class SubFragmentName(var str: String) {
     PRODUCT_SHIPPING_FRAGMENT("ProductShippingFragment"), // 배송 탭
     PRODUCT_REVIEW_FRAGMENT("ProductReviewFragment"), // 후기 탭
@@ -354,7 +353,42 @@ enum class CategoryId(var str: String){
     MOOD("MOOD"),
 }
 
+enum class CategoryIdSubTPO(var str: String){
+    DEFAULT("Default"),
+    TRAVEL("Travel"),
+    DATE("Date"),
+    CAFE("Cafe"),
+    WORK("Work"),
+    DAILY("Daily"),
+    CAMPUS("Campus"),
+    OCEAN("Ocean"),
+    WEDDING("Wedding"),
+}
+
+enum class CategoryIdSubSEASON(var str: String){
+    DEFAULT("Default"),
+    SPRING("Spring"),
+    SUMMER("Summer"),
+    FALL("Fall"),
+    WINTER("Winter"),
+}
+
+enum class CategoryIdSubMOOD(var str: String){
+    DEFAULT("Default"),
+    MINIMAL("Minimal"),
+    BUSINESS("Business"),
+    ONE_MILE("OneMile"),
+    AMECAJI("Amecaji"),
+    CITY_BOY("City Boy"),
+    STREET("Street"),
+    SPORTY("Sporty"),
+    RETRO("Retro"),
+    LOVELY("Lovely"),
+    MODERN("Modern")
+}
+
 enum class CodiMbti(var str: String){
+    DEFAULT_MBTI("Default Mbti"),
     ENFP("ENFP"),
     ENFJ("ENFJ"),
     ENTJ("ENTJ"),
@@ -405,6 +439,12 @@ enum class UserState(var str:String, var num:Int){
 enum class Gender(var str:String, var num:Int){
     MALE("male", 1),
     FEMALE("female", 2)
+}
+
+// 상품 상태를 나타내는 값을 정의한다.
+enum class ProductState(var str: String, var num: Int){
+    PRODUCT_STATE_NORMAL("정상", 1),
+    PRODUCT_STATE_DELETE("탈퇴",2),
 }
 
 // 검색 조회 기간
