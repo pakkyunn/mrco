@@ -45,7 +45,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="아이디"
@@ -71,7 +71,7 @@
                     android:gravity="center_vertical|end"
                     android:minHeight="68dip"
                     android:text="중복확인"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     app:cornerRadius="10dp" />
             </LinearLayout>
 
@@ -161,6 +161,21 @@
 
             </LinearLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="연락처 (예시: 0000000000)"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textFieldJoinUserPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:text="@={joinViewModel.textFieldJoinUserPhone}"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -224,7 +239,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="코디네이터 신청은 마이 페이지-코디네이터 등록 신청 에서 가능합니다!"
                 android:textColor="#0057A8"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
 
@@ -237,7 +252,7 @@
                 android:minHeight="68dip"
                 android:text="회원가입 완료"
                 android:textColor="@color/white"
-                android:textSize="16dp"
+                android:textSize="16sp"
                 app:cornerRadius="10dp" />
         </LinearLayout>
     </ScrollView>
