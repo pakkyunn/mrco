@@ -38,10 +38,11 @@
                 android:gravity="center"
                 android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainMBTI}"
                 android:textColor="#FFFFFF"
-                android:textSize="12dp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/item_coordinator_main_product_thumbnail"
-                app:layout_constraintEnd_toEndOf="@+id/item_coordinator_main_product_thumbnail" />
+                app:layout_constraintEnd_toEndOf="@+id/item_coordinator_main_product_thumbnail"
+                tools:text="ISFP" />
 
             <com.google.android.material.checkbox.MaterialCheckBox
                 android:id="@+id/item_main_product_like"
@@ -64,7 +65,8 @@
                 android:textSize="16dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/item_coordinator_main_product_thumbnail"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="아이유" />
 
             <TextView
                 android:id="@+id/textViewRowCoordinatorMainProductName"
@@ -75,7 +77,8 @@
                 android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainProductName}"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/item_coordinator_main_product_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainCoordiname" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainCoordiname"
+                tools:text="호불호 없는 출근룩 코디 SET" />
 
             <TextView
                 android:id="@+id/textViewRowCoordinatorMainProductPrice"
@@ -86,7 +89,8 @@
                 android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainProductPrice}"
                 android:textSize="12dp"
                 app:layout_constraintStart_toEndOf="@+id/item_coordinator_main_product_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainProductName" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainProductName"
+                tools:text="138,000" />
 
             <TextView
                 android:id="@+id/textViewRowCoordinatorMainProductDiscountPercent"
@@ -98,7 +102,8 @@
                 android:textColor="#FC5306"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/item_coordinator_main_product_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainProductPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainProductPrice"
+                tools:text="10%" />
 
             <TextView
                 android:id="@+id/textViewRowCoordinatorMainProductFinalPrice"
@@ -109,7 +114,8 @@
                 android:text="@{rowCoordinatorMainViewModel.textViewRowCoordinatorMainProductFinalPrice}"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/textViewRowCoordinatorMainProductDiscountPercent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainProductPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewRowCoordinatorMainProductPrice"
+                tools:text="187,000" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 

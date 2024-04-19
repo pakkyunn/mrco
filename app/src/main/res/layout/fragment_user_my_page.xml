@@ -121,6 +121,7 @@
                         android:layout_marginBottom="16dp"
                         android:backgroundTint="#152F7E"
                         android:text="프로필 수정"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         app:cornerRadius="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"

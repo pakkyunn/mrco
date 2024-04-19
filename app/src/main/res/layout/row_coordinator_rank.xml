@@ -103,6 +103,7 @@
                     android:backgroundTint="@color/buttonFollow"
                     android:padding="0dp"
                     android:text="팔로우"
+                    android:textColor="@color/white"
                     android:textSize="14dp"
                     android:textStyle="normal"
                     app:cornerRadius="10dp" />

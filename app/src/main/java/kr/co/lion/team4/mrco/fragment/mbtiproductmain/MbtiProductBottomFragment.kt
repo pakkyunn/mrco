@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.mbtiproductmain
 
 import android.app.Dialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
@@ -27,6 +28,8 @@ class MbtiProductBottomFragment(var mbtiTextView: MutableLiveData<String>) : Bot
     lateinit var mainActivity: MainActivity
 
     lateinit var mbtiProductBottomSheetViewModel: MbtiProductBottomSheetViewModel
+
+    lateinit var selectedMbti: String
 
       override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -102,9 +105,9 @@ class MbtiProductBottomFragment(var mbtiTextView: MutableLiveData<String>) : Bot
                 val selectedPJ = mbtiProductBottomSheetViewModel?.gettingMbtiPJ()?.str
 
                 if (!selectedEI.isNullOrEmpty() && !selectedSN.isNullOrEmpty() && !selectedTF.isNullOrEmpty() && !selectedPJ.isNullOrEmpty()){
-                    val selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
+                    selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
                     mbtiTextView.value = selectedMbti
-                    Log.d("test1234", "${mbtiTextView.value}")
+                    Log.d("test1234", "BottomSheet - MBTI: ${mbtiTextView.value}")
 
                     dismiss()
                 } else {
