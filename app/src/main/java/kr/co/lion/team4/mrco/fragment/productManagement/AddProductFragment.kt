@@ -206,7 +206,6 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                 val chk = checkInputForm()
 
                 if(chk == true) {
-                    Log.d("test1234", "AddProductFragment - 등록 버튼 : ${individualProductData}")
                     uploadProductData()
                 }
             }
@@ -508,18 +507,21 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
             // 첨부된 이미지가 있다면
             if(isProductAddPicture == true) {
-                for (i in 0 until imagePath.size) {
+                for (i in 0 until imageBitmaps.size) {
                     // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                    Tools.saveImageViewIndividualItemData(mainActivity, imageBitmaps[i], "uploadTemp.jpg")
+                    Tools.saveImageViewIndividualItemData(mainActivity, imageBitmaps[i], "uploadTemp${i}.jpg")
                     // 서버로 업로드한다.
-                    ProductDao.uploadItemsImage(mainActivity, "uploadTemp.jpg", imagePath[i])
-                    Log.d("test1234", "DialogFragment - 개별 상품 아이템 서버로 업로드 완료")
+                    ProductDao.uploadItemsImage(mainActivity, "uploadTemp${i}.jpg", imagePath[i])
+                    Log.d("test1234", "${i}번째 상품 아이템 - ${imageBitmaps[i]}}개별 상품 아이템 서버로 업로드 완료")
                 }
             }
+            // 개별 상품 아이템 별 이미지 경로 수정
             for (i in 0 until individualProductData.size) {
                 val temp = individualProductData[i]
                 temp["5"] = imagePath[i]
             }
+
+            Log.d("test1234", "AddProductFragment : ${individualProductData}")
 
             // 게시글 시퀀스 값을 가져온다.
             val productSequence = ProductDao.getContentSequence()
@@ -654,13 +656,16 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                     val bitmap3 = Tools.resizeBitmap(bitmap2, 256)
 
                     // 이미지 비트맵이 추가되는지 확인하고 추가
-                    if (imageBitmaps.size > currentPosition) { imageBitmaps[currentPosition] = bitmap3 }
-                    else { imageBitmaps.add(bitmap3) }
+                    imageBitmaps.add(bitmap3)
 
-                    Log.d("test1234", "이미지 배열: imageBitmaps")
+                    Log.d("test1234", "이미지 배열: $imageBitmaps")
+
+                    val simpleDateFormat = SimpleDateFormat("yyyyMMdd_HHmmss")
+                    val currentTimeText = simpleDateFormat.format(Date())
 
                     // 서버에서의 첨부 이미지 파일 이름
-                    var serverFileName = "image_individual_item${currentPosition}_${System.currentTimeMillis()}.jpg"
+                    // var serverFileName = "image_individual_item${currentPosition}_${System.currentTimeMillis()}.jpg"
+                    var serverFileName = "image_individual_item${currentPosition}_${currentTimeText}.jpg"
                     imagePath.add(serverFileName)
 
                     // 리사이클러뷰를 새로 고침하여 업데이트
