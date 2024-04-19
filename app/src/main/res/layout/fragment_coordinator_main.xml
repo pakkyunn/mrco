@@ -83,6 +83,7 @@
                         android:backgroundTint="@color/buttonFollowing"
                         android:padding="0dp"
                         android:text="팔로잉"
+                        android:textColor="@color/white"
                         android:textSize="14dp"
                         android:textStyle="normal"
                         app:cornerRadius="10dp"
