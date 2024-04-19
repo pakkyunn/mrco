@@ -43,8 +43,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/black"
                 android:text="1:1 문의하기"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 tools:cornerRadius="10dp" />
 
             <com.google.android.material.textfield.TextInputLayout
