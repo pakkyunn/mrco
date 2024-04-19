@@ -3,6 +3,7 @@ package kr.co.lion.team4.mrco.fragment.productManagement
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.ImageDecoder
 import android.os.Build
 import android.os.Bundle
@@ -19,6 +20,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -531,13 +533,16 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // Chip 클릭시 정보 동기화
             settingChipEvent()
 
+            // 현재 시간 년월일_시분초
+            val currentTimeText = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+
             // 업로드할 정보를 담아준다.
             val productIdx = productSequence + 1
             val categoryId = CategoryId.TPO.str
             val coordinatorIdx = 0 // TEMP
             val coordiName = addProductViewModel.edittextAddProductName.value!!
             val coordiImage = imageProductList
-            val codiMainImage = "코디 대표 이미지"
+            val codiMainImage = "image_codiMain_${currentTimeText}.jpg"
             val coordiGender = addProductViewModel.chipgroupAddProductGender.value!!
             val coordiText = addProductViewModel.edittextAddProductComments.value!!
             val price = (addProductViewModel.edittextAddProductPrice.value!!).toInt()
@@ -548,16 +553,24 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             val coordiMood = addProductViewModel.chipgroupAddProductMoodSub.value
             val coordiState = ProductState.PRODUCT_STATE_NORMAL.num
 
-            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd")
+            // 현재 시간 등록 yyyy년 MM월 dd일 HH시간 mm분 ss초
+            val simpleDateFormat = SimpleDateFormat("yyyy_MM_dd")
             val coordiWriteDate = simpleDateFormat.format(Date())
 
             val productModel = ProductModel(productIdx, categoryId, coordinatorIdx, coordiName, coordiImage, codiMainImage, coordiGender,
                 coordiText, price, coordiItem, coordiMBTI, coordiTPO, coordiSeason, coordiMood, coordiState, coordiWriteDate)
+
             // 업로드한다.
             ProductDao.insertProductData(productModel)
 
             // ReadContentFragment로 이동한다.
             Tools.hideSoftInput(mainActivity)
+
+            val snackbar = Snackbar.make(fragmentAddProductBinding.root, "코디상품이 등록되었습니다", Snackbar.LENGTH_SHORT)
+            snackbar.setTextColor(Color.WHITE)
+            snackbar.setBackgroundTint(Color.parseColor("#757575"))
+            snackbar.animationMode = Snackbar.ANIMATION_MODE_FADE
+            snackbar.show()
 
             // 글 번호를 담는다.
             val readBundle = Bundle()
