@@ -292,11 +292,6 @@ class JoinCoordinatorFragment : Fragment() {
         }
     }
 
-    fun settingPortfolioImageDeleteButton(){
-
-    }
-
-
     fun showMbtiBottomSheet() {
         fragmentJoinCoordinatorBinding.apply {
             textFieldJoinCoordinatorMBTI.setOnClickListener {
@@ -310,85 +305,86 @@ class JoinCoordinatorFragment : Fragment() {
     fun settingButtonNext() {
         fragmentJoinCoordinatorBinding.apply {
             buttonJoinCoordinatorNext.setOnClickListener {
-//                if (checkInput()) {
-//                    // JoinCoordinatorNextFragment를 보여준다.
-//                    val joinCoordinatorBundle = Bundle()
-//
-//                    // 다음 화면에서 다시 이전 화면으로 돌아왔을 때를 대비하여 작성내용 저장
-//                    tempCoordiName = joinCoordinatorViewModel?.textFieldJoinCoordinatorName?.value!!
-//                    joinCoordinatorBundle.putString(
-//                        "coordiName",
-//                        textFieldJoinCoordinatorName.text.toString()
-//                    )
-//                    tempCoordiIntro = joinCoordinatorViewModel?.textFieldJoinCoordinatorIntro?.value!!
-//                    joinCoordinatorBundle.putString(
-//                        "coordIntro",
-//                        textFieldJoinCoordinatorIntro.text.toString()
-//                    )
-//
-//                    // todo 파일명 임시저장
-//                    //코디네이터 소개 사진은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
-//                    joinCoordinatorBundle.putString(
-//                        "coordiMainImage",
-//                        textFieldJoinCoordinatorIntro.text.toString()
-//                    )
-//
-//                    // todo 파일명 임시저장
-//                    //스타일리스트 자격증 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
-//                    joinCoordinatorBundle.putString(
-//                        "coordiCertification",
-//                        textFieldJoinCoordinatorIntro.text.toString()
-//                    )
-//                    tempCoordiCertificateNumber = joinCoordinatorViewModel?.textFieldJoinCoordinatorCertificationNumber?.value!!
-//                    joinCoordinatorBundle.putString(
-//                        "coordiCertificationNumber",
-//                        textFieldJoinCoordinatorCertificationNumber.text.toString()
-//                    )
-//
-//                    // todo 파일명 임시저장
-//                    //포트폴리오 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
-//                    joinCoordinatorBundle.putString(
-//                        "coordiPortfolio",
-//                        textFieldJoinCoordinatorIntro.text.toString()
-//                    )
-//
-//                    // todo 파일명 임시저장
-//                    //사업자 등록 증명 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
-//                    joinCoordinatorBundle.putString(
-//                        "coordiBizLicense",
-//                        textFieldJoinCoordinatorIntro.text.toString()
-//                    )
-//                    tempCoordiBizLicenseNum = joinCoordinatorViewModel?.textFieldJoinCoordinatorBizLicenseNumber?.value!!
-//                    joinCoordinatorBundle.putString(
-//                        "coordiBizLicenseNumber",
-//                        textFieldJoinCoordinatorBizLicenseNumber.text.toString()
-//                    )
-//                    tempCoordiMbti = joinCoordinatorViewModel?.textFieldJoinCoordinatorMBTI?.value!!
-//                    joinCoordinatorBundle.putString(
-//                        "coordiMBTI",
-//                        textFieldJoinCoordinatorMBTI.text.toString()
-//                    )
-//                    tempCoordiContactNumber = joinCoordinatorViewModel?.textFieldJoinCoordinatorContactNumber?.value!!
-//                    joinCoordinatorBundle.putString(
-//                        "coordiContactNumber",
-//                        textFieldJoinCoordinatorContactNumber.text.toString()
-//                    )
-//
-//                    mainActivity.replaceFragment(
-//                        MainFragmentName.JOIN_COORDINATOR_NEXT_FRAGMENT,
-//                        true,
-//                        true,
-//                        joinCoordinatorBundle
-//                    )
+                if (checkInput()) {
 
-                    // 화면 이동을 위한 임시 메서드
+                    // JoinCoordinatorNextFragment를 보여준다.
+                    val joinCoordinatorBundle = Bundle()
+
+                    // 다음 화면에서 다시 이전 화면으로 돌아왔을 때를 대비하여 작성내용 저장
+                    tempCoordiName = joinCoordinatorViewModel?.textFieldJoinCoordinatorName?.value!!
+                    joinCoordinatorBundle.putString(
+                        "coordiName",
+                        textFieldJoinCoordinatorName.text.toString()
+                    )
+                    tempCoordiIntro = joinCoordinatorViewModel?.textFieldJoinCoordinatorIntro?.value!!
+                    joinCoordinatorBundle.putString(
+                        "coordIntro",
+                        textFieldJoinCoordinatorIntro.text.toString()
+                    )
+
+                    // todo 파일명 임시저장
+                    //코디네이터 소개 사진은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
+                    joinCoordinatorBundle.putString(
+                        "coordiMainImage",
+                        textFieldJoinCoordinatorIntro.text.toString()
+                    )
+
+                    // todo 파일명 임시저장
+                    //스타일리스트 자격증 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
+                    joinCoordinatorBundle.putString(
+                        "coordiCertification",
+                        textFieldJoinCoordinatorIntro.text.toString()
+                    )
+                    tempCoordiCertificateNumber = joinCoordinatorViewModel?.textFieldJoinCoordinatorCertificationNumber?.value!!
+                    joinCoordinatorBundle.putString(
+                        "coordiCertificationNumber",
+                        textFieldJoinCoordinatorCertificationNumber.text.toString()
+                    )
+
+                    // todo 파일명 임시저장
+                    //포트폴리오 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
+                    joinCoordinatorBundle.putString(
+                        "coordiPortfolio",
+                        textFieldJoinCoordinatorIntro.text.toString()
+                    )
+
+                    // todo 파일명 임시저장
+                    //사업자 등록 증명 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
+                    joinCoordinatorBundle.putString(
+                        "coordiBizLicense",
+                        textFieldJoinCoordinatorIntro.text.toString()
+                    )
+                    tempCoordiBizLicenseNum = joinCoordinatorViewModel?.textFieldJoinCoordinatorBizLicenseNumber?.value!!
+                    joinCoordinatorBundle.putString(
+                        "coordiBizLicenseNumber",
+                        textFieldJoinCoordinatorBizLicenseNumber.text.toString()
+                    )
+                    tempCoordiMbti = joinCoordinatorViewModel?.textFieldJoinCoordinatorMBTI?.value!!
+                    joinCoordinatorBundle.putString(
+                        "coordiMBTI",
+                        textFieldJoinCoordinatorMBTI.text.toString()
+                    )
+                    tempCoordiContactNumber = joinCoordinatorViewModel?.textFieldJoinCoordinatorContactNumber?.value!!
+                    joinCoordinatorBundle.putString(
+                        "coordiContactNumber",
+                        textFieldJoinCoordinatorContactNumber.text.toString()
+                    )
+
                     mainActivity.replaceFragment(
                         MainFragmentName.JOIN_COORDINATOR_NEXT_FRAGMENT,
                         true,
                         true,
-                        null
+                        joinCoordinatorBundle
                     )
-//                }
+
+//                    // 화면 이동을 위한 임시 메서드
+//                    mainActivity.replaceFragment(
+//                        MainFragmentName.JOIN_COORDINATOR_NEXT_FRAGMENT,
+//                        true,
+//                        true,
+//                        null
+//                    )
+                }
             }
         }
     }
@@ -418,7 +414,7 @@ class JoinCoordinatorFragment : Fragment() {
         val coordiMBTI = joinCoordinatorViewModel.textFieldJoinCoordinatorMBTI.value!!
         val coordiContactNum =
             joinCoordinatorViewModel.textFieldJoinCoordinatorContactNumber.value!!
-        val checkBoxConsent = joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent.value!!
+        val checkBoxConsent = joinCoordinatorViewModel.checkBoxJoinCoordinatorConsent.value
 
 
         if (coordiName.isEmpty()) {
@@ -658,9 +654,7 @@ class JoinCoordinatorFragment : Fragment() {
         override fun onBindViewHolder(holder: PortfolioViewHolder, position: Int) {
             holder.rowJoinCoordinatorPortfolioBinding.imageViewPortfolio.setImageBitmap(portfolioImageList[position])
             holder.rowJoinCoordinatorPortfolioBinding.buttonPortfolioImageDelete.setOnClickListener {
-                Log.d("testError","1")
                 portfolioImageList.removeAt(position)
-                Log.d("testError","2")
                 notifyDataSetChanged()
             }
         }
