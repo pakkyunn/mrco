@@ -15,7 +15,8 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +24,7 @@
             </intent-filter>
         </activity>
     </application>
-    <!-- android:screenOrientation="portrait" -->
+
     <!-- 앨범으로 부터 사진을 가져오기 위한 권한 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
