@@ -143,6 +143,7 @@ class LoginFragment : Fragment() {
                             editor.putString("loginUserId", loginUserModel.userId)
                             editor.putString("loginUserName", loginUserModel.userName)
                             editor.putString("loginUserMbti", loginUserModel.userMBTI)
+                            editor.putInt("loginUserGender", loginUserModel.userGender)
                             editor.apply()
                         }
 
@@ -151,6 +152,7 @@ class LoginFragment : Fragment() {
                         bundle.putString("loginUserId", loginUserModel.userId)
                         bundle.putString("loginUserName", loginUserModel.userName)
                         bundle.putString("loginUserMbti", loginUserModel.userMBTI)
+                        bundle.putInt("loginUserGender", loginUserModel.userGender)
 
                         mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, bundle)
                         Snackbar.make(fragmentLoginBinding.root, "${loginUserModel.userName}님 반갑습니다", Snackbar.LENGTH_SHORT).show()

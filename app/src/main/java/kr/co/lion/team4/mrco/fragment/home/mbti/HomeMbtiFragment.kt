@@ -31,7 +31,6 @@ class HomeMbtiFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     lateinit var homeMbtiViewModel: HomeMbtiViewModel
-    lateinit var homeMainFullFragment: HomeMainFullFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -42,6 +41,8 @@ class HomeMbtiFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        Log.d("test1234", "MBTI_Fragment - Mbti: ${mainActivity.loginUserMbti}, Gender: ${mainActivity.loginUserGender}")
+
         // 리사이클러 뷰
         settingRecyclerViewHomeMBTI()
         settingRecyclerViewHomeMBTI2()
@@ -49,7 +50,37 @@ class HomeMbtiFragment : Fragment() {
         // 버튼(더보기)
         settingContentMoreButton()
 
+        // TextView 기본 설정
+        settingInit()
+
+        // 코디 상품(첫번째) TextView 관찰
+        homeMbtiViewModel.textViewHomeMbtiTextFirst.observe(viewLifecycleOwner) { text ->
+            // MBTI TextView 업데이트
+            fragmentHomeMbtiBinding.homeMbtiContent1.text = text
+        }
+
+        // 코디 상품(첫번째) TextView 관찰
+        homeMbtiViewModel.textViewHomeMbtiTextSecond.observe(viewLifecycleOwner) { text ->
+            // MBTI TextView 업데이트
+            fragmentHomeMbtiBinding.homeMbtiContent2.text = text
+        }
+
         return fragmentHomeMbtiBinding.root
+    }
+
+    // TextView 세팅
+    fun settingInit() {
+        // 남자일때
+        if (mainActivity.loginUserGender == 1) {
+            homeMbtiViewModel.textViewHomeMbtiTextFirst.value = "${mainActivity.loginUserMbti} 남성에게 잘 어울리는 코디"
+            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 여성들이 좋아하는 이성의 코디"
+        }
+        // 여자일때
+        else {
+            homeMbtiViewModel.textViewHomeMbtiTextFirst.value = "${mainActivity.loginUserMbti} 여성에게 잘 어울리는 코디"
+            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 남성들이 좋아하는 이성의 코디"
+        }
+
     }
 
     // 더보기 버튼

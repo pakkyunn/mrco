@@ -18,7 +18,6 @@
             android:elevation="1dp"
             app:tabIndicatorColor="#DDF5FF"
             app:tabIndicatorFullWidth="true"
-            app:tabMode="auto"
             app:tabRippleColor="#555555"
             app:tabSelectedTextColor="#FFFFFF"
             app:tabTextColor="#878787">

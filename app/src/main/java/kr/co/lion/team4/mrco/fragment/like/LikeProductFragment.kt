@@ -44,19 +44,12 @@ class LikeProductFragment : Fragment() {
     fun settingRecyclerViewLikeProduct() {
         fragmentLikeProductBinding.apply {
             val screenWidthDp = resources.configuration.screenWidthDp
-            if (screenWidthDp >= 600 || screenWidthDp < 720) {
+            if (screenWidthDp >= 600) {
                 // 너비가 600dp 이상인 디바이스에서 실행될 동작
                 recyclerViewLikeCoordi.apply {
                     // 어뎁터 및 레이아웃 매니저 설정
                     adapter = LikeProductRecyclerViewAdapter()
                     layoutManager = GridLayoutManager(mainActivity, 4)
-                }
-            } else if (screenWidthDp >= 720) {
-                // 너비가 720dp 이상인 디바이스에서 실행될 동작
-                recyclerViewLikeCoordi.apply {
-                    // 어뎁터 및 레이아웃 매니저 설정
-                    adapter = LikeProductRecyclerViewAdapter()
-                    layoutManager = GridLayoutManager(mainActivity, 6)
                 }
             }
             else {

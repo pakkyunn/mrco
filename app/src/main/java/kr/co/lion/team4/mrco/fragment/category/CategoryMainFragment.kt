@@ -122,7 +122,7 @@ class CategoryMainFragment : Fragment() {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.main_bottom_navi_home -> {
-                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
                     R.id.main_bottom_navi_category -> {
                         mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
@@ -151,17 +151,11 @@ class CategoryMainFragment : Fragment() {
     fun settingRecyclerViewCategory() {
         fragmentCategoryMainBinding.apply {
             val screenWidthDp = resources.configuration.screenWidthDp
-            if (screenWidthDp >= 600 || screenWidthDp < 720) {
+            if (screenWidthDp >= 600) {
                 // 너비가 600dp 이상인 디바이스에서 실행될 동작
                 recyclerViewCategoryMain.apply {
                     adapter = CategoryMainRecyclerViewAdapter()
                     layoutManager = GridLayoutManager(mainActivity, 4)
-                }
-            } else if (screenWidthDp >= 720) {
-                // 너비가 720dp 이상인 디바이스에서 실행될 동작
-                recyclerViewCategoryMain.apply {
-                    adapter = CategoryMainRecyclerViewAdapter()
-                    layoutManager = GridLayoutManager(mainActivity, 6)
                 }
             }
             else {

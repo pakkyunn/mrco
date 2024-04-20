@@ -86,7 +86,7 @@ class CoordinatorMyPageFragment : Fragment() {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.main_bottom_navi_home -> {
-                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
                     R.id.main_bottom_navi_category -> {
                         mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)

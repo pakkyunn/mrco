@@ -27,10 +27,11 @@ class HomeMainFullFragment : Fragment() {
     lateinit var bundle: Bundle
 
     // 사용자 정보(인덱스, 아이디, 이름, MBTI)
-    var  loginUserIdx = 0
+    var loginUserIdx = 0
     lateinit var loginUserId: String
     lateinit var loginUserName: String
     lateinit var loginUserMbti: String
+    var loginUserGender = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -47,14 +48,11 @@ class HomeMainFullFragment : Fragment() {
             loginUserId = (getBundle.getString("loginUserId")).toString()
             loginUserName = (getBundle.getString("loginUserName")).toString()
             loginUserMbti = (getBundle.getString("loginUserMbti")).toString()
-            Log.d("test1234", "인덱스: $loginUserIdx, 아이디: $loginUserId, 이름: $loginUserName, MBTI: $loginUserMbti")
+            loginUserGender = getBundle.getInt("loginUserGender")
+            Log.d("test1234", "인덱스: $loginUserIdx, 아이디: $loginUserId, 이름: $loginUserName, MBTI: $loginUserMbti, Gender: $loginUserGender")
             // 원하는 작업을 수행합니다.
         }
-
-        mainActivity.loginUserIdx = loginUserIdx
-        mainActivity.loginUserId = loginUserId
-        mainActivity.loginUserName = loginUserName
-        mainActivity.loginUserMbti = loginUserMbti
+        settingMainInit()
 
         // 툴바, 하단바, 탭 관련
         viewPagerActiviation()
@@ -62,7 +60,27 @@ class HomeMainFullFragment : Fragment() {
         bottomSheetSetting()
         settingBottomTabs()
 
+        settingMainBundle()
+
         return fragmentHomeMainFullBinding.root
+    }
+
+    // 로그인 된 정보를 mainActivity 변수 값에 넣어준다.
+    fun settingMainInit(){
+        mainActivity.loginUserIdx = loginUserIdx
+        mainActivity.loginUserId = loginUserId
+        mainActivity.loginUserName = loginUserName
+        mainActivity.loginUserMbti = loginUserMbti
+        mainActivity.loginUserGender = loginUserGender
+    }
+
+    // 로그인 된 정보를 mainActivity Bundle에 넣어준다.
+    fun settingMainBundle(){
+        mainActivity.bundle.putInt("loginUserIdx", loginUserIdx)
+        mainActivity.bundle.putString("loginUserId", loginUserId)
+        mainActivity.bundle.putString("loginUserName", loginUserName)
+        mainActivity.bundle.putString("loginUserMbti", loginUserMbti)
+        mainActivity.bundle.putInt("loginUserGender", loginUserGender)
     }
 
     // 툴바 세팅(메인 / 검색, 알림, 장바구니)

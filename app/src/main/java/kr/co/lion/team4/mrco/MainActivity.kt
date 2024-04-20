@@ -72,10 +72,11 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var bundle: Bundle
 
-    var  loginUserIdx = 0
+    var  loginUserIdx = -1
     lateinit var loginUserId: String
     lateinit var loginUserName: String
     lateinit var loginUserMbti: String
+    var  loginUserGender = -1
 
     // 프레그먼트의 주소 값을 담을 프로퍼티
     var oldFragment: Fragment? = null
@@ -105,6 +106,7 @@ class MainActivity : AppCompatActivity() {
         loginUserId = (sharedPreferences.getString("loginUserId", null)).toString()
         loginUserName = (sharedPreferences.getString("loginUserName", null)).toString()
         loginUserMbti = (sharedPreferences.getString("loginUserMbti", null)).toString()
+        loginUserGender = sharedPreferences.getInt("loginUserGender", -1)
 
         // 자동 로그인시 저장된 사용자 인덱스값이 없다면(자동로그인을 체크하지 않았다면)
         Log.d("test1234", "자동 로그인 여부(-1 빼고 전부 자동로그인): $loginUserIdx")
@@ -118,6 +120,7 @@ class MainActivity : AppCompatActivity() {
             bundle.putString("loginUserId", loginUserId)
             bundle.putString("loginUserName", loginUserName)
             bundle.putString("loginUserMbti", loginUserMbti)
+            bundle.putInt("loginUserGender", loginUserGender)
 
             replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, bundle)
         }
