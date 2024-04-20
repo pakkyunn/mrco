@@ -107,8 +107,6 @@ class JoinCoordinatorFragment : Fragment() {
 
         settingAlbumLauncher()
 
-        settingRecyclerViewPortfolio()
-
         settingButtonCoordinatorPhoto()
         settingButtonCoordinatorCertification()
         settingButtonCoordinatorPortfolio()
@@ -293,6 +291,11 @@ class JoinCoordinatorFragment : Fragment() {
             }
         }
     }
+
+    fun settingPortfolioImageDeleteButton(){
+
+    }
+
 
     fun showMbtiBottomSheet() {
         fragmentJoinCoordinatorBinding.apply {
@@ -574,9 +577,7 @@ class JoinCoordinatorFragment : Fragment() {
                             R.id.buttonCoordinatorPortfolio -> {
                                 portfolioImageList.add(bitmap3)
                                 recyclerViewJoinCoordinatorPortfolio.adapter?.notifyDataSetChanged()
-                                Log.d("test1234", "rr")
-                                Log.d("test1234", "$portfolioImageList")
-
+                                settingRecyclerViewPortfolio()
                             }
 
                             R.id.buttonCoordinatorBizLicense -> imageViewJoinCoordinatorBizLicense.setImageBitmap(
@@ -655,23 +656,13 @@ class JoinCoordinatorFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: PortfolioViewHolder, position: Int) {
-//            // position 값에 따라 다른 이미지 설정
-//            val imageResource = when (position % 10) {
-//                1 -> portfolioImageList[position]
-//                2 -> portfolioImageList[position]
-//                3 -> portfolioImageList[position]
-//                4 -> portfolioImageList[position]
-//                5 -> portfolioImageList[position]
-//                6 -> portfolioImageList[position]
-//                7 -> portfolioImageList[position]
-//                8 -> portfolioImageList[position]
-//                9 -> portfolioImageList[position]
-//                else -> portfolioImageList[position]
-//            }
-
-            holder.rowJoinCoordinatorPortfolioBinding.imageViewPortfolio.setImageBitmap(
-                portfolioImageList[position]
-            )
+            holder.rowJoinCoordinatorPortfolioBinding.imageViewPortfolio.setImageBitmap(portfolioImageList[position])
+            holder.rowJoinCoordinatorPortfolioBinding.buttonPortfolioImageDelete.setOnClickListener {
+                Log.d("testError","1")
+                portfolioImageList.removeAt(position)
+                Log.d("testError","2")
+                notifyDataSetChanged()
+            }
         }
     }
 }
