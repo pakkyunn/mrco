@@ -6,31 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
-import kr.co.lion.team4.mrco.databinding.FragmentHomeCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMainFullBinding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
-import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
 import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
-import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
-import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRank2ViewModel
-import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
+import kr.co.lion.team4.mrco.model.UserModel
 
 class HomeMainFullFragment : Fragment() {
 
@@ -38,12 +23,38 @@ class HomeMainFullFragment : Fragment() {
     lateinit var fragmentHomeMainFullBinding: FragmentHomeMainFullBinding
     lateinit var mainActivity: MainActivity
 
+    // 생성자에서 받은 Bundle을 저장할 변수
+    lateinit var bundle: Bundle
+
+    // 사용자 정보(인덱스, 아이디, 이름, MBTI)
+    var  loginUserIdx = 0
+    lateinit var loginUserId: String
+    lateinit var loginUserName: String
+    lateinit var loginUserMbti: String
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
         fragmentHomeMainFullBinding = FragmentHomeMainFullBinding.inflate(inflater)
 
         mainActivity = activity as MainActivity
+
+        // getArguments() 메서드를 사용하여 Bundle을 가져옵니다.
+        val getBundle = arguments
+        if (getBundle != null) {
+            // Bundle로부터 원하는 데이터를 꺼내 사용합니다.
+            loginUserIdx = getBundle.getInt("loginUserIdx")
+            loginUserId = (getBundle.getString("loginUserId")).toString()
+            loginUserName = (getBundle.getString("loginUserName")).toString()
+            loginUserMbti = (getBundle.getString("loginUserMbti")).toString()
+            Log.d("test1234", "인덱스: $loginUserIdx, 아이디: $loginUserId, 이름: $loginUserName, MBTI: $loginUserMbti")
+            // 원하는 작업을 수행합니다.
+        }
+
+        mainActivity.loginUserIdx = loginUserIdx
+        mainActivity.loginUserId = loginUserId
+        mainActivity.loginUserName = loginUserName
+        mainActivity.loginUserMbti = loginUserMbti
 
         // 툴바, 하단바, 탭 관련
         viewPagerActiviation()
@@ -59,7 +70,6 @@ class HomeMainFullFragment : Fragment() {
         fragmentHomeMainFullBinding.apply {
             toolbarMain.apply {
                 setOnMenuItemClickListener {
-
                     when (it.itemId) {
                         // 검색 클릭 시
                         R.id.home_toolbar_search -> {
@@ -113,6 +123,7 @@ class HomeMainFullFragment : Fragment() {
 
     private fun viewPagerActiviation(){
         fragmentHomeMainFullBinding.apply {
+
             // 1. 페이지 데이터를 로드
             val list = listOf(HomeRecommendFragment(), HomeMbtiFragment(), HomeCoordinatorFragment())
             // 2. Adapter 생성

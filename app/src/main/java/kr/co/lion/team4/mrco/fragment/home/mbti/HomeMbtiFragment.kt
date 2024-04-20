@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco.fragment.home.mbti
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbti2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
@@ -29,6 +31,7 @@ class HomeMbtiFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     lateinit var homeMbtiViewModel: HomeMbtiViewModel
+    lateinit var homeMainFullFragment: HomeMainFullFragment
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
