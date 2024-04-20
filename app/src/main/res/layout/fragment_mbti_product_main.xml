@@ -52,7 +52,7 @@
                 tools:text="ISFP" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/textViewSideMbti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
@@ -72,7 +72,7 @@
                 android:layout_marginTop="4dp"
                 android:text="MBTI를 고려해 알맞은 코디를 준비해요\n하단의 버튼을 통해 다양한 MBTI별 코디를 볼 수 있어요!"
                 app:layout_constraintStart_toStartOf="@+id/textViewMbti"
-                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewSideMbti" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonMbtiProductMainMBTI"

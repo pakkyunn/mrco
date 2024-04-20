@@ -54,9 +54,11 @@
                         android:textSize="20dp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_banner" />
+                        app:layout_constraintTop_toBottomOf="@+id/home_recommend_banner"
+                        tools:text="홍길동(ENTP" />
 
                     <TextView
+                        android:id="@+id/textViewSideContent1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=") 님을 위한 추천 코디"

@@ -26,8 +26,10 @@ class MbtiProductMainFragment : Fragment() {
     lateinit var fragmentMbtiProductMainBinding: FragmentMbtiProductMainBinding
     lateinit var mainActivity: MainActivity
 
-
     lateinit var mbtiProductMainViewModel: MbtiProductMainViewModel
+
+    // 더보기 버튼 위에꺼/아래꺼
+    var buttonInt = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -38,6 +40,8 @@ class MbtiProductMainFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        buttonInt = arguments?.getInt("buttonInt")!!
+
         // 툴바, 하단바, 탭 관련
         settingToolbar()
 
@@ -47,13 +51,46 @@ class MbtiProductMainFragment : Fragment() {
         // 버튼
         settingButton()
 
+        // 기본 세팅
+        settingInit()
+
         // MBTI TextView 관찰
         mbtiProductMainViewModel.textViewMbtiProductMainMBTI.observe(viewLifecycleOwner) { mbti ->
             // MBTI TextView 업데이트
             fragmentMbtiProductMainBinding.textViewMbti.text = mbti
+            fragmentMbtiProductMainBinding.recyclerViewMbtiProductMain.adapter?.notifyDataSetChanged()
         }
 
         return fragmentMbtiProductMainBinding.root
+    }
+
+    // 기본 세팅
+    fun settingInit() {
+        // 첫번째 버튼으로 들어왔을때
+        if (buttonInt == 1) {
+            mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = mainActivity.loginUserMbti
+            fragmentMbtiProductMainBinding.textViewSideMbti.setText("에게 잘 어울리는 코디")
+            // 남자일때
+            if (mainActivity.loginUserGender == 1) {
+
+            }
+            // 여자일때
+            else {
+
+            }
+        }
+        // 두번째 버튼으로 들어왔을때
+        else {
+            mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = mainActivity.loginUserMbti
+            // 남자일때
+            if (mainActivity.loginUserGender == 1) {
+                fragmentMbtiProductMainBinding.textViewSideMbti.setText("여성이 좋아하는 남자 코디")
+            }
+            // 여자일때
+            else {
+                fragmentMbtiProductMainBinding.textViewSideMbti.setText("남성이 좋아하는 여자 코디")
+            }
+        }
     }
 
     fun settingToolbar(){

@@ -73,25 +73,28 @@ class HomeMbtiFragment : Fragment() {
         // 남자일때
         if (mainActivity.loginUserGender == 1) {
             homeMbtiViewModel.textViewHomeMbtiTextFirst.value = "${mainActivity.loginUserMbti} 남성에게 잘 어울리는 코디"
-            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 여성들이 좋아하는 이성의 코디"
+            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 여성이 좋아하는 남자 코디"
         }
         // 여자일때
         else {
             homeMbtiViewModel.textViewHomeMbtiTextFirst.value = "${mainActivity.loginUserMbti} 여성에게 잘 어울리는 코디"
-            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 남성들이 좋아하는 이성의 코디"
+            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 남성이 좋아하는 여자 코디"
         }
-
     }
 
     // 더보기 버튼
     fun settingContentMoreButton(){
+        val bundle = Bundle()
+
         fragmentHomeMbtiBinding.apply {
             homeMbtiContent1MoreButton.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
+                bundle.putInt("buttonInt", 1)
+                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, bundle)
             }
 
             homeMbtiContent2MoreButton.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
+                bundle.putInt("buttonInt", 2)
+                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, bundle)
             }
         }
     }

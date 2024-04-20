@@ -69,7 +69,12 @@ class HomeRecommendFragment : Fragment() {
     }
 
     fun settingInit() {
-        homeRecommendViewModel.textViewHomeRecommendContent1.value = "${mainActivity.loginUserName}(${mainActivity.loginUserMbti}"
+        if (mainActivity.loginUserIdx != -1){
+            homeRecommendViewModel.textViewHomeRecommendContent1.value = "${mainActivity.loginUserName}(${mainActivity.loginUserMbti}"
+        } else {
+            homeRecommendViewModel.textViewHomeRecommendContent1.value = "ENFP"
+            fragmentHomeRecommendBinding.textViewSideContent1.setText(" 추천코디")
+        }
     }
 
     fun settingButton(){
