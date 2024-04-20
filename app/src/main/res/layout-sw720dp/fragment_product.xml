@@ -54,7 +54,7 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recyclerViewBannerProduct"
                             android:layout_width="match_parent"
-                            android:layout_height="760dp"
+                            android:layout_height="480dp"
                             android:clipChildren="false"
                             android:clipToPadding="false"
                             android:orientation="horizontal"
