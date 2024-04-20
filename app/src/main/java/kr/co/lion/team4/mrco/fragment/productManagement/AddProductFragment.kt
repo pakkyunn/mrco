@@ -311,13 +311,15 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                 holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageBitmap(imageBitmaps[position])
             } else {
                 // 해당 인덱스에 비트맵이 없는 경우 기본 이미지를 설정
-                holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.add_box_24px)
+                holder.itemAddproductDetailBinding.imageviewAddProductDetailThumbnail.setImageResource(R.drawable.photo_add)
             }
 
             holder.itemAddproductDetailBinding.buttonAddProductDetailRemove.setOnClickListener {
                 individualProductData.removeAt(position)
-                imageBitmaps.removeAt(position)
-                imagePath.removeAt(position)
+                if (imageBitmaps.size > 0) {
+                    imageBitmaps.removeAt(position)
+                    imagePath.removeAt(position)
+                }
                 fragmentAddProductBinding.recyclerviewAddProductDetail.adapter?.notifyDataSetChanged()
             }
         }
