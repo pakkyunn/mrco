@@ -2,10 +2,13 @@ package kr.co.lion.team4.mrco.fragment
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -30,6 +33,8 @@ class LoginFragment : Fragment() {
 
     lateinit var loginViewModel: LoginViewModel
 
+    lateinit var bundle: Bundle
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         //fragmentLoginBinding = FragmentLoginBinding.inflate(inflater)
@@ -38,8 +43,9 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding.loginViewModel = loginViewModel
         fragmentLoginBinding.lifecycleOwner = this
 
-
         mainActivity = activity as MainActivity
+
+        bundle = Bundle()
 
         settingLoginInput()
 
@@ -53,44 +59,20 @@ class LoginFragment : Fragment() {
         fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
             mainActivity.replaceFragment(MainFragmentName.JOIN_FRAGMENT, true, true, null)
         }
-
-        //테스트 용 회원정보 수정 화면으로 이동
-//        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
-//            mainActivity.replaceFragment(MainFragmentName.MODIFY_USER_FRAGMENT, true, true, null )
-
-//        //테스트 용 코디네이터 등록 신청 화면으로 이동
-//        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
-//            mainActivity.replaceFragment(MainFragmentName.JOIN_COORDINATOR_FRAGMENT, true, true, null )
-
-        //테스트 용 코디네이터 정보 수정 화면으로 이동
-//        fragmentLoginBinding.buttonLoginJoin.setOnClickListener {
-//            mainActivity.replaceFragment(MainFragmentName.MODIFY_COORDINATOR_FRAGMENT, true, true, null )
-
-
     }
 
     fun settingButtonLoginSubmit() {
-//        //테스트 용 회원정보 수정 화면으로 이동
-//        fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
-//            mainActivity.replaceFragment(MainFragmentName.HOME_RECOMMEND, false, false, null )
-//        }
         fragmentLoginBinding.buttonLoginSubmit.setOnClickListener {
-
-            // 유효성 검사
-            // 임시 주석 및 임시 이동
-            /*
             val validation = checkLoginInput()
 
             if (validation) {
                 loginProcess()
             }
-            */
-            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null )
         }
     }
 
     // 유효성 검사
-    fun checkLoginInput():Boolean{
+    fun checkLoginInput(): Boolean{
 
         // 입력한 값들을 가져온다.
         val userId = loginViewModel.textFieldLoginUserId.value!!
@@ -158,19 +140,23 @@ class LoginFragment : Fragment() {
                                 mainActivity.getSharedPreferences("AutoLogin", Context.MODE_PRIVATE)
                             val editor = sharedPreferences.edit()
                             editor.putInt("loginUserIdx", loginUserModel.userIdx)
+                            editor.putString("loginUserId", loginUserModel.userId)
                             editor.putString("loginUserName", loginUserModel.userName)
+                            editor.putString("loginUserMbti", loginUserModel.userMBTI)
                             editor.apply()
                         }
-                    }
 
-                    Snackbar.make(fragmentLoginBinding.root, "로그인에 성공하였습니다", Snackbar.LENGTH_SHORT).show()
-                    // 홈화면 추천화면 fragment로 이동
-                    mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, true, true, null)
+                        // 로그인한 사용자의 정보를 전달해준다.
+                        bundle.putInt("loginUserIdx", loginUserModel.userIdx)
+                        bundle.putString("loginUserId", loginUserModel.userId)
+                        bundle.putString("loginUserName", loginUserModel.userName)
+                        bundle.putString("loginUserMbti", loginUserModel.userMBTI)
+
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, bundle)
+                        Snackbar.make(fragmentLoginBinding.root, "${loginUserModel.userName}님 반갑습니다", Snackbar.LENGTH_SHORT).show()
+                    }
                 }
             }
-
-            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null )
-
         }
     }
 
