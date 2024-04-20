@@ -32,13 +32,13 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="260dp"
+                    android:layout_height="420dp"
                     android:layout_marginTop="15dp">
 
                     <ImageView
                         android:id="@+id/imageViewCoordinatorMyPage"
-                        android:layout_width="160dp"
-                        android:layout_height="230dp"
+                        android:layout_width="300dp"
+                        android:layout_height="390dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
@@ -120,6 +120,7 @@
                         android:id="@+id/iconButtonEditCoordinatorMyPage"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
                         android:layout_marginBottom="16dp"
                         android:backgroundTint="#152F7E"
                         android:text="프로필 수정"
@@ -127,19 +128,19 @@
                         app:cornerRadius="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.457"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@+id/imageViewCoordinatorMyPage" />
-<!--                                        <Button-->
-<!--                                            android:id="@+id/iconButtonEditCoordinatorMyPage"-->
-<!--                                            style="?attr/materialIconButtonStyle"-->
-<!--                                            android:layout_width="wrap_content"-->
-<!--                                            android:layout_height="wrap_content"-->
-<!--                                            android:layout_marginTop="8dp"-->
-<!--                                            android:layout_marginEnd="8dp"-->
-<!--                                            app:icon="@drawable/settings_24px"-->
-<!--                                            app:iconTint="@color/black"-->
-<!--                                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                                            app:layout_constraintTop_toTopOf="parent" />-->
+                    <!--                                        <Button-->
+                    <!--                                            android:id="@+id/iconButtonEditCoordinatorMyPage"-->
+                    <!--                                            style="?attr/materialIconButtonStyle"-->
+                    <!--                                            android:layout_width="wrap_content"-->
+                    <!--                                            android:layout_height="wrap_content"-->
+                    <!--                                            android:layout_marginTop="8dp"-->
+                    <!--                                            android:layout_marginEnd="8dp"-->
+                    <!--                                            app:icon="@drawable/settings_24px"-->
+                    <!--                                            app:iconTint="@color/black"-->
+                    <!--                                            app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                                            app:layout_constraintTop_toTopOf="parent" />-->
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <View
@@ -351,6 +352,7 @@
             android:id="@+id/main_bottom_navi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             app:itemActiveIndicatorStyle="@null"
             app:itemBackground="@color/bottomSheetColor"
             app:itemIconTint="@color/bottom_navigation_selector_color"

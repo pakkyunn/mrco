@@ -150,9 +150,19 @@ class CategoryMainFragment : Fragment() {
     // 리사이클러 뷰 설정
     fun settingRecyclerViewCategory() {
         fragmentCategoryMainBinding.apply {
-            recyclerViewCategoryMain.apply {
-                adapter = CategoryMainRecyclerViewAdapter()
-                layoutManager = GridLayoutManager(mainActivity, 2)
+            val screenWidthDp = resources.configuration.screenWidthDp
+            if (screenWidthDp >= 600) {
+                // 너비가 600dp 이상인 디바이스에서 실행될 동작
+                recyclerViewCategoryMain.apply {
+                    adapter = CategoryMainRecyclerViewAdapter()
+                    layoutManager = GridLayoutManager(mainActivity, 6)
+                }
+            } else {
+                // 너비가 600dp 미만인 디바이스에서 실행될 동작
+                recyclerViewCategoryMain.apply {
+                    adapter = CategoryMainRecyclerViewAdapter()
+                    layoutManager = GridLayoutManager(mainActivity, 2)
+                }
             }
         }
     }

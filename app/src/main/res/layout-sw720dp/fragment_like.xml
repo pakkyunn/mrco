@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="likeViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.like.LikeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        android:orientation="vertical"
+        android:transitionGroup="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarLike"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:menu="@menu/menu_main_home_toolbar"
+            app:subtitleTextColor="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imageViewLikeCoordiRedHeartIcon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/favorite_24"
+                app:tint="#FB0006" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="LIKE"
+                android:textColor="#000000"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewLikeCoordinatorTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="@{likeViewModel.textViewLikeTotal}"
+                android:textColor="#888888"
+                android:textSize="32dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsLike"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="1dp"
+            app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
+            app:tabSelectedTextColor="#000000"
+            app:tabTextAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:tabRippleColor="#CCCCCC"
+            app:tabTextColor="#878787">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/like_tab_coordi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코디"
+                android:theme="@style/Basic_Font_Theme" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/like_tab_stylist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="코디네이터"
+                android:theme="@style/Basic_Font_Theme" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager_like"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_bottom_navi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:itemActiveIndicatorStyle="@null"
+            app:itemBackground="@color/bottomSheetColor"
+            app:itemIconTint="@color/bottom_navigation_selector_color"
+            app:itemTextColor="@color/bottom_navigation_selector_color"
+            app:labelVisibilityMode="labeled"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:layout_insetEdge="bottom"
+            app:menu="@menu/menu_main_bottom_navi" />
+
+    </LinearLayout>
+</layout>

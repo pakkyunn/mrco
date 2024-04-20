@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="productViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.product.ProductViewModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragment.product.ProductFragment">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:menu="@menu/menu_product"
+            app:navigationIcon="@drawable/arrow_back_ios_24px"
+            app:navigationIconTint="@color/black" />
+
+        <kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="300dp"
+            android:paddingRight="300dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:contentScrim="@android:color/transparent"
+                    app:layout_scrollFlags="scroll">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerViewBannerProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="600dp"
+                            android:clipChildren="false"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewCoordinatorName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@={productViewModel.textViewCoordinatorName}"
+                            android:textColor="#1969B2"
+                            android:textSize="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/recyclerViewBannerProduct"
+                            tools:text="코디네이터이름" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="8dp"
+                            android:src="@drawable/home_24px"
+                            app:layout_constraintBottom_toBottomOf="@id/textViewCoordinatorName"
+                            app:layout_constraintDimensionRatio="1:1"
+                            app:layout_constraintStart_toEndOf="@id/textViewCoordinatorName"
+                            app:layout_constraintTop_toTopOf="@id/textViewCoordinatorName" />
+
+
+                        <TextView
+                            android:id="@+id/textIconMbti"
+                            android:layout_width="64dp"
+                            android:layout_height="32dp"
+                            android:layout_marginTop="5dp"
+                            android:background="#13D4EF"
+                            android:gravity="center"
+                            android:text="@={productViewModel.textIconMbti}"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="@id/textViewCoordinatorName"
+                            app:layout_constraintTop_toBottomOf="@id/textViewCoordinatorName"
+                            tools:text="ESFJ" />
+
+                        <com.google.android.material.checkbox.MaterialCheckBox
+                            android:id="@+id/checkBoxLike"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:button="@drawable/selector_favorite"
+                            app:buttonTint="#B31010"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/recyclerViewBannerProduct" />
+
+                        <TextView
+                            android:id="@+id/textViewLikeCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:text="@={productViewModel.textViewLikeCount}"
+                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                            android:textColor="#B31010"
+                            app:layout_constraintEnd_toEndOf="@id/checkBoxLike"
+                            app:layout_constraintStart_toStartOf="@id/checkBoxLike"
+                            app:layout_constraintTop_toTopOf="@+id/checkBoxLike"
+                            tools:text="807" />
+
+                        <TextView
+                            android:id="@+id/textViewProductName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@={productViewModel.textViewProductName}"
+                            android:textColor="@color/black"
+                            android:textSize="32dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/textIconMbti" />
+
+
+                        <TextView
+                            android:id="@+id/textViewProductPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@={productViewModel.textViewProductPrice}"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:theme="@style/Basic_Font_Theme"
+                            app:layout_constraintStart_toStartOf="@id/textViewProductName"
+                            app:layout_constraintTop_toBottomOf="@id/textViewProductName" />
+
+                        <Button
+                            android:id="@+id/buttonProductDetail"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="코디 상세"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            app:icon="@drawable/baseline_arrow_forward_ios_24"
+                            app:iconGravity="end"
+                            app:iconTint="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toEndOf="@+id/textViewProductPrice"
+                            app:layout_constraintTop_toBottomOf="@id/textViewProductName" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#F1F1F1" />
+
+                <com.google.android.material.tabs.TabLayout
+
+                    android:id="@+id/tabLayputProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:elevation="1dp"
+                    app:tabIndicatorColor="#000000"
+                    app:tabIndicatorFullWidth="true"
+                    app:tabMinWidth="120dp"
+                    app:tabMode="fixed"
+                    app:tabRippleColor="#CCCCCC"
+                    app:tabSelectedTextColor="#000000"
+                    app:tabTextColor="#676767">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tabItemShipping"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="배송" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tabItemReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="후기\n138" />
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/tabItemQna"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="문의\n77" />
+
+                </com.google.android.material.tabs.TabLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/fragmentContainerViewProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.core.widget.NestedScrollView>
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomButtonView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/mrco_launcher_background"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:itemActiveIndicatorStyle="@null"
+                app:itemIconTint="@color/bottom_navigation_selector_color"
+                app:itemTextColor="@color/bottom_navigation_selector_color"
+                app:labelVisibilityMode="labeled"
+                app:layout_insetEdge="bottom">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonBottomAddCart"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/add_shopping_cart_24px"
+                        android:text="장바구니"
+                        android:textColor="@color/black"
+                        app:cornerRadius="5dp" />
+
+                    <Button
+                        android:id="@+id/buttonBottomPurchase"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#000000"
+                        android:drawableStart="@drawable/shopping_cart_checkout_24px"
+                        android:text="구매하기"
+                        app:cornerRadius="5dp" />
+                </LinearLayout>
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        </kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout>
+
+    </LinearLayout>
+
+</layout>

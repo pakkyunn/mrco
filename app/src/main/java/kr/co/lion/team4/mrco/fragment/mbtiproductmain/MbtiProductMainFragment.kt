@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
@@ -78,9 +79,20 @@ class MbtiProductMainFragment : Fragment() {
     // 리사이클러 뷰 설정
     fun settingRecyclerViewMbtiProductMain() {
         fragmentMbtiProductMainBinding.apply {
-            recyclerViewMbtiProductMain.apply {
-                // 어뎁터 및 레이아웃 매니저 설정
-                adapter = MbtiProductMainRecyclerViewAdapter()
+            val screenWidthDp = resources.configuration.screenWidthDp
+            if (screenWidthDp >= 600) {
+                // 너비가 600dp 이상인 디바이스에서 실행될 동작
+                recyclerViewMbtiProductMain.apply {
+                    // 어뎁터 및 레이아웃 매니저 설정
+                    adapter = MbtiProductMainRecyclerViewAdapter()
+                    layoutManager = GridLayoutManager(mainActivity, 4)
+                }
+            } else {
+                // 너비가 600dp 미만인 디바이스에서 실행될 동작
+                recyclerViewMbtiProductMain.apply {
+                    // 어뎁터 및 레이아웃 매니저 설정
+                    adapter = MbtiProductMainRecyclerViewAdapter()
+                }
             }
         }
     }
