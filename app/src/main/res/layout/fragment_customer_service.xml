@@ -35,7 +35,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonCustomerServiceInquiry"
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,6 +70,7 @@
         </LinearLayout>
 
         <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabCustomerServiceFaq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -82,43 +83,42 @@
             app:tabTextColor="#878787">
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabFaqAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabFaqUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="회원정보" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabFaqProductAndOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="주문/결제" />
+                android:text="상품/주문" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabFaqShipping"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="배송" />
 
             <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabFaqReturnAndExchange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="교환/반품" />
-
         </com.google.android.material.tabs.TabLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCustomerServiceFaq"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp" />
-
-        </LinearLayout>
+            android:clipToPadding="false"
+            android:paddingBottom="16dp" />
 
     </LinearLayout>
 </layout>

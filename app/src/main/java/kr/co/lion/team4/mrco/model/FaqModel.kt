@@ -12,7 +12,7 @@ data class FaqModel (
 // 자주 묻는 질문 카테고리
 enum class FaqCategory(var str: String, var categoryNum : Int){
     USER("회원정보", 0),
-    PRODUCT_AND_ORDER("상품/주문/결제", 1),
+    PRODUCT_AND_ORDER("상품/주문", 1),
     SHIPPING("배송", 2),
     RETURN_AND_EXCHANGE("교환/반품", 3)
 }
