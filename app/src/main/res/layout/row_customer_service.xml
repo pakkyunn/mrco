@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="rowCustomerServiceViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.customerService.RowCustomerServiceViewModel" />
@@ -16,12 +15,13 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutRowCustomerServiceQuestion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textViewCategoryRowCustomerService"
+                android:id="@+id/textViewRowCustomerServiceCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -38,7 +38,7 @@
                 tools:text="문의 카테고리" />
 
             <TextView
-                android:id="@+id/textViewSubtitleRowCustomerService"
+                android:id="@+id/textViewRowCustomerServiceSubtitle"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -49,13 +49,13 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageViewRowCustomerServiceReadAnswer"
-                app:layout_constraintStart_toEndOf="@+id/textViewCategoryRowCustomerService"
-                app:layout_constraintTop_toTopOf="@+id/textViewCategoryRowCustomerService"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewRowCustomerServiceShowAnswer"
+                app:layout_constraintStart_toEndOf="@+id/textViewRowCustomerServiceCategory"
+                app:layout_constraintTop_toTopOf="@+id/textViewRowCustomerServiceCategory"
                 tools:text="문의 제목" />
 
             <ImageView
-                android:id="@+id/imageViewRowCustomerServiceReadAnswer"
+                android:id="@+id/imageViewRowCustomerServiceShowAnswer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -68,7 +68,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/textViewAnswerRowCustomerService"
+            android:id="@+id/textViewRowCustomerServiceAnswer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/material_dynamic_neutral95"
