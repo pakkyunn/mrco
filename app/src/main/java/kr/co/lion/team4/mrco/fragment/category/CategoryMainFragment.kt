@@ -137,6 +137,8 @@ class CategoryMainFragment : Fragment() {
         settingBottomTabs()
         settingNavigationView()
 
+        settingCategoryFilterButton()
+
         // 리사이클러 뷰
         settingRecyclerViewCategory()
 
@@ -146,12 +148,12 @@ class CategoryMainFragment : Fragment() {
     // 툴바 설정
     fun toolbarSetting(){
         fragmentCategoryMainBinding.toolbarCoordinatorMain.apply {
-            // 네비게이션
-            setNavigationOnClickListener {
-                // 여기 햄버거 메뉴 나오게 하기
-                // Drawer 메뉴가 나타나게 한다.
-                fragmentCategoryMainBinding.drawerLayoutContent.open()
-            }
+//            // 네비게이션
+//            setNavigationOnClickListener {
+//                // 여기 햄버거 메뉴 나오게 하기
+//                // Drawer 메뉴가 나타나게 한다.
+//                fragmentCategoryMainBinding.drawerLayoutContent.open()
+//            }
             setOnMenuItemClickListener {
                 when (it.itemId) {
                     // 장바구니 클릭 시
@@ -160,6 +162,14 @@ class CategoryMainFragment : Fragment() {
                     }
                 }
                 true
+            }
+        }
+    }
+
+    fun settingCategoryFilterButton(){
+        fragmentCategoryMainBinding.apply {
+            buttonCategoryFilter!!.setOnClickListener {
+                fragmentCategoryMainBinding.drawerLayoutContent.open()
             }
         }
     }
