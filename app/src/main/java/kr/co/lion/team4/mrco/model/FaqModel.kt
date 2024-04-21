@@ -6,7 +6,9 @@ data class FaqModel (
     val faqSubCategory : String, // subCategory
     val faqQuestion : String, // question
     val faqAnswer : String, // answer
-)
+){
+    constructor() : this(0, 0, "", "", "")
+}
 
 
 // 자주 묻는 질문 카테고리
