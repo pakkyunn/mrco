@@ -7,7 +7,7 @@
     <data>
         <variable
             name="categoryViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.category.CategoryViewModel" />
+            type="kr.co.lion.team4.mrco.viewmodel.category.CategorySearchViewModel" />
     </data>
 
     <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:context=".fragment.category.CategoryFragment">
+                tools:context=".fragment.category.CategorySearchFragment">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:singleSelection="true">
-                            <!--                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}"-->
+                            <!--                        android:checkedChipId="@={categorySearchViewModel.chipGroupCategoryGender}"-->
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCategoryGenderMEN"
@@ -96,7 +96,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="2.5"
+                        android:layout_weight="1.5"
                         android:orientation="vertical">
 
                         <TextView
@@ -192,7 +192,7 @@
                         android:background="?android:attr/listDivider" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewCategory"
+                        android:id="@+id/recyclerViewCategorySearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="0.4"
@@ -202,6 +202,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/floatingButtonCategoryReset"
                 android:layout_width="wrap_content"
