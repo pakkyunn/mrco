@@ -4,8 +4,10 @@ import android.Manifest
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
@@ -18,7 +20,7 @@ import kr.co.lion.team4.mrco.fragment.ModifyCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.ModifyUserFragment
 import kr.co.lion.team4.mrco.fragment.appNotice.AppNoticeFragment
 import kr.co.lion.team4.mrco.fragment.cart.CartFragment
-import kr.co.lion.team4.mrco.fragment.category.CategoryFragment
+import kr.co.lion.team4.mrco.fragment.category.CategorySearchFragment
 import kr.co.lion.team4.mrco.fragment.category.CategoryMainFragment
 import kr.co.lion.team4.mrco.fragment.home.coordinator.CoordinatorInfoFragment
 import kr.co.lion.team4.mrco.fragment.coordinatormain.CoordinatorMainFragment
@@ -59,12 +61,10 @@ import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
 import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.MyReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.ReviewCreatedFragment
-import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.ManageShipmentsFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesListFragment
-import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementInvoiceReportFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -99,6 +99,8 @@ class MainActivity : AppCompatActivity() {
 
         // 권한 확인
         requestPermissions(permissionList, 0)
+
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
 
         // 자동 로그인 관련
         val sharedPreferences = getSharedPreferences("AutoLogin", AppCompatActivity.MODE_PRIVATE)
@@ -183,7 +185,7 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
 
             // 카테고리 (카테고리 선택, 메인) 화면
-            MainFragmentName.CATEGORY_FRAGMENT -> newFragment = CategoryFragment()
+            MainFragmentName.CATEGORY_SEARCH_FRAGMENT -> newFragment = CategorySearchFragment()
             MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()
 
             // 좋아요 화면 (코디, 코디네이터)
@@ -304,5 +306,21 @@ class MainActivity : AppCompatActivity() {
 
         // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
         supportFragmentManager.popBackStack(name.str, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
+
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayoutContent)
+
+            if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawers()
+            } else {
+                if (supportFragmentManager.backStackEntryCount > 0) {
+                    supportFragmentManager.popBackStack()
+                } else {
+                    finish()
+                }
+            }
+        }
     }
 }

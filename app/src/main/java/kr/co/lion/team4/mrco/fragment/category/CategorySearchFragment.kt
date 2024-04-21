@@ -12,37 +12,37 @@ import androidx.recyclerview.widget.RecyclerView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.databinding.FragmentCategoryBinding
+import kr.co.lion.team4.mrco.databinding.FragmentCategorySearchBinding
 import kr.co.lion.team4.mrco.databinding.RowCategorySemiCategory2Grid4Binding
 import kr.co.lion.team4.mrco.databinding.RowCategorySemiCategoryBinding
-import kr.co.lion.team4.mrco.viewmodel.category.CategoryViewModel
+import kr.co.lion.team4.mrco.viewmodel.category.CategorySearchViewModel
 
-class CategoryFragment : Fragment() {
+class CategorySearchFragment : Fragment() {
 
-    lateinit var fragmentCategoryBinding: FragmentCategoryBinding
+    lateinit var fragmentCategorySearchBinding: FragmentCategorySearchBinding
     lateinit var mainActivity: MainActivity
-    lateinit var categoryViewModel: CategoryViewModel
+    lateinit var categorySearchViewModel: CategorySearchViewModel
 
     var mbtiData = mutableListOf<String>("ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
         "INFJ", "INFP", "INTJ", "INTP", "ISFJ", "ISFP", "ISTJ", "ISTP")
     var tpoData = mutableListOf<String>("여행", "데이트", "카페", "출근", "데일리", "캠퍼스", "바다", "결혼식")
     var seasonData = mutableListOf<String>("봄", "여름", "가을", "겨울")
     var moodData = mutableListOf<String>("미니멀", "비즈니스 캐주얼", "원마일웨어", "아메카지", "시티보이", "스트릿", "스포티", "레트로", "러블리", "모던캐주얼")
-    var allData = mutableListOf<String>("전체", "ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
+    var allData = mutableListOf<String>("ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
         "INFJ", "INFP", "INTJ", "INTP", "ISFJ", "ISFP", "ISTJ", "ISTP", "여행", "데이트", "카페", "출근", "데일리", "캠퍼스", "바다", "결혼식",
         "봄", "여름", "가을", "겨울", "미니멀", "비즈니스\n캐주얼", "원마일\n웨어", "아메카지", "시티보이", "스트릿", "스포티", "레트로", "러블리", "모던\n캐주얼")
 
-    var checkMbtiCategory = true
-    var checkTpoCategory = false
-    var checkSeasonCategory = false
-    var checkMoodCategory = false
-    var checkAllCategory = false
+    var checkMbtiCategorySearch = true
+    var checkTpoCategorySearch = false
+    var checkSeasonCategorySearch = false
+    var checkMoodCategorySearch = false
+    var checkAllCategorySearch = false
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        fragmentCategoryBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_category, container, false)
-        categoryViewModel = CategoryViewModel()
-        fragmentCategoryBinding.categoryViewModel = categoryViewModel
-        fragmentCategoryBinding.lifecycleOwner = this
+        fragmentCategorySearchBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_category_search, container, false)
+        categorySearchViewModel = CategorySearchViewModel()
+        fragmentCategorySearchBinding.categorySearchViewModel = categorySearchViewModel
+        fragmentCategorySearchBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
 
@@ -51,24 +51,24 @@ class CategoryFragment : Fragment() {
         settingBottomTabs()
 
         // 리사이클러 뷰
-        settingRecyclerViewCategory()
+        settingRecyclerViewCategorySearch()
 
         // 카테고리 클릭 시
-        categoriTextViewClick()
+        categoryTextViewClick()
 
-        return fragmentCategoryBinding.root
+        return fragmentCategorySearchBinding.root
     }
 
     // 하단 바 설정
     fun bottomSheetSetting() {
-        fragmentCategoryBinding.apply {
+        fragmentCategorySearchBinding.apply {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.main_bottom_navi_home -> {
                         mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
                     R.id.main_bottom_navi_category -> {
-                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
                     }
                     R.id.main_bottom_navi_like -> {
                         mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
@@ -84,24 +84,24 @@ class CategoryFragment : Fragment() {
 
     // 하단 바 홈으로 체크 표시 설정
     fun settingBottomTabs() {
-        fragmentCategoryBinding.apply {
+        fragmentCategorySearchBinding.apply {
             val menuItemId = R.id.main_bottom_navi_category
-            fragmentCategoryBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+            fragmentCategorySearchBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
         }
     }
 
     // 리사이클러 뷰 설정
-    fun settingRecyclerViewCategory() {
-        fragmentCategoryBinding.apply {
-            recyclerViewCategory.apply {
-                if (checkMbtiCategory == true || checkAllCategory == true){
+    fun settingRecyclerViewCategorySearch() {
+        fragmentCategorySearchBinding.apply {
+            recyclerViewCategorySearch.apply {
+                if (checkMbtiCategorySearch == true || checkAllCategorySearch == true){
                     // 어뎁터 및 레이아웃 매니저 설정
                     adapter = Category2RecyclerViewAdapter()
                     layoutManager = GridLayoutManager(mainActivity, 4)
                 }
                 else {
                     // 어뎁터 및 레이아웃 매니저 설정
-                    adapter = CategoryRecyclerViewAdapter()
+                    adapter = CategorySearchRecyclerViewAdapter()
                     layoutManager = GridLayoutManager(mainActivity, 2)
                 }
             }
@@ -109,8 +109,8 @@ class CategoryFragment : Fragment() {
     }
 
     // 리사이클러 뷰 어뎁터
-    inner class CategoryRecyclerViewAdapter: RecyclerView.Adapter<CategoryRecyclerViewAdapter.CategoryViewHolder>(){
-        inner class CategoryViewHolder(rowCategorySemiCategoryBinding: RowCategorySemiCategoryBinding): RecyclerView.ViewHolder(rowCategorySemiCategoryBinding.root){
+    inner class CategorySearchRecyclerViewAdapter: RecyclerView.Adapter<CategorySearchRecyclerViewAdapter.CategorySearchViewHolder>(){
+        inner class CategorySearchViewHolder(rowCategorySemiCategoryBinding: RowCategorySemiCategoryBinding): RecyclerView.ViewHolder(rowCategorySemiCategoryBinding.root){
             val rowCategorySemiCategoryBinding: RowCategorySemiCategoryBinding
 
             init {
@@ -123,18 +123,18 @@ class CategoryFragment : Fragment() {
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategorySearchViewHolder {
             val rowCategorySemiCategoryBinding = RowCategorySemiCategoryBinding.inflate(layoutInflater)
-            val categoryViewHolder = CategoryViewHolder(rowCategorySemiCategoryBinding)
+            val categorySearchViewHolder = CategorySearchViewHolder(rowCategorySemiCategoryBinding)
 
-            return categoryViewHolder
+            return categorySearchViewHolder
         }
 
         override fun getItemCount(): Int {
-            if (checkTpoCategory) {
+            if (checkTpoCategorySearch) {
                 return tpoData.size
             }
-            else if (checkSeasonCategory) {
+            else if (checkSeasonCategorySearch) {
                 return seasonData.size
             }
             // MOOD
@@ -143,10 +143,10 @@ class CategoryFragment : Fragment() {
             }
         }
 
-        override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-            if (checkTpoCategory) {
+        override fun onBindViewHolder(holder: CategorySearchViewHolder, position: Int) {
+            if (checkTpoCategorySearch) {
                 holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = tpoData[position]
-            } else if (checkSeasonCategory) {
+            } else if (checkSeasonCategorySearch) {
                 holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = seasonData[position]
             } else {
                 holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = moodData[position]
@@ -160,8 +160,8 @@ class CategoryFragment : Fragment() {
     }
 
     // MBTI 및 All 리사이클러 뷰 어뎁터
-    inner class Category2RecyclerViewAdapter: RecyclerView.Adapter<Category2RecyclerViewAdapter.CategoryViewHolder>(){
-        inner class CategoryViewHolder(rowCategorySemiCategory2Grid4Binding: RowCategorySemiCategory2Grid4Binding): RecyclerView.ViewHolder(rowCategorySemiCategory2Grid4Binding.root){
+    inner class Category2RecyclerViewAdapter: RecyclerView.Adapter<Category2RecyclerViewAdapter.CategorySearchViewHolder>(){
+        inner class CategorySearchViewHolder(rowCategorySemiCategory2Grid4Binding: RowCategorySemiCategory2Grid4Binding): RecyclerView.ViewHolder(rowCategorySemiCategory2Grid4Binding.root){
             val rowCategorySemiCategory2Grid4Binding: RowCategorySemiCategory2Grid4Binding
 
             init {
@@ -174,15 +174,15 @@ class CategoryFragment : Fragment() {
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategorySearchViewHolder {
             val rowCategorySemiCategory2Grid4Binding = RowCategorySemiCategory2Grid4Binding.inflate(layoutInflater)
-            val categoryViewHolder = CategoryViewHolder(rowCategorySemiCategory2Grid4Binding)
+            val categorySearchViewHolder = CategorySearchViewHolder(rowCategorySemiCategory2Grid4Binding)
 
-            return categoryViewHolder
+            return categorySearchViewHolder
         }
 
         override fun getItemCount(): Int {
-            if (checkMbtiCategory) {
+            if (checkMbtiCategorySearch) {
                 return mbtiData.size
             }
             // All
@@ -191,8 +191,8 @@ class CategoryFragment : Fragment() {
             }
         }
 
-        override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-            if (checkMbtiCategory) {
+        override fun onBindViewHolder(holder: CategorySearchViewHolder, position: Int) {
+            if (checkMbtiCategorySearch) {
                 holder.rowCategorySemiCategory2Grid4Binding.textViewSemiCategory.text = mbtiData[position]
             } else {
                 holder.rowCategorySemiCategory2Grid4Binding.textViewSemiCategory.text = allData[position]
@@ -205,62 +205,62 @@ class CategoryFragment : Fragment() {
     }
 
     // 카테고리 사이드 TextView 클릭 시
-    fun categoriTextViewClick() {
-        fragmentCategoryBinding.apply {
+    fun categoryTextViewClick() {
+        fragmentCategorySearchBinding.apply {
 
-            textViewMbtiCategory.apply {
+            textViewMbtiCategorySearch?.apply {
                 setOnClickListener {
                     resetBackground()
                     setBackgroundColor(Color.parseColor("#80CDCDCD"))
                     setTextColor(Color.BLACK)
-                    checkMbtiCategory = true
-                    settingRecyclerViewCategory()
-                    fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
+                    checkMbtiCategorySearch = true
+                    settingRecyclerViewCategorySearch()
+                    fragmentCategorySearchBinding.recyclerViewCategorySearch.adapter?.notifyDataSetChanged()
                 }
             }
 
-            textViewTpoCategory.apply {
+            textViewTpoCategorySearch?.apply {
                 setOnClickListener {
                     resetBackground()
                     setBackgroundColor(Color.parseColor("#80CDCDCD"))
                     setTextColor(Color.BLACK)
-                    checkTpoCategory = true
-                    settingRecyclerViewCategory()
-                    fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
+                    checkTpoCategorySearch = true
+                    settingRecyclerViewCategorySearch()
+                    fragmentCategorySearchBinding.recyclerViewCategorySearch.adapter?.notifyDataSetChanged()
                 }
             }
 
 
-            textViewSeasonCategory.apply {
+            textViewSeasonCategorySearch?.apply {
                 setOnClickListener {
                     resetBackground()
                     setBackgroundColor(Color.parseColor("#80CDCDCD"))
                     setTextColor(Color.BLACK)
-                    checkSeasonCategory = true
-                    settingRecyclerViewCategory()
-                    fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
+                    checkSeasonCategorySearch = true
+                    settingRecyclerViewCategorySearch()
+                    fragmentCategorySearchBinding.recyclerViewCategorySearch.adapter?.notifyDataSetChanged()
                 }
             }
 
-            textViewMoodCategory.apply {
+            textViewMoodCategorySearch?.apply {
                 setOnClickListener {
                     resetBackground()
                     setBackgroundColor(Color.parseColor("#80CDCDCD"))
                     setTextColor(Color.BLACK)
-                    checkMoodCategory = true
-                    settingRecyclerViewCategory()
-                    fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
+                    checkMoodCategorySearch = true
+                    settingRecyclerViewCategorySearch()
+                    fragmentCategorySearchBinding.recyclerViewCategorySearch.adapter?.notifyDataSetChanged()
                 }
             }
 
-            textViewAllCategory.apply {
+            textViewAllCategorySearch?.apply {
                 setOnClickListener {
                     resetBackground()
                     setBackgroundColor(Color.parseColor("#80CDCDCD"))
                     setTextColor(Color.BLACK)
-                    checkAllCategory = true
-                    settingRecyclerViewCategory()
-                    fragmentCategoryBinding.recyclerViewCategory.adapter?.notifyDataSetChanged()
+                    checkAllCategorySearch = true
+                    settingRecyclerViewCategorySearch()
+                    fragmentCategorySearchBinding.recyclerViewCategorySearch.adapter?.notifyDataSetChanged()
                 }
             }
         }
@@ -268,23 +268,23 @@ class CategoryFragment : Fragment() {
 
     // 카테고리 선택 백그라운드 초기화
     fun resetBackground() {
-        fragmentCategoryBinding.apply {
-            textViewMbtiCategory.setBackgroundColor(Color.WHITE)
-            textViewMbtiCategory.setTextColor(Color.parseColor("#656565"))
-            textViewTpoCategory.setBackgroundColor(Color.WHITE)
-            textViewTpoCategory.setTextColor(Color.parseColor("#656565"))
-            textViewSeasonCategory.setBackgroundColor(Color.WHITE)
-            textViewSeasonCategory.setTextColor(Color.parseColor("#656565"))
-            textViewMoodCategory.setBackgroundColor(Color.WHITE)
-            textViewMoodCategory.setTextColor(Color.parseColor("#656565"))
-            textViewAllCategory.setBackgroundColor(Color.WHITE)
-            textViewAllCategory.setTextColor(Color.parseColor("#656565"))
+        fragmentCategorySearchBinding.apply {
+            textViewMbtiCategorySearch?.setBackgroundColor(Color.WHITE)
+            textViewMbtiCategorySearch?.setTextColor(Color.parseColor("#656565"))
+            textViewTpoCategorySearch?.setBackgroundColor(Color.WHITE)
+            textViewTpoCategorySearch?.setTextColor(Color.parseColor("#656565"))
+            textViewSeasonCategorySearch?.setBackgroundColor(Color.WHITE)
+            textViewSeasonCategorySearch?.setTextColor(Color.parseColor("#656565"))
+            textViewMoodCategorySearch?.setBackgroundColor(Color.WHITE)
+            textViewMoodCategorySearch?.setTextColor(Color.parseColor("#656565"))
+            textViewAllCategorySearch?.setBackgroundColor(Color.WHITE)
+            textViewAllCategorySearch?.setTextColor(Color.parseColor("#656565"))
 
-            checkMbtiCategory = false
-            checkTpoCategory = false
-            checkSeasonCategory = false
-            checkMoodCategory = false
-            checkAllCategory = false
+            checkMbtiCategorySearch = false
+            checkTpoCategorySearch = false
+            checkSeasonCategorySearch = false
+            checkMoodCategorySearch = false
+            checkAllCategorySearch = false
         }
     }
 }

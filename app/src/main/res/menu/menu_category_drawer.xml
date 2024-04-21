@@ -1,57 +1,202 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checkable="false"
-        android:title="전체 카테고리">
+        android:id="@+id/drawerMenuMbtiEnfj"
+        android:title="ENFJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiEnfp"
+        android:title="ENFP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiEntj"
+        android:title="ENTJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiEntp"
+        android:title="ENTP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
 
-        <menu
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <item
-                android:id="@+id/menuItemCategoryNavigationMbti"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:icon="@drawable/local_shipping_24px"
-                android:title="MBTI"
-                app:showAsAction="ifRoom">
-            </item>
-            <item
-                android:id="@+id/menuItemCategoryNavigationTpo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:icon="@drawable/post_add_24px"
-                android:title="TPO"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/menuItemCategoryNavigationSeason"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:icon="@drawable/compost_24px"
-                android:title="SEASON"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/menuItemCategoryNavigationMood"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:icon="@drawable/package_24px"
-                android:title="MOOD"
-                app:showAsAction="ifRoom" />
-            <item
-                android:id="@+id/menuItemCategoryNavigationAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checkable="true"
-                android:icon="@drawable/approval_24px"
-                android:title="ALL"
-                app:showAsAction="ifRoom" />
-        </menu>
-    </item>
+    <item
+        android:id="@+id/drawerMenuMbtiEsfj"
+        android:title="ESFJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiEsfp"
+        android:title="ESFP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiEstj"
+        android:title="ESTJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiEstp"
+        android:title="ESTP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+
+    <item
+        android:id="@+id/drawerMenuMbtiInfj"
+        android:title="INFJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiInfp"
+        android:title="INFP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiIntj"
+        android:title="INTJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiIntp"
+        android:title="INTP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiIsfj"
+        android:title="ISFJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiIsfp"
+        android:title="ISFP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiIstj"
+        android:title="ISTJ"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMbtiIstp"
+        android:title="ISTP"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+
+
+    <item
+        android:id="@+id/drawerMenuTpo1"
+        android:title="여행"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo2"
+        android:title="데이트"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo3"
+        android:title="카페"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo4"
+        android:title="출근"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo5"
+        android:title="데일리"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo6"
+        android:title="캠퍼스"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo7"
+        android:title="바다"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuTpo8"
+        android:title="결혼식"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+
+
+    <item
+        android:id="@+id/drawerMenuSeasonSpring"
+        android:title="봄"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuSeasonSummer"
+        android:title="여름"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuSeasonFall"
+        android:title="가을"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuSeasonWinter"
+        android:title="겨울"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+
+
+    <item
+        android:id="@+id/drawerMenuMood1"
+        android:title="미니멀"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood2"
+        android:title="비즈니스 캐주얼"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood3"
+        android:title="원마일웨어"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood4"
+        android:title="아메카지"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood5"
+        android:title="시티보이"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood6"
+        android:title="스트릿"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood7"
+        android:title="스포티"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood8"
+        android:title="레트로"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood9"
+        android:title="러블리"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
+    <item
+        android:id="@+id/drawerMenuMood10"
+        android:title="모던 캐주얼"
+        android:visible="false"
+        app:actionLayout="@layout/widget_check" />
 </menu>

@@ -1,15 +1,26 @@
 package kr.co.lion.team4.mrco.fragment.category
 
+import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.CompoundButton
+import androidx.activity.OnBackPressedCallback
+import androidx.core.view.GravityCompat
+import androidx.core.view.isInvisible
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.chip.Chip
+import com.google.android.material.navigation.NavigationView
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
@@ -23,7 +34,98 @@ class CategoryMainFragment : Fragment() {
     lateinit var fragmentCategoryMainBinding: FragmentCategoryMainBinding
     lateinit var mainActivity: MainActivity
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    val menuItemsMbti = arrayOf(
+        R.id.drawerMenuMbtiEnfj,
+        R.id.drawerMenuMbtiEnfp,
+        R.id.drawerMenuMbtiEntj,
+        R.id.drawerMenuMbtiEntp,
+        R.id.drawerMenuMbtiEsfj,
+        R.id.drawerMenuMbtiEsfp,
+        R.id.drawerMenuMbtiEstj,
+        R.id.drawerMenuMbtiEstp,
+        R.id.drawerMenuMbtiInfj,
+        R.id.drawerMenuMbtiInfp,
+        R.id.drawerMenuMbtiIntj,
+        R.id.drawerMenuMbtiIntp,
+        R.id.drawerMenuMbtiIsfj,
+        R.id.drawerMenuMbtiIsfp,
+        R.id.drawerMenuMbtiIstj,
+        R.id.drawerMenuMbtiIstp
+    )
+    val menuItemsTpo = arrayOf(
+        R.id.drawerMenuTpo1,
+        R.id.drawerMenuTpo2,
+        R.id.drawerMenuTpo3,
+        R.id.drawerMenuTpo4,
+        R.id.drawerMenuTpo5,
+        R.id.drawerMenuTpo6,
+        R.id.drawerMenuTpo7,
+        R.id.drawerMenuTpo8
+    )
+    val menuItemsSeason = arrayOf(
+        R.id.drawerMenuSeasonSpring,
+        R.id.drawerMenuSeasonSummer,
+        R.id.drawerMenuSeasonFall,
+        R.id.drawerMenuSeasonWinter
+    )
+    val menuItemsMood = arrayOf(
+        R.id.drawerMenuMood1,
+        R.id.drawerMenuMood2,
+        R.id.drawerMenuMood3,
+        R.id.drawerMenuMood4,
+        R.id.drawerMenuMood5,
+        R.id.drawerMenuMood6,
+        R.id.drawerMenuMood7,
+        R.id.drawerMenuMood8,
+        R.id.drawerMenuMood9,
+        R.id.drawerMenuMood10
+    )
+    val menuItemsALL = arrayOf(
+        R.id.drawerMenuMbtiEnfj,
+        R.id.drawerMenuMbtiEnfp,
+        R.id.drawerMenuMbtiEntj,
+        R.id.drawerMenuMbtiEntp,
+        R.id.drawerMenuMbtiEsfj,
+        R.id.drawerMenuMbtiEsfp,
+        R.id.drawerMenuMbtiEstj,
+        R.id.drawerMenuMbtiEstp,
+        R.id.drawerMenuMbtiInfj,
+        R.id.drawerMenuMbtiInfp,
+        R.id.drawerMenuMbtiIntj,
+        R.id.drawerMenuMbtiIntp,
+        R.id.drawerMenuMbtiIsfj,
+        R.id.drawerMenuMbtiIsfp,
+        R.id.drawerMenuMbtiIstj,
+        R.id.drawerMenuMbtiIstp,
+        R.id.drawerMenuTpo1,
+        R.id.drawerMenuTpo2,
+        R.id.drawerMenuTpo3,
+        R.id.drawerMenuTpo4,
+        R.id.drawerMenuTpo5,
+        R.id.drawerMenuTpo6,
+        R.id.drawerMenuTpo7,
+        R.id.drawerMenuTpo8,
+        R.id.drawerMenuSeasonSpring,
+        R.id.drawerMenuSeasonSummer,
+        R.id.drawerMenuSeasonFall,
+        R.id.drawerMenuSeasonWinter,
+        R.id.drawerMenuMood1,
+        R.id.drawerMenuMood2,
+        R.id.drawerMenuMood3,
+        R.id.drawerMenuMood4,
+        R.id.drawerMenuMood5,
+        R.id.drawerMenuMood6,
+        R.id.drawerMenuMood7,
+        R.id.drawerMenuMood8,
+        R.id.drawerMenuMood9,
+        R.id.drawerMenuMood10
+    )
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
 
         fragmentCategoryMainBinding = FragmentCategoryMainBinding.inflate(inflater)
@@ -62,6 +164,68 @@ class CategoryMainFragment : Fragment() {
         }
     }
 
+    fun settingCategoryMenuClick(menu: Menu, menuItemIds: Array<Int>) {
+        menuItemIds.forEach { menuItemId ->
+            val menuItem = menu.findItem(menuItemId)
+            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
+            menuItem.setOnMenuItemClickListener {
+                checkBox?.isChecked = !checkBox?.isChecked!!
+                menuItem.isCheckable = false
+
+                true
+            }
+        }
+    }
+
+    fun checkSync(menu: Menu, menuItemIds: Array<Int>) {
+        menuItemIds.forEach { menuItemId ->
+            val menuItem = menu.findItem(menuItemId)
+            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
+
+            checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
+                menuItem.isChecked = !menuItem.isChecked
+                menuItem.isCheckable = false
+            }
+        }
+    }
+
+
+    fun resetMenuItems(menu: Menu, menuItemIds: Array<Int>) {
+        menuItemIds.forEach { menuItemId ->
+            val menuItem = menu.findItem(menuItemId)
+            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
+            checkBox?.isChecked = false
+            menuItem?.isChecked = false
+            menuItem?.isCheckable = false
+        }
+    }
+
+
+    fun settingCategoryChipChange(chip: Chip, array: Array<Int>) {
+        fragmentCategoryMainBinding.apply {
+            navigationViewContent.apply {
+                val headerCategoryDrawerBinding =
+                    HeaderCategoryDrawerBinding.inflate(layoutInflater)
+
+                headerCategoryDrawerBinding.apply {
+                    // chip(4개)을 클릭할 때 동작하는 리스너
+                    chip.setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            array.forEach {
+                                menu.findItem(it).isVisible = true
+                            }
+                        } else {
+                            array.forEach {
+                                menu.findItem(it).isVisible = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
     // 네비게이션 뷰 설정
     fun settingNavigationView(){
         fragmentCategoryMainBinding.apply {
@@ -72,49 +236,55 @@ class CategoryMainFragment : Fragment() {
                 // 헤더로 보여줄 View를 설정한다.
                 addHeaderView(headerCategoryDrawerBinding.root)
 
-                // 메뉴를 눌렀을 때 동작하는 리스너
-                setNavigationItemSelectedListener {
 
-                    // 딜레이
-                    SystemClock.sleep(50)
+                headerCategoryDrawerBinding.apply {
 
-                    when(it.itemId) {
-                        R.id.menuItemCategoryNavigationMbti -> {
-
-                            // NavigationView를 닫아준다.
-                            drawerLayoutContent.close()
-                        }
-                        //
-                        R.id.menuItemCategoryNavigationTpo -> {
-
-                            // NavigationView를 닫아준다.
-                            drawerLayoutContent.close()
-                        }
-                        //
-                        R.id.menuItemCategoryNavigationSeason -> {
-
-                            // NavigationView를 닫아준다.
-                            drawerLayoutContent.close()
-                        }
-                        //
-                        R.id.menuItemCategoryNavigationMood -> {
-
-                            // NavigationView를 닫아준다.
-                            drawerLayoutContent.close()
-                        }
-                        //
-                        R.id.menuItemCategoryNavigationAll -> {
-
-                            // NavigationView를 닫아준다.
-                            drawerLayoutContent.close()
-                        }
+                    // 리셋 버튼 클릭시
+                    buttonDrawerCategoryReset.setOnClickListener {
+                        resetMenuItems(menu, menuItemsALL)
                     }
-                    true
-                }
 
+                    // 적용 버튼 클릭시
+                    buttonDrawerCategoryApply.setOnClickListener {
+                        // check된 카테고리를 적용하여 검색결과를 CategoryMainFragment에 노출한다.
+
+
+                        // NavigationView를 닫아준다.
+                        drawerLayoutContent.close()
+                    }
+
+                    // 검색바 기능 세팅
+                    searchBarDrawer.apply {
+                        setOnClickListener {
+                            // 모든 칩 선택해제
+                            chipCategoriesMbti.isChecked = false
+                            chipCategoriesTpo.isChecked = false
+                            chipCategoriesSeason.isChecked = false
+                            chipCategoriesMood.isChecked = false
+                            chipCategoriesAll.isChecked = false
+                        }
+
+                        // 검색 완료하면 ALL칩 선택 후 검색결과에 맞는 메뉴항목 보여주기
+                    }
+
+                    // chip을 클릭할 때 동작하는 리스너 메서드
+                    settingCategoryChipChange(chipCategoriesMbti, menuItemsMbti)
+                    settingCategoryChipChange(chipCategoriesTpo, menuItemsTpo)
+                    settingCategoryChipChange(chipCategoriesSeason, menuItemsSeason)
+                    settingCategoryChipChange(chipCategoriesMood, menuItemsMood)
+                    settingCategoryChipChange(chipCategoriesAll, menuItemsALL)
+
+
+                    // 메뉴항목을 클릭했을 때 동작하는 리스너 메서드
+                    settingCategoryMenuClick(menu, menuItemsALL)
+
+                    // 체크박스 클릭과 메뉴항목 클릭 상태 동기화 메서드
+                    checkSync(menu, menuItemsALL)
+                }
             }
         }
     }
+
 
     // 하단 바 설정
     fun bottomSheetSetting() {
@@ -124,12 +294,15 @@ class CategoryMainFragment : Fragment() {
                     R.id.main_bottom_navi_home -> {
                         mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
+
                     R.id.main_bottom_navi_category -> {
-                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
                     }
+
                     R.id.main_bottom_navi_like -> {
                         mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
                     }
+
                     else -> {
                         mainActivity.replaceFragment(MainFragmentName.USER_MYPAGE_FRAGMENT, false, false, null)
                     }
@@ -216,7 +389,7 @@ class CategoryMainFragment : Fragment() {
             holder.rowCategoryMainBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
-            
+
             // 버튼 -> 카트 담기 클릭 시
             holder.rowCategoryMainBinding.buttonRowCategoryMainCart.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)

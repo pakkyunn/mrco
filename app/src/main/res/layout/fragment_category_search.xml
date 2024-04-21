@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="categoryViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.category.CategoryViewModel" />
+            name="categorySearchViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.category.CategorySearchViewModel" />
     </data>
 
     <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                tools:context=".fragment.category.CategoryFragment">
+                tools:context=".fragment.category.CategorySearchFragment">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -51,14 +51,14 @@
                         android:layout_marginEnd="16dp">
 
                         <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/chipGroupCategoryGender"
+                            android:id="@+id/chipGroupCategorySearchGender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             app:singleSelection="true">
-                            <!--                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}"-->
+                            <!--                        android:checkedChipId="@={categorySearchViewModel.chipGroupCategoryGender}"-->
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chipCategoryGenderMEN"
+                                android:id="@+id/chipCategorySearchGenderMEN"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
@@ -69,7 +69,7 @@
                                 app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
 
                             <com.google.android.material.chip.Chip
-                                android:id="@+id/chipCategoryGenderWOMEN"
+                                android:id="@+id/chipCategorySearchGenderWOMEN"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:checkable="true"
@@ -96,11 +96,11 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textViewMbtiCategory"
+                            android:id="@+id/textViewMbtiCategorySearch"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:background="#80CDCDCD"
@@ -117,7 +117,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textViewTpoCategory"
+                            android:id="@+id/textViewTpoCategorySearch"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:clickable="true"
@@ -134,7 +134,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textViewSeasonCategory"
+                            android:id="@+id/textViewSeasonCategorySearch"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:clickable="true"
@@ -151,7 +151,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textViewMoodCategory"
+                            android:id="@+id/textViewMoodCategorySearch"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:clickable="true"
@@ -168,7 +168,7 @@
                             android:background="?android:attr/listDivider" />
 
                         <TextView
-                            android:id="@+id/textViewAllCategory"
+                            android:id="@+id/textViewAllCategorySearch"
                             android:layout_width="match_parent"
                             android:layout_height="56dp"
                             android:clickable="true"
@@ -192,19 +192,30 @@
                         android:background="?android:attr/listDivider" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerViewCategory"
+                        android:id="@+id/recyclerViewCategorySearch"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="649dp"
                         android:layout_weight="0.4"
                         android:background="#80DADADA"
                         android:clipToPadding="false"
-                        android:paddingBottom="72dp" />
+                        android:paddingBottom="120dp" />
                 </LinearLayout>
 
             </LinearLayout>
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/floatingButtonCategory"
+                android:id="@+id/floatingButtonCategorySearchReset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="80dp"
+                android:layout_marginBottom="16dp"
+                app:backgroundTint="#000000"
+                app:icon="@drawable/refresh_24px"
+                app:iconTint="#FFFFFF" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/floatingButtonCategorySearchApply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|bottom"
@@ -231,13 +242,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@color/white"
                 app:itemActiveIndicatorStyle="@null"
                 app:itemBackground="@color/bottomSheetColor"
                 app:itemIconTint="@color/bottom_navigation_selector_color"
                 app:itemTextColor="@color/bottom_navigation_selector_color"
                 app:labelVisibilityMode="labeled"
-                app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
                 app:layout_insetEdge="bottom"
                 app:menu="@menu/menu_main_bottom_navi" />
 
