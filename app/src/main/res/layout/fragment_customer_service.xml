@@ -29,96 +29,101 @@
             app:titleCentered="true"
             app:titleTextColor="@color/black" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/buttonCustomerServiceInquiry"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/black"
+            android:text="1:1 문의하기"
+            android:textColor="@color/white"
+            tools:cornerRadius="24dp" />
 
-            <Button
-                android:id="@+id/buttonCustomerServiceInquiry"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:backgroundTint="@color/black"
-                android:text="1:1 문의하기"
-                android:textColor="@color/white"
-                tools:cornerRadius="10dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
-                android:hint="무엇을 도와드릴까요?"
-                app:endIconDrawable="@drawable/search_24px"
-                app:endIconMode="custom">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textFieldCustomerServiceSearch"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="3dp"
-                    android:text="@={customerServiceViewModel.textFieldCustomerServiceSearch}"
-                    android:textColor="#000000" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabCustomerServiceFaq"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="#ffffff"
-            android:elevation="1dp"
-            app:tabIndicatorColor="#000000"
-            app:tabIndicatorFullWidth="true"
-            app:tabSelectedTextColor="#000000"
-            app:tabRippleColor="#CCCCCC"
-            app:tabTextColor="#878787">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabFaqAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabFaqUser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="회원정보" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabFaqProductAndOrder"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="상품/주문" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabFaqShipping"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="배송" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/tabFaqReturnAndExchange"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="교환/반품" />
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCustomerServiceFaq"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="16dp" />
+            android:backgroundTint="@color/white">
+
+            <com.google.android.material.search.SearchBar
+                android:id="@+id/searchBarCustomerService"
+                style="@style/Widget.Material3.SearchBar.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="무엇을 도와드릴까요?"
+                android:minHeight="0dp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabCustomerServiceFaq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="#ffffff"
+                android:elevation="1dp"
+                app:tabIndicatorColor="#000000"
+                app:tabIndicatorFullWidth="true"
+                app:tabRippleColor="#CCCCCC"
+                app:tabSelectedTextColor="#000000"
+                app:tabTextColor="#878787">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabFaqAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabFaqUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="회원정보" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabFaqProductAndOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상품/주문" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabFaqShipping"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배송" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabFaqReturnAndExchange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="교환/반품" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewCustomerServiceFaq"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="129dp"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp" />
+
+            <com.google.android.material.search.SearchView
+                android:id="@+id/searchViewCustomerService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/white"
+                app:layout_anchor="@id/searchBarCustomerService">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewCustomerServiceSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+            </com.google.android.material.search.SearchView>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </LinearLayout>
 </layout>
