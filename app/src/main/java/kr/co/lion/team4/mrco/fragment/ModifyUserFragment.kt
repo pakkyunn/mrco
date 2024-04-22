@@ -41,12 +41,22 @@ class ModifyUserFragment : Fragment() {
 
         settingToolbar()
 
+        gettingUserDataFromServer()
+
+        settingButtonModifyUserSubmit()
+
         // 테스트용 바텀시트 노출 버튼
         fragmentModifyUserBinding.textFieldModifyUserUserMBTI.setOnClickListener {
             showMbtiBottomSheet()
         }
 
         return fragmentModifyUserBinding.root
+    }
+
+    fun settingButtonModifyUserSubmit() {
+        fragmentModifyUserBinding.buttonModifyUserSubmit.setOnClickListener {
+            updateUserData()
+        }
     }
 
     // 툴바 설정
@@ -94,8 +104,9 @@ class ModifyUserFragment : Fragment() {
             modifyUserViewModel.switchModifyUserNotification.value = false
 
             // 서버에서 로그인한 사용자인 loginUserIdx 의 데이터를 가져와 originalUserModel 에 담는다.
-            //originalUserModel = UserDao.gettingUserInfoByUserIdx(mainActivity.loginUserIdx)!!
-            originalUserModel = UserDao.gettingUserInfoByUserIdx(1)!!
+            originalUserModel = UserDao.gettingUserInfoByUserIdx(mainActivity.loginUserIdx)!!
+            //originalUserModel = UserDao.gettingUserInfoByUserIdx(4)!!
+
 
             // 사용자 정보들을 뷰에 넣어준다.
             modifyUserViewModel.textFieldModifyUserUserName.value = originalUserModel.userName
@@ -178,6 +189,9 @@ class ModifyUserFragment : Fragment() {
 
             Snackbar.make(fragmentModifyUserBinding.root, "수정되었습니다", Snackbar.LENGTH_SHORT).show()
             Tools.hideSoftInput(mainActivity)
+
+            // 0.5초 정도 딜레이 주면 좋을 듯
+            mainActivity.removeFragment(MainFragmentName.MODIFY_USER_FRAGMENT)
         }
     }
 
