@@ -1,27 +1,44 @@
 package kr.co.lion.team4.mrco.fragment.mbtiproductmain
 
 import android.app.Dialog
-import android.graphics.Color
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.databinding.FragmentMbtiBottomSheetBinding
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductBottomBinding
+import kr.co.lion.team4.mrco.viewmodel.MbtiBottomSheetViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
+import kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.MbtiProductBottomSheetViewModel
 
-class MbtiProductBottomFragment : BottomSheetDialogFragment() {
+class MbtiProductBottomFragment(var mbtiTextView: MutableLiveData<String>) : BottomSheetDialogFragment() {
 
     lateinit var fragmentMbtiProductBottomBinding: FragmentMbtiProductBottomBinding
     lateinit var mainActivity: MainActivity
 
+    lateinit var mbtiProductBottomSheetViewModel: MbtiProductBottomSheetViewModel
+
+    lateinit var selectedMbti: String
+
       override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-          fragmentMbtiProductBottomBinding = FragmentMbtiProductBottomBinding.inflate(inflater)
+
+          fragmentMbtiProductBottomBinding = FragmentMbtiProductBottomBinding.inflate(layoutInflater)
           mainActivity = activity as MainActivity
+          mbtiProductBottomSheetViewModel = MbtiProductBottomSheetViewModel()
+          fragmentMbtiProductBottomBinding.mbtiProductBottomSheetViewModel = mbtiProductBottomSheetViewModel
+
+          selectMbti()
 
           return fragmentMbtiProductBottomBinding.root
     }
@@ -74,5 +91,29 @@ class MbtiProductBottomFragment : BottomSheetDialogFragment() {
         mainActivity.windowManager.defaultDisplay.getMetrics(displayMetrics)
         // 세로 길이를 반환
         return displayMetrics.heightPixels
+    }
+
+    fun selectMbti(){
+        fragmentMbtiProductBottomBinding.apply {
+            mbtiSelectorCancelButton.setOnClickListener {
+                dismiss()
+            }
+            mbtiSelectorDoneButton.setOnClickListener {
+                val selectedEI = mbtiProductBottomSheetViewModel?.gettingMbtiEI()?.str
+                val selectedSN = mbtiProductBottomSheetViewModel?.gettingMbtiSN()?.str
+                val selectedTF = mbtiProductBottomSheetViewModel?.gettingMbtiTF()?.str
+                val selectedPJ = mbtiProductBottomSheetViewModel?.gettingMbtiPJ()?.str
+
+                if (!selectedEI.isNullOrEmpty() && !selectedSN.isNullOrEmpty() && !selectedTF.isNullOrEmpty() && !selectedPJ.isNullOrEmpty()){
+                    selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
+                    mbtiTextView.value = selectedMbti
+                    Log.d("test1234", "BottomSheet - MBTI: ${mbtiTextView.value}")
+
+                    dismiss()
+                } else {
+                    Tools.showErrorDialog(mainActivity, toggleButtonMbtiProductEI,"MBTI 입력 오류","MBTI 선택이 완료되지 않았습니다.")
+                }
+            }
+        }
     }
 }

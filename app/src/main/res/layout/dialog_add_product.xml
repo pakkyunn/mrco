@@ -212,32 +212,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="4"
-                android:gravity="center|start"
-                android:text="상품 사진"
-                android:textSize="16dp" />
-
-            <ImageView
-                android:id="@+id/imageview_dialog_add_product"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleType="fitStart"
-                app:srcCompat="@drawable/photo_add" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="horizontal">
 

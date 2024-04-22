@@ -180,6 +180,10 @@ class CoordinatorRankFragment : Fragment() {
                 else -> R.drawable.iu_image
             }
             holder.rowCoordinatorRank2Binding.imageViewRowCoordinatorRank2Photo.setImageResource(imageResource)
+
+            holder.rowCoordinatorRank2Binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+            }
         }
     }
 }

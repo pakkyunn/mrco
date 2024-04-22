@@ -60,27 +60,43 @@
                         app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
                         app:layout_constraintTop_toTopOf="@+id/imageViewUserMyPage" />
 
-                    <TextView
-                        android:id="@+id/textViewGenderUserMyPage"
+                    <LinearLayout
+                        android:id="@+id/linearLayout"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
-                        android:text="여성"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:orientation="horizontal"
                         app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage" />
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNicknameUserMyPage">
 
-                    <TextView
-                        android:id="@+id/textViewMbtiUserMyPage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:text="ISFP"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewUserMyPage"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewGenderUserMyPage" />
+                        <TextView
+                            android:id="@+id/textViewGenderCoordinatorMyPage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="여성"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:text=","
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                        <TextView
+                            android:id="@+id/textViewMbtiCoordinatorMyPage2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="ISFP"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            app:layout_constraintStart_toEndOf="@+id/textViewGenderCoordinatorMyPage"
+                            app:layout_constraintTop_toBottomOf="@+id/textViewNameCoordinatorMyPage" />
+                    </LinearLayout>
 
                     <!--            <Button-->
                     <!--                android:id="@+id/iconButtonEditUserMyPage"-->
@@ -104,7 +120,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
                         android:backgroundTint="#152F7E"
-                        android:text="회원정보 수정"
+                        android:text="프로필 수정"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         app:cornerRadius="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"

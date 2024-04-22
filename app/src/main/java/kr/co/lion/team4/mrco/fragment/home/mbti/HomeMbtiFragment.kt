@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco.fragment.home.mbti
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbti2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
@@ -39,6 +41,8 @@ class HomeMbtiFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        Log.d("test1234", "MBTI_Fragment - Mbti: ${mainActivity.loginUserMbti}, Gender: ${mainActivity.loginUserGender}")
+
         // 리사이클러 뷰
         settingRecyclerViewHomeMBTI()
         settingRecyclerViewHomeMBTI2()
@@ -46,18 +50,51 @@ class HomeMbtiFragment : Fragment() {
         // 버튼(더보기)
         settingContentMoreButton()
 
+        // TextView 기본 설정
+        settingInit()
+
+        // 코디 상품(첫번째) TextView 관찰
+        homeMbtiViewModel.textViewHomeMbtiTextFirst.observe(viewLifecycleOwner) { text ->
+            // MBTI TextView 업데이트
+            fragmentHomeMbtiBinding.homeMbtiContent1.text = text
+        }
+
+        // 코디 상품(첫번째) TextView 관찰
+        homeMbtiViewModel.textViewHomeMbtiTextSecond.observe(viewLifecycleOwner) { text ->
+            // MBTI TextView 업데이트
+            fragmentHomeMbtiBinding.homeMbtiContent2.text = text
+        }
+
         return fragmentHomeMbtiBinding.root
+    }
+
+    // TextView 세팅
+    fun settingInit() {
+        // 남자일때
+        if (mainActivity.loginUserGender == 1) {
+            homeMbtiViewModel.textViewHomeMbtiTextFirst.value = "${mainActivity.loginUserMbti} 남성에게 잘 어울리는 코디"
+            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 여성이 좋아하는 남자 코디"
+        }
+        // 여자일때
+        else {
+            homeMbtiViewModel.textViewHomeMbtiTextFirst.value = "${mainActivity.loginUserMbti} 여성에게 잘 어울리는 코디"
+            homeMbtiViewModel.textViewHomeMbtiTextSecond.value = "${mainActivity.loginUserMbti} 남성이 좋아하는 여자 코디"
+        }
     }
 
     // 더보기 버튼
     fun settingContentMoreButton(){
+        val bundle = Bundle()
+
         fragmentHomeMbtiBinding.apply {
             homeMbtiContent1MoreButton.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
+                bundle.putInt("buttonInt", 1)
+                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, bundle)
             }
 
             homeMbtiContent2MoreButton.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, null)
+                bundle.putInt("buttonInt", 2)
+                mainActivity.replaceFragment(MainFragmentName.MBTI_PRODUCT_MAIN, true, true, bundle)
             }
         }
     }

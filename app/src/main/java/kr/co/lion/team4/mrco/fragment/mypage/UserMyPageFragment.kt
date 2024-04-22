@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.mypage
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -60,7 +61,7 @@ class UserMyPageFragment : Fragment() {
             mainBottomNavi.setOnItemSelectedListener { item ->
                 when(item.itemId) {
                     R.id.main_bottom_navi_home -> {
-                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
                     R.id.main_bottom_navi_category -> {
                         mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
@@ -139,7 +140,11 @@ class UserMyPageFragment : Fragment() {
 
             // 로그아웃
             textViewMenuUserMyPage5.setOnClickListener {
-                // 임시
+                // 자동 로그인 삭제
+                val sharedPreferences = mainActivity.getSharedPreferences("AutoLogin", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+                editor.clear() // 모든 데이터 삭제
+                editor.apply()
                 mainActivity.replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
             }
 

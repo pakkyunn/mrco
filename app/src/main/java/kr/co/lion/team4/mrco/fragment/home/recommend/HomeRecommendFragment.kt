@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.home.recommend
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
+import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
@@ -31,6 +33,7 @@ class HomeRecommendFragment : Fragment() {
 
     lateinit var fragmentHomeRecommendBinding: FragmentHomeRecommendBinding
     lateinit var mainActivity: MainActivity
+    lateinit var homeMainFullFragment: HomeMainFullFragment
 
     lateinit var homeRecommendViewModel: HomeRecommendViewModel
 
@@ -54,8 +57,24 @@ class HomeRecommendFragment : Fragment() {
         settingRecyclerViewHomeRecommendBanner()
         settingRecyclerViewHomeRecommend()
         settingRecyclerViewHomeRecommendNewCoordi()
+        settingInit()
+
+        // 추천 코디 상품(첫번째) TextView 관찰
+        homeRecommendViewModel.textViewHomeRecommendContent1.observe(viewLifecycleOwner) { text ->
+            // MBTI TextView 업데이트
+            fragmentHomeRecommendBinding.homeRecommendContent1.text = text
+        }
 
         return fragmentHomeRecommendBinding.root
+    }
+
+    fun settingInit() {
+        if (mainActivity.loginUserIdx != -1){
+            homeRecommendViewModel.textViewHomeRecommendContent1.value = "${mainActivity.loginUserName}(${mainActivity.loginUserMbti}"
+        } else {
+            homeRecommendViewModel.textViewHomeRecommendContent1.value = "ENFP"
+            fragmentHomeRecommendBinding.textViewSideContent1.setText(" 추천코디")
+        }
     }
 
     fun settingButton(){

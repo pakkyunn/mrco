@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="mbtiProductBottomSheetViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.MbtiProductBottomSheetViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,12 +26,14 @@
             android:textStyle="bold" />
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/mbti_selector_m_toggle_group"
+            android:id="@+id/toggleButtonMbtiProductEI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:checkedButtonId="@={mbtiProductBottomSheetViewModel.toggleButtonEI}"
             android:layout_marginVertical="8dp"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
+            app:checkedButton="@id/mbti_selector_i_button"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -53,12 +61,14 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/mbti_selector_b_toggle_group"
+            android:id="@+id/toggleButtonMbtiProductSN"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
+            android:checkedButtonId="@={mbtiProductBottomSheetViewModel.toggleButtonSN}"
+            app:checkedButton="@id/mbti_selector_s_button"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -86,12 +96,14 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/mbti_selector_t_toggle_group"
+            android:id="@+id/toggleButtonMbtiProductTF"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
+            android:checkedButtonId="@={mbtiProductBottomSheetViewModel.toggleButtonTF}"
+            app:checkedButton="@id/mbti_selector_f_button"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -119,12 +131,14 @@
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/mbti_selector_i_toggle_group"
+            android:id="@+id/toggleButtonMbtiProductPJ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="8dp"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
+            android:checkedButtonId="@={mbtiProductBottomSheetViewModel.toggleButtonPJ}"
+            app:checkedButton="@id/mbti_selector_p_button"
             app:selectionRequired="true"
             app:singleSelection="true">
 
