@@ -19,16 +19,21 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendBannerViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendNewCoordiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.RowHomeRecommendViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class HomeRecommendFragment : Fragment() {
 
@@ -38,6 +43,11 @@ class HomeRecommendFragment : Fragment() {
     lateinit var homeRecommendViewModel: HomeRecommendViewModel
 
     lateinit var snapHelper: SnapHelper
+
+    // MBTI 추천 상품 정보를 담고 있을 리스트
+    var recommendProductList = mutableListOf<ProductModel>()
+    // 신규 상품 정보를 담고 있을 리스트
+    var newProductList = mutableListOf<ProductModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -49,6 +59,9 @@ class HomeRecommendFragment : Fragment() {
         fragmentHomeRecommendBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // 초기 세팅
+        gettingNewProductData(mainActivity.loginUserGender)
 
         // 버튼
         settingButton()
@@ -246,7 +259,7 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 12
+            return newProductList.size
         }
 
         override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
@@ -259,18 +272,34 @@ class HomeRecommendFragment : Fragment() {
             }
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setImageResource(imageResource)
 
-            // position 값에 따라 다른 MBTI 색상 설정
-            val colorResource = when (position % 4) {
-                0 -> Color.parseColor("#13D4EF")
-                1 -> Color.parseColor("#BDB14C")
-                2 -> Color.parseColor("#B75AB6")
-                else -> Color.parseColor("#36C87C")
-            }
-            holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.setBackgroundColor(colorResource)
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.setBackgroundColor(Color.parseColor(
+                Tools.mbtiColor(newProductList[position].coordiMBTI)))
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.text = "${newProductList[position].coordiMBTI}"
+            // 해당 코디네이터의 이름
+            holder.rowHomeRecommendNewCoordiBinding.itemMainCoordinatorName3.text = "코디네이터 아이유"
+            // 해당 코디 상품의 이름
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductName3.text = "${newProductList[position].coordiName}"
+            // 해당 코디 상품의 가격
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductPrice3.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(newProductList[position].price)}"
 
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
+        }
+    }
+
+    // 해당 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingNewProductData(gender: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            newProductList = ProductDao.gettingNewProductList(gender)
+            if (mainActivity.loginUserGender == 1) {
+                Log.d("test1234", "메인(홈) 페이지 - 남자 | 신규 코디: ${newProductList.size}개")
+            } else {
+                Log.d("test1234", "메인(홈) 페이지 - 여자 | 신규 코디: ${newProductList.size}개")
+            }
+            fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
         }
     }
 }

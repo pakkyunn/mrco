@@ -36,7 +36,7 @@
 
             <TextView
                 android:id="@+id/textViewRowHomeRecommendMBTI"
-                android:layout_width="64dp"
+                android:layout_width="56dp"
                 android:layout_height="32dp"
                 android:background="#BDB14C"
                 android:gravity="center"

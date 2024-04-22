@@ -17,13 +17,18 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbti2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class HomeMbtiFragment : Fragment() {
 
@@ -31,6 +36,9 @@ class HomeMbtiFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     lateinit var homeMbtiViewModel: HomeMbtiViewModel
+
+    // 상품 정보를 담고 있을 리스트
+    var productList = mutableListOf<ProductModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -41,8 +49,6 @@ class HomeMbtiFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        Log.d("test1234", "MBTI별 코디 탭 - Mbti: ${mainActivity.loginUserMbti}, 성별: ${mainActivity.loginUserGender}")
-
         // 리사이클러 뷰
         settingRecyclerViewHomeMBTI()
         settingRecyclerViewHomeMBTI2()
@@ -52,6 +58,9 @@ class HomeMbtiFragment : Fragment() {
 
         // TextView 기본 설정
         settingInit()
+
+        // 데이터 가져오기
+        gettingMainData(mainActivity.loginUserMbti, mainActivity.loginUserGender)
 
         // 코디 상품(첫번째) TextView 관찰
         homeMbtiViewModel.textViewHomeMbtiTextFirst.observe(viewLifecycleOwner) { text ->
@@ -121,7 +130,7 @@ class HomeMbtiFragment : Fragment() {
         }
     }
 
-    // 홈(MBTI) - MBTI @@에게 잘 어울리는 코디 리사이클러 뷰 어뎁터
+    // RecyclerView Adapter : 홈(MBTI) - MBTI @@에게 잘 어울리는 코디 리사이클러 뷰 어뎁터
     inner class HomeMBTIRecyclerViewAdapter: RecyclerView.Adapter<HomeMBTIRecyclerViewAdapter.HomeMBTIViewHolder>(){
         inner class HomeMBTIViewHolder(rowHomeMbtiBinding: RowHomeMbtiBinding): RecyclerView.ViewHolder(rowHomeMbtiBinding.root){
             val rowHomeMbtiBinding: RowHomeMbtiBinding
@@ -150,7 +159,8 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 12
+            if (productList.size > 12) return 12
+            else return productList.size
         }
 
         override fun onBindViewHolder(holder: HomeMBTIViewHolder, position: Int) {
@@ -164,14 +174,15 @@ class HomeMbtiFragment : Fragment() {
             }
             holder.rowHomeMbtiBinding.itemMainMbtiProductThumbnail.setImageResource(imageResource)
 
-            // position 값에 따라 다른 MBTI 색상 설정
-            val colorResource = when (position % 4) {
-                0 -> Color.parseColor("#13D4EF")
-                1 -> Color.parseColor("#BDB14C")
-                2 -> Color.parseColor("#B75AB6")
-                else -> Color.parseColor("#36C87C")
-            }
-            holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(colorResource)
+            holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI)))
+            holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.text = mainActivity.loginUserMbti
+            // 해당 코디네이터의 이름
+            holder.rowHomeMbtiBinding.itemMainMbtiCoordinatorName.text = "코디네이터 아이유"
+            // 해당 코디 상품의 이름
+            holder.rowHomeMbtiBinding.itemMainMbtiProductName.text = "${productList[position].coordiName}"
+            // 해당 코디 상품의 가격
+            holder.rowHomeMbtiBinding.itemMainMbtiProductPrice.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
 
             holder.rowHomeMbtiBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
@@ -179,7 +190,7 @@ class HomeMbtiFragment : Fragment() {
         }
     }
 
-    // 홈(MBTI) - MBTI 성별이 좋아하는 이성의 코디
+    // RecyclerView Adapter : 홈(MBTI) - MBTI 성별이 좋아하는 이성 코디
     inner class HomeMBTI2RecyclerViewAdapter: RecyclerView.Adapter<HomeMBTI2RecyclerViewAdapter.HomeMBTI2ViewHolder>(){
         inner class HomeMBTI2ViewHolder(rowHomeMbti2Binding: RowHomeMbti2Binding): RecyclerView.ViewHolder(rowHomeMbti2Binding.root){
             val rowHomeMbti2Binding: RowHomeMbti2Binding
@@ -236,6 +247,16 @@ class HomeMbtiFragment : Fragment() {
             holder.rowHomeMbti2Binding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
             }
+        }
+    }
+
+    // 해당 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingMainData(mbti: String, gender: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            productList = ProductDao.gettingProductMBTIList(mbti, gender)
+            Log.d("test1234", "MBTI별 코디 탭 - 상품 개수: ${productList.size}개")
+            fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
         }
     }
 }
