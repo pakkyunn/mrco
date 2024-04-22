@@ -18,7 +18,7 @@ class JoinCoordinatorViewModel : ViewModel() {
     //고객노출전화번호
     val textFieldJoinCoordinatorContactNumber = MutableLiveData<String>()
     //약관동의
-    val checkBoxJoinCoordinatorConsent = MutableLiveData<Boolean>()
+    val checkBoxJoinCoordinatorConsent = MutableLiveData<Boolean>(false)
 
     //약관동의 체크박스 토글
     fun toggleCoordinatorConsentCheckBox() {
