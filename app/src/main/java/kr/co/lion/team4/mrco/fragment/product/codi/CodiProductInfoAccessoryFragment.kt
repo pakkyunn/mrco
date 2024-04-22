@@ -26,7 +26,7 @@ class CodiProductInfoAccessoryFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        Log.d("CodiProductAccessoryFragment", "onCreateViewStart")
+        Log.d("taejin", "코디 상품 상세 - 악세서리")
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_accessory, container, false)
         viewModel = ViewModelProvider(this).get(CodiProductInfoAccesoryViewModel::class.java)
         mainActivity = activity as MainActivity

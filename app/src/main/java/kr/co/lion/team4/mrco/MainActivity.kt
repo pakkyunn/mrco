@@ -61,10 +61,12 @@ import kr.co.lion.team4.mrco.fragment.productQna.RegisterQnaAnswerFragment
 import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.MyReviewFragment
 import kr.co.lion.team4.mrco.fragment.review.ReviewCreatedFragment
+import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementCalendarFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementFragment
 import kr.co.lion.team4.mrco.fragment.review.WriteReviewFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.ManageShipmentsFragment
 import kr.co.lion.team4.mrco.fragment.salesManagement.SalesListFragment
+import kr.co.lion.team4.mrco.fragment.salesManagement.SalesManagementInvoiceReportFragment
 
 class MainActivity : AppCompatActivity() {
 

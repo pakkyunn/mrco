@@ -27,14 +27,11 @@ import kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel
 class CodiProductMangementFragment : Fragment() {
 
     private lateinit var binding: FragmentCodiProductMangementBinding
-//    private lateinit var viewModel: CodiProductManagementViewModel
     lateinit var mainActivity: MainActivity
 
     // 상품 정보를 가지고 있는 리스트
     var codiProductList = mutableListOf<ProductModel>()
 
-    // 현재 글 번호에 담을 변수
-    val productIdx = 0
     // 현재 접속한 코디네이터 Idx
     val coordiIdx = 0
 
@@ -82,7 +79,6 @@ class CodiProductMangementFragment : Fragment() {
             val rowCodiProductBinding: RowCodiProductBinding
 
             init {
-                Log.d("test1234", "CodiProductManagementFragment.CodiProductManagementViewHolder1")
                 this.rowCodiProductBinding = rowCodiProductBinding
                 this.rowCodiProductBinding.root.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -120,7 +116,6 @@ class CodiProductMangementFragment : Fragment() {
 
             // 항목을 눌렀을 때 동작할 리스너
             holder.rowCodiProductBinding.root.setOnClickListener {
-                Log.d("test1234", "CodiProductManagementFragment.onBindViewHodler3")
                 val bundle = Bundle()
                 bundle.putInt("productIdx", codiProductList[position].productIdx)
 

@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.product.codi
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,7 @@ class CodiProductInfoBottomFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        Log.d("taejin", "코디 상품 상세 - 하의")
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_codi_product_info_bottom,

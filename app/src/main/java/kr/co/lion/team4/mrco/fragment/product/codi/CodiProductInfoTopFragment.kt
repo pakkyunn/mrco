@@ -10,8 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoTopBinding
 import kr.co.lion.team4.mrco.databinding.RowCodiProductInfoTopBinding
 import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
@@ -22,24 +26,60 @@ class CodiProductInfoTopFragment : Fragment() {
     private lateinit var binding: FragmentCodiProductInfoTopBinding
     private lateinit var viewModel: CodiProductInfoTopViewModel
     private lateinit var mainActivity: MainActivity
-    // 상품의 정보를 담고있는 리스트
-    var productTopList = mutableListOf<ProductCategoryLinkedListModel>()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        Log.d("CodiProductInfoFragment", "onCreateView")
+        Log.d("taejin", "코디 상품 상세 - 상의")
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_top, container, false)
-        // CodiProductInfoFragment에서 사용할 viewModel 정의
         viewModel = CodiProductInfoTopViewModel()
         mainActivity = activity as MainActivity
 
-        // Lifecycle 및 xml에 사용할 변수에 모델을 넣어준다.
         binding.lifecycleOwner = this
         binding.codiProductInfoTopViewModel = viewModel
 
         settingView()
 
         return binding.root
+    }
+
+
+    fun settingInputForm(){
+        val bundle = arguments
+        var productIdx = 0
+        if (bundle != null){
+            productIdx = bundle.getInt("productIdx")
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+
+            // 현재 글 번호에 해당하는 글 데이터를 가져온다.
+            val productModel = ProductDao.selectProductData(productIdx)
+            val productCategoryLinkedListModel = ProductDao.selectProductInfoData(productIdx)
+
+
+//            // 가져온 데이터를 보여준다.
+//            viewModel.codiProductName.value = productModel?.coordiName
+//
+//            viewModel.codiProductType.value = when(productModel?.categoryId){
+//                ContentType.TYPE_FREE.number -> ContentType.TYPE_FREE.str
+//                ContentType.TYPE_HUMOR.number -> ContentType.TYPE_HUMOR.str
+//                ContentType.TYPE_SOCIETY.number -> ContentType.TYPE_SOCIETY.str
+//                ContentType.TYPE_SPORTS.number -> ContentType.TYPE_SPORTS.str
+//                else -> ""
+//            }
+//
+//            readContentViewModel.textFieldReadContentNickName.value = userModel?.userNickName
+//            readContentViewModel.textFieldReadContentDate.value = contentModel?.contentWriteDate
+//            readContentViewModel.textFieldReadContentText.value = contentModel?.contentText
+//
+//            // 글 작성자와 로그인한 사람이 같은지 확인한다.
+//            isContentWriter = contentActivity.loginUserIdx == contentModel?.contentWriterIdx
+//
+//            // 이미지 데이터를 불러온다.
+//            if(contentModel?.contentImage != null) {
+//                ContentDao.gettingContentImage(contentActivity, contentModel.contentImage!!, fragmentReadContentBinding.imageViewReadContent)
+//            }
+        }
     }
 
     private fun settingView(){

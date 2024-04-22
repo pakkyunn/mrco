@@ -1,12 +1,15 @@
 package kr.co.lion.team4.mrco.dao
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
@@ -15,8 +18,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.team4.mrco.ProductState
+import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import java.io.File
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class ProductDao {
     companion object {
@@ -245,6 +252,29 @@ class ProductDao {
             job1.join()
 
             return productModel
+        }
+
+        suspend fun selectProductInfoData(productIdx:Int): ProductCategoryLinkedListModel?{
+
+
+            var productCategoryLinkedListModel: ProductCategoryLinkedListModel? = null
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 컬렉션이 가지고 있는 문서들 중에 contentIdx 필드가 지정된 글 번호값하고 같은 Document들을 가져온다.
+                val queryShapshot = collectionReference.whereEqualTo("productIdx", productIdx).get().await()
+                // 가져온 글 정보를 객체에 담아서 반환 받는다.
+                // productIdx가 같은 글은 존재할 수가 없기 때문에 첫 번째 객체를 바로 추출해서 사용한다.
+                // toObject : 지정한 클래스를 가지고 객체를 만든 다음 가져온 데이터의 필드의 이름과 동일한 이름의
+                // 프로퍼티에 필드의 값을 담아준다.
+                productCategoryLinkedListModel = queryShapshot.documents[0].toObject(
+                    ProductCategoryLinkedListModel::class.java)
+
+            }
+            job1.join()
+
+            return productCategoryLinkedListModel
         }
     }
 }
