@@ -7,11 +7,39 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.CoordinatorModel
 
 class CoordinatorDao {
 
     companion object {
+
+        // 모든 코디네이터의 정보를 가져온다.
+        suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
+            // 사용자 정보를 담을 리스트
+            val coordiList = mutableListOf<CoordinatorModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("UserData")
+
+                // 코디네이터 등록상태가 참인 경우에만..
+                var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
+//                query = query.whereEqualTo("")
+
+                // 모든 사용자 정보를 가져온다
+                val querySnapshot = Firebase.firestore.collection("UserData").get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                querySnapshot.forEach {
+                    // CoordinatorModel 객체에 담는다.
+                    val coordinatorModel = it.toObject(CoordinatorModel::class.java)
+                    // 리스트에 담는다.
+                    coordiList.add(coordinatorModel)
+                }
+            }
+            job1.join()
+
+            return coordiList
+        }
 
         // 코디네이터 정보를 저장한다. (코디네이터 가입 신청시)
         suspend fun insertCoordinatorData(coordinatorModel: CoordinatorModel){
