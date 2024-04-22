@@ -88,6 +88,31 @@ class ProductDao {
             return productList
         }
 
+        // 가장 최신 상품 최대 20개를 가져온다.
+        suspend fun gettingNewProductList(productGender: Int): MutableList<ProductModel> {
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                    .orderBy("productIdx", Query.Direction.DESCENDING)
+                    .whereEqualTo("coordiGender", productGender)
+
+                val querySnapshot = query.get().await()
+                val documents = querySnapshot.documents.take(20) // 최대 20개까지만 가져오도록 조정
+
+                documents.forEach { document ->
+                    val productModel = document.toObject(ProductModel::class.java)
+                    productModel?.let {
+                        productList.add(it)
+                    }
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
         // 해당 성별, MBTI에 맞는 상품을 가져온다
         suspend fun gettingProductMBTIList(productMBTI:String, productGender: Int): MutableList<ProductModel>{
             // 게시글 정보를 담을 리스트

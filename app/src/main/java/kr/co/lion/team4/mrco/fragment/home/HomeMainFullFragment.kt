@@ -34,6 +34,8 @@ class HomeMainFullFragment : Fragment() {
 
     // 모든 상품 정보를 담고 있을 리스트
     var productList = mutableListOf<ProductModel>()
+    // 신규 상품 정보를 담고 있을 리스트
+    var newProductList = mutableListOf<ProductModel>()
     // 모든 사용자 정보를 담고 있을 리스트
     var userList = mutableListOf<UserModel>()
 
@@ -193,13 +195,16 @@ class HomeMainFullFragment : Fragment() {
             // Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
 
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
-            productList = ProductDao.gettingProductMBTIList(loginUserMbti, loginUserGender)
+            // productList = ProductDao.gettingProductMBTIList(loginUserMbti, loginUserGender)
+            // MRCO 신규 코디 최대 20개
+            // newProductList = ProductDao.gettingNewProductList(loginUserGender)
+            /*
             if (loginUserGender == 1) {
-                Log.d("test1234", "메인(홈) 페이지 - (남자, $loginUserMbti) 상품 ${productList.size}개")
+                Log.d("test1234", "메인(홈) 페이지 - (남자, $loginUserMbti) 상품 ${productList.size}개, 신상품 ${newProductList.size}개")
             } else {
-                Log.d("test1234", "메인(홈) 페이지 - (여자, $loginUserMbti) 상품 ${productList.size}개")
+                Log.d("test1234", "메인(홈) 페이지 - (여자, $loginUserMbti) 상품 ${productList.size}개, 신상품 ${newProductList.size}개")
             }
-
+            */
             // 사용자 정보를 가져온다. (연동 On)
             // userList = UserDao.getUserAll()
             // Log.d("test1234", "메인(홈) 페이지 - productList: $userList")
