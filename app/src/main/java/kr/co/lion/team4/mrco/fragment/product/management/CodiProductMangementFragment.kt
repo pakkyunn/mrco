@@ -27,7 +27,7 @@ import kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel
 class CodiProductMangementFragment : Fragment() {
 
     private lateinit var binding: FragmentCodiProductMangementBinding
-    private lateinit var viewModel: CodiProductManagementViewModel
+//    private lateinit var viewModel: CodiProductManagementViewModel
     lateinit var mainActivity: MainActivity
 
     // 상품 정보를 가지고 있는 리스트
@@ -42,15 +42,12 @@ class CodiProductMangementFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_mangement, container, false)
-        viewModel = CodiProductManagementViewModel()
         mainActivity = activity as MainActivity
-        binding.lifecycleOwner = this
-        binding.codiProductManagementViewModel = viewModel
-
-        gettingCodiData()
 
         // RecyclerView 세팅
         settingRecyclerView()
+        // Codi 정보 가져오기
+        gettingCodiData()
 
         return binding.root
     }
@@ -71,20 +68,17 @@ class CodiProductMangementFragment : Fragment() {
     fun gettingCodiData(){
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다
-            Log.d("test1234", "CodiProductManagementFragment.gettingCodiData1")
             codiProductList = ProductDao.gettingProductList(coordiIdx)
 
-            Log.d("test1234", "CodiProductManagementFragment.gettingCodiData2")
             // 리사이클러뷰를 갱신한다.
             binding.recyclerViewCodiProductManagement.adapter?.notifyDataSetChanged()
-            Log.d("test1234", "CodiProductManagementFragment.gettingCodiData3")
         }
     }
 
     // 리스트 화면
     inner class CodiProductManagementAdapter: RecyclerView.Adapter<CodiProductManagementAdapter.CodiProductManagementViewHolder>(){
         // ViewHolder
-        inner class CodiProductManagementViewHolder(rowCodiProductBinding: RowCodiProductBinding): RecyclerView.ViewHolder(binding.root){
+        inner class CodiProductManagementViewHolder(rowCodiProductBinding: RowCodiProductBinding): RecyclerView.ViewHolder(rowCodiProductBinding.root){
             val rowCodiProductBinding: RowCodiProductBinding
 
             init {
@@ -112,24 +106,17 @@ class CodiProductMangementFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
-//            return codiProductList.size
+            return codiProductList.size
         }
 
 
         override fun onBindViewHolder(holder: CodiProductManagementViewHolder, position: Int) {
-            CoroutineScope(Dispatchers.Main).launch {
-                // 현재 상품 번호에 있는 데이터를 가져온다.
-                val productModel = ProductDao.selectProductData(position)
 
-                // 상품명
-                viewModel.codiProductName.value = productModel?.coordiName
-                // 일련번호
-                viewModel.codiProductSerialNum.value = productModel?.productIdx.toString()
-                // 사진
-//                if (productModel?.codiMainImage != null){
-//                    ProductDao.gzettingProductImage(mainActivity, productModel.coordiImage.get(position)!!, holder.rowCodiProductBinding.imageViewRowCodiProduct)
-                }
+            // 상품명
+            holder.rowCodiProductBinding.codiProductManagementViewModel!!.codiProductName.value = codiProductList[position].coordiName //?.coordiName
+            // 일련번호
+            holder.rowCodiProductBinding.codiProductManagementViewModel!!.codiProductSerialNum.value = codiProductList[position].productIdx.toString() // ?.productIdx.toString()
+            // 사진
 
             // 항목을 눌렀을 때 동작할 리스너
             holder.rowCodiProductBinding.root.setOnClickListener {
