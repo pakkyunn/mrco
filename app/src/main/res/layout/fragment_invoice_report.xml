@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="ir"
+            name="invoiceReportViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.salesManagement.InvoiceReportViewModel" />
     </data>
 
@@ -41,7 +41,7 @@
                         android:id="@+id/invoice_report_date_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@={ir.invoiceDate}" />
+                        android:text="@={invoiceReportViewModel.invoiceDate}" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -65,13 +65,13 @@
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_title"
-                    tools:text="3월 21일 (목)" />
+                    tools:text="@{invoiceReportViewModel.invoiceDate}" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
-                    android:text=" 고객의 분석 정보입니다."
+                    android:text=" 결제한 고객의 분석 정보입니다."
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                     app:layout_constraintBaseline_toBaselineOf="@id/invoice_report_guest_date_text"
                     app:layout_constraintStart_toEndOf="@id/invoice_report_guest_date_text" />
@@ -90,6 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
+                    app:aa_chartModel="@{invoiceReportViewModel.pieChartModel}"
                     android:layout_marginTop="16dp"
                     app:layout_constraintTop_toBottomOf="@id/invoice_report_guest_divider" />
 
@@ -237,6 +238,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="16dp"
+                    app:aa_chartModel="@{invoiceReportViewModel.pieChartModel}"
                     app:layout_constraintTop_toBottomOf="@id/invoice_report_time_chart_divider" />
 
 

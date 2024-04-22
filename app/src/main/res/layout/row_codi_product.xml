@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="cpm"
+            name="codiProductManagementViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.CodiProductManagementViewModel" />
     </data>
 
@@ -39,7 +39,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{cpm.codiProductName}"
+                    android:text="@{codiProductManagementViewModel.codiProductName}"
                     android:textSize="16dp" />
 
                 <View
@@ -50,6 +50,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
                     android:orientation="horizontal">
 
@@ -58,7 +59,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@{cpm.codiProductSerialNum}"
+                        android:text="@{codiProductManagementViewModel.codiProductSerialNum}"
                         android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>
