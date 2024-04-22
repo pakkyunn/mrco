@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.product.management
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,7 +47,7 @@ class CodiProductMangementFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.codiProductManagementViewModel = viewModel
 
-        gettingReplyData()
+        gettingCodiData()
 
         // RecyclerView 세팅
         settingRecyclerView()
@@ -67,13 +68,16 @@ class CodiProductMangementFragment : Fragment() {
     }
 
     // 서버로 부터 데이터를 가져와 리사이클러뷰를 갱신한다.
-    fun gettingReplyData(){
+    fun gettingCodiData(){
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다
+            Log.d("test1234", "CodiProductManagementFragment.gettingCodiData1")
             codiProductList = ProductDao.gettingProductList(coordiIdx)
 
+            Log.d("test1234", "CodiProductManagementFragment.gettingCodiData2")
             // 리사이클러뷰를 갱신한다.
             binding.recyclerViewCodiProductManagement.adapter?.notifyDataSetChanged()
+            Log.d("test1234", "CodiProductManagementFragment.gettingCodiData3")
         }
     }
 
@@ -84,6 +88,7 @@ class CodiProductMangementFragment : Fragment() {
             val rowCodiProductBinding: RowCodiProductBinding
 
             init {
+                Log.d("test1234", "CodiProductManagementFragment.CodiProductManagementViewHolder1")
                 this.rowCodiProductBinding = rowCodiProductBinding
                 this.rowCodiProductBinding.root.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -94,7 +99,6 @@ class CodiProductMangementFragment : Fragment() {
         }
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CodiProductManagementViewHolder {
-
 
             val rowCodiProductbinding = DataBindingUtil.inflate<RowCodiProductBinding>(
                 layoutInflater, R.layout.row_codi_product, parent, false
@@ -108,14 +112,15 @@ class CodiProductMangementFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-//            return 10
-            return codiProductList.size
+            return 10
+//            return codiProductList.size
         }
+
 
         override fun onBindViewHolder(holder: CodiProductManagementViewHolder, position: Int) {
             CoroutineScope(Dispatchers.Main).launch {
                 // 현재 상품 번호에 있는 데이터를 가져온다.
-                val productModel = ProductDao.selectProductData(productIdx)
+                val productModel = ProductDao.selectProductData(position)
 
                 // 상품명
                 viewModel.codiProductName.value = productModel?.coordiName
@@ -124,18 +129,16 @@ class CodiProductMangementFragment : Fragment() {
                 // 사진
 //                if (productModel?.codiMainImage != null){
 //                    ProductDao.gzettingProductImage(mainActivity, productModel.coordiImage.get(position)!!, holder.rowCodiProductBinding.imageViewRowCodiProduct)
-//                }
-
-            }
-
-
+                }
 
             // 항목을 눌렀을 때 동작할 리스너
             holder.rowCodiProductBinding.root.setOnClickListener {
-
+                Log.d("test1234", "CodiProductManagementFragment.onBindViewHodler3")
+                val bundle = Bundle()
+                bundle.putInt("productIdx", codiProductList[position].productIdx)
 
                 // 화면 전환 -> CodiProductInfo
-                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, bundle)
             }
         }
     }

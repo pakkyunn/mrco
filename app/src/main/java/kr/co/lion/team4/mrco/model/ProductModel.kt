@@ -11,7 +11,7 @@ data class ProductModel(
     var categoryId : String, // enum
     var coordinatorIdx: Int,
     var coordiName: String,
-    var coordiImage: Map<Int, String>, // Map
+    var coordiImage: Map<String, String>, // Map
     var codiMainImage: String,
     var coordiGender: Int,
     var coordiText: String,

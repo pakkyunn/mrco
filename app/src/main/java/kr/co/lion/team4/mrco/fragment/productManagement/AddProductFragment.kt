@@ -69,7 +69,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     var imageIdx = -1
 
     // 첨부 이미지 리스트
-    val imageProductList = mapOf<Int, String>()
+    val imageProductList = mapOf<String, String>()
 
     private val individualProductData: ArrayList<MutableMap<String, String>> = ArrayList()
 

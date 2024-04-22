@@ -120,7 +120,7 @@ class ProductDao {
         suspend fun gettingProductList(coordinatorIdx: Int):MutableList<ProductModel>{
             // 댓글 정보를 담을 리스트
             val plyList = mutableListOf<ProductModel>()
-            Log.d("test1234","gettingProductList1")
+            Log.d("test1234","ProductDao.gettingProductList1")
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
                 val collectionReference = Firebase.firestore.collection("ProductData")
@@ -132,20 +132,20 @@ class ProductDao {
                 query = query.whereEqualTo("coordinatorIdx", coordinatorIdx)
                 // 작성일자를 기준으로 내림 차순 정렬..
 //                query = query.orderBy("coordiWriteDate", Query.Direction.DESCENDING)
-                Log.d("test1234","gettingProductList2")
+                Log.d("test1234","ProductDao.gettingProductList2")
                 val queryShapshot = query.get().await()
                 // 가져온 문서의 수 만큼 반복한다.
                 queryShapshot.forEach {
-                    Log.d("test1234","gettingProductList3")
+                    Log.d("test1234","ProductDao.gettingProductList3")
                     // 현재 번째의 문서를 객체로 받아온다.
                     val productModel = it.toObject(ProductModel::class.java)
                     // 객체를 리스트에 담는다.
                     plyList.add(productModel)
                 }
-                Log.d("test1234","gettingProductList4")
+                Log.d("test1234","ProductDao.gettingProductList4")
             }
             job1.join()
-            Log.d("test1234","gettingProductList5")
+            Log.d("test1234","ProductDao.gettingProductList5")
             return plyList
         }
 
