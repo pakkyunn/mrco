@@ -3,83 +3,99 @@
 
     <item
         android:id="@+id/drawerMenuMbtiEnfj"
+        android:icon="@drawable/person_24px"
         android:title="ENFJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiEnfp"
+        android:icon="@drawable/person_24px"
         android:title="ENFP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiEntj"
+        android:icon="@drawable/person_24px"
         android:title="ENTJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiEntp"
+        android:icon="@drawable/person_24px"
         android:title="ENTP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
 
     <item
         android:id="@+id/drawerMenuMbtiEsfj"
+        android:icon="@drawable/person_24px"
         android:title="ESFJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiEsfp"
+        android:icon="@drawable/person_24px"
         android:title="ESFP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiEstj"
+        android:icon="@drawable/person_24px"
         android:title="ESTJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiEstp"
+        android:icon="@drawable/person_24px"
         android:title="ESTP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
 
     <item
         android:id="@+id/drawerMenuMbtiInfj"
+        android:icon="@drawable/person_24px"
         android:title="INFJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiInfp"
+        android:icon="@drawable/person_24px"
         android:title="INFP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiIntj"
+        android:icon="@drawable/person_24px"
         android:title="INTJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiIntp"
+        android:icon="@drawable/person_24px"
         android:title="INTP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiIsfj"
+        android:icon="@drawable/person_24px"
         android:title="ISFJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiIsfp"
+        android:icon="@drawable/person_24px"
         android:title="ISFP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiIstj"
+        android:icon="@drawable/person_24px"
         android:title="ISTJ"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMbtiIstp"
+        android:icon="@drawable/person_24px"
         android:title="ISTP"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
@@ -87,41 +103,49 @@
 
     <item
         android:id="@+id/drawerMenuTpo1"
+        android:icon="@drawable/styler_24px"
         android:title="여행"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo2"
+        android:icon="@drawable/styler_24px"
         android:title="데이트"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo3"
+        android:icon="@drawable/styler_24px"
         android:title="카페"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo4"
+        android:icon="@drawable/styler_24px"
         android:title="출근"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo5"
+        android:icon="@drawable/styler_24px"
         android:title="데일리"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo6"
+        android:icon="@drawable/styler_24px"
         android:title="캠퍼스"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo7"
+        android:icon="@drawable/styler_24px"
         android:title="바다"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuTpo8"
+        android:icon="@drawable/styler_24px"
         android:title="결혼식"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
@@ -129,21 +153,25 @@
 
     <item
         android:id="@+id/drawerMenuSeasonSpring"
+        android:icon="@drawable/spring_24px"
         android:title="봄"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuSeasonSummer"
+        android:icon="@drawable/summer_24px"
         android:title="여름"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuSeasonFall"
+        android:icon="@drawable/fall_24px"
         android:title="가을"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuSeasonWinter"
+        android:icon="@drawable/winter_24px"
         android:title="겨울"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
@@ -151,51 +179,61 @@
 
     <item
         android:id="@+id/drawerMenuMood1"
+        android:icon="@drawable/mood_24px"
         android:title="미니멀"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood2"
+        android:icon="@drawable/mood_24px"
         android:title="비즈니스 캐주얼"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood3"
+        android:icon="@drawable/mood_24px"
         android:title="원마일웨어"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood4"
+        android:icon="@drawable/mood_24px"
         android:title="아메카지"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood5"
+        android:icon="@drawable/mood_24px"
         android:title="시티보이"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood6"
+        android:icon="@drawable/mood_24px"
         android:title="스트릿"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood7"
+        android:icon="@drawable/mood_24px"
         android:title="스포티"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood8"
+        android:icon="@drawable/mood_24px"
         android:title="레트로"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood9"
+        android:icon="@drawable/mood_24px"
         android:title="러블리"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
     <item
         android:id="@+id/drawerMenuMood10"
+        android:icon="@drawable/mood_24px"
         android:title="모던 캐주얼"
         android:visible="false"
         app:actionLayout="@layout/widget_check" />
