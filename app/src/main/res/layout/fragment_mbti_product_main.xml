@@ -98,7 +98,7 @@
                 tools:text="MBTI" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupCategoryGender"
+                android:id="@+id/chipGroupMbtiProductMainGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -109,7 +109,7 @@
                 tools:paddingLeft="0dp">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCategoryGenderMEN"
+                    android:id="@+id/chipMbtiProductMainGenderMEN"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:checkable="true"
@@ -120,7 +120,7 @@
                     app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCategoryGenderWOMEN"
+                    android:id="@+id/chipMbtiProductMainGenderWOMEN"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:checkable="true"

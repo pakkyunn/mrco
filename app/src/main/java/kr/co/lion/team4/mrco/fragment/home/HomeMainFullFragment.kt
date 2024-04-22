@@ -9,12 +9,18 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.ProductDao
+import kr.co.lion.team4.mrco.dao.UserDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMainFullBinding
 import kr.co.lion.team4.mrco.fragment.home.mbti.HomeMbtiFragment
 import kr.co.lion.team4.mrco.fragment.home.recommend.HomeRecommendFragment
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.model.UserModel
 
 class HomeMainFullFragment : Fragment() {
@@ -25,6 +31,11 @@ class HomeMainFullFragment : Fragment() {
 
     // 생성자에서 받은 Bundle을 저장할 변수
     lateinit var bundle: Bundle
+
+    // 상품 정보를 담고 있을 리스트
+    var productList = mutableListOf<ProductModel>()
+    // 사용자 정보를 담고 있을 리스트
+    var userList = mutableListOf<UserModel>()
 
     // 사용자 정보(인덱스, 아이디, 이름, MBTI)
     var loginUserIdx = 0
@@ -49,7 +60,8 @@ class HomeMainFullFragment : Fragment() {
             loginUserName = (getBundle.getString("loginUserName")).toString()
             loginUserMbti = (getBundle.getString("loginUserMbti")).toString()
             loginUserGender = getBundle.getInt("loginUserGender")
-            Log.d("test1234", "인덱스: $loginUserIdx, 아이디: $loginUserId, 이름: $loginUserName, MBTI: $loginUserMbti, Gender: $loginUserGender")
+            Log.d("test1234", "메인(홈) 페이지 - 로그인 사용자 인덱스: $loginUserIdx\n" +
+                    "아이디: $loginUserId, 이름: $loginUserName, MBTI: $loginUserMbti, 성별: $loginUserGender")
             // 원하는 작업을 수행합니다.
         }
         settingMainInit()
@@ -59,6 +71,8 @@ class HomeMainFullFragment : Fragment() {
         settingToolbar()
         bottomSheetSetting()
         settingBottomTabs()
+
+        gettingMainData()
 
         settingMainBundle()
 
@@ -168,6 +182,23 @@ class HomeMainFullFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return fragmentList.get(position)
+        }
+    }
+
+    // 현재 게시판의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingMainData(){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 상품의 정보를 가져온다. (연동 On)
+            // productList = ProductDao.gettingProductAll()
+            // Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
+
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 OFF)
+            productList = ProductDao.gettingProductMBTIList("ENFJ", 1)
+            Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
+
+            // 사용자 정보를 가져온다. (연동 On)
+            // userList = UserDao.getUserAll()
+            // Log.d("test1234", "메인(홈) 페이지 - productList: $userList")
         }
     }
 }

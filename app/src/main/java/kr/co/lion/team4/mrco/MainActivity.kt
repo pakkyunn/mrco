@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
         loginUserGender = sharedPreferences.getInt("loginUserGender", -1)
 
         // 자동 로그인시 저장된 사용자 인덱스값이 없다면(자동로그인을 체크하지 않았다면)
-        Log.d("test1234", "자동 로그인 여부(-1 빼고 전부 자동로그인): $loginUserIdx")
+        Log.d("test1234", "MainActivity - 자동 로그인 여부(-1 빼고 전부 자동로그인): $loginUserIdx")
         if(loginUserIdx == -1) {
             // 첫 화면을 띄워준다.
             replaceFragment(MainFragmentName.LOGIN_FRAGMENT, false, false, null)
