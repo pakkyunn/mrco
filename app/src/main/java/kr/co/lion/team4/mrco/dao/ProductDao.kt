@@ -1,16 +1,12 @@
 package kr.co.lion.team4.mrco.dao
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
@@ -20,11 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.ProductModel
-import kr.co.lion.team4.mrco.model.UserModel
 import java.io.File
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class ProductDao {
     companion object {
