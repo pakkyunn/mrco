@@ -36,7 +36,7 @@ class JoinCoordinatorNextFragment : Fragment() {
 
         settingJoinCoordinatorNextToolbar()
         settingButtonPrevious() // 뒤로가기 버튼
-        // settingButtonJoinCoordinatorNextSubmit() // 신청완료 버튼
+         settingButtonJoinCoordinatorNextSubmit() // 신청완료 버튼
 
         return fragmentJoinCoordinatorNextBinding.root
     }
@@ -82,10 +82,10 @@ class JoinCoordinatorNextFragment : Fragment() {
             // 이전 화면에서 작성한 코디네이터 정보
             coordinatorData.coordi_name = arguments?.getString("coordiName")!! // 코디네이터
             coordinatorData.coordi_intro_text = arguments?.getString("coordIntro")!! // 코디네이터 소개글
-            coordinatorData.coordi_photo = arguments?.getString("coordiMainImage")!! // 코디네이터 사진
+            coordinatorData.coordi_photo = arguments?.getString("coordiPhoto")!! // 코디네이터 사진
             coordinatorData.coordi_license = arguments?.getString("coordiCertification")!! // 코디네이터 자격증 파일명
             coordinatorData.coordi_license_num = arguments?.getString("coordiCertificationNumber")!! // 코디네이터 자격증 번호
-            coordinatorData.coordi_portfolio = arguments?.getString("coordiPortfolio")!! // 코디네이터 포트폴리오 파일명
+            coordinatorData.coordi_portfolio = arguments?.getStringArray("coordiPortfolio").toString() // 코디네이터 포트폴리오 파일명
             coordinatorData.coordi_business_license = arguments?.getString("coordiBizLicense")!! // 사업자 등록증 파일명
             coordinatorData.coordi_mbti = arguments?.getString("coordiMBTI")!! // MBTI
             coordinatorData.coordi_business_phone = arguments?.getString("coordiContactNumber")!! // 고객 노출 연락처
