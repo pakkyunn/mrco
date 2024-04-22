@@ -52,7 +52,7 @@ class LikeFragment : Fragment() {
                     when (it.itemId) {
                         // 검색 클릭 시
                         R.id.home_toolbar_search -> {
-                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_SEARCH_FRAGMENT, false, false, null)
                         }
                         // 알람 클릭 시
                         R.id.home_toolbar_notification -> {
@@ -78,7 +78,7 @@ class LikeFragment : Fragment() {
                         mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
                     R.id.main_bottom_navi_category -> {
-                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
                     }
                     R.id.main_bottom_navi_like -> {
                         mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
