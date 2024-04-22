@@ -23,6 +23,7 @@ class CodiProductInfoShoesFragment : Fragment() {
     private lateinit var viewModel: CodiProductInfoShoesViewModel
     private lateinit var mainActivity: MainActivity
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d("taejin", "코디 상품 상세 - 신발")
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_shoes, container, false)
         viewModel = CodiProductInfoShoesViewModel()
         mainActivity = activity as MainActivity
