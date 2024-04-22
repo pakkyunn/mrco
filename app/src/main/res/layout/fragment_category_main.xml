@@ -224,6 +224,6 @@
             android:background="#EFEFEF"
             app:drawerLayoutCornerSize="0dp"
             app:menu="@menu/menu_category_drawer" />
-    </androidx.drawerlayout.widget.DrawerLayout>
 
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
