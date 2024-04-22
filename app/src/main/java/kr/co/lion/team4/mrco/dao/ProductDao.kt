@@ -7,13 +7,16 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.ProductModel
+import kr.co.lion.team4.mrco.model.UserModel
 import java.io.File
 
 class ProductDao {
@@ -60,9 +63,65 @@ class ProductDao {
             // 따라서 이 메서드는 제일 마지막에 호출해야 한다.(다른 것들을 모두 보여준 후에...)
         }
 
+
+        // 모든 상품의 정보를 가져온다.
+        suspend fun gettingProductAll(): MutableList<ProductModel> {
+            // 상품 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 내림 차순 정렬
+                query = query.orderBy("productIdx", Query.Direction.DESCENDING)
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
+        // 해당 성별, MBTI에 맞는 상품을 가져온다
+        suspend fun gettingProductMBTIList(productMBTI:String, productGender: Int):MutableList<ProductModel>{
+            // 게시글 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
+                var query = collectionReference.whereEqualTo("productState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 내림 차순 정렬
+                query = query.orderBy("productIdx", Query.Direction.DESCENDING)
+                // 해당 MBTI에 맞는 상품 찾기
+                query = query.whereEqualTo("coordiMBTI", productMBTI)
+                // 해당 성별에 맞는 상품 찾기
+                query = query.whereEqualTo("coordiGender", productGender)
+
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val contentModel = it.toObject(ProductModel::class.java)
+                    productList.add(contentModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
         // 상품 번호 시퀀스값을 가져온다.
         suspend fun getContentSequence():Int{
-            var contentSequence = -1
+            var productSequence = -1
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
@@ -71,11 +130,11 @@ class ProductDao {
                 val documentReference = collectionReference.document("ProductSequence")
                 // 문서내에 있는 데이터를 가져올 수 있는 객체를 가져온다.
                 val documentSnapShot = documentReference.get().await()
-                contentSequence = documentSnapShot.getLong("value")?.toInt()!!
+                productSequence = documentSnapShot.getLong("value")?.toInt()!!
             }
             job1.join()
 
-            return contentSequence
+            return productSequence
         }
 
         // 상품 시퀀스 값을 업데이트 한다.
@@ -106,8 +165,5 @@ class ProductDao {
             }
             job1.join()
         }
-
-
-
     }
 }
