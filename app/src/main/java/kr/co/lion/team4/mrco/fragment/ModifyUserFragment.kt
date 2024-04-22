@@ -26,7 +26,7 @@ class ModifyUserFragment : Fragment() {
     lateinit var modifyUserViewModel : ModifyUserViewModel
     lateinit var mainActivity: MainActivity
 
-    // 서버에서 가져올 로그인 사용자 정보를 담을 객체
+    // 서버에서 가져올 로그인한 사용자 정보를 담을 객체
     lateinit var originalUserModel: UserModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -13,7 +13,7 @@ class CoordinatorDao {
 
     companion object {
 
-        // 코디네이터 정보를 저장한다. (코디네이터 가입 신청시)
+        // 코디네이터의 정보를 저장한다. (코디네이터 가입 신청시)
         suspend fun insertCoordinatorData(coordinatorModel: CoordinatorModel){
             val job1 = CoroutineScope(Dispatchers.IO).launch {
 

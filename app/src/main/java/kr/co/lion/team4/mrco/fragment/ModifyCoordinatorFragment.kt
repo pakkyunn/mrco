@@ -25,7 +25,7 @@ class ModifyCoordinatorFragment : Fragment() {
     lateinit var modifyCoordinatorViewModel: ModifyCoordinatorViewModel
     lateinit var mainActivity: MainActivity
 
-    // 서버에서 가져올 로그인 코디네이터 정보를 담을 객체
+    // 서버에서 가져올 로그인한 코디네이터 정보를 담을 객체
     lateinit var originalCoordinatorModel: CoordinatorModel
 
 

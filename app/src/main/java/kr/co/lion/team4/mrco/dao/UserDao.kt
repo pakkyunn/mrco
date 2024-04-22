@@ -87,7 +87,7 @@ class UserDao {
             return chk
         }
 
-        // 아이디를 통해 사용자 정보를 가져오는 메서드
+        // 유저 아이디를 통해 사용자 정보를 가져오는 메서드
         suspend fun getUserDataById(userId:String) : UserModel?{
             // 사용자 정보 객체를 담을 변수
             var userModel:UserModel? = null
