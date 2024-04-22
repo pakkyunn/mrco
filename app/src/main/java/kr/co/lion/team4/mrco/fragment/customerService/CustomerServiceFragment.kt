@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.customerService
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.dao.FaqDao
 import kr.co.lion.team4.mrco.databinding.FragmentCustomerServiceBinding
 import kr.co.lion.team4.mrco.databinding.RowCustomerServiceBinding
@@ -31,8 +33,11 @@ class CustomerServiceFragment : Fragment() {
 
     // 전체 FAQ 목록을 담을 리스트
     var faqList = mutableListOf<FaqModel>()
-    // 카테고리별로 구분하여 담아줄 리스트
+    // 카테고리별로 구분하여 구성하기 위한 리스트
     var filteredList = mutableListOf<FaqModel>()
+
+    // 검색화면의 RecyclerView 구성을 위한 리스트
+    var searchResultList = mutableListOf<FaqModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -58,6 +63,8 @@ class CustomerServiceFragment : Fragment() {
         // Tab Layout 세팅
         settingFaqListTab()
 
+        settingFaqSearchView()
+
         return fragmentCustomerServiceBinding.root
     }
 
@@ -73,8 +80,15 @@ class CustomerServiceFragment : Fragment() {
 
     // FAQ 목록 리사이클러뷰 어댑터 세팅
     fun settingFaqRecyclerViewAdapter(){
+        // 자주 묻는 문의 목록
         fragmentCustomerServiceBinding.recyclerViewCustomerServiceFaq.apply {
-            adapter = FaqRecyclerViewAdapter()
+            adapter = FaqRecyclerViewAdapter(filteredList)
+            layoutManager = LinearLayoutManager(mainActivity)
+        }
+
+        // 자주 묻는 문의 - 검색 결과
+        fragmentCustomerServiceBinding.recyclerViewCustomerServiceSearch.apply {
+            adapter = FaqRecyclerViewAdapter(searchResultList)
             layoutManager = LinearLayoutManager(mainActivity)
         }
     }
@@ -123,6 +137,41 @@ class CustomerServiceFragment : Fragment() {
         fragmentCustomerServiceBinding.recyclerViewCustomerServiceFaq.adapter?.notifyDataSetChanged()
     }
 
+    // SearchView에서 검색어 입력후 키보드 엔터키를 누르면 검색되도록 설정
+    fun settingFaqSearchView(){
+        fragmentCustomerServiceBinding.apply {
+            searchViewCustomerService.apply {
+                // 검색 시 사용하는 키보드의 엔터키를 누르면 동작하는 리스너
+                editText.setOnEditorActionListener { view, actionId, event ->
+                    if(event!=null && event.action == KeyEvent.ACTION_DOWN){
+                        // 검색 목록 초기화
+                        searchResultList.clear()
+
+                        val keyword = editText.text.toString()
+                        if(keyword.isEmpty()){
+                            Tools.showErrorDialog(mainActivity, searchViewCustomerService, "검색어 입력 오류", "검색어를 입력해주세요.")
+                        }else{ // 검색어가 입력되었다면
+                            // 검색 결과를 가져와 보여주는 메서드를 호출한다.
+                            gettingFaqSearchList(keyword)
+                        }
+                    }
+                    false
+                }
+            }
+        }
+    }
+
+    // 검색 결과 불러오기
+    fun gettingFaqSearchList(keyword:String){
+        faqList.forEach { // 전체 자주 묻는 문의 목록에서
+            // 검색어와 일치하는 항목만 검색결과 리스트에 담아준다.
+            if(it.faqQuestion.contains(keyword)){
+                searchResultList.add(it)
+            }
+        }
+        fragmentCustomerServiceBinding.recyclerViewCustomerServiceFaq.adapter?.notifyDataSetChanged()
+    }
+
     // 툴바 설정
     fun toolbarSetting(){
         fragmentCustomerServiceBinding.toolbarCustomerService.apply {
@@ -149,7 +198,7 @@ class CustomerServiceFragment : Fragment() {
     }
 
     // 자주 묻는 질문의 RecyclerView Adapter
-    inner class FaqRecyclerViewAdapter : RecyclerView.Adapter<FaqRecyclerViewAdapter.FaqViewHolder>(){
+    inner class FaqRecyclerViewAdapter(var faqList:MutableList<FaqModel>) : RecyclerView.Adapter<FaqRecyclerViewAdapter.FaqViewHolder>(){
         inner class FaqViewHolder (rowCustomerServiceBinding: RowCustomerServiceBinding) : RecyclerView.ViewHolder(rowCustomerServiceBinding.root){
             val rowCustomerServiceBinding : RowCustomerServiceBinding
             init {
@@ -175,11 +224,11 @@ class CustomerServiceFragment : Fragment() {
         override fun onBindViewHolder(holder: FaqViewHolder, position: Int) {
             holder.rowCustomerServiceBinding.rowCustomerServiceViewModel?.apply {
                 // 문의 유형 (카테고리)
-                textViewCategoryRowCustomerService.value = filteredList[position].faqSubCategory
+                textViewCategoryRowCustomerService.value = faqList[position].faqSubCategory
                 // 자주 묻는 질문 제목
-                textViewSubtitleRowCustomerService.value = filteredList[position].faqQuestion
+                textViewSubtitleRowCustomerService.value = faqList[position].faqQuestion
                 // 자주 묻는 질문 답변
-                textViewAnswerRowCustomerService.value = filteredList[position].faqAnswer
+                textViewAnswerRowCustomerService.value = faqList[position].faqAnswer
             }
 
             holder.rowCustomerServiceBinding.apply {
@@ -194,7 +243,7 @@ class CustomerServiceFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return filteredList.size
+            return faqList.size
         }
     }
 }
