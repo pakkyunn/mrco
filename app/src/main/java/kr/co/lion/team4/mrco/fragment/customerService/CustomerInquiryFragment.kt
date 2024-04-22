@@ -10,6 +10,7 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.customerService.CustomerInquiryViewModel
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.databinding.FragmentCustomerInquiryBinding
 
 /* (구매자) 고객센터 - 1:1 문의 작성 화면 */
@@ -30,7 +31,60 @@ class CustomerInquiryFragment : Fragment() {
         // 툴바, bottom navigation 설정
         settingCustomerInquiryToolbar()
 
+        submitCustomerInquiry()
+
         return fragmentCustomerInquiryBinding.root
+    }
+
+    // 문의 내용 제출
+    fun submitCustomerInquiry(){
+        fragmentCustomerInquiryBinding.apply {
+            buttonCustomerInquirySubmit.setOnClickListener {
+                val validation = checkInquiryFormValid()
+                if(validation){
+
+                }
+            }
+        }
+
+    }
+
+    // 주문 번호, 첨부파일을 제외한 입력 요소 유효성 검사
+    fun checkInquiryFormValid() : Boolean {
+        // 문의 유형
+        val inquiryType = customerInquiryViewModel.autotextviewCustomerInquiryType.value
+        // 문의 제목
+        val inquiryTitle = customerInquiryViewModel.textinputCustomerInquiryTitle.value
+        // 문의 내용
+        val inquiryContent = customerInquiryViewModel.textinputCustomerInquiryContent.value
+        // 답변 방식
+        val inquiryAnswerWay = customerInquiryViewModel.textviewCustomerInquiryAnswerWay.value
+
+        if(inquiryType == null){ // 문의 유형을 선택하지 않은 경우
+            Tools.showErrorDialog(mainActivity, fragmentCustomerInquiryBinding.menuCustomerInquiryType,
+                "제목 입력 오류", "제목을 입력해주세요")
+            return false
+        }
+
+        if(inquiryTitle == null){
+            Tools.showErrorDialog(mainActivity, fragmentCustomerInquiryBinding.textinputCustomerInquiryTitle,
+                "제목 입력 오류", "제목을 입력해주세요")
+            return false
+        }
+
+        if(inquiryContent == null){
+            Tools.showErrorDialog(mainActivity, fragmentCustomerInquiryBinding.textinputCustomerInquiryContent,
+                "제목 입력 오류", "제목을 입력해주세요")
+            return false
+        }
+
+        if(inquiryAnswerWay == null){
+            Tools.showErrorDialog(mainActivity, fragmentCustomerInquiryBinding.menuCustomerInquiryAnswerWay,
+                "제목 입력 오류", "제목을 입력해주세요")
+            return false
+        }
+
+        return true
     }
 
     // 툴바 설정
