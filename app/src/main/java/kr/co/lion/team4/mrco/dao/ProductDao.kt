@@ -90,7 +90,7 @@ class ProductDao {
         }
 
         // 해당 성별, MBTI에 맞는 상품을 가져온다
-        suspend fun gettingProductMBTIList(productMBTI:String, productGender: Int):MutableList<ProductModel>{
+        suspend fun gettingProductMBTIList(productMBTI:String, productGender: Int): MutableList<ProductModel>{
             // 게시글 정보를 담을 리스트
             val productList = mutableListOf<ProductModel>()
 
@@ -98,7 +98,7 @@ class ProductDao {
                 // 모든 상품 정보를 가져온다
                 val collectionReference = Firebase.firestore.collection("ProductData")
                 // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
-                var query = collectionReference.whereEqualTo("productState", ProductState.PRODUCT_STATE_NORMAL.num)
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
                 // 내림 차순 정렬
                 query = query.orderBy("productIdx", Query.Direction.DESCENDING)
                 // 해당 MBTI에 맞는 상품 찾기
@@ -110,8 +110,8 @@ class ProductDao {
                 // 가져온 문서의 수 만큼 반복한다.
                 queryShapshot.forEach {
                     // ProductModel 객체에 담고 객체를 리스트에 담는다.
-                    val contentModel = it.toObject(ProductModel::class.java)
-                    productList.add(contentModel)
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
                 }
             }
             job1.join()

@@ -69,7 +69,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     var imageIdx = -1
 
     // 첨부 이미지 리스트
-    val imageProductList = mapOf<Int, String>()
+    val imageProductList = mapOf<String, String>()
 
     private val individualProductData: ArrayList<MutableMap<String, String>> = ArrayList()
 
@@ -353,9 +353,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             chipgroupAddProductGender.apply {
                 if (chipAddProductMale.isChecked){
                     Log.d("test1234", "ChipGroup is Working!")
-                    addProductViewModel?.chipgroupAddProductGender?.value = 0
-                } else if (chipAddProductFemale.isChecked){
                     addProductViewModel?.chipgroupAddProductGender?.value = 1
+                } else if (chipAddProductFemale.isChecked){
+                    addProductViewModel?.chipgroupAddProductGender?.value = 2
                 } else {
                     addProductViewModel?.chipgroupAddProductGender?.value = -1
                 }
@@ -575,10 +575,10 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             snackbar.show()
 
             // 글 번호를 담는다.
-            val readBundle = Bundle()
-            readBundle.putInt("productIdx", productIdx)
+            // val readBundle = Bundle()
+            // readBundle.putInt("productIdx", productIdx)
 
-            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, readBundle)
+            mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
         }
     }
 

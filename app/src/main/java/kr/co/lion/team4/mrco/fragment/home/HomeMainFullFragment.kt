@@ -32,7 +32,7 @@ class HomeMainFullFragment : Fragment() {
     // 생성자에서 받은 Bundle을 저장할 변수
     lateinit var bundle: Bundle
 
-    // 메인 화면의 RecyclerView 구성을 위한 리스트
+    // 상품 정보를 담고 있을 리스트
     var productList = mutableListOf<ProductModel>()
     // 사용자 정보를 담고 있을 리스트
     var userList = mutableListOf<UserModel>()
@@ -188,10 +188,15 @@ class HomeMainFullFragment : Fragment() {
     // 현재 게시판의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
     fun gettingMainData(){
         CoroutineScope(Dispatchers.Main).launch {
-            // 상품의 정보를 가져온다.
+            // 상품의 정보를 가져온다. (연동 On)
             // productList = ProductDao.gettingProductAll()
             // Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
-            // 사용자 정보를 가져온다.
+
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 OFF)
+            productList = ProductDao.gettingProductMBTIList("ENFJ", 1)
+            Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
+
+            // 사용자 정보를 가져온다. (연동 On)
             // userList = UserDao.getUserAll()
             // Log.d("test1234", "메인(홈) 페이지 - productList: $userList")
         }
