@@ -31,6 +31,8 @@ class MbtiProductMainFragment : Fragment() {
     // 더보기 버튼 위에꺼/아래꺼
     var buttonInt = 0
 
+    var gender = 1
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentMbtiProductMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_mbti_product_main, container, false)
@@ -66,17 +68,20 @@ class MbtiProductMainFragment : Fragment() {
 
     // 기본 세팅
     fun settingInit() {
+        Log.d("test1234", "MBTI 상품 페이지: settingInit 실행")
         // 첫번째 버튼으로 들어왔을때
         if (buttonInt == 1) {
             mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = mainActivity.loginUserMbti
             fragmentMbtiProductMainBinding.textViewSideMbti.setText("에게 잘 어울리는 코디")
             // 남자일때
             if (mainActivity.loginUserGender == 1) {
-
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = true
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = false
             }
             // 여자일때
             else {
-
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = false
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = true
             }
         }
         // 두번째 버튼으로 들어왔을때
@@ -84,10 +89,14 @@ class MbtiProductMainFragment : Fragment() {
             mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = mainActivity.loginUserMbti
             // 남자일때
             if (mainActivity.loginUserGender == 1) {
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = true
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = false
                 fragmentMbtiProductMainBinding.textViewSideMbti.setText("여성이 좋아하는 남자 코디")
             }
             // 여자일때
             else {
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = false
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = true
                 fragmentMbtiProductMainBinding.textViewSideMbti.setText("남성이 좋아하는 여자 코디")
             }
         }
@@ -140,6 +149,24 @@ class MbtiProductMainFragment : Fragment() {
             buttonMbtiProductMainMBTI.setOnClickListener {
                 showMBTIBottomSheet()
             }
+
+            chipGroupMbtiProductMainGender.setOnCheckedStateChangeListener { chipGroup, checkedChipIds ->
+                when (chipGroup.checkedChipId) {
+                    // Men 버튼
+                    2131363241 -> {
+                        gender = 1
+                        fragmentMbtiProductMainBinding.recyclerViewMbtiProductMain.adapter?.notifyDataSetChanged()
+                        Log.d("test1234", "MBTI 상품 페이지: Men 버튼 클릭 : $gender")
+                    }
+                    // Women 버튼
+                    2131363242 -> {
+                        gender = 2
+                        fragmentMbtiProductMainBinding.recyclerViewMbtiProductMain.adapter?.notifyDataSetChanged()
+                        Log.d("test1234", "MBTI 상품 페이지: Women 버튼 클릭 : $gender")
+                    }
+                }
+            }
+
         }
     }
 
