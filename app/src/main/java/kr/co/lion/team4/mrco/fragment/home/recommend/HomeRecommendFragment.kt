@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.home.recommend
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -33,7 +34,6 @@ class HomeRecommendFragment : Fragment() {
 
     lateinit var fragmentHomeRecommendBinding: FragmentHomeRecommendBinding
     lateinit var mainActivity: MainActivity
-    lateinit var homeMainFullFragment: HomeMainFullFragment
 
     lateinit var homeRecommendViewModel: HomeRecommendViewModel
 
@@ -166,7 +166,7 @@ class HomeRecommendFragment : Fragment() {
                 this.rowHomeRecommendBinding = rowHomeRecommendBinding
 
                 this.rowHomeRecommendBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -186,14 +186,29 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 12
         }
 
         override fun onBindViewHolder(holder: HomeRecommendViewHolder, position: Int) {
-            holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 4) {
+                0 -> R.drawable.iu_image4
+                1 -> R.drawable.iu_image5
+                2 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
             }
-            holder.rowHomeRecommendBinding.itemMainProductThumbnail2.setOnClickListener {
+            holder.rowHomeRecommendBinding.itemMainProductThumbnail.setImageResource(imageResource)
+
+            // position 값에 따라 다른 MBTI 색상 설정
+            val colorResource = when (position % 4) {
+                0 -> Color.parseColor("#13D4EF")
+                1 -> Color.parseColor("#BDB14C")
+                2 -> Color.parseColor("#B75AB6")
+                else -> Color.parseColor("#36C87C")
+            }
+            holder.rowHomeRecommendBinding.textViewRowHomeRecommendMBTI.setBackgroundColor(colorResource)
+
+            holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
         }
@@ -208,7 +223,7 @@ class HomeRecommendFragment : Fragment() {
                 this.rowHomeRecommendNewCoordiBinding = rowHomeRecommendNewCoordiBinding
 
                 this.rowHomeRecommendNewCoordiBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -231,14 +246,29 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return 12
         }
 
         override fun onBindViewHolder(holder: HomeRecommendNewCoordiViewHolder, position: Int) {
-            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 4) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image5
+                else -> R.drawable.iu_image8
             }
-            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail4.setOnClickListener {
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setImageResource(imageResource)
+
+            // position 값에 따라 다른 MBTI 색상 설정
+            val colorResource = when (position % 4) {
+                0 -> Color.parseColor("#13D4EF")
+                1 -> Color.parseColor("#BDB14C")
+                2 -> Color.parseColor("#B75AB6")
+                else -> Color.parseColor("#36C87C")
+            }
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.setBackgroundColor(colorResource)
+
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
             }
         }
