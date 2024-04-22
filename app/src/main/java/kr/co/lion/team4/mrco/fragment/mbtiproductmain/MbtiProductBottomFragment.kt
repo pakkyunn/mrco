@@ -107,7 +107,7 @@ class MbtiProductBottomFragment(var mbtiTextView: MutableLiveData<String>) : Bot
                 if (!selectedEI.isNullOrEmpty() && !selectedSN.isNullOrEmpty() && !selectedTF.isNullOrEmpty() && !selectedPJ.isNullOrEmpty()){
                     selectedMbti = selectedEI + selectedSN + selectedTF + selectedPJ
                     mbtiTextView.value = selectedMbti
-                    Log.d("test1234", "MBTI 상품 페이지(BottomSheet) - MBTI: ${mbtiTextView.value}")
+                    Log.d("test1234", "MBTI 상품 페이지(Dialog) - MBTI: ${mbtiTextView.value}로 변경")
 
                     dismiss()
                 } else {

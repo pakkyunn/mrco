@@ -32,12 +32,12 @@ class HomeMainFullFragment : Fragment() {
     // 생성자에서 받은 Bundle을 저장할 변수
     lateinit var bundle: Bundle
 
-    // 상품 정보를 담고 있을 리스트
+    // 모든 상품 정보를 담고 있을 리스트
     var productList = mutableListOf<ProductModel>()
-    // 사용자 정보를 담고 있을 리스트
+    // 모든 사용자 정보를 담고 있을 리스트
     var userList = mutableListOf<UserModel>()
 
-    // 사용자 정보(인덱스, 아이디, 이름, MBTI)
+    // 초기 값 로그인 한 사용자 정보 : [인덱스, 아이디, 이름, MBTI, 성별]
     var loginUserIdx = 0
     lateinit var loginUserId: String
     lateinit var loginUserName: String
@@ -51,30 +51,28 @@ class HomeMainFullFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        // getArguments() 메서드를 사용하여 Bundle을 가져옵니다.
+        // getArguments() 메서드를 사용하여 Bundle 가져오기
         val getBundle = arguments
         if (getBundle != null) {
-            // Bundle로부터 원하는 데이터를 꺼내 사용합니다.
             loginUserIdx = getBundle.getInt("loginUserIdx")
             loginUserId = (getBundle.getString("loginUserId")).toString()
             loginUserName = (getBundle.getString("loginUserName")).toString()
             loginUserMbti = (getBundle.getString("loginUserMbti")).toString()
             loginUserGender = getBundle.getInt("loginUserGender")
-            Log.d("test1234", "메인(홈) 페이지 - 로그인 사용자 인덱스: $loginUserIdx\n" +
-                    "아이디: $loginUserId, 이름: $loginUserName, MBTI: $loginUserMbti, 성별: $loginUserGender")
-            // 원하는 작업을 수행합니다.
+            Log.d("test1234", "메인(홈) 페이지 - 로그인 사용자 Idx: $loginUserIdx, Name: $loginUserName")
         }
+        // 기본 세팅(로그인 정보 MainActivity 변수 값에 저장)
         settingMainInit()
-
+        // (로그인 정보 MainActivity Bundle에 저장)
+        settingMainBundle()
         // 툴바, 하단바, 탭 관련
         viewPagerActiviation()
         settingToolbar()
         bottomSheetSetting()
         settingBottomTabs()
-
+        //
         gettingMainData()
 
-        settingMainBundle()
 
         return fragmentHomeMainFullBinding.root
     }
@@ -153,6 +151,7 @@ class HomeMainFullFragment : Fragment() {
         }
     }
 
+    // 상단 탭 viewPager 설정
     private fun viewPagerActiviation(){
         fragmentHomeMainFullBinding.apply {
 
@@ -174,6 +173,7 @@ class HomeMainFullFragment : Fragment() {
         }
     }
 
+    // 상단 탭 viewPager inner class
     private inner class FragmentPagerAdapter(val fragmentList: List<Fragment>, fragmentActivity: FragmentActivity):
         FragmentStateAdapter(fragmentActivity){
         override fun getItemCount(): Int {
@@ -192,9 +192,13 @@ class HomeMainFullFragment : Fragment() {
             // productList = ProductDao.gettingProductAll()
             // Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
 
-            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 OFF)
-            productList = ProductDao.gettingProductMBTIList("ENFJ", 1)
-            Log.d("test1234", "메인(홈) 페이지 - productList: $productList")
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            productList = ProductDao.gettingProductMBTIList(loginUserMbti, loginUserGender)
+            if (loginUserGender == 1) {
+                Log.d("test1234", "메인(홈) 페이지 - (남자, $loginUserMbti) 상품 ${productList.size}개")
+            } else {
+                Log.d("test1234", "메인(홈) 페이지 - (여자, $loginUserMbti) 상품 ${productList.size}개")
+            }
 
             // 사용자 정보를 가져온다. (연동 On)
             // userList = UserDao.getUserAll()

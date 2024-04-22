@@ -41,7 +41,7 @@ class HomeMbtiFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        Log.d("test1234", "MBTI_Fragment - Mbti: ${mainActivity.loginUserMbti}, Gender: ${mainActivity.loginUserGender}")
+        Log.d("test1234", "MBTI별 코디 탭 - Mbti: ${mainActivity.loginUserMbti}, 성별: ${mainActivity.loginUserGender}")
 
         // 리사이클러 뷰
         settingRecyclerViewHomeMBTI()
