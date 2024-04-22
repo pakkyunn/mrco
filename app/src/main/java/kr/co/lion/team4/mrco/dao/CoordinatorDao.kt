@@ -19,7 +19,7 @@ class CoordinatorDao {
     companion object {
 
         // 이미지 데이터를 firebase storage에 업로드하는 메서드
-        suspend fun uploadItemsImage(context: Context, fileName:String, uploadFileName:String) {
+        suspend fun uploadCoordinatorJoinImage(context: Context, fileName:String, uploadFileName:String) {
             // 외부저장소 까지의 경로를 가져온다.
             val filePath = context.getExternalFilesDir(null).toString()
             // 서버로 업로드할 파일의 경로
@@ -28,7 +28,7 @@ class CoordinatorDao {
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // Storage에 접근할 수 있는 객체를 가져온다.(폴더의 이름과 파일이름을 저장해준다.
-                val storageRef = Firebase.storage.reference.child("product_image/items/$uploadFileName")
+                val storageRef = Firebase.storage.reference.child("coordinator_join_image/images/$uploadFileName")
                 // 업로드한다.
                 storageRef.putFile(uri)
             }

@@ -371,7 +371,7 @@ class JoinCoordinatorFragment : Fragment() {
                         // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
                         Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiPhoto!!, "coordiPhotoTemp.jpg")
                         // 파일 업로드
-                        CoordinatorDao.uploadItemsImage(
+                        CoordinatorDao.uploadCoordinatorJoinImage(
                             mainActivity,
                             "coordiPhotoTemp.jpg",
                             "coordiPhotoTemp.jpg"
@@ -387,7 +387,7 @@ class JoinCoordinatorFragment : Fragment() {
                         // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
                         Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiCertification!!, "coordiCertificationTemp.jpg")
                         // 파일 업로드
-                        CoordinatorDao.uploadItemsImage(
+                        CoordinatorDao.uploadCoordinatorJoinImage(
                             mainActivity,
                             "coordiCertificationTemp.jpg",
                             "coordiCertificationTemp.jpg"
@@ -416,7 +416,7 @@ class JoinCoordinatorFragment : Fragment() {
                                 // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
                                 Tools.saveImageViewIndividualItemData(mainActivity, portfolioImageList[i], "coordiPortfolioTemp${i}.jpg")
                                 // 서버로 업로드한다.
-                                CoordinatorDao.uploadItemsImage(
+                                CoordinatorDao.uploadCoordinatorJoinImage(
                                     mainActivity,
                                     "coordiPortfolioTemp${i}.jpg",
                                     "coordiPortfolioTemp.jpg"
@@ -442,7 +442,7 @@ class JoinCoordinatorFragment : Fragment() {
                         // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
                         Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiBizLicense!!, "coordiBizLicenseTemp.jpg")
                         // 파일 업로드
-                        CoordinatorDao.uploadItemsImage(
+                        CoordinatorDao.uploadCoordinatorJoinImage(
                             mainActivity,
                             "coordiBizLicenseTemp.jpg",
                             "coordiBizLicenseTemp.jpg"
