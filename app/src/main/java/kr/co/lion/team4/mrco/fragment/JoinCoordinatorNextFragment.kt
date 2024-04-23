@@ -73,36 +73,31 @@ class JoinCoordinatorNextFragment : Fragment() {
             // 시퀀스 값을 1 증가시켜 업데이트해준다.
             CoordinatorDao.updateCoordinatorSequence(coordiSequence+1)
 
-            val TEMP_IDX = -1
-
             // 저장할 데이터를 가져온다.
             coordinatorData.coordi_idx = coordiSequence+1 // 코디네이터 인덱스 번호
-            coordinatorData.coordi_user_idx = TEMP_IDX // todo 로그인한 사용자의 user 인덱스 번호
+            coordinatorData.coordi_user_idx = mainActivity.loginUserIdx // 로그인한 사용자의 user idx
 
             // 이전 화면에서 작성한 코디네이터 정보
             coordinatorData.coordi_name = arguments?.getString("coordiName")!! // 코디네이터
             coordinatorData.coordi_intro_text = arguments?.getString("coordIntro")!! // 코디네이터 소개글
-            coordinatorData.coordi_photo = arguments?.getString("coordiPhoto")!! // 코디네이터 사진
+            coordinatorData.coordi_photo = arguments?.getString("coordiPhoto")!! // 코디네이터 사진 파일명
             coordinatorData.coordi_license = arguments?.getString("coordiCertification")!! // 코디네이터 자격증 파일명
             coordinatorData.coordi_license_num = arguments?.getString("coordiCertificationNumber")!! // 코디네이터 자격증 번호
             coordinatorData.coordi_portfolio = arguments?.getStringArray("coordiPortfolio").toString() // 코디네이터 포트폴리오 파일명
             coordinatorData.coordi_business_license = arguments?.getString("coordiBizLicense")!! // 사업자 등록증 파일명
+            coordinatorData.coordi_business_license_num = arguments?.getString("coordiBizLicenseNumber")!! // 사업자 등록증 번호
             coordinatorData.coordi_mbti = arguments?.getString("coordiMBTI")!! // MBTI
             coordinatorData.coordi_business_phone = arguments?.getString("coordiContactNumber")!! // 고객 노출 연락처
 
             // 출고지 주소
-            val coordiWarehouseAddress = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextWarehouseAddress.value!!
+            coordinatorData.coordi_forwarding_loc = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextWarehouseAddress.value!!
             // 출고지 상세 주소
-            val coordiWarehouseAddressDetail = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextWarehouseAddressDetail.value!!
-            // 출고지 전체 주소
-            coordinatorData.coordi_forwarding_loc = "$coordiWarehouseAddress $coordiWarehouseAddressDetail"// 출고지
+            coordinatorData.coordi_forwarding_loc_detail = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextWarehouseAddressDetail.value!!
 
             // 반품지 주소
-            val coordiReturnAddress = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextReturnAddress.value!!
+            coordinatorData.coordi_return_loc = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextReturnAddress.value!!
             // 반품지 상세 주소
-            val coordiReturnAddressDetail = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextReturnAddressDetail.value!!
-            // 반품지 전체 주소
-            coordinatorData.coordi_return_loc = "$coordiReturnAddress $coordiReturnAddressDetail"// 반품지
+            coordinatorData.coordi_return_loc_detail = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextReturnAddressDetail.value!!
 
             // 은행
             coordinatorData.coordi_bank = joinCoordinatorNextViewModel.textFieldJoinCoordinatorNextSettlementBank.value!!
@@ -115,14 +110,15 @@ class JoinCoordinatorNextFragment : Fragment() {
             val calendar = Calendar.getInstance()
             calendar.time = Date()
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
-            // 종료일 (현재)
+            // 등록일 (현재)
             coordinatorData.coordi_request_date = simpleDateFormat.format(calendar.time)
 
             // 코디네이터 등록 신청 정보를 저장
             CoordinatorDao.insertCoordinatorData(coordinatorData)
 
             // 신청 완료 팝업
-            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity)
+            val materialAlertDialogBuilder = MaterialAlertDialogBuilder(
+                mainActivity, R.style.MaterialAlertDialog_Theme)
             materialAlertDialogBuilder.setTitle("신청 완료")
             materialAlertDialogBuilder.setMessage("감사합니다.\n코디네이터 신청이 완료되었습니다.\n심사 결과는 3일 이내에 이메일에서 확인 가능합니다. ")
             materialAlertDialogBuilder.setPositiveButton("확인") { dialogInterface: DialogInterface, i: Int ->
