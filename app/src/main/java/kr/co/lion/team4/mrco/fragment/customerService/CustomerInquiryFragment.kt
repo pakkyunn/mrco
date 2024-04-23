@@ -199,7 +199,7 @@ class CustomerInquiryFragment : Fragment() {
 
             // 업로드 할 정보를 담아준다.
             val inquiryIdx = customerInquirySequence+1 // 문의 번호
-            val inquiryUserIdx = 0 // 문의 남긴 유저의 user idx
+            val inquiryUserIdx = mainActivity.loginUserIdx // 문의 남긴 유저의 user idx
             val inquiryType = customerInquiryViewModel.autotextviewCustomerInquiryType.value!!  // 문의 유형
             val inquiryOrderNumber = customerInquiryViewModel.textinputCustomerInquiryOrderNumber.value // 주문 번호
             val inquiryTitle = customerInquiryViewModel.textinputCustomerInquiryTitle.value!! // 문의 제목
