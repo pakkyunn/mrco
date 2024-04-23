@@ -16,11 +16,11 @@ class CoordinatorDao {
 
         // 모든 코디네이터의 정보를 가져온다.
         suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
-            // 사용자 정보를 담을 리스트
+            // 코디네이터 정보를 담을 리스트
             val coordiList = mutableListOf<CoordinatorModel>()
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
-                val collectionReference = Firebase.firestore.collection("UserData")
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
 
                 // 코디네이터 등록상태가 참인 경우에만..
                 var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)

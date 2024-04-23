@@ -36,7 +36,7 @@ class JoinCoordinatorNextFragment : Fragment() {
 
         settingJoinCoordinatorNextToolbar()
         settingButtonPrevious() // 뒤로가기 버튼
-        // settingButtonJoinCoordinatorNextSubmit() // 신청완료 버튼
+        settingButtonJoinCoordinatorNextSubmit() // 신청완료 버튼
 
         return fragmentJoinCoordinatorNextBinding.root
     }
