@@ -31,6 +31,8 @@ class CoordinatorDao {
 
     companion object {
 
+        // 코디네이터의 정보를 저장한다. (코디네이터 가입 신청시)
+
         // 이미지 데이터를 firebase storage에 업로드하는 메서드
         suspend fun uploadCoordinatorJoinImage(context: Context, fileName:String, uploadFileName:String) {
             // 외부저장소 까지의 경로를 가져온다.
@@ -50,32 +52,32 @@ class CoordinatorDao {
         }
 
 
-        // 모든 코디네이터의 정보를 가져온다.
-        suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
-            // 코디네이터 정보를 담을 리스트
-            val coordiList = mutableListOf<CoordinatorModel>()
+//         // 모든 코디네이터의 정보를 가져온다.
+//         suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
+//             // 코디네이터 정보를 담을 리스트
+//             val coordiList = mutableListOf<CoordinatorModel>()
 
-            val job1 = CoroutineScope(Dispatchers.IO).launch {
-                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+//             val job1 = CoroutineScope(Dispatchers.IO).launch {
+//                 val collectionReference = Firebase.firestore.collection("CoordinatorData")
 
-                // 코디네이터 등록상태가 참인 경우에만..
-                // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
-                // query = query.whereEqualTo("")
+//                 // 코디네이터 등록상태가 참인 경우에만..
+//                 // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
+//                 // query = query.whereEqualTo("")
 
-                // 모든 사용자 정보를 가져온다
-                val querySnapshot = Firebase.firestore.collection("CoordinatorData").get().await()
-                // 가져온 문서의 수 만큼 반복한다.
-                querySnapshot.forEach {
-                    // CoordinatorModel 객체에 담는다.
-                    val coordinatorModel = it.toObject(CoordinatorModel::class.java)
-                    // 리스트에 담는다.
-                    coordiList.add(coordinatorModel)
-                }
-            }
-            job1.join()
+//                 // 모든 사용자 정보를 가져온다
+//                 val querySnapshot = Firebase.firestore.collection("CoordinatorData").get().await()
+//                 // 가져온 문서의 수 만큼 반복한다.
+//                 querySnapshot.forEach {
+//                     // CoordinatorModel 객체에 담는다.
+//                     val coordinatorModel = it.toObject(CoordinatorModel::class.java)
+//                     // 리스트에 담는다.
+//                     coordiList.add(coordinatorModel)
+//                 }
+//             }
+//             job1.join()
 
-            return coordiList
-        }
+//             return coordiList
+//         }
 
         // 모든 코디네이터의 정보를 가져온다. (팔로우 랭킹순으로)
         suspend fun getCoordinatorAllRank() : MutableList<CoordinatorModel>{
@@ -176,20 +178,21 @@ class CoordinatorDao {
 
 
         // 코디네이터 정보를 저장한다. (코디네이터 가입 신청시)
-        suspend fun insertCoordinatorData(coordinatorModel: CoordinatorModel){
-            val job1 = CoroutineScope(Dispatchers.IO).launch {
 
-                // 컬렉션에 접근할 수 있는 객체를 가져온다.
-                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+//         suspend fun insertCoordinatorData(coordinatorModel: CoordinatorModel){
+//             val job1 = CoroutineScope(Dispatchers.IO).launch {
 
-                // 컬렉션에 문서를 추가한다.
-                // 문서를 추가할 때 객체나 맵을 지정한다.
-                // 추가된 문서 내부의 필드는 객체가 가진 프로퍼티의 이름이나 맵에 있는 데이터의 이름과 동일하게 결정된다.
-                collectionReference.add(coordinatorModel)
-            }
-            job1.join()
+//                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
+//                 val collectionReference = Firebase.firestore.collection("CoordinatorData")
 
-        }
+//                 // 컬렉션에 문서를 추가한다.
+//                 // 문서를 추가할 때 객체나 맵을 지정한다.
+//                 // 추가된 문서 내부의 필드는 객체가 가진 프로퍼티의 이름이나 맵에 있는 데이터의 이름과 동일하게 결정된다.
+//                 collectionReference.add(coordinatorModel)
+//             }
+//             job1.join()
+
+//         }
 
         suspend fun checkCoordiName(coodiName:String) : Boolean{
             var chk = false
@@ -249,6 +252,83 @@ class CoordinatorDao {
             }
             job1.join()
         }
+
+        // 코디네이터 번호를 통해 코디네이터 정보를 가져와 반환한다
+        suspend fun gettingCoordinatorInfoByCoordiIdx(coordi_idx:Int) : CoordinatorModel? {
+
+            var coordinatorModel:CoordinatorModel? = null
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // CoordinatorData 컬렉션 접근 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+                // coordi_idx 필드가 매개변수로 들어오는 coordi_idx와 같은 문서들을 가져온다.
+                val querySnapshot = collectionReference.whereEqualTo("coordi_idx", coordi_idx).get().await()
+                // 가져온 문서객체들이 들어 있는 리스트에서 첫 번째 객체를 추출한다.
+                // 코디네이터 번호가 동일한 사용는 없기 때문에 무조건 하나만 나오기 때문이다
+                coordinatorModel = querySnapshot.documents[0].toObject(CoordinatorModel::class.java)
+            }
+            job1.join()
+
+            return coordinatorModel
+        }
+
+        // 모든 등록상태가 참인 코디네이터의 정보를 가져온다.
+        suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
+            // 코디네이터 정보를 담을 리스트
+            val coordinatorList = mutableListOf<CoordinatorModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // CoordinatorData 컬렉션 접근 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+
+                // 코디네이터 등록상태가 참인 문서들을 가져온다.
+                val querySnapshot = collectionReference.whereEqualTo("coordi_permission", true).get().await()
+
+                // 가져온 문서의 수 만큼 반복한다.
+                querySnapshot.forEach {
+                    // CoordinatorModel 객체에 담는다.
+                    val coordinatorModel = it.toObject(CoordinatorModel::class.java)
+                    // 리스트에 담는다.
+                    coordinatorList.add(coordinatorModel)
+                }
+            }
+            job1.join()
+
+            return coordinatorList
+        }
+
+        // 수정 절차 맨 마지막으로 여기서 coordinatorModel 대신 modifiedCoordinatorModel
+        // 수정된 내용의 coordinatorModel 을 받아서 firebase에서
+        // 수정전 사용자 정보를 가져와 여기에 넣어준다.
+        suspend fun updateCoordinatorData(modifiedCoordinatorModel: CoordinatorModel){
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+
+                // 컬렉션이 가지고 있는 문서들 중에 수정할 사용자 정보를 가져온다.
+                val query = collectionReference.whereEqualTo("coordi_idx", modifiedCoordinatorModel.coordi_idx).get().await()
+
+                // 저장할 데이터를 담을 HashMap을 만들어준다.
+                val map = mutableMapOf<String, Any?>()
+                map["coordi_name"] = modifiedCoordinatorModel.coordi_name
+                map["coordi_intro_text"] = modifiedCoordinatorModel.coordi_intro_text
+
+                map["coordi_business_phone"] = modifiedCoordinatorModel.coordi_business_phone
+                map["coordi_forwarding_loc"] = modifiedCoordinatorModel.coordi_forwarding_loc
+
+                map["coordi_return_loc"] = modifiedCoordinatorModel.coordi_return_loc
+                map["coordi_bank"] = modifiedCoordinatorModel.coordi_bank
+
+                map["coordi_account_holder"] = modifiedCoordinatorModel.coordi_account_holder
+                map["coordi_account"] = modifiedCoordinatorModel.coordi_account
+
+                // 저장한다. 가져온 문서 중 첫 번째 문서에 접근하여 데이터를 수정한다.
+                query.documents[0].reference.update(map)
+            }
+
+            job1.join()
+        }
+
     }
 
 }
