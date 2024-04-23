@@ -102,7 +102,7 @@
                     android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorIntroText}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
+            <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -124,7 +124,7 @@
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorEmail}"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout> -->
 
             <TextView
                 android:id="@+id/textView5"
@@ -150,7 +150,7 @@
                     android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorCustomerRelationPhone}"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
+            <!-- <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -269,7 +269,7 @@
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:text="@={modifyCoordinatorViewModel.textFieldModifyCoordinatorAddressDetail}"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout> -->
 
             <TextView
                 android:id="@+id/textView30"

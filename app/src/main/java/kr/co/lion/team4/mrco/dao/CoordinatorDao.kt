@@ -108,13 +108,17 @@ class CoordinatorDao {
         }
 
         // 모든 코디네이터의 정보를 가져온다.
-        suspend fun getUserAll() : MutableList<CoordinatorModel>{
+        suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
             // 코디네이터 정보를 담을 리스트
             val coordinatorList = mutableListOf<CoordinatorModel>()
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
-                // 모든 코디네이터 정보를 가져온다
-                val querySnapshot = Firebase.firestore.collection("CoordinatorData").get().await()
+                // CoordinatorData 컬렉션 접근 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+
+                // 코디네이터 등록상태가 참인 문서들을 가져온다.
+                val querySnapshot = collectionReference.whereEqualTo("coordi_permission", true).get().await()
+
                 // 가져온 문서의 수 만큼 반복한다.
                 querySnapshot.forEach {
                     // CoordinatorModel 객체에 담는다.
