@@ -144,7 +144,7 @@ class ModifyCoordinatorFragment : Fragment() {
 
 
         // originalCoordinatorModel 수정한 modifiedCoordinatorModel에 담는다.
-        /*
+        
         val modifiedCoordinatorModel = CoordinatorModel(
             originalCoordinatorModel.coordi_idx,
             originalCoordinatorModel.coordi_user_idx,
@@ -155,6 +155,7 @@ class ModifyCoordinatorFragment : Fragment() {
             originalCoordinatorModel.coordi_license_num,
             originalCoordinatorModel.coordi_portfolio,
             originalCoordinatorModel.coordi_business_license,
+            originalCoordinatorModel.coordi_business_license_num,
             originalCoordinatorModel.coordi_mbti,
             coordinatorCustomerRelationPhone,
             coordinatorWarehouseAddress,
@@ -167,6 +168,7 @@ class ModifyCoordinatorFragment : Fragment() {
             originalCoordinatorModel.coordi_followers,
             originalCoordinatorModel.coordi_permission,
             originalCoordinatorModel.coordi_request_date,
+            originalCoordinatorModel.coordi_consent
         )
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -179,7 +181,7 @@ class ModifyCoordinatorFragment : Fragment() {
             // 0.5초 정도 딜레이 주면 좋을 듯
             mainActivity.removeFragment(MainFragmentName.MODIFY_COORDINATOR_FRAGMENT)
         }
-        */
+        
 
     }
 
