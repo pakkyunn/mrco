@@ -10,18 +10,18 @@ class ModifyCoordinatorViewModel : ViewModel() {
     //소개글
     val textFieldModifyCoordinatorIntroText = MutableLiveData<String>()
     //이메일
-    val textFieldModifyCoordinatorEmail = MutableLiveData<String>()
+    //val textFieldModifyCoordinatorEmail = MutableLiveData<String>()
     //고객노출전화번호
     val textFieldModifyCoordinatorCustomerRelationPhone = MutableLiveData<String>()
 
     //휴대폰 번호
-    val textFieldModifyCoordinatorPhone = MutableLiveData<String>()
+    //val textFieldModifyCoordinatorPhone = MutableLiveData<String>()
     //휴대폰 인증번호
-    val textFieldModifyCoordinatorAuthNumber = MutableLiveData<String>()
+    //val textFieldModifyCoordinatorAuthNumber = MutableLiveData<String>()
     //주소
-    val textFieldModifyCoordinatorAddress = MutableLiveData<String>()
+    //val textFieldModifyCoordinatorAddress = MutableLiveData<String>()
     //상세주소
-    val textFieldModifyCoordinatorAddressDetail = MutableLiveData<String>()
+    //val textFieldModifyCoordinatorAddressDetail = MutableLiveData<String>()
 
     //출고지 주소
     val textFieldModifyCoordinatorWarehouseAddress = MutableLiveData<String>()
