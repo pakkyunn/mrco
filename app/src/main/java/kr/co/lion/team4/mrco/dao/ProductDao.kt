@@ -278,15 +278,15 @@ class ProductDao {
             return productModel
         }
 
-        suspend fun selectProductInfoData(productIdx:Int): ArrayList<List<Map<Int, String>>>{
-            var tempList = ArrayList<List<Map<Int,String>>>()
+        suspend fun selectProductInfoData(productIdx:Int): ArrayList<List<Map<String, String>>>{
+            var tempList = ArrayList<List<Map<String,String>>>()
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
                 val collectionReference = Firebase.firestore.collection("ProductData")
                 // 컬렉션이 가지고 있는 문서들 중에 contentIdx 필드가 지정된 글 번호값하고 같은 Document들을 가져온다.
                 val querySnapshot = collectionReference.whereEqualTo("productIdx", productIdx).get().await()
                 for (document in querySnapshot){
-                    val coordiItemArray = document["coordiItem"] as List<Map<Int, String>>
+                    val coordiItemArray = document["coordiItem"] as List<Map<String, String>>
                     tempList.add(coordiItemArray)
                     Log.d("teajin", "coordiItemArray : ${coordiItemArray}")
                 }

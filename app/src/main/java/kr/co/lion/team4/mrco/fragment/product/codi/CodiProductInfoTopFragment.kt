@@ -32,8 +32,8 @@ class CodiProductInfoTopFragment : Fragment() {
     // 코디 상품명을 받는다
     var codiProductName = ""
     // 상의 상품 정보를 가지고 있는 리스트
-    var codiProductTopList: ArrayList<List<Map<Int,String>>> = arrayListOf()
-    var codiProductTopFineList: List<Map<Int, String>> = listOf()
+    var codiProductTopList: ArrayList<List<Map<String,String>>> = arrayListOf()
+    var codiProductTopFineList: List<Map<String, String>> = listOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d("taejin", "코디 상품 상세 - 상의")
@@ -54,8 +54,6 @@ class CodiProductInfoTopFragment : Fragment() {
         productIdx = bundle!!.getInt("productIdx")
         codiProductName = bundle.getString("productName")!!
 
-        val temp = mapOf<Int, String>(0 to "gg")
-        Log.d("taejin", temp[0].toString())
     }
 
     // DB에서 coordiItem 데이터 받아옴
@@ -67,9 +65,9 @@ class CodiProductInfoTopFragment : Fragment() {
             Log.d("taejin","${codiProductTopList}")
             Log.d("taejin","0 : ${codiProductTopList[0]}")
             Log.d("taejin","1 : ${codiProductTopList[0][0]}")
-            Log.d("taejin","2 : ${codiProductTopList[0][0][0]}")
-            Log.d("taejin","3 : ${codiProductTopList[0][0][1]}")
-            Log.d("taejin","4 : ${codiProductTopList[0][0][2]}")
+            Log.d("taejin","2 : ${codiProductTopList[0][0]["0"]}")
+            Log.d("taejin","3 : ${codiProductTopList[0][0]["1"]}")
+            Log.d("taejin","4 : ${codiProductTopList[0][0]["2"]}")
 //            Log.d("taejin","${codiProductTopList[0][3]}")
 
 
@@ -121,16 +119,16 @@ class CodiProductInfoTopFragment : Fragment() {
 
         override fun onBindViewHolder(holder: CodiProductInfoTopAdapater.TopViewHolder, position: Int) {
             holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.codiProductNameTop.value = codiProductName
-            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSerialNumTop.value = codiProductTopList[position][0][3]
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productNameTop.value = codiProductTopList[position].toString()
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSizeTop.value = codiProductTopList[position].itemSize.toString()
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productTypeTop.value = codiProductTopList[position].itemType
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productColorTop.value = codiProductTopList[position].itemColor.toString()
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSerialNumTop.value = codiProductTopFineList[position]["0"]
+            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productNameTop.value = codiProductTopFineList[position]["0"]
+            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSizeTop.value = codiProductTopFineList[position]["1"]
+            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productTypeTop.value = codiProductTopFineList[position]["3"]+ "${position + 1}"
+            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productColorTop.value = codiProductTopFineList[position]["4"]
 //            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productPriceTop.value = codiProductTopList[position].itemPrice.toString()
         }
 
         override fun getItemCount(): Int {
-            return codiProductTopList.size
+            return codiProductTopFineList.size
         }
 
     }
