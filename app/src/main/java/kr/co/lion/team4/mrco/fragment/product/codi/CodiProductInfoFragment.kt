@@ -30,13 +30,14 @@ class CodiProductInfoFragment : Fragment() {
     private lateinit var viewModel: CodiProductInfoViewModel
     private lateinit var mainActivity: MainActivity
     var productIdx = 0
+    var codiProductName = ""
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info, container, false)
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
-        gettingProductIdx()
+        gettingBundleData()
 
         // ViewPager 작업
         viewPagerActivation()
@@ -65,8 +66,9 @@ class CodiProductInfoFragment : Fragment() {
     }
 
     // Bundle 객체에서 productIdx 받아오기
-    private fun gettingProductIdx(){
+    private fun gettingBundleData(){
         productIdx = arguments?.getInt("productIdx")!!
+        codiProductName = arguments?.getString("productName")!!
     }
 
 
@@ -114,6 +116,7 @@ class CodiProductInfoFragment : Fragment() {
             // 각 Fragment에 전달할 데이터를 설정해준다.
             val bundle = Bundle().apply {
                 putInt("productIdx", productIdx)
+                putString("productName", codiProductName)
             }
             fragment.arguments = bundle
 
