@@ -18,6 +18,7 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
@@ -40,6 +41,9 @@ class HomeMbtiFragment : Fragment() {
     // 상품 정보를 담고 있을 리스트
     var productList = mutableListOf<ProductModel>()
 
+    // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
+    var coordinatorMap = mutableMapOf<Int, String>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentHomeMbtiBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_mbti, container, false)
@@ -61,6 +65,7 @@ class HomeMbtiFragment : Fragment() {
 
         // 데이터 가져오기
         gettingMainData(mainActivity.loginUserMbti, mainActivity.loginUserGender)
+        gettingCoordinatorName()
 
         // 코디 상품(첫번째) TextView 관찰
         homeMbtiViewModel.textViewHomeMbtiTextFirst.observe(viewLifecycleOwner) { text ->
@@ -177,7 +182,7 @@ class HomeMbtiFragment : Fragment() {
             holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI)))
             holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.text = mainActivity.loginUserMbti
             // 해당 코디네이터의 이름
-            holder.rowHomeMbtiBinding.itemMainMbtiCoordinatorName.text = "코디네이터 아이유"
+            holder.rowHomeMbtiBinding.itemMainMbtiCoordinatorName.text = "${coordinatorMap[productList[position].coordinatorIdx]}"
             // 해당 코디 상품의 이름
             holder.rowHomeMbtiBinding.itemMainMbtiProductName.text = "${productList[position].coordiName}"
             // 해당 코디 상품의 가격
@@ -257,6 +262,15 @@ class HomeMbtiFragment : Fragment() {
             productList = ProductDao.gettingProductMBTIList(mbti, gender)
             Log.d("test1234", "MBTI별 코디 탭 - 상품 개수: ${productList.size}개")
             fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
+        }
+    }
+
+    // 코디네이터의 이름을 가져온다.
+    fun gettingCoordinatorName() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            coordinatorMap = CoordinatorDao.getCoordinatorName()
+            Log.d("test1234", "코디네이터 ${coordinatorMap[1]}\n${coordinatorMap[2]}")
         }
     }
 }

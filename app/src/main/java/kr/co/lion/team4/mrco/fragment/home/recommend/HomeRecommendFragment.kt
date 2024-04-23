@@ -20,12 +20,14 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
+import kr.co.lion.team4.mrco.model.CoordinatorModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
@@ -48,6 +50,8 @@ class HomeRecommendFragment : Fragment() {
     var recommendProductList = mutableListOf<ProductModel>()
     // 신규 상품 정보를 담고 있을 리스트
     var newProductList = mutableListOf<ProductModel>()
+    // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
+    var coordinatorMap = mutableMapOf<Int, String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -61,6 +65,7 @@ class HomeRecommendFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 초기 세팅
+        gettingCoordinatorName()
         gettingRecommendProductData(mainActivity.loginUserGender)
         gettingNewProductData(mainActivity.loginUserGender)
 
@@ -218,7 +223,7 @@ class HomeRecommendFragment : Fragment() {
                 Tools.mbtiColor(recommendProductList[position].coordiMBTI)))
             holder.rowHomeRecommendBinding.textViewRowHomeRecommendMBTI.text = "${recommendProductList[position].coordiMBTI}"
             // 해당 코디네이터의 이름
-            holder.rowHomeRecommendBinding.itemMainCoordinatorName.text = "코디네이터 아이유"
+            holder.rowHomeRecommendBinding.itemMainCoordinatorName.text = "${coordinatorMap[recommendProductList[position].coordinatorIdx]}"
             // 해당 코디 상품의 이름
             holder.rowHomeRecommendBinding.itemMainProductName.text = "${recommendProductList[position].coordiName}"
             // 해당 코디 상품의 가격
@@ -280,7 +285,8 @@ class HomeRecommendFragment : Fragment() {
                 Tools.mbtiColor(newProductList[position].coordiMBTI)))
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.text = "${newProductList[position].coordiMBTI}"
             // 해당 코디네이터의 이름
-            holder.rowHomeRecommendNewCoordiBinding.itemMainCoordinatorName3.text = "코디네이터 아이유"
+            holder.rowHomeRecommendNewCoordiBinding.itemMainCoordinatorName3.text =
+                "${coordinatorMap[newProductList[position].coordinatorIdx]}"
             // 해당 코디 상품의 이름
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductName3.text = "${newProductList[position].coordiName}"
             // 해당 코디 상품의 가격
@@ -318,6 +324,15 @@ class HomeRecommendFragment : Fragment() {
                 Log.d("test1234", "메인(홈) 페이지 - 여자 | 신규 코디: ${newProductList.size}개")
             }
             fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
+        }
+    }
+
+    // 코디네이터의 이름을 가져온다.
+    fun gettingCoordinatorName() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            coordinatorMap = CoordinatorDao.getCoordinatorName()
+            Log.d("test1234", "코디네이터 ${coordinatorMap[1]}\n${coordinatorMap[2]}")
         }
     }
 }

@@ -79,7 +79,7 @@ class CoordinatorDao {
 //             return coordiList
 //         }
 
-        // 모든 코디네이터의 정보를 가져온다. (팔로우 랭킹순으로)
+        // 인기 코디네이터 페이지에서 사용!! / 모든 코디네이터의 정보를 가져온다. (팔로우 랭킹순으로)
         suspend fun getCoordinatorAllRank() : MutableList<CoordinatorModel>{
             // 코디네이터 정보를 담을 리스트
             val coordiList = mutableListOf<CoordinatorModel>()
@@ -108,7 +108,36 @@ class CoordinatorDao {
             return coordiList
         }
 
-        // 해당 코디네이터에 맞는 정보를 가져온다
+        // 메인(추천)에서 사용 / 모든 코디네이터의 idx번호와 이름을 Map형태로 가져온다
+        suspend fun getCoordinatorName() : MutableMap<Int, String>{
+            // 코디네이터 정보를 담을 리스트
+            val coordiMap = mutableMapOf<Int, String>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+
+                // 코디네이터 등록상태가 참인 경우에만..
+                // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
+                // query = query.whereEqualTo("")
+                // 팔로순이 가장 높은거 부터 보여주는 내림차순
+                var query = collectionReference.orderBy("coordi_idx", Query.Direction.ASCENDING)
+
+                // 모든 사용자 정보를 가져온다
+                val querySnapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                querySnapshot.forEach {
+                    // 문서에서 인덱스와 이름 필드를 가져와서 맵에 추가
+                    val coordiIdx = it.getLong("coordi_idx")?.toInt() ?: 0
+                    val coordiName = it.getString("coordi_name") ?: ""
+                    coordiMap[coordiIdx] = coordiName
+                }
+            }
+            job1.join()
+
+            return coordiMap
+        }
+
+        // 코디네이터 정보 페이지에서 사용! / 해당 코디네이터에 맞는 정보를 가져온다
         suspend fun getCoordinatorInfo(cordinatorIdx: Int): MutableList<CoordinatorModel>{
             // 코디네이터 정보를 담을 리스트
             val coordiList = mutableListOf<CoordinatorModel>()
