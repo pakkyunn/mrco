@@ -89,8 +89,8 @@ class ModifyCoordinatorFragment : Fragment() {
             modifyCoordinatorViewModel.textFieldModifyCoordinatorSettlementAccountNumber.value = " "
 
             // 서버에서 로그인한 코디네이터인 loginUserIdx 의 데이터를 가져와 originalCoordinatorModel 에 담는다.
-            //originalCoordinatorModel = CoordinatorDao.gettingUserInfoByUserIdx(mainActivity.loginUserIdx)!!
-            originalCoordinatorModel = CoordinatorDao.gettingCoordinatorInfoByCoordiIdx(1)!!
+            originalCoordinatorModel = CoordinatorDao.gettingUserInfoByUserIdx(mainActivity.loginUserIdx)!!
+            //originalCoordinatorModel = CoordinatorDao.gettingCoordinatorInfoByCoordiIdx(1)!!
 
 //            data class CoordinatorModel(var coordi_idx: Int, var coordi_user_idx: Int, var coordi_name: String, var coordi_intro_text: String,
 //                                        var coordi_photo: String, var coordi_license: String, var coordi_license_num: String, var coordi_portfolio: String, var coordi_business_license : String,
