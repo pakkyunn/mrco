@@ -124,7 +124,7 @@
                         android:hint="파일명.jpg"
                         android:text="@={customerInquiryViewModel.textviewCustomerInquiryFilename}"
                         android:textSize="12sp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/button_customer_inquiry_attach_file"
                         app:layout_constraintStart_toEndOf="@+id/button_customer_inquiry_attach_file"
                         app:layout_constraintTop_toTopOf="@+id/button_customer_inquiry_attach_file" />
@@ -136,7 +136,7 @@
                         android:layout_gravity="center"
                         android:background="@null"
                         android:padding="8dp"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="@+id/textview_customer_inquiry_filename"
                         app:layout_constraintStart_toEndOf="@+id/textview_customer_inquiry_filename"
                         app:layout_constraintTop_toTopOf="@+id/textview_customer_inquiry_filename"
