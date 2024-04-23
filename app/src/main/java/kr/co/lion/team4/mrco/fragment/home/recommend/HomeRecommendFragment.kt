@@ -333,6 +333,7 @@ class HomeRecommendFragment : Fragment() {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             coordinatorMap = CoordinatorDao.getCoordinatorName()
             Log.d("test1234", "코디네이터 ${coordinatorMap[1]}\n${coordinatorMap[2]}")
+            fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
         }
     }
 }
