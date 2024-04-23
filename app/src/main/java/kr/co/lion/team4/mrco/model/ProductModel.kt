@@ -22,7 +22,11 @@ data class ProductModel(
     var coordiSeason: CategoryIdSubSEASON?, // Enum
     var coordiMood: CategoryIdSubMOOD?, // List<Enum>
     var coordiState: Int,
-    var coordiWriteDate: String
+    var coordiWriteDate: String,
+    // 상품 좋아요 수 (추가)
+    var productLikes: Int,
+    // 상품 할인률 (추가)
+    var productDiscoutPrice: Int
 ) {
     constructor(): this(
         0,
@@ -40,5 +44,7 @@ data class ProductModel(
         CategoryIdSubSEASON.DEFAULT,
         CategoryIdSubMOOD.DEFAULT,
         0,
-        "")
+        "",
+        0,
+        0)
 }

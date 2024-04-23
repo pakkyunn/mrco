@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
@@ -55,7 +57,10 @@ class ProductDao {
                 val imageUri = storageRef.downloadUrl.await()
                 // 이미지 데이터를 받아와 이미지 뷰에 보여준다.
                 val job2 = CoroutineScope(Dispatchers.Main).launch {
-                    Glide.with(context).load(imageUri).into(imageView)
+                    val requestOptions = RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC) // 자동으로 디스크 캐시 사용
+                        .skipMemoryCache(false) // 메모리 캐시 사용
+                    Glide.with(context).load(imageUri).apply(requestOptions).into(imageView)
                     // 이미지 뷰가 나타나게 한다.
                     imageView.visibility = View.VISIBLE
                 }
@@ -88,6 +93,31 @@ class ProductDao {
                     // ProductModel 객체에 담고 객체를 리스트에 담는다.
                     val productModel = it.toObject(ProductModel::class.java)
                     productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
+        // 가장 좋아요 수가 높은 상품 최대 20개를 가져온다.
+        suspend fun gettingRecommendProductList(productGender: Int): MutableList<ProductModel> {
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                    .orderBy("productLikes", Query.Direction.DESCENDING)
+                    .whereEqualTo("coordiGender", productGender)
+
+                val querySnapshot = query.get().await()
+                val documents = querySnapshot.documents.take(20) // 최대 20개까지만 가져오도록 조정
+
+                documents.forEach { document ->
+                    val productModel = document.toObject(ProductModel::class.java)
+                    productModel?.let {
+                        productList.add(it)
+                    }
                 }
             }
             job1.join()
