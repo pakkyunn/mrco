@@ -200,7 +200,7 @@ class HomeRecommendFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 12
+            return recommendProductList.size
         }
 
         override fun onBindViewHolder(holder: HomeRecommendViewHolder, position: Int) {
@@ -213,14 +213,17 @@ class HomeRecommendFragment : Fragment() {
             }
             holder.rowHomeRecommendBinding.itemMainProductThumbnail.setImageResource(imageResource)
 
-            // position 값에 따라 다른 MBTI 색상 설정
-            val colorResource = when (position % 4) {
-                0 -> Color.parseColor("#13D4EF")
-                1 -> Color.parseColor("#BDB14C")
-                2 -> Color.parseColor("#B75AB6")
-                else -> Color.parseColor("#36C87C")
-            }
-            holder.rowHomeRecommendBinding.textViewRowHomeRecommendMBTI.setBackgroundColor(colorResource)
+
+            holder.rowHomeRecommendBinding.textViewRowHomeRecommendMBTI.setBackgroundColor(Color.parseColor(
+                Tools.mbtiColor(recommendProductList[position].coordiMBTI)))
+            holder.rowHomeRecommendBinding.textViewRowHomeRecommendMBTI.text = "${recommendProductList[position].coordiMBTI}"
+            // 해당 코디네이터의 이름
+            holder.rowHomeRecommendBinding.itemMainCoordinatorName.text = "코디네이터 아이유"
+            // 해당 코디 상품의 이름
+            holder.rowHomeRecommendBinding.itemMainProductName.text = "${recommendProductList[position].coordiName}"
+            // 해당 코디 상품의 가격
+            holder.rowHomeRecommendBinding.itemMainProductPrice.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(recommendProductList[position].price)}"
 
             holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
