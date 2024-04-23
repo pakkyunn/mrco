@@ -16,12 +16,19 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.CustomerInquiryDao
 import kr.co.lion.team4.mrco.databinding.FragmentCustomerInquiryBinding
+import kr.co.lion.team4.mrco.model.CustomerInquiryModel
 import kr.co.lion.team4.mrco.viewmodel.customerService.CustomerInquiryViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /* (구매자) 고객센터 - 1:1 문의 작성 화면 */
@@ -69,7 +76,8 @@ class CustomerInquiryFragment : Fragment() {
             buttonCustomerInquirySubmit.setOnClickListener {
                 val validation = checkInquiryFormValid()
                 if(validation){
-
+                    // 문의 내용을 서버에 업로드한다.
+                    saveCustomerInquiry()
                 }
             }
         }
@@ -164,6 +172,52 @@ class CustomerInquiryFragment : Fragment() {
         }
 
         return ""
+    }
+
+    fun saveCustomerInquiry(){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 서버에서의 첨부 파일명
+            var serverFileName : String? = null
+
+            // 첨부된 이미지가 있다면
+            if(isAddPicture == true && attachedFile != null){
+                // 데이터 파일로 저장할 떄의 파일명
+                val tempFileName = "inquiryAttachedImageTemp.jpg"
+                // 서버에서의 첨부 파일명 설정
+                serverFileName = "inqiry_${System.currentTimeMillis()}.jpg"
+
+                // 첨부한 이미지 데이터를 파일로 저장한다.
+                Tools.saveImageViewIndividualItemData(mainActivity, attachedFile!!, tempFileName)
+                // 서버로 업로드한다.
+                CustomerInquiryDao.uploadAttachedImage(mainActivity, tempFileName, serverFileName)
+            }
+
+            // 고객센터 문의 시퀀스 값을 가져온다.
+            val customerInquirySequence = CustomerInquiryDao.getCustomerInquirySequence()
+            // 고객센터 문의 시퀀스 값을 업데이트 한다.
+            CustomerInquiryDao.updateCustomerInquirySequence(customerInquirySequence+1)
+
+            // 업로드 할 정보를 담아준다.
+            val inquiryIdx = customerInquirySequence+1 // 문의 번호
+            val inquiryUserIdx = 0 // 문의 남긴 유저의 user idx
+            val inquiryType = customerInquiryViewModel.autotextviewCustomerInquiryType.value!!  // 문의 유형
+            val inquiryOrderNumber = customerInquiryViewModel.textinputCustomerInquiryOrderNumber.value // 주문 번호
+            val inquiryTitle = customerInquiryViewModel.textinputCustomerInquiryTitle.value!! // 문의 제목
+            val inquiryContent = customerInquiryViewModel.textinputCustomerInquiryContent.value!! // 문의 내용
+            val inquiryFilename = serverFileName // // 문의 시 첨부한 사진의 서버 파일명
+            val inquiryAnswerWay = customerInquiryViewModel.textviewCustomerInquiryAnswerWay.value!! // 답변 방식
+
+            val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+            val inquiryDate = simpleDateFormat.format(Date()) // 문의 작성일
+
+            val inquiryModel = CustomerInquiryModel(inquiryIdx, inquiryUserIdx, inquiryType, inquiryOrderNumber,
+                inquiryTitle, inquiryContent, inquiryFilename, inquiryAnswerWay, inquiryDate, 0)
+            CustomerInquiryDao.insertCustomerInquiryData(inquiryModel)
+
+            // 이전 화면으로 돌아간다
+            Tools.hideSoftInput(mainActivity)
+            mainActivity.removeFragment(MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT)
+        }
     }
 
     // 현재 첨부된 파일 삭제하는 기능
