@@ -52,7 +52,7 @@ class LikeFragment : Fragment() {
                     when (it.itemId) {
                         // 검색 클릭 시
                         R.id.home_toolbar_search -> {
-                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_SEARCH_FRAGMENT, false, false, null)
+                            mainActivity.replaceFragment(MainFragmentName.CATEGORY_SEARCH_FRAGMENT, true, false, null)
                         }
                         // 알람 클릭 시
                         R.id.home_toolbar_notification -> {
