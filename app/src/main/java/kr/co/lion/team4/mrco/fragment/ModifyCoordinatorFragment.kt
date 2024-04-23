@@ -89,7 +89,7 @@ class ModifyCoordinatorFragment : Fragment() {
             modifyCoordinatorViewModel.textFieldModifyCoordinatorSettlementAccountNumber.value = " "
 
             // 서버에서 로그인한 코디네이터인 loginUserIdx 의 데이터를 가져와 originalCoordinatorModel 에 담는다.
-            originalCoordinatorModel = CoordinatorDao.gettingUserInfoByUserIdx(mainActivity.loginUserIdx)!!
+            // originalCoordinatorModel = CoordinatorDao.gettingUserInfoByUserIdx(mainActivity.loginUserIdx)!!
             //originalCoordinatorModel = CoordinatorDao.gettingCoordinatorInfoByCoordiIdx(1)!!
 
 //            data class CoordinatorModel(var coordi_idx: Int, var coordi_user_idx: Int, var coordi_name: String, var coordi_intro_text: String,
@@ -144,6 +144,7 @@ class ModifyCoordinatorFragment : Fragment() {
 
 
         // originalCoordinatorModel 수정한 modifiedCoordinatorModel에 담는다.
+        /*
         val modifiedCoordinatorModel = CoordinatorModel(
             originalCoordinatorModel.coordi_idx,
             originalCoordinatorModel.coordi_user_idx,
@@ -178,6 +179,8 @@ class ModifyCoordinatorFragment : Fragment() {
             // 0.5초 정도 딜레이 주면 좋을 듯
             mainActivity.removeFragment(MainFragmentName.MODIFY_COORDINATOR_FRAGMENT)
         }
+        */
+
     }
 
 
