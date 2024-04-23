@@ -193,7 +193,7 @@
                 app:layout_anchor="@id/searchBarCategorySearch">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewCategorySearch"
+                    android:id="@+id/recyclerViewCategorySearchView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
