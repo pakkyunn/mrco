@@ -43,12 +43,17 @@ import kr.co.lion.team4.mrco.databinding.FragmentJoinCoordinatorBinding
 import kr.co.lion.team4.mrco.databinding.RowJoinCoordinatorPortfolioBinding
 import kr.co.lion.team4.mrco.viewmodel.JoinCoordinatorViewModel
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class JoinCoordinatorFragment : Fragment() {
 
     lateinit var fragmentJoinCoordinatorBinding: FragmentJoinCoordinatorBinding
     lateinit var mainActivity: MainActivity
     lateinit var joinCoordinatorViewModel: JoinCoordinatorViewModel
+    
+    // 포토폴리오 파일 경로
+    lateinit var fileNamePhotofolio: String
 
     // 이미지를 첨부한 적이 있는지...
     var isAddPicture = false
@@ -85,6 +90,9 @@ class JoinCoordinatorFragment : Fragment() {
     var tempCoordiPhotoFilename = "" // 코디네이터 소개 사진
     var tempCoordiCertificationFilename = "" // 코디네이터 자격증
     var tempCoordiBizLicenseFilename = "" // 사업자등록증
+
+    // 현재 시간 년월일_시분초
+    val currentTimeText = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
 
 
     override fun onCreateView(
@@ -368,35 +376,41 @@ class JoinCoordinatorFragment : Fragment() {
 
                     //코디네이터 소개 사진은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     CoroutineScope(Dispatchers.Main).launch {
+                        val fileName ="coordiPhotoTemp_$currentTimeText.jpg"
+
                         // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiPhoto!!, "coordiPhotoTemp.jpg")
+                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiPhoto!!, fileName)
+
                         // 파일 업로드
                         CoordinatorDao.uploadCoordinatorJoinImage(
                             mainActivity,
-                            "coordiPhotoTemp.jpg",
-                            "coordiPhotoTemp.jpg"
+                            fileName,
+                            fileName
                         )
 
                         Log.d("photo1234", "코디네이터사진")
 
-                        joinCoordinatorBundle.putString("coordiPhoto", "coordiPhotoTemp.jpg")
+                        joinCoordinatorBundle.putString("coordiPhoto", fileName)
                     }
 
                     //스타일리스트 자격증 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     CoroutineScope(Dispatchers.Main).launch {
+
+                        val fileName ="coordiCertificationTemp_$currentTimeText.jpg"
+
                         // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiCertification!!, "coordiCertificationTemp.jpg")
+                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiCertification!!, fileName)
                         // 파일 업로드
                         CoordinatorDao.uploadCoordinatorJoinImage(
                             mainActivity,
-                            "coordiCertificationTemp.jpg",
-                            "coordiCertificationTemp.jpg"
+                            fileName,
+                            fileName
                         )
                         Log.d("photo1234", "자격증사진")
 
                         joinCoordinatorBundle.putString(
                             "coordiCertification",
-                            "coordiCertificationTemp.jpg"
+                            fileName
                         )
                     }
 
@@ -413,20 +427,23 @@ class JoinCoordinatorFragment : Fragment() {
                         // 첨부된 이미지가 있다면
                         if (isAddPicture == true) {
                             for (i in 0 until portfolioImageList.size) {
+
+                                fileNamePhotofolio ="coordiPortfolioTemp${i}_${currentTimeText}.jpg"
+
                                 // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                                Tools.saveImageViewIndividualItemData(mainActivity, portfolioImageList[i], "coordiPortfolioTemp${i}.jpg")
+                                Tools.saveImageViewIndividualItemData(mainActivity, portfolioImageList[i], fileNamePhotofolio)
                                 // 서버로 업로드한다.
                                 CoordinatorDao.uploadCoordinatorJoinImage(
                                     mainActivity,
-                                    "coordiPortfolioTemp${i}.jpg",
-                                    "coordiPortfolioTemp.jpg"
+                                    fileNamePhotofolio,
+                                    fileNamePhotofolio
                                 )
                             }
                         }
                         val portfolioImageListStringArray = arrayListOf<String>()
 
                         for (i in 0 until portfolioImageList.size) {
-                            portfolioImageListStringArray.add("coordiPortfolio${i}")
+                            portfolioImageListStringArray.add(fileNamePhotofolio)
                         }
 
                         Log.d("photo1234", "포트폴리오사진")
@@ -439,17 +456,20 @@ class JoinCoordinatorFragment : Fragment() {
 
                     //사업자 등록 증명 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     CoroutineScope(Dispatchers.Main).launch {
+
+                        val fileName ="coordiBizLicenseTemp_$currentTimeText.jpg"
+
                         // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiBizLicense!!, "coordiBizLicenseTemp.jpg")
+                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiBizLicense!!, fileName)
                         // 파일 업로드
                         CoordinatorDao.uploadCoordinatorJoinImage(
                             mainActivity,
-                            "coordiBizLicenseTemp.jpg",
-                            "coordiBizLicenseTemp.jpg"
+                            fileName,
+                            fileName
                         )
                         Log.d("photo1234", "사업자 사진")
 
-                        joinCoordinatorBundle.putString("coordiBizLicense", "coordiBizLicenseTemp.jpg")
+                        joinCoordinatorBundle.putString("coordiBizLicense", fileName)
                     }
 
                     tempCoordiBizLicenseNum =
