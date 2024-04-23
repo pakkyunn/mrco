@@ -61,6 +61,7 @@ class HomeRecommendFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 초기 세팅
+        gettingRecommendProductData(mainActivity.loginUserGender)
         gettingNewProductData(mainActivity.loginUserGender)
 
         // 버튼
@@ -289,7 +290,21 @@ class HomeRecommendFragment : Fragment() {
         }
     }
 
-    // 해당 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    // 인기 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingRecommendProductData(gender: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            recommendProductList = ProductDao.gettingRecommendProductList(gender)
+            if (mainActivity.loginUserGender == 1) {
+                Log.d("test1234", "메인(홈) 페이지 - 남자 | 추천 코디: ${recommendProductList.size}개")
+            } else {
+                Log.d("test1234", "메인(홈) 페이지 - 여자 | 추천 코디: ${recommendProductList.size}개")
+            }
+            fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
+        }
+    }
+
+    // 신규 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
     fun gettingNewProductData(gender: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)

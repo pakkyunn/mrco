@@ -554,13 +554,14 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             val coordiSeason = addProductViewModel.chipgroupAddProductSeasonSub.value
             val coordiMood = addProductViewModel.chipgroupAddProductMoodSub.value
             val coordiState = ProductState.PRODUCT_STATE_NORMAL.num
+            val productDiscoutPrice = 0
 
             // 현재 시간 등록 yyyy년 MM월 dd일 HH시간 mm분 ss초
             val simpleDateFormat = SimpleDateFormat("yyyy_MM_dd")
             val coordiWriteDate = simpleDateFormat.format(Date())
 
             val productModel = ProductModel(productIdx, categoryId, coordinatorIdx, coordiName, coordiImage, codiMainImage, coordiGender,
-                coordiText, price, coordiItem, coordiMBTI, coordiTPO, coordiSeason, coordiMood, coordiState, coordiWriteDate)
+                coordiText, price, coordiItem, coordiMBTI, coordiTPO, coordiSeason, coordiMood, coordiState, coordiWriteDate, 0, productDiscoutPrice)
 
             // 업로드한다.
             ProductDao.insertProductData(productModel)
@@ -668,7 +669,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                     // 회전 이미지를 가져온다
                     val bitmap2 = Tools.rotateBitmap(bitmap!!, degree.toFloat())
                     // 크기를 줄인 이미지를 가져온다.
-                    val bitmap3 = Tools.resizeBitmap(bitmap2, 256)
+                    val bitmap3 = Tools.resizeBitmap(bitmap2, 512)
 
                     // 이미지 비트맵이 추가되는지 확인하고 추가
                     imageBitmaps.add(bitmap3)

@@ -18,13 +18,17 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.dao.CoordinatorDao
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.model.CoordinatorModel
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRank2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class CoordinatorRankFragment : Fragment() {
 
@@ -34,8 +38,13 @@ class CoordinatorRankFragment : Fragment() {
 
     lateinit var coordinatorRankViewModel: CoordinatorRankViewModel
 
+    var coordinatorPosition = -1
+
     // 모든 코디네이터 정보를 담고 있을 리스트
     var coordinatorList = mutableListOf<CoordinatorModel>()
+    
+    // 모든 코디네이터의 상품들 정보를 담고 있을 리스트
+    var productList = mutableListOf<ProductModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -49,7 +58,7 @@ class CoordinatorRankFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         // 데이터 가져오기
-        gettingMainData()
+        gettingCoordinatorData()
 
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorRank()
@@ -72,7 +81,6 @@ class CoordinatorRankFragment : Fragment() {
     inner class CoordinatorRankRecyclerViewAdapter: RecyclerView.Adapter<CoordinatorRankRecyclerViewAdapter.CorrdinatorRankViewHolder>(){
         inner class CorrdinatorRankViewHolder(rowCoordinatorRankBinding: RowCoordinatorRankBinding): RecyclerView.ViewHolder(rowCoordinatorRankBinding.root){
             val rowCoordinatorRankBinding: RowCoordinatorRankBinding
-
             init {
                 this.rowCoordinatorRankBinding = rowCoordinatorRankBinding
 
@@ -101,17 +109,17 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
+            gettingProductData(position)
+
             holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankNumber.text = "${position + 1}"
 
-            // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 5) {
-                0 -> R.drawable.iu_image
-                1 -> R.drawable.iu_image2
-                2 -> R.drawable.iu_image3
-                3 -> R.drawable.iu_image4
-                else -> R.drawable.iu_image5
+            CoroutineScope(Dispatchers.Main).launch {
+                CoordinatorDao.getCoordinatorImage(mainActivity, coordinatorList[position].coordi_photo, holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile)
             }
-            holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setImageResource(imageResource)
+
+            holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankName.text = coordinatorList[position].coordi_name
+            holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankFollower.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(coordinatorList[position].coordi_followers)}"
 
             val bundle = Bundle()
             bundle.putInt("coordi_idx", coordinatorList[position].coordi_idx)
@@ -137,17 +145,19 @@ class CoordinatorRankFragment : Fragment() {
                 Log.d("test1234", "인기 코디네이터 화면 : button - Click / 팔로잉,팔로우 버튼")
             }
 
+
+
             // 내부 리사이클러 뷰 설정
             val innerRecyclerView = holder.rowCoordinatorRankBinding.recyclerViewCoordinatorRank2
             innerRecyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             innerRecyclerView.adapter  = InnerRecyclerViewAdapter() //내부 리사이클러 뷰 어댑터 설정
-
             // ItemDecoration 적용?
+            coordinatorPosition = position
         }
     }
 
     // 내부 리사이클러 뷰 어댑터
-    inner class InnerRecyclerViewAdapter : RecyclerView.Adapter<InnerRecyclerViewAdapter.InnerViewHolder>() {
+    inner class InnerRecyclerViewAdapter() : RecyclerView.Adapter<InnerRecyclerViewAdapter.InnerViewHolder>() {
         inner class InnerViewHolder(rowCoordinatorRank2Binding: RowCoordinatorRank2Binding) : RecyclerView.ViewHolder(rowCoordinatorRank2Binding.root) {
             // 내부 리사이클러 뷰의 ViewHolder 내용 정의
             val rowCoordinatorRank2Binding: RowCoordinatorRank2Binding
@@ -164,7 +174,6 @@ class CoordinatorRankFragment : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerViewHolder {
             // val rowCoordinatorRank2Binding = RowCoordinatorRank2Binding.inflate(layoutInflater)
-
             val rowCoordinatorRank2Binding = DataBindingUtil.inflate<RowCoordinatorRank2Binding>(
                 layoutInflater, R.layout.row_coordinator_rank2, parent, false
             )
@@ -199,12 +208,21 @@ class CoordinatorRankFragment : Fragment() {
     }
 
     // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
-    fun gettingMainData() {
+    fun gettingCoordinatorData() {
         CoroutineScope(Dispatchers.Main).launch {
             // 모든 코디네이터의 정보를 가져온다. (연동 On)
-            coordinatorList = CoordinatorDao.getCoordinatorAll()
+            coordinatorList = CoordinatorDao.getCoordinatorAllRank()
             Log.d("test1234", "인기 코디네이터 페이지 - coordinatorList: ${coordinatorList.size}명")
             fragmentCoordinatorRankBinding.recyclerViewCoordinatorRank.adapter?.notifyDataSetChanged()
+        }
+    }
+
+    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingProductData(coordinatorIdx: Int){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 정보를 가져온다. (연동 On)
+            productList = ProductDao.gettingProductListOneCoordinator(coordinatorIdx)
+            Log.d("test1234", "코디네이터 정보 페이지 - 상품들: ${productList.size}개")
         }
     }
 }

@@ -64,7 +64,7 @@ class CoordinatorMainFragment : Fragment() {
             Log.d("test1234", "메인(홈) 페이지 - 코디네이터 Idx: $coordinatorIdx")
         }
 
-        // 해당 코디네이터의 정보와 상품들을 가져온다
+        // 데이터 세팅
         gettingCoordinatorData(coordinatorIdx)
         gettingProductData(coordinatorIdx)
 
@@ -165,7 +165,8 @@ class CoordinatorMainFragment : Fragment() {
             holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainMBTI.text = productList[position].coordiMBTI
             holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainProductPrice.text =
                 "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
-                holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
+
+            holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true ,null)
             }
         }
@@ -182,6 +183,9 @@ class CoordinatorMainFragment : Fragment() {
             // 모든 코디네이터의 정보를 가져온다. (연동 On)
             coordinatorList = CoordinatorDao.getCoordinatorInfo(coordinatorIdx)
             Log.d("test1234", "코디네이터 정보 페이지 - 코디네이터: $coordinatorList")
+            CoordinatorDao.getCoordinatorImage(mainActivity, coordinatorList[0].coordi_photo, fragmentCoordinatorMainBinding.imageViewCoordinatorMainPhoto)
+            // 기본 코디설명 설정
+            settingCoordinatorTextView()
         }
     }
 
@@ -193,5 +197,12 @@ class CoordinatorMainFragment : Fragment() {
             Log.d("test1234", "코디네이터 정보 페이지 - 상품들: ${productList.size}개")
             fragmentCoordinatorMainBinding.recyclerViewCoordinatorMain.adapter?.notifyDataSetChanged()
         }
+    }
+
+    // TextView 세팅
+    fun settingCoordinatorTextView() {
+        fragmentCoordinatorMainBinding.textViewCoordinatorMainNickname.text = "${coordinatorList[0].coordi_name}"
+        fragmentCoordinatorMainBinding.textViewCoordinatorMainNameMbti.text = "${coordinatorList[0].coordi_name} | ${coordinatorList[0].coordi_mbti}"
+        fragmentCoordinatorMainBinding.textViewCoordinatorMainIntroTitle.text = "${coordinatorList[0].coordi_intro_text}"
     }
 }

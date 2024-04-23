@@ -685,7 +685,7 @@ class JoinCoordinatorFragment : Fragment() {
                         // 회전 이미지를 가져온다
                         val bitmap2 = Tools.rotateBitmap(bitmap!!, degree.toFloat())
                         // 크기를 줄인 이미지를 가져온다.
-                        val bitmap3 = Tools.resizeBitmap(bitmap2, 256)
+                        val bitmap3 = Tools.resizeBitmap(bitmap2, 1024)
 
                         when (button) {
                             R.id.buttonCoordinatorPhoto -> bitmapCoordiPhoto = bitmap3

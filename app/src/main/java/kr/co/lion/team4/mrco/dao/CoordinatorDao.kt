@@ -2,7 +2,17 @@ package kr.co.lion.team4.mrco.dao
 
 
 import android.content.Context
+import android.graphics.BitmapFactory
+import android.icu.text.ListFormatter.Width
 import android.net.Uri
+import android.opengl.Visibility
+import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
@@ -11,6 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.CoordinatorModel
 import kr.co.lion.team4.mrco.model.ProductModel
@@ -66,6 +77,35 @@ class CoordinatorDao {
             return coordiList
         }
 
+        // 모든 코디네이터의 정보를 가져온다. (팔로우 랭킹순으로)
+        suspend fun getCoordinatorAllRank() : MutableList<CoordinatorModel>{
+            // 코디네이터 정보를 담을 리스트
+            val coordiList = mutableListOf<CoordinatorModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+
+                // 코디네이터 등록상태가 참인 경우에만..
+                // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
+                // query = query.whereEqualTo("")
+                // 팔로순이 가장 높은거 부터 보여주는 내림차순
+                var query = collectionReference.orderBy("coordi_followers", Query.Direction.DESCENDING)
+
+                // 모든 사용자 정보를 가져온다
+                val querySnapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                querySnapshot.forEach {
+                    // CoordinatorModel 객체에 담는다.
+                    val coordinatorModel = it.toObject(CoordinatorModel::class.java)
+                    // 리스트에 담는다.
+                    coordiList.add(coordinatorModel)
+                }
+            }
+            job1.join()
+
+            return coordiList
+        }
+
         // 해당 코디네이터에 맞는 정보를 가져온다
         suspend fun getCoordinatorInfo(cordinatorIdx: Int): MutableList<CoordinatorModel>{
             // 코디네이터 정보를 담을 리스트
@@ -88,6 +128,52 @@ class CoordinatorDao {
 
             return coordiList
         }
+
+        // 코디네이터들의 이미지 데이터를 받아오는 메서드
+        suspend fun getCoordinatorImage(context: Context, imageFileName:String, imageView: ImageView) {
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 이미지에 접근할 수 있는 객체를 가져온다.
+                val storageRef = Firebase.storage.reference.child("coordinator/images/$imageFileName")
+                // 이미지의 주소를 가지고 있는 Uri 객체를 받아온다.
+                val imageUri = storageRef.downloadUrl.await()
+                // 이미지 데이터를 받아와 이미지 뷰에 보여준다.
+                val job2 = CoroutineScope(Dispatchers.Main).launch {
+                    val requestOptions = RequestOptions()
+                        .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC) // 자동으로 디스크 캐시 사용
+                        .skipMemoryCache(false) // 메모리 캐시 사용
+                        .override(512, 512) // 메모리 캐시 사용
+                    Glide.with(context).load(imageUri).apply(requestOptions).into(imageView)
+                    imageView.visibility = View.VISIBLE
+                }
+                job2.join()
+            }
+            job1.join()
+        }
+
+//        suspend fun getCoordinatorImage(imagePath: String, imageView: ImageView) {
+//            try {
+//                // Firebase Storage 인스턴스 가져오기
+//                val storage = Firebase.storage
+//
+//                // 이미지의 참조 가져오기
+//                val storageRef = storage.reference.child("coordinator/images/$imagePath")
+//
+//                // 이미지 다운로드
+//                val byteArray = storageRef.getBytes(1024).await()
+//
+//                // ByteArray를 Bitmap으로 변환
+//                val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+//
+//                // UI 업데이트는 메인 스레드에서 수행되어야 함
+//                withContext(Dispatchers.Main) {
+//                    // ImageView에 Bitmap 설정
+//                    imageView.setImageBitmap(bitmap)
+//                }
+//            } catch (e: Exception) {
+//                e.printStackTrace()
+//            }
+//        }
+
 
         // 코디네이터 정보를 저장한다. (코디네이터 가입 신청시)
         suspend fun insertCoordinatorData(coordinatorModel: CoordinatorModel){

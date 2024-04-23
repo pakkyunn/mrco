@@ -120,18 +120,9 @@ class CoordinatorInfoFragment : Fragment() {
             holder.rowCoordinatorInfoBinding.textViewRowInfoMBTI.text = coordinatorList[position].coordi_mbti
             holder.rowCoordinatorInfoBinding.textViewRowInfoName.text = coordinatorList[position].coordi_name
 
-            // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 8) {
-                0 -> R.drawable.iu_image
-                1 -> R.drawable.iu_image2
-                2 -> R.drawable.iu_image8
-                3 -> R.drawable.iu_image7
-                4 -> R.drawable.iu_image3
-                5 -> R.drawable.iu_image4
-                6 -> R.drawable.iu_image5
-                else -> R.drawable.iu_image6
+            CoroutineScope(Dispatchers.Main).launch {
+                CoordinatorDao.getCoordinatorImage(mainActivity, coordinatorList[position].coordi_photo, holder.rowCoordinatorInfoBinding.imageViewCoordinatorInfo)
             }
-            holder.rowCoordinatorInfoBinding.imageViewCoordinatorInfo.setImageResource(imageResource)
         }
     }
 

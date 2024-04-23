@@ -42,7 +42,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="460dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/iu_image8" />
+                    android:src="@drawable/iu_image8"
+                    android:visibility="invisible" />
 
                 <TextView
                     android:id="@+id/textViewCoordinatorMainNickname"
@@ -51,7 +52,7 @@
                     android:layout_marginTop="16dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="@{coordinatorMainViewModel.textViewCoordinatorMainNickname}"
+                    tools:text="코디네이터 이름"
                     android:textColor="#000000"
                     android:textSize="32dp"
                     android:textStyle="bold" />
@@ -67,7 +68,7 @@
                         android:gravity="center"
                         android:paddingLeft="16dp"
                         android:paddingRight="16dp"
-                        android:text="@{coordinatorMainViewModel.textViewCoordinatorMainNameMbti}"
+                        tools:text="아이유 | ISFP"
                         android:textColor="#000000"
                         android:textSize="18dp"
                         android:textStyle="bold"
@@ -102,7 +103,7 @@
                     android:layout_marginTop="16dp"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="@{coordinatorMainViewModel.textViewCoordinatorMainIntro}"
+                    tools:text="코디네이터 소개 글"
                     android:textColor="#555555"
                     android:textSize="16dp" />
 
