@@ -1,15 +1,18 @@
 package kr.co.lion.team4.mrco.fragment.category
 
 import android.graphics.Color
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import android.widget.CheckBox
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,11 +20,16 @@ import com.google.android.material.chip.Chip
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
 import kr.co.lion.team4.mrco.databinding.HeaderCategoryDrawerBinding
-import kr.co.lion.team4.mrco.databinding.RowCategoryDrawerBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
+import kr.co.lion.team4.mrco.databinding.RowCategoryMainFilteredBinding
+import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
 import kr.co.lion.team4.mrco.viewmodel.category.RowCategoryMainViewModel
+import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class CategoryMainFragment : Fragment() {
 
@@ -30,67 +38,140 @@ class CategoryMainFragment : Fragment() {
     lateinit var headerCategoryDrawerBinding: HeaderCategoryDrawerBinding
 
 
-    var mbtiData = mutableListOf<String>(
-        "ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
-        "INFJ", "INFP", "INTJ", "INTP", "ISFJ", "ISFP", "ISTJ", "ISTP"
+    val menuItemsMbti = arrayOf(
+        R.id.drawerMenuMbtiEnfj,
+        R.id.drawerMenuMbtiEnfp,
+        R.id.drawerMenuMbtiEntj,
+        R.id.drawerMenuMbtiEntp,
+        R.id.drawerMenuMbtiEsfj,
+        R.id.drawerMenuMbtiEsfp,
+        R.id.drawerMenuMbtiEstj,
+        R.id.drawerMenuMbtiEstp,
+        R.id.drawerMenuMbtiInfj,
+        R.id.drawerMenuMbtiInfp,
+        R.id.drawerMenuMbtiIntj,
+        R.id.drawerMenuMbtiIntp,
+        R.id.drawerMenuMbtiIsfj,
+        R.id.drawerMenuMbtiIsfp,
+        R.id.drawerMenuMbtiIstj,
+        R.id.drawerMenuMbtiIstp
     )
-    var tpoData = mutableListOf<String>("여행", "데이트", "카페", "출근", "데일리", "캠퍼스", "바다", "결혼식")
-    var seasonData = mutableListOf<String>("봄", "여름", "가을", "겨울")
-    var moodData = mutableListOf<String>(
-        "미니멀",
-        "비즈니스 캐주얼",
-        "원마일웨어",
-        "아메카지",
-        "시티보이",
-        "스트릿",
-        "스포티",
-        "레트로",
-        "러블리",
-        "모던캐주얼"
+    val menuItemsTpo = arrayOf(
+        R.id.drawerMenuTpo1,
+        R.id.drawerMenuTpo2,
+        R.id.drawerMenuTpo3,
+        R.id.drawerMenuTpo4,
+        R.id.drawerMenuTpo5,
+        R.id.drawerMenuTpo6,
+        R.id.drawerMenuTpo7,
+        R.id.drawerMenuTpo8
     )
-    var allData = mutableListOf<String>(
-        "ENFJ",
-        "ENFP",
-        "ENTJ",
-        "ENTP",
-        "ESFJ",
-        "ESFP",
-        "ESTJ",
-        "ESTP",
-        "INFJ",
-        "INFP",
-        "INTJ",
-        "INTP",
-        "ISFJ",
-        "ISFP",
-        "ISTJ",
-        "ISTP",
-        "여행",
-        "데이트",
-        "카페",
-        "출근",
-        "데일리",
-        "캠퍼스",
-        "바다",
-        "결혼식",
-        "봄",
-        "여름",
-        "가을",
-        "겨울",
-        "미니멀",
-        "비즈니스캐주얼",
-        "원마일웨어",
-        "아메카지",
-        "시티보이",
-        "스트릿",
-        "스포티",
-        "레트로",
-        "러블리",
-        "모던캐주얼"
+    val menuItemsSeason = arrayOf(
+        R.id.drawerMenuSeasonSpring,
+        R.id.drawerMenuSeasonSummer,
+        R.id.drawerMenuSeasonFall,
+        R.id.drawerMenuSeasonWinter
+    )
+    val menuItemsMood = arrayOf(
+        R.id.drawerMenuMood1,
+        R.id.drawerMenuMood2,
+        R.id.drawerMenuMood3,
+        R.id.drawerMenuMood4,
+        R.id.drawerMenuMood5,
+        R.id.drawerMenuMood6,
+        R.id.drawerMenuMood7,
+        R.id.drawerMenuMood8,
+        R.id.drawerMenuMood9,
+        R.id.drawerMenuMood10
+    )
+    val menuItemsAll = arrayOf(
+        R.id.drawerMenuMbtiEnfj,
+        R.id.drawerMenuMbtiEnfp,
+        R.id.drawerMenuMbtiEntj,
+        R.id.drawerMenuMbtiEntp,
+        R.id.drawerMenuMbtiEsfj,
+        R.id.drawerMenuMbtiEsfp,
+        R.id.drawerMenuMbtiEstj,
+        R.id.drawerMenuMbtiEstp,
+        R.id.drawerMenuMbtiInfj,
+        R.id.drawerMenuMbtiInfp,
+        R.id.drawerMenuMbtiIntj,
+        R.id.drawerMenuMbtiIntp,
+        R.id.drawerMenuMbtiIsfj,
+        R.id.drawerMenuMbtiIsfp,
+        R.id.drawerMenuMbtiIstj,
+        R.id.drawerMenuMbtiIstp,
+        R.id.drawerMenuTpo1,
+        R.id.drawerMenuTpo2,
+        R.id.drawerMenuTpo3,
+        R.id.drawerMenuTpo4,
+        R.id.drawerMenuTpo5,
+        R.id.drawerMenuTpo6,
+        R.id.drawerMenuTpo7,
+        R.id.drawerMenuTpo8,
+        R.id.drawerMenuSeasonSpring,
+        R.id.drawerMenuSeasonSummer,
+        R.id.drawerMenuSeasonFall,
+        R.id.drawerMenuSeasonWinter,
+        R.id.drawerMenuMood1,
+        R.id.drawerMenuMood2,
+        R.id.drawerMenuMood3,
+        R.id.drawerMenuMood4,
+        R.id.drawerMenuMood5,
+        R.id.drawerMenuMood6,
+        R.id.drawerMenuMood7,
+        R.id.drawerMenuMood8,
+        R.id.drawerMenuMood9,
+        R.id.drawerMenuMood10
     )
 
-    var chipIdx = 0
-    var clickIdx = false
+    val menuMapAll = mapOf(
+        R.id.drawerMenuMbtiEnfj to "ENFJ",
+        R.id.drawerMenuMbtiEnfp to "ENFP",
+        R.id.drawerMenuMbtiEntj to "ENTJ",
+        R.id.drawerMenuMbtiEntp to "ENTP",
+        R.id.drawerMenuMbtiEsfj to "ESFJ",
+        R.id.drawerMenuMbtiEsfp to "ESFP",
+        R.id.drawerMenuMbtiEstj to "ESTJ",
+        R.id.drawerMenuMbtiEstp to "ESTP",
+        R.id.drawerMenuMbtiInfj to "INFJ",
+        R.id.drawerMenuMbtiInfp to "INFP",
+        R.id.drawerMenuMbtiIntj to "INTJ",
+        R.id.drawerMenuMbtiIntp to "INTP",
+        R.id.drawerMenuMbtiIsfj to "ISFJ",
+        R.id.drawerMenuMbtiIsfp to "ISFP",
+        R.id.drawerMenuMbtiIstj to "ISTJ",
+        R.id.drawerMenuMbtiIstp to "ISTP",
+        R.id.drawerMenuTpo1 to "여행",
+        R.id.drawerMenuTpo2 to "데이트",
+        R.id.drawerMenuTpo3 to "카페",
+        R.id.drawerMenuTpo4 to "출근",
+        R.id.drawerMenuTpo5 to "데일리",
+        R.id.drawerMenuTpo6 to "캠퍼스",
+        R.id.drawerMenuTpo7 to "바다",
+        R.id.drawerMenuTpo8 to "결혼식",
+        R.id.drawerMenuSeasonSpring to "봄",
+        R.id.drawerMenuSeasonSummer to "여름",
+        R.id.drawerMenuSeasonFall to "가을",
+        R.id.drawerMenuSeasonWinter to "겨울",
+        R.id.drawerMenuMood1 to "미니멀",
+        R.id.drawerMenuMood2 to "비즈니스 캐주얼",
+        R.id.drawerMenuMood3 to "원마일웨어",
+        R.id.drawerMenuMood4 to "아메카지",
+        R.id.drawerMenuMood5 to "시티보이",
+        R.id.drawerMenuMood6 to "스트릿",
+        R.id.drawerMenuMood7 to "스포티",
+        R.id.drawerMenuMood8 to "레트로",
+        R.id.drawerMenuMood9 to "러블리",
+        R.id.drawerMenuMood10 to "모던 캐주얼"
+    )
+
+    val checkedMenuList = arrayListOf<String>()
+
+    val filteredItemBundle = Bundle()
+
+//    var chipIdx = 0
+//    var clickIdx = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -104,192 +185,184 @@ class CategoryMainFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        if (savedInstanceState != null) {
+            arguments?.getIntegerArrayList(checkedMenuList.toString())
+            Log.d("testBundle", "$checkedMenuList")
+        }
+
+        Log.d("testBundle", "프레그먼트 실행")
+
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
         bottomSheetSetting()
         settingBottomTabs()
         settingNavigationView()
 
-        settingCategoryFilterButton()
-
         // 리사이클러 뷰 메인
         settingRecyclerViewCategoryMain()
+        // 리사이클러 뷰 필터 항목
+        settingRecyclerViewCategoryFiltered()
 
         return fragmentCategoryMainBinding.root
     }
 
+
     // 툴바 설정
     fun toolbarSetting() {
-        fragmentCategoryMainBinding.toolbarCoordinatorMain.apply {
-            setOnMenuItemClickListener {
-                when (it.itemId) {
-                    // 장바구니 클릭 시
-                    R.id.category_toolbar_shopping -> {
-                        mainActivity.replaceFragment(
-                            MainFragmentName.CART_FRAGMENT,
-                            true,
-                            true,
-                            null
-                        )
-                    }
-                }
-                true
-            }
-        }
-    }
-
-//    fun settingChipClickIdx(chip: Chip) {
-//        fragmentCategoryMainBinding.apply {
-//            navigationViewContent.apply {
-//                val headerCategoryDrawerBinding =
-//                    HeaderCategoryDrawerBinding.inflate(layoutInflater)
-//                headerCategoryDrawerBinding.apply {
-//                    chipIdx = when (chip) {
-//                        chipCategoriesMbti -> R.id.chipCategoriesMbti
-//                        chipCategoriesTpo -> R.id.chipCategoriesTpo
-//                        chipCategoriesSeason -> R.id.chipCategoriesSeason
-//                        chipCategoriesMood -> R.id.chipCategoriesMood
-//                        else -> 0
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
-    fun settingCategoryFilterButton() {
         fragmentCategoryMainBinding.apply {
-            buttonCategoryFilter!!.setOnClickListener {
-                fragmentCategoryMainBinding.drawerLayoutContent.open()
 
+            toolbarCoordinatorMain.apply {
+                setNavigationOnClickListener {
+                    drawerLayoutContent.open()
+                }
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        // 장바구니 클릭 시
+                        R.id.category_toolbar_shopping -> {
+                            mainActivity.replaceFragment(
+                                MainFragmentName.CART_FRAGMENT,
+                                true,
+                                true,
+                                null
+                            )
+                        }
+                    }
+                    true
+                }
             }
         }
     }
-
-
-//    fun checkSync(menu: Menu, menuItemIds: Array<Int>) {
-//        menuItemIds.forEach { menuItemId ->
-//            val menuItem = menu.findItem(menuItemId)
-//            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
-//
-//            checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
-//                menuItem.isChecked = !menuItem.isChecked
-//                menuItem.isCheckable = false
-//            }
-//        }
-//    }
 
 
     fun resetMenuItems(menu: Menu, menuItemIds: Array<Int>) {
         menuItemIds.forEach { menuItemId ->
             val menuItem = menu.findItem(menuItemId)
+            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
+            checkBox?.isChecked = false
             menuItem?.isChecked = false
             menuItem?.isCheckable = false
         }
     }
 
-    fun settingCategoryChipChange(chip: Chip) {
-        fragmentCategoryMainBinding.apply {
-            navigationViewContent.apply {
-                headerCategoryDrawerBinding.apply {
+    fun applyMenuItems(menu: Menu, menuItemIds: Array<Int>) {
+        checkedMenuList.clear()
+        menuItemIds.forEach { menuItemId ->
+            val menuItem = menu.findItem(menuItemId)
+            val menuItemTitle = menuMapAll[menuItemId]
+            if (menuItem.isChecked) {
+                checkedMenuList.add(menuItemTitle!!)
+                Log.d("testBundle", "체크아이템 넣기: $checkedMenuList")
+            }
+        }
+        filteredItemBundle.putStringArrayList(
+            "filteredItemBundle",
+            checkedMenuList
+        )
+        Log.d("testBundle", "번들 넣기: $checkedMenuList")
+    }
 
-                    Log.d("testclick", "칩 클릭 전")
+    fun settingCategoryMenuClick(menu: Menu, menuItemIds: Array<Int>) {
+        menuItemIds.forEach { menuItemId ->
+            val menuItem = menu.findItem(menuItemId)
+            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
+            menuItem.setOnMenuItemClickListener {
+                checkBox?.isChecked = !checkBox?.isChecked!!
+                menuItem.isCheckable = false
 
-                    chip.setOnCheckedChangeListener { _, isChecked ->
-                        Log.d("testclick", "칩 클릭: $isChecked")
+                true
+            }
+        }
+    }
 
-                        chipIdx = R.id.chipCategoriesMbti
-                        Log.d("testclick", "칩 인덱스 변경: $chipIdx")
+    fun checkSync(menu: Menu, menuItemIds: Array<Int>) {
+        menuItemIds.forEach { menuItemId ->
+            val menuItem = menu.findItem(menuItemId)
+            val checkBox = menuItem?.actionView?.findViewById<CheckBox>(R.id.drawerCheckbox)
 
-                        recyclerViewCategoryDrawer.adapter?.notifyDataSetChanged()
-                        Log.d("testclick", "리싸이클러뷰 새로고침")
-
-                        if (chip.isChecked) {
-                            recyclerViewCategoryDrawer.isVisible = true
-                        } else {
-                            recyclerViewCategoryDrawer.isVisible = false
-                        }
-                        Log.d(
-                            "testclick",
-                            "리싸이클러뷰 상태 변경: ${recyclerViewCategoryDrawer.isVisible}"
-                        )
-
-                    }
-
-
-//                    // chip(4개)을 클릭할 때 동작하는 리스너
-//                    chip.setOnCheckedChangeListener { _, isChecked ->
-//                        Log.d("testclick","칩 클릭: $chip")
-//
-//                        chipIdx = when (chip) {
-//                            chipCategoriesMbti -> R.id.chipCategoriesMbti
-//                            chipCategoriesTpo -> R.id.chipCategoriesTpo
-//                            chipCategoriesSeason -> R.id.chipCategoriesSeason
-//                            chipCategoriesMood -> R.id.chipCategoriesMood
-//                            else -> R.id.chipCategoriesMbti
-//                        }
-//                        Log.d("testclick","칩 인덱스 변경: $chipIdx")
-//
-//                        if (isChecked) {
-//                            recyclerViewCategoryDrawer.isVisible = true
-//                        } else {
-//                            recyclerViewCategoryDrawer.isVisible = false
-//                        }
-//                        Log.d("testclick","리싸이클러뷰 상태 변경: ${recyclerViewCategoryDrawer.isVisible}")
-//
-//                        recyclerViewCategoryDrawer.adapter?.notifyDataSetChanged()
-//                        Log.d("testclick","어댑터 새로고침")
-//                    }
-                }
+            checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
+                menuItem.isChecked = !menuItem.isChecked
+                menuItem.isCheckable = false
             }
         }
     }
 
 
+    fun settingCategoryChipChange(chip: Chip, array: Array<Int>) {
+        fragmentCategoryMainBinding.apply {
+            navigationViewContent.apply {
+                val headerCategoryDrawerBinding =
+                    HeaderCategoryDrawerBinding.inflate(layoutInflater)
+
+                headerCategoryDrawerBinding.apply {
+                    // chip(4개)을 클릭할 때 동작하는 리스너
+                    chip.setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            array.forEach {
+                                menu.findItem(it).isVisible = true
+                            }
+                        } else {
+                            array.forEach {
+                                menu.findItem(it).isVisible = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     // 네비게이션 뷰 설정
     fun settingNavigationView() {
         fragmentCategoryMainBinding.apply {
             navigationViewContent.apply {
-//                // 헤더로 보여줄 View를 설정한다.
-//                addHeaderView(headerCategoryDrawerBinding.root)
-
+                // 헤더로 보여줄 View를 설정한다.
+                addHeaderView(headerCategoryDrawerBinding.root)
 
                 headerCategoryDrawerBinding.apply {
-                    settingRecyclerViewCategoryDrawer()
-
-                    // 리셋 버튼 클릭시
+                    // 리셋 버튼 클릭
                     buttonDrawerCategoryReset.setOnClickListener {
-
+                        resetMenuItems(menu, menuItemsAll)
                     }
 
-                    // 적용 버튼 클릭시
+                    // 적용 버튼 클릭
                     buttonDrawerCategoryApply.setOnClickListener {
-                        // check된 카테고리를 적용하여 검색결과를 CategoryMainFragment에 노출한다.
+                        // 체크된 카테고리 항목을 카테고리 메인화면에 번들로 전달
+                        applyMenuItems(menu, menuItemsAll)
 
+                        fragmentCategoryMainBinding.recyclerViewCategoryMainFiltered?.adapter?.notifyDataSetChanged()
 
                         // NavigationView를 닫아준다.
                         drawerLayoutContent.close()
+
+                        val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
+                        ft.detach(this@CategoryMainFragment).attach(this@CategoryMainFragment)
+                            .commit()
+                        Log.d("testBundle", "새로고침")
                     }
 
-                    // 검색바 기능 세팅
-                    searchBarDrawer.apply {
-                        setOnClickListener {
-                            // 모든 칩 선택해제
-                            chipCategoriesMbti.isChecked = false
-                            chipCategoriesTpo.isChecked = false
-                            chipCategoriesSeason.isChecked = false
-                            chipCategoriesMood.isChecked = false
-                        }
-
-                        // 검색 완료하면 ALL칩 선택 후 검색결과에 맞는 메뉴항목 보여주기
-                    }
+//                    // 검색바 기능 세팅
+//                    searchBarDrawer.apply {
+//                        setOnClickListener {
+//                            // 모든 칩 선택해제
+//                            chipCategoriesMbti.isChecked = false
+//                            chipCategoriesTpo.isChecked = false
+//                            chipCategoriesSeason.isChecked = false
+//                            chipCategoriesMood.isChecked = false
+//                        }
+//
+//                        // 검색 완료하면 All칩 선택 후 검색결과에 맞는 메뉴항목 보여주기
+//                    }
 
                     // chip을 클릭할 때 동작하는 리스너 메서드
-                    settingCategoryChipChange(chipCategoriesMbti)
-                    settingCategoryChipChange(chipCategoriesTpo)
-                    settingCategoryChipChange(chipCategoriesSeason)
-                    settingCategoryChipChange(chipCategoriesMood)
+                    settingCategoryChipChange(chipCategoriesMbti, menuItemsMbti)
+                    settingCategoryChipChange(chipCategoriesTpo, menuItemsTpo)
+                    settingCategoryChipChange(chipCategoriesSeason, menuItemsSeason)
+                    settingCategoryChipChange(chipCategoriesMood, menuItemsMood)
 
+                    // 메뉴항목을 클릭했을 때 동작하는 리스너 메서드
+                    settingCategoryMenuClick(menu, menuItemsAll)
+                    // 체크박스 클릭과 메뉴항목 클릭 상태 동기화 메서드
+                    checkSync(menu, menuItemsAll)
                 }
             }
         }
@@ -435,33 +508,30 @@ class CategoryMainFragment : Fragment() {
     }
 
 
-    // drawer 리사이클러 뷰 설정
-    fun settingRecyclerViewCategoryDrawer() {
+    // 홈(추천) - 신규 코디 리사이클러 뷰 설정
+    fun settingRecyclerViewCategoryFiltered() {
         fragmentCategoryMainBinding.apply {
-            navigationViewContent.apply {
-                addHeaderView(headerCategoryDrawerBinding.root)
-                headerCategoryDrawerBinding.apply {
-                    recyclerViewCategoryDrawer.apply {
-                        adapter = CategoryDrawerRecyclerViewAdapter()
-                        layoutManager = LinearLayoutManager(mainActivity)
-                    }
-                }
+            recyclerViewCategoryMainFiltered?.apply {
+                // 어뎁터 및 레이아웃 매니저 설정
+                adapter = CategoeyFilteredRecyclerViewAdapter()
+                layoutManager =
+                    LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
             }
         }
     }
 
-    // drawer 리사이클러 뷰 어뎁터
-    inner class CategoryDrawerRecyclerViewAdapter :
-        RecyclerView.Adapter<CategoryDrawerRecyclerViewAdapter.CategoryDrawerViewHolder>() {
-        inner class CategoryDrawerViewHolder(rowCategoryDrawerBinding: RowCategoryDrawerBinding) :
-            RecyclerView.ViewHolder(rowCategoryDrawerBinding.root) {
-            val rowCategoryDrawerBinding: RowCategoryDrawerBinding
+    // RecyclerView Adapter : 홈(MBTI) - MBTI @@에게 잘 어울리는 코디 리사이클러 뷰 어뎁터
+    inner class CategoeyFilteredRecyclerViewAdapter :
+        RecyclerView.Adapter<CategoeyFilteredRecyclerViewAdapter.CategoryFilteredViewHolder>() {
+        inner class CategoryFilteredViewHolder(rowCategoryMainFilteredBinding: RowCategoryMainFilteredBinding) :
+            RecyclerView.ViewHolder(rowCategoryMainFilteredBinding.root) {
+            val rowCategoryMainFilteredBinding: RowCategoryMainFilteredBinding
 
             init {
-                this.rowCategoryDrawerBinding = rowCategoryDrawerBinding
+                this.rowCategoryMainFilteredBinding = rowCategoryMainFilteredBinding
 
-                this.rowCategoryDrawerBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
+                this.rowCategoryMainFilteredBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
             }
@@ -470,78 +540,27 @@ class CategoryMainFragment : Fragment() {
         override fun onCreateViewHolder(
             parent: ViewGroup,
             viewType: Int
-        ): CategoryDrawerViewHolder {
-            val rowCategoryDrawerBinding = DataBindingUtil.inflate<RowCategoryDrawerBinding>(
-                layoutInflater, R.layout.row_category_drawer, parent, false
-            )
+        ): CategoryFilteredViewHolder {
+            val rowCategoryMainFilteredBinding =
+                DataBindingUtil.inflate<RowCategoryMainFilteredBinding>(
+                    layoutInflater, R.layout.row_category_main_filtered, parent, false
+                )
 
-            rowCategoryDrawerBinding.lifecycleOwner = this@CategoryMainFragment
+            rowCategoryMainFilteredBinding.lifecycleOwner = this@CategoryMainFragment
 
-            val categoryDrawerViewHolder = CategoryDrawerViewHolder(rowCategoryDrawerBinding)
+            val categoryFilteredViewHolder =
+                CategoryFilteredViewHolder(rowCategoryMainFilteredBinding)
 
-            return categoryDrawerViewHolder
+            return categoryFilteredViewHolder
         }
 
         override fun getItemCount(): Int {
-//            return when (chipIdx) {
-//                R.id.chipCategoriesMbti -> mbtiData.size
-//                R.id.chipCategoriesTpo -> tpoData.size
-//                R.id.chipCategoriesSeason -> seasonData.size
-//                R.id.chipCategoriesMood -> moodData.size
-//                else -> 10
-//            }
-            return 10
+            return checkedMenuList.size
         }
 
-        override fun onBindViewHolder(holder: CategoryDrawerViewHolder, position: Int) {
-            holder.rowCategoryDrawerBinding.rowDrawerButton.text = "test"
-//            when (chipIdx) {
-//                R.id.chipCategoriesMbti -> {
-////                    mbtiData.forEach {
-////                        holder.rowCategoryDrawerBinding.rowDrawerButton.text = it
-////                    }
-//                    holder.rowCategoryDrawerBinding.root.setOnClickListener {
-//
-//                    }
-//                }
-//
-//                R.id.chipCategoriesTpo -> {
-//                    tpoData.forEach {
-//                        holder.rowCategoryDrawerBinding.rowDrawerButton.text = it
-//                    }
-//                }
-//
-//                R.id.chipCategoriesSeason -> {
-//                    seasonData.forEach {
-//                        holder.rowCategoryDrawerBinding.rowDrawerButton.text = it
-//                    }
-//                }
-//
-//                R.id.chipCategoriesMood -> {
-//                    moodData.forEach {
-//                        holder.rowCategoryDrawerBinding.rowDrawerButton.text = it
-//                    }
-//                }
-//
-//                else -> {}
-//            }
-//
-            // 클릭시
-            holder.rowCategoryDrawerBinding.rowDrawerButton.setOnClickListener {
-                holder.rowCategoryDrawerBinding.rowDrawerButton.apply {
-                    isActivated = !isActivated
-                    Log.d("clickTest", "리싸이클러뷰 항목 활성화 상태 변경")
-                    Log.d(
-                        "clickTest",
-                        "${holder.rowCategoryDrawerBinding.rowDrawerButton.isActivated}"
-                    )
-                    if (isActivated) {
-                        setBackgroundColor(Color.parseColor("#C5C5C5"))
-                    } else {
-                        setBackgroundColor(Color.parseColor("#E4E4E4"))
-                    }
-                }
-            }
+        override fun onBindViewHolder(holder: CategoryFilteredViewHolder, position: Int) {
+            holder.rowCategoryMainFilteredBinding.textViewRowCategoryFiltered.text =
+                "#${checkedMenuList[position]}"
         }
     }
 }

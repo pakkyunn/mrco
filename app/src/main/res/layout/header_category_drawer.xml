@@ -3,11 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:transitionGroup="true">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,9 +21,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center|left"
-                android:text="Category"
+                android:text="스타일 필터"
                 android:textColor="@color/black"
-                android:textSize="32dp"
+                android:textSize="24dp"
                 android:theme="@style/ToolbarTheme" />
 
             <LinearLayout
@@ -58,14 +53,14 @@
 
         </LinearLayout>
 
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/searchBarDrawer"
-            style="@style/Widget.Material3.SearchBar.Outlined"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top"
-            android:hint="카테고리 검색"
-            app:backgroundTint="@color/white" />
+<!--        <com.google.android.material.search.SearchBar-->
+<!--            android:id="@+id/searchBarDrawer"-->
+<!--            style="@style/Widget.Material3.SearchBar.Outlined"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="top"-->
+<!--            android:hint="카테고리 검색"-->
+<!--            app:backgroundTint="@color/white" />-->
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroupCategoryGender"
@@ -151,32 +146,29 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewCategoryDrawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp" />
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerViewCategoryDrawer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:visibility="invisible" />-->
 
     </LinearLayout>
 
-        <com.google.android.material.search.SearchView
-            android:id="@+id/searchViewDrawer"
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:layout_marginTop="96dp"
-            app:backgroundTint="#EFEFEF"
-            app:layout_anchor="@id/searchBarDrawer">
+<!--        <com.google.android.material.search.SearchView-->
+<!--            android:id="@+id/searchViewDrawer"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="256dp"-->
+<!--            android:layout_marginTop="96dp"-->
+<!--            app:backgroundTint="#EFEFEF"-->
+<!--            app:layout_anchor="@id/searchBarDrawer">-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMainSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#EFEFEF" />
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/recyclerViewMainSearch"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#EFEFEF" />-->
 
-        </com.google.android.material.search.SearchView>
-
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+<!--        </com.google.android.material.search.SearchView>-->
 
 </layout>
