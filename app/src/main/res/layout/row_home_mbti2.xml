@@ -37,7 +37,7 @@
 
             <TextView
                 android:id="@+id/item_main_mbti_product_mbti2"
-                android:layout_width="64dp"
+                android:layout_width="56dp"
                 android:layout_height="32dp"
                 android:background="#CA4646"
                 android:gravity="center"

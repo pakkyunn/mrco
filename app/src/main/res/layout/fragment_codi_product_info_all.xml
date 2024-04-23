@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="cpia"
+            name="codiProductInfoViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAllViewModel" />
     </data>
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@={cpia.productName}" />
+            android:text="@={codiProductInfoViewModel.productName}" />
     </LinearLayout>
 
     <LinearLayout

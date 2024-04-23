@@ -2,9 +2,8 @@ package kr.co.lion.team4.mrco.viewmodel.category
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kr.co.lion.team4.mrco.R
 
-class CategoryViewModel: ViewModel() {
+class CategorySearchViewModel: ViewModel() {
     val textFieldCategorySearch = MutableLiveData<String>()
     val chipGroupCategoryGender = MutableLiveData<Int>()
 

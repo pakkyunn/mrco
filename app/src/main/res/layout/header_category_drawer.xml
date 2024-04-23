@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:transitionGroup="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,11 +18,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/headerContentDrawerNickName"
-                android:layout_width="match_parent"
+                android:id="@+id/headerCategoryDrawer"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:gravity="center|left"
@@ -25,37 +31,152 @@
                 android:textSize="32dp"
                 android:theme="@style/ToolbarTheme" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroupCategoryGender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginLeft="20dp"
-                app:singleSelection="true">
-                <!--                        android:checkedChipId="@={categoryViewModel.chipGroupCategoryGender}"-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|end"
+                android:orientation="horizontal">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCategoryGenderMEN"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:checked="true"
-                    android:text="MEN"
-                    android:textColor="@color/selector_add_product_option_text_color"
-                    app:checkedIconVisible="false"
-                    app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
+                <ImageButton
+                    android:id="@+id/buttonDrawerCategoryReset"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:backgroundTint="#EFEFEF"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/refresh_24px" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCategoryGenderWOMEN"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checkable="true"
-                    android:text="WOMEN"
-                    android:textColor="@color/selector_add_product_option_text_color"
-                    app:chipBackgroundColor="@color/selector_add_product_option_chip_color"
-                    app:chipStrokeColor="@color/black" />
-            </com.google.android.material.chip.ChipGroup>
+                <ImageButton
+                    android:id="@+id/buttonDrawerCategoryApply"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:backgroundTint="#EFEFEF"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/done_24px" />
+            </LinearLayout>
+
         </LinearLayout>
 
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/searchBarDrawer"
+            style="@style/Widget.Material3.SearchBar.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:hint="카테고리 검색"
+            app:backgroundTint="@color/white" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategoryGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="20dp"
+            app:singleSelection="true">
+            <!--                        android:checkedChipId="@={categorySearchViewModel.chipGroupCategoryGender}"-->
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategoryGenderMEN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:checked="true"
+                android:text="MEN"
+                android:textColor="@color/selector_add_product_option_text_color"
+                app:checkedIconVisible="false"
+                app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategoryGenderWOMEN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="WOMEN"
+                android:textColor="@color/selector_add_product_option_text_color"
+                app:chipBackgroundColor="@color/selector_add_product_option_chip_color"
+                app:chipStrokeColor="@color/black" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            app:singleSelection="true">
+            <!--                        android:checkedChipId="@={categorySearchViewModel.chipGroupCategoryGender}"-->
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategoriesMbti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:checked="false"
+                android:text="MBTI"
+                android:textColor="@color/selector_add_product_option_text_color"
+                app:checkedIconVisible="false"
+                app:chipBackgroundColor="@color/selector_add_product_option_chip_color2_mbti" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategoriesTpo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="TPO"
+                android:textColor="@color/selector_add_product_option_text_color"
+                app:chipBackgroundColor="@color/selector_add_product_option_chip_color2_mbti"
+                app:chipStrokeColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategoriesSeason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="SEASON"
+                android:textColor="@color/selector_add_product_option_text_color"
+                app:chipBackgroundColor="@color/selector_add_product_option_chip_color2_mbti"
+                app:chipStrokeColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCategoriesMood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="MOOD"
+                android:textColor="@color/selector_add_product_option_text_color"
+                app:chipBackgroundColor="@color/selector_add_product_option_chip_color2_mbti"
+                app:chipStrokeColor="@color/black" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCategoryDrawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp" />
+
     </LinearLayout>
+
+        <com.google.android.material.search.SearchView
+            android:id="@+id/searchViewDrawer"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:layout_marginTop="96dp"
+            app:backgroundTint="#EFEFEF"
+            app:layout_anchor="@id/searchBarDrawer">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewMainSearch"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#EFEFEF" />
+
+        </com.google.android.material.search.SearchView>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

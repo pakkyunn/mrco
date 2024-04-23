@@ -3,18 +3,27 @@ package kr.co.lion.team4.mrco.dao
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kr.co.lion.team4.mrco.ProductState
+import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import java.io.File
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
+import kotlin.coroutines.suspendCoroutine
 
 class ProductDao {
     companion object {
@@ -60,9 +69,118 @@ class ProductDao {
             // 따라서 이 메서드는 제일 마지막에 호출해야 한다.(다른 것들을 모두 보여준 후에...)
         }
 
+
+        // 모든 상품의 정보를 가져온다.
+        suspend fun gettingProductAll(): MutableList<ProductModel> {
+            // 상품 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 내림 차순 정렬
+                query = query.orderBy("productIdx", Query.Direction.DESCENDING)
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
+        // 가장 최신 상품 최대 20개를 가져온다.
+        suspend fun gettingNewProductList(productGender: Int): MutableList<ProductModel> {
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                    .orderBy("productIdx", Query.Direction.DESCENDING)
+                    .whereEqualTo("coordiGender", productGender)
+
+                val querySnapshot = query.get().await()
+                val documents = querySnapshot.documents.take(20) // 최대 20개까지만 가져오도록 조정
+
+                documents.forEach { document ->
+                    val productModel = document.toObject(ProductModel::class.java)
+                    productModel?.let {
+                        productList.add(it)
+                    }
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
+        // 해당 성별, MBTI에 맞는 상품을 가져온다
+        suspend fun gettingProductMBTIList(productMBTI:String, productGender: Int): MutableList<ProductModel>{
+            // 게시글 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 내림 차순 정렬
+                query = query.orderBy("productIdx", Query.Direction.DESCENDING)
+                // 해당 MBTI에 맞는 상품 찾기
+                query = query.whereEqualTo("coordiMBTI", productMBTI)
+                // 해당 성별에 맞는 상품 찾기
+                query = query.whereEqualTo("coordiGender", productGender)
+
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
+        // 해당 성별, MBTI에 맞는 상품을 가져온다
+        suspend fun gettingProductListOneCoordinator(coordinatorIdx:Int): MutableList<ProductModel>{
+            // 게시글 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 내림 차순 정렬
+                query = query.orderBy("productIdx", Query.Direction.DESCENDING)
+                // 해당 코디네이터의 상품만 찾기
+                query = query.whereEqualTo("coordinatorIdx", coordinatorIdx)
+
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
         // 상품 번호 시퀀스값을 가져온다.
         suspend fun getContentSequence():Int{
-            var contentSequence = -1
+            var productSequence = -1
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
@@ -71,11 +189,11 @@ class ProductDao {
                 val documentReference = collectionReference.document("ProductSequence")
                 // 문서내에 있는 데이터를 가져올 수 있는 객체를 가져온다.
                 val documentSnapShot = documentReference.get().await()
-                contentSequence = documentSnapShot.getLong("value")?.toInt()!!
+                productSequence = documentSnapShot.getLong("value")?.toInt()!!
             }
             job1.join()
 
-            return contentSequence
+            return productSequence
         }
 
         // 상품 시퀀스 값을 업데이트 한다.
@@ -108,6 +226,83 @@ class ProductDao {
         }
 
 
+        // 댓글 목록을 가져온다.
+        suspend fun gettingProductList(coordinatorIdx: Int):MutableList<ProductModel>{
+            // 댓글 정보를 담을 리스트
+            val plyList = mutableListOf<ProductModel>()
+            Log.d("test1234","ProductDao.gettingProductList1")
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 댓글 상태가 정상 상태이고 댓글 번호를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는
+                // Query를 생성한다.
+                // 댓글 상태가 정상 상태인 것만..
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 코디네이터 번호에 해당하는 것들만
+                query = query.whereEqualTo("coordinatorIdx", coordinatorIdx)
+                // 작성일자를 기준으로 내림 차순 정렬..
+//                query = query.orderBy("coordiWriteDate", Query.Direction.DESCENDING)
+                Log.d("test1234","ProductDao.gettingProductList2")
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    Log.d("test1234","ProductDao.gettingProductList3")
+                    // 현재 번째의 문서를 객체로 받아온다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    // 객체를 리스트에 담는다.
+                    plyList.add(productModel)
+                }
+                Log.d("test1234","ProductDao.gettingProductList4")
+            }
+            job1.join()
+            Log.d("test1234","ProductDao.gettingProductList5")
+            return plyList
+        }
 
+        // 글 번호를 이용해 글 데이터를 가져와 반환한다.
+        suspend fun selectProductData(productIdx:Int):ProductModel?{
+
+
+            var productModel:ProductModel? = null
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 컬렉션이 가지고 있는 문서들 중에 contentIdx 필드가 지정된 글 번호값하고 같은 Document들을 가져온다.
+                val queryShapshot = collectionReference.whereEqualTo("productIdx", productIdx).get().await()
+                // 가져온 글 정보를 객체에 담아서 반환 받는다.
+                // productIdx가 같은 글은 존재할 수가 없기 때문에 첫 번째 객체를 바로 추출해서 사용한다.
+                // toObject : 지정한 클래스를 가지고 객체를 만든 다음 가져온 데이터의 필드의 이름과 동일한 이름의
+                // 프로퍼티에 필드의 값을 담아준다.
+                productModel = queryShapshot.documents[0].toObject(ProductModel::class.java)
+
+            }
+            job1.join()
+
+            return productModel
+        }
+
+        suspend fun selectProductInfoData(productIdx:Int): ProductCategoryLinkedListModel?{
+
+
+            var productCategoryLinkedListModel: ProductCategoryLinkedListModel? = null
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 컬렉션이 가지고 있는 문서들 중에 contentIdx 필드가 지정된 글 번호값하고 같은 Document들을 가져온다.
+                val queryShapshot = collectionReference.whereEqualTo("productIdx", productIdx).get().await()
+                // 가져온 글 정보를 객체에 담아서 반환 받는다.
+                // productIdx가 같은 글은 존재할 수가 없기 때문에 첫 번째 객체를 바로 추출해서 사용한다.
+                // toObject : 지정한 클래스를 가지고 객체를 만든 다음 가져온 데이터의 필드의 이름과 동일한 이름의
+                // 프로퍼티에 필드의 값을 담아준다.
+                productCategoryLinkedListModel = queryShapshot.documents[0].toObject(
+                    ProductCategoryLinkedListModel::class.java)
+
+            }
+            job1.join()
+
+            return productCategoryLinkedListModel
+        }
     }
 }

@@ -36,7 +36,7 @@
 
             <TextView
                 android:id="@+id/textViewRowHomeRecommendMBTI"
-                android:layout_width="64dp"
+                android:layout_width="56dp"
                 android:layout_height="32dp"
                 android:background="#BDB14C"
                 android:gravity="center"
@@ -47,7 +47,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/item_main_product_thumbnail"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail" />
+                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail"
+                tools:text="ISFP" />
 
             <TextView
                 android:id="@+id/item_main_coordinator_name"
@@ -62,7 +63,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/item_main_product_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/item_main_product_thumbnail" />
+                app:layout_constraintTop_toBottomOf="@+id/item_main_product_thumbnail"
+                tools:text="코디네이터" />
 
             <TextView
                 android:id="@+id/item_main_product_name"
@@ -75,7 +77,8 @@
                 android:textColor="@color/black"
                 android:textSize="13dp"
                 app:layout_constraintStart_toStartOf="@+id/item_main_product_thumbnail"
-                app:layout_constraintTop_toBottomOf="@+id/item_main_coordinator_name" />
+                app:layout_constraintTop_toBottomOf="@+id/item_main_coordinator_name"
+                tools:text="여름 바캉스 룩 코디 SET" />
 
             <TextView
                 android:id="@+id/item_main_product_discount_percent"
@@ -86,7 +89,8 @@
                 android:textSize="13dp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_price"
-                app:layout_constraintStart_toStartOf="@id/item_main_product_name" />
+                app:layout_constraintStart_toStartOf="@id/item_main_product_name"
+                tools:text="10%" />
 
             <TextView
                 android:id="@+id/item_main_product_price"
@@ -99,7 +103,8 @@
                 android:textSize="13dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/item_main_product_discount_percent"
-                app:layout_constraintTop_toBottomOf="@id/item_main_product_name" />
+                app:layout_constraintTop_toBottomOf="@id/item_main_product_name"
+                tools:text="138,900" />
 
 
             <com.google.android.material.checkbox.MaterialCheckBox
@@ -116,105 +121,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/item_main_product_thumbnail2"
-                android:layout_width="184dp"
-                android:layout_height="184dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/iu_image3" />
-
-            <TextView
-                android:id="@+id/textViewRowHomeRecommendMBTI2"
-                android:layout_width="64dp"
-                android:layout_height="32dp"
-                android:background="#36C87C"
-                android:gravity="center"
-                android:text="ENFP"
-                android:textColor="#FFFFFF"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/item_main_product_thumbnail2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@id/item_main_product_thumbnail2" />
-
-            <TextView
-                android:id="@+id/item_main_coordinator_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="12dp"
-                android:text="코디네이터"
-                android:textColor="@color/black"
-                android:textSize="13dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/item_main_product_thumbnail2"
-                app:layout_constraintTop_toBottomOf="@+id/item_main_product_thumbnail2" />
-
-            <TextView
-                android:id="@+id/item_main_product_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:text="호불호 없는 출근룩 코디 SET"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textColor="@color/black"
-                android:textSize="13dp"
-                app:layout_constraintStart_toStartOf="@+id/item_main_product_thumbnail2"
-                app:layout_constraintTop_toBottomOf="@+id/item_main_coordinator_name2" />
-
-            <TextView
-                android:id="@+id/item_main_product_discount_percent2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="20%"
-                android:textColor="#FC5306"
-                android:textSize="13dp"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_price2"
-                app:layout_constraintStart_toStartOf="@id/item_main_product_name2" />
-
-            <TextView
-                android:id="@+id/item_main_product_price2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="12dp"
-                android:text="147,900"
-                android:textColor="@color/black"
-                android:textSize="13dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/item_main_product_discount_percent2"
-                app:layout_constraintTop_toBottomOf="@id/item_main_product_name2" />
-
-
-            <com.google.android.material.checkbox.MaterialCheckBox
-                android:id="@+id/item_main_product_pick_button2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="4dp"
-                android:button="@drawable/selector_favorite"
-                app:buttonTint="#B31010"
-                app:layout_constraintEnd_toEndOf="@+id/item_main_product_thumbnail2"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/item_main_product_thumbnail2" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 </layout>

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.graphics.Matrix
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.RippleDrawable
@@ -33,6 +34,29 @@ import kotlin.concurrent.thread
 
 class Tools {
     companion object{
+
+        // position 값에 따라 다른 MBTI 색상 설정
+        fun mbtiColor(mbti: String): String {
+            when (mbti) {
+                "ENFJ" -> return "#DA9D00" // 끝
+                "ENFP" -> return "#00387A" // 끝
+                "ENTJ" -> return "#CA4646" // 끝
+                "ENTP" -> return "#36C87C" // 끝
+                "ESFJ" -> return "#13D4EF" // 끝
+                "ESFP" -> return "#503778" // 끝
+                "ESTJ" -> return "#41630A" // 끝
+                "ESTP" -> return "#814011" // 끝
+                "INFJ" -> return "#BDB14C" // 끝
+                "INFP" -> return "#1434DC" // 끝
+                "INTJ" -> return "#FF7373" // 끝
+                "INTP" -> return "#B75AB6" // 끝
+                "ISFJ" -> return "#50A399" // 끝
+                "ISFP" -> return "#EAC816" // 끝
+                "ISTJ" -> return "#4D2DCE" // 끝
+                // else 는 ISTP 이다
+                else -> return "#444444"
+            }
+        }
 
         // 뷰에 포커스를 주고 키보드를 올린다.
         fun showSoftInput(context: Context, view: View){
@@ -264,7 +288,7 @@ enum class MainFragmentName(var str: String) {
 
     APP_NOTICE_FRAGMENT("AppNoticeFragment"),
 
-    CATEGORY_FRAGMENT("CategoryFragment"),
+    CATEGORY_SEARCH_FRAGMENT("CategorySearchFragment"),
     CATEGORY_MAIN_FRAGMENT("CategoryMainFragment"),
 
     COORDINATOR_MYPAGE_FRAGMENT("CoordinatorMyPageFragment"),

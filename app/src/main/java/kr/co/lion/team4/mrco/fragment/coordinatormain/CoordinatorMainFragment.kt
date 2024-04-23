@@ -12,14 +12,23 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.api.Distribution.BucketOptions.Linear
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.CoordinatorDao
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorMainItemBinding
+import kr.co.lion.team4.mrco.model.CoordinatorModel
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorMainViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorMainViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class CoordinatorMainFragment : Fragment() {
@@ -31,6 +40,14 @@ class CoordinatorMainFragment : Fragment() {
 
     lateinit var coordinatorMainViewModel: CoordinatorMainViewModel
 
+    var coordinatorIdx = -1
+
+    // 해당 코디네이터 정보를 담고 있을 리스트
+    var coordinatorList = mutableListOf<CoordinatorModel>()
+
+    // 해당 코디네이터의 상품들 정보를 담고 있을 리스트
+    var productList = mutableListOf<ProductModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentCoordinatorMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_coordinator_main, container, false)
@@ -39,6 +56,17 @@ class CoordinatorMainFragment : Fragment() {
         fragmentCoordinatorMainBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // getArguments() 메서드를 사용하여 Bundle 가져오기
+        val getBundle = arguments
+        if (getBundle != null) {
+            coordinatorIdx = getBundle.getInt("coordi_idx")
+            Log.d("test1234", "메인(홈) 페이지 - 코디네이터 Idx: $coordinatorIdx")
+        }
+
+        // 해당 코디네이터의 정보와 상품들을 가져온다
+        gettingCoordinatorData(coordinatorIdx)
+        gettingProductData(coordinatorIdx)
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
@@ -119,7 +147,7 @@ class CoordinatorMainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return productList.size
         }
 
         override fun onBindViewHolder(holder: CorrdinatorMainViewHolder, position: Int) {
@@ -132,8 +160,12 @@ class CoordinatorMainFragment : Fragment() {
                 else -> R.drawable.iu_image4
             }
             holder.rowCoordinatorMainItemBinding.itemCoordinatorMainProductThumbnail.setImageResource(imageResource)
-
-            holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainCoordiname.text = coordinatorList[0].coordi_name
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainProductName.text = productList[position].coordiName
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainMBTI.text = productList[position].coordiMBTI
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainProductPrice.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+                holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true ,null)
             }
         }
@@ -142,5 +174,24 @@ class CoordinatorMainFragment : Fragment() {
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.COORDINATOR_MAIN)
+    }
+
+    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingCoordinatorData(coordinatorIdx: Int){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 정보를 가져온다. (연동 On)
+            coordinatorList = CoordinatorDao.getCoordinatorInfo(coordinatorIdx)
+            Log.d("test1234", "코디네이터 정보 페이지 - 코디네이터: $coordinatorList")
+        }
+    }
+
+    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingProductData(coordinatorIdx: Int){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 정보를 가져온다. (연동 On)
+            productList = ProductDao.gettingProductListOneCoordinator(coordinatorIdx)
+            Log.d("test1234", "코디네이터 정보 페이지 - 상품들: ${productList.size}개")
+            fragmentCoordinatorMainBinding.recyclerViewCoordinatorMain.adapter?.notifyDataSetChanged()
+        }
     }
 }

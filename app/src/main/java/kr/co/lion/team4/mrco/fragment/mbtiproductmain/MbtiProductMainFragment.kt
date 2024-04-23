@@ -10,16 +10,23 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.FragmentMbtiProductMainBinding
 import kr.co.lion.team4.mrco.databinding.RowMbtiProductMainBinding
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
 import kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.MbtiProductMainViewModel
 import kr.co.lion.team4.mrco.viewmodel.mbtiproductmain.RowMbtiProductMainViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class MbtiProductMainFragment : Fragment() {
 
@@ -28,8 +35,12 @@ class MbtiProductMainFragment : Fragment() {
 
     lateinit var mbtiProductMainViewModel: MbtiProductMainViewModel
 
-    // 더보기 버튼 위에꺼/아래꺼
+    // 상품 정보를 담고 있을 리스트
+    var productList = mutableListOf<ProductModel>()
+    // 초기 값 더보기 버튼 : 상단 버튼(1), 하단 버튼(2)
     var buttonInt = 0
+    // 초기 값 성별 : 남자(1), 여자(2)
+    var gender = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -40,25 +51,24 @@ class MbtiProductMainFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        // 이전 페이지에서 상단 버튼(1), 하단 버튼(2) 구분
         buttonInt = arguments?.getInt("buttonInt")!!
 
         // 툴바, 하단바, 탭 관련
         settingToolbar()
-
         // 리사이클러 뷰
         settingRecyclerViewMbtiProductMain()
-
-        // 버튼
-        settingButton()
-
         // 기본 세팅
         settingInit()
+        // 버튼(남,여) 클릭 시
+        settingButton()
 
         // MBTI TextView 관찰
         mbtiProductMainViewModel.textViewMbtiProductMainMBTI.observe(viewLifecycleOwner) { mbti ->
             // MBTI TextView 업데이트
             fragmentMbtiProductMainBinding.textViewMbti.text = mbti
-            fragmentMbtiProductMainBinding.recyclerViewMbtiProductMain.adapter?.notifyDataSetChanged()
+            // Firebase에서 (성별,MBTI) 맞춤 상품 데이터 가져오기
+            gettingMainData(mbti, gender)
         }
 
         return fragmentMbtiProductMainBinding.root
@@ -72,11 +82,15 @@ class MbtiProductMainFragment : Fragment() {
             fragmentMbtiProductMainBinding.textViewSideMbti.setText("에게 잘 어울리는 코디")
             // 남자일때
             if (mainActivity.loginUserGender == 1) {
-
+                gender = 1
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = true
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = false
             }
             // 여자일때
             else {
-
+                gender = 2
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = false
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = true
             }
         }
         // 두번째 버튼으로 들어왔을때
@@ -84,19 +98,52 @@ class MbtiProductMainFragment : Fragment() {
             mbtiProductMainViewModel.textViewMbtiProductMainMBTI.value = mainActivity.loginUserMbti
             // 남자일때
             if (mainActivity.loginUserGender == 1) {
+                gender = 1
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = true
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = false
                 fragmentMbtiProductMainBinding.textViewSideMbti.setText("여성이 좋아하는 남자 코디")
             }
             // 여자일때
             else {
+                gender = 2
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderMEN.isChecked = false
+                fragmentMbtiProductMainBinding.chipMbtiProductMainGenderWOMEN.isChecked = true
                 fragmentMbtiProductMainBinding.textViewSideMbti.setText("남성이 좋아하는 여자 코디")
             }
         }
     }
 
+    // 버튼(남,여) 클릭 시
+    fun settingButton(){
+        fragmentMbtiProductMainBinding.apply {
+            buttonMbtiProductMainMBTI.setOnClickListener {
+                showMBTIBottomSheet()
+            }
+
+            chipGroupMbtiProductMainGender.setOnCheckedStateChangeListener { chipGroup, checkedChipIds ->
+                when (chipGroup.checkedChipId) {
+                    // Men 버튼
+                    2131363241 -> {
+                        gender = 1
+                        gettingMainData(mbtiProductMainViewModel?.textViewMbtiProductMainMBTI?.value!!, gender)
+                        Log.d("test1234", "MBTI 상품 페이지 - Men 버튼 클릭")
+                    }
+                    // Women 버튼
+                    2131363242 -> {
+                        gender = 2
+                        gettingMainData(mbtiProductMainViewModel?.textViewMbtiProductMainMBTI?.value!!, gender)
+                        Log.d("test1234", "MBTI 상품 페이지 - Women 버튼 클릭")
+                    }
+                }
+            }
+
+        }
+    }
+
+    // 툴바 설정
     fun settingToolbar(){
         fragmentMbtiProductMainBinding.apply {
             toolbarMbtiProductMain.apply {
-                // subtitle = "$MBTI 에게 잘 어울리는 코디"
                 setNavigationOnClickListener {
                     backProcesss()
                 }
@@ -135,14 +182,6 @@ class MbtiProductMainFragment : Fragment() {
         }
     }
 
-    fun settingButton(){
-        fragmentMbtiProductMainBinding.apply {
-            buttonMbtiProductMainMBTI.setOnClickListener {
-                showMBTIBottomSheet()
-            }
-        }
-    }
-
     // 리사이클러 뷰 어뎁터
     inner class MbtiProductMainRecyclerViewAdapter: RecyclerView.Adapter<MbtiProductMainRecyclerViewAdapter.MbtiProductMainViewHolder>(){
         inner class MbtiProductMainViewHolder(rowMbtiProductMainBinding: RowMbtiProductMainBinding): RecyclerView.ViewHolder(rowMbtiProductMainBinding.root){
@@ -172,21 +211,32 @@ class MbtiProductMainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return productList.size
         }
 
         override fun onBindViewHolder(holder: MbtiProductMainViewHolder, position: Int) {
             // position 값에 따라 다른 이미지 설정
             val imageResource = when (position % 5) {
-                0 -> R.drawable.iu_image
-                1 -> R.drawable.iu_image2
-                2 -> R.drawable.iu_image3
-                3 -> R.drawable.iu_image4
-                else -> R.drawable.iu_image5
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image4
+                3 -> R.drawable.iu_image5
+                else -> R.drawable.iu_image6
             }
             holder.rowMbtiProductMainBinding.itemMainMbtiFullProductThumbnail.setImageResource(imageResource)
+            // 해당 코디네이터의 이름
+            holder.rowMbtiProductMainBinding.itemMainMbtiFullCoordinatorName.text = "코디네이터 아이유"
+            // 해당 코디 상품의 이름
+            holder.rowMbtiProductMainBinding.itemMainMbtiFullProductName.text = "${productList[position].coordiName}"
+            // 해당 코디 상품의 가격
+            holder.rowMbtiProductMainBinding.itemMainMbtiFullProductPrice.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+            // 해당 상품 클릭 시
             holder.rowMbtiProductMainBinding.root.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
+                // 번들 생성 해줘서 해당 상품의 데이터 넘겨주기
+                val bundel = Bundle()
+                bundel.putInt("productIdx", productList[position].productIdx)
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, bundel)
             }
         }
     }
@@ -200,5 +250,15 @@ class MbtiProductMainFragment : Fragment() {
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.MBTI_PRODUCT_MAIN)
+    }
+
+    // 해당 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingMainData(mbti: String, gender: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            productList = ProductDao.gettingProductMBTIList(mbti, gender)
+            Log.d("test1234", "MBTI 상품 페이지 - 상품 개수: ${productList.size}개")
+            fragmentMbtiProductMainBinding.recyclerViewMbtiProductMain.adapter?.notifyDataSetChanged()
+        }
     }
 }

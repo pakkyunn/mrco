@@ -89,7 +89,7 @@ class CoordinatorMyPageFragment : Fragment() {
                         mainActivity.replaceFragment(MainFragmentName.HOME_MAIN_FULL, false, false, mainActivity.bundle)
                     }
                     R.id.main_bottom_navi_category -> {
-                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_FRAGMENT, false, false, null)
+                        mainActivity.replaceFragment(MainFragmentName.CATEGORY_MAIN_FRAGMENT, false, false, null)
                     }
                     R.id.main_bottom_navi_like -> {
                         mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
