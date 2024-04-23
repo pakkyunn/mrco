@@ -3,29 +3,25 @@ package kr.co.lion.team4.mrco.fragment.category
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentCategorySearchBinding
 import kr.co.lion.team4.mrco.databinding.RowCategorySemiCategory2Grid4Binding
 import kr.co.lion.team4.mrco.databinding.RowCategorySemiCategoryBinding
-import kr.co.lion.team4.mrco.viewmodel.category.CategorySearchViewModel
 
 class CategorySearchFragment : Fragment() {
 
     lateinit var fragmentCategorySearchBinding: FragmentCategorySearchBinding
     lateinit var mainActivity: MainActivity
-    lateinit var categorySearchViewModel: CategorySearchViewModel
 
     var mbtiData = mutableListOf<String>(
         "ENFJ", "ENFP", "ENTJ", "ENTP", "ESFJ", "ESFP", "ESTJ", "ESTP",
@@ -90,10 +86,11 @@ class CategorySearchFragment : Fragment() {
     var checkTpoCategorySearch = false
     var checkSeasonCategorySearch = false
     var checkMoodCategorySearch = false
-    var checkSearchCategory = false
 
     // 검색 화면의 RecyclerView 구성을 위한 리스트
     var searchList = mutableListOf<String>()
+    // gender 칩 선택 id값
+    var genderFilter = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -103,8 +100,6 @@ class CategorySearchFragment : Fragment() {
 
         fragmentCategorySearchBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_category_search, container, false)
-        categorySearchViewModel = CategorySearchViewModel()
-        fragmentCategorySearchBinding.categorySearchViewModel = categorySearchViewModel
         fragmentCategorySearchBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
@@ -113,31 +108,40 @@ class CategorySearchFragment : Fragment() {
         bottomSheetSetting()
         settingBottomTabs()
 
+        settingSearchView()
+
         // 리사이클러 뷰
+        settingRecyclerViewSearchView()
         settingRecyclerViewCategorySearch()
 
         // 카테고리 클릭 시
         categoryTextViewClick()
+
+        backProcess()
 
         return fragmentCategorySearchBinding.root
     }
 
 
     // SearchView 설정
-    fun settingSearch() {
+    fun settingSearchView() {
         fragmentCategorySearchBinding.apply {
             searchViewCategorySearch?.apply {
                 // 검색시 사용하는 키보드의 엔터키를 누르면 동작하는 리스너
                 editText.setOnEditorActionListener { v, actionId, event ->
                     if (event != null && event.action == KeyEvent.ACTION_DOWN) {
-                        // 사이드 카테고리 탭을 비활성화
-                        resetBackground()
-                        checkSearchCategory = true
-
                         // 검색 결과를 가져와 보여주는 메서드를 호출한다.
                         showSearchData()
                     }
                     false
+                }
+                editText.setOnFocusChangeListener { v, hasFocus ->
+                    if (hasFocus) {
+                        fragmentCategorySearchBinding.recyclerViewCategorySearchView?.adapter?.notifyDataSetChanged()
+                    } else {
+                        searchList.clear()
+                        fragmentCategorySearchBinding.recyclerViewCategorySearchView?.adapter?.notifyDataSetChanged()
+                    }
                 }
             }
         }
@@ -147,69 +151,80 @@ class CategorySearchFragment : Fragment() {
         // 검색어를 가져온다.
         // SearchView에 있는 입력 요소(editText)를 추출하여 사용자가 입력한 내용을 가져온다
         val keyword =
-            fragmentCategorySearchBinding.searchViewCategorySearch?.editText?.text.toString()
-
-        // 검색 결과를 가지고 있는 리스트를 비워준다.
-        searchList.clear()
+            fragmentCategorySearchBinding.searchViewCategorySearch?.editText?.text.toString().uppercase()
 
         allData.forEach {
             if (it.contains(keyword)) {
                 searchList.add(it)
             }
         }
-        // 리사이클러 뷰를 갱신한다.
-        fragmentCategorySearchBinding.recyclerViewCategorySearch?.adapter?.notifyDataSetChanged()
+        fragmentCategorySearchBinding.recyclerViewCategorySearchView?.adapter?.notifyDataSetChanged()
     }
 
-
-    // 하단 바 설정
-    fun bottomSheetSetting() {
+    // 검색 화면의 RecyclerView를 구성하는 메서드
+    fun settingRecyclerViewSearchView() {
         fragmentCategorySearchBinding.apply {
-            mainBottomNavi.setOnItemSelectedListener { item ->
-                when (item.itemId) {
-                    R.id.main_bottom_navi_home -> {
-                        mainActivity.replaceFragment(
-                            MainFragmentName.HOME_MAIN_FULL,
-                            false,
-                            false,
-                            mainActivity.bundle
-                        )
-                    }
-
-                    R.id.main_bottom_navi_category -> {
-                        mainActivity.replaceFragment(
-                            MainFragmentName.CATEGORY_MAIN_FRAGMENT,
-                            false,
-                            false,
-                            null
-                        )
-                    }
-
-                    R.id.main_bottom_navi_like -> {
-                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
-                    }
-
-                    else -> {
-                        mainActivity.replaceFragment(
-                            MainFragmentName.USER_MYPAGE_FRAGMENT,
-                            false,
-                            false,
-                            null
-                        )
-                    }
-                }
-                true
+            recyclerViewCategorySearchView?.apply {
+                adapter = SearchViewRecyclerViewAdapter()
+                layoutManager = GridLayoutManager(mainActivity, 2)
             }
         }
     }
 
-    // 하단 바 홈으로 체크 표시 설정
-    fun settingBottomTabs() {
+    fun settingGenderFilter(){
         fragmentCategorySearchBinding.apply {
-            val menuItemId = R.id.main_bottom_navi_category
-            fragmentCategorySearchBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked = true
+            genderFilter = chipGroupCategorySearchGender!!.checkedChipId
         }
     }
+
+
+    // 검색 화면의 RecyclerView의 어뎁터
+    inner class SearchViewRecyclerViewAdapter() :
+        RecyclerView.Adapter<SearchViewRecyclerViewAdapter.SearchViewViewHolder>() {
+        inner class SearchViewViewHolder(rowCategorySemiCategoryBinding: RowCategorySemiCategoryBinding) :
+            RecyclerView.ViewHolder(rowCategorySemiCategoryBinding.root) {
+            val rowCategorySemiCategoryBinding: RowCategorySemiCategoryBinding
+
+            init {
+                this.rowCategorySemiCategoryBinding = rowCategorySemiCategoryBinding
+
+                this.rowCategorySemiCategoryBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewViewHolder {
+            val rowCategorySemiCategoryBinding =
+                RowCategorySemiCategoryBinding.inflate(layoutInflater)
+            val searchViewViewHolder = SearchViewViewHolder(rowCategorySemiCategoryBinding)
+            return searchViewViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return searchList.size
+        }
+
+        override fun onBindViewHolder(holder: SearchViewViewHolder, position: Int) {
+            holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = searchList[position]
+
+            holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
+                val categorySearchBundle = Bundle()
+                settingGenderFilter()
+                categorySearchBundle.putString("SearchedCategory", searchList[position])
+                categorySearchBundle.putInt("genderFilter", genderFilter)
+                mainActivity.replaceFragment(
+                    MainFragmentName.CATEGORY_MAIN_FRAGMENT,
+                    false,
+                    true,
+                    categorySearchBundle
+                )
+            }
+        }
+    }
+
 
     // 리사이클러 뷰 설정
     fun settingRecyclerViewCategorySearch() {
@@ -228,7 +243,7 @@ class CategorySearchFragment : Fragment() {
         }
     }
 
-    // 리사이클러 뷰 어뎁터
+    // 리사이클러 뷰(2grid) 어뎁터
     inner class CategorySearchRecyclerViewAdapter :
         RecyclerView.Adapter<CategorySearchRecyclerViewAdapter.CategorySearchViewHolder>() {
         inner class CategorySearchViewHolder(rowCategorySemiCategoryBinding: RowCategorySemiCategoryBinding) :
@@ -251,7 +266,8 @@ class CategorySearchFragment : Fragment() {
         ): CategorySearchViewHolder {
             val rowCategorySemiCategoryBinding =
                 RowCategorySemiCategoryBinding.inflate(layoutInflater)
-            val categorySearchViewHolder = CategorySearchViewHolder(rowCategorySemiCategoryBinding)
+            val categorySearchViewHolder =
+                CategorySearchViewHolder(rowCategorySemiCategoryBinding)
 
             return categorySearchViewHolder
         }
@@ -261,39 +277,62 @@ class CategorySearchFragment : Fragment() {
                 return tpoData.size
             } else if (checkSeasonCategorySearch) {
                 return seasonData.size
-            } else if (checkMoodCategorySearch) {
+            } else {
                 return moodData.size
-            } else { // 검색결과를 보여주는 경우
-                return searchList.size
             }
         }
 
         override fun onBindViewHolder(holder: CategorySearchViewHolder, position: Int) {
             if (checkTpoCategorySearch) {
-                holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = tpoData[position]
+                holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text =
+                    tpoData[position]
+                holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
+                    val categorySearchBundle = Bundle()
+                    settingGenderFilter()
+                    categorySearchBundle.putString("SearchedCategory", tpoData[position])
+                    categorySearchBundle.putInt("genderFilter", genderFilter)
+                    mainActivity.replaceFragment(
+                        MainFragmentName.CATEGORY_MAIN_FRAGMENT,
+                        false,
+                        true,
+                        categorySearchBundle
+                    )
+                }
             } else if (checkSeasonCategorySearch) {
                 holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text =
                     seasonData[position]
-            } else if (checkMoodCategorySearch) {
-                holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text = moodData[position]
-            } else { // 검색결과를 보여주는 경우
+                holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
+                    val categorySearchBundle = Bundle()
+                    settingGenderFilter()
+                    categorySearchBundle.putString("SearchedCategory", seasonData[position])
+                    categorySearchBundle.putInt("genderFilter", genderFilter)
+                    mainActivity.replaceFragment(
+                        MainFragmentName.CATEGORY_MAIN_FRAGMENT,
+                        false,
+                        true,
+                        categorySearchBundle
+                    )
+                }
+            } else {
                 holder.rowCategorySemiCategoryBinding.textViewSemiCategory.text =
-                    searchList[position]
-            }
-
-            // 이미지 클릭시
-            holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
-                mainActivity.replaceFragment(
-                    MainFragmentName.CATEGORY_MAIN_FRAGMENT,
-                    false,
-                    false,
-                    null
-                )
+                    moodData[position]
+                holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
+                    val categorySearchBundle = Bundle()
+                    settingGenderFilter()
+                    categorySearchBundle.putString("SearchedCategory", moodData[position])
+                    categorySearchBundle.putInt("genderFilter", genderFilter)
+                    mainActivity.replaceFragment(
+                        MainFragmentName.CATEGORY_MAIN_FRAGMENT,
+                        false,
+                        true,
+                        categorySearchBundle
+                    )
+                }
             }
         }
     }
 
-    // MBTI 리사이클러 뷰 어뎁터
+    // MBTI 리사이클러 뷰(4grid) 어뎁터
     inner class Category2RecyclerViewAdapter :
         RecyclerView.Adapter<Category2RecyclerViewAdapter.CategorySearchViewHolder>() {
         inner class CategorySearchViewHolder(rowCategorySemiCategory2Grid4Binding: RowCategorySemiCategory2Grid4Binding) :
@@ -331,13 +370,16 @@ class CategorySearchFragment : Fragment() {
             holder.rowCategorySemiCategory2Grid4Binding.textViewSemiCategory.text =
                 mbtiData[position]
 
-            // 이미지 클릭시
             holder.rowCategorySemiCategory2Grid4Binding.imageViewRowCategorySemiCategory.setOnClickListener {
+                val categorySearchBundle = Bundle()
+                settingGenderFilter()
+                categorySearchBundle.putString("SearchedCategory", mbtiData[position])
+                categorySearchBundle.putInt("genderFilter", genderFilter)
                 mainActivity.replaceFragment(
                     MainFragmentName.CATEGORY_MAIN_FRAGMENT,
                     false,
-                    false,
-                    null
+                    true,
+                    categorySearchBundle
                 )
             }
         }
@@ -410,7 +452,73 @@ class CategorySearchFragment : Fragment() {
             checkTpoCategorySearch = false
             checkSeasonCategorySearch = false
             checkMoodCategorySearch = false
-            checkSearchCategory = false
         }
     }
+
+    // 하단 바 설정
+    fun bottomSheetSetting() {
+        fragmentCategorySearchBinding.apply {
+            mainBottomNavi.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.main_bottom_navi_home -> {
+                        mainActivity.replaceFragment(
+                            MainFragmentName.HOME_MAIN_FULL,
+                            false,
+                            false,
+                            mainActivity.bundle
+                        )
+                    }
+
+                    R.id.main_bottom_navi_category -> {
+                        mainActivity.replaceFragment(
+                            MainFragmentName.CATEGORY_MAIN_FRAGMENT,
+                            false,
+                            false,
+                            null
+                        )
+                    }
+
+                    R.id.main_bottom_navi_like -> {
+                        mainActivity.replaceFragment(MainFragmentName.LIKE, false, false, null)
+                    }
+
+                    else -> {
+                        mainActivity.replaceFragment(
+                            MainFragmentName.USER_MYPAGE_FRAGMENT,
+                            false,
+                            false,
+                            null
+                        )
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    // 하단 바 홈으로 체크 표시 설정
+    fun settingBottomTabs() {
+        fragmentCategorySearchBinding.apply {
+            val menuItemId = R.id.main_bottom_navi_category
+            fragmentCategorySearchBinding.mainBottomNavi.menu.findItem(menuItemId)?.isChecked =
+                true
+        }
+    }
+
+    fun backProcess(): View {
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    fragmentCategorySearchBinding.apply {
+                        if (searchViewCategorySearch!!.isShowing) {
+                            searchViewCategorySearch.hide()
+                        } else {
+                            mainActivity.removeFragment(MainFragmentName.CATEGORY_SEARCH_FRAGMENT)
+                        }
+                    }
+                }
+            })
+        return fragmentCategorySearchBinding.root
+    }
 }
+

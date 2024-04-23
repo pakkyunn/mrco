@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="여행"
+                android:text="ENFJ"
                 android:textColor="#000000"
                 android:textSize="12dp"
                 android:textStyle="bold"

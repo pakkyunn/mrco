@@ -4,12 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="categorySearchViewModel"
-            type="kr.co.lion.team4.mrco.viewmodel.category.CategorySearchViewModel" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,8 +48,9 @@
                             android:id="@+id/chipGroupCategorySearchGender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            app:selectionRequired="true"
                             app:singleSelection="true">
-                            <!--                        android:checkedChipId="@={categorySearchViewModel.chipGroupCategoryGender}"-->
+
 
                             <com.google.android.material.chip.Chip
                                 android:id="@+id/chipCategorySearchGenderMEN"
@@ -181,7 +176,7 @@
                         android:layout_weight="0.4"
                         android:background="#80DADADA"
                         android:clipToPadding="false"
-                        android:paddingBottom="120dp" />
+                        android:paddingBottom="40dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -190,13 +185,15 @@
                 android:id="@+id/searchViewCategorySearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                app:backgroundTint="#DADADA"
                 app:layout_anchor="@id/searchBarCategorySearch">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewCategorySearchView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
+                    android:layout_height="match_parent"
+                    android:background="#DADADA"
+                    android:padding="16dp" />
             </com.google.android.material.search.SearchView>
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
