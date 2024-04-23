@@ -27,6 +27,8 @@ import kr.co.lion.team4.mrco.model.CoordinatorModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorMainViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorMainViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 
 class CoordinatorMainFragment : Fragment() {
@@ -145,7 +147,7 @@ class CoordinatorMainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return productList.size
         }
 
         override fun onBindViewHolder(holder: CorrdinatorMainViewHolder, position: Int) {
@@ -158,8 +160,12 @@ class CoordinatorMainFragment : Fragment() {
                 else -> R.drawable.iu_image4
             }
             holder.rowCoordinatorMainItemBinding.itemCoordinatorMainProductThumbnail.setImageResource(imageResource)
-
-            holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainCoordiname.text = coordinatorList[0].coordi_name
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainProductName.text = productList[position].coordiName
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainMBTI.text = productList[position].coordiMBTI
+            holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainProductPrice.text =
+                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+                holder.rowCoordinatorMainItemBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true ,null)
             }
         }
