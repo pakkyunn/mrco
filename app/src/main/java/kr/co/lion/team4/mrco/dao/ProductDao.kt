@@ -150,6 +150,34 @@ class ProductDao {
             return productList
         }
 
+        // 해당 성별, MBTI에 맞는 상품을 가져온다
+        suspend fun gettingProductListOneCoordinator(coordinatorIdx:Int): MutableList<ProductModel>{
+            // 게시글 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
+                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+                // 내림 차순 정렬
+                query = query.orderBy("productIdx", Query.Direction.DESCENDING)
+                // 해당 코디네이터의 상품만 찾기
+                query = query.whereEqualTo("coordinatorIdx", coordinatorIdx)
+
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
         // 상품 번호 시퀀스값을 가져온다.
         suspend fun getContentSequence():Int{
             var productSequence = -1

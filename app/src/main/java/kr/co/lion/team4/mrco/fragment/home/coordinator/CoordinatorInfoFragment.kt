@@ -30,7 +30,7 @@ class CoordinatorInfoFragment : Fragment() {
     lateinit var fragmentCoordinatorInfoBinding: FragmentCoordinatorInfoBinding
     lateinit var mainActivity: MainActivity
 
-    // 모든 사용자 정보를 담고 있을 리스트
+    // 모든 코디네이터 정보를 담고 있을 리스트
     var coordinatorList = mutableListOf<CoordinatorModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -135,7 +135,7 @@ class CoordinatorInfoFragment : Fragment() {
         }
     }
 
-    // 현재 게시판의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
     fun gettingMainData(){
         CoroutineScope(Dispatchers.Main).launch {
             // 모든 코디네이터의 정보를 가져온다. (연동 On)

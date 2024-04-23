@@ -17,9 +17,11 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
+import kr.co.lion.team4.mrco.model.CoordinatorModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRank2ViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRankViewModel
@@ -32,6 +34,9 @@ class CoordinatorRankFragment : Fragment() {
 
     lateinit var coordinatorRankViewModel: CoordinatorRankViewModel
 
+    // 모든 코디네이터 정보를 담고 있을 리스트
+    var coordinatorList = mutableListOf<CoordinatorModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
@@ -42,6 +47,9 @@ class CoordinatorRankFragment : Fragment() {
         fragmentCoordinatorRankBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // 데이터 가져오기
+        gettingMainData()
 
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorRank()
@@ -89,7 +97,7 @@ class CoordinatorRankFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 10
+            return coordinatorList.size
         }
 
         override fun onBindViewHolder(holder: CorrdinatorRankViewHolder, position: Int) {
@@ -105,8 +113,11 @@ class CoordinatorRankFragment : Fragment() {
             }
             holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setImageResource(imageResource)
 
+            val bundle = Bundle()
+            bundle.putInt("coordi_idx", coordinatorList[position].coordi_idx)
+
             holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
+                mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, bundle)
                 Log.d("test1234", "인기 코디네이터 화면 : imageView - Click / 코디네이터 메인으로 이동")
             }
 
@@ -184,6 +195,16 @@ class CoordinatorRankFragment : Fragment() {
             holder.rowCoordinatorRank2Binding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
             }
+        }
+    }
+
+    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingMainData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 정보를 가져온다. (연동 On)
+            coordinatorList = CoordinatorDao.getCoordinatorAll()
+            Log.d("test1234", "인기 코디네이터 페이지 - coordinatorList: ${coordinatorList.size}명")
+            fragmentCoordinatorRankBinding.recyclerViewCoordinatorRank.adapter?.notifyDataSetChanged()
         }
     }
 }

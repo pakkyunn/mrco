@@ -4,6 +4,7 @@ package kr.co.lion.team4.mrco.dao
 import android.content.Context
 import android.net.Uri
 import com.google.firebase.Firebase
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
@@ -12,6 +13,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.CoordinatorModel
+import kr.co.lion.team4.mrco.model.ProductModel
 import java.io.File
 
 class CoordinatorDao {
@@ -53,6 +55,29 @@ class CoordinatorDao {
                 val querySnapshot = Firebase.firestore.collection("CoordinatorData").get().await()
                 // 가져온 문서의 수 만큼 반복한다.
                 querySnapshot.forEach {
+                    // CoordinatorModel 객체에 담는다.
+                    val coordinatorModel = it.toObject(CoordinatorModel::class.java)
+                    // 리스트에 담는다.
+                    coordiList.add(coordinatorModel)
+                }
+            }
+            job1.join()
+
+            return coordiList
+        }
+
+        // 해당 코디네이터에 맞는 정보를 가져온다
+        suspend fun getCoordinatorInfo(cordinatorIdx: Int): MutableList<CoordinatorModel>{
+            // 코디네이터 정보를 담을 리스트
+            val coordiList = mutableListOf<CoordinatorModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+                // 인덱스 값과 일치하는 코디네이터 정보만 가져온다
+                var query = collectionReference.whereEqualTo("coordi_idx", cordinatorIdx)
+                val queryShapshot = query.get().await()
+                // 가져온 문서의 수 만큼 반복한다.
+                queryShapshot.forEach {
                     // CoordinatorModel 객체에 담는다.
                     val coordinatorModel = it.toObject(CoordinatorModel::class.java)
                     // 리스트에 담는다.
