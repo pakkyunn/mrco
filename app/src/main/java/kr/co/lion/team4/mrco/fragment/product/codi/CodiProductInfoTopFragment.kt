@@ -19,73 +19,69 @@ import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoTopBinding
 import kr.co.lion.team4.mrco.databinding.RowCodiProductInfoTopBinding
 import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoTopViewModel
 
 class CodiProductInfoTopFragment : Fragment() {
 
     private lateinit var binding: FragmentCodiProductInfoTopBinding
-    private lateinit var viewModel: CodiProductInfoTopViewModel
     private lateinit var mainActivity: MainActivity
 
+    // 상품 번호를 받는다
+    var productIdx = 0
+    // 코디 상품명을 받는다
+    var codiProductName = ""
+    // 상의 상품 정보를 가지고 있는 리스트
+    var codiProductTopList: ArrayList<List<Map<Int,String>>> = arrayListOf()
+    var codiProductTopFineList: List<Map<Int, String>> = listOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.d("taejin", "코디 상품 상세 - 상의")
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_top, container, false)
-        viewModel = CodiProductInfoTopViewModel()
         mainActivity = activity as MainActivity
-
         binding.lifecycleOwner = this
-        binding.codiProductInfoTopViewModel = viewModel
 
-        settingView()
+        gettingBundleData()
+        settingRecyclerView()
+
+        gettingCodiProductTopData()
 
         return binding.root
     }
 
-
-    fun settingInputForm(){
+    fun gettingBundleData(){
         val bundle = arguments
-        var productIdx = 0
-        if (bundle != null){
-            productIdx = bundle.getInt("productIdx")
-        }
+        productIdx = bundle!!.getInt("productIdx")
+        codiProductName = bundle.getString("productName")!!
 
-        CoroutineScope(Dispatchers.Main).launch {
-
-            // 현재 글 번호에 해당하는 글 데이터를 가져온다.
-            val productModel = ProductDao.selectProductData(productIdx)
-            val productCategoryLinkedListModel = ProductDao.selectProductInfoData(productIdx)
-
-
-//            // 가져온 데이터를 보여준다.
-//            viewModel.codiProductName.value = productModel?.coordiName
-//
-//            viewModel.codiProductType.value = when(productModel?.categoryId){
-//                ContentType.TYPE_FREE.number -> ContentType.TYPE_FREE.str
-//                ContentType.TYPE_HUMOR.number -> ContentType.TYPE_HUMOR.str
-//                ContentType.TYPE_SOCIETY.number -> ContentType.TYPE_SOCIETY.str
-//                ContentType.TYPE_SPORTS.number -> ContentType.TYPE_SPORTS.str
-//                else -> ""
-//            }
-//
-//            readContentViewModel.textFieldReadContentNickName.value = userModel?.userNickName
-//            readContentViewModel.textFieldReadContentDate.value = contentModel?.contentWriteDate
-//            readContentViewModel.textFieldReadContentText.value = contentModel?.contentText
-//
-//            // 글 작성자와 로그인한 사람이 같은지 확인한다.
-//            isContentWriter = contentActivity.loginUserIdx == contentModel?.contentWriterIdx
-//
-//            // 이미지 데이터를 불러온다.
-//            if(contentModel?.contentImage != null) {
-//                ContentDao.gettingContentImage(contentActivity, contentModel.contentImage!!, fragmentReadContentBinding.imageViewReadContent)
-//            }
-        }
+        val temp = mapOf<Int, String>(0 to "gg")
+        Log.d("taejin", temp[0].toString())
     }
 
-    private fun settingView(){
+    // DB에서 coordiItem 데이터 받아옴
+    fun gettingCodiProductTopData(){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 상품 정보를 가져온다.
+            codiProductTopList = ProductDao.selectProductInfoData(productIdx)
+            codiProductTopFineList = codiProductTopList[0]
+            Log.d("taejin","${codiProductTopList}")
+            Log.d("taejin","0 : ${codiProductTopList[0]}")
+            Log.d("taejin","1 : ${codiProductTopList[0][0]}")
+            Log.d("taejin","2 : ${codiProductTopList[0][0][0]}")
+            Log.d("taejin","3 : ${codiProductTopList[0][0][1]}")
+            Log.d("taejin","4 : ${codiProductTopList[0][0][2]}")
+//            Log.d("taejin","${codiProductTopList[0][3]}")
+
+
+            // 리사이클러뷰를 갱신한다
+            binding.recyclerViewProductInfoTop.adapter?.notifyDataSetChanged()
+        }
+    }
+    //
+
+    private fun settingRecyclerView(){
         binding.apply {
             recyclerViewProductInfoTop.apply {
-                Log.d("CodiProductInfoFragment", "settingView")
 
                 // 어댑터 설정
                 adapter = CodiProductInfoTopAdapater()
@@ -93,6 +89,7 @@ class CodiProductInfoTopFragment : Fragment() {
                 layoutManager = LinearLayoutManager(mainActivity)
                 // 구분선 추가
                 val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
+                deco.isLastItemDecorated = false // 마지막 구분선 제거
                 addItemDecoration(deco)
             }
         }
@@ -123,16 +120,17 @@ class CodiProductInfoTopFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: CodiProductInfoTopAdapater.TopViewHolder, position: Int) {
-            Log.d("CodiProductInfoFragment", "onBindViewHolder start")
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel?.productNameTop?.value = productTopList[position].itemName
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel?.productTypeTop?.value = productTopList[position].itemCategory
-//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel?.productSizeTop?.value = productTopList[position].itemSize.toString()
-            Log.d("CodiProductInfoFragment", "onBindViewHolder end")
+            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.codiProductNameTop.value = codiProductName
+            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSerialNumTop.value = codiProductTopList[position][0][3]
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productNameTop.value = codiProductTopList[position].toString()
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSizeTop.value = codiProductTopList[position].itemSize.toString()
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productTypeTop.value = codiProductTopList[position].itemType
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productColorTop.value = codiProductTopList[position].itemColor.toString()
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productPriceTop.value = codiProductTopList[position].itemPrice.toString()
         }
 
         override fun getItemCount(): Int {
-//            return productTopList.size
-            return 6
+            return codiProductTopList.size
         }
 
     }

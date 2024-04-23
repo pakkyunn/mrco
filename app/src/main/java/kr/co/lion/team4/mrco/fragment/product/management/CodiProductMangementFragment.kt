@@ -118,6 +118,7 @@ class CodiProductMangementFragment : Fragment() {
             holder.rowCodiProductBinding.root.setOnClickListener {
                 val bundle = Bundle()
                 bundle.putInt("productIdx", codiProductList[position].productIdx)
+                bundle.putString("productName", codiProductList[position].coordiName)
 
                 // 화면 전환 -> CodiProductInfo
                 mainActivity.replaceFragment(MainFragmentName.FRAGMENT_CODI_PRODUCT_INFO, true, true, bundle)

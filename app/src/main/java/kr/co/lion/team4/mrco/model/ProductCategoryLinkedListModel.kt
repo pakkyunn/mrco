@@ -10,7 +10,10 @@ data class ProductCategoryLinkedListModel(
     var itemStock: Int,
     var itemSize: ProductSize,
     var itemImageFileName: String,
-    var itemColor: ProductColor
+    var itemColor: ProductColor,
+    var itemPrice: Int,
+    var itemType: String
+
 ) {
-    constructor(): this(0,"","",0, ProductSize.SIZE_MEDIUM,"", ProductColor.COLOR_WHITE)
+    constructor(): this(0,"","",0, ProductSize.SIZE_MEDIUM,"", ProductColor.COLOR_WHITE, 0, "")
 }
