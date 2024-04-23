@@ -37,7 +37,7 @@
                     android:paddingEnd="16dp">
 
                     <com.google.android.material.search.SearchBar
-                        android:id="@+id/searchBarMain"
+                        android:id="@+id/searchBarCategorySearch"
                         style="@style/Widget.Material3.SearchBar.Outlined"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -166,23 +166,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="?android:attr/listDivider" />
-
-                        <TextView
-                            android:id="@+id/textViewAllCategorySearch"
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:clickable="true"
-                            android:gravity="center"
-                            android:text="ALL"
-                            android:textColor="#656565"
-                            android:textSize="20dp"
-                            android:theme="@style/Basic_Font_Theme" />
-
-                        <View
-                            android:id="@+id/divider19"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="?android:attr/listDivider" />
                     </LinearLayout>
 
                     <View
@@ -203,35 +186,14 @@
 
             </LinearLayout>
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/floatingButtonCategorySearchReset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_marginEnd="80dp"
-                android:layout_marginBottom="16dp"
-                app:backgroundTint="#000000"
-                app:icon="@drawable/refresh_24px"
-                app:iconTint="#FFFFFF" />
-
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-                android:id="@+id/floatingButtonCategorySearchApply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|bottom"
-                android:layout_margin="16dp"
-                app:backgroundTint="#000000"
-                app:icon="@drawable/baseline_arrow_forward_ios_24"
-                app:iconTint="#FFFFFF" />
-
             <com.google.android.material.search.SearchView
-                android:id="@+id/searchViewMain"
+                android:id="@+id/searchViewCategorySearch"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_anchor="@id/searchBarMain">
+                app:layout_anchor="@id/searchBarCategorySearch">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewMainSearch"
+                    android:id="@+id/recyclerViewCategorySearch"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
