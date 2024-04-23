@@ -31,6 +31,8 @@ class CoordinatorMainFragment : Fragment() {
 
     lateinit var coordinatorMainViewModel: CoordinatorMainViewModel
 
+    var coordinatorIdx = -1
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentCoordinatorMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_coordinator_main, container, false)
@@ -39,6 +41,13 @@ class CoordinatorMainFragment : Fragment() {
         fragmentCoordinatorMainBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // getArguments() 메서드를 사용하여 Bundle 가져오기
+        val getBundle = arguments
+        if (getBundle != null) {
+            coordinatorIdx = getBundle.getInt("coordi_idx")
+            Log.d("test1234", "메인(홈) 페이지 - 코디네이터 Idx: $coordinatorIdx")
+        }
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()

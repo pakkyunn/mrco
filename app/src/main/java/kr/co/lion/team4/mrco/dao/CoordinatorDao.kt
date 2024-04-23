@@ -28,7 +28,7 @@ class CoordinatorDao {
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // Storage에 접근할 수 있는 객체를 가져온다.(폴더의 이름과 파일이름을 저장해준다.
-                val storageRef = Firebase.storage.reference.child("coordinator_join_image/images/$uploadFileName")
+                val storageRef = Firebase.storage.reference.child("coordinator/images/$uploadFileName")
                 // 업로드한다.
                 storageRef.putFile(uri)
             }
@@ -46,11 +46,11 @@ class CoordinatorDao {
                 val collectionReference = Firebase.firestore.collection("CoordinatorData")
 
                 // 코디네이터 등록상태가 참인 경우에만..
-                var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
-//                query = query.whereEqualTo("")
+                // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
+                // query = query.whereEqualTo("")
 
                 // 모든 사용자 정보를 가져온다
-                val querySnapshot = Firebase.firestore.collection("UserData").get().await()
+                val querySnapshot = Firebase.firestore.collection("CoordinatorData").get().await()
                 // 가져온 문서의 수 만큼 반복한다.
                 querySnapshot.forEach {
                     // CoordinatorModel 객체에 담는다.
