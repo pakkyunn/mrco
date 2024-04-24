@@ -477,3 +477,27 @@ enum class InquiryPeriod(var num: Int){
     THREE_MONTHS(-3),
     SIX_MONTHS(-6)
 }
+
+// 주문 상태
+enum class OrderState(var str: String, var num:Int){
+    ORDERED("주문 접수", 0),
+    ORDER_CONFIRM("구매 확정", 1),
+    RETURN("반품 접수", 2),
+    EXCHANGE("교환 접수", 3),
+    CANCEL("주문 취소", 4),
+}
+
+// 배송 상태
+enum class ShippingState(var str: String, var num:Int){
+    READY_TO_SHIP("발송준비", 0),
+    SHIPPED("배송시작", 1),
+    IN_TRANSIT("배송중", 2),
+    ARRIVE_SOON("도착예정", 3),
+    DELIVERED("도착", 4),
+}
+
+// 리뷰 작성 상태
+enum class ReviewState(var buttonText: String, var num: Int) {
+    WAITING("리뷰 작성", 0), // 리뷰 작성 대기중
+    COMPLETE("리뷰 보기", 1) // 리뷰 작성 완료
+}
