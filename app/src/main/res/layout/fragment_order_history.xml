@@ -54,7 +54,18 @@
                     android:id="@+id/recyclerview_order_history_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/white" />
+                    android:background="@color/material_dynamic_neutral90"
+                    android:clipToPadding="false"
+                    android:paddingVertical="16dp" />
+
+                <TextView
+                    android:id="@+id/textview_order_history_search_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="일치하는 검색결과가 없습니다"
+                    android:visibility="gone" />
             </com.google.android.material.search.SearchView>
 
             <com.google.android.material.button.MaterialButtonToggleGroup
