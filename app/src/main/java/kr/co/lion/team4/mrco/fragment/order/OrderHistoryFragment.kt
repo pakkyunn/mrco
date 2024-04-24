@@ -71,10 +71,8 @@ class OrderHistoryFragment : Fragment() {
         settingOrderHistoryRecyclerView()
         settingOrderHistoryPeriodButtonClickListener()
 
-        // 기본 조회기간 설정
+        // 기본 조회기간 설정 및 조회기간에 맞는 주문내역 불러오기
         settingOrderHistoryPeriod(InquiryPeriod.ONE_MONTH)
-        // 전체 주문 내역 불러오기
-        gettingOrderList()
 
         return fragmentOrderHistoryBinding.root
     }
@@ -133,21 +131,22 @@ class OrderHistoryFragment : Fragment() {
                     orderHistoryViewModel?.periodStart?.value = Timestamp(startDate)
                     // 종료일
                     orderHistoryViewModel?.periodEnd?.value = Timestamp(endDate)
-                }
 
-                // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
+                    // 조회 기간에 맞는 주문 배송 내역 불러오기
+                    gettingOrderList()
+                }
             }
         }
     }
 
     // dateRangePicker에서 선택된 날짜의 Long 값을 날짜로 변환
-    fun getDateFromLongValue(date: Long) : String{
+/*    fun getDateFromLongValue(date: Long) : String{
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = date
         val date = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(calendar.time)
 
         return date
-    }
+    }*/
 
     // 현재 날짜로부터 1개월, 3개월, 6개월 조회 기간을 설정
     fun settingOrderHistoryPeriod(periodType: InquiryPeriod){
@@ -178,20 +177,34 @@ class OrderHistoryFragment : Fragment() {
             }
         }
         // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
+        gettingOrderList()
     }
 
     // 서버에서 로그인한 유저의 전체 주문 내역을 불러온다.
     fun gettingOrderList(){
         CoroutineScope(Dispatchers.Main).launch {
+            orderList.clear()
             filteredOrderList.clear()
-            orderList = OrderHistoryDao.gettingOrderList(mainActivity.loginUserIdx)
-            if(orderList.size>0){
+
+            // 조회 시작일
+            val startDateTimestamp = orderHistoryViewModel.periodStart.value
+            // 조회 종료일
+            val enddDateTimestamp = orderHistoryViewModel.periodEnd.value
+
+            orderList = OrderHistoryDao.gettingOrderList(mainActivity.loginUserIdx, startDateTimestamp!!, enddDateTimestamp!!)
+
+            if(orderList.size>0){ // 주문 내역이 존재하는 경우
                 filteredOrderList.addAll(orderList)
-//            fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
+                // 주문한 상품들의 정보를 불러온 뒤, 리사이클러뷰를 갱신해준다.
                 gettingOrderItemInfoFromOrderList()
-            }else{ // 주문 내역이 존재하지 않는 경우
-
-
+            }
+            // 주문 내역이 존재하지 않는 경우
+            else{
+                fragmentOrderHistoryBinding.apply {
+                    // 리사이클러뷰를 숨기고, 주문내역이 없다는 안내문구를 띄워준다.
+                    recyclerviewOrderHistory.visibility = View.GONE
+                    textviewOrderHistoryEmpty.visibility = View.VISIBLE
+                }
             }
 
         }
