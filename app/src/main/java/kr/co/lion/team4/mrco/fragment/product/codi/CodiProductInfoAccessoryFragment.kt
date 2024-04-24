@@ -12,8 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoAccessoryBinding
 import kr.co.lion.team4.mrco.databinding.RowCodiProductInfoAccessoryBinding
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAccesoryViewModel
@@ -21,25 +25,60 @@ import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAccesoryViewModel
 class CodiProductInfoAccessoryFragment : Fragment() {
 
     private lateinit var binding: FragmentCodiProductInfoAccessoryBinding
-    private lateinit var viewModel: CodiProductInfoAccesoryViewModel
     private lateinit var mainActivity: MainActivity
+
+    var productIdx = 0
+    var codiProductName = ""
+
+    var codiProductAccessoryList: ArrayList<List<Map<String, String>>> = arrayListOf()
+    var codiProductAccessoryFineList: List<Map<String, String>> = listOf()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         Log.d("taejin", "코디 상품 상세 - 악세서리")
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_codi_product_info_accessory, container, false)
-        viewModel = ViewModelProvider(this).get(CodiProductInfoAccesoryViewModel::class.java)
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
-        binding.codiProductInfoAccessoryViewModel = viewModel
 
-        setiingView()
+        gettingBundleData()
 
-        Log.d("CodiProductAccessoryFragment", "onCreateViewEnd")
+        setiingRecyclerView()
+
+        gettingCodiProductAccessoryData()
+
         return binding.root
     }
 
-    private fun setiingView(){
+    fun gettingBundleData(){
+        val bundle = arguments
+        productIdx = bundle!!.getInt("productIdx")
+        codiProductName = bundle.getString("productName")!!
+    }
+
+    fun gettingCodiProductAccessoryData(){
+        CoroutineScope(Dispatchers.Main).launch {
+            codiProductAccessoryList = ProductDao.selectProductInfoData(productIdx)
+
+            filterData()
+            Log.d("taejinCheck", "데이터 받아왔는지 확인 :\n${codiProductAccessoryFineList}")
+            binding.recyclerViewCodiProductInfoAccessory.adapter?.notifyDataSetChanged()
+        }
+    }
+
+    // DB 데이터 걸러줌
+    fun filterData(){
+        // 타입이 하의인 것만 골라낸다
+        val temp = codiProductAccessoryList[0].filter { item ->
+            item["3"] == "악세사리"
+        }
+        if (temp.isNotEmpty()){
+            codiProductAccessoryFineList = temp
+        }
+    }
+
+
+
+    private fun setiingRecyclerView(){
         binding.apply {
             recyclerViewCodiProductInfoAccessory.apply {
                 // 어댑터
@@ -70,23 +109,27 @@ class CodiProductInfoAccessoryFragment : Fragment() {
             parent: ViewGroup,
             viewType: Int
         ): CodiProductInfoAccessoryViewHolder {
-            Log.d("CodiProductAccessoryFragment", "onCreateViewHolder Start")
             val rowbinding = DataBindingUtil.inflate<RowCodiProductInfoAccessoryBinding>(layoutInflater, R.layout.row_codi_product_info_accessory, parent, false)
             val rowViewModel = CodiProductInfoAccesoryViewModel()
             rowbinding.codiProductInfoAccessoryViewModel = rowViewModel
             rowbinding.lifecycleOwner = this@CodiProductInfoAccessoryFragment
 
             val viewholder = CodiProductInfoAccessoryViewHolder(rowbinding)
-            Log.d("CodiProductAccessoryFragment", "onCreateViewHolder End")
             return viewholder
         }
 
         override fun getItemCount(): Int {
-            return 6
+            return codiProductAccessoryFineList.size
         }
 
         override fun onBindViewHolder(holder: CodiProductInfoAccessoryViewHolder, position: Int) {
-
+            holder.rowbinding.codiProductInfoAccessoryViewModel!!.codiProductNameAccessory.value = codiProductName
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSerialNumTop.value = codiProductTopFineList[position]["0"]
+            holder.rowbinding.codiProductInfoAccessoryViewModel!!.codiProductNameAccessory.value = codiProductAccessoryFineList[position]["0"]
+            holder.rowbinding.codiProductInfoAccessoryViewModel!!.codiProductSizeAccessory.value = codiProductAccessoryFineList[position]["1"]
+            holder.rowbinding.codiProductInfoAccessoryViewModel!!.codiProductTypeAccessory.value = codiProductAccessoryFineList[position]["3"]+ "${position + 1}"
+            holder.rowbinding.codiProductInfoAccessoryViewModel!!.codiProductColorAccessory.value = codiProductAccessoryFineList[position]["4"]
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productPriceTop.value = codiProductTopList[position].itemPrice.toString()
         }
     }
 

@@ -52,7 +52,6 @@ class CodiProductInfoTopFragment : Fragment() {
         val bundle = arguments
         productIdx = bundle!!.getInt("productIdx")
         codiProductName = bundle.getString("productName")!!
-
     }
 
     // DB에서 coordiItem 데이터 받아옴

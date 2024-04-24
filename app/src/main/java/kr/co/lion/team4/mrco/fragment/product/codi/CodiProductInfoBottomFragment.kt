@@ -62,6 +62,7 @@ class CodiProductInfoBottomFragment : Fragment() {
         val bundle = arguments
         productIdx = bundle!!.getInt("productIdx")
         codiProductName = bundle.getString("productName")!!
+        Log.d("taejinCheck", codiProductName)
     }
 
     // DB에서 coordiItem 데이터 받아옴
@@ -69,9 +70,6 @@ class CodiProductInfoBottomFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다.
             codiProductBottomList = ProductDao.selectProductInfoData(productIdx)
-            Log.d("taejin", "codiProductBottomList: ${codiProductBottomList}")
-            codiProductBottomFineList = codiProductBottomList[0]
-            Log.d("taejin", "codiProductBottomFineList: ${codiProductBottomFineList}")
 
             filterData()
 
