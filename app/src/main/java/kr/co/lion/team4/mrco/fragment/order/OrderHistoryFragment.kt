@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.order
 
 import android.os.Bundle
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -52,10 +53,12 @@ class OrderHistoryFragment : Fragment() {
     // 주문 상품의 상품 정보를 담을 리스트
     var orderedProductInfoList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
     // 주문 상태별로 구분된 상품들의 정보를 담을 리스트
-    var filteredorderedProductInfoList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
+    var filteredOrderedProductInfoList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
 
     // 검색 화면의 RecyclerView 구성을 위한 리스트
     var searchResultOrderList = mutableListOf<OrderModel>()
+    // 검색 화면의 RecyclerView 구성을 위한 상품들의 정보를 담을 리스트
+    var searchResultProductInfoList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentOrderHistoryBinding = DataBindingUtil.inflate(inflater,
@@ -78,6 +81,9 @@ class OrderHistoryFragment : Fragment() {
 
         // Tab Layout 세팅
         settingOrderHistoryTab()
+
+        // 검색어 입력창 세팅
+        settingOrderHistorySearchView()
 
         return fragmentOrderHistoryBinding.root
     }
@@ -122,10 +128,10 @@ class OrderHistoryFragment : Fragment() {
                                 hideNotice()
                                 // 목록 초기화
                                 filteredOrderList.clear()
-                                filteredorderedProductInfoList.clear()
+                                filteredOrderedProductInfoList.clear()
                                 // 전체 주문내역, 상품정보 목록을 담아준다.
                                 filteredOrderList.addAll(orderList) // 전체 주문내역 목록을 담아준다.
-                                filteredorderedProductInfoList.addAll(orderedProductInfoList)
+                                filteredOrderedProductInfoList.addAll(orderedProductInfoList)
                                 fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
                             }
                         }
@@ -151,13 +157,13 @@ class OrderHistoryFragment : Fragment() {
     fun filterOrderListByTab( state : Int, stateAdditional : Int ){
         // 리스트 초기화
         filteredOrderList.clear()
-        filteredorderedProductInfoList.clear()
+        filteredOrderedProductInfoList.clear()
         orderList.forEachIndexed { index, orderModel ->
             if(orderModel.order_state >= state && orderModel.order_state <= stateAdditional ){
                 filteredOrderList.add(orderModel)
                 // 상품 정보도 동일하게 상품 정보 리스트에 추가해준다.
                 val orderedProductInfo = orderedProductInfoList[index]
-                filteredorderedProductInfoList.add(orderedProductInfo)
+                filteredOrderedProductInfoList.add(orderedProductInfo)
             }
         }
         if(filteredOrderList.size>0){
@@ -242,7 +248,7 @@ class OrderHistoryFragment : Fragment() {
                 orderHistoryViewModel.periodStart.value = Timestamp(calendar.time)
             }
         }
-        // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
+        // 조회 기간에 맞는 주문 배송 내역 불러오기
         gettingOrderList()
     }
 
@@ -287,24 +293,77 @@ class OrderHistoryFragment : Fragment() {
         }
     }
 
+    // 주문 내역의 상품 정보(상품명, 상품 이미지 파일명, 판매가)를 불러온다
     fun gettingOrderItemInfoFromOrderList(){
         CoroutineScope(Dispatchers.Main).launch {
-            filteredorderedProductInfoList.clear() // 목록 초기화
+            filteredOrderedProductInfoList.clear() // 목록 초기화
             orderedProductInfoList = OrderHistoryDao.gettingOrderedItemInfo(orderList)
-            filteredorderedProductInfoList.addAll(orderedProductInfoList)
+            filteredOrderedProductInfoList.addAll(orderedProductInfoList)
             fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
         }
     }
 
+    // SearchView에서 검색어 입력후 키보드 엔터키를 누르면 검색되도록 설정
+    fun settingOrderHistorySearchView(){
+        fragmentOrderHistoryBinding.apply {
+            searchviewOrderHistory.apply {
+                // 검색 시 사용하는 키보드의 엔터키를 누르면 동작하는 리스너
+                editText.setOnEditorActionListener { view, actionId, event ->
+                    if(event!=null && event.action == KeyEvent.ACTION_DOWN){
+                        // 검색 결과 목록 초기화
+                        searchResultOrderList.clear()
+                        searchResultProductInfoList.clear()
+
+                        val keyword = editText.text.toString()
+                        if(keyword.isEmpty()){
+                            Tools.showErrorDialog(mainActivity, searchviewOrderHistory, "검색어 입력 오류", "검색어를 입력해주세요.")
+                        }else{ // 검색어가 입력되었다면
+                            // 검색결과가 없다는 TextView는 숨겨주고,
+                            fragmentOrderHistoryBinding.textviewOrderHistorySearchEmpty.visibility = View.GONE
+                            // 검색 결과를 가져와 보여주는 메서드를 호출한다.
+                            gettingOrderSearchList(keyword)
+                        }
+                    }
+                    false
+                }
+            }
+        }
+    }
+
+    // 검색 결과 불러오기
+    fun gettingOrderSearchList(keyword: String){
+        orderedProductInfoList.forEachIndexed { index, orderedProductInfoModels ->
+            orderedProductInfoModels.forEach {
+                if(it.ordered_product_name.contains(keyword)){
+                    searchResultOrderList.add(orderList[index])
+                    searchResultProductInfoList.add(orderedProductInfoModels)
+                    return@forEachIndexed
+                }
+            }
+        }
+
+        // 검색결과 없으면
+        if(searchResultOrderList.size < 1){
+            fragmentOrderHistoryBinding.textviewOrderHistorySearchEmpty.visibility = View.VISIBLE
+        }
+    }
+
     fun settingOrderHistoryRecyclerView(){
+        // 주문 / 배송 내역 목록
         fragmentOrderHistoryBinding.recyclerviewOrderHistory.apply {
-            adapter = OrderHistoryRecyclerViewAdapter()
+            adapter = OrderHistoryRecyclerViewAdapter(filteredOrderList, filteredOrderedProductInfoList)
+            layoutManager = LinearLayoutManager(mainActivity)
+        }
+
+        // 검색 결과 목록
+        fragmentOrderHistoryBinding.recyclerviewOrderHistorySearch.apply {
+            adapter = OrderHistoryRecyclerViewAdapter(searchResultOrderList, searchResultProductInfoList)
             layoutManager = LinearLayoutManager(mainActivity)
         }
     }
 
     // 주문 내역 목록의 RecyclerView Adapter
-    inner class OrderHistoryRecyclerViewAdapter : RecyclerView.Adapter<OrderHistoryRecyclerViewAdapter.OrderHistoryItemViewHolder>(){
+    inner class OrderHistoryRecyclerViewAdapter(var orders: MutableList<OrderModel>, var productsInfo: MutableList<ArrayList<OrderedProductInfoModel>>) : RecyclerView.Adapter<OrderHistoryRecyclerViewAdapter.OrderHistoryItemViewHolder>(){
         inner class OrderHistoryItemViewHolder(itemOrderhistoryItemBinding:ItemOrderhistoryItemBinding):
             RecyclerView.ViewHolder(itemOrderhistoryItemBinding.root){
                 val itemOrderhistoryItemBinding : ItemOrderhistoryItemBinding
@@ -330,7 +389,7 @@ class OrderHistoryFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: OrderHistoryItemViewHolder, position: Int) {
-            val orderedDate = filteredOrderList[position].order_date.toDate()
+            val orderedDate = orders[position].order_date.toDate()
             val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
             val orderedDateParse = simpleDateFormat.format(orderedDate) // 년-월-일 형태로 날짜만 표기해준다.
 
@@ -339,7 +398,7 @@ class OrderHistoryFragment : Fragment() {
             // 내부 리사이클러뷰 (주문 상품 목록)
             val productRecyclerView = holder.itemOrderhistoryItemBinding.recyclerviewOrderedItems
             productRecyclerView.apply {
-                adapter = OrderHistoryProductRecyclerViewAdapter(position)
+                adapter = OrderHistoryProductRecyclerViewAdapter(position, orders, productsInfo)
                 layoutManager = LinearLayoutManager(mainActivity)
                 val deco = MaterialDividerItemDecoration(mainActivity, MaterialDividerItemDecoration.VERTICAL)
                 deco.isLastItemDecorated = false // 마지막 아이템에는 MaterialDividerItemDecoration 제거
@@ -353,12 +412,12 @@ class OrderHistoryFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return filteredOrderList.size
+            return orders.size
         }
     }
 
     // 주문 내역 목록에 표시되는 주문 상품 목록의 RecyclerView Adapter
-    inner class OrderHistoryProductRecyclerViewAdapter(var parentPosition: Int) : RecyclerView.Adapter<OrderHistoryProductRecyclerViewAdapter.OrderHistoryProductViewHolder>(){
+    inner class OrderHistoryProductRecyclerViewAdapter(var parentPosition: Int, var orders: MutableList<OrderModel>, var productsInfo: MutableList<ArrayList<OrderedProductInfoModel>>) : RecyclerView.Adapter<OrderHistoryProductRecyclerViewAdapter.OrderHistoryProductViewHolder>(){
         inner class OrderHistoryProductViewHolder(itemOrderhistoryProductBinding: ItemOrderhistoryProductBinding) :
             RecyclerView.ViewHolder(itemOrderhistoryProductBinding.root){
                 val itemOrderhistoryProductBinding : ItemOrderhistoryProductBinding
@@ -384,8 +443,8 @@ class OrderHistoryFragment : Fragment() {
 
         override fun onBindViewHolder(holder: OrderHistoryProductViewHolder, position: Int) {
             // 주문 상품의 정보
-            val orderedProduct = filteredOrderList[parentPosition].order_product[position]
-            val orderedProductInfo = filteredorderedProductInfoList[parentPosition][position]
+            val orderedProduct = orders[parentPosition].order_product[position]
+            val orderedProductInfo = productsInfo[parentPosition][position]
             // 주문 상태
             holder.itemOrderhistoryProductBinding.orderHistoryProductViewModel?.textViewOrderedItemState?.value = getOrderItemStateStringValue(orderedProduct.tracking_state)
             // 주문 상품명
@@ -412,7 +471,7 @@ class OrderHistoryFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return filteredOrderList[parentPosition].order_product.size
+            return orders[parentPosition].order_product.size
         }
 
         // 주문 상태 텍스트 표기
