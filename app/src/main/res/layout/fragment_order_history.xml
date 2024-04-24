@@ -155,7 +155,18 @@
             android:layout_height="match_parent"
             android:background="@color/material_dynamic_neutral90"
             android:clipToPadding="false"
-            android:paddingVertical="16dp" />
+            android:paddingVertical="16dp"
+            android:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/textview_order_history_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주문내역이 존재하지 않습니다"
+            android:background="@color/material_dynamic_neutral90"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:visibility="gone"/>
 
     </LinearLayout>
 </layout>
