@@ -230,7 +230,15 @@ class MbtiProductMainFragment : Fragment() {
             holder.rowMbtiProductMainBinding.itemMainMbtiFullProductName.text = "${productList[position].coordiName}"
             // 해당 코디 상품의 가격
             holder.rowMbtiProductMainBinding.itemMainMbtiFullProductPrice.text =
-                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+
+            // 해당 코디 상품의 할인률 0이면 표시안함
+            if (productList[position].productDiscoutPrice == 0) {
+                holder.rowMbtiProductMainBinding.itemMainProductMbtiFullDiscountPercent.text = ""
+            } else {
+                holder.rowMbtiProductMainBinding.itemMainProductMbtiFullDiscountPercent.text = "${productList[position].productDiscoutPrice}%  "
+            }
+
             // 해당 상품 클릭 시
             holder.rowMbtiProductMainBinding.root.setOnClickListener {
                 // 번들 생성 해줘서 해당 상품의 데이터 넘겨주기

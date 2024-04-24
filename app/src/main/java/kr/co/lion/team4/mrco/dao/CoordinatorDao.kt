@@ -86,12 +86,9 @@ class CoordinatorDao {
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 val collectionReference = Firebase.firestore.collection("CoordinatorData")
-
-                // 코디네이터 등록상태가 참인 경우에만..
-                // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
-                // query = query.whereEqualTo("")
-                // 팔로순이 가장 높은거 부터 보여주는 내림차순
+                // 팔로순이 가장 높은거 부터 보여주는 내림차순이며 코디네이터 등록상태가 참인 경우
                 var query = collectionReference.orderBy("coordi_followers", Query.Direction.DESCENDING)
+                    .whereEqualTo("coordi_permission", true)
 
                 // 모든 사용자 정보를 가져온다
                 val querySnapshot = query.get().await()

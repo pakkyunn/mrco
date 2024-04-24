@@ -228,7 +228,14 @@ class HomeRecommendFragment : Fragment() {
             holder.rowHomeRecommendBinding.itemMainProductName.text = "${recommendProductList[position].coordiName}"
             // 해당 코디 상품의 가격
             holder.rowHomeRecommendBinding.itemMainProductPrice.text =
-                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(recommendProductList[position].price)}"
+                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(recommendProductList[position].price)}"
+
+            // 해당 코디 상품의 할인률 0이면 표시안함
+            if (recommendProductList[position].productDiscoutPrice == 0) {
+                holder.rowHomeRecommendBinding.itemMainProductDiscountPercent.text = ""
+            } else {
+                holder.rowHomeRecommendBinding.itemMainProductDiscountPercent.text = "${recommendProductList[position].productDiscoutPrice}%  "
+            }
 
             holder.rowHomeRecommendBinding.itemMainProductThumbnail.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
@@ -291,7 +298,14 @@ class HomeRecommendFragment : Fragment() {
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductName3.text = "${newProductList[position].coordiName}"
             // 해당 코디 상품의 가격
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductPrice3.text =
-                "${NumberFormat.getNumberInstance(Locale.getDefault()).format(newProductList[position].price)}"
+                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(newProductList[position].price)}"
+
+            // 해당 코디 상품의 할인률 0이면 표시안함
+            if (newProductList[position].productDiscoutPrice == 0) {
+                holder.rowHomeRecommendNewCoordiBinding.itemMainProductDiscountPercent3.text = ""
+            } else {
+                holder.rowHomeRecommendNewCoordiBinding.itemMainProductDiscountPercent3.text = "${newProductList[position].productDiscoutPrice}%  "
+            }
 
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)

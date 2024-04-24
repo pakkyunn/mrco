@@ -84,19 +84,18 @@
                 android:id="@+id/item_main_product_discount_percent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{rowHomeRecommendViewModel.textViewRowHomeRecommendProductDiscountPercent}"
+                android:text="할인율  "
                 android:textColor="#FC5306"
                 android:textSize="13dp"
                 android:textStyle="bold"
                 app:layout_constraintBaseline_toBaselineOf="@id/item_main_product_price"
                 app:layout_constraintStart_toStartOf="@id/item_main_product_name"
-                tools:text="10%" />
+                tools:text="10%  " />
 
             <TextView
                 android:id="@+id/item_main_product_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="12dp"
                 android:text="가격"
                 android:textColor="@color/black"

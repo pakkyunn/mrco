@@ -147,6 +147,11 @@ class CoordinatorMainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
+            if (productList.size == 0) {
+                fragmentCoordinatorMainBinding.textViewProductList?.visibility = View.INVISIBLE
+            } else {
+                fragmentCoordinatorMainBinding.textViewProductList?.visibility = View.VISIBLE
+            }
             return productList.size
         }
 
