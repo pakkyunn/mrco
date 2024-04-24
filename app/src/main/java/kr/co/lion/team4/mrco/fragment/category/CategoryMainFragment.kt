@@ -197,10 +197,8 @@ class CategoryMainFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         initFilterData()
-        productListFilter()
 
         gettingProductData()
-
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
@@ -216,14 +214,14 @@ class CategoryMainFragment : Fragment() {
         return fragmentCategoryMainBinding.root
     }
 
-    fun initFilterData(){
+    fun initFilterData() {
         fragmentCategoryMainBinding.apply {
             if (arguments != null) {
                 val searchedCategory = arguments?.getString("searchedCategory")
                 genderIdx = requireArguments().getInt("genderIdx")
                 checkedMenuList.add(searchedCategory!!)
                 filteredItemBundle.putString(
-                    "filteredItemBundle",
+                    "searchedCategory",
                     searchedCategory
                 )
             }
@@ -307,7 +305,7 @@ class CategoryMainFragment : Fragment() {
         }
     }
 
-    fun settingGenderIdx(){
+    fun settingGenderIdx() {
         fragmentCategoryMainBinding.apply {
             navigationViewContent.apply {
                 val chipGroupCategoryGender = findViewById<ChipGroup>(R.id.chipGroupCategoryGender)
@@ -315,14 +313,14 @@ class CategoryMainFragment : Fragment() {
                 val chipCategoryGenderWOMEN = findViewById<Chip>(R.id.chipCategoryGenderWOMEN)
 
                 val genderId = chipGroupCategoryGender.checkedChipId
-                    if (genderId == chipCategoryGenderMEN.id){
-                        genderIdx = Gender.MALE.num
-                    } else if (genderId == chipCategoryGenderWOMEN.id) {
-                        genderIdx = Gender.FEMALE.num
-                    }
+                if (genderId == chipCategoryGenderMEN.id) {
+                    genderIdx = Gender.MALE.num
+                } else if (genderId == chipCategoryGenderWOMEN.id) {
+                    genderIdx = Gender.FEMALE.num
                 }
             }
         }
+    }
 
 
     fun settingCategoryChipChange(chip: Chip, array: Array<Int>) {
@@ -398,10 +396,9 @@ class CategoryMainFragment : Fragment() {
         }
     }
 
-    fun productListFilter():MutableList<ProductModel> {
+    fun productListFilter(): MutableList<ProductModel> {
         filteredProductList.clear()
         if (checkedMenuList.size != 0) {
-
             for (i in 0 until productList.size) {
                 for (j in 0 until checkedMenuList.size) {
                     if (productList[i].coordiMBTI.uppercase() == checkedMenuList[j] && productList[i].coordiGender == genderIdx) {
@@ -433,44 +430,12 @@ class CategoryMainFragment : Fragment() {
                 }
             }
         } else {
-            Log.d("checkedMenuListsize","$checkedMenuList.size")
-            for (i in 0 until productList.size) {
-                    if (productList[i].coordiMBTI.uppercase() == filteredItemBundle.getString("searchedCategory")
-                        && productList[i].coordiGender == genderIdx) {
-                        filteredProductList.add(productList[i])
-                }
-            }
-            for (i in 0 until productList.size) {
-                    if (productList[i].coordiTPO?.strKor == filteredItemBundle.getString("searchedCategory")
-                        && productList[i].coordiGender == genderIdx) {
-                        filteredProductList.add(productList[i])
-                    }
-            }
 
-            for (i in 0 until productList.size) {
-                for (j in 0 until checkedMenuList.size) {
-                    if (productList[i].coordiSeason?.strKor == filteredItemBundle.getString("searchedCategory")
-                        && productList[i].coordiGender == genderIdx) {
-                        filteredProductList.add(productList[i])
-                    }
-                }
-            }
-
-            for (i in 0 until productList.size) {
-                for (j in 0 until checkedMenuList.size) {
-                    if (productList[i].coordiMood?.strKor == filteredItemBundle.getString("searchedCategory")
-                        && productList[i].coordiGender == genderIdx) {
-                        filteredProductList.add(productList[i])
-                    }
-                }
-            }
         }
 
         filteredProductList = filteredProductList.distinct().toMutableList()
 
-
         return filteredProductList
-
     }
 
 
@@ -549,8 +514,6 @@ class CategoryMainFragment : Fragment() {
     }
 
 
-
-
     // 리사이클러 뷰 어뎁터
     inner class CategoryMainRecyclerViewAdapter :
         RecyclerView.Adapter<CategoryMainRecyclerViewAdapter.CategoryMainViewHolder>() {
@@ -585,9 +548,9 @@ class CategoryMainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return if (filteredItemBundle.keySet().isNotEmpty()){
+            return if (filteredItemBundle.keySet().isNotEmpty()) {
                 filteredProductList.size
-            }else{
+            } else {
                 productList.size
             }
         }
@@ -603,7 +566,9 @@ class CategoryMainFragment : Fragment() {
                 4 -> R.drawable.iu_image6
                 else -> R.drawable.iu_image7
             }
-            holder.rowCategoryMainBinding.imageViewCategoryMainProductThumbnail.setImageResource(imageResource)
+            holder.rowCategoryMainBinding.imageViewCategoryMainProductThumbnail.setImageResource(
+                imageResource
+            )
 
             if (filteredItemBundle.keySet().isNotEmpty()) {
 //                filteredProductList.add(filteredItemBundle.getString("filteredItemBundle"))
@@ -611,15 +576,21 @@ class CategoryMainFragment : Fragment() {
                 holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
                     Color.parseColor(Tools.mbtiColor(filteredProductList[position].coordiMBTI))
                 )
-                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.text = "${filteredProductList[position].coordiMBTI}"
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.text =
+                    "${filteredProductList[position].coordiMBTI}"
 
                 // 코디 상품의 코디네이터
-                holder.rowCategoryMainBinding.textViewCategoryMainCoordinatorName.text = "${coordinatorMap[filteredProductList[position].coordinatorIdx]}"
+                holder.rowCategoryMainBinding.textViewCategoryMainCoordinatorName.text =
+                    "${coordinatorMap[filteredProductList[position].coordinatorIdx]}"
                 // 코디 상품의 이름
-                holder.rowCategoryMainBinding.textViewCategoryMainProductName.text = "${filteredProductList[position].coordiName}"
+                holder.rowCategoryMainBinding.textViewCategoryMainProductName.text =
+                    "${filteredProductList[position].coordiName}"
                 // 코디 상품의 가격
                 holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
-                    "${NumberFormat.getNumberInstance(Locale.getDefault()).format(filteredProductList[position].price)}"
+                    "${
+                        NumberFormat.getNumberInstance(Locale.getDefault())
+                            .format(filteredProductList[position].price)
+                    }"
             } else {
                 holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
                     Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI))
@@ -635,12 +606,15 @@ class CategoryMainFragment : Fragment() {
                     "${productList[position].coordiName}"
                 // 코디 상품의 가격
                 holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
-                    "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+                    "${
+                        NumberFormat.getNumberInstance(Locale.getDefault())
+                            .format(productList[position].price)
+                    }"
             }
 
             // 이미지 -> 상품 이미지 클릭 시
             holder.rowCategoryMainBinding.root.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
             }
 
             // 버튼 -> 카트 담기 클릭 시
@@ -651,11 +625,12 @@ class CategoryMainFragment : Fragment() {
     }
 
 
-    fun gettingProductData(){
+    fun gettingProductData() {
         CoroutineScope(Dispatchers.Main).launch {
-             // 상품의 정보를 가져온다. (연동 On)
-             productList = ProductDao.gettingProductAll()
+            // 상품의 정보를 가져온다. (연동 On)
+            productList = ProductDao.gettingProductAll()
 
+            productListFilter()
             settingRecyclerViewCategoryMain()
         }
     }
