@@ -153,7 +153,7 @@ class LikeFragment : Fragment() {
     fun gettingCoordinatorsFollowData() {
         CoroutineScope(Dispatchers.Main).launch {
             // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
-            coordinatorsFollowList = LikeDao.getfollowCoordinators(mainActivity.loginUserIdx)
+            coordinatorsFollowList = LikeDao.getLikeData(mainActivity.loginUserIdx)
             for (i in 0 until coordinatorsFollowList.size) {
                 for (j in 0 until (coordinatorsFollowList[i].like_coordinator_idx).size) {
                     coordinatorsFollowArray.add(coordinatorsFollowList[i].like_coordinator_idx[j])

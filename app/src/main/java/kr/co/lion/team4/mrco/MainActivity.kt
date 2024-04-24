@@ -11,6 +11,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialSharedAxis
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.databinding.ActivityMainBinding
 import kr.co.lion.team4.mrco.fragment.JoinCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.JoinCoordinatorNextFragment

@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.like
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,8 +16,10 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.databinding.FragmentLikeProductBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
+import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.viewmodel.like.LikeProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
 
@@ -26,6 +29,9 @@ class LikeProductFragment : Fragment() {
 
     lateinit var fragmentLikeProductBinding: FragmentLikeProductBinding
     lateinit var mainActivity: MainActivity
+
+    // 모든 회원의 코디네이터 팔로우 정보를 담고 있을 리스트
+    var likeProductsList = mutableListOf<LikeModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -119,4 +125,20 @@ class LikeProductFragment : Fragment() {
             }
         }
     }
+
+    // 모든 상품의 좋아요 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+//    fun gettingCoordinatorsFollowData() {
+//        CoroutineScope(Dispatchers.Main).launch {
+//            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
+//            likeProductsList = LikeDao.getLikeData(mainActivity.loginUserIdx)
+//            for (i in 0 until likeProductsList.size) {
+//                for (j in 0 until (likeProductsList[i].like_coordinator_idx).size) {
+//                    coordinatorsFollowArray.add(likeProductsList[i].like_coordinator_idx[j])
+//                }
+//            }
+//            coordinatorsFollowList = LikeDao.getCoordinatorInfo(coordinatorsFollowArray)
+//            Log.d("test1234", "Like 페이지(코디네이터) - 팔로우 한 코디네이터 정보 : ${coordinatorsFollowList}")
+//            fragmentLikeCoordinatorBinding.recyclerViewLikeCoordinator.adapter?.notifyDataSetChanged()
+//        }
+//    }
 }

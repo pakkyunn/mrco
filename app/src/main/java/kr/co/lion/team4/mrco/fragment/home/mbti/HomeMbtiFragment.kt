@@ -19,11 +19,13 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.dao.CoordinatorDao
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeMbtiBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbti2Binding
 import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
+import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.HomeMbtiViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbti2ViewModel
@@ -53,6 +55,9 @@ class HomeMbtiFragment : Fragment() {
     // 로그인한 MBTI와 같은 코디네이터 인덱스를 담고 있을 맵
     val filteredMap = mutableMapOf<Int, String>()
 
+    // 모든 코디네이터의 팔로우 정보를 담고 있을 리스트
+    var coordinatorsFollowList = mutableListOf<LikeModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         fragmentHomeMbtiBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_mbti, container, false)
@@ -74,6 +79,7 @@ class HomeMbtiFragment : Fragment() {
 
         // 데이터 가져오기
         gettingMBTIData(mainActivity.loginUserMbti, mainActivity.loginUserGender)
+        gettingCoordinatorsFollowData()
         CoroutineScope(Dispatchers.Main).launch {
             gettingCoordinatorName()
         }
@@ -191,6 +197,29 @@ class HomeMbtiFragment : Fragment() {
             }
             holder.rowHomeMbtiBinding.itemMainMbtiProductThumbnail.setImageResource(imageResource)
 
+            // 좋아요 상태 초기 세팅
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
+                    if (coordinatorsFollowList[i].like_product_idx[j] == productList[position].productIdx) {
+                        holder.rowHomeMbtiBinding.itemMainMbtiProductPickButton.apply {
+                            isChecked = true
+                        }
+                    }
+                }
+            }
+            // 하트 모양(좋아요) 버튼 클릭 시
+            holder.rowHomeMbtiBinding.itemMainMbtiProductPickButton.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, productList[position].productIdx)
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, productList[position].productIdx)
+                    }
+                }
+            }
+
             holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI)))
             holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.text = mainActivity.loginUserMbti
             // 해당 코디네이터의 이름
@@ -258,6 +287,29 @@ class HomeMbtiFragment : Fragment() {
             }
             holder.rowHomeMbti2Binding.itemMainMbtiProductThumbnail2.setImageResource(imageResource)
 
+            // 좋아요 상태 초기 세팅
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
+                    if (coordinatorsFollowList[i].like_product_idx[j] == productList2[position].productIdx) {
+                        holder.rowHomeMbti2Binding.itemMainMbtiProductPickButton2.apply {
+                            isChecked = true
+                        }
+                    }
+                }
+            }
+            // 하트 모양(좋아요) 버튼 클릭 시
+            holder.rowHomeMbti2Binding.itemMainMbtiProductPickButton2.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, productList2[position].productIdx)
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, productList2[position].productIdx)
+                    }
+                }
+            }
+
             holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList2[position].coordiMBTI)))
             holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.text = productList2[position].coordiMBTI
             // 해당 코디네이터의 이름
@@ -293,8 +345,7 @@ class HomeMbtiFragment : Fragment() {
 
             getCoordinatorMbtiMap(mainActivity.loginUserMbti)
             gettingMBTI2Data(filteredMap.keys.toList(), mainActivity.loginUserGender)
-            fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
-            fragmentHomeMbtiBinding.homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
+            resetRecyclerView()
         }
     }
 
@@ -328,5 +379,23 @@ class HomeMbtiFragment : Fragment() {
             }
         }
         Log.d("test1234", "MBTI별 코디(탭) - 내 MBTI == 이성 코디네이터 MBTI | Filter : $filteredMap")
+    }
+
+    // 모든 코디네이터의 팔로우 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingCoordinatorsFollowData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
+            coordinatorsFollowList = LikeDao.getLikeData(mainActivity.loginUserIdx)
+            // Log.d("test1234", "coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
+            resetRecyclerView()
+        }
+    }
+
+    // 상품 리사이클러 뷰 2개 다 갱신
+    fun resetRecyclerView(){
+        fragmentHomeMbtiBinding.apply {
+            homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
+            homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
+        }
     }
 }

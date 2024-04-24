@@ -175,6 +175,30 @@ class CoordinatorMainFragment : Fragment() {
                 3 -> R.drawable.iu_image2
                 else -> R.drawable.iu_image4
             }
+
+            // 좋아요 상태 초기 세팅
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
+                    if (coordinatorsFollowList[i].like_product_idx[j] == productList[position].productIdx) {
+                        holder.rowCoordinatorMainItemBinding.itemMainProductLike.apply {
+                            isChecked = true
+                        }
+                    }
+                }
+            }
+            // 하트 모양(좋아요) 버튼 클릭 시
+            holder.rowCoordinatorMainItemBinding.itemMainProductLike.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, productList[position].productIdx)
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, productList[position].productIdx)
+                    }
+                }
+            }
+
             holder.rowCoordinatorMainItemBinding.itemCoordinatorMainProductThumbnail.setImageResource(imageResource)
             holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainCoordiname.text = coordinatorList[0].coordi_name
             holder.rowCoordinatorMainItemBinding.textViewRowCoordinatorMainProductName.text = productList[position].coordiName
@@ -219,7 +243,7 @@ class CoordinatorMainFragment : Fragment() {
     fun gettingCoordinatorsFollowData() {
         CoroutineScope(Dispatchers.Main).launch {
             // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
-            coordinatorsFollowList = LikeDao.getfollowCoordinators(mainActivity.loginUserIdx)
+            coordinatorsFollowList = LikeDao.getLikeData(mainActivity.loginUserIdx)
             Log.d("test1234", "코디네이터 정보 페이지 - coordinatorsFollowList: $coordinatorsFollowList")
 
             // 기본 팔로우 팔로잉 상태 여부 체크

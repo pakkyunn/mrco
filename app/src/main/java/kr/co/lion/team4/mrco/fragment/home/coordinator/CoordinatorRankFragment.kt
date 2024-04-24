@@ -251,8 +251,8 @@ class CoordinatorRankFragment : Fragment() {
     fun gettingCoordinatorsFollowData() {
         CoroutineScope(Dispatchers.Main).launch {
             // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
-            coordinatorsFollowList = LikeDao.getfollowCoordinators(mainActivity.loginUserIdx)
-            Log.d("test1234", "인기 코디네이터 페이지 - coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
+            coordinatorsFollowList = LikeDao.getLikeData(mainActivity.loginUserIdx)
+            // Log.d("test1234", "인기 코디네이터 페이지 - coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
             fragmentCoordinatorRankBinding.recyclerViewCoordinatorRank.adapter?.notifyDataSetChanged()
         }
     }

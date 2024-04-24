@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -21,6 +22,7 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.dao.CoordinatorDao
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBannerBinding
@@ -28,6 +30,7 @@ import kr.co.lion.team4.mrco.databinding.RowHomeRecommendBinding
 import kr.co.lion.team4.mrco.databinding.RowHomeRecommendNewCoordiBinding
 import kr.co.lion.team4.mrco.fragment.home.coordinator.HomeMainFullFragment
 import kr.co.lion.team4.mrco.model.CoordinatorModel
+import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.home.recommend.HomeRecommendViewModel
@@ -53,6 +56,9 @@ class HomeRecommendFragment : Fragment() {
     // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
     var coordinatorMap = mutableMapOf<Int, String>()
 
+    // 모든 코디네이터의 팔로우 정보를 담고 있을 리스트
+    var coordinatorsFollowList = mutableListOf<LikeModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
@@ -68,6 +74,7 @@ class HomeRecommendFragment : Fragment() {
         gettingCoordinatorName()
         gettingRecommendProductData(mainActivity.loginUserGender)
         gettingNewProductData(mainActivity.loginUserGender)
+        gettingCoordinatorsFollowData()
 
         // 버튼
         settingButton()
@@ -218,6 +225,28 @@ class HomeRecommendFragment : Fragment() {
             }
             holder.rowHomeRecommendBinding.itemMainProductThumbnail.setImageResource(imageResource)
 
+            // 좋아요 상태 초기 세팅
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
+                    if (coordinatorsFollowList[i].like_product_idx[j] == recommendProductList[position].productIdx) {
+                        holder.rowHomeRecommendBinding.itemMainProductPickButton1.apply {
+                            isChecked = true
+                        }
+                    }
+                }
+            }
+            // 하트 모양(좋아요) 버튼 클릭 시
+            holder.rowHomeRecommendBinding.itemMainProductPickButton1.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, recommendProductList[position].productIdx)
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, recommendProductList[position].productIdx)
+                    }
+                }
+            }
 
             holder.rowHomeRecommendBinding.textViewRowHomeRecommendMBTI.setBackgroundColor(Color.parseColor(
                 Tools.mbtiColor(recommendProductList[position].coordiMBTI)))
@@ -288,6 +317,29 @@ class HomeRecommendFragment : Fragment() {
             }
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductThumbnail3.setImageResource(imageResource)
 
+            // 좋아요 상태 초기 세팅
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
+                    if (coordinatorsFollowList[i].like_product_idx[j] == newProductList[position].productIdx) {
+                        holder.rowHomeRecommendNewCoordiBinding.itemMainProductPickButton3.apply {
+                            isChecked = true
+                        }
+                    }
+                }
+            }
+            // 하트 모양(좋아요) 버튼 클릭 시
+            holder.rowHomeRecommendNewCoordiBinding.itemMainProductPickButton3.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, newProductList[position].productIdx)
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, newProductList[position].productIdx)
+                    }
+                }
+            }
+
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.setBackgroundColor(Color.parseColor(
                 Tools.mbtiColor(newProductList[position].coordiMBTI)))
             holder.rowHomeRecommendNewCoordiBinding.itemMainProductMbti3.text = "${newProductList[position].coordiMBTI}"
@@ -346,8 +398,25 @@ class HomeRecommendFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             coordinatorMap = CoordinatorDao.getCoordinatorName()
-            fragmentHomeRecommendBinding.homeRecommendRecycler.adapter?.notifyDataSetChanged()
-            fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
+            resetRecyclerView()
+        }
+    }
+
+    // 모든 코디네이터의 팔로우 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingCoordinatorsFollowData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
+            coordinatorsFollowList = LikeDao.getLikeData(mainActivity.loginUserIdx)
+            // Log.d("test1234", "메인(홈) 페이지 - coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
+            resetRecyclerView()
+        }
+    }
+
+    // 상품 리사이클러 뷰 2개 다 갱신
+    fun resetRecyclerView(){
+        fragmentHomeRecommendBinding.apply {
+            homeRecommendRecycler.adapter?.notifyDataSetChanged()
+            homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
         }
     }
 }

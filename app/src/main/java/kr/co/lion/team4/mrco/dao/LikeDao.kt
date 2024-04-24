@@ -132,7 +132,7 @@ class LikeDao {
         }
 
         // 해당 유저의 팔로우 목록 가져오기
-        suspend fun getfollowCoordinators(like_user_idx: Int): MutableList<LikeModel> {
+        suspend fun getLikeData(like_user_idx: Int): MutableList<LikeModel> {
             val likeList = mutableListOf<LikeModel>()
 
             val job1 = CoroutineScope(Dispatchers.IO).launch {
@@ -179,32 +179,70 @@ class LikeDao {
             return coordiList
         }
 
-        // 좋아요를 눌러져있는 상품을 가져온다
-        suspend fun gettingLikeList(userIdx:Int): MutableList<LikeModel>{
-            // 게시글 정보를 담을 리스트
-            val likeList = mutableListOf<LikeModel>()
-
+        // @@@@@@@@@@@@@@@      상 품 관 련      @@@@@@@@@@@@@@@
+        // 좋아요 추가 (상품)
+        suspend fun insertLikeProductData(like_user_idx: Int, like_product_idx: Int){
             val job1 = CoroutineScope(Dispatchers.IO).launch {
-                // 모든 상품 정보를 가져온다
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
                 val collectionReference = Firebase.firestore.collection("LikeData")
-                // 상품의 상태가 정상 상태이고 상품 인덱스를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는 Query
-                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
-                // 내림 차순 정렬
-                query = query.orderBy("like_idx", Query.Direction.DESCENDING)
-                    // 해당 유저의 좋아요 목록을 가져온다
-                    .whereEqualTo("like_user_idx", userIdx)
 
-                val queryShapshot = query.get().await()
-                // 가져온 문서의 수 만큼 반복한다.
-                queryShapshot.forEach {
-                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
-                    val likeModel = it.toObject(LikeModel::class.java)
-                    likeList.add(likeModel)
+                // like_user_idx에 해당하는 문서를 가져옵니다.
+                val querySnapshot = collectionReference
+                    .whereEqualTo("like_user_idx", like_user_idx)
+                    .get().await()
+
+                // 가져온 문서가 있다면 해당 문서의 like_product_idx 필드를 업데이트합니다.
+                querySnapshot.forEach { documentSnapshot ->
+                    val documentReference = documentSnapshot.reference
+                    val likeModel = documentSnapshot.toObject(LikeModel::class.java)
+
+                    // like_product_idx 필드에 새로운 값을 추가합니다.
+                    likeModel.like_product_idx.add(like_product_idx)
+
+                    // like_product_idx 필드를 업데이트합니다.
+                    documentReference.update("like_product_idx", likeModel.like_product_idx)
+                        .addOnSuccessListener {
+                            // 업데이트 성공 시 작업 수행
+                            Log.d("test1234", "좋아요 추가")
+                        }
+                        .addOnFailureListener { exception ->
+                            // 업데이트 실패 시 예외 처리
+                            Log.e("test1234", "Error: 좋아요 추가")
+                        }
                 }
+
             }
             job1.join()
+        }
 
-            return likeList
+        // 좋아요 취소 (상품)
+        suspend fun deleteLikeProductData(like_user_idx: Int, like_product_idx: Int) {
+            val collectionReference = Firebase.firestore.collection("LikeData")
+
+            // like_user_idx에 해당하는 문서를 가져옵니다.
+            val querySnapshot = collectionReference
+                .whereEqualTo("like_user_idx", like_user_idx)
+                .get().await()
+
+            // 가져온 문서가 있다면 해당 문서의 like_product_idx 필드를 업데이트합니다.
+            querySnapshot.forEach { documentSnapshot ->
+                val documentReference = documentSnapshot.reference
+                val likeModel = documentSnapshot.toObject(LikeModel::class.java)
+
+                // like_product_idx 필드에서 like_product_idx를 제거
+                likeModel.like_product_idx.remove(like_product_idx)
+
+                // like_product_idx 필드를 업데이트합니다.
+                documentReference.update("like_product_idx", likeModel.like_product_idx)
+                    .addOnSuccessListener {
+                        // 업데이트 성공 시 작업 수행
+                        Log.d("test1234", "좋아요 취소")
+                    }
+                    .addOnFailureListener { exception ->
+                        // 업데이트 실패 시 예외 처리
+                        Log.e("test1234", "Error: 좋아요 취소")
+                    }
+            }
         }
     }
 
