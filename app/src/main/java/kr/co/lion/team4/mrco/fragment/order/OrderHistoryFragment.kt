@@ -405,9 +405,12 @@ class OrderHistoryFragment : Fragment() {
                 addItemDecoration(deco)
             }
 
-            // 주문상세 > 이거 눌렀을 때   to do data에 주문번호 넘겨줄 것
+            // 주문상세 > 이거 눌렀을 때
             holder.itemOrderhistoryItemBinding.buttonOrderHistory.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, null)
+                val orderHistoryBundle = Bundle()
+                // 주문번호를 전달
+                orderHistoryBundle.putInt("orderIdx", orders[position].order_idx)
+                mainActivity.replaceFragment(MainFragmentName.ORDER_DETAIL, true, true, orderHistoryBundle)
             }
         }
 
