@@ -7,7 +7,7 @@ import com.google.firebase.Timestamp
 /* (구매자) 주문 내역 화면(OrderHistoryFragment)의 ViewModel */
 class OrderHistoryViewModel : ViewModel() {
     // 검색어 (주문 내역 검색어)
-    val editTextOrderHistoryKeyword = MutableLiveData<String>()
+//    val editTextOrderHistoryKeyword = MutableLiveData<String>()
 
     // 조회 기간 - 시작일
     val periodStart = MutableLiveData<Timestamp>()
