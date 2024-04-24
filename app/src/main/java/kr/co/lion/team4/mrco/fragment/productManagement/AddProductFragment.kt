@@ -447,11 +447,11 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                     ProductDao.uploadItemsImage(mainActivity, "uploadTemp${i}.jpg", imagePath[i])
                     Log.d("test1234", "${i}번째 상품 아이템 - ${imageBitmaps[i]}}개별 상품 아이템 서버로 업로드 완료")
                 }
-            }
-            // 개별 상품 아이템 별 이미지 경로 수정
-            for (i in 0 until individualProductData.size) {
-                val temp = individualProductData[i]
-                temp["5"] = imagePath[i]
+                // 개별 상품 아이템 별 이미지 경로 수정
+                for (i in 0 until individualProductData.size) {
+                    val temp = individualProductData[i]
+                    temp["5"] = imagePath[i]
+                }
             }
 
             Log.d("test1234", "AddProductFragment : ${individualProductData}")
