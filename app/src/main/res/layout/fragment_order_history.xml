@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragment.order.OrderHistoryFragment"
-        android:transitionGroup="true">
+        android:transitionGroup="true"
+        tools:context=".fragment.order.OrderHistoryFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarOrderHistory"
@@ -28,134 +28,187 @@
             app:title="주문/배송 조회"
             app:titleCentered="true" />
 
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/togglebutton_order_history_period"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:checkedButton="@id/button_order_history_one_month"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <Button
-                android:id="@+id/button_order_history_one_month"
-
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1개월"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
-                android:textColor="@color/selector_add_product_option_text_color" />
-
-            <Button
-                android:id="@+id/button_order_history_three_months"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="3개월"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
-                android:textColor="@color/selector_add_product_option_text_color" />
-
-            <Button
-                android:id="@+id/button_order_history_six_months"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="6개월"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
-                android:textColor="@color/selector_add_product_option_text_color" />
-
-            <Button
-                android:id="@+id/button_order_history_set_period"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="기간 설정"
-                android:backgroundTint="@color/selector_add_product_option_chip_color"
-                android:textColor="@color/selector_add_product_option_text_color" />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textinput_order_history_keyword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:boxCornerRadiusBottomEnd="32dp"
-            app:boxCornerRadiusBottomStart="32dp"
-            app:boxCornerRadiusTopEnd="32dp"
-            app:boxCornerRadiusTopStart="32dp"
-            app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
-            app:endIconMode="custom"
-            app:hintEnabled="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edittext_order_history_keyword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="상품명을 입력해주세요"
-                android:text="@={orderHistoryViewModel.editTextOrderHistoryKeyword}"
-                android:maxLines="1"
-                android:paddingStart="24dp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_order_history_state"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:tabIndicatorFullWidth="true"
-            android:backgroundTint="#ffffff"
-            android:elevation="1dp"
-            app:tabIndicatorColor="#000000"
-            app:tabSelectedTextColor="#000000"
-            app:tabRippleColor="#CCCCCC"
-            app:tabTextColor="#676767">
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/item_order_history_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/item_order_history_ordered"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="주문접수" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/item_order_history_in_transit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="배송중" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/item_order_history_shipped"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="배송완료" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/item_order_history_etc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="취소/교환/반품" />
-
-        </com.google.android.material.tabs.TabLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_order_history"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/material_dynamic_neutral90"
-            android:clipToPadding="false"
-            android:paddingVertical="16dp" />
+            android:backgroundTint="@color/white">
+
+            <com.google.android.material.search.SearchBar
+                android:id="@+id/searchbar_order_history"
+                style="@style/Widget.Material3.SearchBar.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="상품명을 입력해주세요"
+                android:minHeight="0dp" />
+
+            <com.google.android.material.search.SearchView
+                android:id="@+id/searchview_order_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="검색어를 입력해주세요"
+                app:backgroundTint="@color/white"
+                app:layout_anchor="@id/searchbar_order_history">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_order_history_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/material_dynamic_neutral90"
+                    android:clipToPadding="false"
+                    android:paddingVertical="16dp" />
+
+                <TextView
+                    android:id="@+id/textview_order_history_search_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="일치하는 검색결과가 없습니다"
+                    android:visibility="gone" />
+            </com.google.android.material.search.SearchView>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/togglebutton_order_history_period"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="82dp"
+                app:checkedButton="@id/button_order_history_one_month"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <Button
+                    android:id="@+id/button_order_history_one_month"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/selector_add_product_option_chip_color"
+                    android:text="1개월"
+                    android:textColor="@color/selector_add_product_option_text_color" />
+
+                <Button
+                    android:id="@+id/button_order_history_three_months"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/selector_add_product_option_chip_color"
+                    android:text="3개월"
+                    android:textColor="@color/selector_add_product_option_text_color" />
+
+                <Button
+                    android:id="@+id/button_order_history_six_months"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/selector_add_product_option_chip_color"
+                    android:text="6개월"
+                    android:textColor="@color/selector_add_product_option_text_color" />
+
+                <Button
+                    android:id="@+id/button_order_history_set_period"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/selector_add_product_option_chip_color"
+                    android:text="기간 설정"
+                    android:textColor="@color/selector_add_product_option_text_color" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <!--<com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinput_order_history_keyword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:boxCornerRadiusBottomEnd="32dp"
+                app:boxCornerRadiusBottomStart="32dp"
+                app:boxCornerRadiusTopEnd="32dp"
+                app:boxCornerRadiusTopStart="32dp"
+                app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
+                app:endIconMode="custom"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_order_history_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="상품명을 입력해주세요"
+                    android:text="@={orderHistoryViewModel.editTextOrderHistoryKeyword}"
+                    android:maxLines="1"
+                    android:paddingStart="24dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_order_history_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="135dp"
+                android:backgroundTint="#ffffff"
+                android:elevation="1dp"
+                app:tabIndicatorColor="#000000"
+                app:tabIndicatorFullWidth="true"
+                app:tabRippleColor="#CCCCCC"
+                app:tabSelectedTextColor="#000000"
+                app:tabTextColor="#676767">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item_order_history_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item_order_history_ordered"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="주문접수" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item_order_history_in_transit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배송중" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item_order_history_shipped"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="배송완료" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/item_order_history_etc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취소/교환/반품" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_order_history"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="183dp"
+                android:background="@color/material_dynamic_neutral90"
+                android:clipToPadding="false"
+                android:paddingVertical="16dp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/textview_order_history_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="주문내역이 존재하지 않습니다"
+                android:visibility="gone" />
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </LinearLayout>
 </layout>
