@@ -179,15 +179,10 @@ class CategoryMainFragment : Fragment() {
     var productList = mutableListOf<ProductModel>()
     var filteredProductList = mutableListOf<ProductModel>()
 
-    var userList = mutableListOf<UserModel>()
-
     // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
     var coordinatorMap = mutableMapOf<Int, String>()
 
     var genderIdx = 0
-
-//    var chipIdx = 0
-//    var clickIdx = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -202,7 +197,10 @@ class CategoryMainFragment : Fragment() {
         mainActivity = activity as MainActivity
 
         initFilterData()
+        productListFilter()
+
         gettingProductData()
+
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
@@ -210,9 +208,9 @@ class CategoryMainFragment : Fragment() {
         settingBottomTabs()
         settingNavigationView()
 
-        // 리사이클러 뷰 메인
+        // 상품 목록 리사이클러 뷰
         settingRecyclerViewCategoryMain()
-        // 리사이클러 뷰 필터 항목
+        // 필터링된 카테고리 항목 표시 리사이클러 뷰
         settingRecyclerViewCategoryFiltered()
 
         return fragmentCategoryMainBinding.root
@@ -224,6 +222,10 @@ class CategoryMainFragment : Fragment() {
                 val searchedCategory = arguments?.getString("searchedCategory")
                 genderIdx = requireArguments().getInt("genderIdx")
                 checkedMenuList.add(searchedCategory!!)
+                filteredItemBundle.putString(
+                    "filteredItemBundle",
+                    searchedCategory
+                )
             }
         }
     }
@@ -275,7 +277,7 @@ class CategoryMainFragment : Fragment() {
             }
         }
         filteredItemBundle.putStringArrayList(
-            "filteredItemBundle",
+            "searchedCategory",
             checkedMenuList
         )
     }
@@ -430,6 +432,38 @@ class CategoryMainFragment : Fragment() {
                     }
                 }
             }
+        } else {
+            Log.d("checkedMenuListsize","$checkedMenuList.size")
+            for (i in 0 until productList.size) {
+                    if (productList[i].coordiMBTI.uppercase() == filteredItemBundle.getString("searchedCategory")
+                        && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                }
+            }
+            for (i in 0 until productList.size) {
+                    if (productList[i].coordiTPO?.strKor == filteredItemBundle.getString("searchedCategory")
+                        && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+            }
+
+            for (i in 0 until productList.size) {
+                for (j in 0 until checkedMenuList.size) {
+                    if (productList[i].coordiSeason?.strKor == filteredItemBundle.getString("searchedCategory")
+                        && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+                }
+            }
+
+            for (i in 0 until productList.size) {
+                for (j in 0 until checkedMenuList.size) {
+                    if (productList[i].coordiMood?.strKor == filteredItemBundle.getString("searchedCategory")
+                        && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+                }
+            }
         }
 
         filteredProductList = filteredProductList.distinct().toMutableList()
@@ -551,10 +585,10 @@ class CategoryMainFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            if (filteredItemBundle == null){
-                return productList.size
+            return if (filteredItemBundle.keySet().isNotEmpty()){
+                filteredProductList.size
             }else{
-                return filteredProductList.size
+                productList.size
             }
         }
 
@@ -571,7 +605,22 @@ class CategoryMainFragment : Fragment() {
             }
             holder.rowCategoryMainBinding.imageViewCategoryMainProductThumbnail.setImageResource(imageResource)
 
-            if (filteredItemBundle == null) {
+            if (filteredItemBundle.keySet().isNotEmpty()) {
+//                filteredProductList.add(filteredItemBundle.getString("filteredItemBundle"))
+
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
+                    Color.parseColor(Tools.mbtiColor(filteredProductList[position].coordiMBTI))
+                )
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.text = "${filteredProductList[position].coordiMBTI}"
+
+                // 코디 상품의 코디네이터
+                holder.rowCategoryMainBinding.textViewCategoryMainCoordinatorName.text = "${coordinatorMap[filteredProductList[position].coordinatorIdx]}"
+                // 코디 상품의 이름
+                holder.rowCategoryMainBinding.textViewCategoryMainProductName.text = "${filteredProductList[position].coordiName}"
+                // 코디 상품의 가격
+                holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
+                    "${NumberFormat.getNumberInstance(Locale.getDefault()).format(filteredProductList[position].price)}"
+            } else {
                 holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
                     Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI))
                 )
@@ -587,19 +636,6 @@ class CategoryMainFragment : Fragment() {
                 // 코디 상품의 가격
                 holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
                     "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
-            } else {
-                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
-                    Color.parseColor(Tools.mbtiColor(filteredProductList[position].coordiMBTI))
-                )
-                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.text = "${filteredProductList[position].coordiMBTI}"
-
-                // 코디 상품의 코디네이터
-                holder.rowCategoryMainBinding.textViewCategoryMainCoordinatorName.text = "${coordinatorMap[filteredProductList[position].coordinatorIdx]}"
-                // 코디 상품의 이름
-                holder.rowCategoryMainBinding.textViewCategoryMainProductName.text = "${filteredProductList[position].coordiName}"
-                // 코디 상품의 가격
-                holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
-                    "${NumberFormat.getNumberInstance(Locale.getDefault()).format(filteredProductList[position].price)}"
             }
 
             // 이미지 -> 상품 이미지 클릭 시
@@ -619,12 +655,8 @@ class CategoryMainFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
              // 상품의 정보를 가져온다. (연동 On)
              productList = ProductDao.gettingProductAll()
-             Log.d("testCategoryMain", "카테고리메인 - productList: $productList")
-             Log.d("testCategoryMain", "카테고리메인 - productList[0].coordiMbti: ${productList[0].coordiGender}")
 
-             // 사용자 정보를 가져온다. (연동 On)
-             userList = UserDao.getUserAll()
-             Log.d("testCategoryMain", "카테고리메인 - productList: $userList")
+            settingRecyclerViewCategoryMain()
         }
     }
 
