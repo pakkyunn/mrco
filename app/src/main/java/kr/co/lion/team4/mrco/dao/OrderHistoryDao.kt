@@ -88,8 +88,9 @@ class OrderHistoryDao {
                         }
                         jobItem.join()
 
-                        productInfoList.add(productsInfo)
                     }
+                    // 주문별 상품 정보를 리스트에 추가한다
+                    productInfoList.add(productsInfo)
                 }
             }
             jobMain.join()
