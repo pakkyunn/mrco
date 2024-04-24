@@ -12,6 +12,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.firebase.Timestamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -70,6 +71,8 @@ class OrderHistoryFragment : Fragment() {
         settingOrderHistoryRecyclerView()
         settingOrderHistoryPeriodButtonClickListener()
 
+        // 기본 조회기간 설정
+        settingOrderHistoryPeriod(InquiryPeriod.ONE_MONTH)
         // 전체 주문 내역 불러오기
         gettingOrderList()
 
@@ -124,10 +127,12 @@ class OrderHistoryFragment : Fragment() {
                     .build()
                 dateRangePicker.show(mainActivity.supportFragmentManager, "orderHistoryPeriod")
                 dateRangePicker.addOnPositiveButtonClickListener {
+                    val startDate = Date(it.first)
+                    val endDate = Date(it.second)
                     // 시작일
-                    orderHistoryViewModel?.periodStart?.value = getDateFromLongValue(it.first)
+                    orderHistoryViewModel?.periodStart?.value = Timestamp(startDate)
                     // 종료일
-                    orderHistoryViewModel?.periodEnd?.value = getDateFromLongValue(it.second)
+                    orderHistoryViewModel?.periodEnd?.value = Timestamp(endDate)
                 }
 
                 // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
@@ -148,28 +153,28 @@ class OrderHistoryFragment : Fragment() {
     fun settingOrderHistoryPeriod(periodType: InquiryPeriod){
         val calendar = Calendar.getInstance()
         calendar.time = Date()
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+        //val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
         // 종료일 (현재)
-        orderHistoryViewModel.periodEnd.value = simpleDateFormat.format(calendar.time)
+        orderHistoryViewModel.periodEnd.value = Timestamp(calendar.time)
 
         when(periodType){
             // 조회기간 1개월
             InquiryPeriod.ONE_MONTH -> {
                 calendar.add(Calendar.MONTH, InquiryPeriod.ONE_MONTH.num)
                 // 1개월 전의 날짜로 설정
-                orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
+                orderHistoryViewModel.periodStart.value = Timestamp(calendar.time)
             }
             // 조회기간 3개월
             InquiryPeriod.THREE_MONTHS -> {
                 calendar.add(Calendar.MONTH, InquiryPeriod.THREE_MONTHS.num)
                 // 3개월 전의 날짜로 설정
-                orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
+                orderHistoryViewModel.periodStart.value = Timestamp(calendar.time)
             }
             // 조회기간 6개월
             InquiryPeriod.SIX_MONTHS -> {
                 calendar.add(Calendar.MONTH, InquiryPeriod.SIX_MONTHS.num)
                 // 6개월 전의 날짜로 설정
-                orderHistoryViewModel.periodStart.value = simpleDateFormat.format(calendar.time)
+                orderHistoryViewModel.periodStart.value = Timestamp(calendar.time)
             }
         }
         // to do - 조회 기간에 맞는 주문 배송 내역 불러오기
@@ -180,9 +185,15 @@ class OrderHistoryFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             filteredOrderList.clear()
             orderList = OrderHistoryDao.gettingOrderList(mainActivity.loginUserIdx)
-            filteredOrderList.addAll(orderList)
+            if(orderList.size>0){
+                filteredOrderList.addAll(orderList)
 //            fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
-            gettingOrderItemInfoFromOrderList()
+                gettingOrderItemInfoFromOrderList()
+            }else{ // 주문 내역이 존재하지 않는 경우
+
+
+            }
+
         }
     }
 
@@ -325,7 +336,7 @@ class OrderHistoryFragment : Fragment() {
             }
         }
 
-        // 주문 상태를 표기해주기 위한 메서드
+        // 각 상품의 배송 상태를 표기해주기 위한 메서드
         fun settingOrderState(state: Int, holder: OrderHistoryProductViewHolder){
             // to do 데이터 연결 후 state 값은 enum class로 수정할 것
 
