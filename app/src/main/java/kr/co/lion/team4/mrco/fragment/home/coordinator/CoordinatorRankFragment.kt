@@ -18,11 +18,13 @@ import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.dao.CoordinatorDao
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCoordinatorRankBinding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRank2Binding
 import kr.co.lion.team4.mrco.databinding.RowCoordinatorRankBinding
 import kr.co.lion.team4.mrco.model.CoordinatorModel
+import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.CoordinatorRankViewModel
 import kr.co.lion.team4.mrco.viewmodel.coordinator.RowCoordinatorRank2ViewModel
@@ -46,6 +48,9 @@ class CoordinatorRankFragment : Fragment() {
     // 모든 코디네이터의 상품들 정보를 담고 있을 리스트
     var productList = mutableListOf<ProductModel>()
 
+    // 모든 코디네이터의 팔로우 정보를 담고 있을 리스트
+    var coordinatorsFollowList = mutableListOf<LikeModel>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
@@ -59,6 +64,7 @@ class CoordinatorRankFragment : Fragment() {
 
         // 데이터 가져오기
         gettingCoordinatorData()
+        gettingCoordinatorsFollowData()
 
         // 리사이클러 뷰
         settingRecyclerViewCoordinatorRank()
@@ -129,18 +135,33 @@ class CoordinatorRankFragment : Fragment() {
                 Log.d("test1234", "인기 코디네이터 화면 : imageView - Click / 코디네이터 메인으로 이동")
             }
 
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_coordinator_idx).size) {
+                    if (coordinatorsFollowList[i].like_coordinator_idx[j] == coordinatorList[position].coordi_idx) {
+                        holder.rowCoordinatorRankBinding.buttonRowCoordinatorRankFollower.apply {
+                            text = "팔로잉"
+                            backgroundTintList = ContextCompat.getColorStateList(context, R.color.buttonFollowing)
+                        }
+                    }
+                }
+            }
+
             // (팔로우/팔로잉) 버튼 클릭 시
             holder.rowCoordinatorRankBinding.buttonRowCoordinatorRankFollower.setOnClickListener {
                 holder.rowCoordinatorRankBinding.buttonRowCoordinatorRankFollower.apply {
-                    val newTintList = if (text == "팔로우") {
+                    if (text == "팔로우") {
                         text = "팔로잉"
-                        ContextCompat.getColorStateList(context, R.color.buttonFollowing)
+                        backgroundTintList = ContextCompat.getColorStateList(context, R.color.buttonFollowing)
+                        CoroutineScope(Dispatchers.Main).launch {
+                            LikeDao.insertLikeCoordinatorData(mainActivity.loginUserIdx, coordinatorList[position].coordi_idx)
+                        }
                     } else {
                         text = "팔로우"
-                        ContextCompat.getColorStateList(context, R.color.buttonFollow)
+                        backgroundTintList = ContextCompat.getColorStateList(context, R.color.buttonFollow)
+                        CoroutineScope(Dispatchers.Main).launch {
+                            LikeDao.deleteLikeCoordinatorData(mainActivity.loginUserIdx, coordinatorList[position].coordi_idx)
+                        }
                     }
-
-                    backgroundTintList = newTintList
                 }
                 Log.d("test1234", "인기 코디네이터 화면 : button - Click / 팔로잉,팔로우 버튼")
             }
@@ -223,6 +244,16 @@ class CoordinatorRankFragment : Fragment() {
             // 모든 코디네이터의 정보를 가져온다. (연동 On)
             productList = ProductDao.gettingProductListOneCoordinator(coordinatorIdx)
             Log.d("test1234", "코디네이터 정보 페이지 - 상품들: ${productList.size}개")
+        }
+    }
+
+    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingCoordinatorsFollowData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 정보를 가져온다. (연동 On)
+            coordinatorsFollowList = LikeDao.getfollowCoordinators(mainActivity.loginUserIdx)
+            Log.d("test1234", "인기 코디네이터 페이지 - coordinatorsFollowList: $coordinatorsFollowList")
+            fragmentCoordinatorRankBinding.recyclerViewCoordinatorRank.adapter?.notifyDataSetChanged()
         }
     }
 }

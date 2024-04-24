@@ -16,8 +16,10 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.UserState
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.dao.UserDao
 import kr.co.lion.team4.mrco.databinding.FragmentJoinBinding
+import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.model.UserModel
 import kr.co.lion.team4.mrco.viewmodel.JoinViewModel
 
@@ -292,6 +294,15 @@ class JoinFragment : Fragment() {
 
             // 사용자 정보를 저장한다.
             UserDao.insertUserData(userModel)
+
+            // 좋아요 데이터도 생성해준다 (추가)
+            val likeSequence = LikeDao.getLikeSequence()
+            LikeDao.updateLikeSequence(likeSequence + 1)
+
+            val likeIdx = likeSequence + 1
+            val likeModel = LikeModel(likeIdx, userIdx)
+
+            LikeDao.insertLikeData(likeModel)
 
             val materialAlertDialogBuilder = MaterialAlertDialogBuilder(mainActivity, R.style.MaterialAlertDialog_Theme)
             materialAlertDialogBuilder.setTitle("가입완료")
