@@ -46,7 +46,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
                     android:gravity="center|start"
-                    android:text="@{rowLikeCoordinatorViewModel.textViewRowLikeCoordinatorName}"
+                    android:text="코디네이터 이름"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     tools:text="아이유" />
@@ -67,7 +67,7 @@
                         android:id="@+id/textViewRowLikeCoordinatorFollower"
                         android:layout_width="match_parent"
                         android:layout_height="20dp"
-                        android:text="@{rowLikeCoordinatorViewModel.textViewRowLikeCoordinatorFollower}"
+                        android:text="팔로워 수"
                         android:textColor="#8D8D8D"
                         android:textSize="12dp"
                         tools:text="1,324" />
@@ -81,9 +81,9 @@
                 android:layout_height="40dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="20dp"
-                android:backgroundTint="@color/buttonFollowing"
+                android:backgroundTint="@color/buttonFollow"
                 android:padding="0dp"
-                android:text="팔로잉"
+                android:text="팔로우"
                 android:textSize="14dp"
                 android:textStyle="normal"
                 app:cornerRadius="10dp" />

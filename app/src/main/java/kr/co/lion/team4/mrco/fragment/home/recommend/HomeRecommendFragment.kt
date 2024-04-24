@@ -319,9 +319,9 @@ class HomeRecommendFragment : Fragment() {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             recommendProductList = ProductDao.gettingRecommendProductList(gender)
             if (mainActivity.loginUserGender == 1) {
-                Log.d("test1234", "메인(홈) 페이지 - 남자 | 추천 코디: ${recommendProductList.size}개")
+                Log.d("test1234", "메인(홈) 페이지 - (남자)추천 코디: ${recommendProductList.size}개")
             } else {
-                Log.d("test1234", "메인(홈) 페이지 - 여자 | 추천 코디: ${recommendProductList.size}개")
+                Log.d("test1234", "메인(홈) 페이지 - (여자)추천 코디: ${recommendProductList.size}개")
             }
             fragmentHomeRecommendBinding.homeRecommendRecycler.adapter?.notifyDataSetChanged()
         }
@@ -333,9 +333,9 @@ class HomeRecommendFragment : Fragment() {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             newProductList = ProductDao.gettingNewProductList(gender)
             if (mainActivity.loginUserGender == 1) {
-                Log.d("test1234", "메인(홈) 페이지 - 남자 | 신규 코디: ${newProductList.size}개")
+                Log.d("test1234", "메인(홈) 페이지 - (남자)신규 코디: ${newProductList.size}개")
             } else {
-                Log.d("test1234", "메인(홈) 페이지 - 여자 | 신규 코디: ${newProductList.size}개")
+                Log.d("test1234", "메인(홈) 페이지 - (여자)신규 코디: ${newProductList.size}개")
             }
             fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
         }
@@ -346,7 +346,6 @@ class HomeRecommendFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             coordinatorMap = CoordinatorDao.getCoordinatorName()
-            Log.d("test1234", "코디네이터 : $coordinatorMap}")
             fragmentHomeRecommendBinding.homeRecommendRecycler.adapter?.notifyDataSetChanged()
             fragmentHomeRecommendBinding.homeRecommendNewRecycler.adapter?.notifyDataSetChanged()
         }

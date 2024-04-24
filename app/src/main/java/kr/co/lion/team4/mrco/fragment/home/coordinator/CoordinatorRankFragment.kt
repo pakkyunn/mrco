@@ -127,12 +127,11 @@ class CoordinatorRankFragment : Fragment() {
             holder.rowCoordinatorRankBinding.textViewRowCoordinatorRankFollower.text =
                 "${NumberFormat.getNumberInstance(Locale.getDefault()).format(coordinatorList[position].coordi_followers)}"
 
+            // 프로필 사진 클릭 시
             val bundle = Bundle()
             bundle.putInt("coordi_idx", coordinatorList[position].coordi_idx)
-
             holder.rowCoordinatorRankBinding.imageViewRowCoordinatorRankProfile.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, bundle)
-                Log.d("test1234", "인기 코디네이터 화면 : imageView - Click / 코디네이터 메인으로 이동")
             }
 
             for (i in 0 until coordinatorsFollowList.size) {
@@ -155,15 +154,16 @@ class CoordinatorRankFragment : Fragment() {
                         CoroutineScope(Dispatchers.Main).launch {
                             LikeDao.insertLikeCoordinatorData(mainActivity.loginUserIdx, coordinatorList[position].coordi_idx)
                         }
+                        Log.d("test1234", "인기 코디네이터 화면 : ${coordinatorList[position].coordi_idx} 팔로우 추가")
                     } else {
                         text = "팔로우"
                         backgroundTintList = ContextCompat.getColorStateList(context, R.color.buttonFollow)
                         CoroutineScope(Dispatchers.Main).launch {
                             LikeDao.deleteLikeCoordinatorData(mainActivity.loginUserIdx, coordinatorList[position].coordi_idx)
                         }
+                        Log.d("test1234", "인기 코디네이터 화면 : ${coordinatorList[position].coordi_idx} 팔로우 삭제")
                     }
                 }
-                Log.d("test1234", "인기 코디네이터 화면 : button - Click / 팔로잉,팔로우 버튼")
             }
 
 
@@ -247,12 +247,12 @@ class CoordinatorRankFragment : Fragment() {
         }
     }
 
-    // 모든 코디네이터의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    // 모든 코디네이터의 팔로우 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
     fun gettingCoordinatorsFollowData() {
         CoroutineScope(Dispatchers.Main).launch {
-            // 모든 코디네이터의 정보를 가져온다. (연동 On)
+            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
             coordinatorsFollowList = LikeDao.getfollowCoordinators(mainActivity.loginUserIdx)
-            Log.d("test1234", "인기 코디네이터 페이지 - coordinatorsFollowList: $coordinatorsFollowList")
+            Log.d("test1234", "인기 코디네이터 페이지 - coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
             fragmentCoordinatorRankBinding.recyclerViewCoordinatorRank.adapter?.notifyDataSetChanged()
         }
     }

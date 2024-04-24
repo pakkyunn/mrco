@@ -1,6 +1,7 @@
 package kr.co.lion.team4.mrco.fragment.home.coordinator
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.databinding.FragmentLikeBinding
 import kr.co.lion.team4.mrco.fragment.like.LikeCoordinatorFragment
 import kr.co.lion.team4.mrco.fragment.like.LikeProductFragment
+import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.viewmodel.like.LikeViewModel
 
 class LikeFragment : Fragment() {
@@ -24,6 +30,15 @@ class LikeFragment : Fragment() {
     lateinit var mainActivity: MainActivity
 
     lateinit var likeViewModel: LikeViewModel
+
+    // 모든 코디네이터의 팔로우 정보를 담고 있을 리스트
+    var coordinatorsFollowList = mutableListOf<LikeModel>()
+
+    // 로그인한 회원이 팔로우 한 코디네이터의 인덱스 번호
+    var coordinatorsFollowArray = mutableListOf<Int>()
+
+    var coordicnt = 7
+    var coordinatorcnt = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -35,8 +50,10 @@ class LikeFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
+        // 데이터 가져오기
+        gettingCoordinatorsFollowData()
+
         // 툴바, 하단바, 탭 관련
-        viewPagerActiviation()
         settingToolbar()
         bottomSheetSetting()
         settingBottomTabs()
@@ -102,9 +119,6 @@ class LikeFragment : Fragment() {
 
     private fun viewPagerActiviation(){
 
-        val coordicnt = 7
-        val coordinatorcnt = 6
-
         fragmentLikeBinding.apply {
             // 1. 페이지 데이터를 로드
             val list = listOf(LikeProductFragment(), LikeCoordinatorFragment())
@@ -132,6 +146,23 @@ class LikeFragment : Fragment() {
 
         override fun createFragment(position: Int): Fragment {
             return fragmentList.get(position)
+        }
+    }
+
+    // 모든 코디네이터의 팔로우 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingCoordinatorsFollowData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
+            coordinatorsFollowList = LikeDao.getfollowCoordinators(mainActivity.loginUserIdx)
+            for (i in 0 until coordinatorsFollowList.size) {
+                for (j in 0 until (coordinatorsFollowList[i].like_coordinator_idx).size) {
+                    coordinatorsFollowArray.add(coordinatorsFollowList[i].like_coordinator_idx[j])
+                }
+            }
+            coordinatorcnt = coordinatorsFollowArray.size
+
+            // coordinatorcnt 값이 변경되었으므로 viewPagerActiviation을 호출하여 갱신합니다.
+            viewPagerActiviation()
         }
     }
 

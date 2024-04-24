@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kr.co.lion.team4.mrco.ProductState
+import kr.co.lion.team4.mrco.model.CoordinatorModel
 import kr.co.lion.team4.mrco.model.FaqModel
 import kr.co.lion.team4.mrco.model.LikeModel
 import kr.co.lion.team4.mrco.model.ProductModel
@@ -65,7 +66,7 @@ class LikeDao {
             job1.join()
         }
 
-        // 팔로우 추가 코디네이터
+        // 팔로우 추가 (코디네이터)
         suspend fun insertLikeCoordinatorData(like_user_idx: Int, like_coordinator_idx: Int){
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
@@ -100,7 +101,7 @@ class LikeDao {
             job1.join()
         }
 
-        // 팔로우 취소
+        // 팔로우 취소 (코디네이터)
         suspend fun deleteLikeCoordinatorData(like_user_idx: Int, like_coordinator_idx: Int) {
             val collectionReference = Firebase.firestore.collection("LikeData")
 
@@ -130,7 +131,7 @@ class LikeDao {
             }
         }
 
-        // 해당 유저의 좋아요 목록 가져오기
+        // 해당 유저의 팔로우 목록 가져오기
         suspend fun getfollowCoordinators(like_user_idx: Int): MutableList<LikeModel> {
             val likeList = mutableListOf<LikeModel>()
 
@@ -153,6 +154,29 @@ class LikeDao {
             job1.join()
 
             return likeList
+        }
+
+        // 코디네이터 정보 페이지에서 사용! / 해당 코디네이터에 맞는 정보를 가져온다
+        suspend fun getCoordinatorInfo(coordinatorIdxList: MutableList<Int>): MutableList<CoordinatorModel>{
+            // 코디네이터 정보를 담을 리스트
+            val coordiList = mutableListOf<CoordinatorModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("CoordinatorData")
+                // coordinatorIdxList에 포함된 모든 코디네이터 인덱스에 대한 쿼리를 생성합니다.
+                coordinatorIdxList.forEach { coordinatorIdx ->
+                    val query = collectionReference.whereEqualTo("coordi_idx", coordinatorIdx)
+                    val querySnapshot = query.get().await()
+                    // 가져온 문서의 수 만큼 반복하여 리스트에 추가합니다.
+                    querySnapshot.forEach { documentSnapshot ->
+                        val coordinatorModel = documentSnapshot.toObject(CoordinatorModel::class.java)
+                        coordiList.add(coordinatorModel)
+                    }
+                }
+            }
+            job1.join()
+
+            return coordiList
         }
 
         // 좋아요를 눌러져있는 상품을 가져온다

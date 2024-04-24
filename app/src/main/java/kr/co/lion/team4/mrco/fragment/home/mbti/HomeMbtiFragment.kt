@@ -176,7 +176,6 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            Log.d("test1234", "리사이클러뷰 상단 실행 타이밍")
             if (productList.size > 12) return 12
             else return productList.size
         }
@@ -244,7 +243,6 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            Log.d("test1234", "리사이클러뷰 하단 실행 타이밍")
             if (productList2.size > 12) return 12
             else return productList2.size
         }
@@ -289,9 +287,9 @@ class HomeMbtiFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             coordinatorNameMap = CoordinatorDao.getCoordinatorName()
-            Log.d("test1234", "코디네이터 이름: ${coordinatorNameMap}")
+            // Log.d("test1234", "코디네이터 이름: ${coordinatorNameMap}")
             coordinatorMbtiMap = CoordinatorDao.getCoordinatorMbti()
-            Log.d("test1234", "코디네이터 MBTI: ${coordinatorMbtiMap}")
+            // Log.d("test1234", "코디네이터 MBTI: ${coordinatorMbtiMap}")
 
             getCoordinatorMbtiMap(mainActivity.loginUserMbti)
             gettingMBTI2Data(filteredMap.keys.toList(), mainActivity.loginUserGender)
@@ -305,7 +303,7 @@ class HomeMbtiFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             productList = ProductDao.gettingProductMBTIList(mbti, gender)
-            Log.d("test1234", "MBTI별 코디 탭 - (상단)상품 개수: ${productList.size}개")
+            Log.d("test1234", "MBTI별 코디(탭) - (상단)상품 개수: ${productList.size}개")
         }
         fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
     }
@@ -315,7 +313,7 @@ class HomeMbtiFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
             productList2 = ProductDao.gettingProductMBTI2List(coordinatorIdxList, gender)
-            Log.d("test1234", "MBTI별 코디 탭 - (하단)상품 개수: ${productList2.size}개, $productList2")
+            Log.d("test1234", "MBTI별 코디(탭) - (하단)상품 개수: ${productList2.size}개")
             fragmentHomeMbtiBinding.homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
         }
 
@@ -329,6 +327,6 @@ class HomeMbtiFragment : Fragment() {
                 filteredMap[key] = value
             }
         }
-        Log.d("test1234", "filter : $filteredMap")
+        Log.d("test1234", "MBTI별 코디(탭) - 내 MBTI == 이성 코디네이터 MBTI | Filter : $filteredMap")
     }
 }
