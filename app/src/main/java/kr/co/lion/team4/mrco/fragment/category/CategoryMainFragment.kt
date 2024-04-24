@@ -1,7 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.category
 
 import android.graphics.Color
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -17,17 +15,24 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kr.co.lion.team4.mrco.Gender
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.ProductDao
+import kr.co.lion.team4.mrco.dao.UserDao
 import kr.co.lion.team4.mrco.databinding.FragmentCategoryMainBinding
 import kr.co.lion.team4.mrco.databinding.HeaderCategoryDrawerBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainBinding
 import kr.co.lion.team4.mrco.databinding.RowCategoryMainFilteredBinding
-import kr.co.lion.team4.mrco.databinding.RowHomeMbtiBinding
+import kr.co.lion.team4.mrco.model.ProductModel
+import kr.co.lion.team4.mrco.model.UserModel
 import kr.co.lion.team4.mrco.viewmodel.category.RowCategoryMainViewModel
-import kr.co.lion.team4.mrco.viewmodel.home.mbti.RowHomeMbtiViewModel
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -170,6 +175,17 @@ class CategoryMainFragment : Fragment() {
 
     val filteredItemBundle = Bundle()
 
+
+    var productList = mutableListOf<ProductModel>()
+    var filteredProductList = mutableListOf<ProductModel>()
+
+    var userList = mutableListOf<UserModel>()
+
+    // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
+    var coordinatorMap = mutableMapOf<Int, String>()
+
+    var genderIdx = 0
+
 //    var chipIdx = 0
 //    var clickIdx = false
 
@@ -185,12 +201,8 @@ class CategoryMainFragment : Fragment() {
 
         mainActivity = activity as MainActivity
 
-        if (savedInstanceState != null) {
-            arguments?.getIntegerArrayList(checkedMenuList.toString())
-            Log.d("testBundle", "$checkedMenuList")
-        }
-
-        Log.d("testBundle", "프레그먼트 실행")
+        initFilterData()
+        gettingProductData()
 
         // 툴바, 하단바, 탭 관련
         toolbarSetting()
@@ -206,6 +218,15 @@ class CategoryMainFragment : Fragment() {
         return fragmentCategoryMainBinding.root
     }
 
+    fun initFilterData(){
+        fragmentCategoryMainBinding.apply {
+            if (arguments != null) {
+                val searchedCategory = arguments?.getString("searchedCategory")
+                genderIdx = requireArguments().getInt("genderIdx")
+                checkedMenuList.add(searchedCategory!!)
+            }
+        }
+    }
 
     // 툴바 설정
     fun toolbarSetting() {
@@ -251,14 +272,12 @@ class CategoryMainFragment : Fragment() {
             val menuItemTitle = menuMapAll[menuItemId]
             if (menuItem.isChecked) {
                 checkedMenuList.add(menuItemTitle!!)
-                Log.d("testBundle", "체크아이템 넣기: $checkedMenuList")
             }
         }
         filteredItemBundle.putStringArrayList(
             "filteredItemBundle",
             checkedMenuList
         )
-        Log.d("testBundle", "번들 넣기: $checkedMenuList")
     }
 
     fun settingCategoryMenuClick(menu: Menu, menuItemIds: Array<Int>) {
@@ -285,6 +304,23 @@ class CategoryMainFragment : Fragment() {
             }
         }
     }
+
+    fun settingGenderIdx(){
+        fragmentCategoryMainBinding.apply {
+            navigationViewContent.apply {
+                val chipGroupCategoryGender = findViewById<ChipGroup>(R.id.chipGroupCategoryGender)
+                val chipCategoryGenderMEN = findViewById<Chip>(R.id.chipCategoryGenderMEN)
+                val chipCategoryGenderWOMEN = findViewById<Chip>(R.id.chipCategoryGenderWOMEN)
+
+                val genderId = chipGroupCategoryGender.checkedChipId
+                    if (genderId == chipCategoryGenderMEN.id){
+                        genderIdx = Gender.MALE.num
+                    } else if (genderId == chipCategoryGenderWOMEN.id) {
+                        genderIdx = Gender.FEMALE.num
+                    }
+                }
+            }
+        }
 
 
     fun settingCategoryChipChange(chip: Chip, array: Array<Int>) {
@@ -326,10 +362,16 @@ class CategoryMainFragment : Fragment() {
 
                     // 적용 버튼 클릭
                     buttonDrawerCategoryApply.setOnClickListener {
+                        settingGenderIdx()
                         // 체크된 카테고리 항목을 카테고리 메인화면에 번들로 전달
                         applyMenuItems(menu, menuItemsAll)
 
+                        // 번들 데이터를 바탕으로 productList의 상품 목록을 필터링하여 filteredProductList에 저장하는 메서드(productListFilter) 호출
+                        productListFilter()
+
+
                         fragmentCategoryMainBinding.recyclerViewCategoryMainFiltered?.adapter?.notifyDataSetChanged()
+                        fragmentCategoryMainBinding.recyclerViewCategoryMain.adapter?.notifyDataSetChanged()
 
                         // NavigationView를 닫아준다.
                         drawerLayoutContent.close()
@@ -337,21 +379,7 @@ class CategoryMainFragment : Fragment() {
                         val ft: FragmentTransaction = requireFragmentManager().beginTransaction()
                         ft.detach(this@CategoryMainFragment).attach(this@CategoryMainFragment)
                             .commit()
-                        Log.d("testBundle", "새로고침")
                     }
-
-//                    // 검색바 기능 세팅
-//                    searchBarDrawer.apply {
-//                        setOnClickListener {
-//                            // 모든 칩 선택해제
-//                            chipCategoriesMbti.isChecked = false
-//                            chipCategoriesTpo.isChecked = false
-//                            chipCategoriesSeason.isChecked = false
-//                            chipCategoriesMood.isChecked = false
-//                        }
-//
-//                        // 검색 완료하면 All칩 선택 후 검색결과에 맞는 메뉴항목 보여주기
-//                    }
 
                     // chip을 클릭할 때 동작하는 리스너 메서드
                     settingCategoryChipChange(chipCategoriesMbti, menuItemsMbti)
@@ -368,6 +396,237 @@ class CategoryMainFragment : Fragment() {
         }
     }
 
+    fun productListFilter():MutableList<ProductModel> {
+        filteredProductList.clear()
+        if (checkedMenuList.size != 0) {
+
+            for (i in 0 until productList.size) {
+                for (j in 0 until checkedMenuList.size) {
+                    if (productList[i].coordiMBTI.uppercase() == checkedMenuList[j] && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+                }
+            }
+            for (i in 0 until productList.size) {
+                for (j in 0 until checkedMenuList.size) {
+                    if (productList[i].coordiTPO?.strKor == checkedMenuList[j] && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+                }
+            }
+
+            for (i in 0 until productList.size) {
+                for (j in 0 until checkedMenuList.size) {
+                    if (productList[i].coordiSeason?.strKor == checkedMenuList[j] && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+                }
+            }
+
+            for (i in 0 until productList.size) {
+                for (j in 0 until checkedMenuList.size) {
+                    if (productList[i].coordiMood?.strKor == checkedMenuList[j] && productList[i].coordiGender == genderIdx) {
+                        filteredProductList.add(productList[i])
+                    }
+                }
+            }
+        }
+
+        filteredProductList = filteredProductList.distinct().toMutableList()
+
+
+        return filteredProductList
+
+    }
+
+
+    // 리사이클러 뷰 설정
+    fun settingRecyclerViewCategoryMain() {
+        fragmentCategoryMainBinding.apply {
+            val screenWidthDp = resources.configuration.screenWidthDp
+            if (screenWidthDp >= 600) {
+                // 너비가 600dp 이상인 디바이스에서 실행될 동작
+                recyclerViewCategoryMain.apply {
+                    adapter = CategoryMainRecyclerViewAdapter()
+                    layoutManager = GridLayoutManager(mainActivity, 4)
+                }
+            } else {
+                recyclerViewCategoryMain.apply {
+                    adapter = CategoryMainRecyclerViewAdapter()
+                    layoutManager = GridLayoutManager(mainActivity, 2)
+                }
+            }
+        }
+    }
+
+
+    fun settingRecyclerViewCategoryFiltered() {
+        fragmentCategoryMainBinding.apply {
+            recyclerViewCategoryMainFiltered?.apply {
+                // 어뎁터 및 레이아웃 매니저 설정
+                adapter = CategoeyFilteredRecyclerViewAdapter()
+                layoutManager =
+                    LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
+            }
+        }
+    }
+
+    inner class CategoeyFilteredRecyclerViewAdapter :
+        RecyclerView.Adapter<CategoeyFilteredRecyclerViewAdapter.CategoryFilteredViewHolder>() {
+        inner class CategoryFilteredViewHolder(rowCategoryMainFilteredBinding: RowCategoryMainFilteredBinding) :
+            RecyclerView.ViewHolder(rowCategoryMainFilteredBinding.root) {
+            val rowCategoryMainFilteredBinding: RowCategoryMainFilteredBinding
+
+            init {
+                this.rowCategoryMainFilteredBinding = rowCategoryMainFilteredBinding
+
+                this.rowCategoryMainFilteredBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): CategoryFilteredViewHolder {
+            val rowCategoryMainFilteredBinding =
+                DataBindingUtil.inflate<RowCategoryMainFilteredBinding>(
+                    layoutInflater, R.layout.row_category_main_filtered, parent, false
+                )
+
+            rowCategoryMainFilteredBinding.lifecycleOwner = this@CategoryMainFragment
+
+            val categoryFilteredViewHolder =
+                CategoryFilteredViewHolder(rowCategoryMainFilteredBinding)
+
+            return categoryFilteredViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            return checkedMenuList.size
+        }
+
+        override fun onBindViewHolder(holder: CategoryFilteredViewHolder, position: Int) {
+            holder.rowCategoryMainFilteredBinding.textViewRowCategoryFiltered.text =
+                "#${checkedMenuList[position]}"
+        }
+    }
+
+
+
+
+    // 리사이클러 뷰 어뎁터
+    inner class CategoryMainRecyclerViewAdapter :
+        RecyclerView.Adapter<CategoryMainRecyclerViewAdapter.CategoryMainViewHolder>() {
+        inner class CategoryMainViewHolder(rowCategoryMainBinding: RowCategoryMainBinding) :
+            RecyclerView.ViewHolder(rowCategoryMainBinding.root) {
+            val rowCategoryMainBinding: RowCategoryMainBinding
+
+            init {
+                this.rowCategoryMainBinding = rowCategoryMainBinding
+
+                this.rowCategoryMainBinding.root.layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            }
+        }
+
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): CategoryMainViewHolder {
+            val rowCategoryMainBinding = DataBindingUtil.inflate<RowCategoryMainBinding>(
+                layoutInflater, R.layout.row_category_main, parent, false
+            )
+            val rowCategoryMainViewModel = RowCategoryMainViewModel()
+            rowCategoryMainBinding.rowCategoryMainViewModel = rowCategoryMainViewModel
+            rowCategoryMainBinding.lifecycleOwner = this@CategoryMainFragment
+
+            val categoryMainViewHolder = CategoryMainViewHolder(rowCategoryMainBinding)
+
+            return categoryMainViewHolder
+        }
+
+        override fun getItemCount(): Int {
+            if (filteredItemBundle == null){
+                return productList.size
+            }else{
+                return filteredProductList.size
+            }
+        }
+
+        override fun onBindViewHolder(holder: CategoryMainViewHolder, position: Int) {
+
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 6) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image4
+                3 -> R.drawable.iu_image5
+                4 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowCategoryMainBinding.imageViewCategoryMainProductThumbnail.setImageResource(imageResource)
+
+            if (filteredItemBundle == null) {
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
+                    Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI))
+                )
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.text =
+                    "${productList[position].coordiMBTI}"
+
+                // 코디 상품의 코디네이터
+                holder.rowCategoryMainBinding.textViewCategoryMainCoordinatorName.text =
+                    "${coordinatorMap[productList[position].coordinatorIdx]}"
+                // 코디 상품의 이름
+                holder.rowCategoryMainBinding.textViewCategoryMainProductName.text =
+                    "${productList[position].coordiName}"
+                // 코디 상품의 가격
+                holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
+                    "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+            } else {
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.setBackgroundColor(
+                    Color.parseColor(Tools.mbtiColor(filteredProductList[position].coordiMBTI))
+                )
+                holder.rowCategoryMainBinding.textViewCategoryMainProductMbti.text = "${filteredProductList[position].coordiMBTI}"
+
+                // 코디 상품의 코디네이터
+                holder.rowCategoryMainBinding.textViewCategoryMainCoordinatorName.text = "${coordinatorMap[filteredProductList[position].coordinatorIdx]}"
+                // 코디 상품의 이름
+                holder.rowCategoryMainBinding.textViewCategoryMainProductName.text = "${filteredProductList[position].coordiName}"
+                // 코디 상품의 가격
+                holder.rowCategoryMainBinding.textViewCategoryMainProductPrice.text =
+                    "${NumberFormat.getNumberInstance(Locale.getDefault()).format(filteredProductList[position].price)}"
+            }
+
+            // 이미지 -> 상품 이미지 클릭 시
+            holder.rowCategoryMainBinding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT,true,true,null)
+            }
+
+            // 버튼 -> 카트 담기 클릭 시
+            holder.rowCategoryMainBinding.buttonCategoryMainCart.setOnClickListener {
+                mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
+            }
+        }
+    }
+
+
+    fun gettingProductData(){
+        CoroutineScope(Dispatchers.Main).launch {
+             // 상품의 정보를 가져온다. (연동 On)
+             productList = ProductDao.gettingProductAll()
+             Log.d("testCategoryMain", "카테고리메인 - productList: $productList")
+             Log.d("testCategoryMain", "카테고리메인 - productList[0].coordiMbti: ${productList[0].coordiGender}")
+
+             // 사용자 정보를 가져온다. (연동 On)
+             userList = UserDao.getUserAll()
+             Log.d("testCategoryMain", "카테고리메인 - productList: $userList")
+        }
+    }
 
     // 하단 바 설정
     fun bottomSheetSetting() {
@@ -419,148 +678,4 @@ class CategoryMainFragment : Fragment() {
         }
     }
 
-    // 리사이클러 뷰 설정
-    fun settingRecyclerViewCategoryMain() {
-        fragmentCategoryMainBinding.apply {
-            val screenWidthDp = resources.configuration.screenWidthDp
-            if (screenWidthDp >= 600) {
-                // 너비가 600dp 이상인 디바이스에서 실행될 동작
-                recyclerViewCategoryMain.apply {
-                    adapter = CategoryMainRecyclerViewAdapter()
-                    layoutManager = GridLayoutManager(mainActivity, 4)
-                }
-            } else {
-                recyclerViewCategoryMain.apply {
-                    adapter = CategoryMainRecyclerViewAdapter()
-                    layoutManager = GridLayoutManager(mainActivity, 2)
-                }
-            }
-        }
-    }
-
-    // 리사이클러 뷰 어뎁터
-    inner class CategoryMainRecyclerViewAdapter :
-        RecyclerView.Adapter<CategoryMainRecyclerViewAdapter.CategoryMainViewHolder>() {
-        inner class CategoryMainViewHolder(rowCategoryMainBinding: RowCategoryMainBinding) :
-            RecyclerView.ViewHolder(rowCategoryMainBinding.root) {
-            val rowCategoryMainBinding: RowCategoryMainBinding
-
-            init {
-                this.rowCategoryMainBinding = rowCategoryMainBinding
-
-                this.rowCategoryMainBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            }
-        }
-
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): CategoryMainViewHolder {
-            val rowCategoryMainBinding = DataBindingUtil.inflate<RowCategoryMainBinding>(
-                layoutInflater, R.layout.row_category_main, parent, false
-            )
-            val rowCategoryMainViewModel = RowCategoryMainViewModel()
-            rowCategoryMainBinding.rowCategoryMainViewModel = rowCategoryMainViewModel
-            rowCategoryMainBinding.lifecycleOwner = this@CategoryMainFragment
-
-            val categoryMainViewHolder = CategoryMainViewHolder(rowCategoryMainBinding)
-
-            return categoryMainViewHolder
-        }
-
-        override fun getItemCount(): Int {
-            return 24
-        }
-
-        override fun onBindViewHolder(holder: CategoryMainViewHolder, position: Int) {
-
-            // position 값에 따라 다른 이미지 설정
-            val imageResource = when (position % 6) {
-                0 -> R.drawable.iu_image2
-                1 -> R.drawable.iu_image3
-                2 -> R.drawable.iu_image4
-                3 -> R.drawable.iu_image5
-                4 -> R.drawable.iu_image6
-                else -> R.drawable.iu_image7
-            }
-            holder.rowCategoryMainBinding.itemMainProductThumbnail.setImageResource(
-                imageResource
-            )
-
-            // 이미지 -> 상품 이미지 클릭 시
-            holder.rowCategoryMainBinding.root.setOnClickListener {
-                mainActivity.replaceFragment(
-                    MainFragmentName.PRODUCT_FRAGMENT,
-                    true,
-                    true,
-                    null
-                )
-            }
-
-            // 버튼 -> 카트 담기 클릭 시
-            holder.rowCategoryMainBinding.buttonRowCategoryMainCart.setOnClickListener {
-                mainActivity.replaceFragment(MainFragmentName.CART_FRAGMENT, true, true, null)
-            }
-        }
-    }
-
-
-    // 홈(추천) - 신규 코디 리사이클러 뷰 설정
-    fun settingRecyclerViewCategoryFiltered() {
-        fragmentCategoryMainBinding.apply {
-            recyclerViewCategoryMainFiltered?.apply {
-                // 어뎁터 및 레이아웃 매니저 설정
-                adapter = CategoeyFilteredRecyclerViewAdapter()
-                layoutManager =
-                    LinearLayoutManager(mainActivity, LinearLayoutManager.HORIZONTAL, false)
-            }
-        }
-    }
-
-    // RecyclerView Adapter : 홈(MBTI) - MBTI @@에게 잘 어울리는 코디 리사이클러 뷰 어뎁터
-    inner class CategoeyFilteredRecyclerViewAdapter :
-        RecyclerView.Adapter<CategoeyFilteredRecyclerViewAdapter.CategoryFilteredViewHolder>() {
-        inner class CategoryFilteredViewHolder(rowCategoryMainFilteredBinding: RowCategoryMainFilteredBinding) :
-            RecyclerView.ViewHolder(rowCategoryMainFilteredBinding.root) {
-            val rowCategoryMainFilteredBinding: RowCategoryMainFilteredBinding
-
-            init {
-                this.rowCategoryMainFilteredBinding = rowCategoryMainFilteredBinding
-
-                this.rowCategoryMainFilteredBinding.root.layoutParams = ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            }
-        }
-
-        override fun onCreateViewHolder(
-            parent: ViewGroup,
-            viewType: Int
-        ): CategoryFilteredViewHolder {
-            val rowCategoryMainFilteredBinding =
-                DataBindingUtil.inflate<RowCategoryMainFilteredBinding>(
-                    layoutInflater, R.layout.row_category_main_filtered, parent, false
-                )
-
-            rowCategoryMainFilteredBinding.lifecycleOwner = this@CategoryMainFragment
-
-            val categoryFilteredViewHolder =
-                CategoryFilteredViewHolder(rowCategoryMainFilteredBinding)
-
-            return categoryFilteredViewHolder
-        }
-
-        override fun getItemCount(): Int {
-            return checkedMenuList.size
-        }
-
-        override fun onBindViewHolder(holder: CategoryFilteredViewHolder, position: Int) {
-            holder.rowCategoryMainFilteredBinding.textViewRowCategoryFiltered.text =
-                "#${checkedMenuList[position]}"
-        }
-    }
 }

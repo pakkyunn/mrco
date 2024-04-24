@@ -1,7 +1,6 @@
 package kr.co.lion.team4.mrco.dao
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
 import android.view.View
@@ -10,25 +9,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.Firebase
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
-import com.google.firebase.firestore.toObject
 import com.google.firebase.storage.storage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import java.io.File
-import kotlin.coroutines.resume
-import kotlin.coroutines.resumeWithException
-import kotlin.coroutines.suspendCoroutine
 
 class ProductDao {
     companion object {
@@ -210,6 +201,7 @@ class ProductDao {
 
             return productList
         }
+
 
         // 상품 번호 시퀀스값을 가져온다.
         suspend fun getContentSequence():Int{

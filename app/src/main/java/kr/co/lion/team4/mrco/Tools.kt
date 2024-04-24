@@ -377,38 +377,38 @@ enum class CategoryId(var str: String){
     MOOD("MOOD"),
 }
 
-enum class CategoryIdSubTPO(var str: String){
-    DEFAULT("Default"),
-    TRAVEL("Travel"),
-    DATE("Date"),
-    CAFE("Cafe"),
-    WORK("Work"),
-    DAILY("Daily"),
-    CAMPUS("Campus"),
-    OCEAN("Ocean"),
-    WEDDING("Wedding"),
+enum class CategoryIdSubTPO(var str: String, var strKor:String){
+    DEFAULT("Default","기본"),
+    TRAVEL("Travel","여행"),
+    DATE("Date","데이트"),
+    CAFE("Cafe","카페"),
+    WORK("Work","출근"),
+    DAILY("Daily","데일리"),
+    CAMPUS("Campus","캠퍼스"),
+    OCEAN("Ocean","바다"),
+    WEDDING("Wedding","결혼식"),
 }
 
-enum class CategoryIdSubSEASON(var str: String){
-    DEFAULT("Default"),
-    SPRING("Spring"),
-    SUMMER("Summer"),
-    FALL("Fall"),
-    WINTER("Winter"),
+enum class CategoryIdSubSEASON(var str: String, var strKor:String){
+    DEFAULT("Default","기본"),
+    SPRING("Spring","봄"),
+    SUMMER("Summer","여름"),
+    FALL("Fall","가을"),
+    WINTER("Winter","겨울"),
 }
 
-enum class CategoryIdSubMOOD(var str: String){
-    DEFAULT("Default"),
-    MINIMAL("Minimal"),
-    BUSINESS("Business"),
-    ONE_MILE("OneMile"),
-    AMECAJI("Amecaji"),
-    CITY_BOY("City Boy"),
-    STREET("Street"),
-    SPORTY("Sporty"),
-    RETRO("Retro"),
-    LOVELY("Lovely"),
-    MODERN("Modern")
+enum class CategoryIdSubMOOD(var str: String, var strKor:String){
+    DEFAULT("Default","기본"),
+    MINIMAL("Minimal","미니멀"),
+    BUSINESS("Business","비즈니스 캐주얼"),
+    ONE_MILE("OneMile","원마일웨어"),
+    AMECAJI("Amecaji","아메카지"),
+    CITY_BOY("City Boy","시티보이"),
+    STREET("Street","스트릿"),
+    SPORTY("Sporty","스포티"),
+    RETRO("Retro","레트로"),
+    LOVELY("Lovely","러블리"),
+    MODERN("Modern","모던 캐주얼")
 }
 
 enum class CodiMbti(var str: String){
