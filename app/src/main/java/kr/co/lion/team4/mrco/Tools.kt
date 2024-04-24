@@ -481,10 +481,12 @@ enum class InquiryPeriod(var num: Int){
 // 주문 상태
 enum class OrderState(var str: String, var num:Int){
     ORDERED("주문 접수", 0),
-    ORDER_CONFIRM("구매 확정", 1),
-    RETURN("반품 접수", 2),
-    EXCHANGE("교환 접수", 3),
-    CANCEL("주문 취소", 4),
+    IN_TRANSIT("배송중", 1),
+    DELIVERED("배송완료", 2),
+    ORDER_CONFIRM("구매 확정", 3),
+    RETURN("반품 접수", 4),
+    EXCHANGE("교환 접수", 5),
+    CANCEL("주문 취소", 6),
 }
 
 // 배송 상태
@@ -493,7 +495,7 @@ enum class ShippingState(var str: String, var num:Int){
     SHIPPED("배송시작", 1),
     IN_TRANSIT("배송중", 2),
     ARRIVE_SOON("도착예정", 3),
-    DELIVERED("도착", 4),
+    DELIVERED("배송완료", 4),
 }
 
 // 리뷰 작성 상태
