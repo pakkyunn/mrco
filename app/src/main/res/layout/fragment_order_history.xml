@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".fragment.order.OrderHistoryFragment"
-        android:transitionGroup="true">
+        android:transitionGroup="true"
+        tools:context=".fragment.order.OrderHistoryFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarOrderHistory"
@@ -33,29 +33,29 @@
             android:layout_height="match_parent"
             android:backgroundTint="@color/white">
 
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/searchbar_order_history"
-            style="@style/Widget.Material3.SearchBar.Outlined"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:hint="상품명을 입력해주세요"
-            android:minHeight="0dp" />
-
-        <com.google.android.material.search.SearchView
-            android:id="@+id/searchview_order_history"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="검색어를 입력해주세요"
-            app:backgroundTint="@color/white"
-            app:layout_anchor="@id/searchbar_order_history">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview_order_history_search"
+            <com.google.android.material.search.SearchBar
+                android:id="@+id/searchbar_order_history"
+                style="@style/Widget.Material3.SearchBar.Outlined"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white" />
-        </com.google.android.material.search.SearchView>
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="상품명을 입력해주세요"
+                android:minHeight="0dp" />
+
+            <com.google.android.material.search.SearchView
+                android:id="@+id/searchview_order_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="검색어를 입력해주세요"
+                app:backgroundTint="@color/white"
+                app:layout_anchor="@id/searchbar_order_history">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_order_history_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white" />
+            </com.google.android.material.search.SearchView>
 
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/togglebutton_order_history_period"
@@ -69,7 +69,6 @@
 
                 <Button
                     android:id="@+id/button_order_history_one_month"
-
                     style="?attr/materialButtonOutlinedStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -109,30 +108,30 @@
                     android:textColor="@color/selector_add_product_option_text_color" />
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
-        <!--<com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textinput_order_history_keyword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:boxCornerRadiusBottomEnd="32dp"
-            app:boxCornerRadiusBottomStart="32dp"
-            app:boxCornerRadiusTopEnd="32dp"
-            app:boxCornerRadiusTopStart="32dp"
-            app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
-            app:endIconMode="custom"
-            app:hintEnabled="false">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edittext_order_history_keyword"
+            <!--<com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textinput_order_history_keyword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="상품명을 입력해주세요"
-                android:text="@={orderHistoryViewModel.editTextOrderHistoryKeyword}"
-                android:maxLines="1"
-                android:paddingStart="24dp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:boxCornerRadiusBottomEnd="32dp"
+                app:boxCornerRadiusBottomStart="32dp"
+                app:boxCornerRadiusTopEnd="32dp"
+                app:boxCornerRadiusTopStart="32dp"
+                app:endIconDrawable="?android:attr/actionModeWebSearchDrawable"
+                app:endIconMode="custom"
+                app:hintEnabled="false">
 
-        </com.google.android.material.textfield.TextInputLayout>-->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_order_history_keyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="상품명을 입력해주세요"
+                    android:text="@={orderHistoryViewModel.editTextOrderHistoryKeyword}"
+                    android:maxLines="1"
+                    android:paddingStart="24dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab_order_history_state"
@@ -189,16 +188,14 @@
                 android:paddingVertical="16dp"
                 android:visibility="visible" />
 
-        <TextView
-            android:id="@+id/textview_order_history_empty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="주문내역이 존재하지 않습니다"
-            android:background="@color/material_dynamic_neutral90"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:visibility="gone"/>
-
+            <TextView
+                android:id="@+id/textview_order_history_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="주문내역이 존재하지 않습니다"
+                android:visibility="gone" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
