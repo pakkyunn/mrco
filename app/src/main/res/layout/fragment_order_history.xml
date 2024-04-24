@@ -153,7 +153,9 @@
             android:id="@+id/recyclerview_order_history"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/material_dynamic_neutral90" />
+            android:background="@color/material_dynamic_neutral90"
+            android:clipToPadding="false"
+            android:paddingVertical="16dp" />
 
     </LinearLayout>
 </layout>
