@@ -1,6 +1,8 @@
 package kr.co.lion.team4.mrco.dao
 
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +28,7 @@ class OrderHistoryDao {
         }
 
         // 로그인한 사용자가 주문한 모든 주문 내역을 가져온다.
-        suspend fun gettingOrderList(userIdx : Int) : MutableList<OrderModel>{
+        suspend fun gettingOrderList(userIdx : Int, startDate: Timestamp, endDate: Timestamp) : MutableList<OrderModel>{
             // 주문 내역 목록을 담을 리스트
             val orderList = mutableListOf<OrderModel>()
 
@@ -34,8 +36,11 @@ class OrderHistoryDao {
                 // 모든 주문 내역을 가져온다.
                 val collectionReference = Firebase.firestore.collection("OrderData")
                 // 주문한 유저의 인덱스번호가 현재 로그인한 사용자의 인덱스번호와 같은 주문내역만 불러온다.
-                val query = collectionReference.whereEqualTo("order_user_idx", userIdx)
 
+                val query = collectionReference.whereEqualTo("order_user_idx", userIdx)
+                    .whereGreaterThanOrEqualTo("order_date", startDate) // 시작일
+                    .whereLessThanOrEqualTo("order_date", endDate) // 종료일
+                    .orderBy("order_date", Query.Direction.DESCENDING) // 최신순 정렬
                 val querySnapshot = query.get().await()
                 // 가져온 문서 수만큼 반복
                 querySnapshot.forEach{
@@ -61,7 +66,7 @@ class OrderHistoryDao {
                 orderList.forEach {
 
                     // 고객이 주문한 상품의 상품 정보 목록 (상품의 상품명, 대표이미지 파일명, 가격만 담긴다)
-                    var productsInfo = ArrayList<OrderedProductInfoModel>()
+                    val productsInfo = ArrayList<OrderedProductInfoModel>()
                     it.order_product.forEach {
 
                         val jobItem = CoroutineScope(Dispatchers.IO).launch {
@@ -69,7 +74,6 @@ class OrderHistoryDao {
                             val collectionReference = Firebase.firestore.collection("ProductData")
                             // 주문한 상품의 인덱스번호와 일치하는 상품 정보를 불러온다.
                             val query = collectionReference.whereEqualTo("productIdx", it.order_product_idx)
-
                             val querySnapshot = query.get().await()
                             // 가져온 문서 수만큼 반복
                             querySnapshot.forEach{
