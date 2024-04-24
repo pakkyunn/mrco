@@ -158,7 +158,10 @@ class HomeMainFullFragment : Fragment() {
         fragmentHomeMainFullBinding.apply {
 
             // 1. 페이지 데이터를 로드
-            val list = listOf(HomeRecommendFragment(), HomeMbtiFragment(), HomeCoordinatorFragment())
+            val list = listOf(
+                HomeRecommendFragment(),
+                HomeMbtiFragment(),
+                HomeCoordinatorFragment())
             // 2. Adapter 생성
             val pagerAdapter = FragmentPagerAdapter(list, mainActivity)
             // 3. Adapater와 Pager연결
@@ -183,7 +186,15 @@ class HomeMainFullFragment : Fragment() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return fragmentList.get(position)
+            val fragment = fragmentList[position]
+
+            // 각 프래그먼트에 전달할 데이터 설정
+            val bundle = Bundle().apply {
+                putInt("loginUserIdx", loginUserIdx)
+            }
+            fragment.arguments = bundle
+
+            return fragment
         }
     }
 

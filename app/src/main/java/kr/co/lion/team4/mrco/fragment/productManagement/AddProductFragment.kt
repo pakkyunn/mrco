@@ -42,6 +42,7 @@ import kr.co.lion.team4.mrco.databinding.ItemAddproductPhotoBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.model.ProductModel
 
@@ -53,7 +54,6 @@ interface AddProductDialogListener {
 }
 
 class AddProductFragment : Fragment(), AddProductDialogListener {
-
     // FirebaseStorage 인스턴스 생성
     val storage = FirebaseStorage.getInstance()
 
@@ -61,10 +61,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     private var currentPosition: Int = -1
 
     lateinit var fragmentAddProductBinding: FragmentAddProductBinding
+
     lateinit var addProductViewModel: AddProductViewModel
-
     lateinit var mainActivity: MainActivity
-
     // 첨부 이미지 인덱스
     var imageIdx = -1
 
@@ -85,6 +84,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
     // firestore 이미지 경로 배열
     var imagePath = arrayListOf<String>()
 
+    // 현재 로그인한 코디네이터 Index
+    var coordinatorIdx = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         fragmentAddProductBinding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_add_product, container, false)
@@ -93,6 +95,9 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         fragmentAddProductBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
+
+        // 코디네이터 인덱스 가져오기
+        gettingCoordinatorData()
 
         // setting toolbar, bottom navigation
         settingToolbarAddProduct()
@@ -352,7 +357,6 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 성별
             chipgroupAddProductGender.apply {
                 if (chipAddProductMale.isChecked){
-                    Log.d("test1234", "ChipGroup is Working!")
                     addProductViewModel?.chipgroupAddProductGender?.value = 1
                 } else if (chipAddProductFemale.isChecked){
                     addProductViewModel?.chipgroupAddProductGender?.value = 2
@@ -470,7 +474,7 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
             // 업로드할 정보를 담아준다.
             val productIdx = productSequence + 1
             val categoryId = CategoryId.TPO.str
-            val coordinatorIdx = 0 // TEMP
+            val coordinatorIdx = coordinatorIdx
             val coordiName = addProductViewModel.edittextAddProductName.value!!
             val coordiImage = imageProductList
             val codiMainImage = "image_codiMain_${currentTimeText}.jpg"
@@ -620,6 +624,15 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
                     isProductAddPicture = true
                 }
             }
+        }
+    }
+    // 현재 접속한 코디네이터 index 가져오기
+    fun gettingCoordinatorData(){
+        val userIdx = mainActivity.loginUserIdx
+        CoroutineScope(Dispatchers.Main).launch{
+            // 현재 코디네이터 번호를 가져온다
+            coordinatorIdx = CoordinatorDao.returnCoordiIdx(userIdx)
+            Log.d("taejinCheck", "현재 코디네이터 번호 : $coordinatorIdx")
         }
     }
 

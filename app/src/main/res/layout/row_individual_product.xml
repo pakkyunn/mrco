@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="rip"
+            name="rowIndividualProductManagementViewModel"
             type="kr.co.lion.team4.mrco.viewmodel.IndividualProductManagementViewModel" />
     </data>
 
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@{rip.productName}"
+                    android:text="@{rowIndividualProductManagementViewModel.productName}"
                     android:textSize="16dp" />
 
                 <View
@@ -61,7 +61,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@{rip.productSerialNum}"
+                        android:text="@{rowIndividualProductManagementViewModel.productSerialNum}"
                         android:textSize="16dp" />
 
                     <View
@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@{rip.productStockNum}"
+                        android:text="@{rowIndividualProductManagementViewModel.productStockNum}"
                         android:textSize="16dp" />
                 </LinearLayout>
             </LinearLayout>

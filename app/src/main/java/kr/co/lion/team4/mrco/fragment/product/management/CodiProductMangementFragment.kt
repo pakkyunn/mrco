@@ -33,7 +33,7 @@ class CodiProductMangementFragment : Fragment() {
     var codiProductList = mutableListOf<ProductModel>()
 
     // 현재 접속한 코디네이터 Idx
-    val coordiIdx = 0
+    var coordinatorIdx = 0
 
     // 코디 상품 리스트
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -47,6 +47,14 @@ class CodiProductMangementFragment : Fragment() {
         gettingCodiData()
 
         return binding.root
+    }
+
+    // 현재 접속한 코디네이터 index 가져오기
+    fun gettingBundleData(){
+        val bundle = arguments
+        if (bundle != null){
+            coordinatorIdx = bundle.getInt("coordinatorIdx")
+        }
     }
 
     fun settingRecyclerView(){
@@ -65,7 +73,7 @@ class CodiProductMangementFragment : Fragment() {
     fun gettingCodiData(){
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다
-            codiProductList = ProductDao.gettingProductList(coordiIdx)
+            codiProductList = ProductDao.gettingProductList(coordinatorIdx)
 
             // 리사이클러뷰를 갱신한다.
             binding.recyclerViewCodiProductManagement.adapter?.notifyDataSetChanged()

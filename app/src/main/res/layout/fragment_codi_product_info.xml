@@ -16,22 +16,28 @@
             android:id="@+id/toolbar_product_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/bottomSheetColor"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:title="코디상품상세"
-            app:navigationIcon="@drawable/arrow_back_24px"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:title="코디상품상세" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout_codiProductInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_product_info"
+            android:background="@color/bottom_navigation_selector_color"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorAnimationMode="linear"
+            app:tabSelectedTextColor="@color/black"
+            app:tabSelectedTextAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/toolbar_product_info" />
 
 
         <androidx.viewpager2.widget.ViewPager2

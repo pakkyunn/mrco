@@ -23,6 +23,7 @@ class UserMyPageFragment : Fragment() {
     lateinit var fragmentUserMyPageBinding: FragmentUserMyPageBinding
     lateinit var mainActivity: MainActivity
     lateinit var userMyPageViewModel: UserMyPageViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +36,7 @@ class UserMyPageFragment : Fragment() {
         fragmentUserMyPageBinding.lifecycleOwner = this
 
         mainActivity = activity as MainActivity
-
+        
         // 탭바 및 하단바 설정
         settingTabs()
         settingMypagetab()

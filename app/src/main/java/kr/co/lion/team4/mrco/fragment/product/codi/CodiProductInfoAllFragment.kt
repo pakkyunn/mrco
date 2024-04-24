@@ -14,8 +14,10 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.dao.ProductDao
+import kr.co.lion.team4.mrco.dao.UserDao
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoAllBinding
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoAllViewModel
+import kr.co.lion.team4.mrco.viewmodel.LoginViewModel
 
 class CodiProductInfoAllFragment : Fragment() {
 
