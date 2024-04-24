@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco.fragment.category
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kr.co.lion.team4.mrco.Gender
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
@@ -90,7 +92,7 @@ class CategorySearchFragment : Fragment() {
     // 검색 화면의 RecyclerView 구성을 위한 리스트
     var searchList = mutableListOf<String>()
     // gender 칩 선택 id값
-    var genderFilter = 0
+    var genderIdx = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -171,9 +173,15 @@ class CategorySearchFragment : Fragment() {
         }
     }
 
-    fun settingGenderFilter(){
+    fun settingGenderIdx(){
         fragmentCategorySearchBinding.apply {
-            genderFilter = chipGroupCategorySearchGender!!.checkedChipId
+            val genderId = chipGroupCategorySearchGender!!.checkedChipId
+            if (genderId == chipCategorySearchGenderMEN?.id){
+                genderIdx = Gender.MALE.num
+
+            } else if (genderId == chipCategorySearchGenderWOMEN?.id) {
+                genderIdx = Gender.FEMALE.num
+            }
         }
     }
 
@@ -212,9 +220,9 @@ class CategorySearchFragment : Fragment() {
 
             holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
                 val categorySearchBundle = Bundle()
-                settingGenderFilter()
-                categorySearchBundle.putString("SearchedCategory", searchList[position])
-                categorySearchBundle.putInt("genderFilter", genderFilter)
+                settingGenderIdx()
+                categorySearchBundle.putString("searchedCategory", searchList[position])
+                categorySearchBundle.putInt("genderIdx", genderIdx)
                 mainActivity.replaceFragment(
                     MainFragmentName.CATEGORY_MAIN_FRAGMENT,
                     false,
@@ -288,9 +296,9 @@ class CategorySearchFragment : Fragment() {
                     tpoData[position]
                 holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
                     val categorySearchBundle = Bundle()
-                    settingGenderFilter()
-                    categorySearchBundle.putString("SearchedCategory", tpoData[position])
-                    categorySearchBundle.putInt("genderFilter", genderFilter)
+                    settingGenderIdx()
+                    categorySearchBundle.putString("searchedCategory", tpoData[position])
+                    categorySearchBundle.putInt("genderIdx", genderIdx)
                     mainActivity.replaceFragment(
                         MainFragmentName.CATEGORY_MAIN_FRAGMENT,
                         false,
@@ -303,9 +311,9 @@ class CategorySearchFragment : Fragment() {
                     seasonData[position]
                 holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
                     val categorySearchBundle = Bundle()
-                    settingGenderFilter()
-                    categorySearchBundle.putString("SearchedCategory", seasonData[position])
-                    categorySearchBundle.putInt("genderFilter", genderFilter)
+                    settingGenderIdx()
+                    categorySearchBundle.putString("searchedCategory", seasonData[position])
+                    categorySearchBundle.putInt("genderIdx", genderIdx)
                     mainActivity.replaceFragment(
                         MainFragmentName.CATEGORY_MAIN_FRAGMENT,
                         false,
@@ -318,9 +326,9 @@ class CategorySearchFragment : Fragment() {
                     moodData[position]
                 holder.rowCategorySemiCategoryBinding.imageViewRowCategorySemiCategory.setOnClickListener {
                     val categorySearchBundle = Bundle()
-                    settingGenderFilter()
-                    categorySearchBundle.putString("SearchedCategory", moodData[position])
-                    categorySearchBundle.putInt("genderFilter", genderFilter)
+                    settingGenderIdx()
+                    categorySearchBundle.putString("searchedCategory", moodData[position])
+                    categorySearchBundle.putInt("genderIdx", genderIdx)
                     mainActivity.replaceFragment(
                         MainFragmentName.CATEGORY_MAIN_FRAGMENT,
                         false,
@@ -372,9 +380,9 @@ class CategorySearchFragment : Fragment() {
 
             holder.rowCategorySemiCategory2Grid4Binding.imageViewRowCategorySemiCategory.setOnClickListener {
                 val categorySearchBundle = Bundle()
-                settingGenderFilter()
-                categorySearchBundle.putString("SearchedCategory", mbtiData[position])
-                categorySearchBundle.putInt("genderFilter", genderFilter)
+                settingGenderIdx()
+                categorySearchBundle.putString("searchedCategory", mbtiData[position])
+                categorySearchBundle.putInt("genderIdx", genderIdx)
                 mainActivity.replaceFragment(
                     MainFragmentName.CATEGORY_MAIN_FRAGMENT,
                     false,

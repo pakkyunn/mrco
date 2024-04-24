@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_marginLeft="20dp"
+            app:selectionRequired="true"
             app:singleSelection="true">
             <!--                        android:checkedChipId="@={categorySearchViewModel.chipGroupCategoryGender}"-->
 
@@ -79,7 +80,6 @@
                 android:checked="true"
                 android:text="MEN"
                 android:textColor="@color/selector_add_product_option_text_color"
-                app:checkedIconVisible="false"
                 app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
 
             <com.google.android.material.chip.Chip
