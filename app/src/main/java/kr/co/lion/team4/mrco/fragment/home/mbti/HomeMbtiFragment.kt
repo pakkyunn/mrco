@@ -41,8 +41,17 @@ class HomeMbtiFragment : Fragment() {
     // 상품 정보를 담고 있을 리스트
     var productList = mutableListOf<ProductModel>()
 
+    // 상품 정보를 담고 있을 리스트
+    var productList2 = mutableListOf<ProductModel>()
+
     // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
-    var coordinatorMap = mutableMapOf<Int, String>()
+    var coordinatorNameMap = mutableMapOf<Int, String>()
+
+    // 코디네이터 인덱스와 Mbti 정보를 담고 있을 맵
+    var coordinatorMbtiMap = mutableMapOf<Int, String>()
+
+    // 로그인한 MBTI와 같은 코디네이터 인덱스를 담고 있을 맵
+    val filteredMap = mutableMapOf<Int, String>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -64,8 +73,11 @@ class HomeMbtiFragment : Fragment() {
         settingInit()
 
         // 데이터 가져오기
-        gettingMainData(mainActivity.loginUserMbti, mainActivity.loginUserGender)
-        gettingCoordinatorName()
+        gettingMBTIData(mainActivity.loginUserMbti, mainActivity.loginUserGender)
+        CoroutineScope(Dispatchers.Main).launch {
+            gettingCoordinatorName()
+        }
+
 
         // 코디 상품(첫번째) TextView 관찰
         homeMbtiViewModel.textViewHomeMbtiTextFirst.observe(viewLifecycleOwner) { text ->
@@ -164,6 +176,7 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
+            Log.d("test1234", "리사이클러뷰 상단 실행 타이밍")
             if (productList.size > 12) return 12
             else return productList.size
         }
@@ -182,12 +195,19 @@ class HomeMbtiFragment : Fragment() {
             holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList[position].coordiMBTI)))
             holder.rowHomeMbtiBinding.itemMainMbtiProductMbti.text = mainActivity.loginUserMbti
             // 해당 코디네이터의 이름
-            holder.rowHomeMbtiBinding.itemMainMbtiCoordinatorName.text = "${coordinatorMap[productList[position].coordinatorIdx]}"
+            holder.rowHomeMbtiBinding.itemMainMbtiCoordinatorName.text = "${coordinatorNameMap[productList[position].coordinatorIdx]}"
             // 해당 코디 상품의 이름
             holder.rowHomeMbtiBinding.itemMainMbtiProductName.text = "${productList[position].coordiName}"
             // 해당 코디 상품의 가격
             holder.rowHomeMbtiBinding.itemMainMbtiProductPrice.text =
                 "${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList[position].price)}"
+
+            // 해당 코디 상품의 할인률 0이면 표시안함
+            if (productList[position].productDiscoutPrice == 0) {
+                holder.rowHomeMbtiBinding.itemMainProductMbtiDiscountPercent.text = ""
+            } else {
+                holder.rowHomeMbtiBinding.itemMainProductMbtiDiscountPercent.text = "${productList[position].productDiscoutPrice}% "
+            }
 
             holder.rowHomeMbtiBinding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
@@ -224,12 +244,12 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 12
+            Log.d("test1234", "리사이클러뷰 하단 실행 타이밍")
+            if (productList2.size > 12) return 12
+            else return productList2.size
         }
 
         override fun onBindViewHolder(holder: HomeMBTI2ViewHolder, position: Int) {
-
-            val rowHomeMbti2ViewModel = RowHomeMbti2ViewModel()
 
             // position 값에 따라 다른 이미지 설정
             val imageResource = when (position % 4) {
@@ -240,14 +260,23 @@ class HomeMbtiFragment : Fragment() {
             }
             holder.rowHomeMbti2Binding.itemMainMbtiProductThumbnail2.setImageResource(imageResource)
 
-            // position 값에 따라 다른 MBTI 색상 설정
-            val colorResource = when (position % 4) {
-                0 -> Color.parseColor("#13D4EF")
-                1 -> Color.parseColor("#BDB14C")
-                2 -> Color.parseColor("#B75AB6")
-                else -> Color.parseColor("#36C87C")
+            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList2[position].coordiMBTI)))
+            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.text = productList2[position].coordiMBTI
+            // 해당 코디네이터의 이름
+            holder.rowHomeMbti2Binding.itemMainMbtiCoordinatorName2.text = "${coordinatorNameMap[productList2[position].coordinatorIdx]}"
+            // 해당 코디 상품의 이름
+            holder.rowHomeMbti2Binding.itemMainMbtiProductName2.text = "${productList2[position].coordiName}"
+            // 해당 코디 상품의 가격
+            holder.rowHomeMbti2Binding.itemMainMbtiProductPrice2.text =
+                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList2[position].price)}"
+            
+            // 해당 코디 상품의 할인률 0이면 표시안함
+            if (productList2[position].productDiscoutPrice == 0) {
+                holder.rowHomeMbti2Binding.itemMainProductMbtiDiscountPercent2.text = ""
+            } else {
+                holder.rowHomeMbti2Binding.itemMainProductMbtiDiscountPercent2.text = "${productList2[position].productDiscoutPrice}%  "
             }
-            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(colorResource)
+
 
             holder.rowHomeMbti2Binding.root.setOnClickListener {
                 mainActivity.replaceFragment(MainFragmentName.PRODUCT_FRAGMENT, true, true, null)
@@ -255,23 +284,51 @@ class HomeMbtiFragment : Fragment() {
         }
     }
 
-    // 해당 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
-    fun gettingMainData(mbti: String, gender: Int) {
+    // 코디네이터의 이름을 가져온다.
+    suspend fun gettingCoordinatorName() {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
-            productList = ProductDao.gettingProductMBTIList(mbti, gender)
-            Log.d("test1234", "MBTI별 코디 탭 - 상품 개수: ${productList.size}개")
+            coordinatorNameMap = CoordinatorDao.getCoordinatorName()
+            Log.d("test1234", "코디네이터 이름: ${coordinatorNameMap}")
+            coordinatorMbtiMap = CoordinatorDao.getCoordinatorMbti()
+            Log.d("test1234", "코디네이터 MBTI: ${coordinatorMbtiMap}")
+
+            getCoordinatorMbtiMap(mainActivity.loginUserMbti)
+            gettingMBTI2Data(filteredMap.keys.toList(), mainActivity.loginUserGender)
             fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
+            fragmentHomeMbtiBinding.homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
         }
     }
 
-    // 코디네이터의 이름을 가져온다.
-    fun gettingCoordinatorName() {
+    // MBTI 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingMBTIData(mbti: String, gender: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
-            coordinatorMap = CoordinatorDao.getCoordinatorName()
-            Log.d("test1234", "코디네이터 ${coordinatorMap[1]}\n${coordinatorMap[2]}")
-            fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
+            productList = ProductDao.gettingProductMBTIList(mbti, gender)
+            Log.d("test1234", "MBTI별 코디 탭 - (상단)상품 개수: ${productList.size}개")
         }
+        fragmentHomeMbtiBinding.homeMbtiContent1Recycler.adapter?.notifyDataSetChanged()
+    }
+
+    // MBTI2 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
+    fun gettingMBTI2Data(coordinatorIdxList: List<Int>, gender: Int) {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            productList2 = ProductDao.gettingProductMBTI2List(coordinatorIdxList, gender)
+            Log.d("test1234", "MBTI별 코디 탭 - (하단)상품 개수: ${productList2.size}개, $productList2")
+            fragmentHomeMbtiBinding.homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
+        }
+
+    }
+
+    //
+    fun getCoordinatorMbtiMap(mbtiToFind: String) {
+        // 원하는 MBTI와 일치하는 키를 찾아 맵에 추가
+        coordinatorMbtiMap.entries.forEach { (key, value) ->
+            if (value == mbtiToFind) {
+                filteredMap[key] = value
+            }
+        }
+        Log.d("test1234", "filter : $filteredMap")
     }
 }

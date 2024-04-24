@@ -183,6 +183,34 @@ class ProductDao {
             return productList
         }
 
+        // 해당 성별에 맞는 상품을 가져온다
+        suspend fun gettingProductMBTI2List(coordinatorIdxList: List<Int>, productGender: Int): MutableList<ProductModel>{
+            // 게시글 정보를 담을 리스트
+            val productList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("ProductData")
+
+                val query = collectionReference
+                    .whereIn("coordinatorIdx", coordinatorIdxList)
+                    .whereEqualTo("coordiGender", productGender)
+
+                // 모든 쿼리를 하나의 쿼리로 병합합니다.
+                val querySnapshot = query.get().await()
+
+                // 가져온 문서의 수 만큼 반복한다.
+                querySnapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val productModel = it.toObject(ProductModel::class.java)
+                    productList.add(productModel)
+                }
+            }
+            job1.join()
+
+            return productList
+        }
+
         // 해당 성별, MBTI에 맞는 상품을 가져온다
         suspend fun gettingProductListOneCoordinator(coordinatorIdx:Int): MutableList<ProductModel>{
             // 게시글 정보를 담을 리스트
