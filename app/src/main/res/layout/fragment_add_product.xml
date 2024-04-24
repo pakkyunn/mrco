@@ -106,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    app:selectionRequired="true"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
@@ -113,6 +114,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checkable="true"
+                        android:checked="true"
                         android:text="남성"
                         android:textColor="@color/selector_add_product_option_text_color"
                         app:chipBackgroundColor="@color/selector_add_product_option_chip_color" />
