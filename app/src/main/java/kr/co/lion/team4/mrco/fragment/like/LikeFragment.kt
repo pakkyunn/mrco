@@ -37,7 +37,13 @@ class LikeFragment : Fragment() {
     // 로그인한 회원이 팔로우 한 코디네이터의 인덱스 번호
     var coordinatorsFollowArray = mutableListOf<Int>()
 
-    var coordicnt = 7
+    // 모든 회원의 코디네이터 팔로우 정보를 담고 있을 리스트
+    var likeProductsList = mutableListOf<LikeModel>()
+
+    // 로그인한 회원이 좋아요 한 상품의 인덱스 번호
+    var productsLikeArray = mutableListOf<Int>()
+
+    var coordicnt = 0
     var coordinatorcnt = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -159,6 +165,15 @@ class LikeFragment : Fragment() {
                     coordinatorsFollowArray.add(coordinatorsFollowList[i].like_coordinator_idx[j])
                 }
             }
+            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
+            likeProductsList = LikeDao.getLikeData(mainActivity.loginUserIdx)
+            for (i in 0 until likeProductsList.size) {
+                for (j in 0 until (likeProductsList[i].like_product_idx).size) {
+                    productsLikeArray.add(likeProductsList[i].like_product_idx[j])
+                }
+            }
+
+            coordicnt = productsLikeArray.size
             coordinatorcnt = coordinatorsFollowArray.size
 
             // coordinatorcnt 값이 변경되었으므로 viewPagerActiviation을 호출하여 갱신합니다.

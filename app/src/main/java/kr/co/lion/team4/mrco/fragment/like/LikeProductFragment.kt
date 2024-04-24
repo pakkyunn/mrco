@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.like
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,12 +17,18 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
+import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.dao.LikeDao
 import kr.co.lion.team4.mrco.databinding.FragmentLikeProductBinding
 import kr.co.lion.team4.mrco.databinding.RowLikeProductBinding
+import kr.co.lion.team4.mrco.model.CoordinatorModel
 import kr.co.lion.team4.mrco.model.LikeModel
+import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.viewmodel.like.LikeProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.like.RowLikeProductViewModel
+import java.text.NumberFormat
+import java.util.Locale
 
 class LikeProductFragment : Fragment() {
 
@@ -30,8 +37,17 @@ class LikeProductFragment : Fragment() {
     lateinit var fragmentLikeProductBinding: FragmentLikeProductBinding
     lateinit var mainActivity: MainActivity
 
+    // 코디네이터 인덱스와 이름 정보를 담고 있을 맵
+    var coordinatorMap = mutableMapOf<Int, String>()
+
     // 모든 회원의 코디네이터 팔로우 정보를 담고 있을 리스트
     var likeProductsList = mutableListOf<LikeModel>()
+
+    // 로그인한 회원이 좋아요 한 상품의 인덱스 번호
+    var productsLikeArray = mutableListOf<Int>()
+
+    // 좋아요 한 상품의 정보를 담고 있을 리스트
+    var productsLikeList = mutableListOf<ProductModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -42,6 +58,9 @@ class LikeProductFragment : Fragment() {
 
         // 리사이클러 뷰
         settingRecyclerViewLikeProduct()
+
+        // 데이터를 가져온다.
+        gettingCoordinatorsFollowData()
 
         return fragmentLikeProductBinding.root
     }
@@ -97,12 +116,10 @@ class LikeProductFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 7
+            return productsLikeArray.size
         }
 
         override fun onBindViewHolder(holder: LikeProductViewHolder, position: Int) {
-
-            val rowLikeProductViewModel = RowLikeProductViewModel()
 
             // position 값에 따라 다른 이미지 설정
             val imageResource = when (position % 5) {
@@ -113,6 +130,50 @@ class LikeProductFragment : Fragment() {
                 else -> R.drawable.iu_image5
             }
             holder.rowLikeProductBinding.itemMainLikeProductThumbnail.setImageResource(imageResource)
+
+            // 좋아요 상태 초기 세팅
+            for (i in 0 until likeProductsList.size) {
+                for (j in 0 until (likeProductsList[i].like_product_idx).size) {
+                    if (likeProductsList[i].like_product_idx[j] == productsLikeList[position].productIdx) {
+                        holder.rowLikeProductBinding.checkBoxRowLikeProductLike.apply {
+                            isChecked = true
+                        }
+                    }
+                }
+            }
+
+            // 하트 모양(좋아요) 버튼 클릭 시
+            holder.rowLikeProductBinding.checkBoxRowLikeProductLike.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, productsLikeList[position].productIdx)
+                    }
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, productsLikeList[position].productIdx)
+                    }
+                }
+            }
+
+            holder.rowLikeProductBinding.textViewRowCoordinatorMainMBTI.setBackgroundColor(
+                Color.parseColor(
+                Tools.mbtiColor(productsLikeList[position].coordiMBTI)))
+            holder.rowLikeProductBinding.textViewRowCoordinatorMainMBTI.text = "${productsLikeList[position].coordiMBTI}"
+            // 해당 코디네이터의 이름
+            holder.rowLikeProductBinding.itemMainLikeCoordinatorName.text =
+                "${coordinatorMap[productsLikeList[position].coordinatorIdx]}"
+            // 해당 코디 상품의 이름
+            holder.rowLikeProductBinding.itemMainLikeProductName.text = "${productsLikeList[position].coordiName}"
+            // 해당 코디 상품의 가격
+            holder.rowLikeProductBinding.itemMainLikeProductPrice.text =
+                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(productsLikeList[position].price)}"
+
+            // 해당 코디 상품의 할인률 0이면 표시안함
+            if (productsLikeList[position].productDiscoutPrice == 0) {
+                holder.rowLikeProductBinding.itemMainLikeProductDiscountPercent.text = ""
+            } else {
+                holder.rowLikeProductBinding.itemMainLikeProductDiscountPercent.text = "${productsLikeList[position].productDiscoutPrice}%  "
+            }
 
             // 리사이클러 뷰 항목 클릭
             holder.rowLikeProductBinding.root.setOnClickListener {
@@ -127,18 +188,20 @@ class LikeProductFragment : Fragment() {
     }
 
     // 모든 상품의 좋아요 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
-//    fun gettingCoordinatorsFollowData() {
-//        CoroutineScope(Dispatchers.Main).launch {
-//            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
-//            likeProductsList = LikeDao.getLikeData(mainActivity.loginUserIdx)
-//            for (i in 0 until likeProductsList.size) {
-//                for (j in 0 until (likeProductsList[i].like_coordinator_idx).size) {
-//                    coordinatorsFollowArray.add(likeProductsList[i].like_coordinator_idx[j])
-//                }
-//            }
-//            coordinatorsFollowList = LikeDao.getCoordinatorInfo(coordinatorsFollowArray)
-//            Log.d("test1234", "Like 페이지(코디네이터) - 팔로우 한 코디네이터 정보 : ${coordinatorsFollowList}")
-//            fragmentLikeCoordinatorBinding.recyclerViewLikeCoordinator.adapter?.notifyDataSetChanged()
-//        }
-//    }
+    fun gettingCoordinatorsFollowData() {
+        CoroutineScope(Dispatchers.Main).launch {
+            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+            coordinatorMap = CoordinatorDao.getCoordinatorName()
+            // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
+            likeProductsList = LikeDao.getLikeData(mainActivity.loginUserIdx)
+            for (i in 0 until likeProductsList.size) {
+                for (j in 0 until (likeProductsList[i].like_product_idx).size) {
+                    productsLikeArray.add(likeProductsList[i].like_product_idx[j])
+                }
+            }
+            productsLikeList = LikeDao.getProductInfo(productsLikeArray)
+            Log.d("test1234", "Like 페이지(상품) - 좋아요 한 상품 정보 : ${productsLikeList}")
+            fragmentLikeProductBinding.recyclerViewLikeCoordi.adapter?.notifyDataSetChanged()
+        }
+    }
 }

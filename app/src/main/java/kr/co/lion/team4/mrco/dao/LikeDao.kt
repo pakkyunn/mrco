@@ -66,6 +66,31 @@ class LikeDao {
             job1.join()
         }
 
+        // 해당 유저의 모든 좋아요 정보 가져오기
+        suspend fun getLikeData(like_user_idx: Int): MutableList<LikeModel> {
+            val likeList = mutableListOf<LikeModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 모든 상품 정보를 가져온다
+                val collectionReference = Firebase.firestore.collection("LikeData")
+
+                val query = collectionReference.whereEqualTo("like_user_idx", like_user_idx)
+
+                // 모든 쿼리를 하나의 쿼리로 병합합니다.
+                val querySnapshot = query.get().await()
+
+                // 가져온 문서의 수 만큼 반복한다.
+                querySnapshot.forEach {
+                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
+                    val likeModel = it.toObject(LikeModel::class.java)
+                    likeList.add(likeModel)
+                }
+            }
+            job1.join()
+
+            return likeList
+        }
+
         // 팔로우 추가 (코디네이터)
         suspend fun insertLikeCoordinatorData(like_user_idx: Int, like_coordinator_idx: Int){
             val job1 = CoroutineScope(Dispatchers.IO).launch {
@@ -131,32 +156,7 @@ class LikeDao {
             }
         }
 
-        // 해당 유저의 팔로우 목록 가져오기
-        suspend fun getLikeData(like_user_idx: Int): MutableList<LikeModel> {
-            val likeList = mutableListOf<LikeModel>()
-
-            val job1 = CoroutineScope(Dispatchers.IO).launch {
-                // 모든 상품 정보를 가져온다
-                val collectionReference = Firebase.firestore.collection("LikeData")
-
-                val query = collectionReference.whereEqualTo("like_user_idx", like_user_idx)
-
-                // 모든 쿼리를 하나의 쿼리로 병합합니다.
-                val querySnapshot = query.get().await()
-
-                // 가져온 문서의 수 만큼 반복한다.
-                querySnapshot.forEach {
-                    // ProductModel 객체에 담고 객체를 리스트에 담는다.
-                    val likeModel = it.toObject(LikeModel::class.java)
-                    likeList.add(likeModel)
-                }
-            }
-            job1.join()
-
-            return likeList
-        }
-
-        // 코디네이터 정보 페이지에서 사용! / 해당 코디네이터에 맞는 정보를 가져온다
+        // 해당 코디네이터에 맞는 정보를 가져온다
         suspend fun getCoordinatorInfo(coordinatorIdxList: MutableList<Int>): MutableList<CoordinatorModel>{
             // 코디네이터 정보를 담을 리스트
             val coordiList = mutableListOf<CoordinatorModel>()
@@ -243,6 +243,29 @@ class LikeDao {
                         Log.e("test1234", "Error: 좋아요 취소")
                     }
             }
+        }
+
+        // 해당 코디네이터에 맞는 정보를 가져온다
+        suspend fun getProductInfo(productsIdxList: MutableList<Int>): MutableList<ProductModel>{
+            // 코디네이터 정보를 담을 리스트
+            val productsList = mutableListOf<ProductModel>()
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                val collectionReference = Firebase.firestore.collection("ProductData")
+                // coordinatorIdxList에 포함된 모든 코디네이터 인덱스에 대한 쿼리를 생성합니다.
+                productsIdxList.forEach { productIdx ->
+                    val query = collectionReference.whereEqualTo("productIdx", productIdx)
+                    val querySnapshot = query.get().await()
+                    // 가져온 문서의 수 만큼 반복하여 리스트에 추가합니다.
+                    querySnapshot.forEach { documentSnapshot ->
+                        val productModel = documentSnapshot.toObject(ProductModel::class.java)
+                        productsList.add(productModel)
+                    }
+                }
+            }
+            job1.join()
+
+            return productsList
         }
     }
 
