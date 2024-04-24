@@ -43,7 +43,6 @@ class CodiProductInfoTopFragment : Fragment() {
 
         gettingBundleData()
         settingRecyclerView()
-
         gettingCodiProductTopData()
 
         return binding.root
@@ -61,21 +60,24 @@ class CodiProductInfoTopFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다.
             codiProductTopList = ProductDao.selectProductInfoData(productIdx)
-            codiProductTopFineList = codiProductTopList[0]
-            Log.d("taejin","${codiProductTopList}")
-            Log.d("taejin","0 : ${codiProductTopList[0]}")
-            Log.d("taejin","1 : ${codiProductTopList[0][0]}")
-            Log.d("taejin","2 : ${codiProductTopList[0][0]["0"]}")
-            Log.d("taejin","3 : ${codiProductTopList[0][0]["1"]}")
-            Log.d("taejin","4 : ${codiProductTopList[0][0]["2"]}")
-//            Log.d("taejin","${codiProductTopList[0][3]}")
-
-
+            // 타입이 상의인 것만 걸러준다
+            filterData()
             // 리사이클러뷰를 갱신한다
             binding.recyclerViewProductInfoTop.adapter?.notifyDataSetChanged()
         }
     }
-    //
+
+    // DB 데이터 걸러줌
+    fun filterData(){
+        // 타입이 하의인 것만 골라낸다
+        val temp = codiProductTopList[0].filter { item ->
+            item["3"] == "상의"
+        }
+        if (temp.isNotEmpty()){
+            codiProductTopFineList = temp
+        }
+    }
+
 
     private fun settingRecyclerView(){
         binding.apply {

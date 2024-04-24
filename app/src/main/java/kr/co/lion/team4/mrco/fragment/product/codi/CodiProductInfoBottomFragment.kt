@@ -11,8 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentCodiProductInfoBottomBinding
 import kr.co.lion.team4.mrco.databinding.RowCodiProductInfoBottomBinding
 import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
@@ -20,8 +24,15 @@ import kr.co.lion.team4.mrco.viewmodel.CodiProductInfoBottomViewModel
 class CodiProductInfoBottomFragment : Fragment() {
 
     private lateinit var binding: FragmentCodiProductInfoBottomBinding
-    private lateinit var viewModel: CodiProductInfoBottomViewModel
     private lateinit var mainActivity: MainActivity
+
+    // 상품 번호를 받는다
+    var productIdx = 0
+    // 코디 상품명을 받는다
+    var codiProductName = ""
+    // 상의 상품 정보를 가지고 있는 리스트
+    var codiProductBottomList: ArrayList<List<Map<String,String>>> = arrayListOf()
+    var codiProductBottomFineList: List<Map<String, String>> = listOf()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,14 +45,52 @@ class CodiProductInfoBottomFragment : Fragment() {
             container,
             false
         )
-        viewModel = ViewModelProvider(this).get(CodiProductInfoBottomViewModel::class.java)
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
+        gettingBundleData()
 
         settingView()
 
+        gettingCodiProductBottomData()
+
+
         return binding.root
+    }
+
+    fun gettingBundleData(){
+        val bundle = arguments
+        productIdx = bundle!!.getInt("productIdx")
+        codiProductName = bundle.getString("productName")!!
+    }
+
+    // DB에서 coordiItem 데이터 받아옴
+    fun gettingCodiProductBottomData(){
+        CoroutineScope(Dispatchers.Main).launch {
+            // 상품 정보를 가져온다.
+            codiProductBottomList = ProductDao.selectProductInfoData(productIdx)
+            Log.d("taejin", "codiProductBottomList: ${codiProductBottomList}")
+            codiProductBottomFineList = codiProductBottomList[0]
+            Log.d("taejin", "codiProductBottomFineList: ${codiProductBottomFineList}")
+
+            filterData()
+
+
+            // 리사이클러뷰를 갱신한다
+            binding.recyclerViewProductInfoBottom.adapter?.notifyDataSetChanged()
+        }
+    }
+    // DB 데이터 걸러줌
+    fun filterData(){
+        // 타입이 하의인 것만 골라낸다
+        val temp = codiProductBottomList[0].filter { item ->
+            item["3"] == "하의"
+        }
+        Log.d("taejinCheck", "$temp")
+
+        if (temp.isNotEmpty()){
+            codiProductBottomFineList = temp
+        }
     }
 
     private fun settingView() {
@@ -66,14 +115,14 @@ class CodiProductInfoBottomFragment : Fragment() {
     inner class CodiProductInfoBottomAdapter :
         RecyclerView.Adapter<CodiProductInfoBottomAdapter.CodiProductInfoBottomViewHolder>() {
         // ViewHolder
-        inner class CodiProductInfoBottomViewHolder(binding: RowCodiProductInfoBottomBinding) :
-            RecyclerView.ViewHolder(binding.root) {
-            val binding: RowCodiProductInfoBottomBinding
+        inner class CodiProductInfoBottomViewHolder(rowCodiProductInfoBottomBinding: RowCodiProductInfoBottomBinding) :
+            RecyclerView.ViewHolder(rowCodiProductInfoBottomBinding.root) {
+            val rowCodiProductInfoBottomBinding: RowCodiProductInfoBottomBinding
 
             init {
-                this.binding = binding
+                this.rowCodiProductInfoBottomBinding = rowCodiProductInfoBottomBinding
 
-                this.binding.root.layoutParams = ViewGroup.LayoutParams(
+                this.rowCodiProductInfoBottomBinding.root.layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 )
@@ -84,10 +133,7 @@ class CodiProductInfoBottomFragment : Fragment() {
             parent: ViewGroup,
             viewType: Int
         ): CodiProductInfoBottomViewHolder {
-            val binding = DataBindingUtil.inflate<RowCodiProductInfoBottomBinding>(
-                layoutInflater,
-                R.layout.row_codi_product_info_bottom,
-                parent,
+            val binding = DataBindingUtil.inflate<RowCodiProductInfoBottomBinding>(layoutInflater, R.layout.row_codi_product_info_bottom, parent,
                 false
             )
             val codiProductInfoBottomViewModel = CodiProductInfoBottomViewModel()
@@ -99,10 +145,20 @@ class CodiProductInfoBottomFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 6
+//            return 0
+            return codiProductBottomFineList.size
         }
 
         override fun onBindViewHolder(holder: CodiProductInfoBottomViewHolder, position: Int) {
+            holder.rowCodiProductInfoBottomBinding.codiProductInfoBottomViewModel!!.codiProductNameBottom.value = codiProductName
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productSerialNumTop.value = codiProductTopFineList[position]["0"]
+            holder.rowCodiProductInfoBottomBinding.codiProductInfoBottomViewModel!!.codiProductNameBottom.value = codiProductBottomFineList[position]["0"]
+            holder.rowCodiProductInfoBottomBinding.codiProductInfoBottomViewModel!!.codiProductSizeBottom.value = codiProductBottomFineList[position]["1"]
+            holder.rowCodiProductInfoBottomBinding.codiProductInfoBottomViewModel!!.codiProductTypeBottom.value = codiProductBottomFineList[position]["3"]+ "${position + 1}"
+            holder.rowCodiProductInfoBottomBinding.codiProductInfoBottomViewModel!!.codiProductColorBottom.value = codiProductBottomFineList[position]["4"]
+//            holder.rowCodiProductInfoTopBinding.rowCodiProductInfoTopViewModel!!.productPriceTop.value = codiProductTopList[position].itemPrice.toString()
+
+            // 사진
 
         }
     }
