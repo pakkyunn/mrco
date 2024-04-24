@@ -52,33 +52,6 @@ class CoordinatorDao {
         }
 
 
-//         // 모든 코디네이터의 정보를 가져온다.
-//         suspend fun getCoordinatorAll() : MutableList<CoordinatorModel>{
-//             // 코디네이터 정보를 담을 리스트
-//             val coordiList = mutableListOf<CoordinatorModel>()
-
-//             val job1 = CoroutineScope(Dispatchers.IO).launch {
-//                 val collectionReference = Firebase.firestore.collection("CoordinatorData")
-
-//                 // 코디네이터 등록상태가 참인 경우에만..
-//                 // var query = collectionReference.whereEqualTo("userCoordinatorSignStatus", true)
-//                 // query = query.whereEqualTo("")
-
-//                 // 모든 사용자 정보를 가져온다
-//                 val querySnapshot = Firebase.firestore.collection("CoordinatorData").get().await()
-//                 // 가져온 문서의 수 만큼 반복한다.
-//                 querySnapshot.forEach {
-//                     // CoordinatorModel 객체에 담는다.
-//                     val coordinatorModel = it.toObject(CoordinatorModel::class.java)
-//                     // 리스트에 담는다.
-//                     coordiList.add(coordinatorModel)
-//                 }
-//             }
-//             job1.join()
-
-//             return coordiList
-//         }
-
         // 인기 코디네이터 페이지에서 사용!! / 모든 코디네이터의 정보를 가져온다. (팔로우 랭킹순으로)
         suspend fun getCoordinatorAllRank() : MutableList<CoordinatorModel>{
             // 코디네이터 정보를 담을 리스트
@@ -181,29 +154,6 @@ class CoordinatorDao {
             job1.join()
         }
 
-//        suspend fun getCoordinatorImage(imagePath: String, imageView: ImageView) {
-//            try {
-//                // Firebase Storage 인스턴스 가져오기
-//                val storage = Firebase.storage
-//
-//                // 이미지의 참조 가져오기
-//                val storageRef = storage.reference.child("coordinator/images/$imagePath")
-//
-//                // 이미지 다운로드
-//                val byteArray = storageRef.getBytes(1024).await()
-//
-//                // ByteArray를 Bitmap으로 변환
-//                val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
-//
-//                // UI 업데이트는 메인 스레드에서 수행되어야 함
-//                withContext(Dispatchers.Main) {
-//                    // ImageView에 Bitmap 설정
-//                    imageView.setImageBitmap(bitmap)
-//                }
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//        }
 
 
         // 코디네이터 정보를 저장한다. (코디네이터 가입 신청시)
@@ -354,6 +304,20 @@ class CoordinatorDao {
             }
 
             job1.join()
+        }
+
+        // 현재 로그인한 코디네이터의 번호를 반환해준다
+        suspend fun returnCoordiIdx(userIdx: Int): Int {
+            var coordiIdx = 0
+            val collectionReference = Firebase.firestore.collection("CoordinatorData")
+            val query = collectionReference.whereEqualTo("coordi_user_idx", userIdx).get().await()
+
+            val document = query.firstOrNull()
+            document?.let {
+                coordiIdx = (it["coordi_idx"] as? Long)?.toInt() ?: 0
+            }
+
+            return coordiIdx
         }
 
     }
