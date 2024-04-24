@@ -12,6 +12,7 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.Timestamp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +20,7 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.InquiryPeriod
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
+import kr.co.lion.team4.mrco.OrderState
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryItemViewModel
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.order.OrderHistoryViewModel
@@ -48,9 +50,9 @@ class OrderHistoryFragment : Fragment() {
     var filteredOrderList = mutableListOf<OrderModel>()
 
     // 주문 상품의 상품 정보를 담을 리스트
-    var orderedProductInfoModelList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
+    var orderedProductInfoList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
     // 주문 상태별로 구분된 상품들의 정보를 담을 리스트
-    var filteredOrderedProductInfoModelList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
+    var filteredorderedProductInfoList = mutableListOf<ArrayList<OrderedProductInfoModel>>()
 
     // 검색 화면의 RecyclerView 구성을 위한 리스트
     var searchResultOrderList = mutableListOf<OrderModel>()
@@ -73,6 +75,9 @@ class OrderHistoryFragment : Fragment() {
 
         // 기본 조회기간 설정 및 조회기간에 맞는 주문내역 불러오기
         settingOrderHistoryPeriod(InquiryPeriod.ONE_MONTH)
+
+        // Tab Layout 세팅
+        settingOrderHistoryTab()
 
         return fragmentOrderHistoryBinding.root
     }
@@ -103,6 +108,67 @@ class OrderHistoryFragment : Fragment() {
         }
     }*/
 
+    // 상단 탭 선택 설정
+    fun settingOrderHistoryTab(){
+        fragmentOrderHistoryBinding.apply { 
+            val tabLayout = tabOrderHistoryState
+            
+            tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    // 탭의 카테고리에 맞는 데이터만 담아서 보여준다.
+                    when(tab?.position){
+                        0 -> {  // 전체
+                            if(orderList.size>0){
+                                hideNotice()
+                                // 목록 초기화
+                                filteredOrderList.clear()
+                                filteredorderedProductInfoList.clear()
+                                // 전체 주문내역, 상품정보 목록을 담아준다.
+                                filteredOrderList.addAll(orderList) // 전체 주문내역 목록을 담아준다.
+                                filteredorderedProductInfoList.addAll(orderedProductInfoList)
+                                fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
+                            }
+                        }
+                        1 -> { filterOrderListByTab(OrderState.ORDERED.num, OrderState.ORDERED.num) } // 주문접수 (0)
+                        2 -> { filterOrderListByTab(OrderState.IN_TRANSIT.num, OrderState.IN_TRANSIT.num) } // 배송중 (1,
+                        3 -> { filterOrderListByTab(OrderState.DELIVERED.num, OrderState.ORDER_CONFIRM.num) } // 배송완료, 구매 확정 (2 or 3)
+                        4 -> { filterOrderListByTab(OrderState.RETURN.num, OrderState.CANCEL.num) } // 취소/교환/반품 (4,5,6)
+                    }
+                }
+
+                override fun onTabUnselected(p0: TabLayout.Tab?) {
+                    //"Not yet implemented"
+                }
+
+                override fun onTabReselected(p0: TabLayout.Tab?) {
+                    //"Not yet implemented"
+                }
+            })
+        }
+    }
+
+
+    fun filterOrderListByTab( state : Int, stateAdditional : Int ){
+        // 리스트 초기화
+        filteredOrderList.clear()
+        filteredorderedProductInfoList.clear()
+        orderList.forEachIndexed { index, orderModel ->
+            if(orderModel.order_state >= state && orderModel.order_state <= stateAdditional ){
+                filteredOrderList.add(orderModel)
+                // 상품 정보도 동일하게 상품 정보 리스트에 추가해준다.
+                val orderedProductInfo = orderedProductInfoList[index]
+                filteredorderedProductInfoList.add(orderedProductInfo)
+            }
+        }
+        if(filteredOrderList.size>0){
+            hideNotice()
+            // 리사이클러뷰 갱신
+            fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
+        }else{
+            noticeNoOrderList()
+        }
+    }
+    
     // 조회기간 버튼 클릭 이벤트
     fun settingOrderHistoryPeriodButtonClickListener(){
         fragmentOrderHistoryBinding.apply {
@@ -196,25 +262,36 @@ class OrderHistoryFragment : Fragment() {
             if(orderList.size>0){ // 주문 내역이 존재하는 경우
                 filteredOrderList.addAll(orderList)
                 // 주문한 상품들의 정보를 불러온 뒤, 리사이클러뷰를 갱신해준다.
+                hideNotice()
                 gettingOrderItemInfoFromOrderList()
             }
             // 주문 내역이 존재하지 않는 경우
             else{
-                fragmentOrderHistoryBinding.apply {
-                    // 리사이클러뷰를 숨기고, 주문내역이 없다는 안내문구를 띄워준다.
-                    recyclerviewOrderHistory.visibility = View.GONE
-                    textviewOrderHistoryEmpty.visibility = View.VISIBLE
-                }
+                noticeNoOrderList()
             }
+        }
+    }
 
+    // 주문 내역이 없을 경우, 리사이클러뷰를 숨기고 주문내역이 없다는 안내문구를 띄워준다.
+    fun noticeNoOrderList(){
+        fragmentOrderHistoryBinding.apply {
+            recyclerviewOrderHistory.visibility = View.GONE
+            textviewOrderHistoryEmpty.visibility = View.VISIBLE
+        }
+    }
+
+    fun hideNotice(){
+        fragmentOrderHistoryBinding.apply {
+            recyclerviewOrderHistory.visibility = View.VISIBLE
+            textviewOrderHistoryEmpty.visibility = View.GONE
         }
     }
 
     fun gettingOrderItemInfoFromOrderList(){
         CoroutineScope(Dispatchers.Main).launch {
-            filteredOrderedProductInfoModelList.clear() // 목록 초기화
-            orderedProductInfoModelList = OrderHistoryDao.gettingOrderedItemInfo(orderList)
-            filteredOrderedProductInfoModelList.addAll(orderedProductInfoModelList)
+            filteredorderedProductInfoList.clear() // 목록 초기화
+            orderedProductInfoList = OrderHistoryDao.gettingOrderedItemInfo(orderList)
+            filteredorderedProductInfoList.addAll(orderedProductInfoList)
             fragmentOrderHistoryBinding.recyclerviewOrderHistory.adapter?.notifyDataSetChanged()
         }
     }
@@ -308,7 +385,7 @@ class OrderHistoryFragment : Fragment() {
         override fun onBindViewHolder(holder: OrderHistoryProductViewHolder, position: Int) {
             // 주문 상품의 정보
             val orderedProduct = filteredOrderList[parentPosition].order_product[position]
-            val orderedProductInfo = filteredOrderedProductInfoModelList[parentPosition][position]
+            val orderedProductInfo = filteredorderedProductInfoList[parentPosition][position]
             // 주문 상태
             holder.itemOrderhistoryProductBinding.orderHistoryProductViewModel?.textViewOrderedItemState?.value = getOrderItemStateStringValue(orderedProduct.tracking_state)
             // 주문 상품명
