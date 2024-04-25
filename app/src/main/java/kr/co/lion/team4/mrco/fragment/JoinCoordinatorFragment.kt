@@ -395,23 +395,28 @@ class JoinCoordinatorFragment : Fragment() {
 
                     //스타일리스트 자격증 파일은 파이어스토어에 파일 업로드 후 접근할 수 있는 파일명만 넘겨준다.
                     CoroutineScope(Dispatchers.Main).launch {
+                        if (isAddPicture == true && bitmapCoordiCertification != null) {
+                            val fileName = "coordiCertificationTemp_$currentTimeText.jpg"
 
-                        val fileName ="coordiCertificationTemp_$currentTimeText.jpg"
+                            // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
+                            Tools.saveImageViewIndividualItemData(
+                                mainActivity,
+                                bitmapCoordiCertification!!,
+                                fileName
+                            )
+                            // 파일 업로드
+                            CoordinatorDao.uploadCoordinatorJoinImage(
+                                mainActivity,
+                                fileName,
+                                fileName
+                            )
+                            Log.d("photo1234", "자격증사진")
 
-                        // 이미지의 뷰의 이미지 데이터를 파일로 저장한다.
-                        Tools.saveImageViewIndividualItemData(mainActivity, bitmapCoordiCertification!!, fileName)
-                        // 파일 업로드
-                        CoordinatorDao.uploadCoordinatorJoinImage(
-                            mainActivity,
-                            fileName,
-                            fileName
-                        )
-                        Log.d("photo1234", "자격증사진")
-
-                        joinCoordinatorBundle.putString(
-                            "coordiCertification",
-                            fileName
-                        )
+                            joinCoordinatorBundle.putString(
+                                "coordiCertification",
+                                fileName
+                            )
+                        }
                     }
 
 
@@ -714,8 +719,8 @@ class JoinCoordinatorFragment : Fragment() {
                                 bitmap3
                             )
                         }
-                        isAddPicture = true
                     }
+                    isAddPicture = true
                 }
             }
         }
