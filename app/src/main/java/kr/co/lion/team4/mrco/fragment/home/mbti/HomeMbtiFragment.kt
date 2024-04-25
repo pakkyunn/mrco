@@ -343,8 +343,8 @@ class HomeMbtiFragment : Fragment() {
             coordinatorMbtiMap = CoordinatorDao.getCoordinatorMbti()
             // Log.d("test1234", "코디네이터 MBTI: ${coordinatorMbtiMap}")
 
-            getCoordinatorMbtiMap(mainActivity.loginUserMbti)
-            gettingMBTI2Data(filteredMap.keys.toList(), mainActivity.loginUserGender)
+//            getCoordinatorMbtiMap(mainActivity.loginUserMbti)
+//            gettingMBTI2Data(filteredMap.keys.toList(), mainActivity.loginUserGender)
             resetRecyclerView()
         }
     }
@@ -360,33 +360,32 @@ class HomeMbtiFragment : Fragment() {
     }
 
     // MBTI2 상품의 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
-    fun gettingMBTI2Data(coordinatorIdxList: List<Int>, gender: Int) {
-        CoroutineScope(Dispatchers.Main).launch {
-            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
-            productList2 = ProductDao.gettingProductMBTI2List(coordinatorIdxList, gender)
-            Log.d("test1234", "MBTI별 코디(탭) - (하단)상품 개수: ${productList2.size}개")
-            fragmentHomeMbtiBinding.homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
-        }
-
-    }
+//    fun gettingMBTI2Data(coordinatorIdxList: List<Int>, gender: Int) {
+//        CoroutineScope(Dispatchers.Main).launch {
+//            // MBTI와 성별에 맞는 상품의 정보를 가져온다. (연동 On)
+//            productList2 = ProductDao.gettingProductMBTI2List(coordinatorIdxList, gender)
+//            Log.d("test1234", "MBTI별 코디(탭) - (하단)상품 개수: ${productList2.size}개")
+//            fragmentHomeMbtiBinding.homeMbtiContent2Recycler.adapter?.notifyDataSetChanged()
+//        }
+//    }
 
     //
-    fun getCoordinatorMbtiMap(mbtiToFind: String) {
-        // 원하는 MBTI와 일치하는 키를 찾아 맵에 추가
-        coordinatorMbtiMap.entries.forEach { (key, value) ->
-            if (value == mbtiToFind) {
-                filteredMap[key] = value
-            }
-        }
-        Log.d("test1234", "MBTI별 코디(탭) - 내 MBTI == 이성 코디네이터 MBTI | Filter : $filteredMap")
-    }
+//    fun getCoordinatorMbtiMap(mbtiToFind: String) {
+//        // 원하는 MBTI와 일치하는 키를 찾아 맵에 추가
+//        coordinatorMbtiMap.entries.forEach { (key, value) ->
+//            if (value == mbtiToFind) {
+//                filteredMap[key] = value
+//            }
+//        }
+//        Log.d("test1234", "MBTI별 코디(탭) - 내 MBTI == 이성 코디네이터 MBTI | Filter : $filteredMap")
+//    }
 
     // 모든 코디네이터의 팔로우 상태 데이터를 가져와 메인 화면의 RecyclerView를 갱신한다.
     fun gettingCoordinatorsFollowData() {
         CoroutineScope(Dispatchers.Main).launch {
             // 모든 코디네이터의 팔로우 상태 정보를 가져온다. (연동 On)
             coordinatorsFollowList = LikeDao.getLikeData(mainActivity.loginUserIdx)
-            // Log.d("test1234", "coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
+            Log.d("test1234", "coordinatorsFollowList: ${coordinatorsFollowList[0].like_coordinator_idx.size}명")
             resetRecyclerView()
         }
     }
