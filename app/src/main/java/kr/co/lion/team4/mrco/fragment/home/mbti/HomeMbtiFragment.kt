@@ -272,8 +272,9 @@ class HomeMbtiFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            if (productList2.size > 12) return 12
-            else return productList2.size
+            return 8
+//            if (productList2.size > 12) return 12
+//            else return productList2.size
         }
 
         override fun onBindViewHolder(holder: HomeMBTI2ViewHolder, position: Int) {
@@ -288,44 +289,44 @@ class HomeMbtiFragment : Fragment() {
             holder.rowHomeMbti2Binding.itemMainMbtiProductThumbnail2.setImageResource(imageResource)
 
             // 좋아요 상태 초기 세팅
-            for (i in 0 until coordinatorsFollowList.size) {
-                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
-                    if (coordinatorsFollowList[i].like_product_idx[j] == productList2[position].productIdx) {
-                        holder.rowHomeMbti2Binding.itemMainMbtiProductPickButton2.apply {
-                            isChecked = true
-                        }
-                    }
-                }
-            }
-            // 하트 모양(좋아요) 버튼 클릭 시
-            holder.rowHomeMbti2Binding.itemMainMbtiProductPickButton2.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, productList2[position].productIdx)
-                    }
-                } else {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, productList2[position].productIdx)
-                    }
-                }
-            }
+//            for (i in 0 until coordinatorsFollowList.size) {
+//                for (j in 0 until (coordinatorsFollowList[i].like_product_idx).size) {
+//                    if (coordinatorsFollowList[i].like_product_idx[j] == productList2[position].productIdx) {
+//                        holder.rowHomeMbti2Binding.itemMainMbtiProductPickButton2.apply {
+//                            isChecked = true
+//                        }
+//                    }
+//                }
+//            }
+//            // 하트 모양(좋아요) 버튼 클릭 시
+//            holder.rowHomeMbti2Binding.itemMainMbtiProductPickButton2.setOnCheckedChangeListener { buttonView, isChecked ->
+//                if (isChecked) {
+//                    CoroutineScope(Dispatchers.Main).launch {
+//                        LikeDao.insertLikeProductData(mainActivity.loginUserIdx, productList2[position].productIdx)
+//                    }
+//                } else {
+//                    CoroutineScope(Dispatchers.Main).launch {
+//                        LikeDao.deleteLikeProductData(mainActivity.loginUserIdx, productList2[position].productIdx)
+//                    }
+//                }
+//            }
 
-            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList2[position].coordiMBTI)))
-            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.text = productList2[position].coordiMBTI
-            // 해당 코디네이터의 이름
-            holder.rowHomeMbti2Binding.itemMainMbtiCoordinatorName2.text = "${coordinatorNameMap[productList2[position].coordinatorIdx]}"
-            // 해당 코디 상품의 이름
-            holder.rowHomeMbti2Binding.itemMainMbtiProductName2.text = "${productList2[position].coordiName}"
-            // 해당 코디 상품의 가격
-            holder.rowHomeMbti2Binding.itemMainMbtiProductPrice2.text =
-                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList2[position].price)}"
-            
-            // 해당 코디 상품의 할인률 0이면 표시안함
-            if (productList2[position].productDiscoutPrice == 0) {
-                holder.rowHomeMbti2Binding.itemMainProductMbtiDiscountPercent2.text = ""
-            } else {
-                holder.rowHomeMbti2Binding.itemMainProductMbtiDiscountPercent2.text = "${productList2[position].productDiscoutPrice}%  "
-            }
+//            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.setBackgroundColor(Color.parseColor(Tools.mbtiColor(productList2[position].coordiMBTI)))
+//            holder.rowHomeMbti2Binding.itemMainMbtiProductMbti2.text = productList2[position].coordiMBTI
+//            // 해당 코디네이터의 이름
+//            holder.rowHomeMbti2Binding.itemMainMbtiCoordinatorName2.text = "${coordinatorNameMap[productList2[position].coordinatorIdx]}"
+//            // 해당 코디 상품의 이름
+//            holder.rowHomeMbti2Binding.itemMainMbtiProductName2.text = "${productList2[position].coordiName}"
+//            // 해당 코디 상품의 가격
+//            holder.rowHomeMbti2Binding.itemMainMbtiProductPrice2.text =
+//                "￦${NumberFormat.getNumberInstance(Locale.getDefault()).format(productList2[position].price)}"
+//
+//            // 해당 코디 상품의 할인률 0이면 표시안함
+//            if (productList2[position].productDiscoutPrice == 0) {
+//                holder.rowHomeMbti2Binding.itemMainProductMbtiDiscountPercent2.text = ""
+//            } else {
+//                holder.rowHomeMbti2Binding.itemMainProductMbtiDiscountPercent2.text = "${productList2[position].productDiscoutPrice}%  "
+//            }
 
 
             holder.rowHomeMbti2Binding.root.setOnClickListener {
