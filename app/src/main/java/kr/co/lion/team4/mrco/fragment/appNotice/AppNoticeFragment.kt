@@ -24,24 +24,27 @@ class AppNoticeFragment : Fragment() {
 
         // 툴바
         toolbarSetting()
+
+        settingEmpty()
+
         // 알림목록
         settingRecyclerViewAppNotice()
         return fragmentAppNoticeBinding.root
     }
 
-//    // 알림 유무에 따라 보이고/사라지는 안내문구
-//    fun settingEmpty() {
-//        fragmentAppNoticeBinding.apply {
-//            recyclerViewAppNotice.adapter?.notifyDataSetChanged()
+    // 알림 유무에 따라 보이고/사라지는 안내문구
+    fun settingEmpty() {
+        fragmentAppNoticeBinding.apply {
+            recyclerViewAppNotice.adapter?.notifyDataSetChanged()
 //            if (data_size == 0) {
-//                textViewEmptyAppNotice.visibility = View.VISIBLE
-//                imageViewAppNotice.visibility = View.VISIBLE
+                textViewEmptyAppNotice.visibility = View.VISIBLE
+                imageViewAppNotice.visibility = View.VISIBLE
 //            } else {
 //                textViewEmptyAppNotice.visibility = View.GONE
 //                imageViewAppNotice.visibility = View.GONE
 //            }
-//        }
-//    }
+        }
+    }
 
     // 툴바 설정
     fun toolbarSetting() {
@@ -98,7 +101,7 @@ class AppNoticeFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 20
+            return 0
         }
 
         override fun onBindViewHolder(holder: AppNoticeViewHolder, position: Int) {

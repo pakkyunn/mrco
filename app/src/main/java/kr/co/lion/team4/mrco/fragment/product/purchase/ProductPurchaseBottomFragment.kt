@@ -17,6 +17,7 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.databinding.FragmentProductPurchaseBottomBinding
 import kr.co.lion.team4.mrco.databinding.RowBottomProductPurchaseBinding
 import kr.co.lion.team4.mrco.viewmodel.product.ProductPurchaseBottomViewModel
@@ -75,6 +76,7 @@ class ProductPurchaseBottomFragment(var buttonIdx:Boolean) : BottomSheetDialogFr
                 } else { // 구매하기버튼을 눌러서 다이얼로그가 실행된 경우
                     text = "상품 구매하기"
                     setOnClickListener {
+                        dismiss()
                         // 다이얼로그 종료
                         mainActivity.replaceFragment(
                             MainFragmentName.ORDER_FRAGMENT,true,true,null) // bundle에 구매하는 상품 정보 전달해야 함

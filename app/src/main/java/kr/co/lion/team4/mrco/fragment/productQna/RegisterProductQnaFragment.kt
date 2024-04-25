@@ -58,6 +58,8 @@ class RegisterProductQnaFragment : Fragment() {
             val isSecret = registerProductQnaViewModel.checkboxProductqnaSecret.value
             // 문의 내용
             val content = registerProductQnaViewModel.edittextProductqnaContent.value
+
+            removeFragment(SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT)
         }
     }
 
