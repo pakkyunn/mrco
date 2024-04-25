@@ -254,10 +254,16 @@ class Tools {
             fileOutputStream.close()
         }
 
-
-
-
-
+        // 주문 상태 텍스트 표기
+        fun getOrderItemStateStringValue(trackingState : Int) : String{
+            return when(trackingState){
+                ShippingState.READY_TO_SHIP.num -> ShippingState.READY_TO_SHIP.str
+                ShippingState.SHIPPED.num -> ShippingState.SHIPPED.str
+                ShippingState.IN_TRANSIT.num -> ShippingState.IN_TRANSIT.str
+                ShippingState.ARRIVE_SOON.num -> ShippingState.ARRIVE_SOON.str
+                else -> ShippingState.DELIVERED.str  // ShippingState.DELIVERED 인 경우
+            }
+        }
 
     }
 }
