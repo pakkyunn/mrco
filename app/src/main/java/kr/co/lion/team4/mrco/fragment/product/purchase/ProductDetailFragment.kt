@@ -21,6 +21,8 @@ class ProductDetailFragment : Fragment() {
 
     lateinit var snapHelper: SnapHelper
 
+    // 장바구니버튼인지 구매하기버튼인지 구분
+    var buttonIdx = true
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +35,8 @@ class ProductDetailFragment : Fragment() {
 
         settingToolbar()
 
+        settingBottomButton()
+
         settingRecyclerViewProductDetail()
 
         return fragmentProductDetailBinding.root
@@ -44,6 +48,28 @@ class ProductDetailFragment : Fragment() {
                 setNavigationOnClickListener {
                     backProcess()
                 }
+            }
+        }
+    }
+
+    fun settingBottomButton() {
+        fragmentProductDetailBinding.apply {
+            buttonBottomAddCart.setOnClickListener {
+                buttonIdx = false
+                val productPurchaseBottomFragment = ProductPurchaseBottomFragment(buttonIdx)
+                productPurchaseBottomFragment.show(
+                    mainActivity.supportFragmentManager,
+                    "ReplyBottomSheet"
+                )
+            }
+
+            buttonBottomPurchase.setOnClickListener {
+                buttonIdx = true
+                val productPurchaseBottomFragment = ProductPurchaseBottomFragment(buttonIdx)
+                productPurchaseBottomFragment.show(
+                    mainActivity.supportFragmentManager,
+                    "ReplyBottomSheet"
+                )
             }
         }
     }

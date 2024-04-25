@@ -5,34 +5,31 @@ import androidx.lifecycle.ViewModel
 import kr.co.lion.team4.mrco.R
 
 class ProductReviewViewModel: ViewModel() {
-    // 상품페이지 상품 평점
-    val ratingBarProductReview = MutableLiveData<Int>(5)
+    // 상품페이지 상품 별점
+    var ratingBarProductReview = MutableLiveData<Int>()
     // 상품페이지 리뷰탭 평점평균
-    val textViewRatingBarProductReview = MutableLiveData<String>("4.8")
+    var textViewRatingBarProductReview = MutableLiveData<String>()
 
     // 상품페이지 리뷰탭 평가항목1
-    val textViewRatingOptionProductReview1 = MutableLiveData<String>("항목평가1")
+    val textViewProductReviewRatingOption1 = MutableLiveData<String>()
     // 상품페이지 리뷰탭 평가항목1 프로그레스
-    val progressBarRatingOptionProductReview1 = MutableLiveData<Int>(66)
+    val progressBarProductReviewRatingOption1 = MutableLiveData<Int>()
     // 상품페이지 리뷰탭 평가항목1 비율
-    val progressRatioRatingOptionProductReview1 = MutableLiveData<String>("66%")
+    val progressRatioProductReviewRatingOption1 = MutableLiveData<String>()
 
     // 상품페이지 리뷰탭 평가항목2
-    val textViewRatingOptionProductReview2 = MutableLiveData<String>("항목평가2")
+    val textViewProductReviewRatingOption2 = MutableLiveData<String>()
     // 상품페이지 리뷰탭 평가항목2 프로그레스
-    val progressBarRatingOptionProductReview2 = MutableLiveData<Int>(26)
+    val progressBarProductReviewRatingOption2 = MutableLiveData<Int>()
     // 상품페이지 리뷰탭 평가항목2 비율
-    val progressRatioRatingOptionProductReview2 = MutableLiveData<String>("26%")
+    val progressRatioProductReviewRatingOption2 = MutableLiveData<String>()
 
     // 상품페이지 리뷰탭 평가항목3
-    val textViewRatingOptionProductReview3 = MutableLiveData<String>("항목평가3")
+    val textViewProductReviewRatingOption3 = MutableLiveData<String>()
     // 상품페이지 리뷰탭 평가항목3 프로그레스
-    val progressBarRatingOptionProductReview3 = MutableLiveData<Int>(8)
+    val progressBarProductReviewRatingOption3 = MutableLiveData<Int>()
     // 상품페이지 리뷰탭 평가항목3 비율
-    val progressRatioRatingOptionProductReview3 = MutableLiveData<String>("8%")
-
-    // 리뷰 타입
-    val toggleGroupProductReview = MutableLiveData<Int>()
+    val progressRatioProductReviewRatingOption3 = MutableLiveData<String>()
 
     // 정렬 방식 spinner -> string-array의 순서값(Int)을 전달해준다
     val spinnerSortProductReview = MutableLiveData<Int>()
