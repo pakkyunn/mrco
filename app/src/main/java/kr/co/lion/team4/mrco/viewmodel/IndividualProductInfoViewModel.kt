@@ -7,9 +7,9 @@ class IndividualProductInfoViewModel: ViewModel() {
 
     var individualProductName = MutableLiveData<String>()
 
-    var individualProductSerialNum = MutableLiveData<String>()
+    var individualProductSerialNum = MutableLiveData<Int>()
 
-    var individualProductStockNum = MutableLiveData<Int>().toString()
+    var individualProductStockNum = MutableLiveData<String>()
 
     var individualProductSalePrice = MutableLiveData<Int>().toString()
 

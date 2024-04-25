@@ -190,6 +190,7 @@ class MainActivity : AppCompatActivity() {
             MainFragmentName.PRODUCT_DETAIL_FRAGMENT -> newFragment = ProductDetailFragment()
             MainFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
 
+
             // 카테고리 (카테고리 선택, 메인) 화면
             MainFragmentName.CATEGORY_SEARCH_FRAGMENT -> newFragment = CategorySearchFragment()
             MainFragmentName.CATEGORY_MAIN_FRAGMENT -> newFragment = CategoryMainFragment()

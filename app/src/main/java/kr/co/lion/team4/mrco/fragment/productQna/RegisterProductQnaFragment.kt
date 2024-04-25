@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.viewmodel.productQna.RegisterProductQnaViewModel
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.SubFragmentName
 import kr.co.lion.team4.mrco.databinding.FragmentRegisterProductQnaBinding
 
 class RegisterProductQnaFragment : Fragment() {
@@ -37,9 +39,14 @@ class RegisterProductQnaFragment : Fragment() {
     // 상단 툴바 설정
     fun settingToolbarRegisterProductQna(){
         fragmetRegisterProductQnaBinding.toolbarRegisterProductQna.apply {
-            setNavigationIcon(R.drawable.arrow_back_24px)
-            setNavigationOnClickListener {
-                mainActivity.removeFragment(MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT)
+            inflateMenu(R.menu.menu_close_toolbar)
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.main_toolbar_close -> {
+                        removeFragment(SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT)
+                    }
+                }
+                true
             }
         }
     }
@@ -52,5 +59,13 @@ class RegisterProductQnaFragment : Fragment() {
             // 문의 내용
             val content = registerProductQnaViewModel.edittextProductqnaContent.value
         }
+    }
+
+    fun removeFragment(name: SubFragmentName) {
+        // 지정한 이름으로 있는 Fragment를 BackStack에서 제거한다.
+        mainActivity.supportFragmentManager.popBackStack(
+            name.str,
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
+        )
     }
 }

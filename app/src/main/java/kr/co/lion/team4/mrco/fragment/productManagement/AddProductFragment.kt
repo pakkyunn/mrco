@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.ImageDecoder
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -45,6 +46,7 @@ import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.model.ProductModel
+import java.io.File
 
 /* (판매자) 코디 상품 등록 화면 */
 
@@ -74,6 +76,13 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
     // Activity 실행을 위한 런처
     lateinit var albumLauncher: ActivityResultLauncher<Intent>
+    lateinit var cameraLauncher: ActivityResultLauncher<Intent>
+
+    // 촬영된 사진이 저장된 경로 정보를 가지고 있는 Uri 객체
+    lateinit var productUri: Uri
+
+    // 이미지를 첨부한 적이 있는지..
+    var isAddPicture = false
 
     // 개별 상품 추가 -> 이미지를 첨부한 적이 있는지...
     var isProductAddPicture = false
@@ -118,9 +127,53 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
         settingAddProductPhotoRecyclerView()
         settingAddProductDetailRecyclerView()
 
+        settingCameraLauncher()
         settingItemsAlbumLauncher()
 
         return fragmentAddProductBinding.root
+    }
+
+    // 카메라 런처 설정
+    fun settingCameraLauncher(){
+        val contract1 = ActivityResultContracts.StartActivityForResult()
+        cameraLauncher = registerForActivityResult(contract1){
+            // 사진을 사용하겠다고 한 다음에 돌아왔을 경우
+            if(it.resultCode == AppCompatActivity.RESULT_OK){
+                // 사진 객체를 생성한다.
+                val bitmap = BitmapFactory.decodeFile(productUri.path)
+
+                // 회전 각도값을 구한다.
+                val degree = Tools.getDegree(mainActivity, productUri)
+                // 회전된 이미지를 구한다.
+                val bitmap2 = Tools.rotateBitmap(bitmap, degree.toFloat())
+                // 크기를 조정한 이미지를 구한다.
+                val bitmap3 = Tools.resizeBitmap(bitmap2, 1024)
+
+                fragmentAddProductBinding.imageviewAddProductPhoto.setImageBitmap(bitmap3)
+                isAddPicture = true
+
+                // 사진 파일을 삭제한다.
+                val file = File(productUri.path)
+                file.delete()
+            }
+        }
+    }
+
+    // 카메라 런처를 실행하는 메서드
+    fun startCameraLauncher(){
+        // 촬영한 사진이 저장될 경로를 가져온다.
+        productUri = Tools.getPictureUri(mainActivity, "kr.co.lion.androidproject4boardapp.file_provider")
+
+        if(productUri != null){
+            // 실행할 액티비티를 카메라 액티비티로 지정한다.
+            // 단말기에 설치되어 있는 모든 애플리케이션이 가진 액티비티 중에 사진촬영이
+            // 가능한 액티비가 실행된다.
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            // 이미지가 저장될 경로를 가지고 있는 Uri 객체를 인텐트에 담아준다.
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, productUri)
+            // 카메라 액티비티 실행
+            cameraLauncher.launch(cameraIntent)
+        }
     }
 
     // setting toolbar
@@ -268,6 +321,10 @@ class AddProductFragment : Fragment(), AddProductDialogListener {
 
         override fun onBindViewHolder(holder: AddPhotoViewHolder, position: Int) {
             // 이미지 세팅
+            holder.itemAddProductPhotoBinding.root.setOnClickListener {
+                // 앨범 런처 실행
+
+            }
         }
 
         override fun getItemCount(): Int {

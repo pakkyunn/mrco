@@ -56,9 +56,10 @@ class CodiProductInfoTopFragment : Fragment() {
 
     // DB에서 coordiItem 데이터 받아옴
     fun gettingCodiProductTopData(){
+        val userIdx = mainActivity.loginUserIdx
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다.
-            codiProductTopList = ProductDao.selectProductInfoData(productIdx)
+            codiProductTopList = ProductDao.selectProductInfoData(productIdx, userIdx)
             // 타입이 상의인 것만 걸러준다
             filterData()
             // 리사이클러뷰를 갱신한다

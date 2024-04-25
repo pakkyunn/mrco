@@ -14,9 +14,11 @@ import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.MaterialSharedAxis
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,6 +32,7 @@ import kr.co.lion.team4.mrco.dao.ReviewDao
 import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
 import kr.co.lion.team4.mrco.databinding.RowProductReviewUserBinding
 import kr.co.lion.team4.mrco.databinding.RowProductReviewUserImageBinding
+import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
 import kr.co.lion.team4.mrco.model.FaqModel
 import kr.co.lion.team4.mrco.model.ProductModel
 import kr.co.lion.team4.mrco.model.RateOption
@@ -54,6 +57,9 @@ class ProductReviewFragment : Fragment() {
     var progressResultHigh = 0
     var progressResultMid = 0
     var progressResultLow = 0
+
+    var oldFragment: Fragment? = null
+    var newFragment: Fragment? = null
 
     // 모든 review 목록을 담을 리스트
     var reviewAllList = mutableListOf<ReviewModel>()
@@ -88,12 +94,12 @@ class ProductReviewFragment : Fragment() {
         return fragmentProductReviewBinding.root
     }
 
-     fun settingProductRate() {
+    fun settingProductRate() {
         fragmentProductReviewBinding.apply {
             ratingBarProductReview.rating = gettingStarRatingAvg()
-            if(reviewThisProductList.size !=0){
+            if (reviewThisProductList.size != 0) {
                 textViewRatingBarProductReview.text = gettingStarRatingAvg().toString()
-            }else{
+            } else {
                 textViewRatingBarProductReview.text = "아직 작성된 리뷰가 없습니다."
             }
 
@@ -175,76 +181,81 @@ class ProductReviewFragment : Fragment() {
         }
     }
 
-    fun gettingProgressBarResult(rateOptionNum:Int){
+    fun gettingProgressBarResult(rateOptionNum: Int) {
         var progressOption1 = 0
         var progressOption2 = 0
         var progressOption3 = 0
 
-        when(rateOptionNum){
+        when (rateOptionNum) {
             1 -> {
                 for (i in 0 until reviewThisProductList.size) {
-                    if(reviewThisProductList[i].reviewRateConcept == ReviewRateConcept.RATE_HIGH){
+                    if (reviewThisProductList[i].reviewRateConcept == ReviewRateConcept.RATE_HIGH) {
                         progressOption1++
                     }
-                    if(reviewThisProductList[i].reviewRateConcept == ReviewRateConcept.RATE_MID){
+                    if (reviewThisProductList[i].reviewRateConcept == ReviewRateConcept.RATE_MID) {
                         progressOption2++
                     }
-                    if(reviewThisProductList[i].reviewRateConcept == ReviewRateConcept.RATE_LOW){
+                    if (reviewThisProductList[i].reviewRateConcept == ReviewRateConcept.RATE_LOW) {
                         progressOption3++
                     }
-            }}
+                }
+            }
+
             2 -> {
                 for (i in 0 until reviewThisProductList.size) {
-                if(reviewThisProductList[i].reviewRateShipping == ReviewRateShipping.RATE_HIGH){
-                    progressOption1++
+                    if (reviewThisProductList[i].reviewRateShipping == ReviewRateShipping.RATE_HIGH) {
+                        progressOption1++
+                    }
+                    if (reviewThisProductList[i].reviewRateShipping == ReviewRateShipping.RATE_MID) {
+                        progressOption2++
+                    }
+                    if (reviewThisProductList[i].reviewRateShipping == ReviewRateShipping.RATE_LOW) {
+                        progressOption3++
+                    }
                 }
-                if(reviewThisProductList[i].reviewRateShipping == ReviewRateShipping.RATE_MID){
-                    progressOption2++
+            }
+
+            3 -> {
+                for (i in 0 until reviewThisProductList.size) {
+                    if (reviewThisProductList[i].reviewRateQuality == ReviewRateQuality.RATE_HIGH) {
+                        progressOption1++
+                    }
+                    if (reviewThisProductList[i].reviewRateQuality == ReviewRateQuality.RATE_MID) {
+                        progressOption2++
+                    }
+                    if (reviewThisProductList[i].reviewRateQuality == ReviewRateQuality.RATE_LOW) {
+                        progressOption3++
+                    }
                 }
-                if(reviewThisProductList[i].reviewRateShipping == ReviewRateShipping.RATE_LOW){
-                    progressOption3++
+            }
+
+            4 -> {
+                for (i in 0 until reviewThisProductList.size) {
+                    if (reviewThisProductList[i].reviewRateCost == ReviewRateCost.RATE_HIGH) {
+                        progressOption1++
+                    }
+                    if (reviewThisProductList[i].reviewRateCost == ReviewRateCost.RATE_MID) {
+                        progressOption2++
+                    }
+                    if (reviewThisProductList[i].reviewRateCost == ReviewRateCost.RATE_LOW) {
+                        progressOption3++
+                    }
                 }
-            }}
-            3 -> {for (i in 0 until reviewThisProductList.size) {
-                if(reviewThisProductList[i].reviewRateQuality == ReviewRateQuality.RATE_HIGH){
-                    progressOption1++
-                }
-                if(reviewThisProductList[i].reviewRateQuality == ReviewRateQuality.RATE_MID){
-                    progressOption2++
-                }
-                if(reviewThisProductList[i].reviewRateQuality == ReviewRateQuality.RATE_LOW){
-                    progressOption3++
-                }
-            }}
-            4 -> {for (i in 0 until reviewThisProductList.size) {
-                if(reviewThisProductList[i].reviewRateCost == ReviewRateCost.RATE_HIGH){
-                    progressOption1++
-                }
-                if(reviewThisProductList[i].reviewRateCost == ReviewRateCost.RATE_MID){
-                    progressOption2++
-                }
-                if(reviewThisProductList[i].reviewRateCost == ReviewRateCost.RATE_LOW){
-                    progressOption3++
-                }
-            }}
+            }
         }
-        progressResultHigh = progressOption1/reviewThisProductList.size
+        progressResultHigh = progressOption1 / reviewThisProductList.size
         progressResultHigh = round(progressResultHigh.toDouble()).toInt()
-        progressResultMid = progressOption2/reviewThisProductList.size
+        progressResultMid = progressOption2 / reviewThisProductList.size
         progressResultMid = round(progressResultMid.toDouble()).toInt()
-        progressResultLow = progressOption3/reviewThisProductList.size
+        progressResultLow = progressOption3 / reviewThisProductList.size
         progressResultLow = round(progressResultLow.toDouble()).toInt()
     }
 
     fun settingButtonImageMore() {
         fragmentProductReviewBinding.apply {
             buttonImageMore.setOnClickListener {
-                mainActivity.replaceFragment(
-                    MainFragmentName.REVIEW_IMAGE_MORE_FRAGMENT,
-                    true,
-                    true,
-                    null
-                )
+                Log.d("asdbuw","더보기 클릭")
+                replaceFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT,true,true,null)
             }
         }
     }
@@ -292,7 +303,7 @@ class ProductReviewFragment : Fragment() {
                 }
             }
         }
-        Log.d("againagain","리스트 리턴")
+        Log.d("againagain", "리스트 리턴")
         return reviewThisProductList
     }
 
@@ -453,4 +464,74 @@ class ProductReviewFragment : Fragment() {
             settingRecyclerViewReviewUser()
         }
     }
+
+    fun replaceFragment(
+        name: SubFragmentName,
+        addToBackStack: Boolean,
+        isAnimate: Boolean,
+        data: Bundle?
+    ) {
+
+        // Fragment를 교체할 수 있는 객체를 추출한다.
+        val fragmentTransaction = mainActivity.supportFragmentManager.beginTransaction()
+
+        // oldFragment에 newFragment가 가지고 있는 Fragment 객체를 담아준다.
+        if (newFragment != null) {
+            oldFragment = newFragment
+        }
+
+        when (name) {
+            SubFragmentName.PRODUCT_SHIPPING_FRAGMENT -> newFragment = ProductShippingFragment()
+
+            SubFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
+
+            SubFragmentName.PRODUCT_QNA_FRAGMENT -> newFragment = ProductQnaFragment()
+
+            SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
+
+            SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
+        }
+
+        // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
+        if (data != null) {
+            newFragment?.arguments = data
+        }
+
+        if (newFragment != null) {
+
+            // 애니메이션 설정
+            if (isAnimate == true) {
+
+                if (oldFragment != null) {
+                    // old에서 new가 새롭게 보여질 때 old의 애니메이션
+                    oldFragment?.exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+                    // new에서 old로 되돌아갈때 old의 애니메이션
+                    oldFragment?.reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+
+                    oldFragment?.enterTransition = null
+                    oldFragment?.returnTransition = null
+                }
+
+                // old에서 new가 새롭게 보여질 때 new의 애니메이션
+                newFragment?.enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+                // new에서 old로 되돌아갈때 new의 애니메이션
+                newFragment?.returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+
+                newFragment?.exitTransition = null
+                newFragment?.reenterTransition = null
+            }
+
+            // Fragment를 교체한다.(이전 Fragment가 없으면 새롭게 추가하는 역할을 수행한다)
+            fragmentTransaction.replace(R.id.fragmentContainerViewProduct, newFragment!!)
+
+            // addToBackStack 변수의 값이 true면 새롭게 보여질 Fragment를 BackStack에 포함시켜 준다.
+            if (addToBackStack == true) {
+                // BackStack 포함 시킬때 이름을 지정해주면 원하는 Fragment를 BackStack에서 제거할 수 있다.
+                fragmentTransaction.addToBackStack(name.str)
+            }
+            // Fragment 교체를 확정한다.
+            fragmentTransaction.commit()
+        }
+    }
+
 }
