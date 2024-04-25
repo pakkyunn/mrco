@@ -5,6 +5,8 @@ import com.google.firebase.Timestamp
 data class OrderModel(
     var order_idx : Int, // 주문번호
     var order_user_idx : Int, // 구매자 인덱스
+    // 구매자에게 보여주기위한 주문번호 (주문년월일시분초+랜덤숫자4개 임시로 넣어둠 -> 예: 202404241340411258 )
+    var order_number : String, // 주문번호
     var order_date : Timestamp, // 주문일자 - 주문일자 검색을 위해 Firebase에서 제공하는 Timestamp 타입으로 설정
     var order_product : ArrayList<OrderProduct>, // 주문상품 리스트
     var payment_method : String, // 결제방법
@@ -18,7 +20,7 @@ data class OrderModel(
     var shipping_phone_number : String, // 연락처
     var shipping_memo : String?, // 배송 메모
 ) {
-    constructor() : this(0, 0, Timestamp.now(), ArrayList(),
+    constructor() : this(0, 0, "", Timestamp.now(), ArrayList(),
         "", 0, 0,0, 0,
         "", "", "", "", "")
 }
