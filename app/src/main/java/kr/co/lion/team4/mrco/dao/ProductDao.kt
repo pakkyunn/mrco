@@ -2,6 +2,7 @@ package kr.co.lion.team4.mrco.dao
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -15,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.ProductState
 import kr.co.lion.team4.mrco.model.ProductCategoryLinkedListModel
 import kr.co.lion.team4.mrco.model.ProductModel
@@ -325,18 +327,22 @@ class ProductDao {
         }
 
         // collection 내에 존재하는 모든 상세 구성품 정보를 가져오는 함수
-        suspend fun gettingIndividualProductList(coordinatorIdx: Int): ArrayList<List<Map<String, String>>>{
+        suspend fun gettingIndividualProductList(userIdx: Int): List<Map<String, String>>{
+            var coordinatorIdx = CoordinatorDao.returnCoordiIdx(userIdx)
+
             var resultList: ArrayList<List<Map<String, String>>> = arrayListOf()
             var tempList: ArrayList<List<Map<String, String>>> = arrayListOf()
             val job1 = CoroutineScope(Dispatchers.IO).launch{
                 // 컬랙션 접근 객체
                 val collectionReference = Firebase.firestore.collection("ProductData")
                 // coordinatorIdx가 같은 데이터만 가져옴
-                val querySnapshot = collectionReference.whereEqualTo("coordinatorIdx", coordinatorIdx).get().await()
+                val querySnapshot = collectionReference.whereEqualTo("coordinatorIdx", 7).get().await()
                 // document 내에서 coordiItem의 정보만 가져옴
                 for (document in querySnapshot){
                     val individualItemArray = document["coordiItem"] as List<Map<String, String>>
-                    tempList.add(individualItemArray)
+                    if (individualItemArray.size != 0){
+                        tempList.add(individualItemArray)
+                    }
                 }
                 // 중복되는 데이터 제거
                 for (i in 0 until tempList.size){
@@ -347,7 +353,7 @@ class ProductDao {
                 }
             }
             job1.join()
-            return  resultList
+            return  resultList[0]
         }
     }
 }

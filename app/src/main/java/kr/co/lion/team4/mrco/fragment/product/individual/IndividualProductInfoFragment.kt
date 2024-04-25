@@ -19,6 +19,11 @@ class IndividualProductInfoFragment : Fragment() {
     private lateinit var viewModel: IndividualProductInfoViewModel
     private lateinit var mainActivity: MainActivity
 
+    var individualProdcutIdx = 0
+    var individualProductName = ""
+    var individualStockNum = ""
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_individual_product_infofragment, container, false)
@@ -26,12 +31,22 @@ class IndividualProductInfoFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
 
-        // 툴바 세팅
+        gettingBundleData()
+
         settingToolbar()
 
         return binding.root
     }
 
+    // Data 받아오기
+    fun gettingBundleData(){
+        val bundle = arguments
+        individualProdcutIdx = bundle!!.getInt("individualProductNum")
+        individualProductName = bundle.getString("individualProductName").toString()
+        individualStockNum = bundle.getString("individualProductStockNum").toString()
+    }
+
+    // 툴바 세팅
     fun settingToolbar(){
         binding.toolbarIndividualProductInfo.apply {
             setNavigationOnClickListener {
