@@ -1,5 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.product.purchase
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -110,10 +111,13 @@ class ProductFragment : Fragment() {
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     // 선택된 탭이 첫 번째 탭인 경우
                     if (tab?.position == 0) {
+                        removeFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT)
                         changeFragment(ProductShippingFragment())
                     } else if (tab?.position == 1) {
+                        removeFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT)
                         changeFragment(ProductReviewFragment())
                     } else {
+                        removeFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT)
                         changeFragment(ProductQnaFragment())
                     }
                 }
@@ -232,6 +236,8 @@ class ProductFragment : Fragment() {
             SubFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
 
             SubFragmentName.PRODUCT_QNA_FRAGMENT -> newFragment = ProductQnaFragment()
+
+            SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
@@ -276,9 +282,11 @@ class ProductFragment : Fragment() {
         }
     }
 
+
     fun changeFragment(changeFragment: Fragment) {
         childFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainerViewProduct, changeFragment).commit()
+            .replace(R.id.fragmentContainerViewProduct, changeFragment)
+            .commit()
     }
 
     // BackStack에서 Fragment를 제거한다.
@@ -290,15 +298,4 @@ class ProductFragment : Fragment() {
         )
     }
 
-    fun hideBottomButton() {
-        fragmentProductBinding.apply {
-            bottomButtonView.isVisible = false
-        }
-    }
-
-    fun showBottomButton() {
-        fragmentProductBinding.apply {
-            bottomButtonView.isVisible = true
-        }
-    }
 }

@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:transitionGroup="true">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarReviewImageMore"
@@ -14,12 +15,12 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:navigationIcon="@drawable/arrow_back_24px" />
+            android:theme="?attr/actionBarTheme" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewReviewImageMore"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF" />
     </LinearLayout>
 </layout>
