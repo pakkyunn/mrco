@@ -1,7 +1,6 @@
 package kr.co.lion.team4.mrco.fragment.product.management
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
-import kr.co.lion.team4.mrco.dao.CoordinatorDao
 import kr.co.lion.team4.mrco.dao.ProductDao
 import kr.co.lion.team4.mrco.databinding.FragmentIndividualProdcutManagementBinding
 import kr.co.lion.team4.mrco.databinding.RowIndividualProductBinding

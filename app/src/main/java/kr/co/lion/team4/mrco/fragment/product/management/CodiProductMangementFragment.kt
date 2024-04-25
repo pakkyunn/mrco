@@ -72,8 +72,11 @@ class CodiProductMangementFragment : Fragment() {
     // 서버로 부터 데이터를 가져와 리사이클러뷰를 갱신한다.
     fun gettingCodiData(){
         CoroutineScope(Dispatchers.Main).launch {
+            val userIdx = mainActivity.loginUserIdx
+
             // 상품 정보를 가져온다
-            codiProductList = ProductDao.gettingProductList(coordinatorIdx)
+            codiProductList = ProductDao.gettingProductList(userIdx)
+            Log.d("taejinCheck", "현재 가져온 codiProductList: ${codiProductList}")
 
             // 리사이클러뷰를 갱신한다.
             binding.recyclerViewCodiProductManagement.adapter?.notifyDataSetChanged()

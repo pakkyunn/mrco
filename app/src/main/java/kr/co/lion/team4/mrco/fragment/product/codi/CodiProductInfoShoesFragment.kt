@@ -53,9 +53,10 @@ class CodiProductInfoShoesFragment : Fragment() {
     }
 
     fun gettingCodiProductShoesData(){
+        val userIdx = mainActivity.loginUserIdx
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다
-            codiProductShoesList = ProductDao.selectProductInfoData(productIdx)
+            codiProductShoesList = ProductDao.selectProductInfoData(productIdx, userIdx)
             filterData()
 
             binding.recyclerViewProductInfoShoes.adapter?.notifyDataSetChanged()

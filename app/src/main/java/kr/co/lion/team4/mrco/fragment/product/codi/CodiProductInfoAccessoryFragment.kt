@@ -56,8 +56,9 @@ class CodiProductInfoAccessoryFragment : Fragment() {
     }
 
     fun gettingCodiProductAccessoryData(){
+        val userIdx = mainActivity.loginUserIdx
         CoroutineScope(Dispatchers.Main).launch {
-            codiProductAccessoryList = ProductDao.selectProductInfoData(productIdx)
+            codiProductAccessoryList = ProductDao.selectProductInfoData(productIdx, userIdx)
 
             filterData()
             Log.d("taejinCheck", "데이터 받아왔는지 확인 :\n${codiProductAccessoryFineList}")

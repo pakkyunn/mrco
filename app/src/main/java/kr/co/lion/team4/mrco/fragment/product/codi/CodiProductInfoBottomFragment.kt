@@ -67,9 +67,10 @@ class CodiProductInfoBottomFragment : Fragment() {
 
     // DB에서 coordiItem 데이터 받아옴
     fun gettingCodiProductBottomData(){
+        val userIdx = mainActivity.loginUserIdx
         CoroutineScope(Dispatchers.Main).launch {
             // 상품 정보를 가져온다.
-            codiProductBottomList = ProductDao.selectProductInfoData(productIdx)
+            codiProductBottomList = ProductDao.selectProductInfoData(productIdx, userIdx)
 
             filterData()
 
