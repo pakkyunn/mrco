@@ -113,12 +113,15 @@ class ProductFragment : Fragment() {
                     // 선택된 탭이 첫 번째 탭인 경우
                     if (tab?.position == 0) {
                         removeFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT)
+                        removeFragment(SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT)
                         changeFragment(ProductShippingFragment())
                     } else if (tab?.position == 1) {
                         removeFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT)
+                        removeFragment(SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT)
                         changeFragment(ProductReviewFragment())
                     } else {
                         removeFragment(SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT)
+                        removeFragment(SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT)
                         changeFragment(ProductQnaFragment())
                     }
                 }

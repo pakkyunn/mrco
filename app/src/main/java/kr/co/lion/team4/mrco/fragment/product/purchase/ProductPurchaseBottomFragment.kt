@@ -159,7 +159,7 @@ class ProductPurchaseBottomFragment(var buttonIdx:Boolean) : BottomSheetDialogFr
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return 1
         }
 
         override fun onBindViewHolder(holder: BottomViewHolder, position: Int) {
