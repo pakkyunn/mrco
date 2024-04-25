@@ -10,11 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.transition.MaterialSharedAxis
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.SubFragmentName
 import kr.co.lion.team4.mrco.databinding.FragmentProductQnaBinding
 import kr.co.lion.team4.mrco.databinding.RowProductQnaBinding
+import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
 import kr.co.lion.team4.mrco.viewmodel.product.ProductQnaViewModel
 import kr.co.lion.team4.mrco.viewmodel.product.RowProductQnaViewModel
 
@@ -23,6 +26,9 @@ class ProductQnaFragment : Fragment() {
     lateinit var fragmentProductQnaBinding: FragmentProductQnaBinding
     lateinit var mainActivity: MainActivity
     lateinit var productQnaViewModel: ProductQnaViewModel
+
+    var oldFragment: Fragment? = null
+    var newFragment: Fragment? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         fragmentProductQnaBinding =
@@ -42,7 +48,7 @@ class ProductQnaFragment : Fragment() {
     fun settingQuestionUploadButton(){
         // 상품 문의하기 버튼
         fragmentProductQnaBinding.productQuestionUploadButton.setOnClickListener {
-            mainActivity.replaceFragment(MainFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT, true, true, null)
+            replaceFragment(SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT, true, true, null)
         }
     }
 
@@ -135,4 +141,75 @@ class ProductQnaFragment : Fragment() {
             return 10
         }
     }
+
+    fun replaceFragment(
+        name: SubFragmentName,
+        addToBackStack: Boolean,
+        isAnimate: Boolean,
+        data: Bundle?
+    ) {
+
+        // Fragment를 교체할 수 있는 객체를 추출한다.
+        val fragmentTransaction = mainActivity.supportFragmentManager.beginTransaction()
+
+        // oldFragment에 newFragment가 가지고 있는 Fragment 객체를 담아준다.
+        if (newFragment != null) {
+            oldFragment = newFragment
+        }
+
+        when (name) {
+            SubFragmentName.PRODUCT_SHIPPING_FRAGMENT -> newFragment = ProductShippingFragment()
+
+            SubFragmentName.PRODUCT_REVIEW_FRAGMENT -> newFragment = ProductReviewFragment()
+
+            SubFragmentName.PRODUCT_QNA_FRAGMENT -> newFragment = ProductQnaFragment()
+
+            SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
+
+            SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
+        }
+
+        // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
+        if (data != null) {
+            newFragment?.arguments = data
+        }
+
+        if (newFragment != null) {
+
+            // 애니메이션 설정
+            if (isAnimate == true) {
+
+                if (oldFragment != null) {
+                    // old에서 new가 새롭게 보여질 때 old의 애니메이션
+                    oldFragment?.exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+                    // new에서 old로 되돌아갈때 old의 애니메이션
+                    oldFragment?.reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+
+                    oldFragment?.enterTransition = null
+                    oldFragment?.returnTransition = null
+                }
+
+                // old에서 new가 새롭게 보여질 때 new의 애니메이션
+                newFragment?.enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+                // new에서 old로 되돌아갈때 new의 애니메이션
+                newFragment?.returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+
+                newFragment?.exitTransition = null
+                newFragment?.reenterTransition = null
+            }
+
+            // Fragment를 교체한다.(이전 Fragment가 없으면 새롭게 추가하는 역할을 수행한다)
+            fragmentTransaction.replace(R.id.fragmentContainerViewProduct, newFragment!!)
+
+            // addToBackStack 변수의 값이 true면 새롭게 보여질 Fragment를 BackStack에 포함시켜 준다.
+            if (addToBackStack == true) {
+                // BackStack 포함 시킬때 이름을 지정해주면 원하는 Fragment를 BackStack에서 제거할 수 있다.
+                fragmentTransaction.addToBackStack(name.str)
+            }
+            // Fragment 교체를 확정한다.
+            fragmentTransaction.commit()
+        }
+    }
+
+
 }
