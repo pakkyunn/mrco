@@ -4,45 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".fragment.product.ProductDetailFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarProductDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/arrow_back_24px"
             app:subtitleCentered="true"
             app:title="코디 상세"
             app:titleTextAppearance="@style/TextAppearance.AppCompat.Medium"
             app:titleTextColor="#000000" />
 
+        <kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
         <View
             android:id="@+id/divider001"
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarProductDetail"
-            app:layout_constraintVertical_bias="0.0" />
+            android:background="?android:attr/listDivider" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorFullWidth="true"
             android:backgroundTint="@color/white"
             android:elevation="1dp"
             app:tabIndicatorColor="#000000"
+            app:tabIndicatorFullWidth="true"
             app:tabMinWidth="120dp"
             app:tabMode="fixed"
             app:tabRippleColor="#CCCCCC"
             app:tabSelectedTextColor="#000000"
-            app:tabTextColor="#676767"
-            app:layout_constraintTop_toBottomOf="@id/toolbarProductDetail">
+            app:tabTextColor="#676767">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -65,15 +66,60 @@
                 android:text="액세서리" />
         </com.google.android.material.tabs.TabLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewProductDetail"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:padding="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewProductDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="16dp"
+                android:paddingTop="64dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="24dp" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomButtonView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/mrco_launcher_background"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                app:itemActiveIndicatorStyle="@null"
+                app:itemIconTint="@color/bottom_navigation_selector_color"
+                app:itemTextColor="@color/bottom_navigation_selector_color"
+                app:labelVisibilityMode="labeled"
+                app:layout_insetEdge="bottom">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonBottomAddCart"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/add_shopping_cart_24px"
+                        android:text="장바구니"
+                        android:textColor="@color/black"
+                        app:cornerRadius="5dp" />
+                    <Button
+                        android:id="@+id/buttonBottomPurchase"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#000000"
+                        android:drawableStart="@drawable/shopping_cart_checkout_24px"
+                        android:text="구매하기"
+                        app:cornerRadius="5dp" />
+                </LinearLayout>
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        </kr.co.lion.team4.mrco.ui.NestedScrollCoordinatorLayout>
+
+
+    </LinearLayout>
 </layout>

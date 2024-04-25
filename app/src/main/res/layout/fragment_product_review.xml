@@ -13,13 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:transitionGroup="true">
 
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.Material3.CardView.Outlined"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -33,7 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:text="평점"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -58,8 +61,9 @@
                         android:gravity="center"
                         android:text="@={productReviewViewModel.textViewRatingBarProductReview}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                        android:textSize="10sp"
+                        android:textSize="14sp"
                         tools:text="3.9 / 5" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -82,7 +86,8 @@
                             android:clickable="true"
                             android:focusable="true"
                             android:text="컨셉매칭"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textSize="18sp" />
 
                         <ImageView
                             android:id="@+id/imageButtonRatingConceptProductReview"
@@ -94,14 +99,15 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textViewRatingDeliveryProductReview"
+                        android:id="@+id/textViewRatingShippingProductReview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="32dp"
                         android:clickable="true"
                         android:focusable="true"
                         android:text="배송"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/textViewRatingQualityProductReview"
@@ -111,7 +117,8 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:text="품질"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/textViewRatingCostProductReview"
@@ -121,7 +128,8 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:text="가성비"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textSize="18sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,32 +145,32 @@
                         app:srcCompat="@drawable/sentiment_1_24px" />
 
                     <TextView
-                        android:id="@+id/textViewRatingOptionProductReview1"
+                        android:id="@+id/textViewProductReviewRatingOption1"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
-                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview1}"
+                        android:text="@={productReviewViewModel.textViewProductReviewRatingOption1}"
                         tools:text="잘 어울려요" />
 
                     <ProgressBar
-                        android:id="@+id/progressBarRatingOptionProductReview1"
+                        android:id="@+id/progressBarProductReviewRatingOption1"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="200dp"
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview1}"
+                        android:progress="@{productReviewViewModel.progressBarProductReviewRatingOption1}"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
                     <TextView
-                        android:id="@+id/progressRatioRatingOptionProductReview1"
+                        android:id="@+id/progressRatioProductReviewRatingOption1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:textSize="8sp"
-                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview1}"
+                        android:text="@={productReviewViewModel.progressRatioProductReviewRatingOption1}"
+                        android:textSize="12sp"
                         tools:text="66%" />
                 </LinearLayout>
 
@@ -179,32 +187,32 @@
                         app:srcCompat="@drawable/sentiment_2_24px" />
 
                     <TextView
-                        android:id="@+id/textViewRatingOptionProductReview2"
+                        android:id="@+id/textViewProductReviewRatingOption2"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
-                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview2}"
+                        android:text="@={productReviewViewModel.textViewProductReviewRatingOption2}"
                         tools:text="무난해요" />
 
                     <ProgressBar
-                        android:id="@+id/progressBarRatingOptionProductReview2"
+                        android:id="@+id/progressBarProductReviewRatingOption2"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="200dp"
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
                         android:max="100"
-                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview2}"
+                        android:progress="@{productReviewViewModel.progressBarProductReviewRatingOption2}"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
                     <TextView
-                        android:id="@+id/progressRatioRatingOptionProductReview2"
+                        android:id="@+id/progressRatioProductReviewRatingOption2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:textSize="8sp"
-                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview2}"
+                        android:text="@={productReviewViewModel.progressRatioProductReviewRatingOption2}"
+                        android:textSize="12sp"
                         tools:text="26%" />
                 </LinearLayout>
 
@@ -214,39 +222,38 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/imageViewSentimentProductReview1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         app:srcCompat="@drawable/sentiment_3_24px" />
 
                     <TextView
-                        android:id="@+id/textViewRatingOptionProductReview3"
+                        android:id="@+id/textViewProductReviewRatingOption3"
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:layout_marginEnd="8dp"
-                        android:text="@={productReviewViewModel.textViewRatingOptionProductReview3}"
+                        android:text="@={productReviewViewModel.textViewProductReviewRatingOption3}"
                         tools:text="안 어울려요" />
 
                     <ProgressBar
-                        android:id="@+id/progressBarRatingOptionProductReview3"
+                        android:id="@+id/progressBarProductReviewRatingOption3"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="200dp"
                         android:layout_height="10dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginEnd="8dp"
-                        android:progress="@{productReviewViewModel.progressBarRatingOptionProductReview3}"
                         android:max="100"
+                        android:progress="@{productReviewViewModel.progressBarProductReviewRatingOption3}"
                         android:progressDrawable="@drawable/rating_progress_bar"
                         android:progressTint="#4E5B9C" />
 
                     <TextView
-                        android:id="@+id/progressRatioRatingOptionProductReview3"
+                        android:id="@+id/progressRatioProductReviewRatingOption3"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center_vertical"
-                        android:textSize="8sp"
-                        android:text="@={productReviewViewModel.progressRatioRatingOptionProductReview3}"
+                        android:text="@={productReviewViewModel.progressRatioProductReviewRatingOption3}"
+                        android:textSize="12sp"
                         tools:text="8%" />
                 </LinearLayout>
             </LinearLayout>
@@ -257,6 +264,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="8dp">
 
 
@@ -271,7 +279,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="후기 사진" />
+                    android:text="후기 사진"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -281,7 +291,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"/>
+                        android:orientation="horizontal" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -309,7 +319,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="56dp"
-                                android:background="#FDF6FE"
+                                android:background="#FFFFFF"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
@@ -339,20 +349,21 @@
             android:layout_marginBottom="8dp"
             app:selectionRequired="true"
             app:singleSelection="true">
-            <!--android:checkedButtonId="@={productReviewViewModel.toggleGroupProductReview}"-->
 
             <Button
-                android:id="@+id/toggleButtonProductReview1"
+                android:id="@+id/toggleButtonProductReviewStyle"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:focusable="auto"
                 android:text="스타일 리뷰"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColorLink="#FFFFFF"
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/toggleButtonProductReview2"
+                android:id="@+id/toggleButtonProductReviewText"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
