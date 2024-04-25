@@ -17,152 +17,41 @@
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbarCoordinatorMain"
                 android:layout_width="match_parent"
-                android:layout_height="88dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:background="@color/white"
                 android:backgroundTint="#FFFFFF"
                 android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
+                android:theme="@style/ToolbarTheme"
                 app:menu="@menu/menu_main_category_toolbar"
-                app:navigationIcon="@drawable/menu_24px"
-                app:subtitle="아메카지"
-                app:subtitleCentered="true"
-                app:subtitleTextColor="#666"
-                app:title="MOOD"
+                app:navigationIcon="@drawable/tune_24px"
+                app:navigationIconTint="@color/black"
+                app:title="Category"
                 app:titleCentered="true"
                 app:titleTextColor="#000000" />
+
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="#333" />
 
-            <HorizontalScrollView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:scrollbars="none">
+                android:orientation="horizontal">
 
-                <com.google.android.material.chip.ChipGroup
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewCategoryMainFiltered"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:chipSpacingHorizontal="8dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    tools:layout_height="48dp" />
 
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain1"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="미니멀"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain2"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="비즈니스 캐주얼"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain3"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="원마일웨어"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain4"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:text="아메카지"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain5"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="시티보이"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain6"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="스트릿"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain7"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="스포티"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain8"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="레트로"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain9"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="러블리"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/chipCoordinatorMain10"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="모던캐주얼"
-                        android:textColor="@color/black"
-                        app:chipBackgroundColor="@color/white"
-                        app:chipStrokeColor="#787878"
-                        app:chipStrokeWidth="1dp" />
-
-                </com.google.android.material.chip.ChipGroup>
-            </HorizontalScrollView>
+            </LinearLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -184,7 +73,7 @@
                             android:id="@+id/recyclerViewCategoryMain"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:paddingTop="10dp" />
+                            android:padding="16dp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
@@ -193,7 +82,6 @@
                 android:id="@+id/main_bottom_navi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 app:itemActiveIndicatorStyle="@null"
                 app:itemBackground="@color/bottomSheetColor"
                 app:itemIconTint="@color/bottom_navigation_selector_color"
@@ -212,6 +100,6 @@
             android:background="#EFEFEF"
             app:drawerLayoutCornerSize="0dp"
             app:menu="@menu/menu_category_drawer" />
-    </androidx.drawerlayout.widget.DrawerLayout>
 
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>
