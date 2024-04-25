@@ -60,6 +60,9 @@ class CustomerInquiryFragment : Fragment() {
         // 툴바, bottom navigation 설정
         settingCustomerInquiryToolbar()
 
+        // 주문 내역에서 고객센터 문의하기 버튼을 클릭한 경우, 주문 번호를 입력창에 표기
+        settingOrderNumber()
+
         settingAlbumLauncher()
         attachInquiryFile()
 
@@ -68,6 +71,15 @@ class CustomerInquiryFragment : Fragment() {
         removeAttachedFile()
 
         return fragmentCustomerInquiryBinding.root
+    }
+
+    fun settingOrderNumber(){
+        // 주문 번호
+        val orderNumber = arguments?.getString("orderNumber")
+        if(orderNumber!=null){
+            fragmentCustomerInquiryBinding.textinputCustomerInquiryOrderNumber.isEnabled = false
+            customerInquiryViewModel.textinputCustomerInquiryOrderNumber.value = orderNumber
+        }
     }
 
     // 문의 내용 제출

@@ -449,7 +449,7 @@ class OrderHistoryFragment : Fragment() {
             val orderedProduct = orders[parentPosition].order_product[position]
             val orderedProductInfo = productsInfo[parentPosition][position]
             // 주문 상태
-            holder.itemOrderhistoryProductBinding.orderHistoryProductViewModel?.textViewOrderedItemState?.value = getOrderItemStateStringValue(orderedProduct.tracking_state)
+            holder.itemOrderhistoryProductBinding.orderHistoryProductViewModel?.textViewOrderedItemState?.value = Tools.getOrderItemStateStringValue(orderedProduct.tracking_state)
             // 주문 상품명
             holder.itemOrderhistoryProductBinding.orderHistoryProductViewModel?.textViewOrderedItemCoordiName?.value = orderedProductInfo.ordered_product_name
             // 주문 옵션
@@ -475,17 +475,6 @@ class OrderHistoryFragment : Fragment() {
 
         override fun getItemCount(): Int {
             return orders[parentPosition].order_product.size
-        }
-
-        // 주문 상태 텍스트 표기
-        fun getOrderItemStateStringValue(trackingState : Int) : String{
-            return when(trackingState){
-                ShippingState.READY_TO_SHIP.num -> ShippingState.READY_TO_SHIP.str
-                ShippingState.SHIPPED.num -> ShippingState.SHIPPED.str
-                ShippingState.IN_TRANSIT.num -> ShippingState.IN_TRANSIT.str
-                ShippingState.ARRIVE_SOON.num -> ShippingState.ARRIVE_SOON.str
-                else -> ShippingState.DELIVERED.str  // ShippingState.DELIVERED 인 경우
-            }
         }
 
         // 각 상품의 배송 상태를 표기해주기 위한 메서드

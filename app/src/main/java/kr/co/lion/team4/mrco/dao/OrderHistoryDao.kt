@@ -97,5 +97,56 @@ class OrderHistoryDao {
 
             return productInfoList
         }
+
+        // 주문 idx 를 이용해 주문 데이터를 가져와 반환한다.
+        suspend fun selectOrderData(orderIdx:Int) : OrderModel? {
+            var orderModel: OrderModel? = null
+
+            val job1 = CoroutineScope(Dispatchers.IO).launch {
+                // 컬렉션에 접근할 수 있는 객체를 가져온다.
+                val collectionReference = Firebase.firestore.collection("OrderData")
+                // 컬렉션이 가지고 있는 문서들 중에 order_idx 필드가 지정된 orderIdx값하고 같은 Document를 가져온다.
+                val querySnapshot = collectionReference.whereEqualTo("order_idx", orderIdx).get().await()
+                // orderIdx가 같은 글은 존재할 수가 없기 떄문에, 첫 번째 객체를 바로 추출해서 사용한다.
+                orderModel = querySnapshot.documents[0].toObject(OrderModel::class.java)
+            }
+            job1.join()
+
+            return orderModel
+        }
+
+
+        // 주문 상세정보 화면 - 주문한 상품들의 정보를 가져온다.
+        suspend fun selectOrderProductInfo(order: OrderModel): MutableList<OrderedProductInfoModel> {
+            // 고객이 주문한 상품의 상품 정보 목록 (상품의 상품명, 대표이미지 파일명, 가격만 담긴다)
+            val productsInfo = mutableListOf<OrderedProductInfoModel>()
+
+            order.order_product.forEach {
+                val jobItem = CoroutineScope(Dispatchers.IO).launch {
+                    // 모든 주문 내역을 가져온다.
+                    val collectionReference = Firebase.firestore.collection("ProductData")
+                    // 주문한 상품의 인덱스번호와 일치하는 상품 정보를 불러온다.
+                    val query =
+                        collectionReference.whereEqualTo("productIdx", it.order_product_idx)
+                    val querySnapshot = query.get().await()
+                    // 가져온 문서 수만큼 반복
+                    querySnapshot.forEach {
+                        // 각 문서를 객체에 담는다.
+                        val productModel = it.toObject(ProductModel::class.java)
+                        // 상품 정보에서 원하는 정보만 분리하여 객체에 담아준다.
+                        val productInfo = OrderedProductInfoModel(
+                            productModel.productIdx,
+                            productModel.coordiName,
+                            productModel.price,
+                            productModel.codiMainImage
+                        )
+                        // 상품 정보 객체를 리스트에 넣는다.
+                        productsInfo.add(productInfo)
+                    }
+                }
+                jobItem.join()
+            }
+            return productsInfo
+        }
     }
 }

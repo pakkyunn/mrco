@@ -254,10 +254,17 @@ class Tools {
             fileOutputStream.close()
         }
 
-
-
-
-
+        // 주문 상태 텍스트 표기
+        fun getOrderItemStateStringValue(shippingState : Int) : String{
+            return when(shippingState){
+                ShippingState.READY_TO_SHIP.num -> ShippingState.READY_TO_SHIP.str
+                ShippingState.SHIPPED.num -> ShippingState.SHIPPED.str
+                ShippingState.IN_TRANSIT.num -> ShippingState.IN_TRANSIT.str
+                ShippingState.ARRIVE_SOON.num -> ShippingState.ARRIVE_SOON.str
+                ShippingState.DELIVERED.num -> ShippingState.DELIVERED.str
+                else -> ShippingState.ORDER_CONFIRM.str  // ShippingState.ORDER_CONFIRM 인 경우 (구매확정)
+            }
+        }
 
     }
 }
@@ -498,6 +505,7 @@ enum class ShippingState(var str: String, var num:Int){
     IN_TRANSIT("배송중", 2),
     ARRIVE_SOON("도착예정", 3),
     DELIVERED("배송완료", 4),
+    ORDER_CONFIRM("구매 확정", 5),
 }
 
 // 리뷰 작성 상태
