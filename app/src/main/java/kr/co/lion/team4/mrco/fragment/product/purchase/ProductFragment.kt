@@ -25,6 +25,7 @@ import kr.co.lion.team4.mrco.SubFragmentName
 import kr.co.lion.team4.mrco.databinding.FragmentProductBinding
 import kr.co.lion.team4.mrco.databinding.FragmentProductReviewBinding
 import kr.co.lion.team4.mrco.databinding.RowProductBannerBinding
+import kr.co.lion.team4.mrco.fragment.productQna.RegisterProductQnaFragment
 import kr.co.lion.team4.mrco.fragment.review.CreateReviewFragment
 import kr.co.lion.team4.mrco.viewmodel.product.ProductViewModel
 
@@ -238,6 +239,8 @@ class ProductFragment : Fragment() {
             SubFragmentName.PRODUCT_QNA_FRAGMENT -> newFragment = ProductQnaFragment()
 
             SubFragmentName.REVIEW_IMAGE_MORE_FRAGMENT -> newFragment = ReviewImageMoreFragment()
+
+            SubFragmentName.REGISTER_PRODUCT_QNA_FRAGMENT -> newFragment = RegisterProductQnaFragment()
         }
 
         // 새로운 Fragment에 전달할 객체가 있다면 arguments 프로퍼티에 넣어준다.
