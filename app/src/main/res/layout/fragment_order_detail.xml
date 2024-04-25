@@ -57,8 +57,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="@{orderDetailViewModel.textViewOrderDetailOrderNumber}"
-                        android:textColor="#555"
-                        android:textSize="16sp" />
+                        android:textColor="@color/black"
+                        android:textSize="16sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="주문일자:"
-                        android:textColor="#555"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
@@ -82,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="@{orderDetailViewModel.textViewOrderDetailOrderDate}"
+                        android:text="@={orderDetailViewModel.textViewOrderDetailOrderDate}"
                         android:textColor="#555"
                         android:textSize="16sp" />
 
@@ -358,7 +358,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView21"
+                            android:id="@+id/textViewOrderDetailOrderTotalPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
