@@ -65,7 +65,7 @@ class CodiProductInfoAllFragment : Fragment() {
 
     fun settingInputForm() {
         // 이미지 뷰를 안 보이게 한다.
-        binding.imageViewCondiProductInfoAllCodiImage.visibility = View.INVISIBLE
+//        binding.imageViewCondiProductInfoAllCodiImage.visibility = View.INVISIBLE
         // 입력 요소에 띄어쓰기를 넣어준다.
         viewModel.productName.value = " "
     }

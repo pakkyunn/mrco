@@ -281,7 +281,8 @@ class ProductDao {
 
 
         // 상품 목록을 가져온다.
-        suspend fun gettingProductList(coordinatorIdx: Int):MutableList<ProductModel>{
+        suspend fun gettingProductList(userIdx: Int):MutableList<ProductModel>{
+            val coordinatorIdx = CoordinatorDao.returnCoordiIdx(userIdx)
             // 댓글 정보를 담을 리스트
             val plyList = mutableListOf<ProductModel>()
             val job1 = CoroutineScope(Dispatchers.IO).launch {
@@ -290,11 +291,8 @@ class ProductDao {
                 // 댓글 상태가 정상 상태이고 댓글 번호를 기준으로 내림차순 정렬되게 데이터를 가져올 수 있는
                 // Query를 생성한다.
                 // 댓글 상태가 정상 상태인 것만..
-                var query = collectionReference.whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
-                // 코디네이터 번호에 해당하는 것들만
-//                query = query.whereEqualTo("coordinatorIdx", coordinatorIdx)
-                // 작성일자를 기준으로 내림 차순 정렬..
-//                query = query.orderBy("coordiWriteDate", Query.Direction.DESCENDING)
+                var query = collectionReference.whereEqualTo("coordinatorIdx", coordinatorIdx).whereEqualTo("coordiState", ProductState.PRODUCT_STATE_NORMAL.num)
+
                 val queryShapshot = query.get().await()
                 // 가져온 문서의 수 만큼 반복한다.
                 queryShapshot.forEach {
@@ -309,14 +307,15 @@ class ProductDao {
         }
 
         // 선택한 상품의 상세 구성품 목록을 가져오는 함수
-        suspend fun selectProductInfoData(productIdx:Int/*, coordinatorIdx: Int*/): ArrayList<List<Map<String, String>>>{
-            var tempList = ArrayList<List<Map<String,String>>>()
+        suspend fun selectProductInfoData(productIdx:Int, userIdx: Int): ArrayList<List<Map<String, String>>>{
+            val coordinatorIdx = CoordinatorDao.returnCoordiIdx(userIdx)
+            val tempList = ArrayList<List<Map<String,String>>>()
             val job1 = CoroutineScope(Dispatchers.IO).launch {
                 // 컬렉션에 접근할 수 있는 객체를 가져온다.
                 val collectionReference = Firebase.firestore.collection("ProductData")
                 // 컬렉션이 가지고 있는 문서들 중에 contentIdx 필드가 지정된 글 번호값하고 같은 Document들을 가져온다.
                 // .whereEqualTo("coordinatorIdx", coordinatorIdx)
-                val querySnapshot = collectionReference.whereEqualTo("productIdx", productIdx).get().await()
+                val querySnapshot = collectionReference.whereEqualTo("coordinatorIdx", coordinatorIdx).whereEqualTo("productIdx", productIdx).get().await()
                 for (document in querySnapshot){
                     val coordiItemArray = document["coordiItem"] as List<Map<String, String>>
                     tempList.add(coordiItemArray)
@@ -336,7 +335,7 @@ class ProductDao {
                 // 컬랙션 접근 객체
                 val collectionReference = Firebase.firestore.collection("ProductData")
                 // coordinatorIdx가 같은 데이터만 가져옴
-                val querySnapshot = collectionReference.whereEqualTo("coordinatorIdx", 7).get().await()
+                val querySnapshot = collectionReference.whereEqualTo("coordinatorIdx", coordinatorIdx).get().await()
                 // document 내에서 coordiItem의 정보만 가져옴
                 for (document in querySnapshot){
                     val individualItemArray = document["coordiItem"] as List<Map<String, String>>
