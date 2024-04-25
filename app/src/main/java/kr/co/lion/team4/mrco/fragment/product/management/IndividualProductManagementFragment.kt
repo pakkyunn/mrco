@@ -39,8 +39,6 @@ class IndividualProductManagementFragment : Fragment() {
 
         settingRecyclerViewIndividualProduct()
 
-//        gettingCoordinatorData()
-
         gettingIndividualProductData()
 
         return binding.root

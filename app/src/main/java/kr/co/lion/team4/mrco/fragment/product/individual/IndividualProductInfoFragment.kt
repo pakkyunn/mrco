@@ -30,10 +30,12 @@ class IndividualProductInfoFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(IndividualProductInfoViewModel::class.java)
         mainActivity = activity as MainActivity
         binding.lifecycleOwner = this
+        binding.individualProductInfoViewModel = viewModel
 
         gettingBundleData()
 
         settingToolbar()
+        settingView()
 
         return binding.root
     }
@@ -44,6 +46,15 @@ class IndividualProductInfoFragment : Fragment() {
         individualProdcutIdx = bundle!!.getInt("individualProductNum")
         individualProductName = bundle.getString("individualProductName").toString()
         individualStockNum = bundle.getString("individualProductStockNum").toString()
+    }
+
+    // View 세팅
+    fun settingView(){
+        binding.apply {
+            individualProductInfoViewModel?.individualProductName?.value = individualProductName
+            individualProductInfoViewModel?.individualProductSerialNum?.value = individualProdcutIdx
+            individualProductInfoViewModel?.individualProductStockNum?.value = individualStockNum
+        }
     }
 
     // 툴바 세팅
