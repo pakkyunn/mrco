@@ -116,7 +116,7 @@
 
                     <Button
                         android:id="@+id/iconButtonEditUserMyPage"
-                        android:layout_width="200dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="16dp"
