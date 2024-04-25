@@ -110,9 +110,9 @@ class JoinFragment : Fragment() {
         joinViewModel.checkBoxJoinMale.value = true
         joinViewModel.checkBoxJoinFemale.value = false
         //동의 선택01
-        joinViewModel.checkBoxJoinUserConsent01.value = true
+        joinViewModel.checkBoxJoinUserConsent01.value = false
         //동의 선택02
-        joinViewModel.checkBoxJoinUserConsent02.value = true
+        joinViewModel.checkBoxJoinUserConsent02.value = false
 
         // 첫 번째 입력 요소에 포커스를 준다.
         Tools.showSoftInput(mainActivity, fragmentJoinBinding.textFieldJoinUserId)
