@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="orderDetailProductViewModel"
+            type="kr.co.lion.team4.mrco.viewmodel.order.OrderDetailProductViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview_orderdetail_product"
+            style="@style/Widget.Material3.CardView.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/textview_orderdetail_product_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{orderDetailProductViewModel.textviewOrderDetailProductState}"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:hint="주문상태" />
+
+                <View
+                    android:id="@+id/divider_orderdetail_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_orderdetail_product_state" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardview_orderdetail_product_thumbnail"
+                    style="@style/Widget.Material3.CardView.Filled"
+                    android:layout_width="50dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textview_orderdetail_product_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_orderdetail_product">
+
+                    <ImageView
+                        android:id="@+id/imageview_orderdetail_product_thumbnail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_launcher_background" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/textview_orderdetail_product_coordi_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    tools:hint="(코디 상품명) OOOO 코디 SET"
+                    android:maxLines="1"
+                    android:text="@{orderDetailProductViewModel.textviewOrderDetailProductCoordiName}"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/cardview_orderdetail_product_thumbnail"
+                    app:layout_constraintTop_toBottomOf="@+id/divider_orderdetail_product" />
+
+                <TextView
+                    android:id="@+id/textview_orderdetail_product_option"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    tools:hint="옵션: 상의, 하의 등"
+                    android:text="@{orderDetailProductViewModel.textviewOrderDetailProductOption}"
+                    android:textColor="@color/material_dynamic_neutral60"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/cardview_orderdetail_product_thumbnail"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_orderdetail_product_coordi_name" />
+
+                <TextView
+                    android:id="@+id/textview_orderdetail_product_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    tools:hint="100,000원"
+                    android:text="@{orderDetailProductViewModel.textviewOrderDetailProductPrice}"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/cardview_orderdetail_product_thumbnail"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_orderdetail_product_option" />
+
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Outlined"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textview_orderdetail_product_price">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/button_orderdetail_product_return"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            android:minWidth="1dp"
+                            android:minHeight="0dp"
+                            android:paddingHorizontal="1dp"
+                            android:text="반품하기"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:id="@+id/divider_return"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/listDivider" />
+
+                        <Button
+                            android:id="@+id/button_orderdetail_product_exchange"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            android:minWidth="1dp"
+                            android:minHeight="0dp"
+                            android:paddingHorizontal="1dp"
+                            android:text="교환하기"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:id="@+id/divider_exchange"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/listDivider" />
+
+
+                        <Button
+                            android:id="@+id/button_orderdetail_product_shipping"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            android:minWidth="1dp"
+                            android:minHeight="0dp"
+                            android:paddingHorizontal="1dp"
+                            android:text="배송현황"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:id="@+id/divider_shipping"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="?android:attr/listDivider" />
+
+
+                        <Button
+                            android:id="@+id/button_orderdetail_product_inquiry"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/white"
+                            android:minWidth="1dp"
+                            android:minHeight="0dp"
+                            android:paddingHorizontal="1dp"
+                            android:text="문의하기"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</layout>
