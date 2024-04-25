@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
@@ -14,12 +16,11 @@ import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
 import kr.co.lion.team4.mrco.databinding.FragmentProductDetailBinding
 import kr.co.lion.team4.mrco.databinding.RowProductDetailBinding
+import kr.co.lion.team4.mrco.databinding.RowProductReviewUserImageBinding
 
 class ProductDetailFragment : Fragment() {
     lateinit var fragmentProductDetailBinding: FragmentProductDetailBinding
     lateinit var mainActivity: MainActivity
-
-    lateinit var snapHelper: SnapHelper
 
     // 장바구니버튼인지 구매하기버튼인지 구분
     var buttonIdx = true
@@ -37,7 +38,7 @@ class ProductDetailFragment : Fragment() {
 
         settingBottomButton()
 
-        settingRecyclerViewProductDetail()
+//        settingRecyclerViewProductDetail()
 
         return fragmentProductDetailBinding.root
     }
@@ -74,21 +75,21 @@ class ProductDetailFragment : Fragment() {
         }
     }
 
+
+    // 상품 후기 사진 전체 RecyclerView 구성
     fun settingRecyclerViewProductDetail() {
         fragmentProductDetailBinding.apply {
             recyclerViewProductDetail.apply {
-                // 어뎁터 및 레이아웃 매니저 설정
+                // 어뎁터
                 adapter = ProductDetailRecyclerViewAdapter()
-
-                snapHelper = PagerSnapHelper()
-                snapHelper.attachToRecyclerView(this)
+                // 레이아웃 매니저
+                layoutManager = LinearLayoutManager(mainActivity)
             }
         }
     }
 
-
     inner class ProductDetailRecyclerViewAdapter :
-        RecyclerView.Adapter<ProductDetailFragment.ProductDetailRecyclerViewAdapter.ProductDetailViewHolder>() {
+        RecyclerView.Adapter<ProductDetailRecyclerViewAdapter.ProductDetailViewHolder>() {
         inner class ProductDetailViewHolder(rowProductDetailBinding: RowProductDetailBinding) :
             RecyclerView.ViewHolder(rowProductDetailBinding.root) {
             val rowProductDetailBinding: RowProductDetailBinding
@@ -103,19 +104,29 @@ class ProductDetailFragment : Fragment() {
             }
         }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductDetailViewHolder {
-            val rowProductDetailBinding = RowProductDetailBinding.inflate(layoutInflater)
-            val productDetailViewHolder = ProductDetailViewHolder(rowProductDetailBinding)
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): ProductDetailViewHolder {
+            val rowProductDetailBinding =
+                DataBindingUtil.inflate<RowProductDetailBinding>(
+                    layoutInflater,
+                    R.layout.row_product_detail,
+                    parent,
+                    false
+                )
+            rowProductDetailBinding.lifecycleOwner = this@ProductDetailFragment
 
-            return productDetailViewHolder
+            val ProductDetailViewHolder =
+                ProductDetailViewHolder(rowProductDetailBinding)
+            return ProductDetailViewHolder
         }
 
         override fun getItemCount(): Int {
-            return 3
+            return 2
         }
 
         override fun onBindViewHolder(holder: ProductDetailViewHolder, position: Int) {
-
 
         }
     }

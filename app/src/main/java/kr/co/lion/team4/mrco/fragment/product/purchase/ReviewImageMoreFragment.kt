@@ -153,10 +153,22 @@ class ReviewImageMoreFragment : Fragment() {
         }
 
         override fun getItemCount(): Int {
-            return 50
+            return 10
         }
 
         override fun onBindViewHolder(holder: ReviewImageMoreViewHolder, position: Int) {
+            // position 값에 따라 다른 이미지 설정
+            val imageResource = when (position % 6) {
+                0 -> R.drawable.iu_image2
+                1 -> R.drawable.iu_image3
+                2 -> R.drawable.iu_image4
+                3 -> R.drawable.iu_image5
+                4 -> R.drawable.iu_image6
+                else -> R.drawable.iu_image7
+            }
+            holder.rowProductReviewUserImageBinding.imageViewReviewRepresent.setImageResource(
+                imageResource
+            )
 
         }
     }
