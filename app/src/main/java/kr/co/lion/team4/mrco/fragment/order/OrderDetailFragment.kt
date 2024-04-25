@@ -3,7 +3,6 @@ package kr.co.lion.team4.mrco.fragment.order
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +16,13 @@ import kotlinx.coroutines.launch
 import kr.co.lion.team4.mrco.MainActivity
 import kr.co.lion.team4.mrco.MainFragmentName
 import kr.co.lion.team4.mrco.R
+import kr.co.lion.team4.mrco.ShippingState
 import kr.co.lion.team4.mrco.Tools
 import kr.co.lion.team4.mrco.dao.OrderHistoryDao
 import kr.co.lion.team4.mrco.databinding.FragmentOrderDetailBinding
 import kr.co.lion.team4.mrco.databinding.ItemOrderDetailProductBinding
 import kr.co.lion.team4.mrco.model.OrderModel
+import kr.co.lion.team4.mrco.model.OrderedProductInfoModel
 import kr.co.lion.team4.mrco.viewmodel.order.OrderDetailProductViewModel
 import kr.co.lion.team4.mrco.viewmodel.order.OrderDetailViewModel
 import java.text.SimpleDateFormat
@@ -36,6 +37,8 @@ class OrderDetailFragment : Fragment() {
     lateinit var orderDetailViewModel: OrderDetailViewModel
 
     // 주문한 상품의 정보(상품명, 옵션, 가격)들을 담고 있는 객체
+    var orderedProductsDetail = mutableListOf<OrderedProductInfoModel>()
+    lateinit var orderDetail : OrderModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -82,11 +85,12 @@ class OrderDetailFragment : Fragment() {
 
     fun gettingOrderDetailData(orderIdx : Int){
         CoroutineScope(Dispatchers.Main).launch {
-            val orderDetail = OrderHistoryDao.selectOrderData(orderIdx)
+            orderDetail = OrderHistoryDao.selectOrderData(orderIdx)!!
             if(orderDetail!=null){
-                Log.d("testtest", "여기:   $orderDetail")
                 // 서버에서 받아온 정보를 화면에 보여준다.
-                settingOrderData(orderDetail)
+                settingOrderData(orderDetail!!)
+                // 주문한 상품 정보도 서버에서 받아온 뒤, 화면에 보여준다.
+                settingOrderedProductInfo(orderDetail!!)
             }
         }
     }
@@ -153,6 +157,14 @@ class OrderDetailFragment : Fragment() {
         }
     }
 
+    // 주문한 상품들의 정보를 불러와서 View에 세팅해준다.
+    fun settingOrderedProductInfo(orderDetail: OrderModel){
+        CoroutineScope(Dispatchers.Main).launch {
+            orderedProductsDetail.addAll(OrderHistoryDao.selectOrderProductInfo(orderDetail))
+            fragmentOrderDetailBinding.recyclerViewOrderDetailProducts.adapter?.notifyDataSetChanged()
+        }
+    }
+
     // 뒤로가기 처리
     fun backProcesss(){
         mainActivity.removeFragment(MainFragmentName.ORDER_DETAIL)
@@ -182,16 +194,33 @@ class OrderDetailFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: OrderDetailProductViewHolder, position: Int) {
+            // 주문 상태
+            val orderProductState = orderDetail!!.order_product[position].tracking_state
+            // 주문 상태가 구매확정 상태라면, 반품,교환 버튼을 숨겨준다.
+            if(orderProductState == ShippingState.ORDER_CONFIRM.num){
+                holder.productBinding.apply {
+                    buttonOrderdetailProductReturn.visibility = View.GONE
+                    dividerReturn.visibility = View.GONE
+                    buttonOrderdetailProductExchange.visibility = View.GONE
+                    dividerExchange.visibility = View.GONE
+                }
+            }
+
             holder.productBinding.orderDetailProductViewModel?.apply {
                 // 주문 상태
-                textviewOrderDetailProductState.value = "상품 준비중"
+                textviewOrderDetailProductState.value = Tools.getOrderItemStateStringValue(orderProductState)
                 // 코디 상품명
-                textviewOrderDetailProductCoordiName.value = "영앤리치"
+                textviewOrderDetailProductCoordiName.value = orderedProductsDetail[position].ordered_product_name
                 // 주문 옵션
-                textviewOrderDetailProductOption.value = "주문옵션 상품 종류 사이즈 색상 등등"
+                textviewOrderDetailProductOption.value = orderDetail!!.order_product[position].product_coordi_option
                 // 가격
-                textviewOrderDetailProductPrice.value = "000원"
+                textviewOrderDetailProductPrice.value = Tools.gettingPriceDecimalFormat(orderedProductsDetail[position].ordered_product_price)
             }
+            // ProductData에 상품 이미지가 등록되면 주석을 해제하고, 상품 이미지를 보여준다.
+            /*val thumbnailFileName = orderedProductsDetail[position].ordered_product_thumbnail_filename
+            CoroutineScope(Dispatchers.Main).launch {
+                ProductDao.gettingProductImage(mainActivity, thumbnailFileName, holder.productBinding.imageviewOrderdetailProductThumbnail )
+            }*/
 
             // todo data (주문번호 order_number : String 넘겨주고, inquiry 화면에 반영)
             holder.productBinding.apply {
@@ -223,15 +252,12 @@ class OrderDetailFragment : Fragment() {
                     mainActivity.replaceFragment(
                         MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, null
                     )
-
                 }
             }
-
-            // to do ImageView
         }
 
         override fun getItemCount(): Int {
-            return 2
+            return orderedProductsDetail.size
         }
     }
 }
