@@ -222,20 +222,15 @@ class OrderDetailFragment : Fragment() {
                 ProductDao.gettingProductImage(mainActivity, thumbnailFileName, holder.productBinding.imageviewOrderdetailProductThumbnail )
             }*/
 
-            // todo data (주문번호 order_number : String 넘겨주고, inquiry 화면에 반영)
             holder.productBinding.apply {
                 // 반품하기 버튼
                 buttonOrderdetailProductReturn.setOnClickListener {
-                    mainActivity.replaceFragment(
-                        MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, null
-                    )
+                    leaveOrderInquiry()
                 }
 
                 // 교환하기 버튼
                 buttonOrderdetailProductExchange.setOnClickListener {
-                    mainActivity.replaceFragment(
-                        MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, null
-                    )
+                    leaveOrderInquiry()
                 }
 
                 // 배송현황 버튼
@@ -249,11 +244,18 @@ class OrderDetailFragment : Fragment() {
 
                 // 문의하기 버튼
                 buttonOrderdetailProductInquiry.setOnClickListener {
-                    mainActivity.replaceFragment(
-                        MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, null
-                    )
+                    leaveOrderInquiry()
                 }
             }
+        }
+
+        fun leaveOrderInquiry(){
+            val orderDetailBundle = Bundle()
+            // 주문번호를 전달
+            orderDetailBundle.putString("orderNumber", orderDetail.order_number)
+
+            mainActivity.replaceFragment(
+                MainFragmentName.CUSTOMER_INQUIRY_FRAGMENT, true, true, orderDetailBundle)
         }
 
         override fun getItemCount(): Int {
