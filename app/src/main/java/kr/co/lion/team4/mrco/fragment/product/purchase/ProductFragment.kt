@@ -38,8 +38,6 @@ class ProductFragment : Fragment() {
     var oldFragment: Fragment? = null
     var newFragment: Fragment? = null
 
-    // 장바구니버튼인지 구매하기버튼인지 구분
-    var buttonIdx = true
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -58,7 +56,6 @@ class ProductFragment : Fragment() {
         settingToolbar()
 
         clickCoordinatorName()
-        clickProductDetailButton()
 
         settingTab()
         settingBottomButton()
@@ -97,19 +94,6 @@ class ProductFragment : Fragment() {
             textViewCoordinatorName.setOnClickListener {
 //                val bundle = "coordinator_data"
                 mainActivity.replaceFragment(MainFragmentName.COORDINATOR_MAIN, true, true, null)
-            }
-        }
-    }
-
-    fun clickProductDetailButton() {
-        fragmentProductBinding.apply {
-            buttonProductDetail.setOnClickListener {
-                mainActivity.replaceFragment(
-                    MainFragmentName.PRODUCT_DETAIL_FRAGMENT,
-                    true,
-                    true,
-                    null
-                )
             }
         }
     }
@@ -155,21 +139,12 @@ class ProductFragment : Fragment() {
 
     fun settingBottomButton() {
         fragmentProductBinding.apply {
-            buttonBottomAddCart.setOnClickListener {
-                buttonIdx = false
-                val productPurchaseBottomFragment = ProductPurchaseBottomFragment(buttonIdx)
-                productPurchaseBottomFragment.show(
-                    mainActivity.supportFragmentManager,
-                    "ReplyBottomSheet"
-                )
-            }
-
-            buttonBottomPurchase.setOnClickListener {
-                buttonIdx = true
-                val productPurchaseBottomFragment = ProductPurchaseBottomFragment(buttonIdx)
-                productPurchaseBottomFragment.show(
-                    mainActivity.supportFragmentManager,
-                    "ReplyBottomSheet"
+            buttonBottomCoordiDetail?.setOnClickListener {
+                mainActivity.replaceFragment(
+                    MainFragmentName.PRODUCT_DETAIL_FRAGMENT,
+                    true,
+                    true,
+                    null
                 )
             }
         }

@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FFFFFF"
             app:cardCornerRadius="8dp">
 
             <LinearLayout
@@ -41,9 +42,9 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:id="@+id/imageViewReviewUser"
+                            android:layout_width="88dp"
+                            android:layout_height="88dp"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/dummy_image" />
                     </LinearLayout>
@@ -67,6 +68,7 @@
                                 android:layout_marginBottom="4dp"
                                 android:layout_weight="1"
                                 android:text="@{rowProductReviewUserViewModel.textViewReviewUserNickname}"
+                                android:textSize="16sp"
                                 android:textStyle="bold"
                                 tools:text="유저 닉네임" />
 
@@ -74,11 +76,11 @@
                                 android:id="@+id/textViewReviewDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="4"
+                                android:layout_weight="3.5"
                                 android:gravity="center_vertical"
                                 android:text="@{rowProductReviewUserViewModel.textViewReviewDate}"
-                                android:textSize="10sp"
-                                tools:text="리뷰 작성 날짜" />
+                                android:textSize="12sp"
+                                tools:text="2024.04.14" />
                         </LinearLayout>
 
                         <TextView
@@ -87,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
                             android:text="@{rowProductReviewUserViewModel.textViewUserInfo}"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="유저 신체 정보" />
 
                         <TextView
@@ -95,174 +97,207 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@{rowProductReviewUserViewModel.textViewPurchaseOption}"
-                            android:textSize="10sp"
+                            android:textSize="12sp"
                             tools:text="상품 구매 옵션" />
 
                     </LinearLayout>
 
                 </LinearLayout>
 
-                <LinearLayout
+                <com.google.android.material.card.MaterialCardView
+                    style="@style/Widget.Material3.CardView.Outlined"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="4dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="88dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="8dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="8dp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="72dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="#F3ECEC"
-                        android:orientation="horizontal">
+                        android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="4dp"
-                            android:layout_weight="2"
-                            android:gravity="center_vertical|end"
-                            android:text="평점"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/textViewRatingStars"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@{rowProductReviewUserViewModel.textViewRatingStars}"
-                            android:textSize="12sp"
-                            tools:text="유저 평점" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="#F3ECEC"
-                        android:orientation="horizontal">
-
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_weight="2"
-                            android:gravity="center_vertical|end"
-                            android:text="컨셉매칭"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/textViewRatingOption1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_marginBottom="4dp"
                             android:layout_weight="1"
-                            android:gravity="center_vertical"
-                            android:text="@{rowProductReviewUserViewModel.textViewRatingOption1}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            tools:text="리뷰 항목 평가" />
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="8dp"
+                                android:background="#FFFFFF"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="4dp"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|end"
+                                    android:text="평점"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/textViewRatingStars"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@{rowProductReviewUserViewModel.textViewRatingStars}"
+                                    android:textSize="14sp"
+                                    tools:text="★★★★☆" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="8dp"
+                                android:background="#FFFFFF"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="4dp"
+                                    android:layout_weight="2"
+                                    android:gravity="center_vertical|end"
+                                    android:text="컨셉매칭"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/textViewRateConcept"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center_vertical"
+                                    android:text="@{rowProductReviewUserViewModel.textViewRateConcept}"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    tools:text="리뷰 항목 평가" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="8dp"
+                                android:background="#FFFFFF"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="4dp"
+                                    android:text="배송"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/textViewRateShipping"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{rowProductReviewUserViewModel.textViewRateShipping}"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    tools:text="리뷰 항목 평가" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="8dp"
+                                android:background="#FFFFFF"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="4dp"
+                                    android:text="품질"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                        android:id="@+id/textViewRateQuality"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{rowProductReviewUserViewModel.textViewRateQuality}"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    tools:text="리뷰 항목 평가" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:background="#FFFFFF"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="4dp"
+                                    android:gravity="end"
+                                    android:text="가성비"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/textViewRateCost"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@{rowProductReviewUserViewModel.textViewRateCost}"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    tools:text="리뷰 항목 평가" />
+                            </LinearLayout>
+
+                        </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="4dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="72dp"
-                        android:layout_marginEnd="8dp"
-                        android:background="#F3ECEC"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:textSize="12sp"
-                            tools:text="배송" />
-
-                        <TextView
-                            android:id="@+id/textViewRatingOption2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{rowProductReviewUserViewModel.textViewRatingOption2}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            tools:text="리뷰 항목 평가" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="8dp"
-                        android:background="#F3ECEC"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:text="품질"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/textViewRatingOption3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{rowProductReviewUserViewModel.textViewRatingOption3}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            tools:text="리뷰 항목 평가" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="#F3ECEC"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="4dp"
-                            android:gravity="end"
-                            android:text="가성비"
-                            android:textSize="12sp" />
-
-                        <TextView
-                            android:id="@+id/textViewRatingOption4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{rowProductReviewUserViewModel.textViewRatingOption4}"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            tools:text="리뷰 항목 평가" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
-                    android:id="@+id/textViewReviewComment"
+                    android:id="@+id/textViewReviewText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="72dp"
+                    android:layout_marginStart="88dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="4dp"
-                    android:text="@{rowProductReviewUserViewModel.textViewReviewComment}"
+                    android:text="@{rowProductReviewUserViewModel.textViewReviewText}"
                     tools:text="유저 후기 텍스트" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewUserReviewImage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="72dp" />
+                    android:layout_marginStart="88dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
