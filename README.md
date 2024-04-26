@@ -43,7 +43,10 @@
 </br>
 
 📓 피그마 링크 : <a href="https://www.figma.com/file/193zUmGJRnDWxupngbFmW9/4-Team-(MRCO)?type=design&node-id=54795%3A1646&mode=design&t=i2DvXl4SiNKQK6qb-1">Figma</a>
+
 </br>
+
+📓 시연 영상 링크 : <a href="https://youtu.be/1sHPeT0WGFo">Youtube</a>
 
 <hr>
 
