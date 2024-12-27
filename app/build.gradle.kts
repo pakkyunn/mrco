@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "kr.co.lion.team4.mrco"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "kr.co.lion.team4.mrco"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
