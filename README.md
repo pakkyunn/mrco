@@ -1,6 +1,6 @@
 ### MRCO
 <hr>
-<img src="https://github.com/user-attachments/assets/08561c40-ff9e-46c5-90f2-b1016cd457c4" width="720" height="400"/>
+<img src="https://github.com/user-attachments/assets/192ad83b-fb71-4200-a217-6b5e42883ae5" width="720" height="400"/>
 
 ### Info
 <hr>
