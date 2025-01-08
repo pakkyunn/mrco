@@ -60,6 +60,9 @@
 </br>
 
 ###  Member 
+
+<hr>
+
 <h4>🧑 박현준</h4>
 <a href="https://github.com/pakkyunn">
     <img src="http://img.shields.io/badge/pakkyunn-gray?logo=github"/>
