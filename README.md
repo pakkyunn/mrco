@@ -29,17 +29,17 @@
 
 <hr>
 
-아키텍처 : Provider + MVVM, REST API
+아키텍처 : MVVM
 
 </br>
 
 기술스택 :
 |***Category***|***Tech Stack***|
 |:---:|:---:|
-|**Network**|HTTP, Retrofit|
-|**Data**|Firebase|
-|**Map**|NaverMap, GeoJSON|
-|**상태 관리**|Provider|
+|**Network**|HTTP, Firebase SDK|
+|**Data**|Firebase, Firestore|
+|**Image**|Glide|
+|**상태 관리**|MVVM (ViewModel + LiveData)|
 
 </br>
 
@@ -47,11 +47,7 @@
 
 <hr>
 
-앱 시연 영상 : <a href="https://youtu.be/1sHPeT0WGFo">Youtube</a>
-
-</br>
-
-피그마 : <a href="https://www.figma.com/file/193zUmGJRnDWxupngbFmW9/4-Team-(MRCO)?type=design&node-id=54795%3A1646&mode=design&t=i2DvXl4SiNKQK6qb-1">Figma</a>
+피그마 : <a href="https://www.figma.com/design/EQLmlxRn2LmA5y5JoAq7AS/MRCO?node-id=1-2451&t=vzceiFVBfwsnzFyD-1">Figma</a>
 
 </br>
 
